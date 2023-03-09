@@ -33,7 +33,6 @@
   height: -webkit-fill-available;
   margin-bottom: 2vh;
   width: -webkit-fill-available;
-  margin-right: 10px;
   border-radius: 25px;
   backdrop-filter: blur(10px);
   position: relative;
@@ -42,6 +41,7 @@
   overflow: hidden;
   z-index: 3;
 }
+
 .AcademicCV-R {
   max-height: 100%;
   position: relative;
@@ -62,21 +62,21 @@
   border: 3px solid rgba(0, 0, 0, 0); /* creates padding around scroll thumb */
 }
 .PaperAcademic {
-  margin: 7px 20px;
-  color: #000000;
+  margin: 7px 3%;
+  color: #fff;
   position: relative;
   text-shadow: 0 0 #000000;
-  opacity: 0.7;
+  opacity: 0.8;
 }
 .PaperData {
   background-image: linear-gradient(
     to top,
-    rgba(240, 248, 255, 0.45),
-    rgba(240, 248, 255, 0.25)
+    rgba(240, 248, 255, 0.35),
+    rgba(240, 248, 255, 0.20)
   );
   box-shadow: 0px 50px 30px -15px rgb(0 0 0 / 5%);
   font-family: "Rubik", sans-serif;
-  font-size: 13px;
+  font-size: 12px;
   line-height: 18px;
   font-weight: 500;
   padding: 10px 20px;
@@ -103,22 +103,24 @@
   justify-content: space-between;
 }
 .paper-details p1 {
-  color: #462c1c;
-  text-shadow: 0 0 #311e12;
+  color: black;
+  text-shadow: 0 0 black;
   position: relative;
   font-family: "Rubik", sans-serif;
-  font-size: 13px;
+  font-size: 12px;
   display: flex;
   text-align: initial;
+  opacity: 0.8;
 }
 .paper-details p2 {
   display: flex;
   align-items: center;
-  color: rgb(7 25 48);
+  color: black;
   position: relative;
   font-family: "Rubik", sans-serif;
-  font-size: 12px;
+  font-size: 11px;
   font-weight: 500;
+  opacity: 0.8;
 }
 .paper-details svg {
   margin-left: 5px;
@@ -151,7 +153,7 @@
 .MoreInfo {
   overflow-y: hidden;
   font-family: "Rubik", sans-serif !important;
-  font-size: 13px;
+  font-size: 12px;
   display: flex;
   flex-direction: row;
   position: absolute;
@@ -243,7 +245,7 @@
   }
 }
 .AcademicCV-R-op-l{
-  background: linear-gradient(to top, rgb(29 30 34), rgba(29, 30, 34, 0));
+  background: linear-gradient(to top, rgb(29 30 34) , rgba(29, 30, 34, 0));
   position: absolute;
   bottom: 0;
   width: 20px;
@@ -416,4 +418,50 @@
   font-weight: 300;
   line-height: 18px;
   text-shadow: 0 0 #01122e;
+}
+.Skill{
+  margin-top: 5px;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  padding: 0 15px;
+  opacity: 0.7;
+  color: #ffffff;
+  font-size: 11px;
+  text-shadow: 0 0 #01122e;
+}
+.Skill-Title{
+  width: 50%;
+}
+.Skill-Title p{
+  line-height: 25px;
+  margin: 0;
+}
+.Awards{
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  padding: 0 15px;
+  opacity: 0.7;
+  color: #ffffff;
+  font-family: "Rubik", sans-serif;
+  font-size: 11px;
+  font-weight: 300;
+  line-height: 18px;
+  text-shadow: 0 0 #01122e;
+}
+.Awards p{
+  list-style-type: circle;
+  margin: 0;
+  line-height: 15px;
+  margin-top: 10px;
+}
+.Awards svg{
+font-size: 5px;
+color: #d49d81;
+margin-right: 10px;
+opacity: 0.9;
+transform: translateY(-1.5px);
 }

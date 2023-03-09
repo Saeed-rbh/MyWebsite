@@ -5,6 +5,7 @@ import { RiDownloadCloudFill } from "react-icons/ri";
 import { SiGooglescholar } from "react-icons/si";
 import { HiArrowSmRight } from "react-icons/hi";
 import { BsArrowDownShort } from 'react-icons/bs';
+import { BsCircleFill } from 'react-icons/bs';
 
 const AcademicCV = () => {
   const ListOfPapers = [
@@ -49,6 +50,59 @@ const AcademicCV = () => {
       Supervisor: "R. Rizvi , C. Jian",
     },
   ];
+  const ListOfSkills = [
+    {
+      id: 1,
+      skill: "Coding (Python, C++, JS, Matlab)",
+    },
+    {
+      id: 2,
+      skill: "LAMMPS Molecular Dynamics Simulator",
+
+    },
+    {
+      id: 3,
+      skill: "COMSOL Multiphysics, CATIA",
+    },
+    {
+      id: 4,
+      skill: "PhD in Mechanical Engineering",
+    },
+  ];
+  const ListOfAwards = [
+    {
+      id: 1,
+      Award: "Ranked 1st Among the BS Mechanical Engineering Alumni”, IK International University."
+    },
+    {
+      id: 2,
+      Award: "Visiting the 'Condensed Matter and Statistical Physics of the Abdus Salam International Centre for Theoretical Physics (ICTP)' and collaboration with E. Roldan and A. Hassanali on a research project on 'inverse heat flux between nanoparticles', from 21 October to 18 November 2019, Trieste, Italy."
+
+    },
+  ];
+  const ListOfConferences = [
+    {
+      id: 1,
+      Conference: '"Workshop on Molecular Dynamics and its Applications to Biological Systems:", online workshop, September 2020, ICTP, Trieste, Italy.'
+    },
+    {
+      id: 2,
+      Conference: '"Joint QLS-CMSP Virtual Summer Retreat on Heat, Water, Noise, and Life", online conference, Jul 2020, ICTP, Trieste, Italy.'
+
+    },
+  ];
+  const ListOfTeachings = [
+    {
+      id: 1,
+      Teaching: 'Research Assistant in Advanced Simulation and Computing Lab, Mechanical Engineering Department, IK International University, September 2015 – 2020.'
+    },
+    {
+      id: 2,
+      Teaching: 'Teacher Assistant in Heat transfer, Fluid Mechanics І, CFD, Mechanical Engineering Department, IK International University, 2017 – 2018, Qazvin, Iran.'
+
+    },
+  ];
+
   const openInNewTab = (url) => {
     window.open(url, "_blank", "noopener,noreferrer");
   };
@@ -145,6 +199,26 @@ const AcademicCV = () => {
       </p2>
     </div>
   ));
+  const SkillSoftware = ListOfSkills.map((Skill) => (
+      <div className="Skill-Title">
+        <p>{Skill.skill}</p>
+      </div>
+  ));
+  const Awards = ListOfAwards.map((Awards) => (
+    <div className="Awards-Title">
+      <p><BsCircleFill/>{Awards.Award}</p>
+    </div>
+));
+const Conferences = ListOfConferences.map((Conferences) => (
+  <div className="Awards-Title">
+    <p><BsCircleFill/>{Conferences.Conference}</p>
+  </div>
+));
+const Teachings = ListOfTeachings.map((Teachings) => (
+  <div className="Awards-Title">
+    <p><BsCircleFill/>{Teachings.Teaching}</p>
+  </div>
+));
   return (
     <>
       <div className="AcademicCV-M">
@@ -165,8 +239,20 @@ const AcademicCV = () => {
               {Qualifications}
             </div>
             <div className="ResearchInterests">
-              <p1>Qualifications:</p1>
-              {Qualifications}
+              <p1>Skill & Software:</p1>
+              <div className="Skill">{SkillSoftware}</div>
+            </div>
+            <div className="ResearchInterests">
+              <p1>Awards & Certifications:</p1>
+              <div className="Awards">{Awards}</div>
+            </div>
+            <div className="ResearchInterests">
+              <p1>Conferences and Workshops Attended:</p1>
+              <div className="Awards">{Conferences}</div>
+            </div>
+            <div className="ResearchInterests">
+              <p1>Teaching and work experiences:</p1>
+              <div className="Awards">{Teachings}</div>
             </div>
           </div>
           <div className="AcademicCV-R-op"> </div>
