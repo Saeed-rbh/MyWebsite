@@ -6,6 +6,7 @@ import { SiGooglescholar } from "react-icons/si";
 import { HiArrowSmRight } from "react-icons/hi";
 import { BsArrowDownShort } from "react-icons/bs";
 import { BsCircleFill } from "react-icons/bs";
+import { motion } from "framer-motion";
 
 const AcademicCV = () => {
   const ListOfPapers = [
@@ -245,26 +246,51 @@ const AcademicCV = () => {
           <div className="AcademicCV-R">
             {MyInfo}
             {ResearchInterests}
-            <div className="ResearchInterests">
+            <motion.div
+              initial={{ opacity: 0, y: 10 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+              className="ResearchInterests"
+            >
               <p1>Qualifications:</p1>
               {Qualifications}
-            </div>
-            <div className="ResearchInterests">
+            </motion.div>
+            <motion.div
+              initial={{ opacity: 0, y: 100 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+              className="ResearchInterests"
+            >
               <p1>Skill & Software:</p1>
               <div className="Skill">{SkillSoftware}</div>
-            </div>
-            <div className="ResearchInterests">
+            </motion.div>
+            <motion.div
+              initial={{ opacity: 0, y: 10 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+              className="ResearchInterests"
+            >
               <p1>Awards & Certifications:</p1>
               <div className="Awards">{Awards}</div>
-            </div>
-            <div className="ResearchInterests">
+            </motion.div>
+            <motion.div
+              initial={{ opacity: 0, y: 10 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+              className="ResearchInterests"
+            >
               <p1>Conferences and Workshops Attended:</p1>
               <div className="Awards">{Conferences}</div>
-            </div>
-            <div className="ResearchInterests">
+            </motion.div>
+            <motion.div
+              initial={{ opacity: 0, y: 10 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+              className="ResearchInterests"
+            >
               <p1>Teaching and work experiences:</p1>
               <div className="Awards">{Teachings}</div>
-            </div>
+            </motion.div>
           </div>
           <div className="AcademicCV-R-op"> </div>
           <div className="AcademicCV-R-op-l">
