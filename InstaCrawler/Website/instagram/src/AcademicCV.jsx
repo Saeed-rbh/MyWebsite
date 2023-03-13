@@ -111,10 +111,10 @@ const AcademicCV = () => {
   };
   const [InfoClicked, setInfoClicked] = useState([false, 0]);
   const OpenInfoMain = useSpring({
-    marginBottom: !InfoClicked[0] ? "5px" : "55px",
+    marginBottom: !InfoClicked[0] ? "0px" : "55px",
   });
   const OpenNothing = useSpring({
-    marginBottom: "5px",
+    marginBottom: "0px",
   });
   const OpenInfo = useSpring({
     transform: !InfoClicked[0] ? "translateY(-40px)" : "translateY(0px)",
@@ -256,7 +256,7 @@ const AcademicCV = () => {
               {Qualifications}
             </motion.div>
             <motion.div
-              initial={{ opacity: 0, y: 100 }}
+              initial={{ opacity: 0, y: 10 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
               className="ResearchInterests"
