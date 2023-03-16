@@ -63,8 +63,7 @@
   border: 3px solid rgba(0, 0, 0, 0); /* creates padding around scroll thumb */
 }
 .PaperAcademic:nth-of-type(2)  .PaperData{
-  background-image: linear-gradient( to top, rgb(49 50 52), rgb(74 73 74 / 20%) )!important;
-}
+  background-image: linear-gradient( to top, rgb(60, 61, 63), rgb(74 73 74 / 20%) )!important;}
 .PaperAcademic {
   margin: 0px 3%;
   color: #fff;
@@ -115,7 +114,6 @@
   font-size: 12px;
   display: flex;
   text-align: initial;
-  opacity: 0.8;
 }
 .paper-details p2 {
   display: flex;
@@ -176,11 +174,7 @@
   width: 30%;
   height: 35px;
   margin: 0 5px 0 5px;
-  background-image: linear-gradient(
-    to top,
-    rgba(240, 248, 255, 0.35),
-    rgba(240, 248, 255, 0.15)
-  );
+  background-image: linear-gradient( to top, rgb(60, 61, 63), rgb(74 73 74 / 20%) );
   border-radius: 8px;
   transition: background-color 0.2s ease-in-out;
   cursor: pointer;
@@ -471,4 +465,93 @@ color: #d49d81;
 margin-right: 10px;
 opacity: 0.9;
 transform: translateY(-1.5px);
+}
+
+
+@media only screen and (max-width: 767px) {
+  .AcademicCV-M{
+    flex-direction: column-reverse;
+    overflow: scroll;
+    height: fit-content;
+    padding: 8vh 2vw;
+    width: -webkit-fill-available;
+  }
+  .AcademicCV-L {
+    width: -webkit-fill-available;
+    overflow-x: hidden;
+    margin: 0;
+    margin-top: 10px;
+  }
+  .AcademicCV-R-Par{
+    padding: 0px;
+    margin: 0;
+    height: max-content;
+    overflow-x: hidden;
+    width: -webkit-fill-available;
+    background-color: rgba(240, 248, 255, 0);; 
+    border: none; 
+    webkit-backdrop-filter: none;
+    backdrop-filter: none;
+
+  }
+  .HomePage-M-T {
+    z-index: 9;
+  }
+  .HomeConsole{
+    bottom: 10px;
+    left: 4vw;
+    background-color: #000000d8;
+  }
+  .MainHeader {
+    width: 90vw;
+    top: 10px;
+}
+.MyInfo {
+  margin: 0px 0px 15px 0px;
+  padding: 10px 30px 10px 30px;
+  font-size: 11px;
+  height: -webkit-fill-available;
+  flex-direction: column;
+  align-items: flex-start;
+  background-color: rgba(240, 248, 255, 0.05);
+  border: 3px solid rgba(240, 248, 255, 0.1);
+  margin-bottom: 10px;
+  -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+}
+.MyInfo p1{
+  width: -webkit-fill-available;
+  text-align: left;
+}
+.MyInfo p2{
+  width: -webkit-fill-available;
+  text-align: left
+}
+.ResearchInterests p{
+  font-size: 11px;
+}
+.ResearchInterests {
+  padding: 15px 20px 15px 20px;
+  margin: 0px 0px 15px 0px;
+  background-color: rgba(240, 248, 255, 0.05);
+  border: 3px solid rgba(240, 248, 255, 0.1);
+  margin-bottom: 10px;
+  -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+}
+.RInterests p {
+  opacity: 0.7;
+  width: 50%;
+  margin: 2px 0 0 0;
+}
+.AcademicCV-R-op-l{
+  display: none;
+}
+.Quali-Title {
+  background-color: rgb(6 5 6 / 20%);
+}
+.MyInfo p1 {
+  line-height: 20px;
+}
+
 }

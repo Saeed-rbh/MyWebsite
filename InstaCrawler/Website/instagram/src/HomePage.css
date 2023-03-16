@@ -390,9 +390,9 @@
   text-transform: capitalize;
 }
 @media only screen and (max-width: 420px) {
-  .MainHeader {
+  /* .MainHeader {
     width: 80vw;
-  }
+  } */
   .contact-1 {
     display: none;
   }
