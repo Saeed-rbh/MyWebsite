@@ -1,5 +1,5 @@
 import "./AcademicCV.css";
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { useSpring, animated } from "react-spring";
 import { RiDownloadCloudFill } from "react-icons/ri";
 import { SiGooglescholar } from "react-icons/si";
@@ -19,6 +19,13 @@ const AcademicCV = () => {
     },
     {
       id: 2,
+      title:
+        "Interactions of Gas Particles with Graphene during High-Throughput Compressible Flow Exfoliation: A Molecular Dynamics Simulations Study",
+      link: "https://pubs.acs.org/doi/10.1021/acsami.0c11319",
+      pdf: "https://pubs.acs.org/doi/pdf/10.1021/acsami.0c11319",
+    },
+    {
+      id: 3,
       title:
         "Interactions of Gas Particles with Graphene during High-Throughput Compressible Flow Exfoliation: A Molecular Dynamics Simulations Study",
       link: "https://pubs.acs.org/doi/10.1021/acsami.0c11319",
@@ -105,20 +112,29 @@ const AcademicCV = () => {
         "Teacher Assistant in Heat transfer, Fluid Mechanics І, CFD, Mechanical Engineering Department, IK International University, 2017 – 2018, Qazvin, Iran.",
     },
   ];
-
   const openInNewTab = (url) => {
     window.open(url, "_blank", "noopener,noreferrer");
   };
-  const [InfoClicked, setInfoClicked] = useState([false, 0]);
+  const [InfoClicked, setInfoClicked] = useState(
+    Array.from({ length: ListOfPapers.length }, (_, i) => false)
+  );
+  const InfoClickedRef = useRef(InfoClicked);
+  const handleInfoClicked = (index) => {
+    const newArray = [...InfoClickedRef.current];
+    newArray[index] = !InfoClickedRef.current[index];
+    InfoClickedRef.current = newArray;
+  };
   const OpenInfoMain = useSpring({
-    marginBottom: !InfoClicked[0] ? "0px" : "55px",
+    marginBottom: !InfoClickedRef.current ? "0px" : "40px",
   });
   const OpenNothing = useSpring({
     marginBottom: "0px",
   });
   const OpenInfo = useSpring({
-    transform: !InfoClicked[0] ? "translateY(-40px)" : "translateY(0px)",
-    opacity: !InfoClicked[0] ? "0.5" : "1",
+    transform: !InfoClickedRef.current
+      ? "translateY(-40px)"
+      : "translateY(0px)",
+    opacity: !InfoClickedRef.current ? "0.5" : "1",
   });
   const Nothing = useSpring({
     transform: "translateY(-40px)",
@@ -127,11 +143,15 @@ const AcademicCV = () => {
   const Papers = ListOfPapers.map((Paper) => (
     <animated.div
       className="PaperAcademic"
-      onClick={() => setInfoClicked([!InfoClicked[0], Paper.id])}
-      style={InfoClicked[1] === Paper.id ? OpenInfoMain : OpenNothing}
+      onClick={() => setInfoClicked([handleInfoClicked(Paper.id - 1)])}
+      style={InfoClickedRef.current[Paper.id - 1] ? OpenInfoMain : OpenNothing}
     >
-      <div className="PaperData">
-        {" "}
+      <motion.div
+        initial={{ opacity: 0, y: 10 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5, delay: 0.1 * Paper.id }}
+        className="PaperData"
+      >
         <p1>{Paper.title}</p1>
         <div className="paper-details">
           <p1>The Journal of Physical Chemistry C</p1>
@@ -142,11 +162,11 @@ const AcademicCV = () => {
             </p2>
           </div>
         </div>
-      </div>
+      </motion.div>
 
       <div className="MoreInfo">
         <animated.p
-          style={InfoClicked[1] === Paper.id ? OpenInfo : Nothing}
+          style={InfoClickedRef.current[Paper.id - 1] ? OpenInfo : Nothing}
           className="ReferMoreInfo"
           onClick={() => openInNewTab(Paper.link)}
         >
@@ -154,7 +174,7 @@ const AcademicCV = () => {
           <SiGooglescholar />
         </animated.p>
         <animated.p
-          style={InfoClicked[1] === Paper.id ? OpenInfo : Nothing}
+          style={InfoClickedRef.current[Paper.id - 1] ? OpenInfo : Nothing}
           className="ReferMoreInfo"
           onClick={() => openInNewTab(Paper.pdf)}
         >
@@ -165,17 +185,27 @@ const AcademicCV = () => {
     </animated.div>
   ));
   const MyInfo = (
-    <div className="MyInfo">
+    <motion.div
+      className="MyInfo"
+      initial={{ opacity: 0, y: 10 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5 }}
+    >
       <p1>PhD, PICSSL Lab</p1>
       <p2>Date of birth: 15.02.1995</p2>
       <p1>Lassonde School of Engineering</p1>
       <p2>CA Cell: +1 (416) 836 5851</p2>
       <p1>York University, Toronto, Canada</p1>
       <p2>IR Cell:+98 (919) 659 5351</p2>
-    </div>
+    </motion.div>
   );
   const ResearchInterests = (
-    <div className="ResearchInterests">
+    <motion.div
+      className="ResearchInterests"
+      initial={{ opacity: 0, y: 10 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5 }}
+    >
       <p1>Research Interests:</p1>
       <div className="RInterests">
         <p>Atomistic Modeling</p>
@@ -183,7 +213,7 @@ const AcademicCV = () => {
         <p>Heat transfer,</p>
         <p>Statistical Mechanics</p>
       </div>
-    </div>
+    </motion.div>
   );
   const Qualifications = ListOfQualifications.map((Qualif) => (
     <div className="Quali">
@@ -202,11 +232,33 @@ const AcademicCV = () => {
       </p2>
     </div>
   ));
+  const QualificationsMain = (
+    <motion.div
+      initial={{ opacity: 0, y: 10 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5 }}
+      className="ResearchInterests"
+    >
+      <p1>Qualifications:</p1>
+      {Qualifications}
+    </motion.div>
+  );
   const SkillSoftware = ListOfSkills.map((Skill) => (
     <div className="Skill-Title">
       <p>{Skill.skill}</p>
     </div>
   ));
+  const SkillSoftwareMain = (
+    <motion.div
+      initial={{ opacity: 0, y: 10 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5 }}
+      className="ResearchInterests"
+    >
+      <p1>Skill & Software:</p1>
+      <div className="Skill">{SkillSoftware}</div>
+    </motion.div>
+  );
   const Awards = ListOfAwards.map((Awards) => (
     <div className="Awards-Title">
       <p>
@@ -215,6 +267,18 @@ const AcademicCV = () => {
       </p>
     </div>
   ));
+  const AwardsMain = (
+    <motion.div
+      initial={{ opacity: 0, y: 10 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5 }}
+      className="ResearchInterests"
+    >
+      <p1>Awards & Certifications:</p1>
+      <div className="Awards">{Awards}</div>
+    </motion.div>
+  );
+
   const Conferences = ListOfConferences.map((Conferences) => (
     <div className="Awards-Title">
       <p>
@@ -223,6 +287,18 @@ const AcademicCV = () => {
       </p>
     </div>
   ));
+  const ConferencesMain = (
+    <motion.div
+      initial={{ opacity: 0, y: 10 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5 }}
+      className="ResearchInterests"
+    >
+      <p1>Conferences and Workshops Attended:</p1>
+      <div className="Awards">{Conferences}</div>
+    </motion.div>
+  );
+
   const Teachings = ListOfTeachings.map((Teachings) => (
     <div className="Awards-Title">
       <p>
@@ -231,73 +307,60 @@ const AcademicCV = () => {
       </p>
     </div>
   ));
+  const TeachingsMain = (
+    <motion.div
+      initial={{ opacity: 0, y: 10 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5 }}
+      className="ResearchInterests"
+    >
+      <p1>Teaching and work experiences:</p1>
+      <div className="Awards">{Teachings}</div>
+    </motion.div>
+  );
+
   return (
     <>
       <div className="AcademicCV-M">
-        <div className="AcademicCV-L">
+        <motion.div
+          initial={{ opacity: 0, y: 10 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          className="AcademicCV-L"
+        >
           <div className="paper-head">
             <div className="paper-circle"></div>
             <div className="paper-line"></div>
             <p>Published Papers</p>
           </div>
           {Papers}
-        </div>
-        <div className="AcademicCV-R-Par">
-          <div className="AcademicCV-R">
+        </motion.div>
+        <motion.div
+          initial={{ opacity: 0, y: 10 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          className="AcademicCV-R-Par"
+        >
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            className="AcademicCV-R"
+          >
             {MyInfo}
             {ResearchInterests}
-            <motion.div
-              initial={{ opacity: 0, y: 10 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
-              className="ResearchInterests"
-            >
-              <p1>Qualifications:</p1>
-              {Qualifications}
-            </motion.div>
-            <motion.div
-              initial={{ opacity: 0, y: 10 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
-              className="ResearchInterests"
-            >
-              <p1>Skill & Software:</p1>
-              <div className="Skill">{SkillSoftware}</div>
-            </motion.div>
-            <motion.div
-              initial={{ opacity: 0, y: 10 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
-              className="ResearchInterests"
-            >
-              <p1>Awards & Certifications:</p1>
-              <div className="Awards">{Awards}</div>
-            </motion.div>
-            <motion.div
-              initial={{ opacity: 0, y: 10 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
-              className="ResearchInterests"
-            >
-              <p1>Conferences and Workshops Attended:</p1>
-              <div className="Awards">{Conferences}</div>
-            </motion.div>
-            <motion.div
-              initial={{ opacity: 0, y: 10 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
-              className="ResearchInterests"
-            >
-              <p1>Teaching and work experiences:</p1>
-              <div className="Awards">{Teachings}</div>
-            </motion.div>
-          </div>
+            {QualificationsMain}
+            {SkillSoftwareMain}
+            {AwardsMain}
+            {ConferencesMain}
+            {TeachingsMain}
+          </motion.div>
           <div className="AcademicCV-R-op"> </div>
           <div className="AcademicCV-R-op-l">
             <p>Scroll Down </p>
             <BsArrowDownShort />
           </div>
-        </div>
+        </motion.div>
       </div>
     </>
   );

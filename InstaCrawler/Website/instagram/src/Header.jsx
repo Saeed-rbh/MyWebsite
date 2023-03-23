@@ -73,199 +73,210 @@ const Header = () => {
 
     return (
       <div
-        className="HomeAround"
-        style={{ backdropFilter: MenuClicked ? "blur(10px)" : "blur(0px)" }}
+        className="HomePage-M-T"
+        style={{
+          zIndex: MenuClicked ? "10" : "2",
+        }}
       >
-        <animated.div className="MenuInsideN" style={MenuOpen}>
-          <animated.div className="ContactInfo" style={ContactInfoOpen1}>
-            Contact Information
-          </animated.div>
-          <div className="ContactInfos">
-            <animated.a
-              className="ContactInfo-In"
-              style={ContactInfoOpen2}
-              href="tel:+14168365851"
-            >
-              <p1>Phone Call</p1>
-              <animated.b style={ContactInfoOpen3}>
-                <span>CA Cell:</span>+1 &nbsp;(416) 836 5851
-              </animated.b>
-              <animated.b style={ContactInfoOpen3}>
-                <span>IR Cell:</span>+98 (919) 659 5351
-              </animated.b>
-            </animated.a>
-            <animated.a
-              style={ContactInfoOpen2}
-              className="ContactInfo-In"
-              href="mailto: SaeedArabha@outlook.com, Arabha@Yorku.ca"
-            >
-              <p1>Email</p1>
-              <animated.b style={ContactInfoOpen3}>
-                Saeedarabha@outlook.com
-              </animated.b>
-              <animated.b style={ContactInfoOpen3}>Arabha@Yorku.ca</animated.b>
-            </animated.a>
-            <animated.a
-              style={ContactInfoOpen2}
-              className="ContactInfo-In"
-              href="https://www.instagram.com/saeed_rbh"
-            >
-              <p1>Social Media</p1>
-              <animated.b style={ContactInfoOpen3}>@saeed_rbh</animated.b>
-            </animated.a>
-            <animated.a
-              style={ContactInfoOpen2}
-              className="ContactInfo-In"
-              href="https://www.researchgate.net/profile/Saeed-Arabha"
-            >
-              <p1>Research Gate</p1>
-              <animated.b style={ContactInfoOpen3}>Saeed Arabha</animated.b>
-            </animated.a>
-          </div>
-        </animated.div>
-        <div className="MainHeader">
-          <Link
-            to="/"
-            className="HomePage-M-T-L"
-            path="/"
-            element={<HomePage />}
-          >
-            <animated.p style={ContactInfoOpen4}>Saeed</animated.p>
-            <animated.b style={ContactInfoOpen4}>Arabha</animated.b>
-          </Link>
-          <animated.div
-            style={ContactInfoOpen4}
-            className="HomePage-M-T-R"
-            onClick={() => setMenuClicked(!MenuClicked)}
-            onMouseEnter={() => setMenuHover(!MenuHover)}
-            onMouseLeave={() => setMenuHover(!MenuHover)}
-          >
-            <animated.div
-              className="MenuIcon-T"
-              style={ChangeSizeT}
-            ></animated.div>
-            <animated.div
-              className="MenuIcon-B"
-              style={ChangeSizeB}
-            ></animated.div>
-          </animated.div>
-        </div>
-        <animated.div style={ContactInfoOpen5} className="HomeConsole">
-          <div className="contact-1">
-            <animated.p
-              className="Social-Media"
-              style={OnMouseH[1] === "CONTACT" ? ContactInfoOpen7 : objectStyle}
-            >
-              CONTACT ME
-            </animated.p>
-            <div className="social">
-              <a href="https://wa.me/14168365851">
-                <animated.p
-                  style={
-                    OnMouseH[1] === "CONTACT" && OnMouseH[2] === "WA"
-                      ? ContactInfoOpen7
-                      : objectStyle
-                  }
-                  onMouseEnter={() =>
-                    setOnMouseH([!OnMouseH[0], "CONTACT", "WA"])
-                  }
-                  onMouseLeave={() =>
-                    setOnMouseH([!OnMouseH[0], "CONTACT", "WA"])
-                  }
-                >
-                  WHATSAPP
-                </animated.p>
-              </a>
-              <a href="mailto: SaeedArabha@outlook.com">
-                <animated.p
-                  style={
-                    OnMouseH[1] === "CONTACT" && OnMouseH[2] === "E"
-                      ? ContactInfoOpen7
-                      : objectStyle
-                  }
-                  onMouseEnter={() =>
-                    setOnMouseH([!OnMouseH[0], "CONTACT", "E"])
-                  }
-                  onMouseLeave={() =>
-                    setOnMouseH([!OnMouseH[0], "CONTACT", "E"])
-                  }
-                >
-                  E-MAIL
-                </animated.p>
-              </a>
-              <a href="https://www.researchgate.net/profile/Saeed-Arabha">
-                <animated.p
-                  style={
-                    OnMouseH[1] === "CONTACT" && OnMouseH[2] === "RG"
-                      ? ContactInfoOpen7
-                      : objectStyle
-                  }
-                  onMouseEnter={() =>
-                    setOnMouseH([!OnMouseH[0], "CONTACT", "RG"])
-                  }
-                  onMouseLeave={() =>
-                    setOnMouseH([!OnMouseH[0], "CONTACT", "RG"])
-                  }
-                >
-                  ResearchGate
-                </animated.p>
-              </a>
-              <a href="https://www.instagram.com/saeed_rbh">
-                <animated.p
-                  style={
-                    OnMouseH[1] === "CONTACT" && OnMouseH[2] === "I"
-                      ? ContactInfoOpen7
-                      : objectStyle
-                  }
-                  onMouseEnter={() =>
-                    setOnMouseH([!OnMouseH[0], "CONTACT", "I"])
-                  }
-                  onMouseLeave={() =>
-                    setOnMouseH([!OnMouseH[0], "CONTACT", "I"])
-                  }
-                >
-                  INSTAGRAM
-                </animated.p>
-              </a>
+        <div
+          className="HomeAround"
+          style={{
+            backdropFilter: MenuClicked ? "blur(10px)" : "blur(0px)",
+          }}
+        >
+          <animated.div className="MenuInsideN" style={MenuOpen}>
+            <animated.div className="ContactInfo" style={ContactInfoOpen1}>
+              Contact Information
+            </animated.div>
+            <div className="ContactInfos">
+              <animated.a
+                className="ContactInfo-In"
+                style={ContactInfoOpen2}
+                href="tel:+14168365851"
+              >
+                <p1>Phone Call</p1>
+                <animated.b style={ContactInfoOpen3}>
+                  <span>CA Cell:</span>+1 &nbsp;(416) 836 5851
+                </animated.b>
+                <animated.b style={ContactInfoOpen3}>
+                  <span>IR Cell:</span>+98 (919) 659 5351
+                </animated.b>
+              </animated.a>
+              <animated.a
+                style={ContactInfoOpen2}
+                className="ContactInfo-In"
+                href="mailto: SaeedArabha@outlook.com, Arabha@Yorku.ca"
+              >
+                <p1>Email</p1>
+                <animated.b style={ContactInfoOpen3}>
+                  Saeedarabha@outlook.com
+                </animated.b>
+                <animated.b style={ContactInfoOpen3}>
+                  Arabha@Yorku.ca
+                </animated.b>
+              </animated.a>
+              <animated.a
+                style={ContactInfoOpen2}
+                className="ContactInfo-In"
+                href="https://www.instagram.com/saeed_rbh"
+              >
+                <p1>Social Media</p1>
+                <animated.b style={ContactInfoOpen3}>@saeed_rbh</animated.b>
+              </animated.a>
+              <animated.a
+                style={ContactInfoOpen2}
+                className="ContactInfo-In"
+                href="https://www.researchgate.net/profile/Saeed-Arabha"
+              >
+                <p1>Research Gate</p1>
+                <animated.b style={ContactInfoOpen3}>Saeed Arabha</animated.b>
+              </animated.a>
             </div>
+          </animated.div>
+          <div className="MainHeader">
+            <Link
+              to="/"
+              className="HomePage-M-T-L"
+              path="/"
+              element={<HomePage />}
+            >
+              <animated.p style={ContactInfoOpen4}>Saeed</animated.p>
+              <animated.b style={ContactInfoOpen4}>Arabha</animated.b>
+            </Link>
+            <animated.div
+              style={ContactInfoOpen4}
+              className="HomePage-M-T-R"
+              onClick={() => setMenuClicked(!MenuClicked)}
+              onMouseEnter={() => setMenuHover(!MenuHover)}
+              onMouseLeave={() => setMenuHover(!MenuHover)}
+            >
+              <animated.div
+                className="MenuIcon-T"
+                style={ChangeSizeT}
+              ></animated.div>
+              <animated.div
+                className="MenuIcon-B"
+                style={ChangeSizeB}
+              ></animated.div>
+            </animated.div>
           </div>
-          <div className="b-hr"></div>
-          <div className="resumee">
-            <p1 class="Social-Media">
+          <animated.div style={ContactInfoOpen5} className="HomeConsole">
+            <div className="contact-1">
               <animated.p
+                className="Social-Media"
+                style={
+                  OnMouseH[1] === "CONTACT" ? ContactInfoOpen7 : objectStyle
+                }
+              >
+                CONTACT ME
+              </animated.p>
+              <div className="social">
+                <a href="https://wa.me/14168365851">
+                  <animated.p
+                    style={
+                      OnMouseH[1] === "CONTACT" && OnMouseH[2] === "WA"
+                        ? ContactInfoOpen7
+                        : objectStyle
+                    }
+                    onMouseEnter={() =>
+                      setOnMouseH([!OnMouseH[0], "CONTACT", "WA"])
+                    }
+                    onMouseLeave={() =>
+                      setOnMouseH([!OnMouseH[0], "CONTACT", "WA"])
+                    }
+                  >
+                    WHATSAPP
+                  </animated.p>
+                </a>
+                <a href="mailto: SaeedArabha@outlook.com">
+                  <animated.p
+                    style={
+                      OnMouseH[1] === "CONTACT" && OnMouseH[2] === "E"
+                        ? ContactInfoOpen7
+                        : objectStyle
+                    }
+                    onMouseEnter={() =>
+                      setOnMouseH([!OnMouseH[0], "CONTACT", "E"])
+                    }
+                    onMouseLeave={() =>
+                      setOnMouseH([!OnMouseH[0], "CONTACT", "E"])
+                    }
+                  >
+                    E-MAIL
+                  </animated.p>
+                </a>
+                <a href="https://www.researchgate.net/profile/Saeed-Arabha">
+                  <animated.p
+                    style={
+                      OnMouseH[1] === "CONTACT" && OnMouseH[2] === "RG"
+                        ? ContactInfoOpen7
+                        : objectStyle
+                    }
+                    onMouseEnter={() =>
+                      setOnMouseH([!OnMouseH[0], "CONTACT", "RG"])
+                    }
+                    onMouseLeave={() =>
+                      setOnMouseH([!OnMouseH[0], "CONTACT", "RG"])
+                    }
+                  >
+                    ResearchGate
+                  </animated.p>
+                </a>
+                <a href="https://www.instagram.com/saeed_rbh">
+                  <animated.p
+                    style={
+                      OnMouseH[1] === "CONTACT" && OnMouseH[2] === "I"
+                        ? ContactInfoOpen7
+                        : objectStyle
+                    }
+                    onMouseEnter={() =>
+                      setOnMouseH([!OnMouseH[0], "CONTACT", "I"])
+                    }
+                    onMouseLeave={() =>
+                      setOnMouseH([!OnMouseH[0], "CONTACT", "I"])
+                    }
+                  >
+                    INSTAGRAM
+                  </animated.p>
+                </a>
+              </div>
+            </div>
+            <div className="b-hr"></div>
+            <div className="resumee">
+              <p1 class="Social-Media">
+                <animated.p
+                  style={
+                    OnMouseH[1] === "RESUMEE" ? ContactInfoOpen7 : objectStyle
+                  }
+                >
+                  MY RESUMEE
+                </animated.p>
+              </p1>
+              <animated.div
+                className="social"
                 style={
                   OnMouseH[1] === "RESUMEE" ? ContactInfoOpen7 : objectStyle
                 }
               >
-                MY RESUMEE
-              </animated.p>
-            </p1>
-            <animated.div
-              className="social"
-              style={OnMouseH[1] === "RESUMEE" ? ContactInfoOpen7 : objectStyle}
-            >
-              <Link
-                to="/AcademicCV"
-                onMouseEnter={() =>
-                  setOnMouseH([!OnMouseH[0], "RESUMEE", "AB"])
-                }
-                onMouseLeave={() =>
-                  setOnMouseH([!OnMouseH[0], "RESUMEE", "AB"])
-                }
-              >
-                ACADEMIC BACKGROUND
-              </Link>
-            </animated.div>
-          </div>
-        </animated.div>
+                <Link
+                  to="/AcademicCV"
+                  onMouseEnter={() =>
+                    setOnMouseH([!OnMouseH[0], "RESUMEE", "AB"])
+                  }
+                  onMouseLeave={() =>
+                    setOnMouseH([!OnMouseH[0], "RESUMEE", "AB"])
+                  }
+                >
+                  ACADEMIC BACKGROUND
+                </Link>
+              </animated.div>
+            </div>
+          </animated.div>
+        </div>
       </div>
     );
   }
 
-  return (
-    <div className="HomePage-M-T">
-      <MenuIcon />
-    </div>
-  );
+  return <MenuIcon />;
 };
 export default Header;
