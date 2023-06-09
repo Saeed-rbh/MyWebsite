@@ -37,7 +37,7 @@ const HomePage = () => {
             </div>
             <div className="pro">
               <p1>HOBBY</p1>
-              <p2>Coding - Watching Movie</p2>
+              <p2>Coding - Watching Movies</p2>
             </div>
           </div>
         </div>

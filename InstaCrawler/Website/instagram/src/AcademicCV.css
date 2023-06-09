@@ -153,12 +153,10 @@
 }
 .paper-head p {
   display: flex;
-  background: linear-gradient(to right, #b47556 0%, #d4a58d 100%);
+  background: linear-gradient(to right, #ffffff 0%, #e0bfb2 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   display: inline-block;
-  text-shadow: 5px 5px 10px #0000005f;
-  opacity: 0.7;
   font-family: "Rubik", sans-serif !important;
   font-size: 20px;
   font-weight: 500;
@@ -429,7 +427,7 @@
   height: 35px;
 }
 .Quali P2 {
-  opacity: 0.7;
+  opacity: 0.85;
   color: #ffffff;
   font-family: "Rubik", sans-serif;
   font-size: 11px;
@@ -462,7 +460,7 @@
   justify-content: flex-start;
   flex-wrap: wrap;
   padding: 0 15px;
-  opacity: 0.7;
+  opacity: 0.85;
   color: #ffffff;
   font-family: "Rubik", sans-serif;
   font-size: 11px;
@@ -473,7 +471,7 @@
 .Awards p {
   list-style-type: circle;
   margin: 0;
-  line-height: 15px;
+  line-height: 16px;
   margin-top: 10px;
 }
 .Awards svg {
@@ -484,7 +482,7 @@
   transform: translateY(-1.5px);
 }
 
-@media only screen and (max-width: 767px) {
+@media only screen and (max-width: 1120px) {
   .AcademicCV-M {
     flex-direction: column-reverse;
     overflow: scroll;
@@ -567,5 +565,43 @@
   }
   .MyInfo p1 {
     line-height: 20px;
+  }
+}
+
+@media only screen and (max-width: 1120px) {
+  .paper-head {
+    margin-bottom: 0;
+  }
+  .AcademicCV-R-Par {
+    z-index: 10000;
+    padding: 0 10px;
+  }
+  .AcademicCV-M {
+    height: 85vh;
+  }
+  .AcademicCV-L {
+    margin-bottom: 15px;
+    background-color: rgba(240, 248, 255, 0);
+    border: none;
+    height: 70vh;
+    margin-top: 0px;
+    padding-top: 0;
+    overflow: hidden;
+    z-index: 10000;
+  }
+  .paper-circle {
+    display: none;
+  }
+  .paper-head p {
+    margin-bottom: 10px;
+  }
+  .AcademicCV-R-op {
+    height: 0%;
+  }
+  .ReferMoreInfo {
+    width: 40%;
+  }
+  .PaperAcademic {
+    margin-bottom: 40px !important;
   }
 }

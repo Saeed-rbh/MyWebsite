@@ -1,13 +1,42 @@
 import "./HomePage.css";
 import HomePage from "./HomePage";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useSpring, animated } from "react-spring";
+import { RiDownloadCloud2Line } from "react-icons/ri";
+import { TbHomeMove } from "react-icons/tb";
 
 const Header = () => {
   function MenuIcon() {
+    const [screenWidth, setScreenWidth] = useState(window.innerWidth);
+    useEffect(() => {
+      const handleResize = () => {
+        setScreenWidth(window.innerWidth);
+      };
+
+      window.addEventListener("resize", handleResize);
+
+      return () => {
+        window.removeEventListener("resize", handleResize);
+      };
+    }, []);
     const [MenuClicked, setMenuClicked] = useState(false);
+    const [ResumeClicked, setResumeClicked] = useState(() => {
+      if (window.location.pathname === "/AcademicCV") {
+        return true;
+      } else {
+        return false;
+      }
+    });
     const [MenuHover, setMenuHover] = useState(false);
+    const handleClickCV = () => {
+      setMenuClicked(false);
+      setResumeClicked(true);
+    };
+    const handleClickMenu = () => {
+      setMenuClicked(false);
+      setResumeClicked(false);
+    };
     const [OnMouseH, setOnMouseH] = useState([false, NaN, NaN]);
     const ChangeSizeT = useSpring({
       width: !MenuClicked ? (!MenuHover ? "30px" : "15px") : "15px",
@@ -66,16 +95,83 @@ const Header = () => {
       },
     });
     const ContactInfoOpen7 = useSpring({
-      transform: !OnMouseH[0] ? "scale(1)" : "scale(1.05)",
-      opacity: !OnMouseH[0] ? "0.8" : "1",
+      // transform: !OnMouseH[0] ? "scale(1)" : "scale(1.005)",
+      // opacity: !OnMouseH[0] ? "0.8" : "1",
+    });
+    const ContactInfoOpen8 = useSpring({
+      opacity: ResumeClicked ? "0" : "1",
+      width: "50px",
+      transform: !ResumeClicked
+        ? screenWidth < 1120
+          ? "translate3d(0, 0, 0)"
+          : "translate3d(0, 0, 0)"
+        : screenWidth < 1120
+        ? "translate3d(0, 25px, 0)"
+        : "translate3d(0, 25px, 0)",
+      config: {
+        duration: 300,
+        tension: 280,
+        friction: 120,
+      },
+    });
+    const ContactInfoOpen9 = useSpring({
+      opacity: !ResumeClicked ? "0" : "1",
+      width: "50px",
+      transform: !ResumeClicked
+        ? "translate3d(0,-25px,0) scale(1.2)"
+        : "translate3d(0,0px,0) scale(1.2)",
+      flex: "0",
+      fontSize: "15px",
+      config: {
+        duration: 400,
+        tension: 280,
+        friction: 120,
+      },
+    });
+    const ContactInfoOpen10 = useSpring({
+      marginTop: !MenuClicked ? "0px" : "20px",
+      display: "flex",
+      alignItems: "center",
+      opacity: !ResumeClicked ? "0" : "1",
+      transform: !ResumeClicked
+        ? "translate3d(-80px,0,0)"
+        : "translate3d(5px,0,0)",
+      config: {
+        duration: 400,
+        tension: 280,
+        friction: 120,
+      },
+    });
+    const ContactInfoOpen11 = useSpring({
+      transform: !ResumeClicked
+        ? "translate3d(-100px,0,0)"
+        : "translate3d(40px,0,0)",
+      config: {
+        duration: 400,
+        tension: 280,
+        friction: 120,
+      },
+    });
+    const ContactInfoOpen12 = useSpring({
+      opacity: !ResumeClicked ? "0" : "1",
+      color: "#d49d81",
+      transform: !ResumeClicked
+        ? "translate3d(-80px,-1px,0)"
+        : !MenuClicked
+        ? "translate3d(27px,-1px,0)"
+        : "translate3d(27px,10px,0)",
+      config: {
+        duration: 400,
+        tension: 280,
+        friction: 120,
+      },
     });
     const objectStyle = {};
-
     return (
       <div
         className="HomePage-M-T"
         style={{
-          zIndex: MenuClicked ? "10" : "2",
+          zIndex: MenuClicked ? "10" : "10",
         }}
       >
         <div
@@ -134,15 +230,41 @@ const Header = () => {
             </div>
           </animated.div>
           <div className="MainHeader">
-            <Link
-              to="/"
-              className="HomePage-M-T-L"
-              path="/"
-              element={<HomePage />}
-            >
-              <animated.p style={ContactInfoOpen4}>Saeed</animated.p>
-              <animated.b style={ContactInfoOpen4}>Arabha</animated.b>
-            </Link>
+            <animated.div className="HomePage-M-T-L">
+              <animated.div style={ContactInfoOpen10}>
+                <TbHomeMove />
+                <Link
+                  onClick={handleClickMenu}
+                  to="/"
+                  path="/"
+                  href="https://www.instagram.com/saeed_rbh"
+                  onMouseEnter={() =>
+                    setOnMouseH([!OnMouseH[0], "RESUMEE", "AB"])
+                  }
+                  onMouseLeave={() =>
+                    setOnMouseH([!OnMouseH[0], "RESUMEE", "AB"])
+                  }
+                >
+                  Home Page
+                </Link>
+              </animated.div>
+              <animated.div style={ContactInfoOpen12}>|</animated.div>
+              <animated.div
+                style={ContactInfoOpen10}
+                className="b-hr"
+              ></animated.div>
+              <animated.div style={ContactInfoOpen11}>
+                <Link
+                  onClick={handleClickMenu}
+                  to="/"
+                  path="/"
+                  element={<HomePage />}
+                >
+                  <animated.p style={ContactInfoOpen4}>Saeed</animated.p>
+                  <animated.b style={ContactInfoOpen4}>Arabha</animated.b>
+                </Link>
+              </animated.div>
+            </animated.div>
             <animated.div
               style={ContactInfoOpen4}
               className="HomePage-M-T-R"
@@ -241,8 +363,11 @@ const Header = () => {
                 </a>
               </div>
             </div>
-            <div className="b-hr"></div>
-            <div className="resumee">
+            <div
+              className="b-hr"
+              style={{ display: screenWidth < 1120 ? "none" : "flex" }}
+            ></div>
+            <animated.div className="resumee" style={ContactInfoOpen8}>
               <p1 class="Social-Media">
                 <animated.p
                   style={
@@ -259,6 +384,7 @@ const Header = () => {
                 }
               >
                 <Link
+                  onClick={handleClickCV}
                   to="/AcademicCV"
                   onMouseEnter={() =>
                     setOnMouseH([!OnMouseH[0], "RESUMEE", "AB"])
@@ -270,7 +396,28 @@ const Header = () => {
                   ACADEMIC BACKGROUND
                 </Link>
               </animated.div>
-            </div>
+            </animated.div>
+            <animated.div className="resumee" style={ContactInfoOpen9}>
+              <animated.div
+                className="social"
+                style={
+                  OnMouseH[1] === "RESUMEE" ? ContactInfoOpen7 : objectStyle
+                }
+              >
+                <RiDownloadCloud2Line className="DownloadSvg" />
+                <a
+                  href="https://www.instagram.com/saeed_rbh"
+                  onMouseEnter={() =>
+                    setOnMouseH([!OnMouseH[0], "RESUMEE", "AB"])
+                  }
+                  onMouseLeave={() =>
+                    setOnMouseH([!OnMouseH[0], "RESUMEE", "AB"])
+                  }
+                >
+                  Download Pdf Version
+                </a>
+              </animated.div>
+            </animated.div>
           </animated.div>
         </div>
       </div>

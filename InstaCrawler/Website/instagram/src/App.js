@@ -6,11 +6,14 @@ import HomePage from "./HomePage";
 import Header from "./Header";
 import AcademicCV from "./AcademicCV";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import CustomCursor from "./Mouse";
+
 
 function App() {
   return (
     <Router>
       <div className="App">
+        {/* <CustomCursor /> */}
         <div className="MainBackground">
           <div className="BackgroundColor1"></div>
         </div>
