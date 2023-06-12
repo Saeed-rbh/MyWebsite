@@ -1,20 +1,20 @@
 import "./HomePage.css";
-import HomePage from "./HomePage";
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useSpring, animated } from "react-spring";
-import { TbHomeMove } from "react-icons/tb";
+import { RiDownloadCloud2Line } from "react-icons/ri";
 import { connect } from "react-redux";
-import { changeValueAction } from "./actions";
 
-const Header = ({ value, handleChangeValue }) => {
+const Footer = ({ value }) => {
   function MenuIcon() {
     const [screenWidth, setScreenWidth] = useState(window.innerWidth);
     useEffect(() => {
       const handleResize = () => {
         setScreenWidth(window.innerWidth);
       };
+
       window.addEventListener("resize", handleResize);
+
       return () => {
         window.removeEventListener("resize", handleResize);
       };
@@ -39,6 +39,7 @@ const Header = ({ value, handleChangeValue }) => {
         window.removeEventListener("click", handleUrlChange);
       };
     }, [currentUrl]);
+
     const [MenuHover, setMenuHover] = useState(false);
     const handleClickCV = () => {
       setMenuClicked(false);
@@ -48,11 +49,6 @@ const Header = ({ value, handleChangeValue }) => {
       setMenuClicked(false);
       setResumeClicked(false);
     };
-    const MenuIconClicked = () => {
-      setMenuClicked(!MenuClicked);
-      handleChangeValue(MenuClicked);
-    };
-
     const [OnMouseH, setOnMouseH] = useState([false, NaN, NaN]);
     const ChangeSizeT = useSpring({
       width: !MenuClicked ? (!MenuHover ? "30px" : "15px") : "15px",
@@ -185,19 +181,129 @@ const Header = ({ value, handleChangeValue }) => {
     const objectStyle = {};
     return (
       <div
-        className="HomePage-M-T"
+        className="HomePage-M-T-F"
         style={{
           zIndex: MenuClicked ? "10" : "10",
         }}
       >
-        <div className="MainHeader">
-          <animated.div className="HomePage-M-T-L">
-            <animated.div style={ContactInfoOpen10}>
-              <TbHomeMove />
+        <animated.div style={ContactInfoOpen5} className="HomeConsole">
+          <div className="contact-1">
+            <animated.p
+              className="Social-Media"
+              style={OnMouseH[1] === "CONTACT" ? ContactInfoOpen7 : objectStyle}
+            >
+              CONTACT ME
+            </animated.p>
+            <div className="social">
+              <a href="https://wa.me/14168365851">
+                <animated.p
+                  style={
+                    OnMouseH[1] === "CONTACT" && OnMouseH[2] === "WA"
+                      ? ContactInfoOpen7
+                      : objectStyle
+                  }
+                  onMouseEnter={() =>
+                    setOnMouseH([!OnMouseH[0], "CONTACT", "WA"])
+                  }
+                  onMouseLeave={() =>
+                    setOnMouseH([!OnMouseH[0], "CONTACT", "WA"])
+                  }
+                >
+                  WHATSAPP
+                </animated.p>
+              </a>
+              <a href="mailto: SaeedArabha@outlook.com">
+                <animated.p
+                  style={
+                    OnMouseH[1] === "CONTACT" && OnMouseH[2] === "E"
+                      ? ContactInfoOpen7
+                      : objectStyle
+                  }
+                  onMouseEnter={() =>
+                    setOnMouseH([!OnMouseH[0], "CONTACT", "E"])
+                  }
+                  onMouseLeave={() =>
+                    setOnMouseH([!OnMouseH[0], "CONTACT", "E"])
+                  }
+                >
+                  E-MAIL
+                </animated.p>
+              </a>
+              <a href="https://www.researchgate.net/profile/Saeed-Arabha">
+                <animated.p
+                  style={
+                    OnMouseH[1] === "CONTACT" && OnMouseH[2] === "RG"
+                      ? ContactInfoOpen7
+                      : objectStyle
+                  }
+                  onMouseEnter={() =>
+                    setOnMouseH([!OnMouseH[0], "CONTACT", "RG"])
+                  }
+                  onMouseLeave={() =>
+                    setOnMouseH([!OnMouseH[0], "CONTACT", "RG"])
+                  }
+                >
+                  ResearchGate
+                </animated.p>
+              </a>
+              <a href="https://www.instagram.com/saeed_rbh">
+                <animated.p
+                  style={
+                    OnMouseH[1] === "CONTACT" && OnMouseH[2] === "I"
+                      ? ContactInfoOpen7
+                      : objectStyle
+                  }
+                  onMouseEnter={() =>
+                    setOnMouseH([!OnMouseH[0], "CONTACT", "I"])
+                  }
+                  onMouseLeave={() =>
+                    setOnMouseH([!OnMouseH[0], "CONTACT", "I"])
+                  }
+                >
+                  INSTAGRAM
+                </animated.p>
+              </a>
+            </div>
+          </div>
+          <div
+            className="b-hr"
+            style={{ display: screenWidth < 1120 ? "none" : "flex" }}
+          ></div>
+          <animated.div className="resumee" style={ContactInfoOpen8}>
+            <p1 class="Social-Media">
+              <animated.p
+                style={
+                  OnMouseH[1] === "RESUMEE" ? ContactInfoOpen7 : objectStyle
+                }
+              >
+                MY RESUMEE
+              </animated.p>
+            </p1>
+            <animated.div
+              className="social"
+              style={OnMouseH[1] === "RESUMEE" ? ContactInfoOpen7 : objectStyle}
+            >
               <Link
-                onClick={handleClickMenu}
-                to="/"
-                path="/"
+                onClick={handleClickCV}
+                to="/AcademicCV"
+                onMouseEnter={() =>
+                  setOnMouseH([!OnMouseH[0], "RESUMEE", "AB"])
+                }
+                onMouseLeave={() =>
+                  setOnMouseH([!OnMouseH[0], "RESUMEE", "AB"])
+                }
+              >
+                ACADEMIC BACKGROUND
+              </Link>
+            </animated.div>
+          </animated.div>
+          <animated.div className="resumee" style={ContactInfoOpen9}>
+            <animated.div
+              className="social"
+              style={OnMouseH[1] === "RESUMEE" ? ContactInfoOpen7 : objectStyle}
+            >
+              <RiDownloadCloud2Line className="DownloadSvg" />
+              <a
                 href="https://www.instagram.com/saeed_rbh"
                 onMouseEnter={() =>
                   setOnMouseH([!OnMouseH[0], "RESUMEE", "AB"])
@@ -206,53 +312,19 @@ const Header = ({ value, handleChangeValue }) => {
                   setOnMouseH([!OnMouseH[0], "RESUMEE", "AB"])
                 }
               >
-                Home Page
-              </Link>
-            </animated.div>
-            <animated.div style={ContactInfoOpen12}>|</animated.div>
-            <animated.div
-              style={ContactInfoOpen10}
-              className="b-hr"
-            ></animated.div>
-            <animated.div style={ContactInfoOpen11}>
-              <Link
-                onClick={handleClickMenu}
-                to="/"
-                path="/"
-                element={<HomePage />}
-              >
-                <animated.p style={ContactInfoOpen4}>Saeed</animated.p>
-                <animated.b style={ContactInfoOpen4}>Arabha</animated.b>
-              </Link>
+                Download Pdf Version
+              </a>
             </animated.div>
           </animated.div>
-          <animated.div
-            style={ContactInfoOpen4}
-            className="HomePage-M-T-R"
-            onClick={MenuIconClicked}
-            onMouseEnter={() => setMenuHover(!MenuHover)}
-            onMouseLeave={() => setMenuHover(!MenuHover)}
-          >
-            <animated.div
-              className="MenuIcon-T"
-              style={ChangeSizeT}
-            ></animated.div>
-            <animated.div
-              className="MenuIcon-B"
-              style={ChangeSizeB}
-            ></animated.div>
-          </animated.div>
-        </div>
+        </animated.div>
       </div>
     );
   }
+
   return <MenuIcon />;
 };
 
 const mapStateToProps = (state) => ({
   value: state.value,
 });
-const mapDispatchToProps = (dispatch) => ({
-  handleChangeValue: (value) => dispatch(changeValueAction(value)),
-});
-export default connect(mapStateToProps, mapDispatchToProps)(Header);
+export default connect(mapStateToProps)(Footer);

@@ -10,12 +10,14 @@
     "react-cursor-follow": "^2.0.0",
     "react-dom": "^18.2.0",
     "react-icons": "^4.8.0",
-    "react-router-dom": "^6.9.0",
+    "react-redux": "^8.0.7",
+    "react-router-dom": "^6.12.1",
     "react-scripts": "^5.0.1",
     "react-spring": "^9.7.1",
     "react-swipeable": "^7.0.0",
     "react-use-draggable-scroll": "^0.4.7",
     "react-web-share": "^2.0.2",
+    "redux": "^4.2.1",
     "web-vitals": "^3.3.0"
   },
   "scripts": {

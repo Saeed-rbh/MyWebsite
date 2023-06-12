@@ -1,5 +1,6 @@
 import "./HomePage.css";
 import React from "react";
+import { motion } from "framer-motion";
 
 const HomePage = () => {
   return (
@@ -7,11 +8,33 @@ const HomePage = () => {
       <div className="HomePage-M">
         <div className="HomePage-M-L">
           <div className="welcome">
-            <div class="b-hr"></div>
-            <p>Welcome</p>
+            <motion.div
+              initial={{ opacity: 0, y: 10 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.1 * 1 }}
+              class="b-hr"
+            ></motion.div>
+            <motion.p
+              initial={{ opacity: 0, y: 10 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.1 * 1 }}
+            >
+              Welcome
+            </motion.p>
           </div>
-          <b>It's Saeed Arabha</b>
-          <div className="HomePage-M-L-3">
+          <motion.b
+            initial={{ opacity: 0, y: 10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.1 * 2 }}
+          >
+            It's Saeed Arabha
+          </motion.b>
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.1 * 3 }}
+            className="HomePage-M-L-3"
+          >
             <svg>
               <g>
                 <g>
@@ -29,8 +52,13 @@ const HomePage = () => {
               transfe .Besides, I really enjoy having collaboration with people
               in other fields.
             </p1>
-          </div>
-          <div className="fav">
+          </motion.div>
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.1 * 4 }}
+            className="fav"
+          >
             <div className="pro">
               <p1>MASTER IN</p1>
               <p2>Mechanical Engineering</p2>
@@ -39,7 +67,7 @@ const HomePage = () => {
               <p1>HOBBY</p1>
               <p2>Coding - Watching Movies</p2>
             </div>
-          </div>
+          </motion.div>
         </div>
         <div className="HomePage-M-R"></div>
       </div>
