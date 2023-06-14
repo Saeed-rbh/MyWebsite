@@ -4,22 +4,25 @@ import { Link } from "react-router-dom";
 import { useSpring, animated } from "react-spring";
 import { RiDownloadCloud2Line } from "react-icons/ri";
 import { connect } from "react-redux";
+import { updateMenu } from "./menuActions";
 
-const Footer = ({ value }) => {
+const Footer = ({ isMenuOpen, updateMenu }) => {
+  // Redux For Menu Open
   function MenuIcon() {
+    const handleButtonClick = (value) => {
+      updateMenu(value); // Dispatch the updateMenu action with the provided value
+    };
+
     const [screenWidth, setScreenWidth] = useState(window.innerWidth);
     useEffect(() => {
       const handleResize = () => {
         setScreenWidth(window.innerWidth);
       };
-
       window.addEventListener("resize", handleResize);
-
       return () => {
         window.removeEventListener("resize", handleResize);
       };
     }, []);
-    const [MenuClicked, setMenuClicked] = useState(false);
     const [currentUrl, setCurrentUrl] = useState(window.location.pathname);
     const [ResumeClicked, setResumeClicked] = useState(() => {
       if (window.location.pathname === "/AcademicCV") {
@@ -39,69 +42,13 @@ const Footer = ({ value }) => {
         window.removeEventListener("click", handleUrlChange);
       };
     }, [currentUrl]);
-
-    const [MenuHover, setMenuHover] = useState(false);
     const handleClickCV = () => {
-      setMenuClicked(false);
+      handleButtonClick(false);
       setResumeClicked(true);
     };
-    const handleClickMenu = () => {
-      setMenuClicked(false);
-      setResumeClicked(false);
-    };
     const [OnMouseH, setOnMouseH] = useState([false, NaN, NaN]);
-    const ChangeSizeT = useSpring({
-      width: !MenuClicked ? (!MenuHover ? "30px" : "15px") : "15px",
-      transform: MenuClicked
-        ? "translateY(6.5px) rotate(45deg)"
-        : "translateY(0px) rotate(0deg)",
-      height: !MenuClicked ? "2px" : "3px",
-    });
-    const ChangeSizeB = useSpring({
-      width: !MenuClicked ? (MenuHover ? "30px" : "15px") : "15px",
-      transform: MenuClicked
-        ? "translateY(-6.5px) rotate(-45deg)"
-        : "translateY(0px) rotate(0deg)",
-      height: !MenuClicked ? "2px" : "3px",
-    });
-    const MenuOpen = useSpring({
-      opacity: !MenuClicked ? "0" : "0.9",
-      config: {
-        duration: 500,
-      },
-    });
-    const ContactInfoOpen1 = useSpring({
-      transform: !MenuClicked
-        ? "translate3d(0,20px,0)"
-        : "translate3d(0,0px,0)",
-      opacity: !MenuClicked ? "0" : "1",
-    });
-    const ContactInfoOpen2 = useSpring({
-      transform: !MenuClicked
-        ? "translate3d(0,20px,0)"
-        : "translate3d(0,0px,0)",
-      opacity: !MenuClicked ? "0" : "1",
-    });
-    const ContactInfoOpen3 = useSpring({
-      transform: !MenuClicked
-        ? "translate3d(0,10px,0)"
-        : "translate3d(0,0px,0)",
-      opacity: !MenuClicked ? "0" : "1",
-      config: {
-        duration: 200,
-        delay: 100,
-      },
-    });
-    const ContactInfoOpen4 = useSpring({
-      transform: MenuClicked ? "translate3d(0,10px,0)" : "translate3d(0,0px,0)",
-      config: {
-        duration: 400,
-      },
-    });
     const ContactInfoOpen5 = useSpring({
-      transform: MenuClicked
-        ? "translate3d(0,-10px,0)"
-        : "translate3d(0,0px,0)",
+      transform: isMenuOpen ? "translate3d(0,-10px,0)" : "translate3d(0,0px,0)",
       config: {
         duration: 400,
       },
@@ -140,50 +87,12 @@ const Footer = ({ value }) => {
         friction: 120,
       },
     });
-    const ContactInfoOpen10 = useSpring({
-      marginTop: !MenuClicked ? "0px" : "20px",
-      display: "flex",
-      alignItems: "center",
-      opacity: !ResumeClicked ? "0" : "1",
-      transform: !ResumeClicked
-        ? "translate3d(-80px,0,0)"
-        : "translate3d(5px,0,0)",
-      config: {
-        duration: 400,
-        tension: 280,
-        friction: 120,
-      },
-    });
-    const ContactInfoOpen11 = useSpring({
-      transform: !ResumeClicked
-        ? "translate3d(-100px,0,0)"
-        : "translate3d(40px,0,0)",
-      config: {
-        duration: 400,
-        tension: 280,
-        friction: 120,
-      },
-    });
-    const ContactInfoOpen12 = useSpring({
-      opacity: !ResumeClicked ? "0" : "1",
-      color: "#d49d81",
-      transform: !ResumeClicked
-        ? "translate3d(-80px,-1px,0)"
-        : !MenuClicked
-        ? "translate3d(27px,-1px,0)"
-        : "translate3d(27px,10px,0)",
-      config: {
-        duration: 400,
-        tension: 280,
-        friction: 120,
-      },
-    });
     const objectStyle = {};
     return (
       <div
         className="HomePage-M-T-F"
         style={{
-          zIndex: MenuClicked ? "10" : "10",
+          zIndex: isMenuOpen ? "10" : "10",
         }}
       >
         <animated.div style={ContactInfoOpen5} className="HomeConsole">
@@ -324,7 +233,10 @@ const Footer = ({ value }) => {
   return <MenuIcon />;
 };
 
-const mapStateToProps = (state) => ({
-  value: state.value,
-});
-export default connect(mapStateToProps)(Footer);
+const mapStateToProps = (state) => {
+  return {
+    isMenuOpen: state.menu.isMenuOpen,
+  };
+};
+
+export default connect(mapStateToProps, { updateMenu })(Footer);

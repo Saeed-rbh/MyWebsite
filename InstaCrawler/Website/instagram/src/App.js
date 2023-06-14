@@ -5,6 +5,7 @@ import "./App.css";
 import HomePage from "./HomePage";
 import Header from "./Header";
 import Footer from "./Footer";
+import Menu from "./Menu";
 import Intro from "./Intro";
 import AcademicCV from "./AcademicCV";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
@@ -21,7 +22,8 @@ function App() {
           <div className="BackgroundColor1"></div>
         </div>
         <Header />
-        <Footer />
+        {/* <Menu /> */}
+        {/* <Footer /> */}
         <Routes>
           <Route exact path="/" element={<HomePage />} />
           <Route exact path="/AcademicCV" element={<AcademicCV />} />

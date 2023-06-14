@@ -266,14 +266,13 @@
   right: 0;
   z-index: 5;
   display: flex;
-  align-items: end;
-  justify-content: center;
+  align-items: flex-end;
   padding-bottom: 40px;
   flex-direction: column;
   align-items: center;
   padding-right: 3px;
   height: 100%;
-  justify-content: end;
+  justify-content: flex-end;
 
   animation-name: move;
   -webkit-animation-name: move;
