@@ -1,170 +1,173 @@
-import "./HomePage.css";
-import HomePage from "./HomePage";
-import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
-import { useSpring, animated } from "react-spring";
-import { TbHomeMove } from "react-icons/tb";
-import { connect } from "react-redux";
+import React, { useCallback, useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { updateMenu } from "./menuActions";
+import { useSpring, animated } from "react-spring";
+import { Link } from "react-router-dom";
+import HomePage from "./HomePage";
+import { TbHomeMove } from "react-icons/tb";
+import { motion } from "framer-motion";
 
-const Header = ({ isMenuOpen, updateMenu }) => {
-  const handleButtonClick = (value) => {
-    updateMenu(value);
-  };
-  useEffect(() => {}, [isMenuOpen]);
-  function MenuIcon() {
-    const [currentUrl, setCurrentUrl] = useState(window.location.pathname);
-    const [ResumeClicked, setResumeClicked] = useState(() => {
-      if (window.location.pathname === "/AcademicCV") {
-        return true;
-      } else {
-        return false;
-      }
-    });
-    useEffect(() => {
-      const handleUrlChange = () => {
-        const url = window.location.pathname;
-        setCurrentUrl(url);
-        setResumeClicked(url === "/AcademicCV");
-      };
-      window.addEventListener("click", handleUrlChange);
-      return () => {
-        window.removeEventListener("click", handleUrlChange);
-      };
-    }, [currentUrl]);
-    const [MenuHover, setMenuHover] = useState(false);
-    const handleClickMenu = () => {
-      handleButtonClick(false);
-      setResumeClicked(false);
-    };
-    const MenuIconClicked = () => {
-      handleButtonClick(!isMenuOpen);
-      console.log(isMenuOpen);
-    };
-    const [OnMouseH, setOnMouseH] = useState([false, NaN, NaN]);
-    const ChangeSizeT = useSpring({
-      width: !isMenuOpen ? (!MenuHover ? "30px" : "15px") : "15px",
-      transform: isMenuOpen
-        ? "translateY(6.5px) rotate(45deg)"
-        : "translateY(0px) rotate(0deg)",
-      height: !isMenuOpen ? "2px" : "3px",
-    });
-    const ChangeSizeB = useSpring({
-      width: !isMenuOpen ? (MenuHover ? "30px" : "15px") : "15px",
-      transform: isMenuOpen
-        ? "translateY(-6.5px) rotate(-45deg)"
-        : "translateY(0px) rotate(0deg)",
-      height: !isMenuOpen ? "2px" : "3px",
-    });
-    const ContactInfoOpen4 = useSpring({
-      transform: isMenuOpen ? "translate3d(0,10px,0)" : "translate3d(0,0px,0)",
-      config: {
-        duration: 400,
-      },
-    });
+const Header = () => {
+  const dispatch = useDispatch();
+  const isMenuOpen = useSelector((state) => state.menu.isMenuOpen);
 
-    const ContactInfoOpen10 = useSpring({
-      marginTop: !isMenuOpen ? "0px" : "20px",
-      display: "flex",
-      alignItems: "center",
-      opacity: !ResumeClicked ? "0" : "1",
-      transform: !ResumeClicked
-        ? "translate3d(-80px,0,0)"
-        : "translate3d(5px,0,0)",
-      config: {
-        duration: 400,
-        tension: 280,
-        friction: 120,
-      },
-    });
-    const ContactInfoOpen11 = useSpring({
-      transform: !ResumeClicked
-        ? "translate3d(-100px,0,0)"
-        : "translate3d(40px,0,0)",
-      config: {
-        duration: 400,
-        tension: 280,
-        friction: 120,
-      },
-    });
-    const ContactInfoOpen12 = useSpring({
-      opacity: !ResumeClicked ? "0" : "1",
-      color: "#d49d81",
-      transform: !ResumeClicked
-        ? "translate3d(-80px,-1px,0)"
-        : !isMenuOpen
-        ? "translate3d(27px,-1px,0)"
-        : "translate3d(27px,10px,0)",
-      config: {
-        duration: 400,
-        tension: 280,
-        friction: 120,
-      },
-    });
+  const handleButtonClick = useCallback(
+    (value) => {
+      dispatch(updateMenu(value));
+    },
+    [dispatch]
+  );
+
+  const [isMouseHovered, setIsMouseHovered] = useState([false, NaN, NaN]);
+  const [isResumeClicked, setIsResumeClicked] = useState(
+    window.location.pathname === "/AcademicCV"
+  );
+
+  useEffect(() => {
+    const handleUrlChange = () => {
+      const url = window.location.pathname;
+      setIsResumeClicked(url === "/AcademicCV");
+    };
+    window.addEventListener("click", handleUrlChange);
+    return () => {
+      window.removeEventListener("click", handleUrlChange);
+    };
+  }, []);
+
+  const [isMenuIconHovered, setIsMenuIconHovered] = useState(false);
+
+  const topBarAnimation = useSpring({
+    width: !isMenuOpen ? (!isMenuIconHovered ? "30px" : "15px") : "15px",
+    transform: isMenuOpen
+      ? "translateY(6.5px) rotate(45deg)"
+      : "translateY(0px) rotate(0deg)",
+    height: !isMenuOpen ? "2px" : "3px",
+  });
+
+  const bottomBarAnimation = useSpring({
+    width: !isMenuOpen ? (isMenuIconHovered ? "30px" : "15px") : "15px",
+    transform: isMenuOpen
+      ? "translateY(-6.5px) rotate(-45deg)"
+      : "translateY(0px) rotate(0deg)",
+    height: !isMenuOpen ? "2px" : "3px",
+  });
+
+  const contactInfoAnimation1 = useSpring({
+    transform: isMenuOpen ? "translate3d(0,10px,0)" : "translate3d(0,0px,0)",
+    config: {
+      duration: 400,
+    },
+  });
+
+  const contactInfoAnimation2 = useSpring({
+    marginTop: "0px",
+    display: "flex",
+    alignItems: "center",
+    opacity: !isResumeClicked ? "0" : "1",
+    transform: !isResumeClicked
+      ? "translate3d(-80px,0,0)"
+      : "translate3d(5px,0,0)",
+    config: {
+      duration: 400,
+      tension: 280,
+      friction: 120,
+    },
+  });
+
+  const contactInfoAnimation3 = useSpring({
+    transform: !isResumeClicked
+      ? "translate3d(-100px,0,0)"
+      : "translate3d(40px,0,0)",
+    config: {
+      duration: 400,
+      tension: 280,
+      friction: 120,
+    },
+  });
+
+  const contactInfoAnimation4 = useSpring({
+    opacity: !isResumeClicked ? "0" : "1",
+    color: "#d49d81",
+    transform: !isResumeClicked
+      ? "translate3d(-80px,-1px,0)"
+      : !isMenuOpen
+      ? "translate3d(27px,-1px,0)"
+      : "translate3d(27px,-1px,0)",
+    config: {
+      duration: 400,
+      tension: 280,
+      friction: 120,
+    },
+  });
+
+  const [isLoading, setIsLoading] = useState(true);
+  useEffect(() => {
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 1000);
+  }, [isLoading]);
+
+  const MenuIcon = () => {
     return (
-      <div className="HomePage-M-T-H">
-        <div className="MainHeader">
+      <motion.div
+        initial={isLoading && { opacity: 0, y: 10 }}
+        animate={isLoading && { opacity: 1, y: 0 }}
+        transition={isLoading && { duration: 0.6 }}
+        className="HomePage-M-T-H"
+      >
+        <animated.div style={contactInfoAnimation1} className="MainHeader">
           <animated.div className="HomePage-M-T-L">
-            <animated.div style={ContactInfoOpen10}>
+            <animated.div style={contactInfoAnimation2}>
               <TbHomeMove />
               <Link
-                onClick={handleClickMenu}
+                onClick={() => handleButtonClick(false)}
                 to="/"
                 path="/"
                 href="https://www.instagram.com/saeed_rbh"
                 onMouseEnter={() =>
-                  setOnMouseH([!OnMouseH[0], "RESUMEE", "AB"])
+                  setIsMouseHovered([!isMouseHovered[0], "RESUMEE", "AB"])
                 }
                 onMouseLeave={() =>
-                  setOnMouseH([!OnMouseH[0], "RESUMEE", "AB"])
+                  setIsMouseHovered([!isMouseHovered[0], "RESUMEE", "AB"])
                 }
               >
                 Home Page
               </Link>
             </animated.div>
-            <animated.div style={ContactInfoOpen12}>|</animated.div>
-            <animated.div
-              style={ContactInfoOpen10}
-              className="b-hr"
-            ></animated.div>
-            <animated.div style={ContactInfoOpen11}>
+            <animated.div style={contactInfoAnimation4}>|</animated.div>
+            <animated.div style={contactInfoAnimation3}>
               <Link
-                onClick={handleClickMenu}
+                onClick={() => handleButtonClick(false)}
                 to="/"
                 path="/"
                 element={<HomePage />}
               >
-                <animated.p style={ContactInfoOpen4}>Saeed</animated.p>
-                <animated.b style={ContactInfoOpen4}>Arabha</animated.b>
+                <p>Saeed</p>
+                <b>Arabha</b>
               </Link>
             </animated.div>
           </animated.div>
-          <animated.div
-            style={ContactInfoOpen4}
+          <div
             className="HomePage-M-T-R"
-            onClick={MenuIconClicked}
-            onMouseEnter={() => setMenuHover(!MenuHover)}
-            onMouseLeave={() => setMenuHover(!MenuHover)}
+            onClick={() => handleButtonClick(!isMenuOpen)}
+            onMouseEnter={() => setIsMenuIconHovered(true)}
+            onMouseLeave={() => setIsMenuIconHovered(false)}
           >
             <animated.div
               className="MenuIcon-T"
-              style={ChangeSizeT}
+              style={topBarAnimation}
             ></animated.div>
             <animated.div
               className="MenuIcon-B"
-              style={ChangeSizeB}
+              style={bottomBarAnimation}
             ></animated.div>
-          </animated.div>
-        </div>
-      </div>
+          </div>
+        </animated.div>
+      </motion.div>
     );
-  }
+  };
+
   return <MenuIcon />;
 };
 
-const mapStateToProps = (state) => {
-  return {
-    isMenuOpen: state.menu.isMenuOpen,
-  };
-};
-export default connect(mapStateToProps, { updateMenu })(Header);
+export default Header;

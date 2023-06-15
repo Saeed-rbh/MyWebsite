@@ -1,5 +1,5 @@
 import { configureStore } from '@reduxjs/toolkit';
-import menuReducer from './menuReducer';
+import menuReducer from './menuActions';
 
 const store = configureStore({
   reducer: {

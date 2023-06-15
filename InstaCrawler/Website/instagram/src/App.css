@@ -4,6 +4,7 @@ body {
   user-select: none;
   overflow-y: hidden; /* Hide vertical scrollbar */
   overflow-x: hidden; /* Hide horizontal scrollbar */
+  margin: 0;
 }
 #root {
   overflow: hidden;

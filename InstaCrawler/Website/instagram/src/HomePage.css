@@ -166,7 +166,7 @@
   display: flex;
   text-decoration: none;
 }
-.ContactInfo-In p1 {
+.ContactCategory {
   width: -webkit-fit-content;
   width: -moz-fit-content;
   width: fit-content;
@@ -208,6 +208,7 @@
   -webkit-transition: transform 0.2s ease, opacity 0.5s ease;
   margin-top: 0;
   display: flex;
+  margin-bottom: 4px;
 }
 .ContactInfo-In p2 span {
   margin: 0;
@@ -239,9 +240,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  z-index: 1;
-  transition: all 0.2s ease;
-  -webkit-transition: all 0.2s ease;
+  z-index: 10;
 }
 .MainHeader {
   position: absolute;
@@ -330,6 +329,7 @@
   font-weight: 600;
   overflow: hidden;
   font-size: 11px;
+  font-family: "Roboto", serif;
 }
 .b-hr {
   color: rgba(255, 255, 255, 0.9);
@@ -353,7 +353,7 @@
   margin-bottom: 5vh;
 }
 
-.HomePage-M-L-3 p1 {
+.HomePage-M-L-3 p {
   display: flex;
   color: #faf9f1;
   position: relative;
@@ -431,7 +431,7 @@
   flex-direction: column;
   align-items: baseline;
 }
-.pro p1 {
+.pro p:nth-child(1) {
   color: #d49d81;
   font-family: Rubik, sans-serif !important;
   font-size: 10px !important;
@@ -439,7 +439,7 @@
   font-weight: 600 !important;
   text-transform: uppercase;
 }
-.pro p2 {
+.pro p:nth-child(2) {
   color: #faf9f1;
   font-family: "Teko", sans-serif;
   font-size: 18px;
@@ -447,6 +447,7 @@
   white-space: nowrap;
   perspective: 400px;
   text-transform: capitalize;
+  margin: 0;
 }
 .DownloadSvg {
   margin-left: -19.5vw;
@@ -458,9 +459,6 @@
   .welcome {
     justify-content: center;
   }
-  /* .MainHeader {
-    width: 80vw;
-  } */
   .contact-1 {
     display: none;
   }
