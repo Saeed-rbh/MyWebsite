@@ -78,57 +78,54 @@ const Menu = ({ isMenuOpen }) => {
       {ContactInfoOpen(
         (props, item) =>
           item && (
-            <div style={{ ...props }}>
-              <div className="HomeAround">
-                <animated.div
-                  className="MenuInsideN"
-                  style={menuBackgroundAnimation}
-                >
-                  <animated.div className="ContactInfo" style={props}>
-                    Contact Information
-                  </animated.div>
-                  <div className="ContactInfos">
-                    {contactCategories.map((contactCategory, index) => (
-                      <div key={contactCategory.id}>
-                        <animated.div
-                          style={ContactInfoTrail[index]}
-                          className="ContactCategory"
-                        >
-                          {contactCategory.category}
-                        </animated.div>
-                        {ContactInfoTrail[index] && (
-                          <>
-                            {contactItems.map((contactItem) => {
-                              if (
-                                contactItem.category !==
-                                contactCategory.category
-                              )
-                                return null;
-                              const itemIndex = contactItems.findIndex(
-                                (item) => item.id === contactItem.id
-                              );
-                              return (
-                                <animated.a
-                                  key={contactItem.id}
-                                  style={ContactInfoTrail[itemIndex]}
-                                  className="ContactInfo-In"
-                                  href={
-                                    contactItem.category === "Phone Numbers"
-                                      ? "tel:+14168365851"
-                                      : ""
-                                  }
-                                >
-                                  <animated.b>{contactItem.info}</animated.b>
-                                </animated.a>
-                              );
-                            })}
-                          </>
-                        )}
-                      </div>
-                    ))}
-                  </div>
+            <div className="HomeAround" style={{ ...props }}>
+              <animated.div
+                className="MenuInsideN"
+                style={menuBackgroundAnimation}
+              >
+                <animated.div className="ContactInfo" style={props}>
+                  Contact Information
                 </animated.div>
-              </div>
+                <div className="ContactInfos">
+                  {contactCategories.map((contactCategory, index) => (
+                    <div key={contactCategory.id}>
+                      <animated.div
+                        style={ContactInfoTrail[index]}
+                        className="ContactCategory"
+                      >
+                        {contactCategory.category}
+                      </animated.div>
+                      {ContactInfoTrail[index] && (
+                        <>
+                          {contactItems.map((contactItem) => {
+                            if (
+                              contactItem.category !== contactCategory.category
+                            )
+                              return null;
+                            const itemIndex = contactItems.findIndex(
+                              (item) => item.id === contactItem.id
+                            );
+                            return (
+                              <animated.a
+                                key={contactItem.id}
+                                style={ContactInfoTrail[itemIndex]}
+                                className="ContactInfo-In"
+                                href={
+                                  contactItem.category === "Phone Numbers"
+                                    ? "tel:+14168365851"
+                                    : ""
+                                }
+                              >
+                                <animated.b>{contactItem.info}</animated.b>
+                              </animated.a>
+                            );
+                          })}
+                        </>
+                      )}
+                    </div>
+                  ))}
+                </div>
+              </animated.div>
             </div>
           )
       )}

@@ -91,8 +91,8 @@ const Header = () => {
     transform: !isResumeClicked
       ? "translate3d(-80px,-1px,0)"
       : !isMenuOpen
-      ? "translate3d(27px,-1px,0)"
-      : "translate3d(27px,-1px,0)",
+      ? "translate3d(24px,-1px,0)"
+      : "translate3d(24px,-1px,0)",
     config: {
       duration: 400,
       tension: 280,

@@ -572,21 +572,20 @@
     margin-bottom: 0;
   }
   .AcademicCV-R-Par {
-    z-index: 10000;
+    z-index: 10;
     padding: 0 10px;
   }
   .AcademicCV-M {
     height: 85vh;
   }
   .AcademicCV-L {
-    margin-bottom: 15px;
     background-color: rgba(240, 248, 255, 0);
     border: none;
     height: 70vh;
     margin-top: 0px;
     padding-top: 0;
     overflow: hidden;
-    z-index: 10000;
+    z-index: 10;
   }
   .paper-circle {
     display: none;

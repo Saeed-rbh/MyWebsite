@@ -1,5 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;500;700&family=Rubik:wght@300;500;600;700&family=Source+Sans+Pro:wght@200;300;600&family=Source+Serif+Pro:wght@200;400;600&family=Teko&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap");
+
 .HomePage-M {
   width: 100vw;
   height: 100vh;
@@ -19,14 +20,14 @@
 }
 .HomePage-M-T-F {
   width: -webkit-fill-available;
-  height: 100px;
+  height: 75px;
   position: absolute;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
   padding: 0 calc(30px + 3vw);
-  z-index: 11;
+  z-index: 100;
   bottom: 0;
 }
 .HomePage-M-T-H {
@@ -38,7 +39,9 @@
   justify-content: space-between;
   align-items: center;
   padding: 0 calc(30px + 3vw);
-  z-index: 11;
+  overflow: hidden;
+  opacity: 0.9;
+  z-index: 100;
 }
 .HomePage-M-T-R {
   height: fit-content;
@@ -240,7 +243,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  z-index: 10;
+  z-index: 99;
 }
 .MainHeader {
   position: absolute;
@@ -527,6 +530,24 @@
 }
 
 @media only screen and (max-width: 640px) {
+  .HomePage-M-T-H {
+    height: 60px;
+  }
+  .HomePage-M-T-H {
+    padding: 0 calc(25px + 3vw);
+  }
+  .resumee {
+    width: 80% !important;
+  }
+  .HomePage-M-T-L svg {
+    transform: translateY(-1px) scale(-1, 1);
+  }
+  .HomePage-M-T-L {
+    margin-left: 0;
+  }
+  .MainHeader {
+    position: relative;
+  }
   .welcome {
     justify-content: left;
     margin: 20px 0px;
