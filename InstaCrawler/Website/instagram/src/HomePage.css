@@ -1,5 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;500;700&family=Rubik:wght@300;500;600;700&family=Source+Sans+Pro:wght@200;300;600&family=Source+Serif+Pro:wght@200;400;600&family=Teko&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600&display=swap");
 
 .HomePage-M {
   width: 100vw;
@@ -62,20 +64,14 @@
   z-index: 2;
   transition: 0.3s ease-in-out;
 }
-.HomePage-M-T-L {
-  height: fit-content;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  cursor: pointer;
-  text-decoration: none;
-  z-index: 2;
-}
 .HomePage-M-T-L svg {
   color: #d49d81;
-  font-size: 17px;
+  font-size: 16px;
   margin-right: 7px;
-  transform: translateY(1px) scale(-1, 1);
+  transform: scale(-1, 1);
+}
+#Layer_1 {
+  transform: scale(1, 1);
 }
 .HomePage-M-T-L a {
   width: max-content;
@@ -87,6 +83,9 @@
   text-decoration: none;
   z-index: 2;
   color: #fff;
+  font-family: Rubik, sans-serif;
+  font-size: 13px;
+  font-weight: 300;
 }
 .HomePage-M-T-L p {
   font-size: 16px;
@@ -137,7 +136,7 @@
   flex-direction: column;
   justify-content: center;
   z-index: 1;
-  backdrop-filter: blur(10px);
+  /* backdrop-filter: blur(10px); */
   width: calc(100vw - 40px);
   margin: 20px;
   height: calc(100vh - 40px);
@@ -233,6 +232,7 @@
   -webkit-transition: transform 0.2s ease, opacity 0.5s ease;
   margin-top: 0;
 }
+
 .HomeAround {
   position: absolute;
   top: 0;
@@ -272,7 +272,6 @@
   align-items: center;
   z-index: 1;
   background-color: #00000060;
-  backdrop-filter: blur(10px);
   border-radius: 100px;
   flex-direction: row;
 }
@@ -329,20 +328,38 @@
   text-decoration: none !important;
   color: #faf9f1;
   opacity: 0.8;
-  font-weight: 600;
+  font-weight: 500;
   overflow: hidden;
   font-size: 11px;
-  font-family: "Roboto", serif;
+  font-family: "Poppins", sans-serif;
 }
 .b-hr {
-  color: rgba(255, 255, 255, 0.9);
+  background: linear-gradient(to right, #f9ebe528 0%, #d4a58dbe 100%);
   padding: 0;
   border: 0;
   font: inherit;
   vertical-align: baseline;
   width: 2px;
   position: relative;
-  background: #d49d81;
+  height: 30px;
+  margin: 0 3% 3px 3%;
+  -webkit-transition: opacity 0.4s ease-in-out;
+  opacity: 0.7;
+  height: 20px;
+  width: 560px;
+  border-radius: 100px;
+  margin-top: -23px;
+  margin-left: 12px;
+}
+
+.b-hr-2 {
+  background: linear-gradient(to right, #f9ebe528 0%, #d4a58dbe 100%);
+  padding: 0;
+  border: 0;
+  font: inherit;
+  vertical-align: baseline;
+  width: 2px;
+  position: relative;
   height: 30px;
   margin: 0 3% 3px 3%;
   -webkit-transition: opacity 0.4s ease-in-out;
@@ -352,20 +369,27 @@
 .HomePage-M-L-3 {
   display: flex;
   flex-direction: row;
-  margin-right: 6vw;
   margin-bottom: 5vh;
 }
 
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500&display=swap");
 .HomePage-M-L-3 p {
-  display: flex;
+  display: flow-root;
   color: #faf9f1;
   position: relative;
   animation-duration: 1200ms;
-  font-family: "Source Serif Pro", serif;
+  font-family: "Poppins", sans-serif;
   font-size: 15px;
   text-align: left;
   line-height: 28px;
+  font-weight: 400;
 }
+.HomePage-M-L-3 span {
+  background: linear-gradient(to right, #f9ebe538 0%, #d4a58d54 100%);
+  padding: 1px 10px 2px;
+  border-radius: 20px;
+}
+
 .HomePage-M-L-3 svg {
   fill: #d49d81;
   transform: scale(0.2);
@@ -385,7 +409,7 @@
   perspective: 400px;
   text-align: initial;
   margin-left: 40px;
-  margin-bottom: 2.5vh;
+  margin-bottom: 5vh;
   background: linear-gradient(to right, #f9ebe5 0%, #d4a58d 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -393,7 +417,7 @@
 .welcome {
   color: #faf9f1;
   margin: 0;
-  margin-left: 30px;
+  margin-left: 40px;
   padding: 0;
   border: 0;
   font: inherit;
@@ -414,14 +438,31 @@
   position: relative;
   color: #faf9f1;
   font-family: "DM Serif Display", serif;
-  font-size: 60px;
-  line-height: 50px;
+  font-size: 90px;
+  line-height: 70px;
   font-weight: 400;
   white-space: nowrap;
   perspective: 400px;
   background: linear-gradient(to right, #ffffff 0%, #e0bfb2 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+}
+.welcome span {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font: inherit;
+  vertical-align: baseline;
+  text-decoration: none;
+  position: relative;
+  color: #faf9f1;
+  font-family: "DM Serif Display", serif;
+  font-size: 90px;
+  line-height: 70px;
+  font-weight: 400;
+  white-space: nowrap;
+  perspective: 400px;
+  color: #d49d81;
 }
 .fav {
   display: flex;
@@ -441,6 +482,8 @@
   line-height: 18px !important;
   font-weight: 600 !important;
   text-transform: uppercase;
+  /* margin: 3px 0; */
+  margin-bottom: 0;
 }
 .pro p:nth-child(2) {
   color: #faf9f1;
@@ -456,6 +499,10 @@
   margin-left: -19.5vw;
 }
 @media only screen and (max-width: 1120px) {
+  .MainHeader {
+    width: 90vw;
+    top: 5px;
+  }
   .fav {
     margin-right: 0;
   }
@@ -487,9 +534,6 @@
     flex-direction: column;
     margin: 10vh 10vw;
   }
-  .HomeConsole {
-    margin-left: 5px;
-  }
   .HomePage-M-L {
     width: 100vw;
     padding: 0 5vw;
@@ -499,6 +543,7 @@
   }
   .HomePage-M-L-3 {
     margin-right: 0;
+    margin-bottom: 3vh;
   }
   .HomePage-M-L-3 p1 {
     text-align: center;
@@ -512,6 +557,7 @@
     flex-direction: column;
     align-items: center;
     margin: 10px;
+    margin-bottom: 0;
   }
   .HomePage-M-L b {
     align-self: center;
@@ -527,6 +573,15 @@
   .ContactInfo-In {
     margin: 10px 0;
   }
+  .MenuInsideN {
+    width: calc(100vw - 20px);
+    margin: 20px 10px;
+    height: calc(100vh - 40px);
+  }
+  .HomePage-M-T-F {
+    padding: 0 calc(3vw);
+    justify-content: center;
+  }
 }
 
 @media only screen and (max-width: 640px) {
@@ -534,19 +589,37 @@
     height: 60px;
   }
   .HomePage-M-T-H {
-    padding: 0 calc(25px + 3vw);
+    padding: 0 calc(3vw);
+    height: 70px;
   }
   .resumee {
     width: 80% !important;
-  }
-  .HomePage-M-T-L svg {
-    transform: translateY(-1px) scale(-1, 1);
   }
   .HomePage-M-T-L {
     margin-left: 0;
   }
   .MainHeader {
     position: relative;
+    border-radius: 100px;
+    padding: 0 20px;
+  }
+  .pro p:nth-child(1) {
+    margin-bottom: 0;
+  }
+
+  .HomePage-M-L-3 p {
+    font-size: 13px;
+    line-height: 25px;
+    text-align: center;
+    margin: 0 -10px;
+  }
+  .HomePage-M-T-B {
+    margin-top: 0px;
+    display: flex !important;
+    align-items: center;
+    background: linear-gradient(to right, #f9ebe538 0%, #d4a58d54 100%);
+    padding: 3px 12px 5px;
+    border-radius: 20px;
   }
   .welcome {
     justify-content: left;
@@ -559,7 +632,25 @@
     opacity: 0.9;
   }
   .HomePage-M-L b {
-    display: none;
+    font-size: 40px;
+    line-height: 30px;
+    align-self: flex-start;
+    margin-bottom: 6.5vh;
+  }
+  .welcome p {
+    font-size: 60px;
+    text-align: left;
+  }
+  .welcome {
+    margin-top: 0;
+    margin-bottom: 5px;
+  }
+  .b-hr {
+    height: 15px;
+    width: 300px;
+    border-radius: 100px;
+    margin-top: -8px;
+    margin-left: 12px;
   }
 }
 

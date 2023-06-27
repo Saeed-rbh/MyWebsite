@@ -16,6 +16,13 @@ const Mouse = () => {
     };
   }, []);
 
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+  useEffect(() => {
+    const handleResize = () => setWindowWidth(window.innerWidth);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
   useEffect(() => {
     const handleMouseUp = (event) => {
       setMouseClicked(false);
@@ -41,21 +48,23 @@ const Mouse = () => {
   const [MouseClicked, setMouseClicked] = useState(false);
 
   return (
-    <div onClick={() => setMouseClicked(!MouseClicked)}>
-      <div
-        style={{
-          left: `${mousePosition.x}px`,
-          top: `${mousePosition.y}px`,
-          width: !MouseClicked ? "30px" : "5px",
-          height: !MouseClicked ? "30px" : "5px",
-        }}
-        className="ring"
-      ></div>
-      <div
-        className="dot"
-        style={{ left: `${mousePosition.x}px`, top: `${mousePosition.y}px` }}
-      ></div>
-    </div>
+    windowWidth > 520 && (
+      <div onClick={() => setMouseClicked(!MouseClicked)}>
+        <div
+          style={{
+            left: `${mousePosition.x}px`,
+            top: `${mousePosition.y}px`,
+            width: !MouseClicked ? "30px" : "5px",
+            height: !MouseClicked ? "30px" : "5px",
+          }}
+          className="ring"
+        ></div>
+        <div
+          className="dot"
+          style={{ left: `${mousePosition.x}px`, top: `${mousePosition.y}px` }}
+        ></div>
+      </div>
+    )
   );
 };
 

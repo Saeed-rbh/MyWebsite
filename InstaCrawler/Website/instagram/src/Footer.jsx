@@ -70,7 +70,7 @@ const Footer = ({ isMenuOpen, updateMenu }) => {
     opacity: !resumeClicked ? "0" : "1",
     width: "50px",
     transform: !resumeClicked
-      ? "translate3d(0,-25px,0) scale(1.2)"
+      ? "translate3d(0,-15px,0) scale(1.2)"
       : "translate3d(0,0px,0) scale(1.2)",
     flex: "0",
     fontSize: "15px",
@@ -174,7 +174,7 @@ const Footer = ({ isMenuOpen, updateMenu }) => {
           </div>
         </div>
         <div
-          className="b-hr"
+          className="b-hr-2"
           style={{ display: screenWidth < 1120 ? "none" : "flex" }}
         ></div>
         <animated.div className="resumee" style={resumeInfoOpenSpring}>

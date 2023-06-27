@@ -4,25 +4,23 @@ import { updateMenu } from "./menuActions";
 import { useSpring, animated } from "react-spring";
 import { Link } from "react-router-dom";
 import HomePage from "./HomePage";
+import Logo from "./Logo";
 import { TbHomeMove } from "react-icons/tb";
 import { motion } from "framer-motion";
 
 const Header = () => {
   const dispatch = useDispatch();
   const isMenuOpen = useSelector((state) => state.menu.isMenuOpen);
-
   const handleButtonClick = useCallback(
     (value) => {
       dispatch(updateMenu(value));
     },
     [dispatch]
   );
-
   const [isMouseHovered, setIsMouseHovered] = useState([false, NaN, NaN]);
   const [isResumeClicked, setIsResumeClicked] = useState(
     window.location.pathname === "/AcademicCV"
   );
-
   useEffect(() => {
     const handleUrlChange = () => {
       const url = window.location.pathname;
@@ -33,9 +31,24 @@ const Header = () => {
       window.removeEventListener("click", handleUrlChange);
     };
   }, []);
-
+  const [scrollOpacity, setScrollOpacityT] = useState(false);
+  useEffect(() => {
+    if (isResumeClicked) {
+      const handleScroll = () => {
+        const scrollPosition = scrollableDiv.scrollTop;
+        const maxScroll =
+          scrollableDiv.scrollHeight - scrollableDiv.clientHeight;
+        const opacityT = scrollPosition / maxScroll + 1 > 0.1;
+        setScrollOpacityT(opacityT);
+      };
+      const scrollableDiv = document.getElementById("AcademicCV-M");
+      scrollableDiv.addEventListener("scroll", handleScroll);
+      return () => {
+        scrollableDiv.removeEventListener("scroll", handleScroll);
+      };
+    }
+  }, [isResumeClicked]);
   const [isMenuIconHovered, setIsMenuIconHovered] = useState(false);
-
   const topBarAnimation = useSpring({
     width: !isMenuOpen ? (!isMenuIconHovered ? "30px" : "15px") : "15px",
     transform: isMenuOpen
@@ -43,7 +56,6 @@ const Header = () => {
       : "translateY(0px) rotate(0deg)",
     height: !isMenuOpen ? "2px" : "3px",
   });
-
   const bottomBarAnimation = useSpring({
     width: !isMenuOpen ? (isMenuIconHovered ? "30px" : "15px") : "15px",
     transform: isMenuOpen
@@ -51,62 +63,45 @@ const Header = () => {
       : "translateY(0px) rotate(0deg)",
     height: !isMenuOpen ? "2px" : "3px",
   });
-
   const contactInfoAnimation1 = useSpring({
     transform: isMenuOpen ? "translate3d(0,10px,0)" : "translate3d(0,0px,0)",
+    backgroundColor:
+      isResumeClicked && scrollOpacity
+        ? `rgba(0, 0, 0, 1)`
+        : `rgba(0, 0, 0, 0)`,
     config: {
       duration: 400,
     },
   });
-
   const contactInfoAnimation2 = useSpring({
-    marginTop: "0px",
     display: "flex",
-    alignItems: "center",
     opacity: !isResumeClicked ? "0" : "1",
     transform: !isResumeClicked
       ? "translate3d(-80px,0,0)"
-      : "translate3d(5px,0,0)",
+      : "translate3d(0px,0,0)",
     config: {
       duration: 400,
       tension: 280,
       friction: 120,
     },
   });
-
   const contactInfoAnimation3 = useSpring({
+    opacity: !isResumeClicked ? "1" : "0",
     transform: !isResumeClicked
-      ? "translate3d(-100px,0,0)"
-      : "translate3d(40px,0,0)",
+      ? "translate3d(-110px,0,0)"
+      : "translate3d(15px,0,0)",
     config: {
       duration: 400,
       tension: 280,
       friction: 120,
     },
   });
-
-  const contactInfoAnimation4 = useSpring({
-    opacity: !isResumeClicked ? "0" : "1",
-    color: "#d49d81",
-    transform: !isResumeClicked
-      ? "translate3d(-80px,-1px,0)"
-      : !isMenuOpen
-      ? "translate3d(24px,-1px,0)"
-      : "translate3d(24px,-1px,0)",
-    config: {
-      duration: 400,
-      tension: 280,
-      friction: 120,
-    },
-  });
-
   const [isLoading, setIsLoading] = useState(true);
   useEffect(() => {
     setTimeout(() => {
       setIsLoading(false);
     }, 1000);
   }, [isLoading]);
-
   const MenuIcon = () => {
     return (
       <motion.div
@@ -117,7 +112,10 @@ const Header = () => {
       >
         <animated.div style={contactInfoAnimation1} className="MainHeader">
           <animated.div className="HomePage-M-T-L">
-            <animated.div style={contactInfoAnimation2}>
+            <animated.div
+              className="HomePage-M-T-B"
+              style={contactInfoAnimation2}
+            >
               <TbHomeMove />
               <Link
                 onClick={() => handleButtonClick(false)}
@@ -134,7 +132,6 @@ const Header = () => {
                 Home Page
               </Link>
             </animated.div>
-            <animated.div style={contactInfoAnimation4}>|</animated.div>
             <animated.div style={contactInfoAnimation3}>
               <Link
                 onClick={() => handleButtonClick(false)}
@@ -142,6 +139,7 @@ const Header = () => {
                 path="/"
                 element={<HomePage />}
               >
+                <Logo className="Logo" size="20" />
                 <p>Saeed</p>
                 <b>Arabha</b>
               </Link>
@@ -166,7 +164,6 @@ const Header = () => {
       </motion.div>
     );
   };
-
   return <MenuIcon />;
 };
 

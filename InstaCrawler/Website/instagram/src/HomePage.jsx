@@ -7,30 +7,37 @@ const HomePage = () => {
     <div className="HomePage-M">
       <div className="HomePage-M-L">
         <div className="welcome">
-          <motion.div
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.1 * 1 }}
-            className="b-hr"
-          ></motion.div>
           <motion.p
             initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
+            animate={{ opacity: 0.9, y: 0 }}
             transition={{ duration: 0.5, delay: 0.1 * 1 }}
           >
-            Welcome
+            Hello
           </motion.p>
+          <motion.span
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 0.9, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.1 * 1 }}
+          >
+            .
+          </motion.span>
         </div>
         <motion.b
           initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
+          animate={{ opacity: 0.9, y: 0 }}
           transition={{ duration: 0.5, delay: 0.1 * 2 }}
         >
-          It's Saeed Arabha
+          I'm Saeed Arabha
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 0.2, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.1 * 1 }}
+            className="b-hr"
+          ></motion.div>
         </motion.b>
         <motion.div
           initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
+          animate={{ opacity: 0.9, y: 0 }}
           transition={{ duration: 0.5, delay: 0.1 * 3 }}
           className="HomePage-M-L-3"
         >
@@ -43,18 +50,20 @@ const HomePage = () => {
             </g>
           </svg>
           <p>
-            I am a researcher at Polymer and Inorganic Composites Structures and
-            Surfaces Lab (PICSSL), York University, Toronto, Canada. As a
-            mechanical engineer, I am working on nanoscale heat transfer and
-            molecular phenomena. My main research interests are 2D
-            Nanomaterials, Statistical physics, Molecular Dynamics, and Heat
-            transfer. Besides, I really enjoy collaborating with people in other
-            fields.
+            Situated at the <span>PICSSL Lab</span> at{" "}
+            <span>York University</span>, I apply my{" "}
+            <span>mechanical engineering</span> prowess to delve into the
+            complexities of nanomaterials and molecular phenomena. My
+            professional focus lies in <span>2D Nanomaterials</span>,{" "}
+            <span>Molecular Dynamics</span>, and <span>Heat Transfer</span>. The
+            success of my research approach significantly stems from{" "}
+            <span>interdisciplinary collaborations</span> that amplify the
+            potential of my innovative explorations.
           </p>
         </motion.div>
         <motion.div
           initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
+          animate={{ opacity: 0.9, y: 0 }}
           transition={{ duration: 0.5, delay: 0.1 * 4 }}
           className="fav"
         >

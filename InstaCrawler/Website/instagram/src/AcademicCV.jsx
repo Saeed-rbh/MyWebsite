@@ -1,5 +1,5 @@
 import "./AcademicCV.css";
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { useSpring, animated } from "react-spring";
 import { RiDownloadCloudFill } from "react-icons/ri";
 import { SiGooglescholar } from "react-icons/si";
@@ -9,6 +9,29 @@ import { BsCircleFill } from "react-icons/bs";
 import { motion } from "framer-motion";
 
 const AcademicCV = () => {
+  const scrollableDivRef = useRef(null);
+  useEffect(() => {
+    scrollableDivRef.current.scrollTop = -1500;
+  }, []);
+
+  const [scrollOpacityT, setScrollOpacityT] = useState(0);
+  const [scrollOpacityB, setScrollOpacityB] = useState(5);
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollPosition = scrollableDiv.scrollTop;
+      const maxScroll = scrollableDiv.scrollHeight - scrollableDiv.clientHeight;
+      const opacityT = (scrollPosition / maxScroll) * 5;
+      setScrollOpacityT(opacityT);
+      const opacityB = (1 - scrollPosition / maxScroll) * 5;
+      setScrollOpacityB(opacityB);
+    };
+    const scrollableDiv = document.getElementById("scrollableDiv");
+    scrollableDiv.addEventListener("scroll", handleScroll);
+    return () => {
+      scrollableDiv.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
   const ListOfPapers = [
     {
       id: 1,
@@ -278,7 +301,6 @@ const AcademicCV = () => {
       <div className="Awards">{Awards}</div>
     </motion.div>
   );
-
   const Conferences = ListOfConferences.map((Conferences) => (
     <div className="Awards-Title">
       <p>
@@ -298,7 +320,6 @@ const AcademicCV = () => {
       <div className="Awards">{Conferences}</div>
     </motion.div>
   );
-
   const Teachings = ListOfTeachings.map((Teachings) => (
     <div className="Awards-Title">
       <p>
@@ -321,7 +342,7 @@ const AcademicCV = () => {
 
   return (
     <>
-      <div className="AcademicCV-M">
+      <div ref={scrollableDivRef} id="AcademicCV-M" className="AcademicCV-M">
         <motion.div
           initial={{ opacity: 0, y: 10 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -342,6 +363,7 @@ const AcademicCV = () => {
           className="AcademicCV-R-Par"
         >
           <motion.div
+            id="scrollableDiv"
             initial={{ opacity: 0, y: 10 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
@@ -355,7 +377,20 @@ const AcademicCV = () => {
             {ConferencesMain}
             {TeachingsMain}
           </motion.div>
-          <div className="AcademicCV-R-op"> </div>
+          <div
+            className="AcademicCV-R-op-down"
+            style={{
+              opacity: scrollOpacityB,
+              transition: "opacity 0.1s ease-in-out",
+            }}
+          ></div>
+          <div
+            className="AcademicCV-R-op-up"
+            style={{
+              opacity: scrollOpacityT,
+              transition: "opacity 0.1s ease-in-out",
+            }}
+          ></div>
           <div className="AcademicCV-R-op-l">
             <p>Scroll Down </p>
             <BsArrowDownShort />

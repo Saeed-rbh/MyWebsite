@@ -11,6 +11,7 @@
   justify-content: flex-end;
   padding-bottom: 20px;
   flex-direction: column;
+  z-index: 99999;
 }
 
 .Intro p {
