@@ -12,7 +12,7 @@
     "react-cursor-follow": "^2.0.0",
     "react-dom": "^18.2.0",
     "react-icons": "^4.8.0",
-    "react-redux": "^8.0.7",
+    "react-redux": "^8.1.1",
     "react-router-dom": "^6.12.1",
     "react-scripts": "^5.0.1",
     "react-spring": "^9.7.1",

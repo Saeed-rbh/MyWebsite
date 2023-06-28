@@ -10,8 +10,8 @@ import Intro from "./Intro";
 import CustomCursor from "./Mouse";
 import AcademicCV from "./AcademicCV";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import store from './store';
-
+import store from "./store";
+import Graphene from "./Graphene";
 
 function App() {
   return (
@@ -28,6 +28,7 @@ function App() {
         <Routes>
           <Route exact path="/" element={<HomePage />} />
           <Route exact path="/AcademicCV" element={<AcademicCV />} />
+          <Route exact path="/Graphene" element={<Graphene />} />
         </Routes>
 
         {/* <MyProfile />
