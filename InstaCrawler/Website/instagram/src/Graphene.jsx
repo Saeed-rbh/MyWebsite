@@ -1,75 +1,130 @@
 import React, { useRef, useEffect, Suspense } from "react";
-import { Canvas, useLoader, useThree } from "@react-three/fiber";
+import { Canvas, useLoader, useFrame } from "@react-three/fiber";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
-import "./Graphene.css";
+import * as THREE from "three";
 import { motion } from "framer-motion";
-
-import * as THREE from "three"; // Add this to import THREE
+import "./Graphene.css";
+import TWEEN from "@tweenjs/tween.js";
 
 function Model({ position, opacity }) {
   const gltf = useLoader(GLTFLoader, "/Graphene.gltf");
-  const mesh = useRef();
+  const meshRef = useRef();
+  const clockRef = useRef(new THREE.Clock());
+  const minXPosRef = useRef(Infinity);
+  const maxXPosRef = useRef(-Infinity);
+  const minZPosRef = useRef(Infinity);
+  const maxZPosRef = useRef(-Infinity);
+  const amplitudeRef = useRef(0.1);
+  const minAmplitudeRef = useRef(Infinity);
+  const maxAmplitudeRef = useRef(-Infinity);
 
   useEffect(() => {
-    if (mesh.current) {
-      mesh.current.rotation.x = Math.PI / 3;
-      mesh.current.rotation.z = -Math.PI / 6;
+    if (meshRef.current) {
+      const nodes = getMeshNodes(meshRef.current);
 
-      mesh.current.traverse((node) => {
-        if (node.isMesh) {
-          node.material = new THREE.ShaderMaterial({
-            vertexShader: `
-                varying vec2 vUv;
-                uniform float time; // Add this line
-                void main() {
-                    vUv = uv;
-                    vec3 pos = position;
-                    pos.z = pos.z + sin(pos.x + time) * 0.1; // This line creates the wave effect
-                    gl_Position = projectionMatrix * modelViewMatrix * vec4(pos,1.);
-                }
-            `,
-            fragmentShader: `
-              varying vec2 vUv;
-              void main() {
-                gl_FragColor = vec4(vUv ,0. ,1.); // Just colors the model based on UVs for demonstration purposes
-              }
-            `,
-            uniforms: {
-              time: { value: 0 },
-            },
-            transparent: true,
-            opacity: opacity,
-          });
+      nodes.forEach((node) => {
+        minXPosRef.current = Math.min(minXPosRef.current, node.position.x);
+        maxXPosRef.current = Math.max(maxXPosRef.current, node.position.x);
+        minZPosRef.current = Math.min(minZPosRef.current, node.position.z);
+        maxZPosRef.current = Math.max(maxZPosRef.current, node.position.z);
+      });
 
-          // Animation
-          const animate = () => {
-            requestAnimationFrame(animate);
-
-            // Update time uniform to keep the wave moving
-            node.material.uniforms.time.value += 0.01;
-          };
-
-          animate();
-        }
+      nodes.forEach((node) => {
+        const color = new THREE.Color();
+        node.material = new THREE.MeshStandardMaterial({
+          color: color,
+          roughness: 0.5,
+          metalness: 0.7,
+          transparent: true,
+          opacity: opacity,
+        });
+        node.userData.initialPositionY = node.position.y;
+        meshRef.current.rotation.x = Math.PI / 3;
+        meshRef.current.rotation.z = -Math.PI / 6;
       });
     }
   }, [opacity]);
 
-  return gltf ? (
-    <primitive object={gltf.scene} position={position} ref={mesh} />
-  ) : null;
-}
-
-function Camera() {
-  const { camera } = useThree();
-
   useEffect(() => {
-    camera.position.z = 4;
-    camera.near = 0.1;
-    camera.far = 100;
-  }, [camera]);
+    const updateAmplitude = () => {
+      const targetAmplitude = Math.random() * 0.3 + 0.01;
+      new TWEEN.Tween(amplitudeRef.current)
+        .to({ value: targetAmplitude }, 1000)
+        .start();
+    };
 
-  return null;
+    const amplitudeInterval = setInterval(updateAmplitude, 2000);
+
+    return () => {
+      clearInterval(amplitudeInterval);
+    };
+  }, []);
+
+  useFrame(() => {
+    const elapsedTime = clockRef.current.getElapsedTime();
+    const cycleDuration = 5;
+    const progress = (elapsedTime % cycleDuration) / cycleDuration;
+
+    const waveOffset = progress * Math.PI * 2;
+    const waveScale = amplitudeRef.current;
+
+    const nodes = getMeshNodes(meshRef.current);
+    nodes.forEach((node) => {
+      const rangeX = maxXPosRef.current - minXPosRef.current;
+      const rangeZ = maxZPosRef.current - minZPosRef.current;
+      const normalizedPositionX =
+        (node.position.x - minXPosRef.current) / rangeX;
+      const normalizedPositionZ =
+        (node.position.z - minZPosRef.current) / rangeZ;
+
+      const displacementX =
+        Math.cos(normalizedPositionX * Math.PI + waveOffset) * waveScale;
+      const displacementZ =
+        Math.sin(normalizedPositionZ * Math.PI + waveOffset) * waveScale;
+
+      node.position.y =
+        node.userData.initialPositionY + displacementX + displacementZ;
+
+      minAmplitudeRef.current = Math.min(
+        minAmplitudeRef.current,
+        node.position.y
+      );
+      maxAmplitudeRef.current = Math.max(
+        maxAmplitudeRef.current,
+        node.position.y
+      );
+
+      const colorMin = new THREE.Color("#efcfbe");
+      const colorMax = new THREE.Color("#d49d81");
+      const normalizedAmplitude =
+        (node.position.y - minAmplitudeRef.current) /
+        (maxAmplitudeRef.current - minAmplitudeRef.current);
+      const color = new THREE.Color().lerpColors(
+        colorMin,
+        colorMax,
+        normalizedAmplitude
+      );
+      node.material.color = color;
+    });
+
+    TWEEN.update();
+  });
+
+  const getMeshNodes = (object) => {
+    const nodes = [];
+    object.traverse((node) => {
+      if (node.isMesh) {
+        nodes.push(node);
+      }
+    });
+    return nodes;
+  };
+
+  return gltf ? (
+    <group position={position}>
+      <primitive object={gltf.scene} ref={meshRef} />
+    </group>
+  ) : null;
 }
 
 function Graphene() {
@@ -83,7 +138,7 @@ function Graphene() {
           className="GrapheneTitle"
         >
           What Are 2D Materials ?!
-        </motion.p>{" "}
+        </motion.p>
         <motion.div
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 0.2, y: 0 }}
@@ -97,8 +152,8 @@ function Graphene() {
           className="GrapheneDescription"
         >
           Step into the exciting realm of{" "}
-          <span class="highlight">2D materials</span>! These marvels, with a
-          thickness of just <span class="highlight">one atom</span>, are
+          <span className="highlight">2D materials</span>! These marvels, with a
+          thickness of just <span className="highlight">one atom</span>, are
           changing the face of technology.
         </motion.p>
         <ul className="GrapheneDescription">
@@ -107,8 +162,8 @@ function Graphene() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.1 * 4 }}
           >
-            Meet <span class="highlight">graphene</span>, stronger than steel
-            and exceptional at conducting electricity.
+            Meet <span className="highlight">graphene</span>, stronger than
+            steel and exceptional at conducting electricity.
           </motion.li>
           <motion.li
             initial={{ opacity: 0, y: 10 }}
@@ -124,7 +179,7 @@ function Graphene() {
             transition={{ duration: 0.5, delay: 0.1 * 6 }}
           >
             Uncover how these materials are revolutionizing fields like{" "}
-            <span>electronics</span> and <span> energy storage</span>.
+            <span>electronics</span> and <span>energy storage</span>.
           </motion.li>
         </ul>
         <motion.p
@@ -149,7 +204,6 @@ function Graphene() {
           <pointLight position={[10, 10, 10]} />
           <Suspense fallback={null}>
             <Model position={[0, 0, 0]} opacity={1} />
-            <Camera />
           </Suspense>
         </Canvas>
       </motion.div>
