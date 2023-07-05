@@ -6,6 +6,16 @@ import { motion } from "framer-motion";
 import "./Graphene.css";
 import TWEEN from "@tweenjs/tween.js";
 
+function getMeshNodes(obj) {
+  const nodes = [];
+  obj.traverse((node) => {
+    if (node.isMesh) {
+      nodes.push(node);
+    }
+  });
+  return nodes;
+}
+
 function Model({ position, opacity }) {
   const gltf = useLoader(GLTFLoader, "/Graphene.gltf");
   const meshRef = useRef();
@@ -14,20 +24,27 @@ function Model({ position, opacity }) {
   const maxXPosRef = useRef(-Infinity);
   const minZPosRef = useRef(Infinity);
   const maxZPosRef = useRef(-Infinity);
-  const amplitudeRef = useRef(0.1);
+  const amplitudeRef = useRef(0.05);
   const minAmplitudeRef = useRef(Infinity);
   const maxAmplitudeRef = useRef(-Infinity);
 
+  // Initialize the nodes
   useEffect(() => {
     if (meshRef.current) {
       const nodes = getMeshNodes(meshRef.current);
+      let avgYPos = 0;
 
       nodes.forEach((node) => {
-        minXPosRef.current = Math.min(minXPosRef.current, node.position.x);
-        maxXPosRef.current = Math.max(maxXPosRef.current, node.position.x);
-        minZPosRef.current = Math.min(minZPosRef.current, node.position.z);
-        maxZPosRef.current = Math.max(maxZPosRef.current, node.position.z);
+        if (node.name !== "Plane") {
+          avgYPos += node.position.y;
+          minXPosRef.current = Math.min(minXPosRef.current, node.position.x);
+          maxXPosRef.current = Math.max(maxXPosRef.current, node.position.x);
+          minZPosRef.current = Math.min(minZPosRef.current, node.position.z);
+          maxZPosRef.current = Math.max(maxZPosRef.current, node.position.z);
+        }
       });
+
+      avgYPos /= nodes.length - 1; // Subtract one for the plane
 
       nodes.forEach((node) => {
         const color = new THREE.Color();
@@ -38,17 +55,27 @@ function Model({ position, opacity }) {
           transparent: true,
           opacity: opacity,
         });
-        node.userData.initialPositionY = node.position.y;
+
+        node.userData.initialPosition = node.position.clone();
         meshRef.current.rotation.x = Math.PI / 3;
         meshRef.current.rotation.z = -Math.PI / 6;
+        if (node.name === "Plane") {
+          node.position.setY(avgYPos); // Set initial position of plane to the average Y position of all other nodes plus half of the average amplitude
+          node.userData.initialPositions = [];
+          for (let i = 0; i < node.geometry.attributes.position.count; i++) {
+            node.userData.initialPositions[i] =
+              node.geometry.attributes.position.getY(i);
+          }
+        }
       });
     }
   }, [opacity]);
 
+  // Update the amplitude
   useEffect(() => {
     const updateAmplitude = () => {
       const targetAmplitude = Math.random() * 0.3 + 0.01;
-      new TWEEN.Tween(amplitudeRef.current)
+      new TWEEN.Tween(amplitudeRef)
         .to({ value: targetAmplitude }, 1000)
         .start();
     };
@@ -60,45 +87,85 @@ function Model({ position, opacity }) {
     };
   }, []);
 
+  // Update the frame
   useFrame(() => {
     const elapsedTime = clockRef.current.getElapsedTime();
     const cycleDuration = 5;
     const progress = (elapsedTime % cycleDuration) / cycleDuration;
 
-    const waveOffset = progress * Math.PI * 2;
     const waveScale = amplitudeRef.current;
 
+    const colorMin = new THREE.Color("#efcfbe");
+    const colorMax = new THREE.Color("#d49d81");
+
     const nodes = getMeshNodes(meshRef.current);
+
+    const waveOffset = progress * Math.PI * 2;
+
     nodes.forEach((node) => {
       const rangeX = maxXPosRef.current - minXPosRef.current;
       const rangeZ = maxZPosRef.current - minZPosRef.current;
+
       const normalizedPositionX =
         (node.position.x - minXPosRef.current) / rangeX;
       const normalizedPositionZ =
         (node.position.z - minZPosRef.current) / rangeZ;
 
       const displacementX =
-        Math.cos(normalizedPositionX * Math.PI + waveOffset) * waveScale;
+        Math.cos(
+          (normalizedPositionX + normalizedPositionZ) * Math.PI * 2 + waveOffset
+        ) * waveScale;
       const displacementZ =
-        Math.sin(normalizedPositionZ * Math.PI + waveOffset) * waveScale;
+        Math.sin(
+          (normalizedPositionX + normalizedPositionZ) * Math.PI * 2 + waveOffset
+        ) * waveScale;
 
-      node.position.y =
-        node.userData.initialPositionY + displacementX + displacementZ;
+      const y = node.userData.initialPosition.y + displacementX + displacementZ;
 
-      minAmplitudeRef.current = Math.min(
-        minAmplitudeRef.current,
-        node.position.y
-      );
-      maxAmplitudeRef.current = Math.max(
-        maxAmplitudeRef.current,
-        node.position.y
-      );
+      if (node.name === "Plane") {
+        const planeGeometry = node.geometry;
+        const planePositions = planeGeometry.attributes.position;
 
-      const colorMin = new THREE.Color("#efcfbe");
-      const colorMax = new THREE.Color("#d49d81");
+        for (let i = 0; i < planePositions.count; i++) {
+          const x = planePositions.getX(i);
+          const z = planePositions.getZ(i);
+
+          const normalizedPositionX = (x - minXPosRef.current) / rangeX;
+          const normalizedPositionZ = (z - minZPosRef.current) / rangeZ;
+
+          const displacementX =
+            Math.cos(
+              (normalizedPositionX + normalizedPositionZ) * Math.PI * 2 +
+                waveOffset
+            ) * waveScale;
+          const displacementZ =
+            Math.sin(
+              (normalizedPositionX + normalizedPositionZ) * Math.PI * 2 +
+                waveOffset
+            ) * waveScale;
+
+          const newY =
+            node.userData.initialPositions[i] + displacementX + displacementZ;
+
+          planePositions.setXYZ(i, x, newY, z);
+
+          minAmplitudeRef.current = Math.min(minAmplitudeRef.current, newY);
+          maxAmplitudeRef.current = Math.max(maxAmplitudeRef.current, newY);
+        }
+
+        planePositions.needsUpdate = true;
+      } else {
+        // Update the position of other nodes
+        node.position.y = y;
+      }
+
+      minAmplitudeRef.current = Math.min(minAmplitudeRef.current, y);
+      maxAmplitudeRef.current = Math.max(maxAmplitudeRef.current, y);
+
       const normalizedAmplitude =
-        (node.position.y - minAmplitudeRef.current) /
+        (y - minAmplitudeRef.current) /
         (maxAmplitudeRef.current - minAmplitudeRef.current);
+
       const color = new THREE.Color().lerpColors(
         colorMin,
         colorMax,
@@ -110,21 +177,7 @@ function Model({ position, opacity }) {
     TWEEN.update();
   });
 
-  const getMeshNodes = (object) => {
-    const nodes = [];
-    object.traverse((node) => {
-      if (node.isMesh) {
-        nodes.push(node);
-      }
-    });
-    return nodes;
-  };
-
-  return gltf ? (
-    <group position={position}>
-      <primitive object={gltf.scene} ref={meshRef} />
-    </group>
-  ) : null;
+  return <primitive object={gltf.scene} ref={meshRef} position={position} />;
 }
 
 function Graphene() {

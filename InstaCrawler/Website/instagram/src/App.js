@@ -17,8 +17,8 @@ function App() {
   return (
     <Router store={store}>
       <div className="App">
-        {/* <Intro />
-        <CustomCursor /> */}
+        {/* <Intro /> */}
+        {/* <CustomCursor /> */}
         <div className="MainBackground">
           <div className="BackgroundColor1"></div>
         </div>

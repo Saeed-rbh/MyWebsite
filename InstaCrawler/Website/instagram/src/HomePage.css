@@ -197,6 +197,7 @@
   animation-name: fadeInUp;
   animation-timing-function: cubic-bezier(0.23, 1, 0.32, 1);
   width: fit-content;
+  width: -moz-fit-content;
   color: #fff;
   opacity: 1;
   font-family: "Rubik", sans-serif !important;
@@ -219,6 +220,7 @@
   font: inherit;
   vertical-align: baseline;
   width: fit-content;
+  width: -moz-fit-content;
   color: #fff;
   opacity: 1;
   font-family: "Rubik", sans-serif !important;

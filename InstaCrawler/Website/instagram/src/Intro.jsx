@@ -10,10 +10,10 @@ const Intro = () => {
   useEffect(() => {
     const handleLoad = () => {
       setTimeout(() => {
-        setFade(true);
+        // setFade(true);
       }, 2000);
       setTimeout(() => {
-        setVisible(false);
+        // setVisible(false);
       }, 4000);
     };
     window.onload = handleLoad;
