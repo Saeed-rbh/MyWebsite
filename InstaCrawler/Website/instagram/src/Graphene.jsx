@@ -93,14 +93,13 @@ function Model({ position, opacity }) {
     const cycleDuration = 5;
     const progress = (elapsedTime % cycleDuration) / cycleDuration;
 
+    const waveOffset = progress * Math.PI * 2;
     const waveScale = amplitudeRef.current;
 
     const colorMin = new THREE.Color("#efcfbe");
     const colorMax = new THREE.Color("#d49d81");
 
     const nodes = getMeshNodes(meshRef.current);
-
-    const waveOffset = progress * Math.PI * 2;
 
     nodes.forEach((node) => {
       const rangeX = maxXPosRef.current - minXPosRef.current;
@@ -252,11 +251,13 @@ function Graphene() {
         transition={{ duration: 1.5, delay: 0.1 * 1 }}
         className="Graphene"
       >
-        <Canvas camera={{ position: [0, 0, 4] }}>
+        <Canvas camera={{ position: [0, 0, 3.5] }}>
           <ambientLight />
-          <pointLight position={[10, 10, 10]} />
+          <pointLight position={[5, 5, 5]} />
           <Suspense fallback={null}>
-            <Model position={[0, 0, 0]} opacity={1} />
+            <group>
+              <Model position={[0, 0, 0]} opacity={1} />
+            </group>
           </Suspense>
         </Canvas>
       </motion.div>
