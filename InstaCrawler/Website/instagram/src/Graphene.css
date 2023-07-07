@@ -1,20 +1,21 @@
 .Graphene {
   width: 45vw;
-  height: 77vh;
+  height: 65vh;
   margin: 10vh 0vw 13vh 0vw;
   opacity: 1;
-  padding: 0 0 0vh 5vw;
+  padding: 0 0 7vh 6vw;
 }
 .GrapheneText {
   position: absolute;
   width: 40vw;
   height: 100vh;
-  right: 10vw;
+  right: 13vw;
   display: flex;
   justify-content: center;
   align-items: flex-start;
   flex-direction: column;
 }
+
 .hr-Graphene {
   background: linear-gradient(to right, #f9ebe528 0%, #d4a58dbe 100%);
   padding: 0;
@@ -28,11 +29,11 @@
   -webkit-transition: opacity 0.4s ease-in-out;
   opacity: 0.7;
   height: 20px;
-  width: 450px;
+  width: 430px;
   border-radius: 100px;
-  margin-top: -20px;
+  margin-top: -12px;
   margin-left: 12px;
-  margin-bottom: 5vh;
+  margin-bottom: 8vh;
 }
 .GrapheneTitle {
   position: relative;
@@ -47,6 +48,8 @@
   background: linear-gradient(to right, #f9ebe5 0%, #d4a58d 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+  margin-top: 0;
+  line-height: 35px;
 }
 
 .GrapheneDescription {
@@ -55,14 +58,111 @@
   position: relative;
   animation-duration: 1200ms;
   font-family: "Poppins", sans-serif;
-  font-size: 15px;
+  font-size: 14px;
   text-align: left;
   line-height: 28px;
   font-weight: 400;
+  opacity: 1;
+  transform: none;
+  margin: 0 0 4vh 0;
+}
+.GrapheneDescription li::marker {
+  color: #d49d81;
 }
 
 .GrapheneDescription span {
   background: linear-gradient(to right, #f9ebe538 0%, #d4a58d54 100%);
   padding: 1px 10px 2px;
   border-radius: 20px;
+}
+.GrapheneDescription p1 {
+  font-weight: 900;
+  position: absolute;
+  transform: translateY(-25px);
+  font-size: 15px;
+  background: linear-gradient(to right, #ffddd0 0%, #d4a58d 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.GrapheneMore {
+  display: flex;
+  align-items: center;
+  align-self: center;
+  cursor: pointer;
+}
+.GrapheneMore p {
+  font-size: 14px;
+  text-align: left;
+  line-height: 28px;
+  font-weight: 400;
+  background: linear-gradient(to right, #f9ebe538 0%, #d4a58d54 100%);
+  padding: 1px 25px 2px 20px;
+  border-radius: 20px;
+  color: #faf9f1;
+  font-family: "Poppins", sans-serif;
+  box-shadow: rgba(0, 0, 0, 0.3) 0px 8px 24px;
+}
+.GrapheneMore svg {
+  height: 30px;
+  width: 30px;
+  color: #d49d81;
+  transform: translateX(-30px);
+  opacity: 0.9;
+}
+
+.GrapheneMoreC {
+  width: 9px;
+  height: 9px;
+  border-radius: 30px;
+  background-color: #d49d81;
+  opacity: 0.9;
+  border: solid 9px #000000;
+  transform: translateX(-17px);
+  box-shadow: rgba(0, 0, 0, 0.3) 0px 8px 24px;
+}
+
+.GrapheneMenu {
+  width: 20px;
+  height: 85vh;
+  position: absolute;
+  right: 85px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  opacity: 0.9;
+}
+
+.GrapheneMenuLT {
+  width: 1px;
+  height: 30vh;
+  background: linear-gradient(to top, #f9ebe5 0%, #d4a58d00 100%);
+  border-radius: 100%;
+  opacity: 0.6;
+}
+
+.GrapheneMenuLB {
+  width: 1px;
+  height: 15vh;
+  background: linear-gradient(to bottom, #f9ebe5 0%, #d4a58d00 100%);
+  border-radius: 100%;
+  opacity: 0.6;
+}
+.GrapheneMenuC {
+  font-size: 14px;
+  color: #faf9f1;
+  font-family: "Poppins", sans-serif;
+}
+
+.GrapheneMenuC p:first-child {
+  margin: 10px 0 -10px 0;
+  transform: translateX(-10px);
+}
+.GrapheneMenuC p:last-child {
+  margin: -10px 0 10px 0;
+  transform: translateX(10px);
+}
+.GrapheneMenuC span {
+  color: #d49d81;
 }

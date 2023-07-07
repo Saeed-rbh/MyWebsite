@@ -3,8 +3,10 @@ import { Canvas, useLoader, useFrame } from "@react-three/fiber";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 import * as THREE from "three";
 import { motion } from "framer-motion";
+import { animated, useSpring } from "react-spring";
 import "./Graphene.css";
 import TWEEN from "@tweenjs/tween.js";
+import { CgArrowLongRight } from "react-icons/cg";
 
 function getMeshNodes(obj) {
   const nodes = [];
@@ -179,6 +181,60 @@ function Model({ position, opacity }) {
   return <primitive object={gltf.scene} ref={meshRef} position={position} />;
 }
 
+const DraggableGraphene = () => {
+  const ref = useRef(null);
+  const [springProps, set] = useSpring(() => ({ x: 0, y: 0 }));
+
+  useEffect(() => {
+    const handleMouseMove = (e) => {
+      const rect = ref.current.getBoundingClientRect();
+      const buffer = 5;
+
+      const withinRange =
+        e.clientX > rect.left &&
+        e.clientX < rect.right - 50 &&
+        e.clientY > rect.top + buffer &&
+        e.clientY < rect.bottom - buffer;
+
+      if (withinRange) {
+        set({ x: e.clientX - rect.left, y: e.clientY - rect.top });
+      } else {
+        set({ x: 0, y: 0 });
+      }
+    };
+
+    window.addEventListener("mousemove", handleMouseMove);
+
+    return () => {
+      window.removeEventListener("mousemove", handleMouseMove);
+    };
+  }, [set]);
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 10 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5, delay: 0.1 * 4 }}
+      style={{ alignSelf: "center" }}
+    >
+      <animated.div
+        ref={ref}
+        style={{
+          ...springProps,
+          opacity: 1,
+          position: "relative",
+          willChange: "transform",
+        }}
+        className="GrapheneMore"
+      >
+        <p>Heard of Graphene?!</p>
+        <div className="GrapheneMoreC"></div>
+        <CgArrowLongRight />
+      </animated.div>
+    </motion.div>
+  );
+};
+
 function Graphene() {
   return (
     <>
@@ -189,7 +245,15 @@ function Graphene() {
           transition={{ duration: 0.5, delay: 0.1 * 1 }}
           className="GrapheneTitle"
         >
-          What Are 2D Materials ?!
+          2D Nanomaterials
+        </motion.p>
+        <motion.p
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.1 * 2 }}
+          className="GrapheneTitle"
+        >
+          Atom-thin Wonderland!
         </motion.p>
         <motion.div
           initial={{ opacity: 0, y: 10 }}
@@ -203,46 +267,39 @@ function Graphene() {
           transition={{ duration: 0.5, delay: 0.1 * 3 }}
           className="GrapheneDescription"
         >
-          Step into the exciting realm of{" "}
-          <span className="highlight">2D materials</span>! These marvels, with a
-          thickness of just <span className="highlight">one atom</span>, are
-          changing the face of technology.
+          <p1>Intro</p1>
+          The realm of <span className="highlight">2D nanomaterials</span>,
+          where the strength of steel meets the delicacy of a spider’s web, and
+          the future of tech and medicine unfolds on an atom-thin canvas!
         </motion.p>
-        <ul className="GrapheneDescription">
-          <motion.li
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.1 * 4 }}
-          >
-            Meet <span className="highlight">graphene</span>, stronger than
-            steel and exceptional at conducting electricity.
-          </motion.li>
-          <motion.li
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.1 * 5 }}
-          >
-            Discover <span>molybdenum disulfide</span>, with properties perfect
-            for semiconductors.
-          </motion.li>
-          <motion.li
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.1 * 6 }}
-          >
-            Uncover how these materials are revolutionizing fields like{" "}
-            <span>electronics</span> and <span>energy storage</span>.
-          </motion.li>
-        </ul>
         <motion.p
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.1 * 7 }}
+          transition={{ duration: 0.5, delay: 0.1 * 4 }}
           className="GrapheneDescription"
         >
-          Delve into the thrilling science behind material physics that's
-          pushing boundaries of what we thought was possible!
+          <p1>Properties</p1>
+          <div>
+            <span className="highlight">Feather-light Titans</span> Imagine
+            something 200 times stronger than steel, yet so light, it barely
+            registers on a scale. That's the power of 2D nanomaterials.{" "}
+          </div>
+          <div>
+            <span className="highlight">Material Chameleons</span> Remarkable
+            elasticity and flexibility make them the shape-shifters of the
+            material world.
+          </div>
         </motion.p>
+        <DraggableGraphene />
+      </div>
+
+      <div className="GrapheneMenu">
+        <div className="GrapheneMenuLT"></div>
+        <div className="GrapheneMenuC">
+          <p>1</p> <span>/</span>
+          <p>5</p>
+        </div>
+        <div className="GrapheneMenuLB"></div>
       </div>
 
       <motion.div
@@ -251,7 +308,7 @@ function Graphene() {
         transition={{ duration: 1.5, delay: 0.1 * 1 }}
         className="Graphene"
       >
-        <Canvas camera={{ position: [0, 0, 3.5] }}>
+        <Canvas camera={{ position: [0, 0, 3] }}>
           <ambientLight />
           <pointLight position={[5, 5, 5]} />
           <Suspense fallback={null}>
