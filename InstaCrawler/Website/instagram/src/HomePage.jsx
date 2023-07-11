@@ -51,14 +51,14 @@ const HomePage = () => {
           </svg>
           <p>
             Situated at the <span>PICSSL Lab</span> at{" "}
-            <span>York University</span>, I apply my{" "}
-            <span>mechanical engineering</span> prowess to delve into the
-            complexities of nanomaterials and molecular phenomena. My
-            professional focus lies in <span>2D Nanomaterials</span>,{" "}
-            <span>Molecular Dynamics</span>, and <span>Heat Transfer</span>. The
-            success of my research approach significantly stems from{" "}
-            <span>interdisciplinary collaborations</span> that amplify the
-            potential of my innovative explorations.
+            <span>York University</span>, I apply my mechanical engineering
+            prowess to delve into the complexities of nanomaterials and
+            molecular phenomena. My professional focus lies in{" "}
+            <span>2D Nanomaterials</span>, <span>Molecular Dynamics</span>, and{" "}
+            <span>Heat Transfer</span>. The success of my research approach
+            significantly stems from interdisciplinary{" "}
+            <span>collaborations</span> that amplify the potential of my
+            innovative explorations.
           </p>
         </motion.div>
         <motion.div
