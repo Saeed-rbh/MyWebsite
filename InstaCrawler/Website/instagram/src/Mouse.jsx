@@ -1,22 +1,68 @@
-import "./Mouse.css";
 import React, { useState, useEffect } from "react";
+import "./Mouse.css";
 
 const Mouse = () => {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+  const [mouseClicked, setMouseClicked] = useState(false);
+  const [hoveringText, setHoveringText] = useState(false);
+  const [mouseOut, setMouseOut] = useState(false);
+  const [hoveringClickableElement, setHoveringClickableElement] =
+    useState(false);
 
   useEffect(() => {
-    const mouseMoveHandler = (event) => {
-      const { clientX, clientY } = event;
-      setMousePosition({ x: clientX, y: clientY });
+    const handleMouseMove = (event) => {
+      setMouseOut(false);
+      if (window.getComputedStyle(event.target).cursor === "pointer") {
+        setHoveringClickableElement(true);
+        setHoveringText(true);
+      } else {
+        setHoveringClickableElement(false);
+        setHoveringText(false);
+      }
     };
+    const handleMouseOut = (event) => {
+      setMouseOut(true);
+    };
+
+    document.addEventListener("mousemove", handleMouseMove);
+    document.addEventListener("mouseout", handleMouseOut);
+    return () => {
+      document.removeEventListener("mousemove", handleMouseMove);
+      document.removeEventListener("mouseout", handleMouseOut);
+    };
+  }, []);
+  useEffect(() => {
+    let animationFrameId = null;
+    let mouseMoveEvent = null;
+
+    const mouseMoveHandler = (event) => {
+      mouseMoveEvent = event;
+      if (window.getComputedStyle(event.target).cursor === "pointer") {
+        setHoveringClickableElement(true);
+      } else {
+        setHoveringClickableElement(false);
+      }
+    };
+
+    const animate = () => {
+      if (mouseMoveEvent) {
+        const { clientX, clientY } = mouseMoveEvent;
+        setMousePosition({ x: clientX, y: clientY });
+        mouseMoveEvent = null;
+      }
+      animationFrameId = requestAnimationFrame(animate);
+    };
+
+    animate();
     document.addEventListener("mousemove", mouseMoveHandler);
 
     return () => {
       document.removeEventListener("mousemove", mouseMoveHandler);
+      cancelAnimationFrame(animationFrameId);
     };
   }, []);
 
-  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
   useEffect(() => {
     const handleResize = () => setWindowWidth(window.innerWidth);
     window.addEventListener("resize", handleResize);
@@ -24,48 +70,50 @@ const Mouse = () => {
   }, []);
 
   useEffect(() => {
-    const handleMouseUp = (event) => {
-      setMouseClicked(false);
-    };
+    const handleMouseUp = () => setMouseClicked(false);
+    const handleMouseDown = (event) =>
+      event.button === 0 && setMouseClicked(true);
     document.addEventListener("mouseup", handleMouseUp);
+    document.addEventListener("mousedown", handleMouseDown);
     return () => {
       document.removeEventListener("mouseup", handleMouseUp);
+      document.removeEventListener("mousedown", handleMouseDown);
     };
   }, []);
 
-  useEffect(() => {
-    const handleMouseClick = (event) => {
-      if (event.button === 0) {
-        setMouseClicked(true);
-      }
-    };
-    document.addEventListener("mousedown", handleMouseClick);
-    return () => {
-      document.removeEventListener("mousedown", handleMouseClick);
-    };
-  }, []);
-
-  const [MouseClicked, setMouseClicked] = useState(false);
-
-  return (
-    windowWidth > 520 && (
-      <div onClick={() => setMouseClicked(!MouseClicked)}>
-        <div
-          style={{
-            left: `${mousePosition.x}px`,
-            top: `${mousePosition.y}px`,
-            width: !MouseClicked ? "30px" : "5px",
-            height: !MouseClicked ? "30px" : "5px",
-          }}
-          className="ring"
-        ></div>
-        <div
-          className="dot"
-          style={{ left: `${mousePosition.x}px`, top: `${mousePosition.y}px` }}
-        ></div>
-      </div>
-    )
-  );
+  return windowWidth > 520 ? (
+    <div onClick={() => setMouseClicked(!mouseClicked)}>
+      <div
+        className="ring"
+        style={{
+          left: `${mousePosition.x}px`,
+          top: `${mousePosition.y}px`,
+          width: !mouseClicked ? "30px" : "5px",
+          height: !mouseClicked ? "30px" : "5px",
+          opacity: hoveringText || mouseOut ? "0" : "1", // Change opacity based on mouseOut state
+        }}
+      ></div>
+      <div
+        className="dot"
+        style={{
+          left: `${mousePosition.x}px`,
+          top: `${mousePosition.y}px`,
+          width: mouseClicked
+            ? "10px"
+            : hoveringClickableElement
+            ? "35px"
+            : "10px",
+          height: mouseClicked
+            ? "10px"
+            : hoveringClickableElement
+            ? "35px"
+            : "10px",
+          mixBlendMode: hoveringText ? "screen" : "normal",
+          opacity: mouseOut ? "0" : "1", // Change opacity based on mouseOut state
+        }}
+      ></div>
+    </div>
+  ) : null;
 };
 
 export default Mouse;

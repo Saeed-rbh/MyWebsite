@@ -6,7 +6,7 @@ import HomePage from "./HomePage";
 import Header from "./Header";
 import Footer from "./Footer";
 import Menu from "./Menu";
-import Intro from "./Intro";
+// import Intro from "./Intro";
 import CustomCursor from "./Mouse";
 import AcademicCV from "./AcademicCV";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
@@ -17,7 +17,7 @@ function App() {
   return (
     <Router store={store}>
       <div className="App">
-        <Intro />
+        {/* <Intro /> */}
         <CustomCursor />
         <div className="MainBackground">
           <div className="BackgroundColor1"></div>

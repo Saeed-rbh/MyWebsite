@@ -280,14 +280,12 @@ function Graphene() {
         >
           <p1>Properties</p1>
           <div>
-            <span className="highlight">Feather-light Titans</span> Imagine
-            something 200 times stronger than steel, yet so light, it barely
-            registers on a scale. That's the power of 2D nanomaterials.{" "}
-          </div>
-          <div>
-            <span className="highlight">Material Chameleons</span> Remarkable
-            elasticity and flexibility make them the shape-shifters of the
-            material world.
+            Envision a groundbreaking entity, as{" "}
+            <span className="highlight">lightweight</span> as a feather yet
+            boasting the <span className="highlight">strength</span> of 200
+            steel titans. Exhibiting chameleon-like{" "}
+            <span className="highlight">flexibility</span>, it challenges
+            preconceptions and offers a paradigm shift in material science.
           </div>
         </motion.p>
         <DraggableGraphene />

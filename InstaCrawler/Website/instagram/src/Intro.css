@@ -80,7 +80,7 @@
     opacity: 0;
   }
   50% {
-    opacity: 1;
+    opacity: 0.3;
   }
   100% {
     opacity: 0;
@@ -88,10 +88,22 @@
 }
 
 .GrapheneIntro {
+  position: relative; /* Make it a positioned ancestor */
   display: flex;
-  position: fixed;
-  transform: scale(0.85);
-  opacity: 0.3;
-  z-index: 0;
-  height: 170px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 200px;
+  width: 200px;
+}
+
+.centered-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  color: white;
+  width: 100%; /* Changed from max-content */
+  width: max-content;
 }

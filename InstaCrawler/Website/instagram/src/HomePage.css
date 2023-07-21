@@ -390,6 +390,11 @@
   background: linear-gradient(to right, #f9ebe538 0%, #d4a58d54 100%);
   padding: 1px 10px 2px;
   border-radius: 20px;
+  text-decoration: unset;
+  color: #fff;
+}
+.HomePage-M-L-3 a {
+  text-decoration: unset;
 }
 
 .HomePage-M-L-3 svg {

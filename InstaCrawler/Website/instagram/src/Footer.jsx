@@ -13,6 +13,35 @@ const Footer = ({ isMenuOpen, updateMenu }) => {
     window.location.pathname === "/AcademicCV"
   );
   const [isMouseHover, setMouseHover] = useState([false, NaN, NaN]);
+  const [delayedResumeClicked1, setDelayedResumeClicked1] = useState(false);
+  const [delayedResumeClicked2, setDelayedResumeClicked2] = useState(true);
+
+  useEffect(() => {
+    let timer1;
+
+    if (!resumeClicked) {
+      setDelayedResumeClicked2(resumeClicked);
+    } else {
+      timer1 = setTimeout(() => {
+        setDelayedResumeClicked2(resumeClicked);
+      }, 2000);
+    }
+
+    return () => clearTimeout(timer1);
+  }, [resumeClicked]);
+  useEffect(() => {
+    let timer1;
+
+    if (resumeClicked) {
+      setDelayedResumeClicked1(resumeClicked);
+    } else {
+      timer1 = setTimeout(() => {
+        setDelayedResumeClicked1(resumeClicked);
+      }, 2000);
+    }
+
+    return () => clearTimeout(timer1);
+  }, [resumeClicked]);
 
   useEffect(() => {
     const handleResize = () => {
@@ -179,59 +208,41 @@ const Footer = ({ isMenuOpen, updateMenu }) => {
         ></div>
         <animated.div className="resumee" style={resumeInfoOpenSpring}>
           <p1 className="Social-Media">
-            <animated.p
-            // style={
-            //   isMouseHover[1] === "RESUMEE"
-            //     ? contactInfoOpenSpring
-            //     : objectStyle
-            // }
-            >
-              MY RESUME
-            </animated.p>
+            <animated.p>MY RESUME</animated.p>
           </p1>
-          <animated.div
-            className="social"
-            // style={
-            //   isMouseHover[1] === "RESUMEE"
-            //     ? contactInfoOpenSpring
-            //     : objectStyle
-            // }
-          >
-            <Link
-              onClick={handleClickCV}
-              to="/AcademicCV"
-              onMouseEnter={() =>
-                setMouseHover([!isMouseHover[0], "RESUMEE", "AB"])
-              }
-              onMouseLeave={() =>
-                setMouseHover([!isMouseHover[0], "RESUMEE", "AB"])
-              }
-            >
-              ACADEMIC BACKGROUND
-            </Link>
+          <animated.div className="social">
+            {!delayedResumeClicked2 && (
+              <Link
+                onClick={handleClickCV}
+                to="/AcademicCV"
+                onMouseEnter={() =>
+                  setMouseHover([!isMouseHover[0], "RESUMEE", "AB"])
+                }
+                onMouseLeave={() =>
+                  setMouseHover([!isMouseHover[0], "RESUMEE", "AB"])
+                }
+              >
+                ACADEMIC BACKGROUND
+              </Link>
+            )}
           </animated.div>
         </animated.div>
         <animated.div className="resumee" style={downloadInfoOpenSpring}>
-          <animated.div
-            className="social"
-            // style={
-            //   isMouseHover[1] === "RESUMEE"
-            //     ? contactInfoOpenSpring
-            //     : objectStyle
-            // }
-          >
+          <animated.div className="social">
             <RiDownloadCloud2Line className="DownloadSvg" />
-            <a
-              href="https://www.instagram.com/saeed_rbh"
-              onMouseEnter={() =>
-                setMouseHover([!isMouseHover[0], "RESUMEE", "AB"])
-              }
-              onMouseLeave={() =>
-                setMouseHover([!isMouseHover[0], "RESUMEE", "AB"])
-              }
-            >
-              Download PDF Version
-            </a>
+            {delayedResumeClicked1 && (
+              <a
+                href="https://www.instagram.com/saeed_rbh"
+                onMouseEnter={() =>
+                  setMouseHover([!isMouseHover[0], "RESUMEE", "AB"])
+                }
+                onMouseLeave={() =>
+                  setMouseHover([!isMouseHover[0], "RESUMEE", "AB"])
+                }
+              >
+                Download PDF Version
+              </a>
+            )}
           </animated.div>
         </animated.div>
       </animated.div>

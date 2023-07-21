@@ -17,11 +17,12 @@ const Bond = ({ x1, y1, x2, y2, style }) => (
     style={style}
   />
 );
-const GrapheneCell = (controls) => {
+
+const GrapheneCell = ({ controls, text, subtext, fade }) => {
   const radius = 50;
   const cx = 100;
   const cy = 100;
-  const points = Array.from({ length: 6 }).map((_, i) => {
+  const points = Array.from({ length: 6 }, (_, i) => {
     const angle = (Math.PI / 3) * i - Math.PI / 2; // 60 degrees = PI/3 radians
     return {
       x: cx + radius * Math.cos(angle),
@@ -33,9 +34,9 @@ const GrapheneCell = (controls) => {
     <motion.div
       className="GrapheneIntro"
       initial={{ opacity: 0 }}
-      whileInView={{ opacity: 0.3 }}
-      transition={{ duration: 0.7, delay: 0.1 }}
       animate={controls}
+      whileInView={{ opacity: 0.7 }}
+      transition={{ duration: 0.7, delay: 0.1 }}
     >
       <svg height="200" width="200">
         {points.map((point, i) => (
@@ -43,7 +44,10 @@ const GrapheneCell = (controls) => {
             key={i}
             cx={point.x}
             cy={point.y}
-            style={{ animation: `fadeIn 2s ease-in-out ${i * 0.3}s infinite` }}
+            style={{
+              animation: `fadeIn 2s ease-in-out ${i * 0.3}s infinite`,
+              opacity: 0.2,
+            }}
           />
         ))}
         {points.map((point, i) => (
@@ -54,11 +58,31 @@ const GrapheneCell = (controls) => {
             x2={points[(i + 1) % points.length].x}
             y2={points[(i + 1) % points.length].y}
             style={{
-              animation: `fadeIn 2s ease-in-out ${(i + 6) * 0.3}s infinite`,
+              animation: `fadeIn 2s ease-in-out ${i * 0.3}s infinite`,
+              opacity: 0.2,
             }}
           />
         ))}
       </svg>
+      <div className="centered-text">
+        <motion.p
+          initial={{ opacity: 0, y: 10 }}
+          animate={controls}
+          whileInView={{ opacity: 0.75, y: 0 }}
+          transition={{ duration: 0.7, delay: 0.1 * 6 }}
+        >
+          {text}
+        </motion.p>
+        <motion.b
+          initial={{ opacity: 0, y: 10 }}
+          animate={controls}
+          whileInView={{ opacity: 0.4, y: 0 }}
+          transition={{ duration: 0.7, delay: 0.1 * 8 }}
+          className={`Intro-b ${fade && "Intro-out-b"}`}
+        >
+          {subtext}
+        </motion.b>
+      </div>
     </motion.div>
   );
 };
@@ -67,14 +91,11 @@ const Intro = () => {
   const controls = useAnimation();
   const [fade, setFade] = useState(false);
   const [visible, setVisible] = useState(true);
+
   useEffect(() => {
     const handleLoad = () => {
-      setTimeout(() => {
-        setFade(true);
-      }, 2000);
-      setTimeout(() => {
-        setVisible(false);
-      }, 4000);
+      setTimeout(() => setFade(true), 4000);
+      setTimeout(() => setVisible(false), 6000);
     };
     window.onload = handleLoad;
     return () => {
@@ -83,44 +104,25 @@ const Intro = () => {
   }, []);
 
   useEffect(() => {
-    if (fade) {
-      controls.start({ opacity: 0, y: -20 });
-    }
+    if (fade) controls.start({ opacity: 0, y: -20 });
   }, [fade, controls]);
 
   const CloseIntro = useSpring({
-    opacity: !fade ? "1" : "0",
+    opacity: fade ? 0 : 1,
     delay: fade ? 1200 : 0,
   });
 
   return (
-    <>
-      {visible && (
-        <>
-          <animated.div style={CloseIntro} className="Intro">
-            <motion.p
-              initial={{ opacity: 0, y: 10 }}
-              whileInView={{ opacity: 0.75, y: 0 }}
-              transition={{ duration: 0.7, delay: 0.1 * 6 }}
-              animate={controls}
-            >
-              Welcome To My Personal Website
-            </motion.p>
-
-            <motion.b
-              className={`Intro-b ${fade && "Intro-out-b"}`}
-              initial={{ opacity: 0, y: 10 }}
-              whileInView={{ opacity: 0.4, y: 0 }}
-              transition={{ duration: 0.7, delay: 0.1 * 8 }}
-              animate={controls}
-            >
-              LOADING
-            </motion.b>
-            <GrapheneCell />
-          </animated.div>
-        </>
-      )}
-    </>
+    visible && (
+      <animated.div style={CloseIntro} className="Intro">
+        <GrapheneCell
+          controls={controls}
+          text="Welcome To My Personal Website"
+          subtext="LOADING"
+          fade={fade}
+        />
+      </animated.div>
+    )
   );
 };
 

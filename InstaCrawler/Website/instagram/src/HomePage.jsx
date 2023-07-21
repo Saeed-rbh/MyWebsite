@@ -1,6 +1,7 @@
 import "./HomePage.css";
 import React from "react";
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 
 const HomePage = () => {
   return (
@@ -54,11 +55,13 @@ const HomePage = () => {
             <span>York University</span>, I apply my mechanical engineering
             prowess to delve into the complexities of nanomaterials and
             molecular phenomena. My professional focus lies in{" "}
-            <span>2D Nanomaterials</span>, <span>Molecular Dynamics</span>, and{" "}
-            <span>Heat Transfer</span>. The success of my research approach
-            significantly stems from interdisciplinary{" "}
-            <span>collaborations</span> that amplify the potential of my
-            innovative explorations.
+            <Link to="/Graphene">
+              <span>2D Nanomaterials</span>
+            </Link>
+            , <span>Molecular Dynamics</span>, and <span>Heat Transfer</span>.
+            The success of my research approach significantly stems from
+            interdisciplinary <span>collaborations</span> that amplify the
+            potential of my innovative explorations.
           </p>
         </motion.div>
         <motion.div
