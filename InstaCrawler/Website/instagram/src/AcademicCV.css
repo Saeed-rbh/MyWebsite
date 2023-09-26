@@ -62,13 +62,13 @@
   border-radius: 50px; /* roundness of the scroll thumb */
   border: 3px solid rgba(0, 0, 0, 0); /* creates padding around scroll thumb */
 }
-.PaperAcademic:nth-of-type(2) .PaperData {
+/* .PaperAcademic:nth-of-type(2) .PaperData {
   background-image: linear-gradient(
     to top,
     rgb(60, 61, 63),
     rgb(60 61 63 / 50%)
   ) !important;
-}
+} */
 .PaperAcademic {
   margin: 0px 3%;
   color: #fff;
@@ -520,7 +520,8 @@
     bottom: 10px;
     left: auto;
     background-color: #000000d8;
-    width: 95%;
+    width: calc(80vw - 15px);
+    right: calc(10vw + 40px);
   }
 
   .MyInfo {
@@ -642,8 +643,5 @@
   }
   .ReferMoreInfo {
     width: 40%;
-  }
-  .welcome span {
-    font-size: 60px;
   }
 }
