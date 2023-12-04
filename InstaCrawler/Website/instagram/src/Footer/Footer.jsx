@@ -24,7 +24,6 @@ const Footer = ({ isMenuOpen, updateMenu }) => {
   );
   const [isMouseHover, setMouseHover] = useState([false, null, null]);
 
-  // Hook for handling window resize and URL change
   useEffect(() => {
     const handleResize = () => setScreenWidth(window.innerWidth);
     const handleUrlChange = () =>
@@ -38,13 +37,11 @@ const Footer = ({ isMenuOpen, updateMenu }) => {
       window.removeEventListener("click", handleUrlChange);
     };
   }, []);
-  // Action Handlers
   const handleButtonClick = (value) => updateMenu(value);
   const handleClickCV = () => {
     handleButtonClick(false);
     setResumeClicked(true);
   };
-  // Spring animations
   const contactInfoOpenSpring = useSpring({
     transform: isMenuOpen ? "translate3d(0,-10px,0)" : "translate3d(0,0px,0)",
     config: {
@@ -56,10 +53,12 @@ const Footer = ({ isMenuOpen, updateMenu }) => {
     {
       title: "My World",
       options: ["Captured Moments !"],
+      routes: ["/CapturedMoments"],
     },
     {
       title: "Academic Content",
       options: ["What is Graphene ?!"],
+      routes: ["/Graphene"],
     },
   ];
   const totalElements = personalOptionsArray.reduce(
@@ -105,6 +104,7 @@ const Footer = ({ isMenuOpen, updateMenu }) => {
                 key={index}
                 title={item.title}
                 options={item.options}
+                routes={item.routes}
                 globalIndex={startDelay}
                 maxDelay={maxDelay}
                 isCross={isCross}

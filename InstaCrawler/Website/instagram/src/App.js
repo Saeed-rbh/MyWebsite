@@ -13,6 +13,7 @@ import AcademicCV from "./AcademicCV";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import store from "./store";
 import Graphene from "./Graphene";
+import CapturedMoments from "./CapturedMoments/CapturedMoments";
 
 function App() {
   const [isLoaded, setIsLoaded] = useState(false);
@@ -36,6 +37,11 @@ function App() {
               <Route exact path="/" element={<HomePage />} />
               <Route exact path="/AcademicCV" element={<AcademicCV />} />
               <Route exact path="/Graphene" element={<Graphene />} />
+              <Route
+                exact
+                path="/CapturedMoments"
+                element={<CapturedMoments />}
+              />
             </Routes>
           </>
         ) : null}

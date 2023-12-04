@@ -1,13 +1,18 @@
 import React, { memo } from "react";
 import PropTypes from "prop-types";
 import { useSpring, animated, easings } from "react-spring";
+import { useNavigate } from "react-router-dom";
 
 const DEFAULT_DELAY = 0;
 const DEFAULT_DURATION = 400;
 const DEFAULT_EASING = easings.easeOutCubic;
 
 const AnimatedOption = memo(
-  ({ text, delay = DEFAULT_DELAY, isCross = false }) => {
+  ({ text, routes, delay = DEFAULT_DELAY, isCross = false }) => {
+    const navigate = useNavigate();
+    const handleDivClick = (route) => {
+      navigate(route);
+    };
     const animationProps = useSpring({
       to: {
         opacity: isCross ? 1 : 0,
@@ -24,7 +29,11 @@ const AnimatedOption = memo(
       },
     });
     return (
-      <animated.div style={animationProps} className="animated-option-wrapper">
+      <animated.div
+        onClick={() => handleDivClick(routes)}
+        style={animationProps}
+        className="animated-option-wrapper"
+      >
         <animated.p className="animated-option">{text}</animated.p>
       </animated.div>
     );

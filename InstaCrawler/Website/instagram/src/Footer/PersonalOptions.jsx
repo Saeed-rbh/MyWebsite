@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import AnimatedOption from "./AnimatedOption";
 
 const PersonalOptions = React.memo(
-  ({ title, options, globalIndex, maxDelay, isCross }) => {
+  ({ title, options, globalIndex, maxDelay, isCross, routes }) => {
     const delayCalculation = useMemo(() => {
       return maxDelay - globalIndex * 100;
     }, [maxDelay, globalIndex]);
@@ -16,12 +16,13 @@ const PersonalOptions = React.memo(
           delay={delayCalculation}
         />
         {options.map((option, index) => {
-          const uniqueKey = `${option}-${index}`; // Replace with a unique identifier if available
+          const uniqueKey = `${option}-${index}`;
           return (
             <AnimatedOption
               isCross={isCross}
               key={uniqueKey}
               text={option}
+              routes={routes[index]}
               delay={maxDelay - (globalIndex + index + 1) * 100}
             />
           );
