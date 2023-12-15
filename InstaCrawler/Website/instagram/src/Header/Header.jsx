@@ -14,7 +14,7 @@ const useScrollOpacity = (isResumeClicked) => {
   const [scrollOpacity, setScrollOpacity] = useState(false);
 
   useEffect(() => {
-    if (isResumeClicked) {
+    if (isResumeClicked && window.location.pathname === "/AcademicCV") {
       const handleScroll = () => {
         const scrollableDiv = document.getElementById("AcademicCV-M");
         const scrollPosition = scrollableDiv.scrollTop;
@@ -49,12 +49,12 @@ const Header = () => {
   );
 
   const [isResumeClicked, setIsResumeClicked] = useState(
-    window.location.pathname === "/AcademicCV"
+    window.location.pathname !== "/"
   );
 
   useEffect(() => {
     const handleUrlChange = () => {
-      setIsResumeClicked(window.location.pathname === "/AcademicCV");
+      setIsResumeClicked(window.location.pathname !== "/");
     };
 
     window.addEventListener("click", handleUrlChange);
@@ -80,7 +80,7 @@ const Header = () => {
     transform: !isResumeClicked
       ? "translate3d(-80px,0,0)"
       : "translate3d(0px,0,0)",
-
+    config: { duration: 400 },
     easing: easings.easeOutCubic,
   });
   const contactInfoAnimation3 = useSpring({
@@ -88,47 +88,50 @@ const Header = () => {
     transform: !isResumeClicked
       ? "translate3d(-110px,0,0)"
       : "translate3d(15px,0,0)",
-
+    config: { duration: 400 },
     easing: easings.easeOutCubic,
   });
 
   return (
     MenuHide && (
-      <motion.div
-        initial={{ opacity: 0, y: 10 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5, delay: 0.5 }}
-        className="HomePage-M-T-H"
-      >
-        <animated.div style={contactInfoAnimation1} className="MainHeader">
-          <animated.div className="HomePage-M-T-L">
-            <animated.div
-              className="HomePage-M-T-B"
-              style={contactInfoAnimation2}
-            >
-              <TbHomeMove />
-              <Link onClick={() => handleButtonClick(false)} to="/">
-                Home Page
-              </Link>
-            </animated.div>
-            <animated.div style={contactInfoAnimation3}>
-              <Link
-                onClick={() => handleButtonClick(false)}
-                to="/"
-                element={<HomePage />}
+      <>
+        <motion.div
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.5 }}
+          className="HomePage-M-T-H"
+        >
+          <animated.div style={contactInfoAnimation1} className="MainHeader">
+            <animated.div className="HomePage-M-T-L">
+              <animated.div
+                className="HomePage-M-T-B"
+                style={contactInfoAnimation2}
               >
-                <Logo className="Logo" size="20" />
-                <p>Saeed</p>
-                <b>Arabha</b>
-              </Link>
+                <TbHomeMove />
+                <Link onClick={() => handleButtonClick(false)} to="/">
+                  Home Page
+                </Link>
+              </animated.div>
+              <animated.div style={contactInfoAnimation3}>
+                <Link
+                  onClick={() => handleButtonClick(false)}
+                  to="/"
+                  element={<HomePage />}
+                >
+                  <Logo className="Logo" size="20" />
+                  <p>Saeed</p>
+                  <b>Arabha</b>
+                </Link>
+              </animated.div>
             </animated.div>
           </animated.div>
-          <MenuButton
-            isMenuOpen={isMenuOpen}
-            handleButtonClick={handleButtonClick}
-          />
-        </animated.div>
-      </motion.div>
+        </motion.div>
+        <MenuButton
+          contactInfoAnimation={contactInfoAnimation1}
+          isMenuOpen={isMenuOpen}
+          handleButtonClick={handleButtonClick}
+        />
+      </>
     )
   );
 };

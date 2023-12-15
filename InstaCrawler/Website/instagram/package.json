@@ -5,8 +5,12 @@
   "dependencies": {
     "@react-three/drei": "^9.77.0",
     "@reduxjs/toolkit": "^1.9.5",
+    "@splinetool/loader": "^0.9.493",
+    "@splinetool/r3f-spline": "^1.0.2",
+    "@splinetool/react-spline": "^2.2.6",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^14.0.0",
+    "file-saver": "^2.0.5",
     "framer-motion": "^10.2.4",
     "jszip": "^3.10.1",
     "lodash": "^4.17.21",

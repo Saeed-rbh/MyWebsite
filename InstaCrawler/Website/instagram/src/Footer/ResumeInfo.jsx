@@ -26,7 +26,6 @@ const ResumeInfo = ({
       easing: easings.easeOutCubic,
     },
   });
-  console.log(delayedResumeClicked);
   return (
     <animated.div className="resumee" style={resumeInfoOpenSpring}>
       <p1 className="Social-Media">

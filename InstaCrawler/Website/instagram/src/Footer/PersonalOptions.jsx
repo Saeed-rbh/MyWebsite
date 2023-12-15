@@ -1,4 +1,4 @@
-import React, { useMemo } from "react";
+import React, { useMemo, useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import AnimatedOption from "./AnimatedOption";
 
@@ -8,26 +8,46 @@ const PersonalOptions = React.memo(
       return maxDelay - globalIndex * 100;
     }, [maxDelay, globalIndex]);
 
+    const [isResumeClicked, setIsResumeClicked] = useState(
+      routes.includes(window.location.pathname) && routes.length <= 1
+    );
+
+    useEffect(() => {
+      const handleUrlChange = () => {
+        setIsResumeClicked(
+          routes.includes(window.location.pathname) && routes.length <= 1
+        );
+      };
+
+      window.addEventListener("click", handleUrlChange);
+
+      return () => {
+        window.removeEventListener("click", handleUrlChange);
+      };
+    }, []);
+    console.log(isResumeClicked, routes, window.location.pathname);
     return (
-      <div className={PersonalOptions}>
-        <AnimatedOption
-          isCross={isCross}
-          text={title}
-          delay={delayCalculation}
-        />
-        {options.map((option, index) => {
-          const uniqueKey = `${option}-${index}`;
-          return (
-            <AnimatedOption
-              isCross={isCross}
-              key={uniqueKey}
-              text={option}
-              routes={routes[index]}
-              delay={maxDelay - (globalIndex + index + 1) * 100}
-            />
-          );
-        })}
-      </div>
+      !isResumeClicked && (
+        <div className={PersonalOptions}>
+          <AnimatedOption
+            isCross={isCross}
+            text={title}
+            delay={delayCalculation}
+          />
+          {options.map((option, index) => {
+            const uniqueKey = `${option}-${index}`;
+            return (
+              <AnimatedOption
+                isCross={isCross}
+                key={uniqueKey}
+                text={option}
+                routes={routes[index]}
+                delay={maxDelay - (globalIndex + index + 1) * 100}
+              />
+            );
+          })}
+        </div>
+      )
     );
   }
 );

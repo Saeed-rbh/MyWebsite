@@ -11,14 +11,9 @@ const RotatingBubble = ({ isCross }) => {
   const [shouldRender, setShouldRender] = useState(true);
 
   const props = useSpring({
-    to: {
-      opacity: isCross ? 1 : 0,
-      transform: isCross ? "translateY(0px)" : "translateY(100px)",
-    },
-    from: {
-      opacity: isCross ? 0 : 1,
-      transform: isCross ? "translateY(100px)" : "translateY(0px)",
-    },
+    opacity: !isCross ? 0 : 1,
+    transform: !isCross ? "translateY(100px)" : "translateY(0px)",
+
     delay: DELAY,
     config: {
       duration: 800,

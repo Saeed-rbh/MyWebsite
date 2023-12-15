@@ -12,18 +12,17 @@
   justify-content: flex-start;
   width: calc((300 * 120 / 200) * 4px - 90px);
   height: calc((300 + 30) * 1px);
-  /* overflow: hidden; */
 }
 .CapturedMomentsImg {
   width: -webkit-fit-content;
   width: -moz-fit-content;
   width: fit-content;
-  height: 340px;
+  height: 360px;
+  padding-top: 10px;
   margin-bottom: 30px;
   min-width: calc(300px * 120 / 200);
   overflow-x: hidden;
   overflow-y: hidden;
-
   z-index: 10;
 }
 .CapturedMomentsImg img {
@@ -41,28 +40,14 @@
   filter: opacity(0.6);
   -webkit-backdrop-filter: blur(100px);
   backdrop-filter: blur(100px);
-  transition: margin-top 0.3s ease-in-out, -webkit-filter 0.3s ease-in-out;
-  transition: margin-top 0.3s ease-in-out, filter 0.3s ease-in-out;
-  transition: margin-top 0.3s ease-in-out, filter 0.3s ease-in-out,
-    -webkit-filter 0.3s ease-in-out;
-  transition: margin-top 0.3s ease-in-out, filter 0.3s ease-in-out,
-    -webkit-filter 0.3s ease-in-out;
-  transition: margin-top 0.3s ease-in-out, filter 0.3s ease-in-out,
-    -webkit-filter 0.3s ease-in-out;
-  transition: margin-top 0.3s ease-in-out, filter 0.3s ease-in-out,
-    -webkit-filter 0.3s ease-in-out;
-  transition: margin-top 0.3s ease-in-out, filter 0.3s ease-in-out,
-    -webkit-filter 0.3s ease-in-out;
-  transition: margin-top 0.3s ease-in-out, filter 0.3s ease-in-out,
-    -webkit-filter 0.3s ease-in-out;
-  transition: margin-top 0.3s ease-in-out, filter 0.3s ease-in-out,
-    -webkit-filter 0.3s ease-in-out;
+  transition: -webkit-filter 0.2s ease-in-out, margin-top 0.2s ease-in-out,
+    filter 0.2s ease-in-out;
 }
 .CapturedMomentsImg:hover img {
-  margin-top: -2px;
-  -webkit-filter: opacity(0.8);
-  filter: opacity(0.8);
+  -webkit-filter: opacity(0.9);
+  filter: opacity(0.9);
 }
+
 .CapturedMomentsLine:nth-child(2) {
   margin-left: calc(300px * 120 / 200);
 }
@@ -74,7 +59,6 @@
   display: flex;
   align-items: center;
   width: calc((300 * 120 / 200) * 4px);
-  z-index: 10;
 }
 .CapturedMomentsLine {
   margin-left: calc(300px * 120 / 200 + 15px);
@@ -96,9 +80,10 @@
   text-align: initial;
   background: linear-gradient(to right, #faf5f3a2 0%, #ff5500e0 100%);
   -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
   margin-top: -220px;
   opacity: 0.5;
+  display: flex;
+  flex-direction: row;
 }
 
 .CapturedMomentsborder {
@@ -114,19 +99,19 @@
   -webkit-filter: opacity(0.6);
   filter: opacity(0.6);
   background: linear-gradient(to right, #faf5f32d 0%, #ff550017 100%);
-  transition: -webkit-filter 0.3s ease-in-out;
-  transition: filter 0.3s ease-in-out;
-  transition: filter 0.3s ease-in-out, -webkit-filter 0.3s ease-in-out;
   border: solid 1px #fff;
-  border-radius: 109px;
+  border-radius: 110px;
+  transition: margin-top 0.3s ease-in-out;
 }
-
+.CapturedMomentsImg:hover .CapturedMomentsborder {
+  margin-top: -10px;
+  border: solid 2px #d49d81;
+}
 .LastNext {
   display: flex;
   flex-direction: row;
   position: absolute;
   bottom: calc((100% - 350px) / 3);
-  right: calc(50% - 310px / 2);
   align-items: center;
   justify-content: center;
   width: 350px;
@@ -140,7 +125,6 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  /* z-index: 1000000; */
   background-color: #00000060;
   border-radius: 100px;
   flex-direction: row;
@@ -170,10 +154,12 @@
   overflow: hidden;
   font-size: 11px;
   font-family: "Poppins", sans-serif;
+  transition: all 0.3s ease-in-out;
 }
-.LastNextC:nth-child(2) span {
+.LastNextCR span {
   margin-right: -5px;
   margin-left: 5px;
+  transition: all 0.3s ease-in-out;
 }
 .LastNextC svg:first-child {
   margin-right: -15px;
@@ -181,7 +167,7 @@
   width: 22px;
   height: 22px;
   transform: translateX(-5px);
-  transition: transform 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
   opacity: 0.8;
 }
 .LastNextC svg:last-child {
@@ -190,55 +176,59 @@
   width: 22px;
   height: 22px;
   transform: translateX(5px);
-  transition: transform 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
   opacity: 0.8;
 }
 
-.LastNextC:nth-child(2) .Line {
+.LastNextCR .Line {
   width: 15px;
   height: 3px;
   border-radius: 20%;
   background-color: #d49d81;
   margin: 0 -0px 0 0;
   opacity: 0;
-  transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
 }
 
-.LastNextC:first-child .Line {
+.LastNextCL .Line {
   width: 15px;
   height: 3px;
   border-radius: 20%;
   background-color: #d49d81;
   margin: 0 -5px 0 0;
   opacity: 0;
-  transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
 }
 
-.LastNextC:first-child:hover svg {
+.LastNextCL:hover svg {
   transform: translateX(-10px);
 }
-.LastNextC:first-child:hover span {
+.LastNextCL:hover span {
   transform: translateX(5px);
 }
-.LastNextC:nth-child(2):hover span {
+.LastNextCR:hover span {
   transform: translateX(-5px);
 }
-.LastNextC:first-child:hover .Line {
+.LastNextCL:hover .Line {
   transform: translateX(-10px);
   opacity: 0.8;
 }
-.LastNextC:nth-child(2):hover .Line {
+.LastNextCR:hover .Line {
   transform: translateX(10px);
   opacity: 0.8;
 }
-.LastNextC:nth-child(2):hover svg {
+.LastNextCR:hover svg {
   transform: translateX(10px);
 }
-.LastNextC:nth-child(2):hover svg {
+.LastNextCR:hover svg {
   transform: translateX(10px);
 }
 
-.LastNextC:hover {
+.LastNextCL:hover {
+  width: 160px;
+  border: solid 2px #d49d8159;
+}
+.LastNextCR:hover {
   width: 160px;
   border: solid 2px #d49d8159;
 }
@@ -250,13 +240,11 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  /* z-index: 1000000; */
   background: linear-gradient(to right, #faf5f310 0%, #ff550018 100%);
   border-radius: 100px;
   flex-direction: row;
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
-  transition: width 0.3s ease-in-out, border 0.3s ease-in-out;
   border: solid 2px #d49d812a;
   position: absolute;
   cursor: pointer;
@@ -274,7 +262,6 @@
   width: -moz-max-content;
   width: max-content;
   cursor: pointer;
-  -webkit-transition: all 0.2s linear;
   text-decoration: none !important;
   color: #faf9f1;
   opacity: 0.7;

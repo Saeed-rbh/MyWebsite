@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useSpring, animated, easings } from "react-spring";
 import { connect } from "react-redux";
 import { updateMenu } from "../Menu/menuActions";
@@ -16,7 +16,8 @@ import ResumeInfo from "./ResumeInfo";
 import DownloadInfo from "./DownloadInfo";
 
 const Footer = ({ isMenuOpen, updateMenu }) => {
-  const [isCross, setIsCross] = useWindowResize();
+  const [isCross, setIsCross] = useState(false);
+  const [isCrossWindow, setisCrossWindow] = useWindowResize();
   const MenuHide = !useSelector(selectVisibility);
   const [screenWidth, setScreenWidth] = useState(window.innerWidth);
   const [resumeClicked, setResumeClicked] = useState(
@@ -42,13 +43,97 @@ const Footer = ({ isMenuOpen, updateMenu }) => {
     handleButtonClick(false);
     setResumeClicked(true);
   };
+  ///////////////////////
+  const [width, setWidth] = useState(window.innerWidth * 0.9 - 70);
+  useEffect(() => {
+    const updateWidth = () => {
+      const calculatedWidth = window.innerWidth * 0.9 - 70;
+      setWidth(calculatedWidth);
+    };
+    updateWidth();
+    window.addEventListener("resize", updateWidth);
+    return () => window.removeEventListener("resize", updateWidth);
+  }, []);
+  const isDone = useRef(false);
+  const [step, setStep] = useState(0);
   const contactInfoOpenSpring = useSpring({
-    transform: isMenuOpen ? "translate3d(0,-10px,0)" : "translate3d(0,0px,0)",
-    config: {
-      duration: 400,
-      easing: easings.easeOutCubic,
+    from: { opacity: 0, width: "5px", height: "5px", y: 100 },
+    to:
+      step === 0
+        ? { y: 0, opacity: 1 }
+        : step === 1
+        ? { width: "70px", height: "70px" }
+        : step === 2
+        ? { width: "50px", height: "50px" }
+        : step === 3
+        ? {
+            width: `${width}px`,
+            height: "50px",
+            marginRight: "70px",
+            y: isMenuOpen ? -10 : 0,
+          }
+        : {},
+    config:
+      step === 0
+        ? { tension: 280, friction: 120, duration: 300 }
+        : step === 1
+        ? { tension: 280, friction: 120, duration: 500 }
+        : step === 2
+        ? { tension: 280, friction: 120, duration: 500 }
+        : step === 3
+        ? { tension: 280, friction: 120, duration: isDone.current ? 300 : 600 }
+        : {},
+    onRest: () => {
+      if (step < 3) {
+        setStep(step + 1);
+      } else {
+        if (!isDone.current) {
+          isDone.current = true;
+          setTimeout(() => {
+            setIsCross(isCrossWindow);
+          }, 500);
+        }
+      }
     },
   });
+
+  useEffect(() => {
+    if (step === 0) {
+      setStep(1);
+    }
+  }, []);
+
+  ///////////////////////
+  const crossOpenSpring = useSpring({
+    from: {
+      opacity: 0,
+      width: `${window.innerWidth * 0.15}px`,
+      height: "5px",
+      y: 20,
+      x: width / 2.35,
+    },
+    to:
+      step === 3
+        ? {
+            opacity: 1,
+            x: width / 2.35,
+            y: isMenuOpen ? -10 : 0,
+            height: "50px",
+          }
+        : {},
+    config:
+      step === 3
+        ? { tension: 280, friction: 120, duration: isDone.current ? 300 : 600 }
+        : {},
+    delay: isDone.current ? 0 : 1000,
+  });
+
+  const TextOpenSpring = useSpring({
+    from: { opacity: isDone.current ? 0 : 1 },
+    to: { opacity: isDone.current ? 1 : 0, width: width, display: "flex" },
+    config: { tension: 280, friction: 120, duration: 300 },
+  });
+  //////////////////////////////
   const personalOptionsArray = [
     {
       title: "My World",
@@ -69,32 +154,28 @@ const Footer = ({ isMenuOpen, updateMenu }) => {
   let globalIndex = 0;
   return (
     MenuHide && (
-      <motion.div
-        initial={{ opacity: 0, y: 10 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5 }}
-        className="HomePage-M-T-F"
-      >
-        <RotatingSphere isCross={isCross} />
+      <div className="HomePage-M-T-F">
+        {/* <RotatingSphere isCross={isCross} /> */}
         <animated.div style={contactInfoOpenSpring} className="HomeConsole">
-          <ContactInfo
-            isMouseHover={isMouseHover}
-            setMouseHover={setMouseHover}
-            contactInfoOpenSpring={contactInfoOpenSpring}
-          />
-          <div
-            className="b-hr-2"
-            style={{ display: screenWidth < 1120 ? "none" : "flex" }}
-          ></div>
-          <ResumeInfo
-            handleClickCV={handleClickCV}
-            resumeClicked={resumeClicked}
-            MenuHide={MenuHide}
-            screenWidth={screenWidth}
-          />
-          <DownloadInfo resumeClicked={resumeClicked} />
+          <animated.div style={TextOpenSpring}>
+            <ContactInfo
+              isMouseHover={isMouseHover}
+              setMouseHover={setMouseHover}
+            />
+            <div
+              className="b-hr-2"
+              style={{ display: screenWidth < 1120 ? "none" : "flex" }}
+            ></div>
+            <ResumeInfo
+              handleClickCV={handleClickCV}
+              resumeClicked={resumeClicked}
+              MenuHide={MenuHide}
+              screenWidth={screenWidth}
+            />
+            <DownloadInfo resumeClicked={resumeClicked} />
+          </animated.div>
         </animated.div>
-        <animated.div style={contactInfoOpenSpring} className="FooterOptions">
+        {/* <animated.div className="FooterOptions" style={crossOpenSpring}>
           {personalOptionsArray.map((item, index) => {
             const startDelay = globalIndex;
             globalIndex += item.options.length + 1;
@@ -112,8 +193,8 @@ const Footer = ({ isMenuOpen, updateMenu }) => {
             );
           })}
           <OpenIcon isOpen={isCross} setIsCross={setIsCross} />
-        </animated.div>
-      </motion.div>
+        </animated.div>{" "} */}
+      </div>
     )
   );
 };

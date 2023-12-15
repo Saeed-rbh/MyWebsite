@@ -9,7 +9,7 @@ import Footer from "./Footer/Footer";
 import Menu from "./Menu/Menu";
 import Loader from "./Loader/Loader";
 import CustomCursor from "./Mouse";
-import AcademicCV from "./AcademicCV";
+import AcademicCV from "./Academic/AcademicCV";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import store from "./store";
 import Graphene from "./Graphene";
@@ -32,7 +32,7 @@ function App() {
             </div>
             <Header />
             <Menu />
-            <Footer />
+            {/* <Footer /> */}
             <Routes>
               <Route exact path="/" element={<HomePage />} />
               <Route exact path="/AcademicCV" element={<AcademicCV />} />

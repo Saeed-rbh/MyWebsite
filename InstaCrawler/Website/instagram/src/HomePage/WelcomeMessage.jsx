@@ -4,7 +4,6 @@ import { useSpring, animated, easings } from "react-spring";
 const getGradientColor = (index, length) => {
   const startColor = { r: 239, g: 239, b: 239, a: 0.11 };
   const endColor = { r: 218, g: 127, b: 81, a: 0.15 };
-
   const ratio = index / (length - 1);
   const r = Math.floor(startColor.r + (endColor.r - startColor.r) * ratio);
   const g = Math.floor(startColor.g + (endColor.g - startColor.g) * ratio);
