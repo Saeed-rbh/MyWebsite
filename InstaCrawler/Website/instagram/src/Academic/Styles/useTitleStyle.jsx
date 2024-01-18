@@ -1,4 +1,4 @@
-import { useSpring, easings } from "react-spring";
+import { useSpring } from "react-spring";
 
 /**
  * Custom hook for generating spring-based styles for titles.
@@ -6,13 +6,13 @@ import { useSpring, easings } from "react-spring";
  * @param {boolean} isActive - Determines the style state of the title.
  * @returns {Object} Spring-based animation styles.
  */
-const useTitleStyle = (isActive) => {
-  const ACTIVE_Y = 50;
-  const INACTIVE_Y = 15;
+const useTitleStyle = (isActive, Stages) => {
+  const ACTIVE_Y = 0;
+  const INACTIVE_Y = Stages[2] ? 100 : 15;
 
   return useSpring({
-    y: isActive ? ACTIVE_Y : INACTIVE_Y,
-    easing: easings.easeOutCubic,
+    marginTop: isActive ? ACTIVE_Y : INACTIVE_Y,
+    opacity: isActive ? 1 : 0,
   });
 };
 

@@ -13,7 +13,7 @@ import "./Graphene.css";
 import TWEEN from "@tweenjs/tween.js";
 import { CgArrowLongRight } from "react-icons/cg";
 import { useSelector } from "react-redux";
-import { selectVisibility } from "./visibilitySlice";
+import { selectVisibility } from "./reducers/visibilityReducer";
 import { BsFillTriangleFill } from "react-icons/bs";
 import { motion } from "framer-motion";
 import { HiArrowSmRight } from "react-icons/hi";

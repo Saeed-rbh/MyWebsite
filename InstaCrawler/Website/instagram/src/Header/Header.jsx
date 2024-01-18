@@ -3,9 +3,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { useSpring, animated, easings } from "react-spring";
 import { Link } from "react-router-dom";
 import { TbHomeMove } from "react-icons/tb";
-import { selectVisibility } from "../visibilitySlice";
 import { motion } from "framer-motion";
-import { updateMenu } from "../Menu/menuActions";
+import { updateMenu } from "../actions/Actions";
 import HomePage from "../HomePage/HomePage";
 import Logo from "./Logo";
 import MenuButton from "./MenuButton";
@@ -17,18 +16,24 @@ const useScrollOpacity = (isResumeClicked) => {
     if (isResumeClicked && window.location.pathname === "/AcademicCV") {
       const handleScroll = () => {
         const scrollableDiv = document.getElementById("AcademicCV-M");
-        const scrollPosition = scrollableDiv.scrollTop;
-        const maxScroll =
-          scrollableDiv.scrollHeight - scrollableDiv.clientHeight;
-        const opacity = scrollPosition / maxScroll + 1 > 0.1;
-        setScrollOpacity(opacity);
+        if (scrollableDiv) {
+          const scrollPosition = scrollableDiv.scrollTop;
+          const maxScroll =
+            scrollableDiv.scrollHeight - scrollableDiv.clientHeight;
+          const opacity = scrollPosition / maxScroll + 1 > 0.1;
+          setScrollOpacity(opacity);
+        }
       };
 
       const scrollableDiv = document.getElementById("AcademicCV-M");
-      scrollableDiv.addEventListener("scroll", handleScroll);
+      if (scrollableDiv) {
+        scrollableDiv.addEventListener("scroll", handleScroll);
+      }
 
       return () => {
-        scrollableDiv.removeEventListener("scroll", handleScroll);
+        if (scrollableDiv) {
+          scrollableDiv.removeEventListener("scroll", handleScroll);
+        }
       };
     }
   }, [isResumeClicked]);
@@ -37,9 +42,9 @@ const useScrollOpacity = (isResumeClicked) => {
 };
 
 const Header = () => {
-  const MenuHide = !useSelector(selectVisibility);
+  const { isMenuOpen } = useSelector((state) => state.isMenuOpen);
+  const { visibility } = useSelector((state) => state.visibility);
   const dispatch = useDispatch();
-  const isMenuOpen = useSelector((state) => state.menu.isMenuOpen);
 
   const handleButtonClick = useCallback(
     (value) => {
@@ -93,7 +98,7 @@ const Header = () => {
   });
 
   return (
-    MenuHide && (
+    visibility && (
       <>
         <motion.div
           initial={{ opacity: 0, y: 10 }}

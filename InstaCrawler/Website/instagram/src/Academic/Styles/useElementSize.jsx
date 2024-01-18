@@ -1,7 +1,12 @@
 import { useState, useEffect } from "react";
 
 const useElementSize = (elementId) => {
-  const [size, setSize] = useState({ width: 0, height: 0 });
+  const [size, setSize] = useState({
+    width: 0,
+    height: 0,
+    maxHeight: 0,
+    maxWidth: 0,
+  });
 
   useEffect(() => {
     let intervalId;
@@ -12,6 +17,7 @@ const useElementSize = (elementId) => {
         setSize({
           width: element.offsetWidth,
           height: element.offsetHeight,
+          Top: element.offsetTop,
         });
       }
     };
@@ -31,7 +37,8 @@ const useElementSize = (elementId) => {
       clearInterval(intervalId);
       window.removeEventListener("resize", updateSize);
     };
-  }, [elementId]);
+  }, [elementId, size.width, size.height, size.maxWidth, size.maxHeight]);
+
   return size;
 };
 

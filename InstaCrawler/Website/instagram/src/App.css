@@ -2,12 +2,15 @@ body {
   overflow: hidden;
   color: #011436;
   -webkit-user-select: none;
-     -moz-user-select: none;
-      -ms-user-select: none;
-          user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
   overflow-y: hidden; /* Hide vertical scrollbar */
   overflow-x: hidden; /* Hide horizontal scrollbar */
   margin: 0;
+}
+#root {
+  --safe-area-inset-bottom: env(safe-area-inset-bottom);
 }
 #root {
   overflow: hidden;
@@ -39,7 +42,7 @@ body {
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     -webkit-animation: App-logo-spin infinite 20s linear;
-            animation: App-logo-spin infinite 20s linear;
+    animation: App-logo-spin infinite 20s linear;
   }
 }
 

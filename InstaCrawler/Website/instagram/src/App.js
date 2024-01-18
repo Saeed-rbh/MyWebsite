@@ -5,15 +5,16 @@ import React, { useState } from "react";
 // import Posts from "./Posts";
 import HomePage from "./HomePage/HomePage";
 import Header from "./Header/Header";
-import Footer from "./Footer/Footer";
+// import Footer from "./Footer/Footer";
 import Menu from "./Menu/Menu";
 import Loader from "./Loader/Loader";
 import CustomCursor from "./Mouse";
 import AcademicCV from "./Academic/AcademicCV";
+// import Graphene from "./Graphene";
+// import CapturedMoments from "./CapturedMoments/CapturedMoments";
+
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import store from "./store";
-import Graphene from "./Graphene";
-import CapturedMoments from "./CapturedMoments/CapturedMoments";
+import store from "./store/configureStore";
 
 function App() {
   const [isLoaded, setIsLoaded] = useState(false);
@@ -36,12 +37,12 @@ function App() {
             <Routes>
               <Route exact path="/" element={<HomePage />} />
               <Route exact path="/AcademicCV" element={<AcademicCV />} />
-              <Route exact path="/Graphene" element={<Graphene />} />
-              <Route
+              {/* <Route exact path="/Graphene" element={<Graphene />} /> */}
+              {/* <Route
                 exact
                 path="/CapturedMoments"
                 element={<CapturedMoments />}
-              />
+              /> */}
             </Routes>
           </>
         ) : null}

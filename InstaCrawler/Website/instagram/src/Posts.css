@@ -101,7 +101,8 @@
   top: 0;
   left: 0;
   background: rgba(0, 0, 0, 0.2);
-  backdrop-filter: blur(3px);
+  -webkit-backdrop-filter: blur(3px);
+          backdrop-filter: blur(3px);
   justify-content: center;
   align-items: center;
   display: none;
@@ -146,6 +147,8 @@
   display: flex;
   height: 70%;
   max-height: 750px;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
   width: fit-content;
 }
 .OriginalPost img {

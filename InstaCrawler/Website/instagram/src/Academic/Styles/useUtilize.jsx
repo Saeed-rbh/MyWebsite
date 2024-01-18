@@ -1,59 +1,122 @@
-import React, { useCallback, useRef } from "react";
+import React, { useCallback, useRef, useMemo, useState } from "react";
 import { useStyles } from "./useStyles";
+import { useDispatch, useSelector } from "react-redux";
+import { updateToggle, updateHover } from "../../actions/Actions";
+import { useTitleAnimationStyle } from "./useTitleAnimationStyle";
 
-export const useUtilize = (
-  CloseOpen,
-  setCloseOpen,
-  MouseHover,
-  setMouseHover,
-  List,
-  Data,
-  MainElementSize,
-  setChanged_Height
-) => {
-  const { title, name, background } = Data;
+export const useUtilize = (componentName) => {
+  const updateVariables = useSelector((state) => state.data);
+  const data = updateVariables.academicData.find(
+    (item) => item.name === componentName
+  );
+  const stages = updateVariables.stages;
+  const toggle = updateVariables.toggle;
+  const hover = updateVariables.toggle;
 
-  const isActive = CloseOpen[1] === title && CloseOpen[0];
-  const isHovered = MouseHover[1] === title && MouseHover[0];
-  const isClickable = List.length > 2;
+  const dispatch = useDispatch();
+  const setToggle = useCallback(
+    (newToggle) => {
+      dispatch(updateToggle(newToggle));
+    },
+    [dispatch]
+  );
+  const setHover = useCallback(
+    (newHover) => {
+      dispatch(updateHover(newHover));
+    },
+    [dispatch]
+  );
+
+  const {
+    explanation,
+    height,
+    rand,
+    size,
+    padding,
+    list,
+    title,
+    name,
+    background,
+    seqId,
+    fixed,
+  } = data;
+
+  const isActive = useMemo(
+    () => toggle[0] && toggle[1] === title,
+    [toggle, title]
+  );
+
+  const isHovered = useMemo(
+    () => hover[1] === title && hover[0] && !stages[2],
+    [hover, title, stages]
+  );
 
   const ParentRef = useRef(null);
   const TextRef = useRef(null);
-  const ChildRefs = useRef(List.map(() => React.createRef()));
+  const isClickable = useMemo(() => list.length > 2, [list]);
+  const ChildRefs = useRef(list.map(() => React.createRef()));
 
   const handleClickClose = useCallback(() => {
-    setCloseOpen([false, title]);
-  }, [setCloseOpen, title]);
+    setToggle([false, title, false]);
+  }, [setToggle, title]);
 
-  const handleClickOpen = useCallback(() => {
-    if (!CloseOpen[0] && isClickable) {
-      setCloseOpen([true, title]);
-    }
-  }, [CloseOpen, setCloseOpen, title, isClickable]);
+  const [touchStartPos, setTouchStartPos] = useState({ x: 0, y: 0 });
+  const handleMouseUp = useCallback(
+    (event) => {
+      if (event.changedTouches && !toggle[0] && isClickable) {
+        const touchEndX = event.changedTouches[0].clientX;
+        const touchEndY = event.changedTouches[0].clientY;
+        const dx = touchEndX - touchStartPos.x;
+        const dy = touchEndY - touchStartPos.y;
+        const distance = Math.sqrt(dx * dx + dy * dy);
+        const scrollThreshold = 10; // Adjust as needed
 
-  const handleMouseEnter = useCallback(() => {
-    if (!CloseOpen[0] && isClickable) {
-      setMouseHover([true, title]);
-    }
-  }, [CloseOpen, setMouseHover, title, isClickable]);
-
-  const handleMouseLeave = useCallback(() => {
-    setMouseHover([false, title]);
-  }, [setMouseHover, title]);
-
-  // Assuming useStyles is a custom hook or function you have defined elsewhere
-  const styles = useStyles(
-    CloseOpen,
-    Data,
-    MouseHover,
-    ChildRefs,
-    ParentRef,
-    MainElementSize,
-    setChanged_Height,
-    TextRef
+        if (distance < scrollThreshold) {
+          setToggle([true, title, false]);
+        } else {
+          setToggle([false, title, false]);
+        }
+      }
+    },
+    [touchStartPos, toggle, setToggle, title, isClickable]
   );
 
+  const handleMouseDown = useCallback(
+    (event) => {
+      if (event.touches && !toggle[0] && isClickable) {
+        setTouchStartPos({
+          x: event.touches[0].clientX,
+          y: event.touches[0].clientY,
+        });
+        setToggle([false, title, true]);
+      }
+    },
+    [toggle, setToggle, title, isClickable]
+  );
+
+  const handleMouseEnter = useCallback(() => {
+    if (!toggle[0] && isClickable) {
+      setHover([true, title]);
+    }
+  }, [toggle, setHover, title, isClickable]);
+
+  const handleMouseLeave = useCallback(() => {
+    setHover([false, title]);
+  }, [setHover, title]);
+
+  const styles = useStyles(toggle, data, hover, ChildRefs, stages);
+
+  const { MainStyle, titleStyle } = useTitleAnimationStyle(seqId, fixed);
+
   return {
+    list,
+    seqId,
+    explanation,
+    height,
+    rand,
+    size,
+    padding,
+    stages,
     title,
     name,
     background,
@@ -64,8 +127,11 @@ export const useUtilize = (
     TextRef,
     ChildRefs,
     styles,
+    titleStyle,
+    MainStyle,
     handleClickClose,
-    handleClickOpen,
+    handleMouseUp,
+    handleMouseDown,
     handleMouseEnter,
     handleMouseLeave,
   };

@@ -1,10 +1,12 @@
 import React from "react";
 import { useTransition, easings } from "react-spring";
 import { connect } from "react-redux";
-import { updateMenu } from "./menuActions";
+import { updateMenu } from "../actions/Actions";
 import ContactItem from "./ContactItem";
+import { useSelector } from "react-redux";
 
-const Menu = ({ isMenuOpen }) => {
+const Menu = () => {
+  const { isMenuOpen } = useSelector((state) => state.isMenuOpen);
   const ContactInfoOpen = useTransition(isMenuOpen, {
     from: { opacity: 0, transform: "translate3d(0,0,0)" },
     enter: { opacity: 1, transform: "translate3d(0,0,0)" },
@@ -28,7 +30,7 @@ const Menu = ({ isMenuOpen }) => {
 
 const mapStateToProps = (state) => {
   return {
-    isMenuOpen: state.menu.isMenuOpen,
+    isMenuOpen: state.isMenuOpen,
   };
 };
 

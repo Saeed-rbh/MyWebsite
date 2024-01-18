@@ -1,16 +1,16 @@
 import React, { useState, useEffect } from "react";
 import { useSpring, animated, easings } from "react-spring";
 import { useDispatch, useSelector } from "react-redux";
-import { setVisible, selectVisibility } from "../visibilitySlice";
 import GrapheneCell from "./GrapheneCell";
 import "./Loader.css";
+import { updateVisibility } from "../actions/Actions";
 
-const LOADING_TIME = 4;
+const LOADING_TIME = 2000;
 const usePageLoad = (dispatch) => {
   useEffect(() => {
     const handleLoad = () => {
       setTimeout(() => {
-        dispatch(setVisible(false));
+        dispatch(updateVisibility(true));
       }, LOADING_TIME * 1.2);
     };
     window.addEventListener("load", handleLoad);
@@ -20,21 +20,18 @@ const usePageLoad = (dispatch) => {
   }, [dispatch]);
 };
 const Loader = ({ onLoad }) => {
+  const { visibility } = useSelector((state) => state.visibility);
   const dispatch = useDispatch();
-  const visible = useSelector(selectVisibility);
   const [fade, setFade] = useState(false);
 
   usePageLoad(dispatch);
-  useEffect(() => {
-    setTimeout(() => {
-      setFade(true);
-    }, LOADING_TIME);
-  }, []);
+
   const closeIntroAnimation = useSpring({
-    opacity: fade ? 0 : 1,
-    delay: fade ? 1000 : 0,
-    duration: 600,
+    opacity: visibility ? 0 : 1,
+    delay: visibility ? 1000 : 0,
+    duration: LOADING_TIME,
     easing: easings.easeOutCubic,
+    onRest: () => setFade(true),
   });
   useEffect(() => {
     setTimeout(() => {
@@ -61,10 +58,10 @@ const Loader = ({ onLoad }) => {
     };
   }, []);
   return (
-    visible && (
+    !fade && (
       <animated.div style={closeIntroAnimation} className="Intro" id="Intro">
         <GrapheneCell
-          fade={fade}
+          fade={visibility}
           text="Welcome To My Personal Website"
           subtext="LOADING"
         />

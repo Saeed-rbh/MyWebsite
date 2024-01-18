@@ -2,69 +2,65 @@ import { useMemo } from "react";
 import useCursorStyle from "./useCursorStyle";
 import useTitleStyle from "./useTitleStyle";
 import useBaseStyle from "./useBaseStyle";
-import useGeneralData from "./useGeneralData";
-import useActiveHover from "./useActiveHover";
+import activeHover from "./activeHover";
 import useTextStyle from "./useTextStyle";
-import useCalculateHeights from "./useCalculateHeights";
+import useMoreStyle from "./useMoreStyle";
+import useSecondTextStyle from "./useSecondTextStyle";
+import useHeightAndTop from "./useHeightAndTop";
 
-export function useStyles(
-  closeOpen,
-  data,
-  mouseHover,
-  ChildRefs,
-  ParentRef,
-  mainElementSize,
-  setChangedHeight,
-  TextRef
-) {
-  const { heights, tops } = useCalculateHeights({
-    ParentRef,
+export function useStyles(toggle, data, hover, ChildRefs, stages) {
+  const { zIndex, widthOffset, heights, tops } = useHeightAndTop(
     ChildRefs,
-    mainElementSize,
-    data,
-    setChangedHeight,
-  });
-
-  const { isActive, isHovered } = useActiveHover(data, closeOpen, mouseHover);
-  const { widthOffset, zIndexValue } = useGeneralData(
-    data,
-    closeOpen,
-    mouseHover
+    data
   );
 
-  const textSpring = useTextStyle(data, isActive, TextRef, ParentRef);
+  const { isActive, isHovered, otherHovered } = useMemo(
+    () => activeHover(data.title, toggle, hover),
+    [data, toggle, hover]
+  );
+
+  const textSpring = useTextStyle(isActive, stages);
 
   const baseSpring = useBaseStyle(
     data,
     isActive,
     isHovered,
-    mainElementSize,
+    otherHovered,
     widthOffset,
     heights,
-    tops
+    tops,
+    stages
   );
-  const cursorStyle = useCursorStyle(isActive);
 
-  const TitleStyle = useTitleStyle(isActive);
+  const cursorStyle = useCursorStyle(isActive);
+  const SecondTextStyle = useSecondTextStyle(isActive, stages);
+
+  const TitleStyle = useTitleStyle(isActive, stages);
+  const MoreStyle = useMoreStyle(isActive, data.fixed, stages);
 
   return useMemo(
     () => ({
       text: textSpring,
       base: {
         ...baseSpring,
-        cursor: cursorStyle,
-        zIndex: zIndexValue,
+        cursor: data.fixed ? "none" : cursorStyle,
+        zIndex: zIndex,
       },
       title: TitleStyle,
+      More: MoreStyle,
       height: heights.second,
+      secondText: SecondTextStyle,
     }),
     [
       textSpring,
       baseSpring,
+      SecondTextStyle,
       TitleStyle,
+      MoreStyle,
       cursorStyle,
-      zIndexValue,
+      zIndex,
       heights.second,
+      data.fixed,
     ]
   );
 }

@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import { updateMenu } from "../Menu/menuActions";
 import { motion } from "framer-motion";
 import PropTypes from "prop-types";
-import { selectVisibility } from "../visibilitySlice";
+import { selectVisibility } from "../reducers/visibilityReducer";
 import { useSelector } from "react-redux";
 import "../HomePage/HomePage.css";
 import RotatingSphere from "./RotatingSphere";

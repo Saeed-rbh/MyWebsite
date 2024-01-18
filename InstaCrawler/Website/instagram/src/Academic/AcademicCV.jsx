@@ -1,87 +1,151 @@
+import React, { useState, useEffect, useCallback, useMemo } from "react";
+import { animated, easings, useSpring } from "react-spring";
+import { useSelector, useDispatch } from "react-redux";
+import useUpdateVariable from "./General/useUpdateVariable";
+import useElementSize from "./Styles/useElementSize";
+import CVList from "./Main/CVList";
+import MainTitle from "./Main/MainTitle";
+import MoreInfoAcademic from "./Main/MoreInfoAcademic";
 import "./AcademicCV.css";
-import React, { useState, useRef, useEffect } from "react";
-import { animated, easings, useSprings, useSpring } from "react-spring";
-import GradientColor from "../CapturedMoments/GradientColor";
-import Sections from "./Sections";
-
-const TITLE = "Academic CV";
-const CHARACTOR = TITLE.split("");
+import { updateVisibility } from "../actions/Actions";
+import { ScrollProvider } from "./General/ScrollProvider";
+import useScrollPosition from "./General/useScrollPosition";
 
 const AcademicCV = () => {
-  const [springs, setSprings] = useSprings(CHARACTOR.length, (index) => ({
-    color: GradientColor(index, CHARACTOR.length),
-    y: "10px",
-    scale: "0",
-    opacity: 0,
-  }));
+  const minScale = 0.9;
+  const maxScale = 2;
+  const minHeight = 650;
+  const maxHeight = 1500;
+  const EXTRA_SPACE = 30;
 
-  useEffect(() => {
-    setSprings((index) => {
-      return {
-        y: "0px",
-        opacity: 0.3,
-        scale: "1",
-        delay: 50 * index,
-        easing: easings.easeOutCubic,
-      };
-    });
-  }, [setSprings]);
+  const elementSize = useElementSize("AcademicCV-M");
+  const [scale, setScale] = useState(1);
+  const [mainMaxHeight, setMainMaxHeight] = useState(maxHeight);
 
-  const scrollableDivRef = useRef(null);
+  const dispatch = useDispatch();
   useEffect(() => {
-    scrollableDivRef.current.scrollTop = -1500;
+    dispatch(updateVisibility(false));
   }, []);
 
-  const [CloseOpen, setCloseOpen] = useState([false, undefined]);
-  const [MouseHover, setMouseHover] = useState([false, undefined]);
-  const CloseOpenStyleBlur = useSpring({
-    opacity: CloseOpen[0] ? "1" : MouseHover[0] ? "1" : "0",
-    zIndex: "5",
-    filter: CloseOpen[0]
-      ? "blur(15px)"
-      : MouseHover[0]
-      ? "blur(5px)"
-      : "blur(0px)",
+  useUpdateVariable({ elementSize });
+  const {
+    academicData: data,
+    stages,
+    toggle,
+    scollableRef,
+  } = useSelector((state) => state.data);
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      dispatch(updateVisibility(true));
+    }, 1000);
+    return () => clearTimeout(timer);
+  }, [data, dispatch]);
+
+  const scrollPosition = useScrollPosition(scollableRef);
+
+  const conditionData = data.length > 0;
+  const conditionStage = stages.length > 0;
+
+  const updateScaleAndMaxHeight = useCallback(() => {
+    const aspectRatio = elementSize.height / elementSize.width < 0.55;
+    let newScale = minScale;
+    if (!stages[2]) {
+      if (aspectRatio) {
+        newScale =
+          elementSize.height >= minHeight && elementSize.height <= maxHeight
+            ? minScale +
+              ((maxScale - minScale) / (maxHeight - minHeight)) *
+                (elementSize.height - minHeight)
+            : elementSize.height < minHeight
+            ? minScale
+            : maxScale;
+      }
+    } else {
+      newScale = 0.95;
+    }
+    setScale(newScale);
+
+    let newMaxHeight = 610;
+    if (stages[2]) {
+      newMaxHeight = elementSize.height;
+    } else if (stages[1]) {
+      newMaxHeight = 290;
+    } else if (stages[0]) {
+      newMaxHeight = 480;
+    }
+    setMainMaxHeight(newMaxHeight);
+  }, [elementSize, stages]);
+
+  useEffect(() => {
+    updateScaleAndMaxHeight();
+  }, [updateScaleAndMaxHeight]);
+
+  const lastValue = useMemo(() => {
+    const lastElement = data.length ? data[data.length - 1] : null;
+    return lastElement
+      ? lastElement.top + lastElement.height + EXTRA_SPACE
+      : 1000;
+  }, [data]);
+
+  const interpolateValue = (scrollPosition, [endValue, startValue]) => {
+    return startValue + (endValue - startValue) * scrollPosition;
+  };
+
+  const scrollEffect = useMemo(() => {
+    if (scrollPosition <= 0) {
+      return 0;
+    } else if (scrollPosition < 1) {
+      return interpolateValue(scrollPosition / 20, [-45, 0]);
+    }
+    return -45;
+  }, [scrollPosition]);
+
+  const moreAcademicInfoStyle = useSpring({
+    transform: `scale(${scale})`,
+    maxHeight: `${mainMaxHeight}px`,
+    top: useMemo(
+      () => (stages[2] && conditionStage ? 130 + scrollEffect : 0),
+      [stages, conditionStage, scrollEffect]
+    ),
+    height: useMemo(
+      () => `calc(100% - ${stages[2] && conditionStage ? 80 : 0}px)`,
+      [stages, conditionStage, scrollEffect]
+    ),
+    overflow: useMemo(
+      () => (conditionStage && stages[2] && toggle[0] ? "hidden" : "auto"),
+      [conditionStage, stages, toggle]
+    ),
+    easing: easings.easeOutCubic,
   });
+
   return (
-    <>
-      <div ref={scrollableDivRef} id="AcademicCV-M" className="AcademicCV-M">
-        {/* <p className="AcademicCV-Text">
-          {springs.map((props, index) => (
-            <animated.span
-              key={index}
-              style={{
-                transform: props.y.to((y) => `translateY(${y})`),
-                opacity: props.opacity,
-                color: props.color,
-              }}
-            >
-              {CHARACTOR[index]}
-            </animated.span>
-          ))}
-        </p> */}
-        <animated.div
-          className="MoreInfoBlur"
-          style={{
-            ...CloseOpenStyleBlur,
-            zIndex:
-              MouseHover[1] !== undefined && CloseOpen[0]
-                ? "20"
-                : MouseHover[1] !== undefined && MouseHover[0]
-                ? "20"
-                : "10",
-          }}
-        ></animated.div>
-        <animated.div id="MoreInfoAcademic" className="MoreInfoAcademic">
-          <Sections
-            CloseOpen={CloseOpen}
-            setCloseOpen={setCloseOpen}
-            MouseHover={MouseHover}
-            setMouseHover={setMouseHover}
-          />
-        </animated.div>
-      </div>
-    </>
+    <ScrollProvider scrollPosition={scrollPosition}>
+      {conditionStage && (
+        <div id="AcademicCV-M" className="AcademicCV-M">
+          {conditionData && (
+            <>
+              <MainTitle />
+              <CVList isActive={toggle[0]} />
+            </>
+          )}
+          <animated.div
+            style={moreAcademicInfoStyle}
+            ref={scollableRef}
+            id="MoreInfoAcademic"
+            className="MoreInfoAcademic"
+          >
+            {conditionData && (
+              <MoreInfoAcademic
+                stages={stages}
+                conditionStage={conditionStage}
+                toggle={toggle}
+                lastValue={lastValue}
+              />
+            )}
+          </animated.div>
+        </div>
+      )}
+    </ScrollProvider>
   );
 };
 
