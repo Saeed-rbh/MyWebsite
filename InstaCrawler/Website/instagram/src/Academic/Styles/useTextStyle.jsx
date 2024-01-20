@@ -16,7 +16,7 @@ const useTextStyle = (isActive, stages) => {
     WebkitBackgroundClip: "text",
     fontSize: memoizedValues.fontSize,
     lineHeight: "80px",
-    opacity: stages[2] ? 0.05 : isActive ? 0.5 : 0.2,
+    opacity: stages[2] || stages[3] ? 0.05 : isActive ? 0.5 : 0.2,
     left: memoizedValues.left,
     top: memoizedValues.top,
   });

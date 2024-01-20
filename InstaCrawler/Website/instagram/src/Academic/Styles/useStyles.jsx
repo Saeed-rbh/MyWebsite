@@ -9,12 +9,9 @@ import useSecondTextStyle from "./useSecondTextStyle";
 import useHeightAndTop from "./useHeightAndTop";
 
 export function useStyles(toggle, data, hover, ChildRefs, stages) {
-  const { zIndex, widthOffset, heights, tops } = useHeightAndTop(
-    ChildRefs,
-    data
-  );
+  const { zIndex, heights, tops, widths } = useHeightAndTop(ChildRefs, data);
 
-  const { isActive, isHovered, otherHovered } = useMemo(
+  const { isActive, isHovered, otherActive } = useMemo(
     () => activeHover(data.title, toggle, hover),
     [data, toggle, hover]
   );
@@ -25,10 +22,10 @@ export function useStyles(toggle, data, hover, ChildRefs, stages) {
     data,
     isActive,
     isHovered,
-    otherHovered,
-    widthOffset,
+    otherActive,
     heights,
     tops,
+    widths,
     stages
   );
 

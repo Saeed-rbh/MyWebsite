@@ -19,7 +19,9 @@ const SectionsData = (data, MainElementSize, sequence, Stages) => {
   let previousIniRL = 0;
 
   const calculateIniRL = (top, height) => {
-    return !Stages[2] && top + height > MainElementSize.height
+    return Stages[2] || Stages[3]
+      ? previousIniRL
+      : top + height > MainElementSize.height
       ? previousIniRL + 1
       : previousIniRL;
   };
@@ -59,6 +61,14 @@ const SectionsData = (data, MainElementSize, sequence, Stages) => {
         { h: 2, t: 3, v: 25 },
         { h: 2, t: 6, v: 20 },
       ],
+      exception_4H: [
+        { h: 3, t: 5, v: 25 },
+        { h: 3, t: 3, v: 20 },
+      ],
+      exception_4T: [
+        { h: 3, t: 3, v: 25 },
+        { h: 3, t: 6, v: 20 },
+      ],
     };
 
     const calculateTotal = (exceptionArray) =>
@@ -83,6 +93,7 @@ const SectionsData = (data, MainElementSize, sequence, Stages) => {
         ...exceptions.exception_1H,
         ...exceptions.exception_2H,
         ...exceptions.exception_3H,
+        ...exceptions.exception_4H,
       ]) + textHeight;
 
     const exception_T = calculateTotal([
@@ -90,6 +101,7 @@ const SectionsData = (data, MainElementSize, sequence, Stages) => {
       ...exceptions.exception_1T,
       ...exceptions.exception_2T,
       ...exceptions.exception_3T,
+      ...exceptions.exception_4T,
     ]);
 
     const currentIniRL = calculateIniRL(previousTop, section.size[0]);

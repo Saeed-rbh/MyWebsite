@@ -5,16 +5,28 @@
  * @returns {Object} - Object containing the calculated left position and width.
  */
 const elementWidthCalculator = ({
-  initialRelativeLeft,
   elementSizeWidth,
-  widthOffset,
-  defaultWidth,
-  iniRL,
+  padding,
   stages,
+  iniRL,
 }) => {
+  const initialRelativeLeft =
+    iniRL === 0
+      ? 0
+      : iniRL === 1
+      ? 45
+      : iniRL === 2
+      ? 102
+      : iniRL === 3
+      ? 160
+      : 220;
+
+  const [, leftPadding, , rightPadding] = padding;
+  const widthOffset = leftPadding + rightPadding;
   const calculateOffsetWidth = () => {
-    if (stages[2]) {
-      return 0.87 * elementSizeWidth;
+    const MoreInfoAcademic = document.getElementById("MoreInfoAcademic");
+    if ((MoreInfoAcademic && stages[2]) || stages[3]) {
+      return MoreInfoAcademic.offsetWidth;
     }
     return [0, 2, 4].includes(iniRL)
       ? 0.38 * elementSizeWidth
@@ -23,9 +35,7 @@ const elementWidthCalculator = ({
 
   const offsetWidth = calculateOffsetWidth();
   const calculatedWidth = Math.max(offsetWidth - widthOffset, 0);
-  const effectiveLeft =
-    calculatedWidth < defaultWidth ? 0 : initialRelativeLeft;
-
+  const effectiveLeft = calculatedWidth < widthOffset ? 0 : initialRelativeLeft;
   return { left: effectiveLeft, width: calculatedWidth };
 };
 export default elementWidthCalculator;

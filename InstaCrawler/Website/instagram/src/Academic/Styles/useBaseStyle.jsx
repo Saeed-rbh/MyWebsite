@@ -1,8 +1,6 @@
 import { useState, useEffect, useMemo } from "react";
 import { useSpring, easings } from "react-spring"; // Or your respective import path
-import elementWidthCalculator from "./elementWidthCalculator"; // Assuming this is an external utility function
 import useScrollFade from "./useScrollFade";
-import useElementSize from "../Styles/useElementSize";
 import { useSelector } from "react-redux";
 
 /**
@@ -23,15 +21,14 @@ const useBaseStyle = (
   isActive,
   isHovered,
   otherActive,
-  widthOffset,
   heights,
   tops,
+  widths,
   stages
 ) => {
-  const { width, padding, iniRL } = data;
-  const [elementWidth, setElementWidth] = useState(width);
+  const { padding, iniRL } = data;
+
   const [LeftBase, setLeftBase] = useState(0);
-  const mainElementSize = useElementSize("MoreInfoAcademic");
 
   const { visibility } = useSelector((state) => state.visibility);
   const { toggle, hover } = useSelector((state) => state.data);
@@ -45,20 +42,6 @@ const useBaseStyle = (
     if (hover[0] && !stages[2] && !isHovered) return "blur(5px)";
     return "blur(0px)";
   }, [toggle, hover, stages, isActive, isHovered]);
-
-  useEffect(() => {
-    if (mainElementSize.width > 0) {
-      const newWidth = elementWidthCalculator({
-        initialRelativeLeft: LeftBase,
-        elementSizeWidth: mainElementSize.width,
-        widthOffset: widthOffset,
-        defaultWidth: width,
-        iniRL: iniRL,
-        stages: stages,
-      });
-      setElementWidth(newWidth.width);
-    }
-  }, [mainElementSize, LeftBase, widthOffset, width, iniRL, stages]);
 
   const height = useMemo(() => {
     return isActive && !isTrigger
@@ -112,7 +95,6 @@ const useBaseStyle = (
   //   },
   //   delay: 1000 * randomStart,
   // });
-
   const baseSpring_1 = useSpring({
     backgroundColor: "rgba(0, 0, 0, 0.3)",
     // backgroundImage: backgroundSpring.backgroundAnim.interpolate((value) => {
@@ -138,7 +120,7 @@ const useBaseStyle = (
     overflow: data.fixed ? "visible" : "hidden",
     cursor: isActive ? "default" : "pointer",
     scale: otherActive || isTrigger ? 0.9 : 1,
-    width: `${elementWidth}px`,
+    width: `${widths}px`,
     height: `${height}px`,
     top: `${top}px`,
     padding: `${padding[0]}px ${padding[1]}px ${

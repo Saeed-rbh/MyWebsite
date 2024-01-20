@@ -8,7 +8,10 @@ const useScrollPosition = (ref) => {
     if (!element) return;
 
     const handleScroll = () => {
-      setScrollPosition(element.scrollTop);
+      const scrollTop = element.scrollTop;
+      if (scrollTop < 40) {
+        setScrollPosition(scrollTop);
+      }
     };
 
     element.addEventListener("scroll", handleScroll);

@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 import useElementSize from "../Styles/useElementSize";
 import elementTopCalculator from "./elementTopCalculator";
 import elementHeightCalculator from "./elementHeightCalculator";
+import elementWidthCalculator from "./elementWidthCalculator"; // Assuming this is an external utility function
 
 const useHeightAndTop = (childRefs, data) => {
   const mainElementSize = useElementSize("MoreInfoAcademic");
@@ -38,6 +39,14 @@ const useHeightAndTop = (childRefs, data) => {
     return widthOffset;
   };
 
+  const calculatedWidths = () =>
+    elementWidthCalculator({
+      elementSizeWidth: mainElementSize.width,
+      padding: data.padding,
+      stages: stages,
+      iniRL: data.iniRL,
+    }).width;
+
   const calcZIndex = () => {
     const ACTIVE_Z_INDEX = "20";
     const DEFAULT_Z_INDEX = "10";
@@ -62,6 +71,7 @@ const useHeightAndTop = (childRefs, data) => {
   const [tops, setTops] = useState(() => calculateTops(heights));
   const [widthOffset, setWidthOffset] = useState(() => calculateWidthOffset());
   const [zIndex, setZIndez] = useState(() => calcZIndex());
+  const [widths, setWidths] = useState(() => calculatedWidths());
 
   useEffect(() => {
     const newChildsHeight = calcChildRef();
@@ -116,7 +126,14 @@ const useHeightAndTop = (childRefs, data) => {
     setZIndez(calcZIndex);
   }, [isClicked, isHovered]);
 
-  return { zIndex, widthOffset, heights, tops };
+  useEffect(() => {
+    if (mainElementSize.width > 0) {
+      const newWidth = calculatedWidths();
+      setWidths(newWidth);
+    }
+  }, [mainElementSize, widthOffset, stages, data]);
+
+  return { zIndex, heights, tops, widths };
 };
 
 export default useHeightAndTop;

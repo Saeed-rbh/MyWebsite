@@ -18,48 +18,7 @@ const elementHeightCalculator = ({
       mainElementSize.height - HEIGHT_OFFSETS.full;
 
     const IfcalcMargin =
-      stages[2] && data.IfCalc ? data.height - data.size[0] : 20;
-    // if (data.name === "Qualifications") {
-    //   console.log(
-    //     data.name,
-    //     isOpenHeightExceeding,
-    //     childsHeight + HEIGHT_OFFSETS.Opened,
-    //     mainElementSize.height - HEIGHT_OFFSETS.full
-    //   );
-    // }
-
-    // if (data.name === "Papers") {
-    //   console.log(
-    //     isOpenHeightExceeding,
-
-    //     mainElementSize.height,
-    //     -data.padding[0] - data.padding[2],
-    //     2 * IfcalcMargin,
-    //     10,
-    //     childsHeight + IfcalcMargin,
-    //     isOpenHeightExceeding
-    //     ? mainElementSize.height -
-    //       data.padding[0] -
-    //       data.padding[2] +
-    //       2 * IfcalcMargin +
-    //       10
-    //     : childsHeight + IfcalcMargin,
-    //   );
-    // }
-
-    // if (data.name === "Qualifications") {
-    //   console.log(
-    //     "1",
-    //     data.name,
-    //     isOpenHeightExceeding
-    //       ? mainElementSize.height -
-    //           data.padding[0] -
-    //           data.padding[2] +
-    //           2 * IfcalcMargin +
-    //           10
-    //       : childsHeight + IfcalcMargin
-    //   );
-    // }
+      stages[2] && data.isCalc ? data.height - data.size[0] : 20;
 
     return {
       Opened: isOpenHeightExceeding

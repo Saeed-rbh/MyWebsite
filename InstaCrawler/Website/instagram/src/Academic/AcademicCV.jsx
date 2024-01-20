@@ -66,7 +66,7 @@ const AcademicCV = () => {
     setScale(newScale);
 
     let newMaxHeight = 610;
-    if (stages[2]) {
+    if (stages[2] || stages[3]) {
       newMaxHeight = elementSize.height;
     } else if (stages[1]) {
       newMaxHeight = 290;
@@ -99,20 +99,32 @@ const AcademicCV = () => {
     }
     return -45;
   }, [scrollPosition]);
-
   const moreAcademicInfoStyle = useSpring({
-    transform: `scale(${scale})`,
+    transform: `scale(${stages[3] ? 1 : scale})`,
     maxHeight: `${mainMaxHeight}px`,
+    maxWidth: `${stages[2] || stages[3] ? 620 : elementSize.width}px`,
     top: useMemo(
-      () => (stages[2] && conditionStage ? 130 + scrollEffect : 0),
+      () =>
+        conditionStage
+          ? stages[2]
+            ? -10 + scrollEffect
+            : stages[3]
+            ? 10 + scrollEffect
+            : 0
+          : 0,
       [stages, conditionStage, scrollEffect]
     ),
     height: useMemo(
       () => `calc(100% - ${stages[2] && conditionStage ? 80 : 0}px)`,
-      [stages, conditionStage, scrollEffect]
+      [stages, conditionStage]
     ),
     overflow: useMemo(
-      () => (conditionStage && stages[2] && toggle[0] ? "hidden" : "auto"),
+      () =>
+        toggle[0]
+          ? "hidden"
+          : conditionStage && (stages[2] || stages[3])
+          ? "auto"
+          : "visible",
       [conditionStage, stages, toggle]
     ),
     easing: easings.easeOutCubic,
@@ -125,7 +137,7 @@ const AcademicCV = () => {
           {conditionData && (
             <>
               <MainTitle />
-              <CVList isActive={toggle[0]} />
+              {(stages[2] || stages[3]) && <CVList isActive={toggle[0]} />}
             </>
           )}
           <animated.div

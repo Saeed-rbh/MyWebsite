@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import { animated, useSpring } from "react-spring";
 import { useSelector } from "react-redux";
 import { useScroll } from "../General/ScrollProvider";
+import useElementSize from "../Styles/useElementSize";
 
 // AnimatedSpan component for individual letters
 const AnimatedSpan = memo(({ letter, delay, duration }) => {
@@ -36,6 +37,7 @@ const useTitleAnimation = ({
   xDiff,
   yDiff,
   scaleDiff,
+  stages,
 }) => {
   const [x, y, scale] = useMemo(() => {
     if (scrollPosition <= 0) {
@@ -61,6 +63,7 @@ const useTitleAnimation = ({
       x: visibility ? x : xDiff[0],
       y,
       scale,
+      paddingLeft: stages[2] ? "5%" : "0%",
     },
     delay: animationFinished ? 0 : 500,
     config: { duration: animationFinished ? undefined : 400 },
@@ -73,7 +76,7 @@ const MainTitle = ({ duration, initialDelay, delayIncrement }) => {
   const { visibility } = useSelector((state) => state.visibility);
   const [animationFinished, setAnimationFinished] = useState(false);
   const scrollPosition = useScroll() / 20;
-
+  const { stages } = useSelector((state) => state.data);
   const title1Style = useTitleAnimation({
     scrollPosition,
     visibility,
@@ -82,6 +85,7 @@ const MainTitle = ({ duration, initialDelay, delayIncrement }) => {
     xDiff: [-25, 0],
     yDiff: [-22, 0],
     scaleDiff: [0.65, 1],
+    stages,
   });
   const title2Style = useTitleAnimation({
     scrollPosition,
@@ -91,10 +95,16 @@ const MainTitle = ({ duration, initialDelay, delayIncrement }) => {
     xDiff: [-55, 0],
     yDiff: [-25, 0],
     scaleDiff: [0.65, 1],
+    stages,
+  });
+
+  const elementSize = useElementSize("AcademicCV-M");
+  const CVHeader = useSpring({
+    maxWidth: `${stages[2] || stages[3] ? 620 * 0.95 : elementSize.width}px`,
   });
 
   return (
-    <div className="CVHeader">
+    <animated.div style={CVHeader} className="CVHeader">
       <animated.div style={title1Style}>
         <AnimatedSpan letter="M" delay={initialDelay} duration={duration} />
         <AnimatedSpan
@@ -104,7 +114,7 @@ const MainTitle = ({ duration, initialDelay, delayIncrement }) => {
         />
       </animated.div>
       <animated.p style={title2Style}>Academic CV</animated.p>
-    </div>
+    </animated.div>
   );
 };
 

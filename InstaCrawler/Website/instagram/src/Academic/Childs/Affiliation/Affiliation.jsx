@@ -51,9 +51,12 @@ export const Affiliation = () => {
     [backgroundSpring.backgroundAnim, randomStart, openClose]
   );
 
+  const [, leftPadding, , rightPadding] = padding;
+  const widthOffset = leftPadding + rightPadding;
+
   const calculateWidth = (stages, mainElementSize, height) => {
-    return stages[2]
-      ? `${0.87 * mainElementSize.width - height - 40}px`
+    return stages[2] || stages[3]
+      ? `${mainElementSize.width - widthOffset - height - 50}px`
       : `${0.38 * mainElementSize.width - height - 40}px`;
   };
 

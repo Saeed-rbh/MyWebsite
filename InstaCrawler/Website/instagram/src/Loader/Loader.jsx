@@ -19,7 +19,7 @@ const usePageLoad = (dispatch) => {
     };
   }, [dispatch]);
 };
-const Loader = ({ onLoad }) => {
+const Loader = () => {
   const { visibility } = useSelector((state) => state.visibility);
   const dispatch = useDispatch();
   const [fade, setFade] = useState(false);
@@ -33,11 +33,7 @@ const Loader = ({ onLoad }) => {
     easing: easings.easeOutCubic,
     onRest: () => setFade(true),
   });
-  useEffect(() => {
-    setTimeout(() => {
-      onLoad();
-    }, 1000);
-  }, [onLoad]);
+
   useEffect(() => {
     const updateLayout = () => {
       const element = document.getElementById("Intro");

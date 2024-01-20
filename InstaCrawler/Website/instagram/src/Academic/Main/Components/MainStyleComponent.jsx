@@ -1,0 +1,51 @@
+import { useMemo, useCallback } from "react";
+import { useSpring } from "react-spring";
+import PropTypes from "prop-types";
+import { useScroll } from "../../General/ScrollProvider";
+import { useSelector } from "react-redux";
+
+const MainStyleComponent = () => {
+  // Interpolates between two values based on scroll position
+  const scrollPosition = useScroll() / 20;
+
+  const interpolateValue = useCallback((value, [endValue, startValue]) => {
+    return startValue + (endValue - startValue) * value;
+  }, []);
+
+  // Computes the style effect based on scroll position
+  const scrollEffect = useMemo(() => {
+    if (scrollPosition < 0) return [-7, 1, 0, 1];
+    if (scrollPosition < 1) {
+      return [
+        interpolateValue(scrollPosition, [-55, -7]),
+        interpolateValue(scrollPosition, [0.9, 1]),
+        interpolateValue(scrollPosition, [-10, 0]),
+        interpolateValue(scrollPosition, [0, 1]),
+      ];
+    }
+    return [-55, 0.9, -10, 0];
+  }, [scrollPosition, interpolateValue]);
+
+  const { stages } = useSelector((state) => state.data);
+
+  // Style for the main component
+  const mainStyle = useSpring({
+    position: "relative",
+    height: 65,
+    width: stages[2] ? "95%" : "100%",
+    paddingLeft: stages[2] ? "5%" : "0%",
+    display: "flex",
+    y: scrollEffect[0],
+    zIndex: 22,
+    overflow: "hidden",
+    maxWidth: `${stages[2] || stages[3] ? 620 * 0.95 : 0}px`,
+  });
+
+  return { mainStyle, scrollEffect };
+};
+
+MainStyleComponent.propTypes = {
+  scrollPosition: PropTypes.number.isRequired,
+};
+
+export default MainStyleComponent;
