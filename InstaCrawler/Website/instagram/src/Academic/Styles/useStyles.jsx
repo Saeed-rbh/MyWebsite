@@ -1,15 +1,16 @@
 import { useMemo } from "react";
-import useCursorStyle from "./useCursorStyle";
-import useTitleStyle from "./useTitleStyle";
 import useBaseStyle from "./useBaseStyle";
 import activeHover from "./activeHover";
-import useTextStyle from "./useTextStyle";
-import useMoreStyle from "./useMoreStyle";
-import useSecondTextStyle from "./useSecondTextStyle";
 import useHeightAndTop from "./useHeightAndTop";
+import {
+  useSecondTextStyle,
+  useTextStyle,
+  useMoreStyle,
+  useTitleStyle,
+} from "./otherStyles";
 
 export function useStyles(toggle, data, hover, ChildRefs, stages) {
-  const { zIndex, heights, tops, widths } = useHeightAndTop(ChildRefs, data);
+  const { heights, tops, widths } = useHeightAndTop(ChildRefs, data, toggle);
 
   const { isActive, isHovered, otherActive } = useMemo(
     () => activeHover(data.title, toggle, hover),
@@ -29,20 +30,14 @@ export function useStyles(toggle, data, hover, ChildRefs, stages) {
     stages
   );
 
-  const cursorStyle = useCursorStyle(isActive);
   const SecondTextStyle = useSecondTextStyle(isActive, stages);
-
   const TitleStyle = useTitleStyle(isActive, stages);
   const MoreStyle = useMoreStyle(isActive, data.fixed, stages);
 
   return useMemo(
     () => ({
       text: textSpring,
-      base: {
-        ...baseSpring,
-        cursor: data.fixed ? "none" : cursorStyle,
-        zIndex: zIndex,
-      },
+      base: baseSpring,
       title: TitleStyle,
       More: MoreStyle,
       height: heights.second,
@@ -54,10 +49,7 @@ export function useStyles(toggle, data, hover, ChildRefs, stages) {
       SecondTextStyle,
       TitleStyle,
       MoreStyle,
-      cursorStyle,
-      zIndex,
       heights.second,
-      data.fixed,
     ]
   );
 }

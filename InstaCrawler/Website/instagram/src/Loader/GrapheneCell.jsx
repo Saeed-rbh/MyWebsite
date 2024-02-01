@@ -43,7 +43,7 @@ const GrapheneSVG = ({ points }) => (
     ))}
   </svg>
 );
-const GrapheneCell = memo(({ text, subtext, fade }) => {
+const GrapheneCell = ({ text, subtext, fade }) => {
   const radius = 50;
   const cx = 100;
   const cy = 100;
@@ -92,6 +92,6 @@ const GrapheneCell = memo(({ text, subtext, fade }) => {
       </div>
     </animated.div>
   );
-});
+};
 
 export default GrapheneCell;

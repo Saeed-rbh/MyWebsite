@@ -25,7 +25,6 @@ const useHeightAndTop = (childRefs, data) => {
       childRefs,
       mainElementSize,
       data,
-      stages,
       childsHeight,
     });
 
@@ -47,14 +46,6 @@ const useHeightAndTop = (childRefs, data) => {
       iniRL: data.iniRL,
     }).width;
 
-  const calcZIndex = () => {
-    const ACTIVE_Z_INDEX = "20";
-    const DEFAULT_Z_INDEX = "10";
-    const zIndexValue =
-      isClicked || isHovered ? ACTIVE_Z_INDEX : DEFAULT_Z_INDEX;
-    return zIndexValue;
-  };
-
   const calcChildRef = () => {
     if (childRefs) {
       return childRefs.current.reduce(
@@ -70,14 +61,12 @@ const useHeightAndTop = (childRefs, data) => {
   const [heights, setHeights] = useState(() => calculateHeights(childsHeight));
   const [tops, setTops] = useState(() => calculateTops(heights));
   const [widthOffset, setWidthOffset] = useState(() => calculateWidthOffset());
-  const [zIndex, setZIndez] = useState(() => calcZIndex());
   const [widths, setWidths] = useState(() => calculatedWidths());
 
   useEffect(() => {
     const newChildsHeight = calcChildRef();
-    if (newChildsHeight > 0 && mainElementSize.height > 0) {
+    if (mainElementSize.height > 0) {
       const newHeights = calculateHeights(newChildsHeight);
-
       setChildsHeight(newChildsHeight);
       setHeights(newHeights);
       setTops(calculateTops(newHeights));
@@ -85,46 +74,13 @@ const useHeightAndTop = (childRefs, data) => {
   }, [mainElementSize, data, stages]);
 
   useEffect(() => {
+    if (toggle[1] !== data.title) return;
+    setTops(calculateTops(heights));
+  }, [childRefs, mainElementSize, data, stages, heights, toggle]);
+
+  useEffect(() => {
     setWidthOffset(calculateWidthOffset);
   }, [childRefs, mainElementSize, data, stages]);
-
-  const scrollEndTimeoutRef = useRef();
-
-  useEffect(() => {
-    const handleScroll = () => {
-      if (scrollEndTimeoutRef.current) {
-        clearTimeout(scrollEndTimeoutRef.current);
-      }
-      scrollEndTimeoutRef.current = setTimeout(() => {
-        if (scollableRef.current) {
-          if (
-            data.top <
-              scollableRef.current.scrollTop + mainElementSize.height &&
-            data.top + heights.NoAction > scollableRef.current.scrollTop
-          ) {
-            setTops(calculateTops(heights));
-          }
-        }
-      }, 150);
-    };
-
-    if (scollableRef && scollableRef.current) {
-      scollableRef.current.addEventListener("scroll", handleScroll);
-    }
-    setTops(calculateTops(heights, mainElementSize, data, 0, isClicked));
-    return () => {
-      if (scollableRef && scollableRef.current) {
-        scollableRef.current.removeEventListener("scroll", handleScroll);
-      }
-      if (scrollEndTimeoutRef.current) {
-        clearTimeout(scrollEndTimeoutRef.current);
-      }
-    };
-  }, [scollableRef, mainElementSize, data]);
-
-  useEffect(() => {
-    setZIndez(calcZIndex);
-  }, [isClicked, isHovered]);
 
   useEffect(() => {
     if (mainElementSize.width > 0) {
@@ -133,7 +89,7 @@ const useHeightAndTop = (childRefs, data) => {
     }
   }, [mainElementSize, widthOffset, stages, data]);
 
-  return { zIndex, heights, tops, widths };
+  return { heights, tops, widths };
 };
 
 export default useHeightAndTop;

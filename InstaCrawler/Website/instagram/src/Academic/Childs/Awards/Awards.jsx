@@ -1,11 +1,11 @@
-import React, { memo } from "react";
+import React from "react";
 import AwardsMain from "./AwardsMain";
 import { useUtilize } from "../../Styles/useUtilize";
 import InteractiveDiv from "../Helper/InteractiveDiv";
 
 const componentName = "Awards";
 
-const Awards = memo(() => {
+const Awards = () => {
   const utilizeProps = useUtilize(componentName);
 
   return (
@@ -20,6 +20,6 @@ const Awards = memo(() => {
       />
     </InteractiveDiv>
   );
-});
+};
 
 export default Awards;

@@ -33,7 +33,7 @@ export const useClickableContent = (
             Stages={stages}
           />
         )}
-        {stages[2] && (
+        {(stages[2] || stages[3]) && (
           <OpenIcon
             isOpen={true}
             CloseOpen={isActive}

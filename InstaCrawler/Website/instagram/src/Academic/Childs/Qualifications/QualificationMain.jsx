@@ -1,29 +1,21 @@
-import React, { memo, useMemo } from "react";
-import PropTypes from "prop-types";
+import React from "react";
 import { useSpring, animated } from "react-spring";
 
-const QualificationItem = memo(
-  ({ qualification, refStyle, style, titleStyle }) => (
-    <animated.div ref={refStyle} style={style} className="Quali">
-      <animated.div style={titleStyle} className="Quali-Title">
-        <p>{qualification.title}</p>
-        <h2>{qualification.Date}</h2>
-      </animated.div>
-      <h3>{qualification.Location}</h3>
-      <h3>
-        <span>Thesis:</span> {qualification.Thesis}
-      </h3>
-      <h3>
-        <span>Supervisor & Advisor:</span> {qualification.Supervisor}
-      </h3>
+const QualificationItem = ({ qualification, refStyle, style, titleStyle }) => (
+  <animated.div ref={refStyle} style={style} className="Quali">
+    <animated.div style={titleStyle} className="Quali-Title">
+      <p>{qualification.title}</p>
+      <h2>{qualification.Date}</h2>
     </animated.div>
-  )
+    <h3>{qualification.Location}</h3>
+    <h3>
+      <span>Thesis:</span> {qualification.Thesis}
+    </h3>
+    <h3>
+      <span>Supervisor & Advisor:</span> {qualification.Supervisor}
+    </h3>
+  </animated.div>
 );
-
-QualificationItem.propTypes = {
-  qualification: PropTypes.object.isRequired,
-  refStyle: PropTypes.object,
-};
 
 const QualificationMain = ({
   ChildRefs,

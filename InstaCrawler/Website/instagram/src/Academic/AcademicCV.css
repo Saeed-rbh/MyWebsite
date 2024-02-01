@@ -856,7 +856,7 @@
 }
 
 .CVList button:last-child {
-  margin-right: 10px;
+  margin-right: 30px;
 }
 .CVListP span {
   width: 18px;
@@ -879,7 +879,7 @@
 .CVList button {
   display: flex;
   border: 2px solid #d49d81ce;
-  padding: 8px 13px;
+  padding: 10px 15px;
   border-radius: 28px;
   font-family: Rubik, sans-serif;
   font-weight: 500;
@@ -1213,14 +1213,20 @@
   position: relative;
   max-width: 1200px;
   z-index: 11;
-  overflow-y: scroll;
-  overflow-x: clip;
   border-radius: 25px;
-  /* background-color: rgba(255, 255, 255, 0.289); */
   display: flex;
   flex-direction: column;
   scroll-snap-type: mandatory;
   -webkit-overflow-scrolling: touch;
+  overflow-x: visible;
+}
+.MoreInfoAcademicInner {
+  position: absolute;
+  top: 0;
+  left: 0;
+  overflow-x: visible;
+  width: 100%;
+  height: -webkit-fill-available;
 }
 .MoreInfoAcademic::-webkit-scrollbar {
   display: none;

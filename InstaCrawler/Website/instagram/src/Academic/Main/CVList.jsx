@@ -82,7 +82,7 @@ const CVList = ({ isActive }) => {
             index={index}
             item={item}
             isSelected={index === selected}
-            onClick={menuClicked(index)}
+            onClick={isActive ? undefined : menuClicked}
           />
         ))}
       </div>
@@ -90,4 +90,4 @@ const CVList = ({ isActive }) => {
   );
 };
 
-export default React.memo(CVList);
+export default CVList;

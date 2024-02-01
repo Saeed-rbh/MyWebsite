@@ -37,20 +37,20 @@ const SectionsData = (data, MainElementSize, sequence, Stages) => {
 
     const exceptions = {
       exception_0T: [{ h: 2, t: 0, v: 10 }],
-      exception_1H: [
-        { h: 1, t: 0, v: 10 },
-        { h: 1, t: 3, v: -20 },
-      ],
-      exception_1T: [
-        { h: 1, t: 1, v: 10 },
-        { h: 1, t: 8, v: 3 },
-        { h: 1, t: 7, v: -20 },
-      ],
-      exception_2H: [
-        { h: 0, t: 3, v: 50 },
-        { h: 0, t: 5, v: 5 },
-      ],
-      exception_2T: [{ h: 0, t: 5, v: 50 }],
+      // exception_1H: [
+      //   { h: 1, t: 0, v: 10 },
+      //   { h: 1, t: 3, v: -20 },
+      // ],
+      // exception_1T: [
+      //   { h: 1, t: 1, v: 10 },
+      //   { h: 1, t: 8, v: 3 },
+      //   { h: 1, t: 7, v: -20 },
+      // ],
+      // exception_2H: [
+      //   { h: 0, t: 3, v: 50 },
+      //   { h: 0, t: 5, v: 5 },
+      // ],
+      // exception_2T: [{ h: 0, t: 5, v: 50 }],
       exception_3H: [
         { h: 2, t: 4, v: 45 },
         { h: 2, t: 5, v: 25 },
@@ -66,6 +66,7 @@ const SectionsData = (data, MainElementSize, sequence, Stages) => {
         { h: 3, t: 3, v: 20 },
       ],
       exception_4T: [
+        { h: 3, t: 0, v: 10 },
         { h: 3, t: 3, v: 25 },
         { h: 3, t: 6, v: 20 },
       ],
@@ -82,7 +83,10 @@ const SectionsData = (data, MainElementSize, sequence, Stages) => {
       const fontSize = 11;
       const LineHeight = 16;
       const text = section.list[0][Object.keys(section.list[0])[1]];
-      textHeight = Math.max(calculateLines(fontSize, text) * LineHeight, 40);
+      textHeight = Math.max(
+        calculateLines(fontSize, text) * LineHeight,
+        Stages[2] ? 40 : Stages[3] ? 20 : 0
+      );
       if (section.size[0] === 0) {
         section.size[0] = section.size[0] + textHeight;
       }
@@ -90,20 +94,19 @@ const SectionsData = (data, MainElementSize, sequence, Stages) => {
 
     const exception_H =
       calculateTotal([
-        ...exceptions.exception_1H,
-        ...exceptions.exception_2H,
+        // ...exceptions.exception_1H,
+        // ...exceptions.exception_2H,
         ...exceptions.exception_3H,
         ...exceptions.exception_4H,
       ]) + textHeight;
 
     const exception_T = calculateTotal([
       ...exceptions.exception_0T,
-      ...exceptions.exception_1T,
-      ...exceptions.exception_2T,
+      // ...exceptions.exception_1T,
+      // ...exceptions.exception_2T,
       ...exceptions.exception_3T,
       ...exceptions.exception_4T,
     ]);
-
     const currentIniRL = calculateIniRL(previousTop, section.size[0]);
 
     if (currentIniRL > previousIniRL) {

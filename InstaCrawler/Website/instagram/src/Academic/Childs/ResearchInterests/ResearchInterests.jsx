@@ -1,8 +1,8 @@
-import React, { memo } from "react";
+import React from "react";
 import { animated } from "react-spring";
 import { useUtilize } from "../../Styles/useUtilize";
 
-const ResearchInterests = memo(() => {
+const ResearchInterests = () => {
   const componentName = "ResearchInterests";
   const { list, title, name, ParentRef, styles, titleStyle, MainStyle } =
     useUtilize(componentName);
@@ -28,6 +28,6 @@ const ResearchInterests = memo(() => {
       </animated.div>
     </animated.div>
   );
-});
+};
 
 export default ResearchInterests;

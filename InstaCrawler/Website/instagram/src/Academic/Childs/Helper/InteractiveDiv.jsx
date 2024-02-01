@@ -1,9 +1,9 @@
-import React, { memo } from "react";
+import React from "react";
 import { animated } from "react-spring";
 import TitleText from "./useTitleText";
 import { useClickableContent } from "../../General/useClickableContent";
 
-const InteractiveDiv = memo((props) => {
+const InteractiveDiv = (props) => {
   const {
     explanation,
     stages,
@@ -15,7 +15,6 @@ const InteractiveDiv = memo((props) => {
     isClickable,
     TextRef,
     styles,
-    titleStyle,
     handleClickClose,
     handleMouseUp,
     handleMouseDown,
@@ -52,18 +51,13 @@ const InteractiveDiv = memo((props) => {
       {...eventHandlers}
     >
       {clickableContent}
-      <TitleText
-        isActive={isActive}
-        title={title}
-        explanation={explanation}
-        titleStyle={titleStyle}
-      />
+      <TitleText isActive={isActive} title={title} explanation={explanation} />
       <animated.h1 ref={TextRef} style={styles.text}>
         {title}
       </animated.h1>
       <animated.div style={MainStyle}>{props.children}</animated.div>
     </animated.div>
   );
-});
+};
 
-export default InteractiveDiv;
+export default React.memo(InteractiveDiv);

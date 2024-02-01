@@ -37,7 +37,7 @@ const PersonalDetails = ({ MainStyle }) => (
   </animated.div>
 );
 
-const PersonalTitle = React.memo(({ title, size, padding, style }) => (
+const PersonalTitle = ({ title, size, padding, style }) => (
   <animated.p
     style={{
       ...style,
@@ -46,14 +46,6 @@ const PersonalTitle = React.memo(({ title, size, padding, style }) => (
   >
     {title}
   </animated.p>
-));
-
-PersonalTitle.propTypes = {
-  title: PropTypes.string.isRequired,
-  data: PropTypes.shape({
-    size: PropTypes.arrayOf(PropTypes.number),
-    padding: PropTypes.arrayOf(PropTypes.number),
-  }).isRequired,
-};
+);
 
 export { ContactDetails, PersonalDetails, PersonalTitle };

@@ -1,14 +1,17 @@
 import React, { useCallback, useRef, useMemo, useState } from "react";
 import { useStyles } from "./useStyles";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch, useSelector, shallowEqual } from "react-redux";
 import { updateToggle, updateHover } from "../../actions/Actions";
-import { useTitleAnimationStyle } from "./useTitleAnimationStyle";
+import { useTitleAnimationStyle } from "./otherStyles";
 
 export const useUtilize = (componentName) => {
-  const updateVariables = useSelector((state) => state.data);
-  const data = updateVariables.academicData.find(
-    (item) => item.name === componentName
+  const data = useSelector(
+    (state) =>
+      state.data.academicData.find((item) => item.name === componentName),
+    shallowEqual
   );
+
+  const updateVariables = useSelector((state) => state.data);
   const stages = updateVariables.stages;
   const toggle = updateVariables.toggle;
   const hover = updateVariables.toggle;
@@ -69,7 +72,7 @@ export const useUtilize = (componentName) => {
         const dx = touchEndX - touchStartPos.x;
         const dy = touchEndY - touchStartPos.y;
         const distance = Math.sqrt(dx * dx + dy * dy);
-        const scrollThreshold = 10; // Adjust as needed
+        const scrollThreshold = 10;
 
         if (distance < scrollThreshold) {
           setToggle([true, title, false]);

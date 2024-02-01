@@ -1,11 +1,11 @@
-import React, { memo } from "react";
+import React from "react";
 import TeachingMain from "./TeachingMain";
 import { useUtilize } from "../../Styles/useUtilize";
 import InteractiveDiv from "../Helper/InteractiveDiv";
 
 const componentName = "Teaching";
 
-const Teaching = memo(() => {
+const Teaching = () => {
   const utilizeProps = useUtilize(componentName);
 
   return (
@@ -20,6 +20,6 @@ const Teaching = memo(() => {
       />
     </InteractiveDiv>
   );
-});
+};
 
 export default Teaching;

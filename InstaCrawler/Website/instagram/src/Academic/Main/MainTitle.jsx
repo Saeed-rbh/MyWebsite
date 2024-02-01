@@ -1,12 +1,11 @@
-import React, { useMemo, useState, memo } from "react";
-import PropTypes from "prop-types";
+import React, { useMemo, useState } from "react";
 import { animated, useSpring } from "react-spring";
 import { useSelector } from "react-redux";
 import { useScroll } from "../General/ScrollProvider";
 import useElementSize from "../Styles/useElementSize";
 
 // AnimatedSpan component for individual letters
-const AnimatedSpan = memo(({ letter, delay, duration }) => {
+const AnimatedSpan = ({ letter, delay, duration }) => {
   const animationProps = useSpring({
     from: { opacity: 0, x: -10 },
     to: { opacity: 0.2, x: 0 },
@@ -15,12 +14,6 @@ const AnimatedSpan = memo(({ letter, delay, duration }) => {
   });
 
   return <animated.span style={animationProps}>{letter}</animated.span>;
-});
-
-AnimatedSpan.propTypes = {
-  letter: PropTypes.string.isRequired,
-  delay: PropTypes.number.isRequired,
-  duration: PropTypes.number.isRequired,
 };
 
 // Helper function to interpolate values
@@ -63,7 +56,7 @@ const useTitleAnimation = ({
       x: visibility ? x : xDiff[0],
       y,
       scale,
-      paddingLeft: stages[2] ? "5%" : "0%",
+      // paddingLeft: stages[2] ? "5%" : "0%",
     },
     delay: animationFinished ? 0 : 500,
     config: { duration: animationFinished ? undefined : 400 },
@@ -76,7 +69,7 @@ const MainTitle = ({ duration, initialDelay, delayIncrement }) => {
   const { visibility } = useSelector((state) => state.visibility);
   const [animationFinished, setAnimationFinished] = useState(false);
   const scrollPosition = useScroll() / 20;
-  const { stages } = useSelector((state) => state.data);
+  const stages = useSelector((state) => state.data.stages);
   const title1Style = useTitleAnimation({
     scrollPosition,
     visibility,
@@ -118,10 +111,4 @@ const MainTitle = ({ duration, initialDelay, delayIncrement }) => {
   );
 };
 
-MainTitle.propTypes = {
-  duration: PropTypes.number.isRequired,
-  initialDelay: PropTypes.number.isRequired,
-  delayIncrement: PropTypes.number.isRequired,
-};
-
-export default memo(MainTitle);
+export default React.memo(MainTitle);

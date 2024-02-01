@@ -96,7 +96,7 @@ export const sectionProperties = [
   {
     id: 6,
     name: "Awards",
-    explanation: "Acknowledgement of Excellence and Professional Achievement",
+    explanation: "Acknowledgement of  Professional Achievement",
     title: "Awards & Certifications",
     background: "rgb(0 0 0 / 30%)",
     padding: [20, 20, 30, 20],

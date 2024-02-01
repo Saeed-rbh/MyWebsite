@@ -10,17 +10,17 @@ const PaperData = ({ isActive, skillElementRef, stages }) => {
       : stages[2]
       ? "-10px"
       : "-10px",
-    width: isActive
-      ? "calc(100% - 95px)"
-      : stages[2]
-      ? "calc(100% - 45px)"
-      : "100%",
+    // width: isActive
+    //   ? "calc(100% - 95px)"
+    //   : stages[2] || stages[3]
+    //   ? "calc(100% - 45px)"
+    //   : "100%",
     marginLeft: isActive ? "10px" : stages[2] ? "0px" : "45px",
     marginRight: isActive ? "10px" : stages[2] ? "-10px" : "45px",
     paddingLeft: isActive ? "30px" : stages[2] ? "5px" : "30px",
     paddingRight: isActive ? "30px" : stages[2] ? "50px" : "30px",
     paddingTop: isActive ? "8px" : stages[2] ? "10px" : "5px",
-    paddingBottom: isActive ? "8px" : stages[2] ? "10px" : "5px",
+    paddingBottom: isActive ? "8px" : stages[2] || stages[3] ? "10px" : "5px",
     easing: easings.easeOutCubic,
     duration: 100,
   });

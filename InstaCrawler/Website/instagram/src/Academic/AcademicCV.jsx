@@ -93,11 +93,11 @@ const AcademicCV = () => {
 
   const scrollEffect = useMemo(() => {
     if (scrollPosition <= 0) {
-      return 0;
+      return 40;
     } else if (scrollPosition < 1) {
-      return interpolateValue(scrollPosition / 20, [-45, 0]);
+      return interpolateValue(scrollPosition / 20, [0, 40]);
     }
-    return -45;
+    return 0;
   }, [scrollPosition]);
   const moreAcademicInfoStyle = useSpring({
     transform: `scale(${stages[3] ? 1 : scale})`,
@@ -107,15 +107,17 @@ const AcademicCV = () => {
       () =>
         conditionStage
           ? stages[2]
-            ? -10 + scrollEffect
+            ? 15 + scrollEffect
             : stages[3]
             ? 10 + scrollEffect
             : 0
           : 0,
       [stages, conditionStage, scrollEffect]
     ),
+    marginTop: stages[2] ? -80 : stages[3] ? -60 : 0,
+
     height: useMemo(
-      () => `calc(100% - ${stages[2] && conditionStage ? 80 : 0}px)`,
+      () => `calc(100% - ${stages[2] && conditionStage ? 0 : 0}px)`,
       [stages, conditionStage]
     ),
     overflow: useMemo(
@@ -146,14 +148,7 @@ const AcademicCV = () => {
             id="MoreInfoAcademic"
             className="MoreInfoAcademic"
           >
-            {conditionData && (
-              <MoreInfoAcademic
-                stages={stages}
-                conditionStage={conditionStage}
-                toggle={toggle}
-                lastValue={lastValue}
-              />
-            )}
+            {conditionData && <MoreInfoAcademic lastValue={lastValue} />}
           </animated.div>
         </div>
       )}

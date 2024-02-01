@@ -7,7 +7,7 @@ const useMenuClick = ({
   executeSmoothScroll,
 }) => {
   const menuClicked = useCallback(
-    (index) => () => {
+    (index) => {
       if (!normalizeScroll) return;
       const scrollableDivElement = scollableRef.current;
       if (!cvListElement || !scrollableDivElement) {

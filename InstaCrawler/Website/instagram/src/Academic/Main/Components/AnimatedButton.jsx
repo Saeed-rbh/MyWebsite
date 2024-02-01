@@ -1,5 +1,4 @@
 import React, { useState, useCallback } from "react";
-import PropTypes from "prop-types";
 import { useSelector } from "react-redux";
 import { useSpring, animated } from "react-spring";
 
@@ -45,25 +44,20 @@ const useOpacityStyle = (index, isSelected) => {
 
 // AnimatedButton component
 const AnimatedButton = ({ index, item, isSelected, onClick }) => {
+
   const springStyle = useSpringStyle(index, isSelected);
   const opacityStyle = useOpacityStyle(index, isSelected);
 
   const handleClick = useCallback(() => {
-    onClick(item);
-  }, [item, onClick]);
+    if (!onClick) return;
+    onClick(index);
+  }, [index, onClick]);
 
   return (
     <animated.button style={springStyle} onClick={handleClick}>
       <animated.p style={opacityStyle}>{item.title}</animated.p>
     </animated.button>
   );
-};
-
-AnimatedButton.propTypes = {
-  index: PropTypes.number.isRequired,
-  item: PropTypes.object.isRequired,
-  isSelected: PropTypes.bool.isRequired,
-  onClick: PropTypes.func.isRequired,
 };
 
 export default React.memo(AnimatedButton);

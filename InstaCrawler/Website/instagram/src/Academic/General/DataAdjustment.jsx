@@ -37,7 +37,7 @@ const DataModify = ({ stages, mainElementSize }) => {
       return result;
     }
     return [];
-  }, [isMainElementSizeStable, mainElementSize, stages, sequence]);
+  }, [isMainElementSizeStable, stages]);
 
   return data;
 };

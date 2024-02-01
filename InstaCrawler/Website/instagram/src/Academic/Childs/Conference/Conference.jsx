@@ -1,11 +1,11 @@
-import React, { memo } from "react";
+import React from "react";
 import { useUtilize } from "../../Styles/useUtilize";
 import ConferanceMain from "./ConferanceMain";
 import InteractiveDiv from "../Helper/InteractiveDiv";
 
 const componentName = "Conference";
 
-const Conference = memo(() => {
+const Conference = () => {
   const utilizeProps = useUtilize(componentName);
 
   return (
@@ -20,6 +20,6 @@ const Conference = memo(() => {
       />
     </InteractiveDiv>
   );
-});
+};
 
 export default Conference;

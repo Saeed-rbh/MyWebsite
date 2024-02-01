@@ -11,7 +11,7 @@ import {
   Teaching,
 } from "./sectionComponents";
 
-const Sections = React.memo(({ renderSection }) => {
+const Sections = ({ renderSection }) => {
   const components = [
     PersonalInfo,
     Affiliation,
@@ -31,6 +31,6 @@ const Sections = React.memo(({ renderSection }) => {
       )}
     </>
   );
-});
+};
 
 export default Sections;

@@ -1,4 +1,4 @@
-import { useMemo, useCallback } from "react";
+import React, { useMemo, useCallback } from "react";
 import { useSpring } from "react-spring";
 import PropTypes from "prop-types";
 import { useScroll } from "../../General/ScrollProvider";
@@ -26,26 +26,20 @@ const MainStyleComponent = () => {
     return [-55, 0.9, -10, 0];
   }, [scrollPosition, interpolateValue]);
 
-  const { stages } = useSelector((state) => state.data);
+  const stages = useSelector((state) => state.data.stages);
 
-  // Style for the main component
   const mainStyle = useSpring({
     position: "relative",
-    height: 65,
+    height: 70,
     width: stages[2] ? "95%" : "100%",
-    paddingLeft: stages[2] ? "5%" : "0%",
+    // paddingLeft: stages[2] ? "5%" : "0%",
     display: "flex",
     y: scrollEffect[0],
     zIndex: 22,
     overflow: "hidden",
     maxWidth: `${stages[2] || stages[3] ? 620 * 0.95 : 0}px`,
   });
-
   return { mainStyle, scrollEffect };
-};
-
-MainStyleComponent.propTypes = {
-  scrollPosition: PropTypes.number.isRequired,
 };
 
 export default MainStyleComponent;

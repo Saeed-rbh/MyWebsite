@@ -52,6 +52,7 @@ const CloseIcon = ({
     backgroundColor: backgroundColor,
     width: 60,
     height: 60,
+    borderRadius: 35,
   }));
 
   const [IconCross, setIconCross] = useSpring(() => ({
@@ -81,10 +82,10 @@ const CloseIcon = ({
     right: 10,
     width: 60,
     height: 60,
-    borderRadius: 35,
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
+    zIndex: 25,
   });
 
   return (

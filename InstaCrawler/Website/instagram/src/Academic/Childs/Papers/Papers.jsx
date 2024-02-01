@@ -1,4 +1,4 @@
-import React, { memo } from "react";
+import React from "react";
 import MoreInfoPapers from "./MoreInfoPapers";
 import PaperData from "./PaperData";
 import RecentPaper from "./RecentPaper";
@@ -7,7 +7,7 @@ import InteractiveDiv from "../Helper/InteractiveDiv";
 
 const componentName = "Papers";
 
-const Papers = memo(() => {
+const Papers = () => {
   const utilizeProps = useUtilize(componentName);
 
   return (
@@ -31,6 +31,6 @@ const Papers = memo(() => {
       <div className="div-"></div>
     </InteractiveDiv>
   );
-});
+};
 
 export default Papers;

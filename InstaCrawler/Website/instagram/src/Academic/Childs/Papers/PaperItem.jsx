@@ -1,9 +1,8 @@
-import React, { memo, useCallback } from "react";
+import React, { useCallback } from "react";
 import { RiDownloadCloudFill } from "react-icons/ri";
 import { HiArrowSmRight } from "react-icons/hi";
 import { SiGooglescholar } from "react-icons/si";
 import { useSpring, animated, easings } from "react-spring";
-import PropTypes from "prop-types";
 import { useInView } from "react-intersection-observer";
 
 const openInNewTab = (url) => {
@@ -106,14 +105,4 @@ const PaperItem = ({
   );
 };
 
-PaperItem.propTypes = {
-  paper: PropTypes.shape({
-    title: PropTypes.string.isRequired,
-    link: PropTypes.string.isRequired,
-    pdf: PropTypes.string.isRequired,
-  }).isRequired,
-  isOpen: PropTypes.bool.isRequired,
-  handleToggle: PropTypes.func.isRequired,
-};
-
-export default memo(PaperItem);
+export default PaperItem;

@@ -23,33 +23,33 @@ export const Affiliation = () => {
     MainStyle,
   } = useUtilize(componentName);
 
-  const openClose = useMemo(() => (isActive ? 2 : 1), [isActive]);
-  const [randomStart] = useState(rand);
+  // const openClose = useMemo(() => (isActive ? 2 : 1), [isActive]);
+  // const [randomStart] = useState(rand);
 
-  const backgroundSpring = useSpring({
-    from: { backgroundAnim: 0 },
-    to: async (next) => {
-      while (true) {
-        await next({
-          backgroundAnim: 1,
-          config: { duration: 7000 - 1000 * randomStart },
-        });
-        await next({
-          backgroundAnim: 0,
-          config: { duration: 7000 - 1000 * randomStart },
-        });
-      }
-    },
-    delay: 1000 * randomStart,
-  });
+  // const backgroundSpring = useSpring({
+  //   from: { backgroundAnim: 0 },
+  //   to: async (next) => {
+  //     while (true) {
+  //       await next({
+  //         backgroundAnim: 1,
+  //         config: { duration: 7000 - 1000 * randomStart },
+  //       });
+  //       await next({
+  //         backgroundAnim: 0,
+  //         config: { duration: 7000 - 1000 * randomStart },
+  //       });
+  //     }
+  //   },
+  //   delay: 1000 * randomStart,
+  // });
 
-  const backgroundImage = useMemo(
-    () =>
-      backgroundSpring.backgroundAnim.interpolate((value) =>
-        calculateBackgroundImage(value, randomStart, openClose)
-      ),
-    [backgroundSpring.backgroundAnim, randomStart, openClose]
-  );
+  // const backgroundImage = useMemo(
+  //   () =>
+  //     backgroundSpring.backgroundAnim.interpolate((value) =>
+  //       calculateBackgroundImage(value, randomStart, openClose)
+  //     ),
+  //   [backgroundSpring.backgroundAnim, randomStart, openClose]
+  // );
 
   const [, leftPadding, , rightPadding] = padding;
   const widthOffset = leftPadding + rightPadding;
@@ -66,7 +66,7 @@ export const Affiliation = () => {
 
   const animatedStyle = useSpring({
     backgroundColor: "rgba(0, 0, 0, 0.3)",
-    backgroundImage,
+    // backgroundImage
     top: "-5px",
     width: useMemo(
       () => calculateWidth(stages, mainElementSize, height),
@@ -83,7 +83,7 @@ export const Affiliation = () => {
     position: "absolute",
     display: "flex",
     borderRadius: "40px",
-    backgroundImage: backgroundImage,
+    // backgroundImage: backgroundImage,
     top: "-5px",
     height: height,
     width: `${height}px`,

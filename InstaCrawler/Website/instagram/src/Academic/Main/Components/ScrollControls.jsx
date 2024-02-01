@@ -2,7 +2,6 @@ import React, { useState, useRef, useMemo } from "react";
 import { useSpring, animated } from "react-spring";
 import { HiArrowNarrowRight, HiArrowNarrowLeft } from "react-icons/hi";
 import { useSelector } from "react-redux";
-import PropTypes from "prop-types";
 
 const commonStyle = {
   display: "flex",
@@ -24,7 +23,7 @@ const ScrollControls = ({ scrollEffect }) => {
   const { visibility } = useSelector((state) => state.visibility);
   const [animationFinished, setAnimationFinished] = useState(false);
   const scrollEndRef = useRef(false);
-  const { stages } = useSelector((state) => state.data);
+  const stages = useSelector((state) => state.data.stages);
 
   const titleStyle = useSpring({
     from: { opacity: 0, y: 10 },
@@ -102,8 +101,4 @@ const ScrollControls = ({ scrollEffect }) => {
   );
 };
 
-ScrollControls.propTypes = {
-  scrollEffect: PropTypes.arrayOf(PropTypes.number).isRequired,
-};
-
-export default ScrollControls;
+export default React.memo(ScrollControls);
