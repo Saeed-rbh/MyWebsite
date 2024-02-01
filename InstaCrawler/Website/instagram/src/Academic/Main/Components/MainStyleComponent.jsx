@@ -1,6 +1,5 @@
-import React, { useMemo, useCallback } from "react";
+import { useMemo, useCallback } from "react";
 import { useSpring } from "react-spring";
-import PropTypes from "prop-types";
 import { useScroll } from "../../General/ScrollProvider";
 import { useSelector } from "react-redux";
 
@@ -14,7 +13,8 @@ const MainStyleComponent = () => {
 
   // Computes the style effect based on scroll position
   const scrollEffect = useMemo(() => {
-    if (scrollPosition < 0) return [-10, 1, 0, 1];
+    if (scrollPosition < 0)
+      return [interpolateValue(scrollPosition, [-55 / 3, -10]), 1, 0, 1];
     if (scrollPosition < 1) {
       return [
         interpolateValue(scrollPosition, [-55, -10]),
