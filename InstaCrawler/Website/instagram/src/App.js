@@ -60,7 +60,7 @@
 
 import "./App.css";
 import React, { lazy, Suspense } from "react";
-
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import store from "./store/configureStore";
 const AcademicCV = lazy(() => import("./Academic/AcademicCV"));
@@ -68,6 +68,7 @@ const AcademicCV = lazy(() => import("./Academic/AcademicCV"));
 function App() {
   return (
     <Router store={store}>
+      <SpeedInsights />
       <div className="App">
         <visibility />
         {true ? (
