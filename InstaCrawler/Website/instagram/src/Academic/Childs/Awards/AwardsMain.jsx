@@ -19,7 +19,11 @@ const AwardsMain = ({
     () =>
       List.map((Award, index) => (
         <animated.div
-          style={index !== 0 ? styles.title : null}
+          style={
+            index !== 0
+              ? { ...styles.title, ...styles.titlewidth }
+              : styles.titlewidth
+          }
           className="Awards-Title"
           ref={ChildRefs.current[index]}
           key={Award.id}

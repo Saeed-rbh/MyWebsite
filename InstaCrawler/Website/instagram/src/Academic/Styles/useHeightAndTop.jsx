@@ -42,6 +42,7 @@ const useHeightAndTop = (childRefs, data) => {
     elementWidthCalculator({
       elementSizeWidth: mainElementSize.width,
       padding: data.padding,
+      widthSplit: data.widthSplit,
       stages: stages,
       iniRL: data.iniRL,
     }).width;

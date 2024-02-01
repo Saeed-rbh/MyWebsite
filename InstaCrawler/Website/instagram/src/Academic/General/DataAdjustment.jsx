@@ -5,7 +5,7 @@ import SectionsData from "./SectionsData";
 const useSequence = (stages) =>
   useMemo(() => {
     return stages[2] || stages[3]
-      ? [0, 1, 4, 2, 5, 3, 6, 7, 8]
+      ? [0, 1, 4, 2, 5, 3, 8, 6, 7]
       : stages[1]
       ? [0, 1, 4, 5, 2, 8, 3, 7, 6]
       : stages[0]

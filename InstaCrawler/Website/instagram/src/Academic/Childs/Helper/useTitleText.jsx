@@ -9,12 +9,11 @@ const calculateWidth = (titleRef, explanationRef, mainRef) => {
   return [titleWidth, explanationWidth, mainWidth];
 };
 
-const TitleText = ({ isActive, title, explanation }) => {
+const TitleText = ({ isActive, title, explanation, widthSplit }) => {
   const titleRef = useRef(null);
   const explanationRef = useRef(null);
   const mainRef = useRef(null);
   const stages = useSelector((state) => state.data.stages);
-
   const [width, setWidth] = useState([0, 0, 0]);
 
   useEffect(() => {
@@ -36,7 +35,13 @@ const TitleText = ({ isActive, title, explanation }) => {
     maxWidth: isActive ? "80%" : "100%",
     top: isActive ? -5 - (factor - 1) * 7 : -5,
     fontSize: isActive ? 20 * factor : 20,
-    left: width[2] - width[1] ? (isActive ? 20 : (width[2] - width[0]) / 2) : 0,
+    left: widthSplit
+      ? 25
+      : width[2] - width[1]
+      ? isActive
+        ? 20
+        : (width[2] - width[0]) / 2
+      : 0,
   });
 
   const explanationStyle = useSpring({
@@ -45,7 +50,14 @@ const TitleText = ({ isActive, title, explanation }) => {
     fontSize: 11,
     maxWidth: isActive ? "80%" : "100%",
     top: isActive ? 20 + (factor - 1) * 7 : 20,
-    left: width[2] - width[1] ? (isActive ? 20 : (width[2] - width[1]) / 2) : 0,
+    opacity: isActive || !widthSplit ? 1 : 0,
+    left: widthSplit
+      ? 25
+      : width[2] - width[1]
+      ? isActive
+        ? 20
+        : (width[2] - width[1]) / 2
+      : 0,
   });
   return (
     <animated.div ref={mainRef} style={mainStyle} className="SecondTitle">

@@ -29,8 +29,8 @@ const ScrollControls = ({ scrollEffect }) => {
     from: { opacity: 0, y: 10 },
     to: {
       opacity: visibility ? 0.7 : 0,
-      y: visibility ? 0 : 10,
-      width: stages[2] ? "92%" : "100%",
+      y: visibility ? -2 : 15,
+      width: stages[2] ? "98%" : "100%",
     },
     delay: animationFinished ? 0 : 700,
     onRest: () => setAnimationFinished(true),

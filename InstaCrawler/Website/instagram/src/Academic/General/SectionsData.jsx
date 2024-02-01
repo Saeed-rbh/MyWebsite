@@ -17,6 +17,7 @@ const SectionsData = (data, MainElementSize, sequence, Stages) => {
   let previousTop = 0;
   let resetTop = 0;
   let previousIniRL = 0;
+  let LeftRight = true;
 
   const calculateIniRL = (top, height) => {
     return Stages[2] || Stages[3]
@@ -59,7 +60,7 @@ const SectionsData = (data, MainElementSize, sequence, Stages) => {
       exception_3T: [
         { h: 2, t: 2, v: 45 },
         { h: 2, t: 3, v: 25 },
-        { h: 2, t: 6, v: 20 },
+        { h: 2, t: 8, v: 20 },
       ],
       exception_4H: [
         { h: 3, t: 5, v: 25 },
@@ -68,7 +69,7 @@ const SectionsData = (data, MainElementSize, sequence, Stages) => {
       exception_4T: [
         { h: 3, t: 0, v: 10 },
         { h: 3, t: 3, v: 25 },
-        { h: 3, t: 6, v: 20 },
+        { h: 3, t: 8, v: 20 },
       ],
     };
 
@@ -122,11 +123,23 @@ const SectionsData = (data, MainElementSize, sequence, Stages) => {
         ? previousTop + marginAdd + exception_T
         : previousTop + marginAdd + MARGIN_TOP + exception_T;
 
-    previousTop =
-      topValue + section.size[0] + section.padding[0] + section.padding[2];
-
-    if (textHeight > 0) {
-      previousTop = previousTop + exception_H;
+    let widthSplit = false;
+    let direction = "center";
+    if (sequenceId > sequence.length - 3) {
+      widthSplit = true;
+      if (LeftRight) {
+        direction = "left";
+        LeftRight = false;
+      } else {
+        direction = "right";
+        LeftRight = true;
+      }
+    } else {
+      previousTop =
+        topValue + section.size[0] + section.padding[0] + section.padding[2];
+      if (textHeight > 0) {
+        previousTop = previousTop + exception_H;
+      }
     }
 
     return {
@@ -136,6 +149,8 @@ const SectionsData = (data, MainElementSize, sequence, Stages) => {
       top: topValue,
       iniRL: currentIniRL,
       seqId: sequenceId,
+      widthSplit: widthSplit,
+      direction: direction,
     };
   });
 };

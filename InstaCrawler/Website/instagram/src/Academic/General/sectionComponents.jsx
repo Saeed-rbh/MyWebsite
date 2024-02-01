@@ -110,7 +110,7 @@ export const sectionProperties = [
     id: 7,
     name: "Conference",
     explanation: "Participation in Scholarly Conferences and Workshops",
-    title: "Conferences & Workshops",
+    title: "Workshops & Conferences",
     background: "rgb(0 0 0 / 30%)",
     padding: [20, 20, 20, 20],
     size: [0, 550],

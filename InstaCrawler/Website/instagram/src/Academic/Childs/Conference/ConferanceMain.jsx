@@ -17,7 +17,11 @@ const ConferanceMain = ({
   });
   const Conferences = List.map((Conferences, index) => (
     <animated.div
-      style={index !== 0 ? styles.title : null}
+      style={
+        index !== 0
+          ? { ...styles.title, ...styles.titlewidth }
+          : styles.titlewidth
+      }
       className="Awards-Title"
       ref={ChildRefs.current[index]}
       key={index}

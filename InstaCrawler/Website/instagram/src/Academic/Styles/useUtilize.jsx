@@ -42,6 +42,7 @@ export const useUtilize = (componentName) => {
     background,
     seqId,
     fixed,
+    widthSplit,
   } = data;
 
   const isActive = useMemo(
@@ -132,6 +133,7 @@ export const useUtilize = (componentName) => {
     styles,
     titleStyle,
     MainStyle,
+    widthSplit,
     handleClickClose,
     handleMouseUp,
     handleMouseDown,

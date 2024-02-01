@@ -10,6 +10,7 @@ const OpenIcon = ({
   handleClickClose,
   backgroundColor,
   seqId,
+  widthSplit,
 }) => {
   const commonConfig = {
     duration: 400,
@@ -78,17 +79,28 @@ const OpenIcon = ({
   const [animationFinished, setAnimationFinished] = useState(false);
   const CONFIG = [2200, 200, 600];
 
+  const textStyle = useSpring({
+    position: "absolute",
+    top: -11,
+    margin: "0 auto",
+    fontSize: 8,
+    width: "max-content",
+    left: 85,
+    color: "#fff",
+    opacity: 0.5,
+  });
+
   const CloseOpenStyleClose = useSpring({
     from: { opacity: 0, scale: 0 },
     to: {
       opacity: visibility ? (!CloseOpen ? 1 : 0) : 0,
       scale: visibility ? (!CloseOpen ? 1 : 0) : 0,
       position: "absolute",
-      bottom: 10,
-      right: 10,
-      width: 60,
-      height: 60,
-      borderRadius: 35,
+      bottom: widthSplit ? 0 : 10,
+      right: widthSplit ? -10 : 10,
+      width: widthSplit ? 500 : 60,
+      height: widthSplit ? 25 : 60,
+      borderRadius: widthSplit ? 0 : 35,
       backgroundColor: backgroundColor,
       display: "flex",
       alignItems: "center",
@@ -112,7 +124,10 @@ const OpenIcon = ({
         onMouseLeave={handleMouseLeave}
         style={{ ...IconProp }}
       >
-        <CgArrowsExpandUpLeft />
+        {!widthSplit && <CgArrowsExpandUpLeft />}
+        {widthSplit && (
+          <animated.h3 style={textStyle}>Click for More</animated.h3>
+        )}
       </animated.div>
     </animated.div>
   );

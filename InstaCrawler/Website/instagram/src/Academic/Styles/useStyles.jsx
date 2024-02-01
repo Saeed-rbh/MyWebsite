@@ -7,6 +7,7 @@ import {
   useTextStyle,
   useMoreStyle,
   useTitleStyle,
+  useTitleWidthStyle,
 } from "./otherStyles";
 
 export function useStyles(toggle, data, hover, ChildRefs, stages) {
@@ -32,6 +33,7 @@ export function useStyles(toggle, data, hover, ChildRefs, stages) {
 
   const SecondTextStyle = useSecondTextStyle(isActive, stages);
   const TitleStyle = useTitleStyle(isActive, stages);
+  const TitleWidthStyle = useTitleWidthStyle(isActive, widths, data.widthSplit);
   const MoreStyle = useMoreStyle(isActive, data.fixed, stages);
 
   return useMemo(
@@ -39,6 +41,7 @@ export function useStyles(toggle, data, hover, ChildRefs, stages) {
       text: textSpring,
       base: baseSpring,
       title: TitleStyle,
+      titlewidth: TitleWidthStyle,
       More: MoreStyle,
       height: heights.second,
       secondText: SecondTextStyle,
@@ -48,6 +51,7 @@ export function useStyles(toggle, data, hover, ChildRefs, stages) {
       baseSpring,
       SecondTextStyle,
       TitleStyle,
+      TitleWidthStyle,
       MoreStyle,
       heights.second,
     ]

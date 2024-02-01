@@ -16,7 +16,7 @@ export const useSecondTextStyle = (isActive, stages) => {
 const gradientStyle = {
   background: "linear-gradient(to right, #d49d8194 0%, #ff550063 100%)",
   WebkitBackgroundClip: "text",
-  lineHeight: 80,
+  lineHeight: "80px",
 };
 
 // Hook for text style
@@ -74,10 +74,15 @@ export const useTitleAnimationStyle = (seqId) => {
 export const useTitleStyle = (isActive, stages) => {
   const ACTIVE_Y = 0;
   const INACTIVE_Y = stages[2] ? 100 : 15;
-
   return useSpring({
     marginTop: isActive ? ACTIVE_Y : INACTIVE_Y,
-    opacity: isActive ? 1 : 0,
+  });
+};
+
+export const useTitleWidthStyle = (isActive, widths, widthSplit) => {
+  return useSpring({
+    width: widthSplit ? widths[1] : undefined,
+    opacity: isActive || !widthSplit ? 1 : 0,
   });
 };
 

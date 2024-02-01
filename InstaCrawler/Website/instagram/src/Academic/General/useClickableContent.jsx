@@ -10,7 +10,8 @@ export const useClickableContent = (
   isHovered,
   background,
   stages,
-  seqId
+  seqId,
+  widthSplit
 ) => {
   const ClickableContent = useMemo(() => {
     if (!isClickable) return null;
@@ -40,6 +41,7 @@ export const useClickableContent = (
             handleClickClose={handleClickClose}
             backgroundColor={background}
             seqId={seqId}
+            widthSplit={widthSplit}
           />
         )}
       </>

@@ -22,6 +22,7 @@ const InteractiveDiv = (props) => {
     handleMouseLeave,
     MainStyle,
     seqId,
+    widthSplit,
   } = props;
 
   const clickableContent = useClickableContent(
@@ -31,7 +32,8 @@ const InteractiveDiv = (props) => {
     isHovered,
     background,
     stages,
-    seqId
+    seqId,
+    widthSplit
   );
 
   const eventHandlers = {
@@ -51,7 +53,12 @@ const InteractiveDiv = (props) => {
       {...eventHandlers}
     >
       {clickableContent}
-      <TitleText isActive={isActive} title={title} explanation={explanation} />
+      <TitleText
+        isActive={isActive}
+        title={title}
+        explanation={explanation}
+        widthSplit={widthSplit}
+      />
       <animated.h1 ref={TextRef} style={styles.text}>
         {title}
       </animated.h1>

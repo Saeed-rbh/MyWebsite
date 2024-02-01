@@ -20,7 +20,9 @@ const elementHeightCalculator = ({
       Opened: isOpenHeightExceeding
         ? mainElementSize.height - data.padding[0] - data.padding[2]
         : childsHeight,
-      NoAction: data.height,
+      NoAction: data.widthSplit
+        ? 100 - data.padding[0] - data.padding[2]
+        : data.height,
       Hovered: data.height + HEIGHT_OFFSETS.Hovered,
     };
   }
