@@ -1,6 +1,5 @@
-import React, { useMemo, useCallback } from "react";
+import { useMemo, useCallback } from "react";
 import { useSpring } from "react-spring";
-import PropTypes from "prop-types";
 import { useScroll } from "../../General/ScrollProvider";
 import { useSelector } from "react-redux";
 
@@ -14,16 +13,17 @@ const MainStyleComponent = () => {
 
   // Computes the style effect based on scroll position
   const scrollEffect = useMemo(() => {
-    if (scrollPosition < 0) return [-10, 1, 0, 1];
+    if (scrollPosition < 0)
+      return [interpolateValue(scrollPosition, [-58 / 3, -12]), 1, 0, 1];
     if (scrollPosition < 1) {
       return [
-        interpolateValue(scrollPosition, [-55, -10]),
+        interpolateValue(scrollPosition, [-58, -12]),
         interpolateValue(scrollPosition, [0.9, 1]),
         interpolateValue(scrollPosition, [-10, 0]),
         interpolateValue(scrollPosition, [0, 1]),
       ];
     }
-    return [-55, 0.9, -10, 0];
+    return [-58, 0.9, -10, 0];
   }, [scrollPosition, interpolateValue]);
 
   const stages = useSelector((state) => state.data.stages);

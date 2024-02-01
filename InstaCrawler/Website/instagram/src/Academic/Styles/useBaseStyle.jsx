@@ -32,7 +32,7 @@ const useBaseStyle = (
   );
 
   const blurValue = useMemo(() => {
-    if (toggle[0] && !isActive) return "blur(15px)";
+    if (toggle[0] && !isActive) return "blur(10px)";
     if (hover[0] && !stages[2] && !isHovered) return "blur(5px)";
     return "blur(0px)";
   }, [toggle, hover, stages, isActive, isHovered]);
@@ -55,13 +55,12 @@ const useBaseStyle = (
       : isHovered && !stages[2]
       ? tops.Hovered
       : tops.NoAction;
-    const scale = visibility ? (otherActive || isTrigger ? 0.9 : 1) : 1.5;
+    const scale = visibility ? (otherActive ? 0.9 : 1) : 1.5;
     const opacityValue = isActive ? 1 : visibility ? opacity : 0;
 
     return {
       height: `${height}px`,
       top: `${top}px`,
-      zIndex,
       cursor: cursorStyle,
       Filter: blurValue,
       WebkitFilter: blurValue,
@@ -80,7 +79,6 @@ const useBaseStyle = (
     heights,
     tops,
     stages,
-    zIndex,
     cursorStyle,
     blurValue,
     visibility,
@@ -99,7 +97,7 @@ const useBaseStyle = (
     onRest: () => setAnimationFinished(true),
   });
 
-  return baseStyles;
+  return { ...baseStyles, zIndex };
 };
 
 export default useBaseStyle;

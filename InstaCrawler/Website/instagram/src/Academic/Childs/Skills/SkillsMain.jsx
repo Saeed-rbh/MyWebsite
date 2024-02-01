@@ -11,7 +11,6 @@ const SkillsMain = ({ ChildRefs, styles, ParentRef, List, stages, title }) => {
   const hover = updateVariables.hover;
 
   const getListItemHeight = (Skill, s) => {
-    console.log(toggle);
     if (Skill.id === 1 && s === Skill.skill[1] && !toggle[0]) {
       return "40px";
     } else {
