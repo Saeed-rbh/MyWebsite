@@ -55,7 +55,7 @@ const useBaseStyle = (
       : isHovered && !stages[2]
       ? tops.Hovered
       : tops.NoAction;
-    const scale = visibility ? (otherActive ? 0.9 : 1) : 1.5;
+    const scale = visibility ? (otherActive || isTrigger ? 0.9 : 1) : 1.5;
     const opacityValue = isActive ? 1 : visibility ? opacity : 0;
 
     return {
