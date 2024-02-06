@@ -119,7 +119,7 @@ const Footer = () => {
             opacity: 1,
             x: width / 2.35,
             y: isMenuOpen ? -10 : 0,
-            height: "50px",
+            height: "60px",
           }
         : {},
     config:
