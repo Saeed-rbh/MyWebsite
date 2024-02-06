@@ -260,6 +260,14 @@
   justify-content: center;
   align-items: center;
   z-index: 99;
+  position: fixed;
+  bottom: 20px;
+  top: 20px;
+  height: calc(100vh - 40px);
+  width: calc(100vw - 20px);
+  margin: 0;
+  left: 10px;
+  right: 10px;
 }
 .MainHeader {
   position: absolute;
@@ -709,6 +717,7 @@
     margin: 10px 0;
   }
   .MenuInsideN {
+    position: fixed;
     bottom: 20px;
     top: 20px;
     height: calc(100vh - 40px);
@@ -741,6 +750,7 @@
   .MainHeader {
     position: relative;
     border-radius: 100px;
+    margin-left: 10px;
   }
   .pro p:nth-child(1) {
     margin-bottom: 0;
