@@ -717,14 +717,14 @@
     margin: 10px 0;
   }
   .MenuInsideN {
-    position: fixed;
-    bottom: 20px;
-    top: 20px;
-    height: calc(100vh - 40px);
-    width: calc(100vw - 20px);
+    position: absolute;
+    bottom: 0px;
+    top: 0px;
+    height: 100%;
+    width: 100%;
     margin: 0;
-    left: 10px;
-    right: 10px;
+    left: 0px;
+    right: 0px;
   }
   .HomePage-M-T-F {
     padding: 0 calc(3vw);
