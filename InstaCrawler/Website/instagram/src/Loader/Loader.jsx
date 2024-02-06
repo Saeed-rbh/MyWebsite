@@ -6,32 +6,27 @@ import "./Loader.css";
 import { updateVisibility } from "../actions/Actions";
 
 const LOADING_TIME = 2000;
-const usePageLoad = (dispatch) => {
-  useEffect(() => {
-    const handleLoad = () => {
-      setTimeout(() => {
-        dispatch(updateVisibility(true));
-      }, LOADING_TIME * 1.2);
-    };
-    window.addEventListener("load", handleLoad);
-    return () => {
-      window.removeEventListener("load", handleLoad);
-    };
-  }, [dispatch]);
-};
+
 const Loader = () => {
   const { visibility } = useSelector((state) => state.visibility);
   const dispatch = useDispatch();
   const [fade, setFade] = useState(false);
 
-  usePageLoad(dispatch);
+  const academicData = useSelector((state) => state.data.academicData);
+  useEffect(() => {
+    if (academicData.length > 0) {
+      setTimeout(() => {
+        setFade(true);
+      }, LOADING_TIME);
+    }
+  }, [dispatch, academicData]);
 
   const closeIntroAnimation = useSpring({
-    opacity: visibility ? 0 : 1,
-    delay: visibility ? 1000 : 0,
+    opacity: fade ? 0 : 1,
+    delay: fade ? 1000 : 0,
     duration: LOADING_TIME,
     easing: easings.easeOutCubic,
-    onRest: () => setFade(true),
+    onRest: () => dispatch(updateVisibility(true)),
   });
 
   useEffect(() => {

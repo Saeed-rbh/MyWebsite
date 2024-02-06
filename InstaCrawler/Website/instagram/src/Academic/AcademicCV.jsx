@@ -1,13 +1,11 @@
 import React, { useState, useEffect, useCallback, useMemo } from "react";
 import { animated, easings, useSpring } from "react-spring";
-import { useSelector, useDispatch } from "react-redux";
-import useUpdateVariable from "./General/useUpdateVariable";
+import { useSelector } from "react-redux";
 import useElementSize from "./Styles/useElementSize";
 import CVList from "./Main/CVList";
 import MainTitle from "./Main/MainTitle";
 import MoreInfoAcademic from "./Main/MoreInfoAcademic";
 import "./AcademicCV.css";
-import { updateVisibility } from "../actions/Actions";
 import { ScrollProvider } from "./General/ScrollProvider";
 import useScrollPosition from "./General/useScrollPosition";
 
@@ -22,29 +20,16 @@ const AcademicCV = () => {
   const [scale, setScale] = useState(1);
   const [mainMaxHeight, setMainMaxHeight] = useState(maxHeight);
 
-  const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(updateVisibility(false));
-  }, []);
-
-  useUpdateVariable({ elementSize });
   const {
     academicData: data,
     stages,
     toggle,
     scollableRef,
   } = useSelector((state) => state.data);
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      dispatch(updateVisibility(true));
-    }, 1000);
-    return () => clearTimeout(timer);
-  }, [data, dispatch]);
 
   const scrollPosition = useScrollPosition(scollableRef);
-
   const conditionData = data.length > 0;
-  const conditionStage = stages.length > 0;
+  const conditionStage = stages.length > 0 && elementSize.width > 10;
 
   const updateScaleAndMaxHeight = useCallback(() => {
     const aspectRatio = elementSize.height / elementSize.width < 0.55;
@@ -116,10 +101,6 @@ const AcademicCV = () => {
     ),
     marginTop: stages[2] ? -80 : stages[3] ? -60 : 0,
 
-    height: useMemo(
-      () => `calc(100% - ${stages[2] && conditionStage ? 0 : 0}px)`,
-      [stages, conditionStage]
-    ),
     overflow: useMemo(
       () =>
         toggle[0]
@@ -134,9 +115,9 @@ const AcademicCV = () => {
 
   return (
     <ScrollProvider scrollPosition={scrollPosition}>
-      {conditionStage && (
+      {conditionData && (
         <div id="AcademicCV-M" className="AcademicCV-M">
-          {conditionData && (
+          {conditionStage && (
             <>
               <MainTitle />
               {(stages[2] || stages[3]) && <CVList isActive={toggle[0]} />}
@@ -148,7 +129,7 @@ const AcademicCV = () => {
             id="MoreInfoAcademic"
             className="MoreInfoAcademic"
           >
-            {conditionData && <MoreInfoAcademic lastValue={lastValue} />}
+            {conditionStage && <MoreInfoAcademic lastValue={lastValue} />}
           </animated.div>
         </div>
       )}

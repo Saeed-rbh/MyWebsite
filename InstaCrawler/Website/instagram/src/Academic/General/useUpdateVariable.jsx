@@ -2,27 +2,60 @@ import {
   updateScrollableRef,
   updateData,
   updateStages,
+  updateAcademicElementSize,
 } from "../../actions/Actions";
-import DataModify from "./DataAdjustment";
-import { useEffect, useState, useRef } from "react";
-import useElementSize from "../Styles/useElementSize";
+import DataModify from "./DataModify";
+import { useEffect, useState, useRef, useMemo } from "react";
 import { useDispatch } from "react-redux";
 
-const useUpdateVariable = ({ elementSize }) => {
+const useWindowSize = () => {
+  const [size, setSize] = useState({
+    width: window.innerWidth,
+    height: window.innerHeight,
+  });
+  useEffect(() => {
+    const handleResize = () => {
+      setSize({
+        width: window.innerWidth,
+        height: window.innerHeight,
+      });
+    };
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  return size;
+};
+
+const useUpdateVariable = () => {
   const dispatch = useDispatch();
   const scrollableDivRef = useRef(null);
-  const mainElementSize = useElementSize("MoreInfoAcademic");
+
+  const { width, height } = useWindowSize();
+  const academicElementSize = useMemo(
+    () => ({
+      height: Math.min(height - 70 - 90 - 75, 830),
+      width: Math.min(width, 620),
+    }),
+    [width, height]
+  );
+  const handleacademicElementSize = () => {
+    dispatch(updateAcademicElementSize(academicElementSize));
+  };
+  useEffect(() => {
+    handleacademicElementSize();
+  }, [academicElementSize]);
 
   const [stages, setStages] = useState([false, false, false, false]);
 
   const isMobile =
-    elementSize.width < 768 || /iPhone|Android/i.test(navigator.userAgent);
+    window.width < 768 || /iPhone|Android/i.test(navigator.userAgent);
   const isTablet =
-    (elementSize.width >= 768 && elementSize.width <= 1024) ||
+    (window.width >= 768 && window.width <= 1024) ||
     (window.devicePixelRatio > 1 &&
-      Math.max(elementSize.width, elementSize.height) >= 1024) ||
+      Math.max(window.width, window.height) >= 1024) ||
     /iPad|Tablet|Kindle/i.test(navigator.userAgent);
-  const isVerticalTablet = isTablet && elementSize.height > elementSize.width;
+  const isVerticalTablet = isTablet && window.height > window.width;
 
   useEffect(() => {
     setStages([
@@ -40,10 +73,9 @@ const useUpdateVariable = ({ elementSize }) => {
     handleStageUpdate();
   }, [stages]);
 
-  const UpdatedData = DataModify({ stages, mainElementSize });
+  const UpdatedData = DataModify({ stages });
 
   const handleDataeUpdate = () => {
-    // console.log("UpdatedData");
     dispatch(updateData(UpdatedData));
   };
   useEffect(() => {

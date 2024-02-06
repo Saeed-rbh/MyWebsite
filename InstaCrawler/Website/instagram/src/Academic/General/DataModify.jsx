@@ -1,6 +1,7 @@
 import { useMemo, useEffect, useState } from "react";
 import { sectionProperties } from "./sectionComponents";
 import SectionsData from "./SectionsData";
+import { useSelector } from "react-redux";
 
 const useSequence = (stages) =>
   useMemo(() => {
@@ -13,10 +14,13 @@ const useSequence = (stages) =>
       : [0, 1, 2, 3, 4, 5, 6, 7, 8];
   }, [stages]);
 
-const DataModify = ({ stages, mainElementSize }) => {
+const DataModify = ({ stages }) => {
   const [isMainElementSizeStable, setIsMainElementSizeStable] = useState(false);
   const stabilityDelay = 500;
 
+  const mainElementSize = useSelector(
+    (state) => state.data.academicElementSize
+  );
   useEffect(() => {
     const timeoutId = setTimeout(() => {
       setIsMainElementSizeStable(true);

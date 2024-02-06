@@ -20,7 +20,8 @@ const TitleText = ({ isActive, title, explanation, widthSplit }) => {
     setWidth(calculateWidth(titleRef, explanationRef, mainRef));
   }, [titleRef, explanationRef, mainRef.current?.offsetWidth, stages]);
 
-  const factor = Math.min((width[2] / width[0]) * 0.7, 1.5);
+  const widthSplitFactor = widthSplit ? 1.6 : 1;
+  const factor = Math.min((width[2] / width[0]) * 0.7, 1.5) * widthSplitFactor;
 
   const mainStyle = useSpring({
     top: isActive ? 25 : 20,

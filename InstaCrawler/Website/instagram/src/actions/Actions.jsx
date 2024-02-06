@@ -6,6 +6,7 @@ import {
   SCROLLABLE_REF,
   VISIBILITY,
   MENU,
+  ACADEMIC_ELEMENT_SIZE,
 } from "../constants/actionTypes";
 
 export const updateData = (data) => ({
@@ -40,5 +41,10 @@ export const updateVisibility = (ref) => ({
 
 export const updateMenu = (ref) => ({
   type: MENU,
+  payload: ref,
+});
+
+export const updateAcademicElementSize = (ref) => ({
+  type: ACADEMIC_ELEMENT_SIZE,
   payload: ref,
 });

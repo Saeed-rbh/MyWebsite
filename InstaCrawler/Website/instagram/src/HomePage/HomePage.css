@@ -729,12 +729,14 @@
     width: 80% !important;
   }
   .HomePage-M-T-L {
-    margin-left: 0;
+    margin-left: 10;
+  }
+  .HomePage-M-T-R {
+    margin-right: 10px;
   }
   .MainHeader {
     position: relative;
     border-radius: 100px;
-    padding: 0 20px;
   }
   .pro p:nth-child(1) {
     margin-bottom: 0;
@@ -750,7 +752,6 @@
     margin-top: 0px;
     display: flex !important;
     align-items: center;
-    background: linear-gradient(to right, #f9ebe538 0%, #d4a58d54 100%);
     padding: 3px 12px 5px;
     border-radius: 20px;
   }

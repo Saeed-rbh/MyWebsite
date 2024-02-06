@@ -4,6 +4,7 @@ import {
   STAGES,
   DATA,
   SCROLLABLE_REF,
+  ACADEMIC_ELEMENT_SIZE,
 } from "../constants/actionTypes";
 
 const initialState = {
@@ -12,6 +13,7 @@ const initialState = {
   toggle: [false, undefined, false],
   hover: [false, undefined],
   scollableRef: null,
+  academicElementSize: [0, 0],
 };
 
 const dataReducer = (state = initialState, action) => {
@@ -40,6 +42,11 @@ const dataReducer = (state = initialState, action) => {
       return {
         ...state,
         scollableRef: action.payload,
+      };
+    case ACADEMIC_ELEMENT_SIZE:
+      return {
+        ...state,
+        academicElementSize: action.payload,
       };
     default:
       return state;
