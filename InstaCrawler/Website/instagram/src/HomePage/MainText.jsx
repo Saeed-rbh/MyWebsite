@@ -8,7 +8,7 @@ const MainText = ({ MenuHide, delay }) => {
   const [words, setWords] = useState([]);
   const springProps = useSpring(AnimationConstants(MenuHide, delay));
   const text =
-    "Situated at the <PICSSL-Lab> at <York-University>, I apply my <mechanical-engineering> prowess to delve into the complexities of nanomaterials and molecular phenomena. My professional focus lies in <2D-Nanomaterials>, <Molecular-Dynamics>, and <Heat-Transfer>. The success of my research approach significantly stems from <interdisciplinary-collaborations> that amplify the potential of my innovative explorations.";
+    "Situated at the <PICSSL-Lab> at <York-University>, I apply my <mechanical-engineering> prowess to delve into the complexities of nanomaterials and molecular phenomena. My professional focus lies in <2D-Nanomaterials>, <Molecular-Dynamics>, and <Heat-Transfer>. The success of my research approach significantly stems from interdisciplinary <collaborations> that amplify the potential of my innovative explorations.";
   useEffect(() => {
     let wordsArray = text.split(/( |<[^>]+>)/g).filter((w) => w.trim());
     setWords(wordsArray);
