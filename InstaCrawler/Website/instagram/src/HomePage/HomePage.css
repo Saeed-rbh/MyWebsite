@@ -107,13 +107,17 @@
   color: #ffffff;
 }
 .HomePage-M {
-  position: relative;
-  width: calc(45vw + 250px);
-  height: 100vh;
   display: flex;
   justify-content: center;
-  margin: 0 5vw;
   flex-direction: column;
+  position: absolute;
+  top: 10px;
+  bottom: 10px;
+  height: -webkit-fill-available;
+  margin: 0;
+  left: 20px;
+  right: 20px;
+  width: -webkit-fill-available;
 }
 .MenuIcon-T {
   width: 30px;
@@ -660,9 +664,7 @@
     flex-direction: column;
     margin: 10vh 10vw;
   }
-  .HomePage-M {
-    width: 90vw;
-  }
+
   .HomePage-M-3 svg {
     display: none;
   }
@@ -705,9 +707,13 @@
     margin: 10px 0;
   }
   .MenuInsideN {
-    width: calc(100vw - 20px);
-    margin: 20px 10px;
-    height: calc(100vh - 40px);
+    bottom: 20px;
+    top: 20px px;
+    height: -webkit-fill-available;
+    width: -webkit-fill-available;
+    margin: 0;
+    left: 10px;
+    right: 10px;
   }
   .HomePage-M-T-F {
     padding: 0 calc(3vw);
