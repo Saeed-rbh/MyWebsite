@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useTransition, easings } from "react-spring";
 import { connect } from "react-redux";
 import { updateMenu } from "../actions/Actions";
@@ -14,12 +14,35 @@ const Menu = () => {
     easing: easings.easeOutCubic,
   });
 
+  const [viewportHeight, setViewportHeight] = useState(window.innerHeight);
+  const adjustElementHeight = () => {
+    // Calculate the viewport height without the browser's UI elements
+    const viewportHeight = window.innerHeight;
+    setViewportHeight(viewportHeight);
+  };
+
+  // Ref for the element
+  const HomeAround = useRef(null);
+
+  useEffect(() => {
+    // Run the adjustment function on mount and window resize
+    adjustElementHeight();
+    window.addEventListener("resize", adjustElementHeight);
+
+    // Cleanup function to remove the event listener
+    return () => window.removeEventListener("resize", adjustElementHeight);
+  }, []);
+
   return (
     <>
       {ContactInfoOpen(
         (props, item) =>
           item && (
-            <div className="HomeAround" style={{ ...props }}>
+            <div
+              ref={HomeAround}
+              className="HomeAround"
+              style={{ ...props, height: `calc(${viewportHeight}px - 40px)` }}
+            >
               <ContactItem isMenuOpen={isMenuOpen} props={props} />
             </div>
           )
