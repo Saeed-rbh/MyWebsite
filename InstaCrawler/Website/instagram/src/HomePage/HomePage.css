@@ -710,9 +710,9 @@
   }
   .MenuInsideN {
     bottom: 20px;
-    top: 20px px;
-    height: -webkit-fill-available;
-    width: -webkit-fill-available;
+    top: 20px;
+    height: calc(100vh - 40px);
+    width: calc(100vw - 20px);
     margin: 0;
     left: 10px;
     right: 10px;
