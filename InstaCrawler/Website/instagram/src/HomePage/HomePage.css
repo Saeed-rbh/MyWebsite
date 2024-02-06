@@ -671,6 +671,8 @@
   .HomePage-M-3 {
     margin-right: 0;
     margin-bottom: 3vh;
+    align-items: center;
+    justify-content: center;
   }
   .HomePage-M-3 p {
     text-align: -webkit-match-parent;
@@ -749,6 +751,7 @@
     line-height: 25px;
     text-align: center;
     margin: 0 -10px;
+    width: 100%;
   }
   .HomePage-M-T-B {
     margin-top: 0px;
