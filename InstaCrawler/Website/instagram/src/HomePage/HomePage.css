@@ -655,9 +655,7 @@
   .DownloadSvg {
     margin-left: -4vw;
   }
-  .HomePage-M-T-L {
-    margin-left: 10px;
-  }
+
   .ContactInfos {
     flex-direction: column;
     margin: 10vh 10vw;
@@ -728,9 +726,7 @@
   .resumee {
     width: 80% !important;
   }
-  .HomePage-M-T-L {
-    margin-left: 10;
-  }
+
   .HomePage-M-T-R {
     margin-right: 10px;
   }

@@ -159,9 +159,11 @@ const Footer = () => {
     (acc, item) => acc + item.options.length + 1,
     0
   );
+  console.log(resumeClicked);
   const maxDelay = (totalElements - 1) * 100;
   let globalIndex = 0;
   return (
+    !resumeClicked &&
     visibility && (
       <div className="HomePage-M-T-F">
         {/* <RotatingSphere isCross={isCross} /> */}

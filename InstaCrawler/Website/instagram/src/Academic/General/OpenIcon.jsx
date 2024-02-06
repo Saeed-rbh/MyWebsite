@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { easings, useSpring, animated } from "react-spring";
-import { CgArrowsExpandUpLeft } from "react-icons/cg";
+import { RiArrowRightDownLine } from "react-icons/ri";
 import { useSelector } from "react-redux";
 
 const OpenIcon = ({
@@ -124,7 +124,7 @@ const OpenIcon = ({
         onMouseLeave={handleMouseLeave}
         style={{ ...IconProp }}
       >
-        {!widthSplit && <CgArrowsExpandUpLeft />}
+        {!widthSplit && <RiArrowRightDownLine />}
         {widthSplit && (
           <animated.h3 style={textStyle}>Click for More</animated.h3>
         )}

@@ -85,16 +85,14 @@ const Header = () => {
     transform: !isResumeClicked
       ? "translate3d(-80px,0,0)"
       : "translate3d(0px,0,0)",
-    config: { duration: 400 },
-    easing: easings.easeOutCubic,
+    config: { duration: 600 },
   });
   const contactInfoAnimation3 = useSpring({
     opacity: !isResumeClicked ? "1" : "0",
     transform: !isResumeClicked
       ? "translate3d(-110px,0,0)"
       : "translate3d(15px,0,0)",
-    config: { duration: 400 },
-    easing: easings.easeOutCubic,
+    config: { duration: 600 },
   });
 
   return (

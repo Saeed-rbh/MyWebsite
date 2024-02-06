@@ -30,12 +30,28 @@ const TitleText = ({ isActive, title, explanation, widthSplit }) => {
     alignItems: "baseline",
   });
 
-  const otherTitleStyle = useSpring({
+  const otherTitleStyle1 = useSpring({
     position: "absolute",
-    width: "max-content",
-    maxWidth: isActive ? "80%" : "100%",
+    width: widthSplit ? "50vw" : "max-content",
+    // maxWidth: isActive ? "80%" : "100%",
     top: isActive ? -5 - (factor - 1) * 7 : -5,
     fontSize: isActive ? 20 * factor : 20,
+    opacity: !isActive || !widthSplit ? 1 : 0,
+    left: widthSplit
+      ? 25
+      : width[2] - width[1]
+      ? isActive
+        ? 20
+        : (width[2] - width[0]) / 2
+      : 0,
+  });
+  const otherTitleStyle2 = useSpring({
+    position: "absolute",
+    width: "70vw",
+    top: isActive ? -5 - (factor - 1) * 7 : -5,
+    opacity: isActive ? 1 : 0,
+    fontSize: isActive ? 20 * factor : 20,
+    textWrap: "nowrap",
     left: widthSplit
       ? 25
       : width[2] - width[1]
@@ -62,9 +78,14 @@ const TitleText = ({ isActive, title, explanation, widthSplit }) => {
   });
   return (
     <animated.div ref={mainRef} style={mainStyle} className="SecondTitle">
-      <animated.h2 style={{ ...otherTitleStyle }} ref={titleRef}>
+      <animated.h2 style={{ ...otherTitleStyle1 }} ref={titleRef}>
         {title}
       </animated.h2>
+      {widthSplit && (
+        <animated.h2 style={{ ...otherTitleStyle2 }} ref={titleRef}>
+          {title}
+        </animated.h2>
+      )}
       <animated.span style={{ ...explanationStyle }} ref={explanationRef}>
         {explanation}
       </animated.span>

@@ -1,6 +1,6 @@
 import React from "react";
 import { easings, useSpring, animated } from "react-spring";
-
+import { FaXmark } from "react-icons/fa6";
 const CloseIcon = ({
   isOpen,
   Test,
@@ -53,6 +53,8 @@ const CloseIcon = ({
     width: 60,
     height: 60,
     borderRadius: 35,
+    color: "rgba(255, 193, 161, 0.6)",
+    opacity: 1,
   }));
 
   const [IconCross, setIconCross] = useSpring(() => ({
@@ -100,11 +102,12 @@ const CloseIcon = ({
         onMouseLeave={handleMouseLeave}
         style={IconProp}
       >
-        <animated.div style={IconCross} className="icon-wrapper-in">
+        {/* <animated.div style={IconCross} className="icon-wrapper-in">
           <animated.div style={propsL} className="iconcross"></animated.div>
           <animated.div style={propsR} className="iconcross"></animated.div>
-        </animated.div>
-        <animated.h3 style={Textprop}>{Test}</animated.h3>
+        </animated.div> */}
+        <FaXmark />
+        {/* <animated.h3 style={Textprop}>{Test}</animated.h3> */}
       </animated.div>
     </animated.div>
   );

@@ -50,7 +50,7 @@ const useTitleAnimation = ({
   }, [scrollPosition, xDiff, yDiff, scaleDiff]);
 
   return useSpring({
-    from: { opacity: 0, x: xDiff[0], y: yDiff[0], display: "flex" },
+    from: { opacity: 0, x: xDiff[0], y: yDiff[1], display: "flex" },
     to: {
       opacity: visibility ? 0.7 : 0,
       x: visibility ? x : xDiff[0],
@@ -59,7 +59,7 @@ const useTitleAnimation = ({
       // paddingLeft: stages[2] ? "5%" : "0%",
     },
     delay: animationFinished ? 0 : 500,
-    config: { duration: animationFinished ? undefined : 400 },
+    config: { duration: animationFinished ? undefined : 800 },
     onRest: () => setAnimationFinished(true),
   });
 };
