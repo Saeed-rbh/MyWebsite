@@ -67,6 +67,7 @@ import useUpdateVariable from "./Academic/General/useUpdateVariable";
 import Header from "./Header/Header";
 import Menu from "./Menu/Menu";
 import Footer from "./Footer/Footer";
+import Graphene from "./Graphene/Graphene2";
 const AcademicCV = lazy(() => import("./Academic/AcademicCV"));
 const HomePage = lazy(() => import("./HomePage/HomePage"));
 const Loader = lazy(() => import("./Loader/Loader"));
@@ -77,22 +78,24 @@ function App() {
   return (
     <Router store={store}>
       <Loader />
-      {visibility && (
-        <div className="App">
-          <div className="MainBackground">
-            <div className="BackgroundColor1"></div>
-          </div>
-          <Header />
-          <Menu />
-          <Footer />
+
+      <div className="App">
+        <div className="MainBackground">
+          <div className="BackgroundColor1"></div>
+        </div>
+        {visibility && <Header />}
+        {visibility && <Menu />}
+        {visibility && <Footer />}
+        {visibility && (
           <Suspense fallback={<div>Loading...</div>}>
             <Routes>
               <Route exact path="/" element={<HomePage />} />
               <Route exact path="/AcademicCV" element={<AcademicCV />} />
+              <Route exact path="/Graphene" element={<Graphene />} />
             </Routes>
           </Suspense>
-        </div>
-      )}
+        )}
+      </div>
     </Router>
   );
 }

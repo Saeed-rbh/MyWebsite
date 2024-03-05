@@ -99,7 +99,6 @@ const Footer = () => {
   });
 
   useEffect(() => {
-    console.log("Step:", step);
     if (step === 0) {
       setStep(1);
     }
@@ -159,7 +158,6 @@ const Footer = () => {
     (acc, item) => acc + item.options.length + 1,
     0
   );
-  console.log(resumeClicked);
   const maxDelay = (totalElements - 1) * 100;
   let globalIndex = 0;
   return (
