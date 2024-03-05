@@ -67,8 +67,6 @@ const GrapheneInfo = ({ screenHeight, endAnimation }) => {
   const specIds = [0, 1, 2, 3, 4];
 
   const AnimatedSpec = ({ endAnimation, styleIn, styleOut, id, onClick }) => {
-    console.log(id, focused[1]);
-
     const InSpecStyles = useSpring({
       from: {
         opacity: endAnimation ? (id !== focused[1] ? 0.75 : 0.2) : 0,
@@ -231,52 +229,65 @@ const GrapheneInfo = ({ screenHeight, endAnimation }) => {
     />
   ));
 
-  const [direction, setDirection] = useState("");
-  let startX, startY, endX, endY;
+  const startPosition = useRef({ x: 0, y: 0 });
+  const swipeThreshold = 50;
+  const verticalSwipeTolerance = 30;
 
-  // Minimum distance (in pixels) a gesture must span to be considered a swipe
-  const minDistance = 50;
-
-  const onTouchStart = (e) => {
-    startX = e.touches[0].clientX;
-    startY = e.touches[0].clientY;
+  const handleSwipeStart = (x, y) => {
+    startPosition.current = { x, y };
   };
 
-  const onTouchEnd = (e) => {
-    endX = e.changedTouches[0].clientX;
-    endY = e.changedTouches[0].clientY;
-    handleGesture();
+  const handleSwipeEnd = (x, y) => {
+    const deltaX = x - startPosition.current.x;
+    const deltaY = y - startPosition.current.y;
+
+    if (
+      Math.abs(deltaX) > swipeThreshold &&
+      Math.abs(deltaY) < verticalSwipeTolerance
+    ) {
+      const swipeDirection = deltaX > 0 ? "right" : "left";
+      updateFocused(swipeDirection);
+    }
   };
 
-  const handleGesture = () => {
-    const distX = endX - startX;
-    const distY = endY - startY;
-
-    if (Math.abs(distX) > Math.abs(distY) && Math.abs(distX) > minDistance) {
-      const swipeDirection = distX > 0 ? "right" : "left";
-      setDirection(swipeDirection);
-      console.log(`Detected swipe ${swipeDirection}`);
-
-      if (swipeDirection === "left") {
-        if (focused[1] < specIds.length - 1) {
-          setFocused([focused[1], focused[1] + 1]);
-        } else if (focused[1] === specIds.length - 1) {
-          setFocused([focused[1], 0]);
-        }
-      } else if (swipeDirection === "right") {
-        if (focused[1] > 0) {
-          setFocused([focused[1], focused[1] - 1]);
-        } else if (focused[1] === 0) {
-          setFocused([focused[1], specIds.length - 1]);
-        }
+  const updateFocused = (swipeDirection) => {
+    if (swipeDirection === "left") {
+      if (focused[1] < specIds.length - 1) {
+        setFocused([focused[1], focused[1] + 1]);
+      } else {
+        setFocused([focused[1], 0]);
+      }
+    } else if (swipeDirection === "right") {
+      if (focused[1] > 0) {
+        setFocused([focused[1], focused[1] - 1]);
+      } else {
+        setFocused([focused[1], specIds.length - 1]);
       }
     }
   };
 
+  const onTouchStart = (e) => {
+    const touch = e.touches[0];
+    handleSwipeStart(touch.clientX, touch.clientY);
+  };
+
+  const onTouchEnd = (e) => {
+    const touch = e.changedTouches[0];
+    handleSwipeEnd(touch.clientX, touch.clientY);
+  };
+
+  const onMouseDown = (e) => {
+    handleSwipeStart(e.clientX, e.clientY);
+  };
+
+  const onMouseUp = (e) => {
+    handleSwipeEnd(e.clientX, e.clientY);
+  };
+
   return (
     <animated.div
-      onMouseDown={onTouchStart}
-      onMouseUp={onTouchEnd}
+      onMouseDown={onMouseDown}
+      onMouseUp={onMouseUp}
       onTouchStart={onTouchStart}
       onTouchEnd={onTouchEnd}
       style={{ ...TitleStyle, ...InfoStyle }}
