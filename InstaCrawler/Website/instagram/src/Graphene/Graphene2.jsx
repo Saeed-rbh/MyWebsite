@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Canvas } from "@react-three/fiber";
 import { Suspense } from "react";
 import Model from "./Model";
@@ -11,7 +11,6 @@ import "../Graphene.css";
 
 function Graphene() {
   const gltfUrl = "/grapheneNew2.gltf";
-  // Define initial camera position and rotation
   const initialPosition = new THREE.Vector3(0, 10, 0);
   const initialRotation = new THREE.Euler(0, 0, 0);
 
@@ -26,7 +25,7 @@ function Graphene() {
   const screenHeight = window.innerHeight;
   const moveUpStyle = useSpring({
     from: {
-      y: 0,
+      y: +screenHeight / 2 - screenWidth / 2 - 65,
       height: "500px",
       width: "500px",
       scale: 1,
@@ -34,7 +33,7 @@ function Graphene() {
     },
     to: {
       opacity: 1,
-      y: endAnimation ? -screenHeight / 2 + screenWidth / 2 + 65 : 0,
+      y: endAnimation ? -80 : +screenHeight / 2 - screenWidth / 2 - 65,
       scale: endAnimation ? 0.8 : 1,
     },
     config: {
@@ -42,6 +41,14 @@ function Graphene() {
       friction: 15,
     },
   });
+
+  const [mouseDown, setMouseDown] = useState(false);
+  const handleMouseDown = () => {
+    setMouseDown(true);
+  };
+  const handleMouseUp = () => {
+    setMouseDown(false);
+  };
 
   return (
     <animated.div
@@ -53,7 +60,6 @@ function Graphene() {
         width: "100vw",
         display: "flex",
         justifyContent: "center",
-        alignItems: "center",
       }}
     >
       <IntroText
@@ -61,8 +67,15 @@ function Graphene() {
         startAnimation={startAnimation}
         reverseAnimation={reverseAnimation}
         endAnimation={endAnimation}
+        mouseDown={mouseDown}
       />
-      <animated.div style={moveUpStyle}>
+      <animated.div
+        style={moveUpStyle}
+        onTouchStart={handleMouseDown}
+        onTouchEnd={handleMouseUp}
+        onMouseDown={handleMouseDown}
+        onMouseUp={handleMouseUp}
+      >
         <Canvas
           camera={{
             position: initialPosition.toArray(),

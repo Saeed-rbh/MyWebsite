@@ -1,4 +1,4 @@
-import React, { useRef, useMemo } from "react";
+import React, { useRef, useMemo, useState, useEffect } from "react";
 import { useGLTF } from "@react-three/drei";
 import { useInitialSetup, useAnimation } from "./hooks.jsx";
 

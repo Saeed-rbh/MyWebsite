@@ -6,7 +6,7 @@ const GrapheneInfo = ({ screenHeight, endAnimation }) => {
   const screenWidth = window.innerWidth;
   const InfoStyle = {
     position: "fixed",
-    top: 400,
+    top: 300,
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
@@ -14,7 +14,7 @@ const GrapheneInfo = ({ screenHeight, endAnimation }) => {
     left: 0,
     paddingLeft: screenWidth / 2 - 150,
     width: "100%",
-    height: 330,
+    height: screenHeight - 400,
   };
 
   const TitleStyle = useSpring({
@@ -33,7 +33,7 @@ const GrapheneInfo = ({ screenHeight, endAnimation }) => {
 
   const OutSpecStyles = {
     position: "absolute",
-    top: 0,
+
     height: 300,
     width: 300,
     // borderRadius: 20,
@@ -43,7 +43,6 @@ const GrapheneInfo = ({ screenHeight, endAnimation }) => {
   };
   const InSpecStyles = {
     position: "absolute",
-
     x: 25,
     height: 60,
     width: 220,
@@ -67,8 +66,10 @@ const GrapheneInfo = ({ screenHeight, endAnimation }) => {
   const specIds = [0, 1, 2, 3, 4];
 
   const AnimatedSpec = ({ endAnimation, styleIn, styleOut, id, onClick }) => {
+    const Margin = (screenHeight - 400 - 300) / 2;
     const InSpecStyles = useSpring({
       from: {
+        top: Margin,
         opacity: endAnimation ? (id !== focused[1] ? 0.75 : 0.2) : 0,
         scale: id !== focused[1] ? 1 : 0.7,
         marginLeft: id === focused[1] ? (id > focused[1] ? -25 : 25) : 0,
@@ -83,6 +84,7 @@ const GrapheneInfo = ({ screenHeight, endAnimation }) => {
             : screenWidth / 2 - 150 + 300 * id - 300 * focused[0],
       },
       to: {
+        top: Margin,
         opacity:
           (id < focused[1] - 1 || id > focused[1] + 1) &&
           focused[1] - specIds.length + 1 !== id
@@ -175,16 +177,23 @@ const GrapheneInfo = ({ screenHeight, endAnimation }) => {
       },
       config: { tension: 70, friction: 15 },
       key: id,
-      delay: { top: 500 },
     });
 
     const OutSpecTopStyles = useSpring({
       from: {
-        top: endAnimation ? (id !== focused[1] ? 265 : 295) : 295,
+        top: endAnimation
+          ? id !== focused[1]
+            ? 265 + Margin
+            : 295 + Margin
+          : 295 + Margin,
         opacity: 0,
       },
       to: {
-        top: endAnimation ? (id === focused[1] ? 265 : 295) : 295,
+        top: endAnimation
+          ? id === focused[1]
+            ? 265 + Margin
+            : 295 + Margin
+          : 295 + Margin,
         opacity: endAnimation
           ? id === focused[1]
             ? 0.75
@@ -203,7 +212,7 @@ const GrapheneInfo = ({ screenHeight, endAnimation }) => {
     });
 
     return (
-      <>
+      <div>
         <animated.div
           style={{ ...OutSpecStyles, ...styleIn, ...OutSpecTopStyles }}
           onClick={() => onClick(id)}
@@ -214,7 +223,7 @@ const GrapheneInfo = ({ screenHeight, endAnimation }) => {
           style={{ ...InSpecStyles, ...styleOut }}
           onClick={() => onClick(id)}
         ></animated.div>
-      </>
+      </div>
     );
   };
 
