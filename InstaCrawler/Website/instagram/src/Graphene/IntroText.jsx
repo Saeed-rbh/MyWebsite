@@ -80,15 +80,16 @@ const IntroText = ({
     delay: endAnimation ? 0 : 800,
   });
 
+  console.log(100 - Math.round(screenHeight / 40));
   const TitleStyle = useSpring({
     from: {
       y: 120,
       opacity: 0,
       scale: 1.1,
-      fontSize: `${Math.floor(screenHeight / 14)}px`,
+      fontSize: `${10 + Math.floor(screenHeight / 16)}px`,
     },
     to: {
-      y: endAnimation ? Math.round(screenHeight / 11) : 120,
+      y: endAnimation ? 100 - Math.round(screenHeight / 40) : 120,
       opacity: endAnimation ? (mouseDown ? 0.1 : 0.4) : 0,
       scale: endAnimation ? (mouseDown ? 1.1 : 1) : 1.1,
     },
