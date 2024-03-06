@@ -1,5 +1,5 @@
 // Import React and the animated component
-import React, { useState } from "react";
+import React from "react";
 import { useSpring, animated } from "react-spring";
 
 // Define the IntroText component
@@ -86,10 +86,10 @@ const IntroText = ({
       y: 120,
       opacity: 0,
       scale: 1.1,
-      fontSize: "67px",
+      fontSize: `${Math.floor(screenHeight / 14)}px`,
     },
     to: {
-      y: endAnimation ? 75 : 120,
+      y: endAnimation ? Math.round(screenHeight / 11) : 120,
       opacity: endAnimation ? (mouseDown ? 0.1 : 0.5) : 0,
       scale: endAnimation ? (mouseDown ? 1.1 : 1) : 1.1,
     },

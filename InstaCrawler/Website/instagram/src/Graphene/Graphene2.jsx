@@ -23,6 +23,8 @@ function Graphene() {
 
   const screenWidth = window.innerWidth;
   const screenHeight = window.innerHeight;
+
+  console.log(Math.round(screenHeight / 100) / 10);
   const moveUpStyle = useSpring({
     from: {
       y: +screenHeight / 2 - screenWidth / 2 - 65,
@@ -34,7 +36,7 @@ function Graphene() {
     to: {
       opacity: 1,
       y: endAnimation ? -80 : +screenHeight / 2 - screenWidth / 2 - 65,
-      scale: endAnimation ? 0.8 : 1,
+      scale: endAnimation ? Math.round(screenHeight / 100) / 10 : 1,
     },
     config: {
       tension: 70,
