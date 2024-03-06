@@ -89,7 +89,7 @@ const IntroText = ({
     },
     to: {
       y: endAnimation ? Math.round(screenHeight / 11) : 120,
-      opacity: endAnimation ? (mouseDown ? 0.1 : 0.5) : 0,
+      opacity: endAnimation ? (mouseDown ? 0.1 : 0.4) : 0,
       scale: endAnimation ? (mouseDown ? 1.1 : 1) : 1.1,
     },
     config: {
@@ -111,7 +111,7 @@ const IntroText = ({
         <animated.span style={ToStyle2}>Graphene</animated.span>
       </animated.p>
       <animated.p className="grapheneFromStyle">
-        <animated.span style={TitleStyle}>{screenHeight}</animated.span>{" "}
+        <animated.span style={TitleStyle}>Graphene</animated.span>{" "}
       </animated.p>
     </>
   );
