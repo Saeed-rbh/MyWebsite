@@ -80,7 +80,6 @@ const IntroText = ({
     delay: endAnimation ? 0 : 800,
   });
 
-  console.log(100 - Math.round(screenHeight / 40));
   const TitleStyle = useSpring({
     from: {
       y: 120,

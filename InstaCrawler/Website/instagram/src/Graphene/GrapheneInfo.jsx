@@ -14,7 +14,7 @@ const GrapheneInfo = ({ screenHeight, endAnimation }) => {
     left: 0,
     paddingLeft: screenWidth / 2 - 150,
     width: "100%",
-    height: screenHeight - 400,
+    height: screenHeight - (Math.round(screenHeight / 100) / 10) * 500,
   };
 
   const TitleStyle = useSpring({
@@ -33,8 +33,7 @@ const GrapheneInfo = ({ screenHeight, endAnimation }) => {
 
   const OutSpecStyles = {
     position: "absolute",
-
-    height: 300,
+    height: ((Math.round(screenHeight / 100) / 10) * 500 * 3) / 4,
     width: 300,
     // borderRadius: 20,
     borderRadius: "50px 50px 20px 50px",
@@ -184,17 +183,27 @@ const GrapheneInfo = ({ screenHeight, endAnimation }) => {
       from: {
         top: endAnimation
           ? id !== focused[1]
-            ? 265 + Margin
-            : 295 + Margin
-          : 295 + Margin,
+            ? ((Math.round(screenHeight / 100) / 10) * 500 * 3) / 4 -
+              35 +
+              Margin
+            : ((Math.round(screenHeight / 100) / 10) * 500 * 3) / 4 -
+              35 +
+              +Margin
+          : ((Math.round(screenHeight / 100) / 10) * 500 * 3) / 4 -
+            35 +
+            +Margin,
         opacity: 0,
       },
       to: {
         top: endAnimation
           ? id === focused[1]
-            ? 265 + Margin
-            : 295 + Margin
-          : 295 + Margin,
+            ? ((Math.round(screenHeight / 100) / 10) * 500 * 3) / 4 -
+              35 +
+              +Margin
+            : ((Math.round(screenHeight / 100) / 10) * 500 * 3) / 4 -
+              5 +
+              +Margin
+          : ((Math.round(screenHeight / 100) / 10) * 500 * 3) / 4 - 5 + +Margin,
         opacity: endAnimation
           ? id === focused[1]
             ? 0.75
