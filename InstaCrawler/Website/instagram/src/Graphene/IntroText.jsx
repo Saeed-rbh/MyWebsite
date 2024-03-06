@@ -2,7 +2,6 @@
 import React from "react";
 import { useSpring, animated } from "react-spring";
 
-// Define the IntroText component
 const IntroText = ({
   screenHeight,
   startAnimation,
@@ -112,7 +111,7 @@ const IntroText = ({
         <animated.span style={ToStyle2}>Graphene</animated.span>
       </animated.p>
       <animated.p className="grapheneFromStyle">
-        <animated.span style={TitleStyle}>Graphene</animated.span>{" "}
+        <animated.span style={TitleStyle}>{screenHeight}</animated.span>{" "}
       </animated.p>
     </>
   );

@@ -66,7 +66,8 @@ const GrapheneInfo = ({ screenHeight, endAnimation }) => {
   const specIds = [0, 1, 2, 3, 4];
 
   const AnimatedSpec = ({ endAnimation, styleIn, styleOut, id, onClick }) => {
-    const Margin = (screenHeight - 400 - 300) / 2;
+    const Margin =
+      (screenHeight - (500 * Math.round(screenHeight / 100)) / 10 - 300) / 2;
     const InSpecStyles = useSpring({
       from: {
         top: Margin,
