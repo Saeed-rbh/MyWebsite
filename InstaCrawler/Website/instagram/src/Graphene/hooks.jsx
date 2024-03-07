@@ -1,4 +1,4 @@
-import { useEffect, useMemo } from "react";
+import { useEffect, useMemo, useRef } from "react";
 import { useFrame } from "@react-three/fiber";
 import * as THREE from "three";
 
@@ -64,6 +64,7 @@ export const useAnimation = (
     setStartRotationAdjustment,
     setStartScaleDown,
     setEndAnimation,
+    mouseDown,
   }
 ) => {
   useFrame(() => {
@@ -73,7 +74,6 @@ export const useAnimation = (
     scene.traverse((child) => {
       if (child.isMesh && child.visible) {
         if (!animationCompleted) {
-          // Forward animation logic
           const originalPosition = child.userData.originalPosition;
           const lerpRate = child.name !== "Graphene1" ? 0.05 : 0.025;
           child.position.lerp(originalPosition, lerpRate);
@@ -138,7 +138,10 @@ export const useAnimation = (
       const currentRotationZ = modelRef.current.rotation.z;
       const currentRotationY = modelRef.current.rotation.y;
 
-      if (currentRotationZ !== 0 || currentRotationY !== 0) {
+      if (
+        Math.abs(currentRotationZ) > 0.001 ||
+        Math.abs(currentRotationY) > 0.001
+      ) {
         modelRef.current.rotation.z = THREE.MathUtils.lerp(
           currentRotationZ,
           0,

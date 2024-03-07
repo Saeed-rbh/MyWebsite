@@ -1,4 +1,4 @@
-import React, { useRef, useMemo, useState, useEffect } from "react";
+import React, { useRef, useMemo } from "react";
 import { useGLTF } from "@react-three/drei";
 import { useInitialSetup, useAnimation } from "./hooks.jsx";
 
@@ -15,6 +15,7 @@ function Model({
   setStartScaleDown,
   setEndAnimation,
   setStartAnimation,
+  mouseDown,
 }) {
   const { scene: originalScene } = useGLTF(url);
   const modelRef = useRef();
@@ -34,6 +35,7 @@ function Model({
     startScaleDown,
     setStartScaleDown,
     setEndAnimation,
+    mouseDown,
   });
 
   return <primitive object={scene} ref={modelRef} />;

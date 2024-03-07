@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState, useRef } from "react";
 import { Canvas } from "@react-three/fiber";
 import { Suspense } from "react";
 import Model from "./Model";
@@ -42,8 +42,6 @@ function Graphene() {
       friction: 15,
     },
   });
-
-  
 
   const [mouseDown, setMouseDown] = useState(false);
   const handleMouseDown = () => {
@@ -102,11 +100,9 @@ function Graphene() {
               setStartRotationAdjustment={setStartRotationAdjustment}
               startScaleDown={startScaleDown}
               setStartScaleDown={setStartScaleDown}
+              mouseDown={mouseDown}
             />
-            <Controls
-              initialPosition={initialPosition}
-              initialRotation={initialRotation}
-            />
+            <Controls mouseDown={mouseDown} endAnimation={endAnimation} />
           </Suspense>
         </Canvas>
       </animated.div>

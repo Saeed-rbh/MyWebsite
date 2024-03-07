@@ -89,8 +89,8 @@ const IntroText = ({
     },
     to: {
       y: endAnimation ? 100 - Math.round(screenHeight / 40) : 120,
-      opacity: endAnimation ? (mouseDown ? 0.1 : 0.4) : 0,
-      scale: endAnimation ? (mouseDown ? 1.1 : 1) : 1.1,
+      opacity: endAnimation ? (mouseDown ? 0.1 : 0.3) : 0,
+      scale: endAnimation ? (mouseDown ? 1.2 : 1) : 1.1,
     },
     config: {
       tension: 70,
