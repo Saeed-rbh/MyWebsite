@@ -1,0 +1,435 @@
+.MoneyMonitor_Main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background-color: #0c0c0c;
+}
+
+.MoneyMonitor_Parent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 550px;
+  margin: 0 0 20px 0;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+
+.MoneyMonitor_Intro {
+  color: #ffffffe4;
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+  font-family: "Rubik", sans-serif;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.MoneyMonitor_title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #ffffffcd;
+  display: flex;
+  flex-direction: column;
+  align-items: baseline;
+  font-family: "Rubik", sans-serif;
+  margin-left: 5px;
+}
+
+.MoneyMonitor_Balance {
+  color: #ffffffcd;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+  font-family: "Rubik", sans-serif;
+}
+
+.MoneyMonitor_Balance span:first-child {
+  font-size: 1rem;
+  font-weight: 700;
+  margin-right: 5px;
+}
+.MoneyMonitor_Balance span:last-child {
+  font-size: 1.5rem;
+  font-weight: 200;
+  margin-left: 5px;
+  color: rgba(131, 255, 201, 0.85);
+}
+
+.MoneyMonitor_Income {
+  color: #ffffffcd;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+  margin-bottom: 30px;
+}
+
+.MoneyMonitor_Income p:first-of-type {
+  display: flex;
+  width: 100%;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: 0px 0;
+}
+.totalIncome {
+  color: rgba(131, 255, 201, 0.85);
+  font-size: 1rem;
+  font-weight: 400;
+  font-family: "Rubik", sans-serif;
+}
+.totalExpense {
+  color: rgb(255 102 102 / 85%);
+  font-size: 1rem;
+  font-weight: 400;
+  font-family: "Rubik", sans-serif;
+}
+.totalIncomeTitle {
+  color: #ffffffcd;
+  font-size: 1rem;
+  font-weight: 600;
+  font-family: "Rubik", sans-serif;
+}
+.MoneyMonitor_Income h1 {
+  font-size: 1rem;
+  font-weight: 500;
+  font-family: "Rubik", sans-serif;
+}
+.IncomeDot {
+  color: rgba(0, 255, 145, 0.85);
+  margin-right: 2px;
+}
+
+.ExpenseDot {
+  color: rgba(255, 0, 55, 0.85);
+}
+
+.MoneyMonitor_IncomeData {
+  width: -webkit-fill-available;
+  height: 80px;
+  margin: 0 0 0 0;
+  display: flex;
+  flex-direction: row;
+  cursor: pointer;
+}
+.MoneyMonitor_IncomeAdd {
+  font-size: 1.5rem;
+  font-weight: 200;
+  font-family: "Rubik", sans-serif;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 100%;
+  color: #ffffff9c;
+  cursor: pointer;
+}
+.MoneyMonitor_IncomeMore {
+  font-size: 1.5rem;
+  font-weight: 200;
+  font-family: "Rubik", sans-serif;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 100%;
+  color: #ffffff9c;
+  cursor: pointer;
+  margin-top: 30px;
+  margin-left: 10px;
+}
+
+.MoneyMonitor_IncomeAdd span {
+  margin-top: -2px;
+}
+
+.MoneyMonitor_IncomeAmount {
+  background-color: rgb(160 255 223 / 45%);
+  height: 100px;
+  width: 150px;
+  border-radius: 30px;
+  margin-left: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  overflow: hidden;
+}
+.MoneyMonitor_ExpenseAmount {
+  background-color: #fd7b7b7d;
+  height: 100px;
+  width: 150px;
+  border-radius: 30px;
+  margin-left: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  overflow: hidden;
+}
+
+.MoneyMonitor_IncomeAmount p:first-of-type {
+  position: relative;
+  width: 120px;
+  display: flex;
+  margin: 12px 20px 0 22px;
+  font-size: 1rem;
+  font-weight: 600;
+  font-family: "Rubik", sans-serif;
+  color: #0c0c0c;
+}
+.MoneyMonitor_IncomeAmount p:nth-of-type(2) {
+  position: relative;
+  width: 120px;
+  display: flex;
+  margin: 3px 0 6px 0px;
+  font-size: 1rem;
+  font-weight: 400;
+  font-family: "Rubik", sans-serif;
+  color: #0c0c0c;
+  flex-direction: row;
+  align-items: center;
+}
+.MoneyMonitor_IncomeAmount span {
+  position: relative;
+  background-color: #0c0c0c;
+  height: 2px;
+  width: 15px;
+  border-radius: 15px;
+  margin-right: 7px;
+}
+
+.MoneyMonitor_IncomeAmount span:last-of-type {
+  position: relative;
+  background-color: #0c0c0c;
+  height: 2px;
+  width: 15px;
+  border-radius: 15px;
+  margin-right: 5px;
+}
+
+.MoneyMonitor_ExpenseAmount p:first-of-type {
+  position: relative;
+  width: 120px;
+  display: flex;
+  margin: 12px 20px 0 22px;
+  font-size: 1rem;
+  font-weight: 600;
+  font-family: "Rubik", sans-serif;
+  color: #0c0c0c;
+}
+.MoneyMonitor_ExpenseAmount p:nth-of-type(2) {
+  position: relative;
+  width: 120px;
+  display: flex;
+  margin: 3px 0 6px 0px;
+  font-size: 1rem;
+  font-weight: 400;
+  font-family: "Rubik", sans-serif;
+  color: #0c0c0c;
+  flex-direction: row;
+  align-items: center;
+}
+.MoneyMonitor_ExpenseAmount span {
+  position: relative;
+  background-color: #0c0c0c;
+  height: 2px;
+  width: 15px;
+  border-radius: 15px;
+  margin-right: 7px;
+}
+
+.MoneyMonitor_ExpenseAmount span:last-of-type {
+  position: relative;
+  background-color: #0c0c0c;
+  height: 2px;
+  width: 15px;
+  border-radius: 15px;
+  margin-right: 5px;
+}
+
+.MoneyMonitor_IncomeDetail {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  width: 100%;
+  height: 40px;
+  border-radius: 15px;
+  background-color: #0c0c0c3b;
+}
+
+.MoneyMonitor_IncomeDetail h1:first-of-type {
+  font-size: 0.7rem;
+  font-weight: 600;
+  font-family: "Rubik", sans-serif;
+  color: #0c0c0c;
+  margin: 7px 0 0 20px;
+  background-color: none;
+}
+.MoneyMonitor_IncomeDetail h1:last-of-type {
+  display: flex;
+  flex-direction: row;
+  font-size: 0.7rem;
+  font-weight: 600;
+  font-family: "Rubik", sans-serif;
+  color: #0c0c0c;
+  margin: 0px 0 0 20px;
+  width: 100%;
+  align-items: center;
+}
+.MoneyMonitor_IncomeDetail h1:last-of-type span {
+  width: 100%;
+  height: 2px;
+  margin-left: 5px;
+  margin-top: 1px;
+}
+
+.MoneyMonitor_Menu {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-evenly;
+  width: 100%;
+  margin: 20px 0;
+  width: 100%;
+  height: 20px;
+  margin: 30px 0 20px 0;
+}
+.MoneyMonitor_Menu h1 {
+  position: relative;
+  font-size: 0.73rem;
+  background-color: rgba(255, 255, 255, 0.1);
+  font-weight: 400;
+  font-family: "Rubik", sans-serif;
+  color: #ffffffcd;
+  padding: 10px 0px;
+  border-radius: 30px;
+  width: 25%;
+  margin: 0 3px 5px 3px;
+  cursor: pointer;
+}
+.MoneyMonitor_Menu h1:first-of-type {
+  margin-left: 0;
+}
+.MoneyMonitor_Menu h1:last-of-type {
+  margin-right: 0;
+}
+
+.MoneyMonitor_Menu p:first-of-type {
+  position: absolute;
+  font-size: 0.73rem;
+  font-weight: 400;
+  font-family: "Rubik", sans-serif;
+  color: #ffffffcd;
+  padding: 10px 0px;
+  border-radius: 30px;
+  width: 25%;
+  margin: 0 3px 5px 3px;
+  left: 0px;
+  top: -40px;
+  width: 100%;
+  display: flex;
+  text-wrap: nowrap;
+  align-items: center;
+}
+.MoneyMonitor_Menu p span {
+  background: rgb(255, 255, 255);
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.1) 49%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  height: 1px;
+  width: -webkit-fill-available;
+  margin: 2px 10px 0 10px;
+}
+
+.MoneyMonitor_Menu p:last-of-type {
+  position: absolute;
+  font-size: 0.73rem;
+  font-weight: 400;
+  font-family: "Rubik", sans-serif;
+  color: #ffffffcd;
+  padding: 10px 0px;
+  border-radius: 30px;
+  width: 25%;
+  margin: 0 3px 5px 3px;
+  left: 0px;
+  top: 25px;
+  width: 100%;
+  display: flex;
+  text-wrap: nowrap;
+  align-items: center;
+}
+
+.MoneyMonitor_header {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  width: 100%;
+  margin: 20px 0;
+  width: 100%;
+  height: 50px;
+  margin: 20px 0 25px 0;
+}
+.MoneyMonitor_User {
+  height: 50px;
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 100%;
+  font-weight: 400;
+  font-family: "Rubik", sans-serif;
+  color: #ffffffcd;
+  margin: 5px 0 0 0;
+}
+.MoneyMonitor_Logo {
+  font-size: 1.5rem;
+  font-weight: 200;
+  font-family: "Rubik", sans-serif;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  width: 50px;
+  height: 50px;
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 100%;
+  color: #ffffff9c;
+  cursor: pointer;
+  margin-right: 10px;
+  overflow: hidden;
+  padding: 5px;
+}
+.MoneyMonitor_User p {
+  margin: 0;
+}
+.MoneyMonitor_IncomeMore svg {
+  font-size: 18px;
+}
+.HomePage-M-T-R {
+  right: 0;
+  top: 20px;
+}
+.MoneyMonitor_Logo img {
+  height: 100%;
+  width: 100%;
+  opacity: 0.6;
+  border-radius: 100%;
+}

@@ -1,6 +1,5 @@
-import React, { useState, memo } from "react";
+import React, { useState } from "react";
 import { animated, useSpring, easings } from "react-spring";
-import PropTypes from "prop-types";
 
 const useMenuAnimation = (isMenuOpen, isMenuIconHovered, TB) => {
   return useSpring({
