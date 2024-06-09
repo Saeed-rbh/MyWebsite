@@ -1,12 +1,27 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./MoneyMonitor.css";
 import MenuButton from "../Header/MenuButton.jsx";
-import { FiArrowRight } from "react-icons/fi";
-
+import MoneyEntry from "./MoneyEntry.jsx";
+import TransactionList from "./TransactionList.jsx";
 const MoneyMonitor = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const [totalIncome, setTotalIncome] = useState(0);
+  const [totalExpense, setTotalExpense] = useState(0);
+  const [totalBalance, setTotalBalance] = useState(0);
+
+  useEffect(() => {
+    setTotalBalance(totalIncome - totalExpense);
+  }, [totalIncome, totalExpense]);
+
+  const amountStyle = {
+    color:
+      totalBalance > 0 ? "rgba(131, 255, 201, 0.85)" : "rgb(255 102 102 / 85%)",
+  };
+
   return (
     <div className="MoneyMonitor_Main">
+      <TransactionList />
       <div className="MoneyMonitor_Parent">
         <div className="MoneyMonitor_header">
           <div className="MoneyMonitor_User">
@@ -17,7 +32,10 @@ const MoneyMonitor = () => {
                 alt="MoneyMonitor Logo"
               />
             </div>
-            <p>Money Monitor</p>
+            <p>
+              <span>Money Monitor</span>
+              <span>965896521</span>
+            </p>
           </div>
           <MenuButton
             handleButtonClick={setIsMenuOpen}
@@ -30,8 +48,10 @@ const MoneyMonitor = () => {
             <span>Transactions</span>
           </div>
           <div className="MoneyMonitor_Balance">
-            <span>Balance: </span>
-            <span>1200$</span>
+            <span>
+              <h2>My</h2> Balance:{" "}
+            </span>
+            <span style={amountStyle}>${Math.abs(totalBalance)}</span>
           </div>
         </div>
         <div className="MoneyMonitor_Menu">
@@ -46,102 +66,8 @@ const MoneyMonitor = () => {
             <span></span>
           </p>
         </div>
-        <div className="MoneyMonitor_Income">
-          <p>
-            <h1>
-              <span className="IncomeDot">• </span> Income
-            </h1>
-            <h1 className="totalIncome">
-              <span className="totalIncomeTitle">Total: </span> 12000$
-            </h1>
-          </p>
-          <div className="MoneyMonitor_IncomeData">
-            <div className="MoneyMonitor_IncomeAdd">
-              <span>+</span>
-            </div>
-            <div className="MoneyMonitor_IncomeAmount">
-              <p>My Salary</p>
-              <p>
-                <span></span>1000$
-              </p>
-              <div className="MoneyMonitor_IncomeDetail">
-                <h1>25/Mar/2024</h1>{" "}
-                <h1>
-                  10:55 <span></span>
-                </h1>
-              </div>
-            </div>
-            <div className="MoneyMonitor_IncomeAmount">
-              <p>My Salary</p>
-              <p>
-                <span></span>1000$
-              </p>
-              <div className="MoneyMonitor_IncomeDetail">
-                <h1>25/Mar/2024</h1>{" "}
-                <h1>
-                  Monthly <span></span>
-                </h1>
-              </div>
-            </div>
-            <div className="MoneyMonitor_IncomeAmount">
-              <p>My Salary</p>
-              <p>
-                <span></span>1000$
-              </p>
-              <div className="MoneyMonitor_IncomeDetail">
-                <h1>25/Mar/2024</h1>{" "}
-                <h1>
-                  Monthly <span></span>
-                </h1>
-              </div>
-            </div>
-            <div className="MoneyMonitor_IncomeMore">
-              <span>
-                <FiArrowRight />
-              </span>
-            </div>
-          </div>
-        </div>
-        <div className="MoneyMonitor_Income">
-          <p>
-            <h1>
-              <span className="ExpenseDot">• </span> Expense
-            </h1>
-            <span></span>
-            <h1 className="totalExpense">
-              <span className="totalIncomeTitle">Total: </span> 10000$
-            </h1>
-          </p>
-          <div className="MoneyMonitor_IncomeData">
-            <div className="MoneyMonitor_IncomeAdd">
-              <span>+</span>
-            </div>
-            <div className="MoneyMonitor_ExpenseAmount">
-              <p>My Salary</p>
-              <p>
-                <span></span>1000$
-              </p>
-              <div className="MoneyMonitor_IncomeDetail">
-                <h1>25/Mar/2024</h1>{" "}
-                <h1>
-                  10:55 <span></span>
-                </h1>
-              </div>
-            </div>
-            <div className="MoneyMonitor_ExpenseAmount">
-              <p>My Salary</p>
-              <p>
-                <span></span>1000$
-              </p>
-              <div className="MoneyMonitor_IncomeDetail">
-                <h1>25/Mar/2024</h1>{" "}
-                <h1>
-                  Monthly <span></span>
-                </h1>
-              </div>
-            </div>
-          </div>
-        </div>
+        <MoneyEntry type="Income" setTotal={setTotalIncome} />
+        <MoneyEntry type="Expense" setTotal={setTotalExpense} />
       </div>
     </div>
   );

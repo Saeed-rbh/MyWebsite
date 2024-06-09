@@ -1,0 +1,58 @@
+[{
+  "_id": {
+    "$oid": "6658b85e24b486688101497b"
+  },
+  "Timestamp": "2024-05-30 13:33",
+  "Category": "Income",
+  "Amount": 500,
+  "Reason": "cupe",
+  "Type": "Daily"
+},
+{
+  "_id": {
+    "$oid": "6658b86824b486688101497d"
+  },
+  "Timestamp": "2024-05-30 13:33",
+  "Category": "Expense",
+  "Amount": 100,
+  "Reason": "Grocery",
+  "Type": "Daily"
+},
+{
+  "_id": {
+    "$oid": "6658b87224b486688101497f"
+  },
+  "Timestamp": "2024-05-30 13:33",
+  "Category": "Expense",
+  "Amount": 67,
+  "Reason": "fido",
+  "Type": "Monthly"
+},
+{
+  "_id": {
+    "$oid": "6658b88524b4866881014981"
+  },
+  "Timestamp": "2024-05-30 13:33",
+  "Category": "Income",
+  "Amount": 1200,
+  "Reason": "York University",
+  "Type": "Monthly"
+},{
+  "_id": {
+    "$oid": "6658b88524b4866881011234"
+  },
+  "Timestamp": "2024-05-30 13:33",
+  "Category": "Income",
+  "Amount": 1200,
+  "Reason": "York University",
+  "Type": "Monthly"
+},{
+  "_id": {
+    "$oid": "6658b88524b4866881015678"
+  },
+  "Timestamp": "2024-05-30 13:33",
+  "Category": "Income",
+  "Amount": 1200,
+  "Reason": "York University Mechnical Engineering",
+  "Type": "Monthly"
+}]
