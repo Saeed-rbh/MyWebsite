@@ -14,7 +14,7 @@
   "_id": {
     "$oid": "6658b44da0f2cca0e0369f42"
   },
-  "Category": "Expense",
+  "Category": "Spending",
   "Amount": 67,
   "Reason": "fido",
   "Year": 2024,

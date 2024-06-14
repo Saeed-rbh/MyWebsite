@@ -2,7 +2,7 @@
   --Ac-1: rgba(255, 245, 240, 1);
   --Ac-2: rgba(255, 245, 240, 0.6);
   --Ac-3: rgba(255, 245, 240, 0.3);
-  --Ac-4: rgba(255, 245, 240, 0.1);
+  --Ac-4: rgba(255, 245, 240, 0.07);
 
   --Bc-1: rgba(212, 157, 129, 1);
   --Bc-2: rgba(212, 157, 129, 0.6);
@@ -19,18 +19,24 @@
   --Dc-3: rgba(168, 229, 255, 0.3);
   --Dc-4: rgba(168, 229, 255, 0.1);
 
-  --Ec-1: rgba(24, 25, 26, 1);
-  --Ec-2: rgba(24, 25, 26, 0.6);
-  --Ec-3: rgba(24, 25, 26, 0.2);
-  --Ec-4: rgba(24, 25, 26, 0);
+  --Ec-1: rgb(31, 31, 35);
+  --Ec-2: rgba(31, 31, 35, 0.6);
+  --Ec-3: rgba(31, 31, 35, 0.2);
+  --Ec-4: rgba(31, 31, 35, 0);
 
   --Fc-1: rgba(131, 255, 201, 1);
-  --Fc-2: rgba(131, 255, 201, 0.6);
+  --Fc-2: rgba(131, 255, 201, 0.4);
   --Fc-3: rgba(131, 255, 201, 0.3);
-  --Fc-4: rgba(131, 255, 201, 0.1);
+  --Fc-4: rgba(131, 255, 201, 0.01);
+
+  --Gc-1: rgba(255, 102, 102, 1);
+  --Gc-2: rgba(255, 102, 102, 0.4);
+  --Gc-3: rgba(255, 102, 102, 0.3);
+  --Gc-4: rgba(255, 102, 102, 0.01);
 }
 
 .MoneyMonitor_Main {
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -50,6 +56,33 @@
   display: flex;
   align-items: flex-start;
   justify-content: flex-start;
+  position: relative;
+}
+
+.MoneyMonitor_Gradient1 {
+  position: absolute;
+  width: 500px;
+  height: 500px;
+  top: -150px;
+  left: 0px;
+  background: linear-gradient(165deg, var(--Bc-1) 30%, var(--Ec-4) 100%);
+  z-index: 1;
+  border-radius: 100%;
+  filter: blur(100px);
+  opacity: 0.4;
+}
+
+.MoneyMonitor_Gradient2 {
+  position: absolute;
+  width: 200px;
+  height: 200px;
+  top: -50px;
+  left: 0px;
+  background: linear-gradient(165deg, var(--Ac-1) 30%, var(--Ec-4) 100%);
+  z-index: 1;
+  border-radius: 100%;
+  filter: blur(50px);
+  opacity: 0.2;
 }
 
 .MoneyMonitor_Intro {
@@ -61,6 +94,7 @@
   font-family: "Rubik", sans-serif;
   justify-content: space-between;
   width: 100%;
+  z-index: 10;
 }
 
 .MoneyMonitor_title {
@@ -113,6 +147,7 @@
   flex-direction: column;
   align-items: flex-start;
   width: 100%;
+  z-index: 10;
 }
 
 .MoneyEntry p:first-of-type {
@@ -133,9 +168,15 @@
   font-size: 1rem;
   font-weight: 600;
   font-family: "Rubik", sans-serif;
+  margin-right: 6px;
+}
+.MoneyEntry_totalTitleMonth {
+  color: var(--Ac-2);
+  font-size: 1rem;
+  font-weight: 200;
+  font-family: "Rubik", sans-serif;
   margin-right: 3px;
 }
-
 .MoneyEntry h1 {
   font-size: 1rem;
   font-weight: 500;
@@ -182,6 +223,7 @@
   color: #ffffff9c;
   cursor: pointer;
   margin-right: 10px;
+  background: linear-gradient(165deg, var(--Ac-4) 30%, var(--Ec-4) 100%);
 }
 .MoneyEntry_More {
   position: relative;
@@ -200,6 +242,7 @@
   cursor: pointer;
   margin-top: 30px;
   margin-left: 10px;
+  background: linear-gradient(165deg, var(--Ac-4) 30%, var(--Ec-4) 100%);
 }
 
 .MoneyEntry_Add span {
@@ -217,6 +260,7 @@
   flex-direction: column;
   align-items: flex-start;
   box-sizing: border-box;
+  overflow: hidden;
 }
 
 .MoneyEntry_Amount p:first-of-type {
@@ -235,7 +279,7 @@
   position: relative;
   width: 120px;
   display: flex;
-  margin: 0 0 6px 0px;
+  margin: 0 0 2px 0px;
   font-size: 1rem;
   font-weight: 400;
   font-family: "Rubik", sans-serif;
@@ -278,9 +322,8 @@
   align-items: flex-start;
   justify-content: flex-start;
   width: 100%;
-  height: 45px;
-  border-radius: 15px;
-  background-color: var(--Ec-3);
+  height: 50px;
+  border-radius: 20px;
 }
 
 .MoneyEntry_Detail sup {
@@ -294,7 +337,7 @@
   font-weight: 600;
   font-family: "Rubik", sans-serif;
   color: var(--Ec-1);
-  margin: 9px 0 0 20px;
+  margin: 13px 0 0 20px;
   background-color: none;
 }
 .MoneyEntry_Detail h1:last-of-type {
@@ -313,6 +356,7 @@
   height: 2px;
   margin-left: 5px;
   margin-top: 1px;
+  margin-right: 0;
 }
 
 .MoneyMonitor_Menu {
@@ -325,7 +369,8 @@
   margin: 20px 0;
   width: 100%;
   height: 20px;
-  margin: 30px 0 20px 0;
+  margin: 30px 0 25px 0;
+  z-index: 10;
 }
 .MoneyMonitor_Menu h1 {
   position: relative;
@@ -334,11 +379,12 @@
   font-weight: 400;
   font-family: "Rubik", sans-serif;
   color: var(--Ac-2);
-  padding: 10px 0px;
+  padding: 15px 0px;
   border-radius: 30px;
   width: 25%;
-  margin: 0 3px 5px 3px;
+  margin: 8px 3px 5px 3px;
   cursor: pointer;
+  background: linear-gradient(165deg, var(--Ac-4) 30%, var(--Ec-4) 100%);
 }
 .MoneyMonitor_Menu h1:first-of-type {
   margin-left: 0;
@@ -388,7 +434,7 @@
   width: 25%;
   margin: 0 3px 5px 3px;
   left: 0px;
-  top: 25px;
+  top: 30px;
   width: 100%;
   display: flex;
   text-wrap: nowrap;
@@ -405,6 +451,7 @@
   width: 100%;
   height: 50px;
   margin: 20px 0 25px 0;
+  z-index: 10;
 }
 .MoneyMonitor_User {
   height: 50px;
@@ -500,19 +547,17 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: calc(100vh - 80px);
-  background-color: var(--Ec-3);
+  height: calc(0vh - 80px);
   z-index: 10;
   width: 800px;
   bottom: 0;
   opacity: 1;
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
+  touch-action: none;
 }
-
 .TransactionList_Wall {
   position: absolute;
   display: flex;
+
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
@@ -556,10 +601,6 @@
   width: max-content;
 }
 
-.TransactionList_TransactionList li p:nth-of-type(2) span:last-of-type {
-  width: 60px;
-}
-
 .TransactionList_SummaryLines {
   position: relative;
   display: flex;
@@ -573,7 +614,7 @@
 .TransactionList_SummaryLines li {
   position: relative;
   background-color: var(--Ac-2);
-  height: 100%;
+  height: 2px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -646,6 +687,7 @@
   width: calc(100% - 80px);
   height: 4px;
   margin: 0 0 30px 0;
+  justify-content: space-between;
 }
 
 .TransactionList_SummaryNames li {
@@ -656,7 +698,7 @@
   height: 100%;
   display: flex;
   flex-direction: row;
-  width: 25%;
+  /* width: 25%; */
   margin: 0 3px;
   border-radius: 100px;
   font-size: 0.8rem;
@@ -709,9 +751,9 @@
   opacity: 0.7;
 }
 
-.TransactionList_Title h1 span {
+/* .TransactionList_Title h1 span {
   color: var(--Fc-1);
-}
+} */
 
 .TransactionList_TransactionList {
   position: relative;
@@ -1021,6 +1063,8 @@
   justify-content: flex-start;
   overflow-y: auto;
   margin-right: 10px;
+  margin-bottom: 30px;
+  scroll-behavior: smooth;
 }
 
 .TransactionList_MonthlyMain::-webkit-scrollbar {
@@ -1081,10 +1125,10 @@
 }
 
 .TransactionModification li {
-  background: linear-gradient(165deg, var(--Ec-2) 30%, var(--Ec-3) 100%);
+  background: linear-gradient(165deg, var(--Ec-1) 30%, var(--Ec-3) 100%);
 }
 .TransactionModification li svg {
-  background: linear-gradient(165deg, var(--Ec-2) 30%, var(--Ec-3) 100%);
+  background: linear-gradient(165deg, var(--Ec-1) 30%, var(--Ec-3) 100%);
 }
 
 .TransactionModification_Modify {
@@ -1096,7 +1140,7 @@
   left: 30px;
   height: fit-content;
   padding: 17px 20px;
-  background: linear-gradient(165deg, var(--Ec-2) 30%, var(--Ec-4) 100%);
+  background: linear-gradient(165deg, var(--Ec-1) 30%, var(--Ec-3) 100%);
   border-radius: 30px;
   transform: scale(1);
   z-index: 90;
@@ -1111,7 +1155,7 @@
   width: calc(100% - 80px);
   display: flex;
   opacity: 0.85;
-  left: 40px;
+  left: 30px;
 }
 
 .TransactionModification h1 span {
@@ -1247,7 +1291,7 @@
   justify-content: center;
   width: 60px;
   height: 60px;
-  background: linear-gradient(165deg, var(--Ec-2) 30%, var(--Ec-4) 100%);
+  background: linear-gradient(165deg, var(--Ec-1) 30%, var(--Ec-4) 100%);
   border-radius: 100%;
   cursor: pointer;
   right: 0;
@@ -1255,4 +1299,133 @@
   font-size: 1.5rem;
   margin: 5px 0 -5px 0;
   right: 5px;
+}
+
+.TransactionModification_Category {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.TransactionModification_Category p {
+  background: linear-gradient(165deg, var(--Ac-4) 30%, var(--Ec-4) 100%);
+  padding: 10px 15px;
+  border-radius: 30px;
+  color: var(--Ac-1);
+  font-size: 0.8rem;
+  margin: 5px 5px;
+  padding-left: 10px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.TransactionModification_Category p svg {
+  position: absolute;
+  font-size: 1rem;
+  margin-right: 7px;
+  opacity: 0.7;
+  background: linear-gradient(165deg, var(--Ac-4) 30%, var(--Ec-4) 100%);
+  padding: 10px 10px;
+  border-radius: 30px;
+  margin-left: -10px;
+}
+
+.TransactionModification_Category p h3 {
+  color: var(--Ac-1);
+  font-size: 0.8rem;
+  margin: 0;
+  margin-left: 30px;
+  margin-right: 5px;
+}
+.TransactionList_MonthlyFooter {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: flex-start;
+  width: calc(100% - 0px);
+  height: fit-content;
+  margin: 5px 0 20px 0;
+  overflow: hidden;
+  flex-wrap: wrap;
+  padding-top: 35px;
+}
+
+.TransactionList_MonthlyFooter p {
+  background-color: #f0f8ff11;
+  width: fit-content;
+  width: -moz-fit-content;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  margin: 3px 3px 3px 2.5px;
+  width: 25px;
+  border-radius: 30px;
+  opacity: 0.7;
+  justify-content: center;
+  flex-direction: column;
+  padding: 15px 10px;
+  cursor: pointer;
+}
+.TransactionList_MonthlyFooter p span {
+  color: var(--Ac-1);
+  font-size: 0.6rem;
+  font-weight: 400;
+}
+.TransactionList_MonthlyFooter p span:last-of-type {
+  margin-top: 10px;
+  background: var(--Fc-1);
+  border-radius: 100%;
+  width: 10px;
+  height: 10px;
+}
+.TransactionList_MonthlyFooter p span:first-of-type {
+  color: var(--Bc-1);
+  font-size: 0.8rem;
+  font-weight: 600;
+  margin-bottom: 5px;
+}
+.TransactionList_MonthlyFooter h1 {
+  color: var(--Ac-2);
+  top: 0;
+  /* transform: translateY(-54px); */
+  font-weight: 400;
+  position: absolute;
+}
+.TransactionList_MonthlyFooter h1 span {
+  color: var(--Ac-1);
+  opacity: 0.9;
+  font-weight: 600;
+  margin: 0 3px;
+}
+
+.scroll-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+
+  padding: 0 10px;
+}
+.scroll-container::-webkit-scrollbar {
+  height: 4px;
+  background-color: var(--Ac-4);
+}
+
+.scroll-container::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 2px var(--Ec-3);
+  border-radius: 10px;
+  background-color: var(--Ec-4);
+}
+
+.scroll-container::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  -webkit-box-shadow: inset 0 0 6px var(--Ec-3);
+  background-color: var(--Bc-4);
 }

@@ -1,28 +1,46 @@
 import React, { useEffect, useState, useRef } from "react";
 import { FiArrowRight } from "react-icons/fi"; // Assuming you're using react-icons for the arrow icon
 import MoneyEntryAmount from "./MoneyEntryAmount.jsx";
+import { useSpring, animated } from "react-spring";
 
-const MoneyEntry = ({ type, setTotal }) => {
-  const [Data, setData] = useState([]);
+const ScalableElement = ({ children, className, onClick }) => {
+  const [isScaled, setIsScaled] = useState(false);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      const dailyResponse = await fetch("/Data.json");
-      const dailyJsonData = await dailyResponse.json();
-      setData(dailyJsonData);
-    };
-    fetchData();
-  }, []);
+  const handleMouseDown = () => {
+    setIsScaled(true);
+  };
 
-  const transactions = Data.filter((item) => item.Category === type);
-  const totalAmount = transactions.reduce(
-    (sum, transaction) => sum + transaction.Amount,
-    0
+  const handleMouseUp = () => {
+    setIsScaled(false);
+  };
+
+  const style = useSpring({
+    scale: isScaled ? 0.85 : 1,
+  });
+
+  return (
+    <animated.div
+      className={className}
+      style={style}
+      onClick={onClick}
+      onMouseDown={handleMouseDown}
+      onMouseUp={handleMouseUp}
+      onMouseLeave={handleMouseUp}
+    >
+      {children}
+    </animated.div>
   );
+};
 
+const MoneyEntry = ({ type, setTotal, setIsMoreClicked, Transactions }) => {
+  const entries = Object.entries(Transactions);
+  const lastEntry = entries[entries.length - 1];
+
+  const totalAmount =
+    type === "Income" ? lastEntry[1].totalIncome : lastEntry[1].totalSpending;
   useEffect(() => {
-    setTotal(totalAmount);
-  }, [totalAmount, setTotal]);
+    setTotal(totalAmount.toFixed(2));
+  }, [setTotal, lastEntry, totalAmount]);
 
   const totalStyle = {
     color:
@@ -60,8 +78,7 @@ const MoneyEntry = ({ type, setTotal }) => {
 
   useEffect(() => {
     const container = containerRef.current;
-    if (container && transactions.length > 3) {
-      console.log(transactions.length);
+    if (container && Transactions.length > 3) {
       container.addEventListener("mousedown", handleMouseDown);
       container.addEventListener("mouseleave", handleMouseLeave);
       container.addEventListener("mouseup", handleMouseUp);
@@ -75,7 +92,7 @@ const MoneyEntry = ({ type, setTotal }) => {
         container.removeEventListener("mousemove", handleMouseMove);
       }
     };
-  }, [transactions.length, containerRef.current]);
+  }, [Transactions.length, containerRef.current]);
 
   return (
     <div className={`MoneyEntry`}>
@@ -87,14 +104,19 @@ const MoneyEntry = ({ type, setTotal }) => {
           <h2>My</h2> {type}
         </h1>
         <h1 className={`MoneyEntry_total`} style={totalStyle}>
+          {" "}
+          <span className={`MoneyEntry_totalTitleMonth`}>
+            {lastEntry[1].month}
+          </span>
           <span className={`MoneyEntry_totalTitle`}>Total: </span> $
-          {totalAmount}
+          {totalAmount.toFixed(2)}
         </h1>
       </p>
       <div className={`MoneyEntry_Data`}>
-        <div className={`MoneyEntry_Add`}>
+        <ScalableElement className="MoneyEntry_Add">
           <span>+</span>
-        </div>
+        </ScalableElement>
+
         <div
           className={`MoneyEntry_AmountBase`}
           ref={containerRef}
@@ -103,15 +125,18 @@ const MoneyEntry = ({ type, setTotal }) => {
           onMouseUp={handleMouseUp}
           onMouseMove={handleMouseMove}
         >
-          {transactions.map((transaction, index) => (
+          {lastEntry[1].transactions.slice(0, 3).map((transaction, index) => (
             <MoneyEntryAmount type={type} transaction={transaction} />
           ))}
         </div>
-        <div className={`MoneyEntry_More`}>
+        <ScalableElement
+          className="MoneyEntry_More"
+          onClick={() => setIsMoreClicked(type)}
+        >
           <span>
             <FiArrowRight />
           </span>
-        </div>
+        </ScalableElement>
       </div>
     </div>
   );

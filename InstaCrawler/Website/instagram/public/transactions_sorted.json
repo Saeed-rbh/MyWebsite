@@ -1,0 +1,4802 @@
+[
+    {
+        "Transaction_Id": "f561baac-a1d7-424b-b662-6132be8adff9",
+        "User_Id": 90260003,
+        "Timestamp": "2023-06-13 12:25",
+        "Category": "Spending",
+        "Amount": 948.97,
+        "Reason": "Pet Care",
+        "Type": "Monthly",
+        "Label": "Utilities"
+    },
+    {
+        "Transaction_Id": "d497448d-16c9-4a82-8997-f2aeac32715e",
+        "User_Id": 90260003,
+        "Timestamp": "2023-06-13 12:25",
+        "Category": "Spending",
+        "Amount": 774.92,
+        "Reason": "Charity",
+        "Type": "Monthly",
+        "Label": "Entertainment"
+    },
+    {
+        "Transaction_Id": "e5f330c8-9bbc-4974-9c6f-e5dd89716a9b",
+        "User_Id": 90260003,
+        "Timestamp": "2023-06-16 12:25",
+        "Category": "Spending",
+        "Amount": 661.64,
+        "Reason": "Dining Out",
+        "Type": "Daily",
+        "Label": "Leisure & Recreation"
+    },
+    {
+        "Transaction_Id": "e380707c-2e60-4ca8-9492-0a7f823bed3f",
+        "User_Id": 90260003,
+        "Timestamp": "2023-06-18 12:25",
+        "Category": "Spending",
+        "Amount": 523.05,
+        "Reason": "Dining Out",
+        "Type": "Monthly",
+        "Label": "Utilities"
+    },
+    {
+        "Transaction_Id": "8ea447ff-3b89-47d7-946c-adea5be74b9f",
+        "User_Id": 90260003,
+        "Timestamp": "2023-06-19 12:25",
+        "Category": "Spending",
+        "Amount": 469.38,
+        "Reason": "Gifts",
+        "Type": "Monthly",
+        "Label": "Entertainment"
+    },
+    {
+        "Transaction_Id": "0bdf4361-9fc6-4a53-bd12-caf08f4a1ea8",
+        "User_Id": 90260003,
+        "Timestamp": "2023-06-20 12:25",
+        "Category": "Spending",
+        "Amount": 387.0,
+        "Reason": "Utilities",
+        "Type": "Daily",
+        "Label": "Food & Dining"
+    },
+    {
+        "Transaction_Id": "d2a017c1-4903-4ca8-89dd-c0fde8ae45eb",
+        "User_Id": 90260003,
+        "Timestamp": "2023-06-21 12:25",
+        "Category": "Spending",
+        "Amount": 373.3,
+        "Reason": "Pet Care",
+        "Type": "Daily",
+        "Label": "Utilities"
+    },
+    {
+        "Transaction_Id": "362b7e08-fbbe-4a2b-abdb-d5ed6b21874f",
+        "User_Id": 90260003,
+        "Timestamp": "2023-06-22 12:25",
+        "Category": "Spending",
+        "Amount": 203.15,
+        "Reason": "Home Improvement",
+        "Type": "Monthly",
+        "Label": "Entertainment"
+    },
+    {
+        "Transaction_Id": "6ec8933c-360c-4f19-83cc-4931420595fd",
+        "User_Id": 90260003,
+        "Timestamp": "2023-06-22 12:25",
+        "Category": "Spending",
+        "Amount": 635.57,
+        "Reason": "Childcare",
+        "Type": "Monthly",
+        "Label": "Utilities"
+    },
+    {
+        "Transaction_Id": "0591653b-209b-402a-a080-1ffd9714271c",
+        "User_Id": 90260003,
+        "Timestamp": "2023-06-24 12:25",
+        "Category": "Spending",
+        "Amount": 305.23,
+        "Reason": "Gym Membership",
+        "Type": "Daily",
+        "Label": "Utilities"
+    },
+    {
+        "Transaction_Id": "7fde1896-4060-453b-8f98-d89471ffa3f7",
+        "User_Id": 90260003,
+        "Timestamp": "2023-06-24 12:25",
+        "Category": "Spending",
+        "Amount": 159.2,
+        "Reason": "Education",
+        "Type": "Daily",
+        "Label": "Health & Fitness"
+    },
+    {
+        "Transaction_Id": "8ac5b9ff-7a52-41e0-9071-0dfe01ef4bb5",
+        "User_Id": 90260003,
+        "Timestamp": "2023-06-25 12:25",
+        "Category": "Income",
+        "Amount": 114.1,
+        "Reason": "Stock Market",
+        "Type": "Daily",
+        "Label": "Entertainment"
+    },
+    {
+        "Transaction_Id": "bad41229-ad2b-4539-b199-f950c647beb5",
+        "User_Id": 90260003,
+        "Timestamp": "2023-06-26 12:25",
+        "Category": "Spending",
+        "Amount": 200.13,
+        "Reason": "Childcare",
+        "Type": "Daily",
+        "Label": "Utilities"
+    },
+    {
+        "Transaction_Id": "f4b074e3-935e-4566-8456-ae8659b20c60",
+        "User_Id": 90260003,
+        "Timestamp": "2023-06-26 12:25",
+        "Category": "Income",
+        "Amount": 597.54,
+        "Reason": "Refund",
+        "Type": "Daily",
+        "Label": "Food & Dining"
+    },
+    {
+        "Transaction_Id": "26be4637-157f-4a0c-8869-c22d7f1895e1",
+        "User_Id": 90260003,
+        "Timestamp": "2023-06-27 12:25",
+        "Category": "Income",
+        "Amount": 854.08,
+        "Reason": "Selling Items",
+        "Type": "Daily",
+        "Label": "Food & Dining"
+    },
+    {
+        "Transaction_Id": "57b08a46-0262-4b3f-8293-f61ecf4a9f93",
+        "User_Id": 90260003,
+        "Timestamp": "2023-06-28 12:25",
+        "Category": "Income",
+        "Amount": 584.18,
+        "Reason": "Bonus",
+        "Type": "Daily",
+        "Label": "Utilities"
+    },
+    {
+        "Transaction_Id": "dc49226a-4c27-40b8-b1fa-b64506f4bd94",
+        "User_Id": 90260003,
+        "Timestamp": "2023-06-28 12:25",
+        "Category": "Income",
+        "Amount": 758.33,
+        "Reason": "Side Business",
+        "Type": "Monthly",
+        "Label": "Utilities"
+    },
+    {
+        "Transaction_Id": "c938d2fe-fe18-42ea-b833-de9084133556",
+        "User_Id": 90260003,
+        "Timestamp": "2023-06-28 12:25",
+        "Category": "Spending",
+        "Amount": 872.8,
+        "Reason": "Dining Out",
+        "Type": "Daily",
+        "Label": "Entertainment"
+    },
+    {
+        "Transaction_Id": "37c1686e-b0a2-4a96-ba00-2dd0720d06a3",
+        "User_Id": 90260003,
+        "Timestamp": "2023-06-30 12:25",
+        "Category": "Income",
+        "Amount": 663.6,
+        "Reason": "Inheritance",
+        "Type": "Daily",
+        "Label": "Leisure & Recreation"
+    },
+    {
+        "Transaction_Id": "e5c39119-9f0f-45cf-8332-740302591763",
+        "User_Id": 90260003,
+        "Timestamp": "2023-07-01 12:25",
+        "Category": "Spending",
+        "Amount": 933.31,
+        "Reason": "Home Improvement",
+        "Type": "Monthly",
+        "Label": "Utilities"
+    },
+    {
+        "Transaction_Id": "c2fabfd6-4147-4699-a83e-5e1d547ce9d8",
+        "User_Id": 90260003,
+        "Timestamp": "2023-07-02 12:25",
+        "Category": "Income",
+        "Amount": 169.23,
+        "Reason": "Lottery",
+        "Type": "Daily",
+        "Label": "Entertainment"
+    },
+    {
+        "Transaction_Id": "fdc8aded-97ed-46cc-a1ca-b64ec21b80ff",
+        "User_Id": 90260003,
+        "Timestamp": "2023-07-03 12:25",
+        "Category": "Spending",
+        "Amount": 714.34,
+        "Reason": "Dining Out",
+        "Type": "Daily",
+        "Label": "Food & Dining"
+    },
+    {
+        "Transaction_Id": "d9cdc875-ade5-40f4-bb9d-4f8ff9f5ebec",
+        "User_Id": 90260003,
+        "Timestamp": "2023-07-03 12:25",
+        "Category": "Income",
+        "Amount": 986.7,
+        "Reason": "Selling Items",
+        "Type": "Monthly",
+        "Label": "Entertainment"
+    },
+    {
+        "Transaction_Id": "9072175d-f16f-49e6-b365-ea467392d8b3",
+        "User_Id": 90260003,
+        "Timestamp": "2023-07-05 12:25",
+        "Category": "Income",
+        "Amount": 441.48,
+        "Reason": "Salary",
+        "Type": "Daily",
+        "Label": "Food & Dining"
+    },
+    {
+        "Transaction_Id": "fd03a630-9ee2-49ee-bc26-919b8585fbec",
+        "User_Id": 90260003,
+        "Timestamp": "2023-07-05 12:25",
+        "Category": "Income",
+        "Amount": 26.75,
+        "Reason": "Tax Refund",
+        "Type": "Monthly",
+        "Label": "Health & Fitness"
+    },
+    {
+        "Transaction_Id": "d2f875e5-5502-4ca3-8c55-4ef471a9a285",
+        "User_Id": 90260003,
+        "Timestamp": "2023-07-07 12:25",
+        "Category": "Income",
+        "Amount": 110.81,
+        "Reason": "Crowdfunding",
+        "Type": "Daily",
+        "Label": "Utilities"
+    },
+    {
+        "Transaction_Id": "c0f667f2-d2d8-4a0b-8229-cce62c91a70a",
+        "User_Id": 90260003,
+        "Timestamp": "2023-07-07 12:25",
+        "Category": "Spending",
+        "Amount": 302.86,
+        "Reason": "Entertainment",
+        "Type": "Daily",
+        "Label": "Utilities"
+    },
+    {
+        "Transaction_Id": "9b726856-59f2-4a73-83fe-17c73d7bca94",
+        "User_Id": 90260003,
+        "Timestamp": "2023-07-08 12:25",
+        "Category": "Income",
+        "Amount": 37.4,
+        "Reason": "Lottery",
+        "Type": "Daily",
+        "Label": "Entertainment"
+    },
+    {
+        "Transaction_Id": "c9db2046-d54a-4727-8d5e-4b32234a0981",
+        "User_Id": 90260003,
+        "Timestamp": "2023-07-09 12:25",
+        "Category": "Income",
+        "Amount": 632.6,
+        "Reason": "Rental Income",
+        "Type": "Monthly",
+        "Label": "Utilities"
+    },
+    {
+        "Transaction_Id": "907e629b-4bee-4625-b538-2f66c28ec494",
+        "User_Id": 90260003,
+        "Timestamp": "2023-07-09 12:25",
+        "Category": "Income",
+        "Amount": 224.13,
+        "Reason": "Interest Income",
+        "Type": "Monthly",
+        "Label": "Health & Fitness"
+    },
+    {
+        "Transaction_Id": "67940a6d-56be-42b1-a8a5-093f497cfb87",
+        "User_Id": 90260003,
+        "Timestamp": "2023-07-10 12:25",
+        "Category": "Income",
+        "Amount": 385.51,
+        "Reason": "Refund",
+        "Type": "Monthly",
+        "Label": "Health & Fitness"
+    },
+    {
+        "Transaction_Id": "74b8b3c3-e903-4727-a065-00fad7b8116b",
+        "User_Id": 90260003,
+        "Timestamp": "2023-07-11 12:25",
+        "Category": "Spending",
+        "Amount": 637.31,
+        "Reason": "Groceries",
+        "Type": "Daily",
+        "Label": "Entertainment"
+    },
+    {
+        "Transaction_Id": "89b3ba04-d981-480f-8023-12219f27e292",
+        "User_Id": 90260003,
+        "Timestamp": "2023-07-11 12:25",
+        "Category": "Spending",
+        "Amount": 13.79,
+        "Reason": "Rent",
+        "Type": "Monthly",
+        "Label": "Utilities"
+    },
+    {
+        "Transaction_Id": "5e83c6c0-13f0-4d2d-814a-ccb53d5de6ea",
+        "User_Id": 90260003,
+        "Timestamp": "2023-07-11 12:25",
+        "Category": "Spending",
+        "Amount": 757.52,
+        "Reason": "Car Payment",
+        "Type": "Daily",
+        "Label": "Entertainment"
+    },
+    {
+        "Transaction_Id": "37cc8c3d-0394-4683-9a93-e39c8f1886a2",
+        "User_Id": 90260003,
+        "Timestamp": "2023-07-11 12:25",
+        "Category": "Income",
+        "Amount": 834.18,
+        "Reason": "Salary",
+        "Type": "Monthly",
+        "Label": "Food & Dining"
+    },
+    {
+        "Transaction_Id": "5feea33c-70bb-46ef-a2e2-d89711bd7291",
+        "User_Id": 90260003,
+        "Timestamp": "2023-07-12 12:25",
+        "Category": "Income",
+        "Amount": 89.54,
+        "Reason": "Selling Items",
+        "Type": "Monthly",
+        "Label": "Health & Fitness"
+    },
+    {
+        "Transaction_Id": "bae545aa-175a-4856-96d3-1cb64b3c5e9e",
+        "User_Id": 90260003,
+        "Timestamp": "2023-07-12 12:25",
+        "Category": "Income",
+        "Amount": 32.88,
+        "Reason": "Investment Return",
+        "Type": "Daily",
+        "Label": "Entertainment"
+    },
+    {
+        "Transaction_Id": "4819e1c5-1ea1-4716-8827-346065cac80a",
+        "User_Id": 90260003,
+        "Timestamp": "2023-07-13 12:25",
+        "Category": "Income",
+        "Amount": 882.54,
+        "Reason": "Bonus",
+        "Type": "Monthly",
+        "Label": "Leisure & Recreation"
+    },
+    {
+        "Transaction_Id": "5a0ffdc9-1fca-48eb-a678-c423f751e677",
+        "User_Id": 90260003,
+        "Timestamp": "2023-07-13 12:25",
+        "Category": "Spending",
+        "Amount": 754.14,
+        "Reason": "Maintenance",
+        "Type": "Daily",
+        "Label": "Health & Fitness"
+    },
+    {
+        "Transaction_Id": "26d3c697-a5f7-4d72-8a32-646cf5920c53",
+        "User_Id": 90260003,
+        "Timestamp": "2023-07-14 12:25",
+        "Category": "Spending",
+        "Amount": 49.11,
+        "Reason": "Car Payment",
+        "Type": "Monthly",
+        "Label": "Utilities"
+    },
+    {
+        "Transaction_Id": "699a4e19-e23d-4671-bf5f-96b76fd633b5",
+        "User_Id": 90260003,
+        "Timestamp": "2023-07-15 12:25",
+        "Category": "Income",
+        "Amount": 484.79,
+        "Reason": "Gift",
+        "Type": "Daily",
+        "Label": "Leisure & Recreation"
+    },
+    {
+        "Transaction_Id": "364beffd-7686-45dc-b721-ce18a7f24efc",
+        "User_Id": 90260003,
+        "Timestamp": "2023-07-15 12:25",
+        "Category": "Income",
+        "Amount": 152.49,
+        "Reason": "Bonus",
+        "Type": "Daily",
+        "Label": "Leisure & Recreation"
+    },
+    {
+        "Transaction_Id": "40f67690-1e44-43e8-adc3-687a9eb2cc0a",
+        "User_Id": 90260003,
+        "Timestamp": "2023-07-18 12:25",
+        "Category": "Spending",
+        "Amount": 380.97,
+        "Reason": "Education",
+        "Type": "Monthly",
+        "Label": "Food & Dining"
+    },
+    {
+        "Transaction_Id": "5a57baf8-99bf-454e-9135-4266e4e63478",
+        "User_Id": 90260003,
+        "Timestamp": "2023-07-18 12:25",
+        "Category": "Spending",
+        "Amount": 43.1,
+        "Reason": "Clothing",
+        "Type": "Daily",
+        "Label": "Health & Fitness"
+    },
+    {
+        "Transaction_Id": "3f69b1c2-c7c8-42fe-9292-428d963f91af",
+        "User_Id": 90260003,
+        "Timestamp": "2023-07-18 12:25",
+        "Category": "Spending",
+        "Amount": 733.62,
+        "Reason": "Home Improvement",
+        "Type": "Daily",
+        "Label": "Health & Fitness"
+    },
+    {
+        "Transaction_Id": "55a7f078-d5dc-4962-b909-bfff10a09b03",
+        "User_Id": 90260003,
+        "Timestamp": "2023-07-20 12:25",
+        "Category": "Income",
+        "Amount": 710.58,
+        "Reason": "Salary",
+        "Type": "Daily",
+        "Label": "Utilities"
+    },
+    {
+        "Transaction_Id": "08bfeeb8-f00a-41ca-abfe-8ad1a8d86a18",
+        "User_Id": 90260003,
+        "Timestamp": "2023-07-20 12:25",
+        "Category": "Income",
+        "Amount": 611.42,
+        "Reason": "Gift",
+        "Type": "Daily",
+        "Label": "Health & Fitness"
+    },
+    {
+        "Transaction_Id": "15291086-2a00-4fb2-8bcc-92b5815fa72e",
+        "User_Id": 90260003,
+        "Timestamp": "2023-07-20 12:25",
+        "Category": "Spending",
+        "Amount": 800.84,
+        "Reason": "Entertainment",
+        "Type": "Monthly",
+        "Label": "Leisure & Recreation"
+    },
+    {
+        "Transaction_Id": "8809aaad-daee-4995-88f7-b709a1bca569",
+        "User_Id": 90260003,
+        "Timestamp": "2023-07-22 12:25",
+        "Category": "Income",
+        "Amount": 929.45,
+        "Reason": "Lottery",
+        "Type": "Monthly",
+        "Label": "Health & Fitness"
+    },
+    {
+        "Transaction_Id": "06436b1c-e8b0-4b66-b60b-4ac36ad11306",
+        "User_Id": 90260003,
+        "Timestamp": "2023-07-23 12:25",
+        "Category": "Income",
+        "Amount": 169.47,
+        "Reason": "Salary",
+        "Type": "Monthly",
+        "Label": "Health & Fitness"
+    },
+    {
+        "Transaction_Id": "d5f2ea61-a615-4c43-9e9a-eefe2ae7eb99",
+        "User_Id": 90260003,
+        "Timestamp": "2023-07-23 12:25",
+        "Category": "Spending",
+        "Amount": 247.2,
+        "Reason": "Subscriptions",
+        "Type": "Monthly",
+        "Label": "Utilities"
+    },
+    {
+        "Transaction_Id": "4157066f-e814-455a-9bd6-882bdf41ef39",
+        "User_Id": 90260003,
+        "Timestamp": "2023-07-23 12:25",
+        "Category": "Spending",
+        "Amount": 909.23,
+        "Reason": "Subscriptions",
+        "Type": "Monthly",
+        "Label": "Utilities"
+    },
+    {
+        "Transaction_Id": "376386a6-77ea-42f0-a3f2-da7e2ad77dfd",
+        "User_Id": 90260003,
+        "Timestamp": "2023-07-26 12:25",
+        "Category": "Income",
+        "Amount": 933.4,
+        "Reason": "Scholarship",
+        "Type": "Monthly",
+        "Label": "Leisure & Recreation"
+    },
+    {
+        "Transaction_Id": "b360abf7-d93d-40fb-a342-65db3331d790",
+        "User_Id": 90260003,
+        "Timestamp": "2023-07-26 12:25",
+        "Category": "Spending",
+        "Amount": 670.13,
+        "Reason": "Utilities",
+        "Type": "Daily",
+        "Label": "Food & Dining"
+    },
+    {
+        "Transaction_Id": "b1029eb6-82ee-4a87-a27c-b54be3ceb365",
+        "User_Id": 90260003,
+        "Timestamp": "2023-07-27 12:25",
+        "Category": "Spending",
+        "Amount": 631.17,
+        "Reason": "Car Payment",
+        "Type": "Daily",
+        "Label": "Food & Dining"
+    },
+    {
+        "Transaction_Id": "6d3b8f60-3721-46a1-948a-b5d7d39ce01a",
+        "User_Id": 90260003,
+        "Timestamp": "2023-07-28 12:25",
+        "Category": "Income",
+        "Amount": 856.56,
+        "Reason": "Inheritance",
+        "Type": "Monthly",
+        "Label": "Entertainment"
+    },
+    {
+        "Transaction_Id": "ef228f8a-3afc-47be-89c1-f072a0479323",
+        "User_Id": 90260003,
+        "Timestamp": "2023-07-29 12:25",
+        "Category": "Income",
+        "Amount": 255.13,
+        "Reason": "Refund",
+        "Type": "Monthly",
+        "Label": "Health & Fitness"
+    },
+    {
+        "Transaction_Id": "8b1c5c3d-7fb2-4fe2-b8ea-81d8a68e2c6d",
+        "User_Id": 90260003,
+        "Timestamp": "2023-07-30 12:25",
+        "Category": "Spending",
+        "Amount": 358.78,
+        "Reason": "Dining Out",
+        "Type": "Daily",
+        "Label": "Leisure & Recreation"
+    },
+    {
+        "Transaction_Id": "e2d2a4ff-e666-4810-a13f-9f636257c2a5",
+        "User_Id": 90260003,
+        "Timestamp": "2023-07-31 12:25",
+        "Category": "Spending",
+        "Amount": 171.12,
+        "Reason": "Charity",
+        "Type": "Daily",
+        "Label": "Entertainment"
+    },
+    {
+        "Transaction_Id": "57e5f236-b57d-4b7d-b0cd-c45d89079d08",
+        "User_Id": 90260003,
+        "Timestamp": "2023-08-01 12:25",
+        "Category": "Spending",
+        "Amount": 882.29,
+        "Reason": "Utilities",
+        "Type": "Monthly",
+        "Label": "Entertainment"
+    },
+    {
+        "Transaction_Id": "370d29d9-d0b4-40c2-9624-0704f8128e11",
+        "User_Id": 90260003,
+        "Timestamp": "2023-08-01 12:25",
+        "Category": "Income",
+        "Amount": 694.9,
+        "Reason": "Refund",
+        "Type": "Monthly",
+        "Label": "Leisure & Recreation"
+    },
+    {
+        "Transaction_Id": "d2821327-dd44-4645-bf96-2f8e7e950b4f",
+        "User_Id": 90260003,
+        "Timestamp": "2023-08-01 12:25",
+        "Category": "Income",
+        "Amount": 390.17,
+        "Reason": "Selling Items",
+        "Type": "Monthly",
+        "Label": "Health & Fitness"
+    },
+    {
+        "Transaction_Id": "6ae3d2e9-8e24-4d17-9cf9-f75c1c19b42e",
+        "User_Id": 90260003,
+        "Timestamp": "2023-08-01 12:25",
+        "Category": "Spending",
+        "Amount": 651.4,
+        "Reason": "Pet Care",
+        "Type": "Monthly",
+        "Label": "Leisure & Recreation"
+    },
+    {
+        "Transaction_Id": "a9ef65b7-0f86-4b89-82d3-8c65de8a819d",
+        "User_Id": 90260003,
+        "Timestamp": "2023-08-02 12:25",
+        "Category": "Spending",
+        "Amount": 577.4,
+        "Reason": "Insurance",
+        "Type": "Monthly",
+        "Label": "Utilities"
+    },
+    {
+        "Transaction_Id": "ce93659e-9873-4044-bacd-9592c5a151d5",
+        "User_Id": 90260003,
+        "Timestamp": "2023-08-03 12:25",
+        "Category": "Income",
+        "Amount": 786.94,
+        "Reason": "Investment Return",
+        "Type": "Daily",
+        "Label": "Entertainment"
+    },
+    {
+        "Transaction_Id": "c2ad1fa5-1427-4c76-964f-59138ff457eb",
+        "User_Id": 90260003,
+        "Timestamp": "2023-08-03 12:25",
+        "Category": "Income",
+        "Amount": 102.77,
+        "Reason": "Cryptocurrency",
+        "Type": "Daily",
+        "Label": "Food & Dining"
+    },
+    {
+        "Transaction_Id": "3cd51a56-8737-45e1-9e70-7b3a8e53af2d",
+        "User_Id": 90260003,
+        "Timestamp": "2023-08-04 12:25",
+        "Category": "Income",
+        "Amount": 235.67,
+        "Reason": "Scholarship",
+        "Type": "Monthly",
+        "Label": "Utilities"
+    },
+    {
+        "Transaction_Id": "11f8c7b9-b9b4-43a9-b593-cfea9aeda08e",
+        "User_Id": 90260003,
+        "Timestamp": "2023-08-07 12:25",
+        "Category": "Income",
+        "Amount": 274.04,
+        "Reason": "Tax Refund",
+        "Type": "Monthly",
+        "Label": "Leisure & Recreation"
+    },
+    {
+        "Transaction_Id": "d2ce915b-140d-4e9a-b0ff-c0b04618f0b9",
+        "User_Id": 90260003,
+        "Timestamp": "2023-08-07 12:25",
+        "Category": "Spending",
+        "Amount": 567.88,
+        "Reason": "Rent",
+        "Type": "Monthly",
+        "Label": "Utilities"
+    },
+    {
+        "Transaction_Id": "e38ac616-9505-49a0-a4eb-4572df80adc3",
+        "User_Id": 90260003,
+        "Timestamp": "2023-08-08 12:25",
+        "Category": "Income",
+        "Amount": 746.63,
+        "Reason": "Lottery",
+        "Type": "Daily",
+        "Label": "Food & Dining"
+    },
+    {
+        "Transaction_Id": "dbf42faf-9331-4298-bc39-60431212f151",
+        "User_Id": 90260003,
+        "Timestamp": "2023-08-10 12:25",
+        "Category": "Spending",
+        "Amount": 112.91,
+        "Reason": "Clothing",
+        "Type": "Monthly",
+        "Label": "Food & Dining"
+    },
+    {
+        "Transaction_Id": "236730e0-4357-47cf-9d68-40bd50b32d2c",
+        "User_Id": 90260003,
+        "Timestamp": "2023-08-11 12:25",
+        "Category": "Income",
+        "Amount": 577.09,
+        "Reason": "Salary",
+        "Type": "Daily",
+        "Label": "Food & Dining"
+    },
+    {
+        "Transaction_Id": "df43bbb1-6450-4c1e-8b21-1c7c8f889c5b",
+        "User_Id": 90260003,
+        "Timestamp": "2023-08-13 12:25",
+        "Category": "Income",
+        "Amount": 740.07,
+        "Reason": "Rental Income",
+        "Type": "Monthly",
+        "Label": "Leisure & Recreation"
+    },
+    {
+        "Transaction_Id": "a86b2962-48c6-4264-883f-d56386bc6efd",
+        "User_Id": 90260003,
+        "Timestamp": "2023-08-13 12:25",
+        "Category": "Spending",
+        "Amount": 759.31,
+        "Reason": "Groceries",
+        "Type": "Daily",
+        "Label": "Food & Dining"
+    },
+    {
+        "Transaction_Id": "8cc5e844-ed59-4348-9f08-873f73ed2eb4",
+        "User_Id": 90260003,
+        "Timestamp": "2023-08-14 12:25",
+        "Category": "Income",
+        "Amount": 436.75,
+        "Reason": "Tax Refund",
+        "Type": "Monthly",
+        "Label": "Entertainment"
+    },
+    {
+        "Transaction_Id": "f59b168d-a5ad-46b8-b2bf-e3494fcd100c",
+        "User_Id": 90260003,
+        "Timestamp": "2023-08-15 12:25",
+        "Category": "Spending",
+        "Amount": 533.67,
+        "Reason": "Utilities",
+        "Type": "Monthly",
+        "Label": "Health & Fitness"
+    },
+    {
+        "Transaction_Id": "473e5ea9-45ac-4332-b2d4-c6d400ae0911",
+        "User_Id": 90260003,
+        "Timestamp": "2023-08-15 12:25",
+        "Category": "Spending",
+        "Amount": 582.35,
+        "Reason": "Rent",
+        "Type": "Monthly",
+        "Label": "Entertainment"
+    },
+    {
+        "Transaction_Id": "47d2b788-441e-4a51-a14a-a726a9937a84",
+        "User_Id": 90260003,
+        "Timestamp": "2023-08-15 12:25",
+        "Category": "Income",
+        "Amount": 456.15,
+        "Reason": "Salary",
+        "Type": "Monthly",
+        "Label": "Utilities"
+    },
+    {
+        "Transaction_Id": "6fa60108-7b73-4a59-8bf2-b463517118b4",
+        "User_Id": 90260003,
+        "Timestamp": "2023-08-15 12:25",
+        "Category": "Income",
+        "Amount": 383.91,
+        "Reason": "Gift",
+        "Type": "Daily",
+        "Label": "Leisure & Recreation"
+    },
+    {
+        "Transaction_Id": "4d4e53fc-a050-49ba-a471-b62a9b35f280",
+        "User_Id": 90260003,
+        "Timestamp": "2023-08-16 12:25",
+        "Category": "Spending",
+        "Amount": 132.59,
+        "Reason": "Education",
+        "Type": "Daily",
+        "Label": "Leisure & Recreation"
+    },
+    {
+        "Transaction_Id": "c09a248e-46ea-485f-8953-535eaf411e9f",
+        "User_Id": 90260003,
+        "Timestamp": "2023-08-16 12:25",
+        "Category": "Spending",
+        "Amount": 827.71,
+        "Reason": "Clothing",
+        "Type": "Daily",
+        "Label": "Health & Fitness"
+    },
+    {
+        "Transaction_Id": "c7227a95-0c84-4dcc-8131-2918ce3b842e",
+        "User_Id": 90260003,
+        "Timestamp": "2023-08-16 12:25",
+        "Category": "Income",
+        "Amount": 79.32,
+        "Reason": "Lottery",
+        "Type": "Daily",
+        "Label": "Utilities"
+    },
+    {
+        "Transaction_Id": "56371c73-e125-4a82-9aae-cf20f84f6811",
+        "User_Id": 90260003,
+        "Timestamp": "2023-08-17 12:25",
+        "Category": "Spending",
+        "Amount": 214.63,
+        "Reason": "Subscriptions",
+        "Type": "Monthly",
+        "Label": "Leisure & Recreation"
+    },
+    {
+        "Transaction_Id": "98f5ef7d-120e-44f9-adc1-915626527efe",
+        "User_Id": 90260003,
+        "Timestamp": "2023-08-18 12:25",
+        "Category": "Spending",
+        "Amount": 994.81,
+        "Reason": "Subscriptions",
+        "Type": "Monthly",
+        "Label": "Utilities"
+    },
+    {
+        "Transaction_Id": "93469851-0d1b-4aa7-b97a-d39c25091da5",
+        "User_Id": 90260003,
+        "Timestamp": "2023-08-20 12:25",
+        "Category": "Spending",
+        "Amount": 586.93,
+        "Reason": "Pet Care",
+        "Type": "Daily",
+        "Label": "Leisure & Recreation"
+    },
+    {
+        "Transaction_Id": "4440b158-8e79-4e7f-84d8-1cfa0e94af37",
+        "User_Id": 90260003,
+        "Timestamp": "2023-08-21 12:25",
+        "Category": "Spending",
+        "Amount": 587.26,
+        "Reason": "Pet Care",
+        "Type": "Daily",
+        "Label": "Utilities"
+    },
+    {
+        "Transaction_Id": "9aea9fb9-29e7-46a1-bcc6-f1e0369e6d85",
+        "User_Id": 90260003,
+        "Timestamp": "2023-08-23 12:25",
+        "Category": "Spending",
+        "Amount": 399.88,
+        "Reason": "Entertainment",
+        "Type": "Daily",
+        "Label": "Entertainment"
+    },
+    {
+        "Transaction_Id": "847bd751-4645-47dd-8f55-8e86f3ef4bdf",
+        "User_Id": 90260003,
+        "Timestamp": "2023-08-24 12:25",
+        "Category": "Income",
+        "Amount": 650.96,
+        "Reason": "Lottery",
+        "Type": "Daily",
+        "Label": "Health & Fitness"
+    },
+    {
+        "Transaction_Id": "b8236a7b-7195-429c-97ee-f9ba2e615113",
+        "User_Id": 90260003,
+        "Timestamp": "2023-08-28 12:25",
+        "Category": "Spending",
+        "Amount": 817.95,
+        "Reason": "Car Payment",
+        "Type": "Monthly",
+        "Label": "Health & Fitness"
+    },
+    {
+        "Transaction_Id": "645e0804-2f34-4a72-81ad-20ebb70c69a4",
+        "User_Id": 90260003,
+        "Timestamp": "2023-08-28 12:25",
+        "Category": "Spending",
+        "Amount": 632.84,
+        "Reason": "Transportation",
+        "Type": "Monthly",
+        "Label": "Health & Fitness"
+    },
+    {
+        "Transaction_Id": "d1fe5184-2202-433b-b4d8-a60ccb554aa6",
+        "User_Id": 90260003,
+        "Timestamp": "2023-08-30 12:25",
+        "Category": "Spending",
+        "Amount": 190.33,
+        "Reason": "Groceries",
+        "Type": "Monthly",
+        "Label": "Entertainment"
+    },
+    {
+        "Transaction_Id": "fad5000a-c755-4b2e-99af-a9fd29550c8e",
+        "User_Id": 90260003,
+        "Timestamp": "2023-08-30 12:25",
+        "Category": "Income",
+        "Amount": 416.84,
+        "Reason": "Crowdfunding",
+        "Type": "Daily",
+        "Label": "Leisure & Recreation"
+    },
+    {
+        "Transaction_Id": "339859a7-155b-49f4-8b72-d1ed546d8aad",
+        "User_Id": 90260003,
+        "Timestamp": "2023-08-30 12:25",
+        "Category": "Income",
+        "Amount": 970.03,
+        "Reason": "Dividends",
+        "Type": "Daily",
+        "Label": "Entertainment"
+    },
+    {
+        "Transaction_Id": "4202d5e3-c075-4f58-84bd-4d52f0c98fb0",
+        "User_Id": 90260003,
+        "Timestamp": "2023-09-01 12:25",
+        "Category": "Spending",
+        "Amount": 530.63,
+        "Reason": "Maintenance",
+        "Type": "Monthly",
+        "Label": "Health & Fitness"
+    },
+    {
+        "Transaction_Id": "977253ee-f710-4d80-b4c7-68ccff2c613d",
+        "User_Id": 90260003,
+        "Timestamp": "2023-09-02 12:25",
+        "Category": "Spending",
+        "Amount": 294.49,
+        "Reason": "Subscriptions",
+        "Type": "Daily",
+        "Label": "Leisure & Recreation"
+    },
+    {
+        "Transaction_Id": "9d0f4645-c72d-4269-9803-0050a9917dd4",
+        "User_Id": 90260003,
+        "Timestamp": "2023-09-03 12:25",
+        "Category": "Income",
+        "Amount": 140.97,
+        "Reason": "Salary",
+        "Type": "Monthly",
+        "Label": "Leisure & Recreation"
+    },
+    {
+        "Transaction_Id": "baa142a9-cf61-491f-ad79-7215a49946b0",
+        "User_Id": 90260003,
+        "Timestamp": "2023-09-03 12:25",
+        "Category": "Spending",
+        "Amount": 40.34,
+        "Reason": "Home Improvement",
+        "Type": "Daily",
+        "Label": "Entertainment"
+    },
+    {
+        "Transaction_Id": "6e411264-5f7d-4fb3-876c-71b156661540",
+        "User_Id": 90260003,
+        "Timestamp": "2023-09-05 12:25",
+        "Category": "Spending",
+        "Amount": 900.85,
+        "Reason": "Charity",
+        "Type": "Monthly",
+        "Label": "Health & Fitness"
+    },
+    {
+        "Transaction_Id": "76946ad8-a927-47d5-8e25-edb425da0e78",
+        "User_Id": 90260003,
+        "Timestamp": "2023-09-05 12:25",
+        "Category": "Spending",
+        "Amount": 848.21,
+        "Reason": "Dining Out",
+        "Type": "Daily",
+        "Label": "Food & Dining"
+    },
+    {
+        "Transaction_Id": "2919dc8c-c729-479c-9d11-71a1e740aa1b",
+        "User_Id": 90260003,
+        "Timestamp": "2023-09-06 12:25",
+        "Category": "Spending",
+        "Amount": 443.73,
+        "Reason": "Home Improvement",
+        "Type": "Daily",
+        "Label": "Food & Dining"
+    },
+    {
+        "Transaction_Id": "11541963-d4e0-42e5-99aa-550d39e54b5a",
+        "User_Id": 90260003,
+        "Timestamp": "2023-09-07 12:25",
+        "Category": "Spending",
+        "Amount": 775.29,
+        "Reason": "Groceries",
+        "Type": "Monthly",
+        "Label": "Entertainment"
+    },
+    {
+        "Transaction_Id": "df4a10de-d2db-49fb-88b7-155d2c529142",
+        "User_Id": 90260003,
+        "Timestamp": "2023-09-07 12:25",
+        "Category": "Spending",
+        "Amount": 305.59,
+        "Reason": "Rent",
+        "Type": "Daily",
+        "Label": "Leisure & Recreation"
+    },
+    {
+        "Transaction_Id": "2c254f7b-6926-437d-b3e9-8b4ed977d2e6",
+        "User_Id": 90260003,
+        "Timestamp": "2023-09-08 12:25",
+        "Category": "Income",
+        "Amount": 895.46,
+        "Reason": "Inheritance",
+        "Type": "Daily",
+        "Label": "Health & Fitness"
+    },
+    {
+        "Transaction_Id": "e06bf415-57ca-46e2-8fca-3a4dc4a4846d",
+        "User_Id": 90260003,
+        "Timestamp": "2023-09-08 12:25",
+        "Category": "Spending",
+        "Amount": 196.42,
+        "Reason": "Groceries",
+        "Type": "Monthly",
+        "Label": "Utilities"
+    },
+    {
+        "Transaction_Id": "9a638c1d-4abe-4ef7-8be6-23dce5c87180",
+        "User_Id": 90260003,
+        "Timestamp": "2023-09-09 12:25",
+        "Category": "Income",
+        "Amount": 123.63,
+        "Reason": "Scholarship",
+        "Type": "Monthly",
+        "Label": "Health & Fitness"
+    },
+    {
+        "Transaction_Id": "e677064e-6cc4-4475-9ead-b3dc9f85b438",
+        "User_Id": 90260003,
+        "Timestamp": "2023-09-10 12:25",
+        "Category": "Income",
+        "Amount": 68.92,
+        "Reason": "Stock Market",
+        "Type": "Daily",
+        "Label": "Utilities"
+    },
+    {
+        "Transaction_Id": "0b6bafd9-cfaf-4ddd-86f9-03f75eae4391",
+        "User_Id": 90260003,
+        "Timestamp": "2023-09-12 12:25",
+        "Category": "Spending",
+        "Amount": 335.83,
+        "Reason": "Education",
+        "Type": "Daily",
+        "Label": "Health & Fitness"
+    },
+    {
+        "Transaction_Id": "f41d97d2-ba12-4676-a2df-3f8fe9ff7da7",
+        "User_Id": 90260003,
+        "Timestamp": "2023-09-13 12:25",
+        "Category": "Spending",
+        "Amount": 633.66,
+        "Reason": "Healthcare",
+        "Type": "Monthly",
+        "Label": "Entertainment"
+    },
+    {
+        "Transaction_Id": "0d24927e-326b-4f2d-b0c0-141538c3fc08",
+        "User_Id": 90260003,
+        "Timestamp": "2023-09-14 12:25",
+        "Category": "Income",
+        "Amount": 413.66,
+        "Reason": "Freelance Project",
+        "Type": "Monthly",
+        "Label": "Entertainment"
+    },
+    {
+        "Transaction_Id": "994e09cd-1f01-4cfc-a251-8e6b2dfbac41",
+        "User_Id": 90260003,
+        "Timestamp": "2023-09-14 12:25",
+        "Category": "Income",
+        "Amount": 842.19,
+        "Reason": "Scholarship",
+        "Type": "Monthly",
+        "Label": "Entertainment"
+    },
+    {
+        "Transaction_Id": "913b9d71-3e41-43cc-af54-1f553555c7d9",
+        "User_Id": 90260003,
+        "Timestamp": "2023-09-14 12:25",
+        "Category": "Spending",
+        "Amount": 522.8,
+        "Reason": "Groceries",
+        "Type": "Daily",
+        "Label": "Health & Fitness"
+    },
+    {
+        "Transaction_Id": "4254b218-5e30-4ede-98b2-72743c490110",
+        "User_Id": 90260003,
+        "Timestamp": "2023-09-15 12:25",
+        "Category": "Income",
+        "Amount": 594.0,
+        "Reason": "Pension",
+        "Type": "Daily",
+        "Label": "Utilities"
+    },
+    {
+        "Transaction_Id": "520acaf7-a595-4ed3-9644-263bdbfc53b1",
+        "User_Id": 90260003,
+        "Timestamp": "2023-09-18 12:25",
+        "Category": "Income",
+        "Amount": 336.9,
+        "Reason": "Cryptocurrency",
+        "Type": "Daily",
+        "Label": "Leisure & Recreation"
+    },
+    {
+        "Transaction_Id": "c62973cc-5f95-46e1-927d-32b598ae8438",
+        "User_Id": 90260003,
+        "Timestamp": "2023-09-19 12:25",
+        "Category": "Income",
+        "Amount": 665.34,
+        "Reason": "Side Business",
+        "Type": "Monthly",
+        "Label": "Leisure & Recreation"
+    },
+    {
+        "Transaction_Id": "1bac183a-d8d8-475f-969a-389cf19d5297",
+        "User_Id": 90260003,
+        "Timestamp": "2023-09-21 12:25",
+        "Category": "Spending",
+        "Amount": 322.42,
+        "Reason": "Healthcare",
+        "Type": "Monthly",
+        "Label": "Food & Dining"
+    },
+    {
+        "Transaction_Id": "aefe79ab-6d64-40f4-be32-75c36a4a081a",
+        "User_Id": 90260003,
+        "Timestamp": "2023-09-22 12:25",
+        "Category": "Income",
+        "Amount": 301.11,
+        "Reason": "Interest Income",
+        "Type": "Daily",
+        "Label": "Food & Dining"
+    },
+    {
+        "Transaction_Id": "0bbe56d8-adf8-4a61-9c79-0aaafe6d5a13",
+        "User_Id": 90260003,
+        "Timestamp": "2023-09-23 12:25",
+        "Category": "Income",
+        "Amount": 859.92,
+        "Reason": "Rental Income",
+        "Type": "Monthly",
+        "Label": "Food & Dining"
+    },
+    {
+        "Transaction_Id": "6d3ed89e-6924-4e82-8346-1a130e8c02d7",
+        "User_Id": 90260003,
+        "Timestamp": "2023-09-23 12:25",
+        "Category": "Spending",
+        "Amount": 97.66,
+        "Reason": "Clothing",
+        "Type": "Daily",
+        "Label": "Entertainment"
+    },
+    {
+        "Transaction_Id": "ec6e05d2-368e-437d-b01b-55336b0f8d7e",
+        "User_Id": 90260003,
+        "Timestamp": "2023-09-24 12:25",
+        "Category": "Income",
+        "Amount": 418.35,
+        "Reason": "Stock Market",
+        "Type": "Monthly",
+        "Label": "Leisure & Recreation"
+    },
+    {
+        "Transaction_Id": "172fd6ad-ba06-45c6-9f39-2b362f138ae1",
+        "User_Id": 90260003,
+        "Timestamp": "2023-09-24 12:25",
+        "Category": "Income",
+        "Amount": 457.06,
+        "Reason": "Stock Market",
+        "Type": "Daily",
+        "Label": "Leisure & Recreation"
+    },
+    {
+        "Transaction_Id": "68c568e1-e59c-42e1-86e1-43eaddefe037",
+        "User_Id": 90260003,
+        "Timestamp": "2023-09-26 12:25",
+        "Category": "Income",
+        "Amount": 214.97,
+        "Reason": "Salary",
+        "Type": "Monthly",
+        "Label": "Leisure & Recreation"
+    },
+    {
+        "Transaction_Id": "8cc88df0-3eb4-450c-94e7-0e0a24afc5cf",
+        "User_Id": 90260003,
+        "Timestamp": "2023-09-27 12:25",
+        "Category": "Spending",
+        "Amount": 215.68,
+        "Reason": "Gym Membership",
+        "Type": "Daily",
+        "Label": "Entertainment"
+    },
+    {
+        "Transaction_Id": "a4fcd224-9c29-4d33-83dc-1d9c34be550b",
+        "User_Id": 90260003,
+        "Timestamp": "2023-09-29 12:25",
+        "Category": "Spending",
+        "Amount": 359.55,
+        "Reason": "Childcare",
+        "Type": "Monthly",
+        "Label": "Entertainment"
+    },
+    {
+        "Transaction_Id": "ed4d063c-a442-4bfa-8f6a-d467bd7ba5b1",
+        "User_Id": 90260003,
+        "Timestamp": "2023-09-30 12:25",
+        "Category": "Income",
+        "Amount": 850.52,
+        "Reason": "Rental Income",
+        "Type": "Daily",
+        "Label": "Leisure & Recreation"
+    },
+    {
+        "Transaction_Id": "35a7ce97-4466-49b5-849a-eab9a6a54645",
+        "User_Id": 90260003,
+        "Timestamp": "2023-09-30 12:25",
+        "Category": "Spending",
+        "Amount": 30.24,
+        "Reason": "Home Improvement",
+        "Type": "Daily",
+        "Label": "Food & Dining"
+    },
+    {
+        "Transaction_Id": "a7c25dd1-6642-4a5c-bc12-fc60e8aea33a",
+        "User_Id": 90260003,
+        "Timestamp": "2023-09-30 12:25",
+        "Category": "Spending",
+        "Amount": 433.0,
+        "Reason": "Entertainment",
+        "Type": "Daily",
+        "Label": "Leisure & Recreation"
+    },
+    {
+        "Transaction_Id": "1ab2d135-3b32-4f3e-9849-e0e0d56c52bc",
+        "User_Id": 90260003,
+        "Timestamp": "2023-10-01 12:25",
+        "Category": "Income",
+        "Amount": 659.83,
+        "Reason": "Grants",
+        "Type": "Monthly",
+        "Label": "Entertainment"
+    },
+    {
+        "Transaction_Id": "65dd9b86-df85-40a2-9767-01e45fdded4a",
+        "User_Id": 90260003,
+        "Timestamp": "2023-10-01 12:25",
+        "Category": "Income",
+        "Amount": 568.9,
+        "Reason": "Freelance Project",
+        "Type": "Monthly",
+        "Label": "Utilities"
+    },
+    {
+        "Transaction_Id": "626a4664-e03d-4879-b124-5976f669eff1",
+        "User_Id": 90260003,
+        "Timestamp": "2023-10-01 12:25",
+        "Category": "Income",
+        "Amount": 154.6,
+        "Reason": "Lottery",
+        "Type": "Monthly",
+        "Label": "Entertainment"
+    },
+    {
+        "Transaction_Id": "67f2a814-6d52-4d35-9310-b880886e77a5",
+        "User_Id": 90260003,
+        "Timestamp": "2023-10-02 12:25",
+        "Category": "Income",
+        "Amount": 165.0,
+        "Reason": "Tax Refund",
+        "Type": "Monthly",
+        "Label": "Leisure & Recreation"
+    },
+    {
+        "Transaction_Id": "1ecf2fef-8e29-4f3d-9314-a7d79e765925",
+        "User_Id": 90260003,
+        "Timestamp": "2023-10-04 12:25",
+        "Category": "Spending",
+        "Amount": 551.61,
+        "Reason": "Gym Membership",
+        "Type": "Monthly",
+        "Label": "Entertainment"
+    },
+    {
+        "Transaction_Id": "2c0fef94-013c-490d-9610-0ecea5bb2d2f",
+        "User_Id": 90260003,
+        "Timestamp": "2023-10-04 12:25",
+        "Category": "Income",
+        "Amount": 76.29,
+        "Reason": "Pension",
+        "Type": "Monthly",
+        "Label": "Entertainment"
+    },
+    {
+        "Transaction_Id": "09568d86-645d-494b-9ba7-f9cc77282c3f",
+        "User_Id": 90260003,
+        "Timestamp": "2023-10-04 12:25",
+        "Category": "Spending",
+        "Amount": 865.79,
+        "Reason": "Education",
+        "Type": "Daily",
+        "Label": "Leisure & Recreation"
+    },
+    {
+        "Transaction_Id": "de6b472b-5d37-489a-9a1e-93662d4c1bb4",
+        "User_Id": 90260003,
+        "Timestamp": "2023-10-05 12:25",
+        "Category": "Income",
+        "Amount": 644.99,
+        "Reason": "Gift",
+        "Type": "Monthly",
+        "Label": "Food & Dining"
+    },
+    {
+        "Transaction_Id": "8d472840-2d04-4baa-8ab0-7f3d52973cd7",
+        "User_Id": 90260003,
+        "Timestamp": "2023-10-05 12:25",
+        "Category": "Spending",
+        "Amount": 922.96,
+        "Reason": "Clothing",
+        "Type": "Monthly",
+        "Label": "Health & Fitness"
+    },
+    {
+        "Transaction_Id": "e7f02589-1f28-44e1-b723-f5057ba7601d",
+        "User_Id": 90260003,
+        "Timestamp": "2023-10-05 12:25",
+        "Category": "Income",
+        "Amount": 313.32,
+        "Reason": "Pension",
+        "Type": "Daily",
+        "Label": "Utilities"
+    },
+    {
+        "Transaction_Id": "1abe7270-70f7-48c8-884b-5e1acd50acc4",
+        "User_Id": 90260003,
+        "Timestamp": "2023-10-06 12:25",
+        "Category": "Income",
+        "Amount": 339.9,
+        "Reason": "Tax Refund",
+        "Type": "Daily",
+        "Label": "Health & Fitness"
+    },
+    {
+        "Transaction_Id": "06934e2e-5a63-4d18-807b-a4867425ecad",
+        "User_Id": 90260003,
+        "Timestamp": "2023-10-06 12:25",
+        "Category": "Spending",
+        "Amount": 46.79,
+        "Reason": "Subscriptions",
+        "Type": "Monthly",
+        "Label": "Food & Dining"
+    },
+    {
+        "Transaction_Id": "9bd6d7e1-417a-4666-9bc9-9b7151bdcfd2",
+        "User_Id": 90260003,
+        "Timestamp": "2023-10-06 12:25",
+        "Category": "Spending",
+        "Amount": 651.14,
+        "Reason": "Education",
+        "Type": "Monthly",
+        "Label": "Food & Dining"
+    },
+    {
+        "Transaction_Id": "2d968a40-fd1d-4067-b435-3b47914d6398",
+        "User_Id": 90260003,
+        "Timestamp": "2023-10-06 12:25",
+        "Category": "Spending",
+        "Amount": 301.1,
+        "Reason": "Transportation",
+        "Type": "Monthly",
+        "Label": "Utilities"
+    },
+    {
+        "Transaction_Id": "700472ce-68f9-4079-9229-f93398b3116a",
+        "User_Id": 90260003,
+        "Timestamp": "2023-10-07 12:25",
+        "Category": "Spending",
+        "Amount": 686.61,
+        "Reason": "Subscriptions",
+        "Type": "Monthly",
+        "Label": "Food & Dining"
+    },
+    {
+        "Transaction_Id": "fe503a01-227d-4f7f-927c-2eafbf499022",
+        "User_Id": 90260003,
+        "Timestamp": "2023-10-07 12:25",
+        "Category": "Income",
+        "Amount": 568.59,
+        "Reason": "Cryptocurrency",
+        "Type": "Monthly",
+        "Label": "Utilities"
+    },
+    {
+        "Transaction_Id": "ef662f39-99f2-4089-a9de-570cf7cd4a1f",
+        "User_Id": 90260003,
+        "Timestamp": "2023-10-09 12:25",
+        "Category": "Income",
+        "Amount": 727.78,
+        "Reason": "Freelance Project",
+        "Type": "Monthly",
+        "Label": "Food & Dining"
+    },
+    {
+        "Transaction_Id": "393ff2b3-eb8e-448c-8633-748cf75040a5",
+        "User_Id": 90260003,
+        "Timestamp": "2023-10-10 12:25",
+        "Category": "Spending",
+        "Amount": 908.46,
+        "Reason": "Transportation",
+        "Type": "Daily",
+        "Label": "Food & Dining"
+    },
+    {
+        "Transaction_Id": "510d6808-d773-4edc-a990-e3a72dd94e64",
+        "User_Id": 90260003,
+        "Timestamp": "2023-10-11 12:25",
+        "Category": "Spending",
+        "Amount": 768.62,
+        "Reason": "Gym Membership",
+        "Type": "Monthly",
+        "Label": "Utilities"
+    },
+    {
+        "Transaction_Id": "cab49dfd-8bf3-4638-8927-a5e542fc991c",
+        "User_Id": 90260003,
+        "Timestamp": "2023-10-12 12:25",
+        "Category": "Spending",
+        "Amount": 188.52,
+        "Reason": "Healthcare",
+        "Type": "Monthly",
+        "Label": "Health & Fitness"
+    },
+    {
+        "Transaction_Id": "d9768086-7ffe-4032-86eb-c5150f55e18c",
+        "User_Id": 90260003,
+        "Timestamp": "2023-10-14 12:25",
+        "Category": "Income",
+        "Amount": 611.21,
+        "Reason": "Bonus",
+        "Type": "Monthly",
+        "Label": "Entertainment"
+    },
+    {
+        "Transaction_Id": "87fa0707-8fbd-4a1e-a970-ac2821e81123",
+        "User_Id": 90260003,
+        "Timestamp": "2023-10-14 12:25",
+        "Category": "Income",
+        "Amount": 148.23,
+        "Reason": "Side Business",
+        "Type": "Daily",
+        "Label": "Entertainment"
+    },
+    {
+        "Transaction_Id": "a284dcec-b1cc-4014-b58b-4a9368e341a0",
+        "User_Id": 90260003,
+        "Timestamp": "2023-10-15 12:25",
+        "Category": "Spending",
+        "Amount": 219.65,
+        "Reason": "Insurance",
+        "Type": "Monthly",
+        "Label": "Leisure & Recreation"
+    },
+    {
+        "Transaction_Id": "1cae8f34-12b9-41c6-a5b2-41e633702a8a",
+        "User_Id": 90260003,
+        "Timestamp": "2023-10-15 12:25",
+        "Category": "Spending",
+        "Amount": 278.51,
+        "Reason": "Charity",
+        "Type": "Daily",
+        "Label": "Utilities"
+    },
+    {
+        "Transaction_Id": "2b2c8327-3274-48cb-beb1-44815178ea4a",
+        "User_Id": 90260003,
+        "Timestamp": "2023-10-16 12:25",
+        "Category": "Income",
+        "Amount": 903.82,
+        "Reason": "Dividends",
+        "Type": "Monthly",
+        "Label": "Entertainment"
+    },
+    {
+        "Transaction_Id": "658c7ae3-4ca3-4529-82b6-8188f3e793a6",
+        "User_Id": 90260003,
+        "Timestamp": "2023-10-16 12:25",
+        "Category": "Spending",
+        "Amount": 828.94,
+        "Reason": "Maintenance",
+        "Type": "Daily",
+        "Label": "Utilities"
+    },
+    {
+        "Transaction_Id": "e3114c56-9b5f-40fb-820e-f7083f89b92a",
+        "User_Id": 90260003,
+        "Timestamp": "2023-10-17 12:25",
+        "Category": "Income",
+        "Amount": 656.85,
+        "Reason": "Side Business",
+        "Type": "Monthly",
+        "Label": "Health & Fitness"
+    },
+    {
+        "Transaction_Id": "01eb874b-e098-4995-9fa3-da05a7d2c59d",
+        "User_Id": 90260003,
+        "Timestamp": "2023-10-17 12:25",
+        "Category": "Income",
+        "Amount": 16.57,
+        "Reason": "Rental Income",
+        "Type": "Daily",
+        "Label": "Health & Fitness"
+    },
+    {
+        "Transaction_Id": "c748273e-d37a-4614-befd-047eb2fd277c",
+        "User_Id": 90260003,
+        "Timestamp": "2023-10-17 12:25",
+        "Category": "Income",
+        "Amount": 198.94,
+        "Reason": "Rental Income",
+        "Type": "Daily",
+        "Label": "Utilities"
+    },
+    {
+        "Transaction_Id": "24eae71d-e418-4ff3-b344-279a02051b61",
+        "User_Id": 90260003,
+        "Timestamp": "2023-10-19 12:25",
+        "Category": "Spending",
+        "Amount": 733.96,
+        "Reason": "Pet Care",
+        "Type": "Daily",
+        "Label": "Leisure & Recreation"
+    },
+    {
+        "Transaction_Id": "2d2bfa7d-c3d6-4565-aceb-98d6672692dc",
+        "User_Id": 90260003,
+        "Timestamp": "2023-10-19 12:25",
+        "Category": "Income",
+        "Amount": 22.8,
+        "Reason": "Tax Refund",
+        "Type": "Monthly",
+        "Label": "Leisure & Recreation"
+    },
+    {
+        "Transaction_Id": "37105d0d-89e8-4964-a654-94e11fce253d",
+        "User_Id": 90260003,
+        "Timestamp": "2023-10-20 12:25",
+        "Category": "Income",
+        "Amount": 70.38,
+        "Reason": "Stock Market",
+        "Type": "Monthly",
+        "Label": "Food & Dining"
+    },
+    {
+        "Transaction_Id": "ee7babfe-38bd-4452-abb4-2a0188b2c22e",
+        "User_Id": 90260003,
+        "Timestamp": "2023-10-21 12:25",
+        "Category": "Income",
+        "Amount": 372.71,
+        "Reason": "Scholarship",
+        "Type": "Monthly",
+        "Label": "Entertainment"
+    },
+    {
+        "Transaction_Id": "1d768812-e324-458c-91ad-087f36d54ab0",
+        "User_Id": 90260003,
+        "Timestamp": "2023-10-22 12:25",
+        "Category": "Income",
+        "Amount": 215.71,
+        "Reason": "Investment Return",
+        "Type": "Daily",
+        "Label": "Food & Dining"
+    },
+    {
+        "Transaction_Id": "46f0bb92-896e-44d3-9320-caada9ae138a",
+        "User_Id": 90260003,
+        "Timestamp": "2023-10-22 12:25",
+        "Category": "Spending",
+        "Amount": 937.9,
+        "Reason": "Gifts",
+        "Type": "Monthly",
+        "Label": "Entertainment"
+    },
+    {
+        "Transaction_Id": "dde464c8-18b4-43c4-b29e-370a244e0b5a",
+        "User_Id": 90260003,
+        "Timestamp": "2023-10-23 12:25",
+        "Category": "Income",
+        "Amount": 577.22,
+        "Reason": "Lottery",
+        "Type": "Monthly",
+        "Label": "Utilities"
+    },
+    {
+        "Transaction_Id": "7faf5a3e-df2c-4363-aa96-38db05968ab8",
+        "User_Id": 90260003,
+        "Timestamp": "2023-10-24 12:25",
+        "Category": "Spending",
+        "Amount": 339.88,
+        "Reason": "Insurance",
+        "Type": "Monthly",
+        "Label": "Utilities"
+    },
+    {
+        "Transaction_Id": "e6e55976-caef-43f3-b44a-0a41e33d5d0b",
+        "User_Id": 90260003,
+        "Timestamp": "2023-10-24 12:25",
+        "Category": "Income",
+        "Amount": 356.19,
+        "Reason": "Salary",
+        "Type": "Monthly",
+        "Label": "Health & Fitness"
+    },
+    {
+        "Transaction_Id": "600af5fd-7e2d-47eb-8251-2c4760da1965",
+        "User_Id": 90260003,
+        "Timestamp": "2023-10-24 12:25",
+        "Category": "Spending",
+        "Amount": 711.55,
+        "Reason": "Healthcare",
+        "Type": "Monthly",
+        "Label": "Health & Fitness"
+    },
+    {
+        "Transaction_Id": "2f13e544-89a4-456b-8c47-233a48e8f027",
+        "User_Id": 90260003,
+        "Timestamp": "2023-10-25 12:25",
+        "Category": "Income",
+        "Amount": 362.29,
+        "Reason": "Freelance Project",
+        "Type": "Monthly",
+        "Label": "Food & Dining"
+    },
+    {
+        "Transaction_Id": "9a670661-42f7-4997-baef-f6ffb9ccd893",
+        "User_Id": 90260003,
+        "Timestamp": "2023-10-25 12:25",
+        "Category": "Income",
+        "Amount": 796.82,
+        "Reason": "Grants",
+        "Type": "Monthly",
+        "Label": "Leisure & Recreation"
+    },
+    {
+        "Transaction_Id": "7413b5c3-096a-4b28-809d-3017470aaae6",
+        "User_Id": 90260003,
+        "Timestamp": "2023-10-28 12:25",
+        "Category": "Spending",
+        "Amount": 445.6,
+        "Reason": "Dining Out",
+        "Type": "Monthly",
+        "Label": "Health & Fitness"
+    },
+    {
+        "Transaction_Id": "8db2f959-222e-458e-b52b-e9562f638c7f",
+        "User_Id": 90260003,
+        "Timestamp": "2023-10-28 12:25",
+        "Category": "Spending",
+        "Amount": 791.85,
+        "Reason": "Groceries",
+        "Type": "Daily",
+        "Label": "Entertainment"
+    },
+    {
+        "Transaction_Id": "07e53476-babf-4f37-811b-2585208772d1",
+        "User_Id": 90260003,
+        "Timestamp": "2023-10-28 12:25",
+        "Category": "Spending",
+        "Amount": 810.54,
+        "Reason": "Transportation",
+        "Type": "Monthly",
+        "Label": "Leisure & Recreation"
+    },
+    {
+        "Transaction_Id": "51bd7881-5d03-4f58-a2f9-11dae7dfff01",
+        "User_Id": 90260003,
+        "Timestamp": "2023-10-29 12:25",
+        "Category": "Income",
+        "Amount": 523.35,
+        "Reason": "Side Business",
+        "Type": "Monthly",
+        "Label": "Food & Dining"
+    },
+    {
+        "Transaction_Id": "5ad6783f-f588-4ff9-816d-1031534f8103",
+        "User_Id": 90260003,
+        "Timestamp": "2023-10-29 12:25",
+        "Category": "Spending",
+        "Amount": 108.54,
+        "Reason": "Charity",
+        "Type": "Daily",
+        "Label": "Entertainment"
+    },
+    {
+        "Transaction_Id": "830f3d62-dfce-4452-8d43-45de86f04891",
+        "User_Id": 90260003,
+        "Timestamp": "2023-10-30 12:25",
+        "Category": "Spending",
+        "Amount": 190.84,
+        "Reason": "Charity",
+        "Type": "Monthly",
+        "Label": "Utilities"
+    },
+    {
+        "Transaction_Id": "c15f307c-d9d7-4e0f-8f95-c6a0ca588f72",
+        "User_Id": 90260003,
+        "Timestamp": "2023-10-30 12:25",
+        "Category": "Spending",
+        "Amount": 591.27,
+        "Reason": "Travel",
+        "Type": "Daily",
+        "Label": "Health & Fitness"
+    },
+    {
+        "Transaction_Id": "ce33bb79-fb88-4cb3-b8d3-cd6da4516799",
+        "User_Id": 90260003,
+        "Timestamp": "2023-10-30 12:25",
+        "Category": "Spending",
+        "Amount": 915.75,
+        "Reason": "Entertainment",
+        "Type": "Monthly",
+        "Label": "Utilities"
+    },
+    {
+        "Transaction_Id": "90259a0a-af69-4cef-b261-1fe07c65c085",
+        "User_Id": 90260003,
+        "Timestamp": "2023-10-30 12:25",
+        "Category": "Spending",
+        "Amount": 531.23,
+        "Reason": "Utilities",
+        "Type": "Daily",
+        "Label": "Health & Fitness"
+    },
+    {
+        "Transaction_Id": "465decd1-b86c-4ada-a2ac-7c3106dafe59",
+        "User_Id": 90260003,
+        "Timestamp": "2023-10-30 12:25",
+        "Category": "Spending",
+        "Amount": 299.93,
+        "Reason": "Charity",
+        "Type": "Monthly",
+        "Label": "Entertainment"
+    },
+    {
+        "Transaction_Id": "fe895cb2-e282-4081-95b1-a37a0498b124",
+        "User_Id": 90260003,
+        "Timestamp": "2023-10-31 12:25",
+        "Category": "Income",
+        "Amount": 147.23,
+        "Reason": "Scholarship",
+        "Type": "Daily",
+        "Label": "Food & Dining"
+    },
+    {
+        "Transaction_Id": "329c3069-47a4-4495-a29f-3c6049ca2ee6",
+        "User_Id": 90260003,
+        "Timestamp": "2023-10-31 12:25",
+        "Category": "Income",
+        "Amount": 201.28,
+        "Reason": "Pension",
+        "Type": "Monthly",
+        "Label": "Utilities"
+    },
+    {
+        "Transaction_Id": "7924b2c3-93dd-4481-b19f-3dc4580893b1",
+        "User_Id": 90260003,
+        "Timestamp": "2023-10-31 12:25",
+        "Category": "Spending",
+        "Amount": 744.29,
+        "Reason": "Insurance",
+        "Type": "Daily",
+        "Label": "Utilities"
+    },
+    {
+        "Transaction_Id": "fe91fd42-d7a4-422e-8c03-a697cc032461",
+        "User_Id": 90260003,
+        "Timestamp": "2023-11-01 12:25",
+        "Category": "Income",
+        "Amount": 926.93,
+        "Reason": "Freelance Project",
+        "Type": "Monthly",
+        "Label": "Leisure & Recreation"
+    },
+    {
+        "Transaction_Id": "c000bdd5-fc7c-40d2-9051-2e38008ea91a",
+        "User_Id": 90260003,
+        "Timestamp": "2023-11-01 12:25",
+        "Category": "Spending",
+        "Amount": 903.56,
+        "Reason": "Childcare",
+        "Type": "Daily",
+        "Label": "Food & Dining"
+    },
+    {
+        "Transaction_Id": "cf888796-abf6-458d-b26f-2c50806c4ffb",
+        "User_Id": 90260003,
+        "Timestamp": "2023-11-01 12:25",
+        "Category": "Income",
+        "Amount": 230.63,
+        "Reason": "Grants",
+        "Type": "Daily",
+        "Label": "Health & Fitness"
+    },
+    {
+        "Transaction_Id": "f97d887c-c1a0-40e1-8778-895c77fbc561",
+        "User_Id": 90260003,
+        "Timestamp": "2023-11-02 12:25",
+        "Category": "Income",
+        "Amount": 545.11,
+        "Reason": "Investment Return",
+        "Type": "Monthly",
+        "Label": "Health & Fitness"
+    },
+    {
+        "Transaction_Id": "be699b1b-adae-4bde-a957-49c8a9213c6a",
+        "User_Id": 90260003,
+        "Timestamp": "2023-11-02 12:25",
+        "Category": "Income",
+        "Amount": 569.43,
+        "Reason": "Freelance Project",
+        "Type": "Monthly",
+        "Label": "Entertainment"
+    },
+    {
+        "Transaction_Id": "bd5b3fd4-c2a0-436f-b049-214bf18941ce",
+        "User_Id": 90260003,
+        "Timestamp": "2023-11-02 12:25",
+        "Category": "Income",
+        "Amount": 353.37,
+        "Reason": "Grants",
+        "Type": "Monthly",
+        "Label": "Leisure & Recreation"
+    },
+    {
+        "Transaction_Id": "b04bc1a2-63a2-46bd-8517-b6a931f21c34",
+        "User_Id": 90260003,
+        "Timestamp": "2023-11-02 12:25",
+        "Category": "Income",
+        "Amount": 381.55,
+        "Reason": "Investment Return",
+        "Type": "Monthly",
+        "Label": "Leisure & Recreation"
+    },
+    {
+        "Transaction_Id": "79378b8a-df45-4980-b6ef-0d86f0aa35d8",
+        "User_Id": 90260003,
+        "Timestamp": "2023-11-05 12:25",
+        "Category": "Income",
+        "Amount": 14.18,
+        "Reason": "Bonus",
+        "Type": "Monthly",
+        "Label": "Entertainment"
+    },
+    {
+        "Transaction_Id": "0587e788-5d9d-401b-8b5e-ea50488275c6",
+        "User_Id": 90260003,
+        "Timestamp": "2023-11-05 12:25",
+        "Category": "Spending",
+        "Amount": 616.04,
+        "Reason": "Rent",
+        "Type": "Monthly",
+        "Label": "Utilities"
+    },
+    {
+        "Transaction_Id": "f1dfdf95-5264-469c-9c7f-9bcc5e8eca22",
+        "User_Id": 90260003,
+        "Timestamp": "2023-11-07 12:25",
+        "Category": "Spending",
+        "Amount": 780.61,
+        "Reason": "Home Improvement",
+        "Type": "Daily",
+        "Label": "Utilities"
+    },
+    {
+        "Transaction_Id": "9918ab2a-8277-4566-b55c-0dc5deacf731",
+        "User_Id": 90260003,
+        "Timestamp": "2023-11-07 12:25",
+        "Category": "Spending",
+        "Amount": 62.8,
+        "Reason": "Gifts",
+        "Type": "Monthly",
+        "Label": "Entertainment"
+    },
+    {
+        "Transaction_Id": "e9ff0feb-e835-428d-8d7b-f3d66f6a06c3",
+        "User_Id": 90260003,
+        "Timestamp": "2023-11-07 12:25",
+        "Category": "Income",
+        "Amount": 749.47,
+        "Reason": "Crowdfunding",
+        "Type": "Monthly",
+        "Label": "Utilities"
+    },
+    {
+        "Transaction_Id": "0561e247-dfc7-44ec-a1bf-d9c5774397e3",
+        "User_Id": 90260003,
+        "Timestamp": "2023-11-08 12:25",
+        "Category": "Income",
+        "Amount": 935.64,
+        "Reason": "Selling Items",
+        "Type": "Daily",
+        "Label": "Utilities"
+    },
+    {
+        "Transaction_Id": "e9c16e83-16c8-466c-898e-0ae9e30c2dba",
+        "User_Id": 90260003,
+        "Timestamp": "2023-11-08 12:25",
+        "Category": "Income",
+        "Amount": 303.91,
+        "Reason": "Interest Income",
+        "Type": "Daily",
+        "Label": "Leisure & Recreation"
+    },
+    {
+        "Transaction_Id": "b647d132-d390-4689-8aa3-82bd1cc4a4a2",
+        "User_Id": 90260003,
+        "Timestamp": "2023-11-09 12:25",
+        "Category": "Income",
+        "Amount": 152.64,
+        "Reason": "Inheritance",
+        "Type": "Monthly",
+        "Label": "Leisure & Recreation"
+    },
+    {
+        "Transaction_Id": "010f7c60-3eb0-488a-86e0-822864f3e871",
+        "User_Id": 90260003,
+        "Timestamp": "2023-11-15 12:25",
+        "Category": "Income",
+        "Amount": 342.2,
+        "Reason": "Inheritance",
+        "Type": "Monthly",
+        "Label": "Entertainment"
+    },
+    {
+        "Transaction_Id": "fb5ad1e2-231e-45ef-82e1-3e0479b9b785",
+        "User_Id": 90260003,
+        "Timestamp": "2023-11-17 12:25",
+        "Category": "Spending",
+        "Amount": 541.21,
+        "Reason": "Childcare",
+        "Type": "Daily",
+        "Label": "Leisure & Recreation"
+    },
+    {
+        "Transaction_Id": "c78a6ebe-9095-49ca-816d-4dc6666d2362",
+        "User_Id": 90260003,
+        "Timestamp": "2023-11-17 12:25",
+        "Category": "Income",
+        "Amount": 789.09,
+        "Reason": "Gift",
+        "Type": "Monthly",
+        "Label": "Leisure & Recreation"
+    },
+    {
+        "Transaction_Id": "f5c33832-0022-4d5e-b7cf-dc0e1dafce1c",
+        "User_Id": 90260003,
+        "Timestamp": "2023-11-19 12:25",
+        "Category": "Spending",
+        "Amount": 898.04,
+        "Reason": "Rent",
+        "Type": "Monthly",
+        "Label": "Health & Fitness"
+    },
+    {
+        "Transaction_Id": "729a4687-130a-46fc-bed3-9c06e59cc25d",
+        "User_Id": 90260003,
+        "Timestamp": "2023-11-19 12:25",
+        "Category": "Spending",
+        "Amount": 973.27,
+        "Reason": "Pet Care",
+        "Type": "Monthly",
+        "Label": "Utilities"
+    },
+    {
+        "Transaction_Id": "f2a62623-a3f8-430e-9c2a-cc0bb64dcbea",
+        "User_Id": 90260003,
+        "Timestamp": "2023-11-21 12:25",
+        "Category": "Spending",
+        "Amount": 81.29,
+        "Reason": "Pet Care",
+        "Type": "Daily",
+        "Label": "Health & Fitness"
+    },
+    {
+        "Transaction_Id": "5d6d4b4f-f2b7-466b-a115-fc54487f8dce",
+        "User_Id": 90260003,
+        "Timestamp": "2023-11-21 12:25",
+        "Category": "Income",
+        "Amount": 268.65,
+        "Reason": "Cryptocurrency",
+        "Type": "Monthly",
+        "Label": "Entertainment"
+    },
+    {
+        "Transaction_Id": "f8fb3d78-f3c0-489e-8411-67d97f16588e",
+        "User_Id": 90260003,
+        "Timestamp": "2023-11-21 12:25",
+        "Category": "Income",
+        "Amount": 568.92,
+        "Reason": "Dividends",
+        "Type": "Daily",
+        "Label": "Health & Fitness"
+    },
+    {
+        "Transaction_Id": "0a35e0ff-42d4-4e47-b68f-440cb937d8be",
+        "User_Id": 90260003,
+        "Timestamp": "2023-11-24 12:25",
+        "Category": "Spending",
+        "Amount": 60.21,
+        "Reason": "Car Payment",
+        "Type": "Daily",
+        "Label": "Entertainment"
+    },
+    {
+        "Transaction_Id": "0e974130-46dd-47f8-a2f4-1d07543a9145",
+        "User_Id": 90260003,
+        "Timestamp": "2023-11-24 12:25",
+        "Category": "Spending",
+        "Amount": 769.34,
+        "Reason": "Transportation",
+        "Type": "Monthly",
+        "Label": "Utilities"
+    },
+    {
+        "Transaction_Id": "314169f0-d679-4c95-b9d8-a9ea234d5dab",
+        "User_Id": 90260003,
+        "Timestamp": "2023-11-25 12:25",
+        "Category": "Income",
+        "Amount": 681.09,
+        "Reason": "Stock Market",
+        "Type": "Daily",
+        "Label": "Utilities"
+    },
+    {
+        "Transaction_Id": "a01a9432-5277-4e31-8d68-b32f5dd097a5",
+        "User_Id": 90260003,
+        "Timestamp": "2023-11-26 12:25",
+        "Category": "Income",
+        "Amount": 478.39,
+        "Reason": "Grants",
+        "Type": "Daily",
+        "Label": "Food & Dining"
+    },
+    {
+        "Transaction_Id": "0ab13dff-47c3-4dc0-923e-3dfad3e2f6ca",
+        "User_Id": 90260003,
+        "Timestamp": "2023-11-26 12:25",
+        "Category": "Spending",
+        "Amount": 153.19,
+        "Reason": "Home Improvement",
+        "Type": "Monthly",
+        "Label": "Leisure & Recreation"
+    },
+    {
+        "Transaction_Id": "fa8497c4-deef-4432-8587-ed757fd68114",
+        "User_Id": 90260003,
+        "Timestamp": "2023-11-27 12:25",
+        "Category": "Spending",
+        "Amount": 34.92,
+        "Reason": "Utilities",
+        "Type": "Monthly",
+        "Label": "Health & Fitness"
+    },
+    {
+        "Transaction_Id": "5483bf47-4d6d-4ffc-bb24-ef32cb116053",
+        "User_Id": 90260003,
+        "Timestamp": "2023-11-29 12:25",
+        "Category": "Spending",
+        "Amount": 855.63,
+        "Reason": "Gym Membership",
+        "Type": "Daily",
+        "Label": "Health & Fitness"
+    },
+    {
+        "Transaction_Id": "aefae622-1aba-4f34-830d-e0c4b4608dc5",
+        "User_Id": 90260003,
+        "Timestamp": "2023-11-30 12:25",
+        "Category": "Income",
+        "Amount": 797.1,
+        "Reason": "Grants",
+        "Type": "Daily",
+        "Label": "Health & Fitness"
+    },
+    {
+        "Transaction_Id": "a1be21ff-abaa-407e-b01b-94487dbe7660",
+        "User_Id": 90260003,
+        "Timestamp": "2023-12-01 12:25",
+        "Category": "Income",
+        "Amount": 366.84,
+        "Reason": "Rental Income",
+        "Type": "Daily",
+        "Label": "Food & Dining"
+    },
+    {
+        "Transaction_Id": "fa259373-e5b3-4113-b755-5707e231af83",
+        "User_Id": 90260003,
+        "Timestamp": "2023-12-02 12:25",
+        "Category": "Spending",
+        "Amount": 795.96,
+        "Reason": "Healthcare",
+        "Type": "Monthly",
+        "Label": "Health & Fitness"
+    },
+    {
+        "Transaction_Id": "8e2480a5-5c4d-4006-b336-91c3268fcde7",
+        "User_Id": 90260003,
+        "Timestamp": "2023-12-03 12:25",
+        "Category": "Income",
+        "Amount": 743.72,
+        "Reason": "Bonus",
+        "Type": "Monthly",
+        "Label": "Food & Dining"
+    },
+    {
+        "Transaction_Id": "ecbf548e-2361-4690-b844-b7844a5c9691",
+        "User_Id": 90260003,
+        "Timestamp": "2023-12-04 12:25",
+        "Category": "Income",
+        "Amount": 887.51,
+        "Reason": "Side Business",
+        "Type": "Monthly",
+        "Label": "Health & Fitness"
+    },
+    {
+        "Transaction_Id": "90cbb991-e77d-4715-a734-f18c7756ce09",
+        "User_Id": 90260003,
+        "Timestamp": "2023-12-05 12:25",
+        "Category": "Income",
+        "Amount": 605.82,
+        "Reason": "Bonus",
+        "Type": "Daily",
+        "Label": "Health & Fitness"
+    },
+    {
+        "Transaction_Id": "48966318-7d3c-4d8e-8006-ffcbd4d1e46e",
+        "User_Id": 90260003,
+        "Timestamp": "2023-12-06 12:25",
+        "Category": "Income",
+        "Amount": 188.58,
+        "Reason": "Side Business",
+        "Type": "Daily",
+        "Label": "Health & Fitness"
+    },
+    {
+        "Transaction_Id": "b0cca9b7-5b28-4530-89b5-4f5ace7273f3",
+        "User_Id": 90260003,
+        "Timestamp": "2023-12-06 12:25",
+        "Category": "Income",
+        "Amount": 289.93,
+        "Reason": "Investment Return",
+        "Type": "Daily",
+        "Label": "Health & Fitness"
+    },
+    {
+        "Transaction_Id": "77f4994b-cf93-4b56-a44a-6b1d91ac79dc",
+        "User_Id": 90260003,
+        "Timestamp": "2023-12-06 12:25",
+        "Category": "Income",
+        "Amount": 475.32,
+        "Reason": "Side Business",
+        "Type": "Monthly",
+        "Label": "Health & Fitness"
+    },
+    {
+        "Transaction_Id": "0df830b5-65ee-4c4e-b7ee-ce2be32daa69",
+        "User_Id": 90260003,
+        "Timestamp": "2023-12-07 12:25",
+        "Category": "Spending",
+        "Amount": 202.97,
+        "Reason": "Utilities",
+        "Type": "Daily",
+        "Label": "Entertainment"
+    },
+    {
+        "Transaction_Id": "b1b1f2ac-2608-442d-bf56-a78004d027da",
+        "User_Id": 90260003,
+        "Timestamp": "2023-12-07 12:25",
+        "Category": "Spending",
+        "Amount": 630.9,
+        "Reason": "Pet Care",
+        "Type": "Daily",
+        "Label": "Entertainment"
+    },
+    {
+        "Transaction_Id": "6336d08e-234d-4812-a0f3-c37a488fdf26",
+        "User_Id": 90260003,
+        "Timestamp": "2023-12-07 12:25",
+        "Category": "Spending",
+        "Amount": 435.12,
+        "Reason": "Entertainment",
+        "Type": "Monthly",
+        "Label": "Health & Fitness"
+    },
+    {
+        "Transaction_Id": "96a28331-f6a6-4326-af44-7c8d0337dd11",
+        "User_Id": 90260003,
+        "Timestamp": "2023-12-12 12:25",
+        "Category": "Income",
+        "Amount": 276.93,
+        "Reason": "Bonus",
+        "Type": "Monthly",
+        "Label": "Entertainment"
+    },
+    {
+        "Transaction_Id": "79f6e473-1c59-4e0c-b6b8-e98943d2be7d",
+        "User_Id": 90260003,
+        "Timestamp": "2023-12-12 12:25",
+        "Category": "Spending",
+        "Amount": 824.2,
+        "Reason": "Healthcare",
+        "Type": "Daily",
+        "Label": "Leisure & Recreation"
+    },
+    {
+        "Transaction_Id": "91772bce-d0fd-4059-aa25-5bb116adaba8",
+        "User_Id": 90260003,
+        "Timestamp": "2023-12-13 12:25",
+        "Category": "Income",
+        "Amount": 598.85,
+        "Reason": "Rental Income",
+        "Type": "Monthly",
+        "Label": "Leisure & Recreation"
+    },
+    {
+        "Transaction_Id": "f53505f2-f0e9-4534-bcab-f06a192accc3",
+        "User_Id": 90260003,
+        "Timestamp": "2023-12-13 12:25",
+        "Category": "Income",
+        "Amount": 640.79,
+        "Reason": "Cryptocurrency",
+        "Type": "Monthly",
+        "Label": "Leisure & Recreation"
+    },
+    {
+        "Transaction_Id": "787dbf26-52cf-42c8-9b34-401c725c0e63",
+        "User_Id": 90260003,
+        "Timestamp": "2023-12-14 12:25",
+        "Category": "Income",
+        "Amount": 879.97,
+        "Reason": "Side Business",
+        "Type": "Daily",
+        "Label": "Food & Dining"
+    },
+    {
+        "Transaction_Id": "3cf1c9cc-3f83-4fed-894c-668d286ed82f",
+        "User_Id": 90260003,
+        "Timestamp": "2023-12-16 12:25",
+        "Category": "Income",
+        "Amount": 871.58,
+        "Reason": "Side Business",
+        "Type": "Daily",
+        "Label": "Leisure & Recreation"
+    },
+    {
+        "Transaction_Id": "4e0c7461-d0bc-4500-ba9c-5da3ec0cf36b",
+        "User_Id": 90260003,
+        "Timestamp": "2023-12-16 12:25",
+        "Category": "Spending",
+        "Amount": 926.62,
+        "Reason": "Travel",
+        "Type": "Monthly",
+        "Label": "Leisure & Recreation"
+    },
+    {
+        "Transaction_Id": "a278dfb5-23cf-4082-a1ba-b88f5b0974c1",
+        "User_Id": 90260003,
+        "Timestamp": "2023-12-16 12:25",
+        "Category": "Income",
+        "Amount": 678.27,
+        "Reason": "Investment Return",
+        "Type": "Monthly",
+        "Label": "Food & Dining"
+    },
+    {
+        "Transaction_Id": "d11e7f9d-d9b3-4980-aaa3-b3196839e14d",
+        "User_Id": 90260003,
+        "Timestamp": "2023-12-17 12:25",
+        "Category": "Income",
+        "Amount": 796.4,
+        "Reason": "Gift",
+        "Type": "Monthly",
+        "Label": "Utilities"
+    },
+    {
+        "Transaction_Id": "74db2298-215b-48ac-a228-f58cc40dc35e",
+        "User_Id": 90260003,
+        "Timestamp": "2023-12-18 12:25",
+        "Category": "Income",
+        "Amount": 710.15,
+        "Reason": "Dividends",
+        "Type": "Daily",
+        "Label": "Health & Fitness"
+    },
+    {
+        "Transaction_Id": "6f3396f3-0dab-4edf-a88f-6366e33f284f",
+        "User_Id": 90260003,
+        "Timestamp": "2023-12-18 12:25",
+        "Category": "Income",
+        "Amount": 324.94,
+        "Reason": "Gift",
+        "Type": "Daily",
+        "Label": "Entertainment"
+    },
+    {
+        "Transaction_Id": "d693ed28-b369-4abe-af98-ac6737e5bc82",
+        "User_Id": 90260003,
+        "Timestamp": "2023-12-19 12:25",
+        "Category": "Spending",
+        "Amount": 276.74,
+        "Reason": "Childcare",
+        "Type": "Monthly",
+        "Label": "Utilities"
+    },
+    {
+        "Transaction_Id": "82054eb9-8cee-40eb-9fbe-7eee1eb90913",
+        "User_Id": 90260003,
+        "Timestamp": "2023-12-19 12:25",
+        "Category": "Spending",
+        "Amount": 82.4,
+        "Reason": "Gym Membership",
+        "Type": "Daily",
+        "Label": "Entertainment"
+    },
+    {
+        "Transaction_Id": "d554f5c7-f360-4311-a506-4b74f9e06ba1",
+        "User_Id": 90260003,
+        "Timestamp": "2023-12-20 12:25",
+        "Category": "Spending",
+        "Amount": 22.96,
+        "Reason": "Rent",
+        "Type": "Monthly",
+        "Label": "Entertainment"
+    },
+    {
+        "Transaction_Id": "e47cb858-c49f-4989-92dd-f3c96e463b39",
+        "User_Id": 90260003,
+        "Timestamp": "2023-12-20 12:25",
+        "Category": "Spending",
+        "Amount": 602.05,
+        "Reason": "Clothing",
+        "Type": "Monthly",
+        "Label": "Entertainment"
+    },
+    {
+        "Transaction_Id": "dffdea39-ce32-40ef-aef9-d2fb2d372f32",
+        "User_Id": 90260003,
+        "Timestamp": "2023-12-20 12:25",
+        "Category": "Spending",
+        "Amount": 268.52,
+        "Reason": "Rent",
+        "Type": "Daily",
+        "Label": "Utilities"
+    },
+    {
+        "Transaction_Id": "c0edd4c9-a0d2-4443-9b8f-5b850b516629",
+        "User_Id": 90260003,
+        "Timestamp": "2023-12-20 12:25",
+        "Category": "Income",
+        "Amount": 675.51,
+        "Reason": "Investment Return",
+        "Type": "Monthly",
+        "Label": "Food & Dining"
+    },
+    {
+        "Transaction_Id": "3fc2517f-8e10-4a40-b0ec-a95be338dbb9",
+        "User_Id": 90260003,
+        "Timestamp": "2023-12-20 12:25",
+        "Category": "Income",
+        "Amount": 844.95,
+        "Reason": "Refund",
+        "Type": "Daily",
+        "Label": "Entertainment"
+    },
+    {
+        "Transaction_Id": "b1b0d003-d775-445c-99d5-35b99da884a3",
+        "User_Id": 90260003,
+        "Timestamp": "2023-12-21 12:25",
+        "Category": "Spending",
+        "Amount": 426.42,
+        "Reason": "Maintenance",
+        "Type": "Monthly",
+        "Label": "Health & Fitness"
+    },
+    {
+        "Transaction_Id": "2bd73e3c-e60c-4568-9546-5e52fb23725e",
+        "User_Id": 90260003,
+        "Timestamp": "2023-12-21 12:25",
+        "Category": "Spending",
+        "Amount": 849.95,
+        "Reason": "Car Payment",
+        "Type": "Daily",
+        "Label": "Utilities"
+    },
+    {
+        "Transaction_Id": "fbe40f27-d050-4edc-a8af-1263caae7b53",
+        "User_Id": 90260003,
+        "Timestamp": "2023-12-22 12:25",
+        "Category": "Spending",
+        "Amount": 289.55,
+        "Reason": "Maintenance",
+        "Type": "Daily",
+        "Label": "Health & Fitness"
+    },
+    {
+        "Transaction_Id": "5428ade9-c1bd-4982-addf-80df4945e96e",
+        "User_Id": 90260003,
+        "Timestamp": "2023-12-22 12:25",
+        "Category": "Spending",
+        "Amount": 36.46,
+        "Reason": "Charity",
+        "Type": "Daily",
+        "Label": "Food & Dining"
+    },
+    {
+        "Transaction_Id": "7ca6a3eb-1059-4c79-bdaa-baa235ea3716",
+        "User_Id": 90260003,
+        "Timestamp": "2023-12-23 12:25",
+        "Category": "Spending",
+        "Amount": 251.17,
+        "Reason": "Healthcare",
+        "Type": "Monthly",
+        "Label": "Leisure & Recreation"
+    },
+    {
+        "Transaction_Id": "79e47f4f-0e82-45c5-9840-73f481bab6fd",
+        "User_Id": 90260003,
+        "Timestamp": "2023-12-23 12:25",
+        "Category": "Income",
+        "Amount": 317.49,
+        "Reason": "Lottery",
+        "Type": "Monthly",
+        "Label": "Utilities"
+    },
+    {
+        "Transaction_Id": "6bc491c1-038e-492b-8043-13dc2ef81dcd",
+        "User_Id": 90260003,
+        "Timestamp": "2023-12-24 12:25",
+        "Category": "Spending",
+        "Amount": 73.61,
+        "Reason": "Childcare",
+        "Type": "Monthly",
+        "Label": "Food & Dining"
+    },
+    {
+        "Transaction_Id": "fedc1bcb-fb7f-4390-ba96-9e384e436ada",
+        "User_Id": 90260003,
+        "Timestamp": "2023-12-24 12:25",
+        "Category": "Income",
+        "Amount": 680.67,
+        "Reason": "Interest Income",
+        "Type": "Monthly",
+        "Label": "Leisure & Recreation"
+    },
+    {
+        "Transaction_Id": "0e54e26e-19a0-4ab8-8184-2b209f2c2860",
+        "User_Id": 90260003,
+        "Timestamp": "2023-12-25 12:25",
+        "Category": "Spending",
+        "Amount": 93.97,
+        "Reason": "Transportation",
+        "Type": "Daily",
+        "Label": "Entertainment"
+    },
+    {
+        "Transaction_Id": "c753ec90-8d97-44af-8831-ec153ff84812",
+        "User_Id": 90260003,
+        "Timestamp": "2023-12-27 12:25",
+        "Category": "Income",
+        "Amount": 258.91,
+        "Reason": "Dividends",
+        "Type": "Monthly",
+        "Label": "Utilities"
+    },
+    {
+        "Transaction_Id": "187ec0e3-539a-4997-8df4-c6bc0f88b701",
+        "User_Id": 90260003,
+        "Timestamp": "2023-12-27 12:25",
+        "Category": "Income",
+        "Amount": 702.76,
+        "Reason": "Dividends",
+        "Type": "Monthly",
+        "Label": "Leisure & Recreation"
+    },
+    {
+        "Transaction_Id": "20b74098-3c4f-4644-91ad-c8bd59a1601b",
+        "User_Id": 90260003,
+        "Timestamp": "2023-12-28 12:25",
+        "Category": "Spending",
+        "Amount": 412.47,
+        "Reason": "Charity",
+        "Type": "Monthly",
+        "Label": "Leisure & Recreation"
+    },
+    {
+        "Transaction_Id": "7210d8d8-6de1-444b-8948-99d8afa1cbd5",
+        "User_Id": 90260003,
+        "Timestamp": "2023-12-29 12:25",
+        "Category": "Spending",
+        "Amount": 340.3,
+        "Reason": "Dining Out",
+        "Type": "Daily",
+        "Label": "Food & Dining"
+    },
+    {
+        "Transaction_Id": "f3020523-772d-4e17-a0a0-88431756d216",
+        "User_Id": 90260003,
+        "Timestamp": "2024-01-02 12:25",
+        "Category": "Income",
+        "Amount": 383.42,
+        "Reason": "Refund",
+        "Type": "Daily",
+        "Label": "Utilities"
+    },
+    {
+        "Transaction_Id": "e75f5e59-09a9-4573-a1e1-18f1a8dc0b04",
+        "User_Id": 90260003,
+        "Timestamp": "2024-01-03 12:25",
+        "Category": "Income",
+        "Amount": 805.45,
+        "Reason": "Grants",
+        "Type": "Daily",
+        "Label": "Food & Dining"
+    },
+    {
+        "Transaction_Id": "bd14dc82-f178-4d1c-b2ac-3a2529aeb7fa",
+        "User_Id": 90260003,
+        "Timestamp": "2024-01-03 12:25",
+        "Category": "Spending",
+        "Amount": 664.64,
+        "Reason": "Childcare",
+        "Type": "Daily",
+        "Label": "Leisure & Recreation"
+    },
+    {
+        "Transaction_Id": "1a0d3157-6d78-4643-82ce-e5913e8fa1a1",
+        "User_Id": 90260003,
+        "Timestamp": "2024-01-03 12:25",
+        "Category": "Income",
+        "Amount": 104.62,
+        "Reason": "Cryptocurrency",
+        "Type": "Monthly",
+        "Label": "Leisure & Recreation"
+    },
+    {
+        "Transaction_Id": "eaa14542-0172-4643-a5dd-45a7bf82f7a5",
+        "User_Id": 90260003,
+        "Timestamp": "2024-01-04 12:25",
+        "Category": "Spending",
+        "Amount": 181.91,
+        "Reason": "Clothing",
+        "Type": "Daily",
+        "Label": "Leisure & Recreation"
+    },
+    {
+        "Transaction_Id": "e0b35ba8-e962-49e2-9c45-159ebf5405ba",
+        "User_Id": 90260003,
+        "Timestamp": "2024-01-04 12:25",
+        "Category": "Spending",
+        "Amount": 520.88,
+        "Reason": "Rent",
+        "Type": "Monthly",
+        "Label": "Health & Fitness"
+    },
+    {
+        "Transaction_Id": "3d86b9e5-46e1-4eed-af49-62db5d858245",
+        "User_Id": 90260003,
+        "Timestamp": "2024-01-04 12:25",
+        "Category": "Income",
+        "Amount": 641.58,
+        "Reason": "Rental Income",
+        "Type": "Daily",
+        "Label": "Entertainment"
+    },
+    {
+        "Transaction_Id": "d4278dea-c852-433f-bb77-e115da403d7b",
+        "User_Id": 90260003,
+        "Timestamp": "2024-01-06 12:25",
+        "Category": "Income",
+        "Amount": 287.5,
+        "Reason": "Scholarship",
+        "Type": "Monthly",
+        "Label": "Entertainment"
+    },
+    {
+        "Transaction_Id": "fa6bb8eb-80d9-42b1-b1ae-c29052031fdc",
+        "User_Id": 90260003,
+        "Timestamp": "2024-01-07 12:25",
+        "Category": "Income",
+        "Amount": 410.94,
+        "Reason": "Scholarship",
+        "Type": "Monthly",
+        "Label": "Utilities"
+    },
+    {
+        "Transaction_Id": "5c8ef124-eb62-484f-8281-f9d1a5bd35af",
+        "User_Id": 90260003,
+        "Timestamp": "2024-01-07 12:25",
+        "Category": "Income",
+        "Amount": 596.77,
+        "Reason": "Dividends",
+        "Type": "Daily",
+        "Label": "Utilities"
+    },
+    {
+        "Transaction_Id": "cf798e0d-4fe0-4bde-aa69-f56a66c26108",
+        "User_Id": 90260003,
+        "Timestamp": "2024-01-07 12:25",
+        "Category": "Income",
+        "Amount": 975.29,
+        "Reason": "Grants",
+        "Type": "Monthly",
+        "Label": "Utilities"
+    },
+    {
+        "Transaction_Id": "d14ebf06-b6d0-49fd-8201-130b3b5f3b60",
+        "User_Id": 90260003,
+        "Timestamp": "2024-01-07 12:25",
+        "Category": "Spending",
+        "Amount": 393.03,
+        "Reason": "Gym Membership",
+        "Type": "Monthly",
+        "Label": "Utilities"
+    },
+    {
+        "Transaction_Id": "9e26dd8c-2e19-4b47-98bd-3bdce04ae1cc",
+        "User_Id": 90260003,
+        "Timestamp": "2024-01-07 12:25",
+        "Category": "Spending",
+        "Amount": 640.93,
+        "Reason": "Gifts",
+        "Type": "Daily",
+        "Label": "Utilities"
+    },
+    {
+        "Transaction_Id": "d40a6160-023b-42ee-b56a-ca94601a6339",
+        "User_Id": 90260003,
+        "Timestamp": "2024-01-08 12:25",
+        "Category": "Income",
+        "Amount": 316.71,
+        "Reason": "Pension",
+        "Type": "Monthly",
+        "Label": "Leisure & Recreation"
+    },
+    {
+        "Transaction_Id": "d6c52259-c5c9-4a30-a1d5-a0e586e0487b",
+        "User_Id": 90260003,
+        "Timestamp": "2024-01-08 12:25",
+        "Category": "Income",
+        "Amount": 995.48,
+        "Reason": "Stock Market",
+        "Type": "Monthly",
+        "Label": "Food & Dining"
+    },
+    {
+        "Transaction_Id": "63fd6de6-a8e8-481e-aaec-ce9a96c91f44",
+        "User_Id": 90260003,
+        "Timestamp": "2024-01-08 12:25",
+        "Category": "Spending",
+        "Amount": 443.18,
+        "Reason": "Education",
+        "Type": "Monthly",
+        "Label": "Entertainment"
+    },
+    {
+        "Transaction_Id": "57f3cf4f-3de7-4d2d-8cd3-b77cf43aeb7a",
+        "User_Id": 90260003,
+        "Timestamp": "2024-01-10 12:25",
+        "Category": "Spending",
+        "Amount": 533.52,
+        "Reason": "Charity",
+        "Type": "Monthly",
+        "Label": "Entertainment"
+    },
+    {
+        "Transaction_Id": "e15384f8-aca9-43e8-a02f-7935e6ebae8e",
+        "User_Id": 90260003,
+        "Timestamp": "2024-01-10 12:25",
+        "Category": "Spending",
+        "Amount": 835.28,
+        "Reason": "Insurance",
+        "Type": "Monthly",
+        "Label": "Entertainment"
+    },
+    {
+        "Transaction_Id": "669596b9-3605-4e97-b703-d33b02dadd0e",
+        "User_Id": 90260003,
+        "Timestamp": "2024-01-10 12:25",
+        "Category": "Income",
+        "Amount": 356.53,
+        "Reason": "Freelance Project",
+        "Type": "Daily",
+        "Label": "Utilities"
+    },
+    {
+        "Transaction_Id": "cb5b9945-46fb-4576-831a-510759ba2033",
+        "User_Id": 90260003,
+        "Timestamp": "2024-01-11 12:25",
+        "Category": "Income",
+        "Amount": 308.61,
+        "Reason": "Scholarship",
+        "Type": "Monthly",
+        "Label": "Leisure & Recreation"
+    },
+    {
+        "Transaction_Id": "e26f9698-2cf5-4c04-8f85-32996b6aaa90",
+        "User_Id": 90260003,
+        "Timestamp": "2024-01-11 12:25",
+        "Category": "Income",
+        "Amount": 37.2,
+        "Reason": "Lottery",
+        "Type": "Monthly",
+        "Label": "Health & Fitness"
+    },
+    {
+        "Transaction_Id": "f20c7d51-a88c-45dd-928b-aa2dcdcdad65",
+        "User_Id": 90260003,
+        "Timestamp": "2024-01-11 12:25",
+        "Category": "Income",
+        "Amount": 608.63,
+        "Reason": "Inheritance",
+        "Type": "Daily",
+        "Label": "Food & Dining"
+    },
+    {
+        "Transaction_Id": "97ea2037-6a82-4eb8-8663-c21bbc6e9b53",
+        "User_Id": 90260003,
+        "Timestamp": "2024-01-12 12:25",
+        "Category": "Income",
+        "Amount": 854.7,
+        "Reason": "Refund",
+        "Type": "Monthly",
+        "Label": "Leisure & Recreation"
+    },
+    {
+        "Transaction_Id": "ad52ec3a-4052-498a-b0bd-9a89ee333370",
+        "User_Id": 90260003,
+        "Timestamp": "2024-01-12 12:25",
+        "Category": "Income",
+        "Amount": 750.57,
+        "Reason": "Rental Income",
+        "Type": "Daily",
+        "Label": "Entertainment"
+    },
+    {
+        "Transaction_Id": "42952235-33d2-4090-bae4-a97254b00394",
+        "User_Id": 90260003,
+        "Timestamp": "2024-01-14 12:25",
+        "Category": "Spending",
+        "Amount": 719.53,
+        "Reason": "Healthcare",
+        "Type": "Daily",
+        "Label": "Entertainment"
+    },
+    {
+        "Transaction_Id": "cba956b7-0703-4884-a5c3-ab3b293047d4",
+        "User_Id": 90260003,
+        "Timestamp": "2024-01-15 12:25",
+        "Category": "Income",
+        "Amount": 796.72,
+        "Reason": "Selling Items",
+        "Type": "Daily",
+        "Label": "Health & Fitness"
+    },
+    {
+        "Transaction_Id": "d9ac764f-065a-43e9-a558-4c2e4101612b",
+        "User_Id": 90260003,
+        "Timestamp": "2024-01-15 12:25",
+        "Category": "Income",
+        "Amount": 654.15,
+        "Reason": "Inheritance",
+        "Type": "Daily",
+        "Label": "Health & Fitness"
+    },
+    {
+        "Transaction_Id": "0c592e91-7039-4730-9879-1c6c53fae1e6",
+        "User_Id": 90260003,
+        "Timestamp": "2024-01-16 12:25",
+        "Category": "Income",
+        "Amount": 514.14,
+        "Reason": "Inheritance",
+        "Type": "Monthly",
+        "Label": "Leisure & Recreation"
+    },
+    {
+        "Transaction_Id": "1ba0a460-b0f7-4a5d-becc-74e28dbc6294",
+        "User_Id": 90260003,
+        "Timestamp": "2024-01-18 12:25",
+        "Category": "Income",
+        "Amount": 582.28,
+        "Reason": "Refund",
+        "Type": "Daily",
+        "Label": "Leisure & Recreation"
+    },
+    {
+        "Transaction_Id": "0a1c2b7d-edb7-4d0f-be98-8a58915ea94b",
+        "User_Id": 90260003,
+        "Timestamp": "2024-01-19 12:25",
+        "Category": "Spending",
+        "Amount": 696.28,
+        "Reason": "Pet Care",
+        "Type": "Monthly",
+        "Label": "Food & Dining"
+    },
+    {
+        "Transaction_Id": "afff4abc-4512-4dc5-af32-8819c04d5082",
+        "User_Id": 90260003,
+        "Timestamp": "2024-01-22 12:25",
+        "Category": "Income",
+        "Amount": 465.54,
+        "Reason": "Crowdfunding",
+        "Type": "Monthly",
+        "Label": "Food & Dining"
+    },
+    {
+        "Transaction_Id": "ef3f81a3-14ef-4d12-bbc4-204438daf2f6",
+        "User_Id": 90260003,
+        "Timestamp": "2024-01-22 12:25",
+        "Category": "Spending",
+        "Amount": 995.2,
+        "Reason": "Healthcare",
+        "Type": "Daily",
+        "Label": "Entertainment"
+    },
+    {
+        "Transaction_Id": "e2cc3a72-1065-4261-9017-0fe1a335f7ec",
+        "User_Id": 90260003,
+        "Timestamp": "2024-01-23 12:25",
+        "Category": "Income",
+        "Amount": 948.7,
+        "Reason": "Inheritance",
+        "Type": "Monthly",
+        "Label": "Leisure & Recreation"
+    },
+    {
+        "Transaction_Id": "9d69b2ac-b4a7-462f-bdc4-48c2fa844d9e",
+        "User_Id": 90260003,
+        "Timestamp": "2024-01-23 12:25",
+        "Category": "Spending",
+        "Amount": 560.86,
+        "Reason": "Travel",
+        "Type": "Daily",
+        "Label": "Entertainment"
+    },
+    {
+        "Transaction_Id": "dc5ae352-0356-477d-9b4c-7c537fbed57a",
+        "User_Id": 90260003,
+        "Timestamp": "2024-01-23 12:25",
+        "Category": "Spending",
+        "Amount": 800.17,
+        "Reason": "Charity",
+        "Type": "Daily",
+        "Label": "Entertainment"
+    },
+    {
+        "Transaction_Id": "0ed9f0e3-6bfb-4227-8124-168d66f78458",
+        "User_Id": 90260003,
+        "Timestamp": "2024-01-24 12:25",
+        "Category": "Income",
+        "Amount": 315.83,
+        "Reason": "Tax Refund",
+        "Type": "Monthly",
+        "Label": "Entertainment"
+    },
+    {
+        "Transaction_Id": "ab7c11c4-6153-44ea-821b-8f87c17f1eaa",
+        "User_Id": 90260003,
+        "Timestamp": "2024-01-27 12:25",
+        "Category": "Income",
+        "Amount": 755.06,
+        "Reason": "Pension",
+        "Type": "Monthly",
+        "Label": "Entertainment"
+    },
+    {
+        "Transaction_Id": "d1451fc9-c83f-481c-9466-71594dd3d8ef",
+        "User_Id": 90260003,
+        "Timestamp": "2024-01-30 12:25",
+        "Category": "Spending",
+        "Amount": 408.1,
+        "Reason": "Gifts",
+        "Type": "Daily",
+        "Label": "Entertainment"
+    },
+    {
+        "Transaction_Id": "00cfeb5b-e9f3-41d1-94ae-fbb46324efae",
+        "User_Id": 90260003,
+        "Timestamp": "2024-01-30 12:25",
+        "Category": "Spending",
+        "Amount": 970.31,
+        "Reason": "Education",
+        "Type": "Daily",
+        "Label": "Utilities"
+    },
+    {
+        "Transaction_Id": "2de37d6d-5489-41cc-9303-5c8e01bf58f0",
+        "User_Id": 90260003,
+        "Timestamp": "2024-02-02 12:25",
+        "Category": "Spending",
+        "Amount": 566.9,
+        "Reason": "Childcare",
+        "Type": "Monthly",
+        "Label": "Health & Fitness"
+    },
+    {
+        "Transaction_Id": "90543001-9836-4d50-b70b-fbcceebe2f2f",
+        "User_Id": 90260003,
+        "Timestamp": "2024-02-02 12:25",
+        "Category": "Income",
+        "Amount": 492.73,
+        "Reason": "Investment Return",
+        "Type": "Monthly",
+        "Label": "Entertainment"
+    },
+    {
+        "Transaction_Id": "e9bdc8ab-9edc-418d-9c98-1536d12b9a43",
+        "User_Id": 90260003,
+        "Timestamp": "2024-02-03 12:25",
+        "Category": "Spending",
+        "Amount": 734.61,
+        "Reason": "Subscriptions",
+        "Type": "Daily",
+        "Label": "Utilities"
+    },
+    {
+        "Transaction_Id": "0effeabf-e5cc-49a6-b4e0-1d3a03b0c2d1",
+        "User_Id": 90260003,
+        "Timestamp": "2024-02-03 12:25",
+        "Category": "Spending",
+        "Amount": 237.21,
+        "Reason": "Childcare",
+        "Type": "Monthly",
+        "Label": "Leisure & Recreation"
+    },
+    {
+        "Transaction_Id": "f09c34dd-a96d-4b31-a39f-ef667e4f9748",
+        "User_Id": 90260003,
+        "Timestamp": "2024-02-03 12:25",
+        "Category": "Income",
+        "Amount": 216.53,
+        "Reason": "Cryptocurrency",
+        "Type": "Monthly",
+        "Label": "Utilities"
+    },
+    {
+        "Transaction_Id": "db378ade-cb72-4766-91c2-c1cfbe1d1470",
+        "User_Id": 90260003,
+        "Timestamp": "2024-02-03 12:25",
+        "Category": "Income",
+        "Amount": 901.85,
+        "Reason": "Selling Items",
+        "Type": "Daily",
+        "Label": "Leisure & Recreation"
+    },
+    {
+        "Transaction_Id": "9541094d-34bc-48a8-bc17-ffb546863723",
+        "User_Id": 90260003,
+        "Timestamp": "2024-02-04 12:25",
+        "Category": "Spending",
+        "Amount": 947.07,
+        "Reason": "Dining Out",
+        "Type": "Monthly",
+        "Label": "Leisure & Recreation"
+    },
+    {
+        "Transaction_Id": "189e7cac-c336-4e55-a0bb-6483558fb9a2",
+        "User_Id": 90260003,
+        "Timestamp": "2024-02-05 12:25",
+        "Category": "Income",
+        "Amount": 118.71,
+        "Reason": "Gift",
+        "Type": "Monthly",
+        "Label": "Utilities"
+    },
+    {
+        "Transaction_Id": "6fa15044-2512-406e-8f98-645514f14a46",
+        "User_Id": 90260003,
+        "Timestamp": "2024-02-05 12:25",
+        "Category": "Spending",
+        "Amount": 253.48,
+        "Reason": "Healthcare",
+        "Type": "Monthly",
+        "Label": "Food & Dining"
+    },
+    {
+        "Transaction_Id": "c5e1c55e-5801-4159-905d-891a41d771cf",
+        "User_Id": 90260003,
+        "Timestamp": "2024-02-05 12:25",
+        "Category": "Spending",
+        "Amount": 507.38,
+        "Reason": "Clothing",
+        "Type": "Daily",
+        "Label": "Entertainment"
+    },
+    {
+        "Transaction_Id": "20a512db-78b6-4e3c-a42d-5b703644eca7",
+        "User_Id": 90260003,
+        "Timestamp": "2024-02-06 12:25",
+        "Category": "Income",
+        "Amount": 70.95,
+        "Reason": "Scholarship",
+        "Type": "Daily",
+        "Label": "Leisure & Recreation"
+    },
+    {
+        "Transaction_Id": "03e11817-8c2d-40fa-b9f7-8844769b530e",
+        "User_Id": 90260003,
+        "Timestamp": "2024-02-07 12:25",
+        "Category": "Income",
+        "Amount": 331.82,
+        "Reason": "Interest Income",
+        "Type": "Daily",
+        "Label": "Utilities"
+    },
+    {
+        "Transaction_Id": "bc2e9fe1-5734-4029-a351-a31a371d91e5",
+        "User_Id": 90260003,
+        "Timestamp": "2024-02-07 12:25",
+        "Category": "Income",
+        "Amount": 428.73,
+        "Reason": "Salary",
+        "Type": "Daily",
+        "Label": "Food & Dining"
+    },
+    {
+        "Transaction_Id": "314d5467-b3a7-477f-b873-468aa6c7e73f",
+        "User_Id": 90260003,
+        "Timestamp": "2024-02-08 12:25",
+        "Category": "Spending",
+        "Amount": 93.01,
+        "Reason": "Travel",
+        "Type": "Daily",
+        "Label": "Entertainment"
+    },
+    {
+        "Transaction_Id": "fdca3f93-89e6-4207-986e-73de695a600f",
+        "User_Id": 90260003,
+        "Timestamp": "2024-02-09 12:25",
+        "Category": "Spending",
+        "Amount": 284.59,
+        "Reason": "Insurance",
+        "Type": "Monthly",
+        "Label": "Utilities"
+    },
+    {
+        "Transaction_Id": "7fb8b653-c2d6-4f0c-8a7b-29a4c86fdb4b",
+        "User_Id": 90260003,
+        "Timestamp": "2024-02-09 12:25",
+        "Category": "Income",
+        "Amount": 688.4,
+        "Reason": "Gift",
+        "Type": "Daily",
+        "Label": "Food & Dining"
+    },
+    {
+        "Transaction_Id": "e499fdde-955c-4929-b1b8-51ad5f49743c",
+        "User_Id": 90260003,
+        "Timestamp": "2024-02-10 12:25",
+        "Category": "Income",
+        "Amount": 878.17,
+        "Reason": "Stock Market",
+        "Type": "Daily",
+        "Label": "Entertainment"
+    },
+    {
+        "Transaction_Id": "6e908174-3c82-44ec-96de-0a298c13a576",
+        "User_Id": 90260003,
+        "Timestamp": "2024-02-11 12:25",
+        "Category": "Spending",
+        "Amount": 250.41,
+        "Reason": "Maintenance",
+        "Type": "Daily",
+        "Label": "Entertainment"
+    },
+    {
+        "Transaction_Id": "0971bf38-f797-4b7a-97bd-410d09a3adec",
+        "User_Id": 90260003,
+        "Timestamp": "2024-02-11 12:25",
+        "Category": "Spending",
+        "Amount": 143.82,
+        "Reason": "Groceries",
+        "Type": "Monthly",
+        "Label": "Utilities"
+    },
+    {
+        "Transaction_Id": "a945929b-cbc8-4661-98f7-2081da6f131b",
+        "User_Id": 90260003,
+        "Timestamp": "2024-02-12 12:25",
+        "Category": "Income",
+        "Amount": 101.8,
+        "Reason": "Stock Market",
+        "Type": "Daily",
+        "Label": "Food & Dining"
+    },
+    {
+        "Transaction_Id": "bf24c44f-c963-465d-818e-90f02cec15ae",
+        "User_Id": 90260003,
+        "Timestamp": "2024-02-13 12:25",
+        "Category": "Spending",
+        "Amount": 958.19,
+        "Reason": "Gym Membership",
+        "Type": "Daily",
+        "Label": "Food & Dining"
+    },
+    {
+        "Transaction_Id": "113d16c6-7ac4-42e1-97aa-4f2cf1af1fb1",
+        "User_Id": 90260003,
+        "Timestamp": "2024-02-13 12:25",
+        "Category": "Spending",
+        "Amount": 79.71,
+        "Reason": "Transportation",
+        "Type": "Daily",
+        "Label": "Food & Dining"
+    },
+    {
+        "Transaction_Id": "fa393afd-1ec9-4ad0-9abf-9f2981f83553",
+        "User_Id": 90260003,
+        "Timestamp": "2024-02-14 12:25",
+        "Category": "Spending",
+        "Amount": 265.31,
+        "Reason": "Pet Care",
+        "Type": "Daily",
+        "Label": "Leisure & Recreation"
+    },
+    {
+        "Transaction_Id": "be021d35-7b1e-46a9-9541-61d31ecf0be4",
+        "User_Id": 90260003,
+        "Timestamp": "2024-02-15 12:25",
+        "Category": "Spending",
+        "Amount": 185.0,
+        "Reason": "Gym Membership",
+        "Type": "Daily",
+        "Label": "Health & Fitness"
+    },
+    {
+        "Transaction_Id": "cc746b14-1369-4b68-af91-b240e82a1b8c",
+        "User_Id": 90260003,
+        "Timestamp": "2024-02-15 12:25",
+        "Category": "Income",
+        "Amount": 212.04,
+        "Reason": "Grants",
+        "Type": "Daily",
+        "Label": "Utilities"
+    },
+    {
+        "Transaction_Id": "f1b36d7a-3272-4885-bf29-5a00268761e8",
+        "User_Id": 90260003,
+        "Timestamp": "2024-02-15 12:25",
+        "Category": "Income",
+        "Amount": 883.75,
+        "Reason": "Investment Return",
+        "Type": "Monthly",
+        "Label": "Leisure & Recreation"
+    },
+    {
+        "Transaction_Id": "96d44387-f68b-488e-ae56-284ef90c9223",
+        "User_Id": 90260003,
+        "Timestamp": "2024-02-16 12:25",
+        "Category": "Spending",
+        "Amount": 460.96,
+        "Reason": "Rent",
+        "Type": "Monthly",
+        "Label": "Food & Dining"
+    },
+    {
+        "Transaction_Id": "c1d91b8f-7a5b-4b59-b6de-48e53a0f154e",
+        "User_Id": 90260003,
+        "Timestamp": "2024-02-17 12:25",
+        "Category": "Spending",
+        "Amount": 800.47,
+        "Reason": "Subscriptions",
+        "Type": "Monthly",
+        "Label": "Food & Dining"
+    },
+    {
+        "Transaction_Id": "11707b82-4dc6-40ee-9c6e-58b5f9c5c5ed",
+        "User_Id": 90260003,
+        "Timestamp": "2024-02-17 12:25",
+        "Category": "Spending",
+        "Amount": 206.71,
+        "Reason": "Utilities",
+        "Type": "Daily",
+        "Label": "Health & Fitness"
+    },
+    {
+        "Transaction_Id": "36a9ea56-ff40-43ae-82e2-c262b41d075a",
+        "User_Id": 90260003,
+        "Timestamp": "2024-02-17 12:25",
+        "Category": "Income",
+        "Amount": 23.46,
+        "Reason": "Bonus",
+        "Type": "Monthly",
+        "Label": "Entertainment"
+    },
+    {
+        "Transaction_Id": "38b604b1-18bc-4800-be51-aec201b1dcc7",
+        "User_Id": 90260003,
+        "Timestamp": "2024-02-18 12:25",
+        "Category": "Income",
+        "Amount": 37.19,
+        "Reason": "Bonus",
+        "Type": "Monthly",
+        "Label": "Food & Dining"
+    },
+    {
+        "Transaction_Id": "9d421074-39e4-42a2-9276-6e1991b02766",
+        "User_Id": 90260003,
+        "Timestamp": "2024-02-19 12:25",
+        "Category": "Spending",
+        "Amount": 650.61,
+        "Reason": "Dining Out",
+        "Type": "Monthly",
+        "Label": "Entertainment"
+    },
+    {
+        "Transaction_Id": "d1c62572-b9e5-4861-ac2f-1e5014484c6e",
+        "User_Id": 90260003,
+        "Timestamp": "2024-02-20 12:25",
+        "Category": "Income",
+        "Amount": 662.18,
+        "Reason": "Selling Items",
+        "Type": "Monthly",
+        "Label": "Leisure & Recreation"
+    },
+    {
+        "Transaction_Id": "e8088bd1-516e-4512-bee7-e3b1afd4d5d0",
+        "User_Id": 90260003,
+        "Timestamp": "2024-02-21 12:25",
+        "Category": "Income",
+        "Amount": 303.91,
+        "Reason": "Tax Refund",
+        "Type": "Daily",
+        "Label": "Health & Fitness"
+    },
+    {
+        "Transaction_Id": "f4aef7a4-342e-4466-809a-a13de24dd85d",
+        "User_Id": 90260003,
+        "Timestamp": "2024-02-21 12:25",
+        "Category": "Income",
+        "Amount": 136.72,
+        "Reason": "Cryptocurrency",
+        "Type": "Monthly",
+        "Label": "Leisure & Recreation"
+    },
+    {
+        "Transaction_Id": "ad094728-2db6-4f7b-a336-3298c6c3ebcd",
+        "User_Id": 90260003,
+        "Timestamp": "2024-02-21 12:25",
+        "Category": "Income",
+        "Amount": 202.84,
+        "Reason": "Cryptocurrency",
+        "Type": "Daily",
+        "Label": "Leisure & Recreation"
+    },
+    {
+        "Transaction_Id": "2e258bf7-7d90-4c7a-b7e9-7d2d408bdb1c",
+        "User_Id": 90260003,
+        "Timestamp": "2024-02-22 12:25",
+        "Category": "Income",
+        "Amount": 563.63,
+        "Reason": "Selling Items",
+        "Type": "Monthly",
+        "Label": "Food & Dining"
+    },
+    {
+        "Transaction_Id": "7aa313c6-ee96-4b53-affa-fe9cc5c1bc9a",
+        "User_Id": 90260003,
+        "Timestamp": "2024-02-22 12:25",
+        "Category": "Income",
+        "Amount": 496.43,
+        "Reason": "Interest Income",
+        "Type": "Monthly",
+        "Label": "Utilities"
+    },
+    {
+        "Transaction_Id": "26ec7560-69d2-4f4e-93fd-db37fc2a36d6",
+        "User_Id": 90260003,
+        "Timestamp": "2024-02-23 12:25",
+        "Category": "Spending",
+        "Amount": 868.27,
+        "Reason": "Maintenance",
+        "Type": "Monthly",
+        "Label": "Leisure & Recreation"
+    },
+    {
+        "Transaction_Id": "5080b344-ebb9-4257-9197-88f56dd9a2eb",
+        "User_Id": 90260003,
+        "Timestamp": "2024-02-26 12:25",
+        "Category": "Spending",
+        "Amount": 246.88,
+        "Reason": "Gym Membership",
+        "Type": "Daily",
+        "Label": "Food & Dining"
+    },
+    {
+        "Transaction_Id": "7505a18a-590f-4dcb-94d4-cb6d1dac6d12",
+        "User_Id": 90260003,
+        "Timestamp": "2024-02-29 12:25",
+        "Category": "Spending",
+        "Amount": 378.55,
+        "Reason": "Transportation",
+        "Type": "Monthly",
+        "Label": "Leisure & Recreation"
+    },
+    {
+        "Transaction_Id": "e6681add-21d6-4091-945f-6e9d6c50d140",
+        "User_Id": 90260003,
+        "Timestamp": "2024-03-01 12:25",
+        "Category": "Income",
+        "Amount": 483.97,
+        "Reason": "Tax Refund",
+        "Type": "Monthly",
+        "Label": "Health & Fitness"
+    },
+    {
+        "Transaction_Id": "0145c700-c58d-44ed-88a5-5ab82ddda12d",
+        "User_Id": 90260003,
+        "Timestamp": "2024-03-01 12:25",
+        "Category": "Income",
+        "Amount": 368.97,
+        "Reason": "Rental Income",
+        "Type": "Monthly",
+        "Label": "Entertainment"
+    },
+    {
+        "Transaction_Id": "614f9b22-a7c4-42d1-a51b-66be223119ac",
+        "User_Id": 90260003,
+        "Timestamp": "2024-03-01 12:25",
+        "Category": "Income",
+        "Amount": 224.37,
+        "Reason": "Pension",
+        "Type": "Monthly",
+        "Label": "Food & Dining"
+    },
+    {
+        "Transaction_Id": "c386a8d8-3f40-42de-8e96-a9840eefab13",
+        "User_Id": 90260003,
+        "Timestamp": "2024-03-02 12:25",
+        "Category": "Spending",
+        "Amount": 634.79,
+        "Reason": "Education",
+        "Type": "Daily",
+        "Label": "Health & Fitness"
+    },
+    {
+        "Transaction_Id": "49d03fb3-f715-4ae9-aeef-5c47b6bc70d1",
+        "User_Id": 90260003,
+        "Timestamp": "2024-03-02 12:25",
+        "Category": "Income",
+        "Amount": 451.28,
+        "Reason": "Interest Income",
+        "Type": "Monthly",
+        "Label": "Health & Fitness"
+    },
+    {
+        "Transaction_Id": "975acba9-684d-46ce-a6dc-511f4a461c9d",
+        "User_Id": 90260003,
+        "Timestamp": "2024-03-02 12:25",
+        "Category": "Income",
+        "Amount": 152.13,
+        "Reason": "Pension",
+        "Type": "Daily",
+        "Label": "Utilities"
+    },
+    {
+        "Transaction_Id": "563cdfa9-1a89-46d2-a7f6-3e1438d5a1ed",
+        "User_Id": 90260003,
+        "Timestamp": "2024-03-03 12:25",
+        "Category": "Income",
+        "Amount": 768.7,
+        "Reason": "Refund",
+        "Type": "Monthly",
+        "Label": "Entertainment"
+    },
+    {
+        "Transaction_Id": "09b87d21-97a7-4c09-9f1c-ce64661ccefb",
+        "User_Id": 90260003,
+        "Timestamp": "2024-03-03 12:25",
+        "Category": "Spending",
+        "Amount": 805.11,
+        "Reason": "Car Payment",
+        "Type": "Monthly",
+        "Label": "Utilities"
+    },
+    {
+        "Transaction_Id": "f73b2f94-62e5-4b40-8d84-4253d655f5f6",
+        "User_Id": 90260003,
+        "Timestamp": "2024-03-04 12:25",
+        "Category": "Spending",
+        "Amount": 188.13,
+        "Reason": "Travel",
+        "Type": "Monthly",
+        "Label": "Health & Fitness"
+    },
+    {
+        "Transaction_Id": "36ab0873-8259-48a9-82ae-55ad5714955c",
+        "User_Id": 90260003,
+        "Timestamp": "2024-03-05 12:25",
+        "Category": "Spending",
+        "Amount": 236.12,
+        "Reason": "Insurance",
+        "Type": "Daily",
+        "Label": "Entertainment"
+    },
+    {
+        "Transaction_Id": "7d478463-6edb-44ff-bfc7-b9e5af80f9fc",
+        "User_Id": 90260003,
+        "Timestamp": "2024-03-05 12:25",
+        "Category": "Spending",
+        "Amount": 566.62,
+        "Reason": "Entertainment",
+        "Type": "Monthly",
+        "Label": "Utilities"
+    },
+    {
+        "Transaction_Id": "f4c58dcf-1c87-4fc2-9ab1-f49615e04afc",
+        "User_Id": 90260003,
+        "Timestamp": "2024-03-07 12:25",
+        "Category": "Income",
+        "Amount": 896.78,
+        "Reason": "Dividends",
+        "Type": "Monthly",
+        "Label": "Health & Fitness"
+    },
+    {
+        "Transaction_Id": "09bd25a4-9636-446c-8f50-a70eaadd348e",
+        "User_Id": 90260003,
+        "Timestamp": "2024-03-07 12:25",
+        "Category": "Spending",
+        "Amount": 166.81,
+        "Reason": "Transportation",
+        "Type": "Daily",
+        "Label": "Food & Dining"
+    },
+    {
+        "Transaction_Id": "0266978d-7fea-4652-af6d-a5848237d316",
+        "User_Id": 90260003,
+        "Timestamp": "2024-03-10 12:25",
+        "Category": "Spending",
+        "Amount": 319.24,
+        "Reason": "Groceries",
+        "Type": "Daily",
+        "Label": "Leisure & Recreation"
+    },
+    {
+        "Transaction_Id": "51845b4c-a798-49cd-a8af-dce38829b655",
+        "User_Id": 90260003,
+        "Timestamp": "2024-03-13 12:25",
+        "Category": "Income",
+        "Amount": 944.66,
+        "Reason": "Crowdfunding",
+        "Type": "Daily",
+        "Label": "Food & Dining"
+    },
+    {
+        "Transaction_Id": "88dcab5b-69ee-4511-b99f-5e29f7a37725",
+        "User_Id": 90260003,
+        "Timestamp": "2024-03-13 12:25",
+        "Category": "Income",
+        "Amount": 169.63,
+        "Reason": "Gift",
+        "Type": "Daily",
+        "Label": "Leisure & Recreation"
+    },
+    {
+        "Transaction_Id": "8a0e0034-fd00-4b31-8033-712b704432f9",
+        "User_Id": 90260003,
+        "Timestamp": "2024-03-13 12:25",
+        "Category": "Spending",
+        "Amount": 746.29,
+        "Reason": "Home Improvement",
+        "Type": "Daily",
+        "Label": "Entertainment"
+    },
+    {
+        "Transaction_Id": "edac1ba3-b00b-4fad-a898-cc6ecef68eec",
+        "User_Id": 90260003,
+        "Timestamp": "2024-03-13 12:25",
+        "Category": "Income",
+        "Amount": 688.54,
+        "Reason": "Gift",
+        "Type": "Monthly",
+        "Label": "Food & Dining"
+    },
+    {
+        "Transaction_Id": "694350f8-3588-46ce-b08e-ecf034c158bf",
+        "User_Id": 90260003,
+        "Timestamp": "2024-03-14 12:25",
+        "Category": "Spending",
+        "Amount": 471.17,
+        "Reason": "Subscriptions",
+        "Type": "Daily",
+        "Label": "Utilities"
+    },
+    {
+        "Transaction_Id": "11753b8b-62b2-4d34-93f0-399c6a9f044e",
+        "User_Id": 90260003,
+        "Timestamp": "2024-03-14 12:25",
+        "Category": "Income",
+        "Amount": 128.95,
+        "Reason": "Bonus",
+        "Type": "Daily",
+        "Label": "Leisure & Recreation"
+    },
+    {
+        "Transaction_Id": "cc127f1e-8311-48c6-88f6-a29c351373ee",
+        "User_Id": 90260003,
+        "Timestamp": "2024-03-15 12:25",
+        "Category": "Income",
+        "Amount": 181.57,
+        "Reason": "Salary",
+        "Type": "Daily",
+        "Label": "Entertainment"
+    },
+    {
+        "Transaction_Id": "1aa86cbf-8105-4383-9233-3cca703cf5a3",
+        "User_Id": 90260003,
+        "Timestamp": "2024-03-18 12:25",
+        "Category": "Income",
+        "Amount": 809.59,
+        "Reason": "Freelance Project",
+        "Type": "Monthly",
+        "Label": "Health & Fitness"
+    },
+    {
+        "Transaction_Id": "05dc7a86-fd68-41dd-96e4-927512635d3d",
+        "User_Id": 90260003,
+        "Timestamp": "2024-03-18 12:25",
+        "Category": "Spending",
+        "Amount": 423.4,
+        "Reason": "Maintenance",
+        "Type": "Monthly",
+        "Label": "Entertainment"
+    },
+    {
+        "Transaction_Id": "8352dae1-f9a0-4f7f-8f42-9ee3cae96c1b",
+        "User_Id": 90260003,
+        "Timestamp": "2024-03-19 12:25",
+        "Category": "Income",
+        "Amount": 73.63,
+        "Reason": "Dividends",
+        "Type": "Daily",
+        "Label": "Health & Fitness"
+    },
+    {
+        "Transaction_Id": "78b09859-c643-4ba9-95ea-f7fe2c40d843",
+        "User_Id": 90260003,
+        "Timestamp": "2024-03-20 12:25",
+        "Category": "Spending",
+        "Amount": 48.52,
+        "Reason": "Entertainment",
+        "Type": "Monthly",
+        "Label": "Leisure & Recreation"
+    },
+    {
+        "Transaction_Id": "f8580f8e-29a8-4c1f-b060-cd48ce77240c",
+        "User_Id": 90260003,
+        "Timestamp": "2024-03-22 12:25",
+        "Category": "Income",
+        "Amount": 100.95,
+        "Reason": "Tax Refund",
+        "Type": "Daily",
+        "Label": "Leisure & Recreation"
+    },
+    {
+        "Transaction_Id": "4a818a69-f2ad-4a54-beed-36763dbf7200",
+        "User_Id": 90260003,
+        "Timestamp": "2024-03-25 12:25",
+        "Category": "Spending",
+        "Amount": 806.73,
+        "Reason": "Clothing",
+        "Type": "Daily",
+        "Label": "Leisure & Recreation"
+    },
+    {
+        "Transaction_Id": "ff1ad039-0f92-4880-9826-faf322831e17",
+        "User_Id": 90260003,
+        "Timestamp": "2024-03-26 12:25",
+        "Category": "Income",
+        "Amount": 294.18,
+        "Reason": "Cryptocurrency",
+        "Type": "Daily",
+        "Label": "Food & Dining"
+    },
+    {
+        "Transaction_Id": "47f541a3-389f-4973-8d92-36df02847fb5",
+        "User_Id": 90260003,
+        "Timestamp": "2024-03-27 12:25",
+        "Category": "Spending",
+        "Amount": 767.92,
+        "Reason": "Utilities",
+        "Type": "Daily",
+        "Label": "Health & Fitness"
+    },
+    {
+        "Transaction_Id": "e678c417-dd80-4ac4-8cc5-3520b0bef505",
+        "User_Id": 90260003,
+        "Timestamp": "2024-03-28 12:25",
+        "Category": "Income",
+        "Amount": 505.97,
+        "Reason": "Lottery",
+        "Type": "Monthly",
+        "Label": "Health & Fitness"
+    },
+    {
+        "Transaction_Id": "26841a9f-8ab1-4d1b-a526-8bca79699c41",
+        "User_Id": 90260003,
+        "Timestamp": "2024-03-29 12:25",
+        "Category": "Spending",
+        "Amount": 790.97,
+        "Reason": "Clothing",
+        "Type": "Monthly",
+        "Label": "Leisure & Recreation"
+    },
+    {
+        "Transaction_Id": "fe31405e-d954-4a77-b8da-9b838af44f32",
+        "User_Id": 90260003,
+        "Timestamp": "2024-03-30 12:25",
+        "Category": "Spending",
+        "Amount": 453.85,
+        "Reason": "Childcare",
+        "Type": "Monthly",
+        "Label": "Food & Dining"
+    },
+    {
+        "Transaction_Id": "555c83f4-82ed-450a-88b6-36e14e990332",
+        "User_Id": 90260003,
+        "Timestamp": "2024-03-30 12:25",
+        "Category": "Income",
+        "Amount": 141.15,
+        "Reason": "Pension",
+        "Type": "Daily",
+        "Label": "Utilities"
+    },
+    {
+        "Transaction_Id": "a9e6d1ff-44a2-450e-8a65-dfd3c4a9246f",
+        "User_Id": 90260003,
+        "Timestamp": "2024-03-30 12:25",
+        "Category": "Income",
+        "Amount": 36.76,
+        "Reason": "Crowdfunding",
+        "Type": "Daily",
+        "Label": "Entertainment"
+    },
+    {
+        "Transaction_Id": "f4be9d6b-4936-42ca-984d-37283e964038",
+        "User_Id": 90260003,
+        "Timestamp": "2024-03-31 12:25",
+        "Category": "Spending",
+        "Amount": 594.2,
+        "Reason": "Travel",
+        "Type": "Monthly",
+        "Label": "Leisure & Recreation"
+    },
+    {
+        "Transaction_Id": "a2de562f-5fb3-4592-953b-a268fbe49deb",
+        "User_Id": 90260003,
+        "Timestamp": "2024-04-01 12:25",
+        "Category": "Spending",
+        "Amount": 372.01,
+        "Reason": "Transportation",
+        "Type": "Daily",
+        "Label": "Food & Dining"
+    },
+    {
+        "Transaction_Id": "67d30c74-31bc-4654-a6a2-1f85c4043132",
+        "User_Id": 90260003,
+        "Timestamp": "2024-04-03 12:25",
+        "Category": "Spending",
+        "Amount": 815.1,
+        "Reason": "Subscriptions",
+        "Type": "Monthly",
+        "Label": "Food & Dining"
+    },
+    {
+        "Transaction_Id": "2df63b90-8428-4079-9e0f-8282226563f3",
+        "User_Id": 90260003,
+        "Timestamp": "2024-04-06 12:25",
+        "Category": "Spending",
+        "Amount": 242.24,
+        "Reason": "Dining Out",
+        "Type": "Monthly",
+        "Label": "Entertainment"
+    },
+    {
+        "Transaction_Id": "619e8fa4-5590-439f-b9d6-3c56a24dc066",
+        "User_Id": 90260003,
+        "Timestamp": "2024-04-06 12:25",
+        "Category": "Income",
+        "Amount": 650.61,
+        "Reason": "Pension",
+        "Type": "Monthly",
+        "Label": "Food & Dining"
+    },
+    {
+        "Transaction_Id": "3a80cc35-4673-462e-8473-5ed06daf1865",
+        "User_Id": 90260003,
+        "Timestamp": "2024-04-07 12:25",
+        "Category": "Spending",
+        "Amount": 730.12,
+        "Reason": "Maintenance",
+        "Type": "Monthly",
+        "Label": "Entertainment"
+    },
+    {
+        "Transaction_Id": "d62adca6-8aca-431b-971b-bec9c4d09e0a",
+        "User_Id": 90260003,
+        "Timestamp": "2024-04-08 12:25",
+        "Category": "Spending",
+        "Amount": 904.03,
+        "Reason": "Education",
+        "Type": "Daily",
+        "Label": "Leisure & Recreation"
+    },
+    {
+        "Transaction_Id": "52800318-5041-4ee7-b764-327295f57336",
+        "User_Id": 90260003,
+        "Timestamp": "2024-04-09 12:25",
+        "Category": "Income",
+        "Amount": 116.83,
+        "Reason": "Dividends",
+        "Type": "Daily",
+        "Label": "Utilities"
+    },
+    {
+        "Transaction_Id": "bdfee7c5-d0d1-4ffa-b15d-0227dd66d229",
+        "User_Id": 90260003,
+        "Timestamp": "2024-04-09 12:25",
+        "Category": "Income",
+        "Amount": 87.3,
+        "Reason": "Stock Market",
+        "Type": "Monthly",
+        "Label": "Utilities"
+    },
+    {
+        "Transaction_Id": "8fb28778-95c5-41d4-bec5-3e84d6d45cf6",
+        "User_Id": 90260003,
+        "Timestamp": "2024-04-10 12:25",
+        "Category": "Spending",
+        "Amount": 720.24,
+        "Reason": "Maintenance",
+        "Type": "Monthly",
+        "Label": "Food & Dining"
+    },
+    {
+        "Transaction_Id": "5b4ed046-2f8e-4859-972c-bbbf90614bfa",
+        "User_Id": 90260003,
+        "Timestamp": "2024-04-10 12:25",
+        "Category": "Income",
+        "Amount": 585.28,
+        "Reason": "Refund",
+        "Type": "Monthly",
+        "Label": "Utilities"
+    },
+    {
+        "Transaction_Id": "4087e0bb-86e7-4847-90b1-eb4fcf76291b",
+        "User_Id": 90260003,
+        "Timestamp": "2024-04-10 12:25",
+        "Category": "Spending",
+        "Amount": 210.58,
+        "Reason": "Transportation",
+        "Type": "Monthly",
+        "Label": "Leisure & Recreation"
+    },
+    {
+        "Transaction_Id": "75e46156-1dc4-4e9b-99ba-d237f2254cf1",
+        "User_Id": 90260003,
+        "Timestamp": "2024-04-10 12:25",
+        "Category": "Spending",
+        "Amount": 417.02,
+        "Reason": "Travel",
+        "Type": "Monthly",
+        "Label": "Utilities"
+    },
+    {
+        "Transaction_Id": "5872581e-520a-475e-8fa1-b30773a7af0a",
+        "User_Id": 90260003,
+        "Timestamp": "2024-04-11 12:25",
+        "Category": "Income",
+        "Amount": 690.3,
+        "Reason": "Crowdfunding",
+        "Type": "Monthly",
+        "Label": "Health & Fitness"
+    },
+    {
+        "Transaction_Id": "9f6c0771-9a6f-49d1-8f1f-bbbca21ef3f9",
+        "User_Id": 90260003,
+        "Timestamp": "2024-04-11 12:25",
+        "Category": "Income",
+        "Amount": 281.21,
+        "Reason": "Gift",
+        "Type": "Daily",
+        "Label": "Health & Fitness"
+    },
+    {
+        "Transaction_Id": "97900320-407a-4227-b33d-44513dddfc80",
+        "User_Id": 90260003,
+        "Timestamp": "2024-04-12 12:25",
+        "Category": "Spending",
+        "Amount": 443.38,
+        "Reason": "Transportation",
+        "Type": "Monthly",
+        "Label": "Entertainment"
+    },
+    {
+        "Transaction_Id": "c5da6bf2-2c25-43f9-819f-053526b401b6",
+        "User_Id": 90260003,
+        "Timestamp": "2024-04-12 12:25",
+        "Category": "Income",
+        "Amount": 496.69,
+        "Reason": "Grants",
+        "Type": "Monthly",
+        "Label": "Entertainment"
+    },
+    {
+        "Transaction_Id": "17adc2e8-3806-4427-b40b-80e5ffaff7f1",
+        "User_Id": 90260003,
+        "Timestamp": "2024-04-13 12:25",
+        "Category": "Spending",
+        "Amount": 483.38,
+        "Reason": "Car Payment",
+        "Type": "Monthly",
+        "Label": "Health & Fitness"
+    },
+    {
+        "Transaction_Id": "56e3bd2a-9c47-43e6-b042-fbfb4eceb87a",
+        "User_Id": 90260003,
+        "Timestamp": "2024-04-13 12:25",
+        "Category": "Spending",
+        "Amount": 67.39,
+        "Reason": "Healthcare",
+        "Type": "Monthly",
+        "Label": "Utilities"
+    },
+    {
+        "Transaction_Id": "1cbae316-5da3-45e4-8bac-98dd0c39aace",
+        "User_Id": 90260003,
+        "Timestamp": "2024-04-14 12:25",
+        "Category": "Spending",
+        "Amount": 518.69,
+        "Reason": "Travel",
+        "Type": "Monthly",
+        "Label": "Food & Dining"
+    },
+    {
+        "Transaction_Id": "9a4b8aae-099b-4ccb-bc27-a63950394ddd",
+        "User_Id": 90260003,
+        "Timestamp": "2024-04-14 12:25",
+        "Category": "Spending",
+        "Amount": 277.3,
+        "Reason": "Gifts",
+        "Type": "Daily",
+        "Label": "Utilities"
+    },
+    {
+        "Transaction_Id": "dae60be7-ce2c-4beb-b456-043b50be4987",
+        "User_Id": 90260003,
+        "Timestamp": "2024-04-15 12:25",
+        "Category": "Income",
+        "Amount": 163.89,
+        "Reason": "Selling Items",
+        "Type": "Monthly",
+        "Label": "Health & Fitness"
+    },
+    {
+        "Transaction_Id": "473a9eb0-8992-4f38-9f68-5ec447ebb96b",
+        "User_Id": 90260003,
+        "Timestamp": "2024-04-15 12:25",
+        "Category": "Income",
+        "Amount": 176.42,
+        "Reason": "Lottery",
+        "Type": "Daily",
+        "Label": "Entertainment"
+    },
+    {
+        "Transaction_Id": "023bf5b2-f277-4111-9746-cf8b17b46cb7",
+        "User_Id": 90260003,
+        "Timestamp": "2024-04-15 12:25",
+        "Category": "Income",
+        "Amount": 760.7,
+        "Reason": "Investment Return",
+        "Type": "Daily",
+        "Label": "Food & Dining"
+    },
+    {
+        "Transaction_Id": "cd070fd2-460d-4400-bcb3-b76feb3cd07d",
+        "User_Id": 90260003,
+        "Timestamp": "2024-04-18 12:25",
+        "Category": "Spending",
+        "Amount": 770.85,
+        "Reason": "Gym Membership",
+        "Type": "Monthly",
+        "Label": "Food & Dining"
+    },
+    {
+        "Transaction_Id": "fd4ad4d2-5322-43f6-bd16-64f38e2f385a",
+        "User_Id": 90260003,
+        "Timestamp": "2024-04-19 12:25",
+        "Category": "Income",
+        "Amount": 369.9,
+        "Reason": "Crowdfunding",
+        "Type": "Monthly",
+        "Label": "Food & Dining"
+    },
+    {
+        "Transaction_Id": "696953a9-eb93-46bc-90e7-fb33294b71d7",
+        "User_Id": 90260003,
+        "Timestamp": "2024-04-19 12:25",
+        "Category": "Spending",
+        "Amount": 985.66,
+        "Reason": "Healthcare",
+        "Type": "Monthly",
+        "Label": "Food & Dining"
+    },
+    {
+        "Transaction_Id": "04f60f5b-8e93-4fc1-bcd8-8dfc10fc8ea9",
+        "User_Id": 90260003,
+        "Timestamp": "2024-04-20 12:25",
+        "Category": "Spending",
+        "Amount": 775.98,
+        "Reason": "Car Payment",
+        "Type": "Daily",
+        "Label": "Health & Fitness"
+    },
+    {
+        "Transaction_Id": "8f0e91d2-0b66-441e-8ac2-f04e7f1a39ed",
+        "User_Id": 90260003,
+        "Timestamp": "2024-04-20 12:25",
+        "Category": "Income",
+        "Amount": 428.81,
+        "Reason": "Tax Refund",
+        "Type": "Monthly",
+        "Label": "Leisure & Recreation"
+    },
+    {
+        "Transaction_Id": "4c4f64df-c5bc-41c5-9ffb-cd5d7572f944",
+        "User_Id": 90260003,
+        "Timestamp": "2024-04-21 12:25",
+        "Category": "Spending",
+        "Amount": 902.74,
+        "Reason": "Maintenance",
+        "Type": "Monthly",
+        "Label": "Leisure & Recreation"
+    },
+    {
+        "Transaction_Id": "91153492-ac45-4db9-94eb-b46f60a8047d",
+        "User_Id": 90260003,
+        "Timestamp": "2024-04-21 12:25",
+        "Category": "Spending",
+        "Amount": 289.6,
+        "Reason": "Childcare",
+        "Type": "Daily",
+        "Label": "Leisure & Recreation"
+    },
+    {
+        "Transaction_Id": "8779a544-4c25-4c44-9bb2-ceeba2e6f28a",
+        "User_Id": 90260003,
+        "Timestamp": "2024-04-22 12:25",
+        "Category": "Income",
+        "Amount": 227.5,
+        "Reason": "Freelance Project",
+        "Type": "Daily",
+        "Label": "Leisure & Recreation"
+    },
+    {
+        "Transaction_Id": "83bd6d7d-8b19-4536-995d-3511cbe9535d",
+        "User_Id": 90260003,
+        "Timestamp": "2024-04-22 12:25",
+        "Category": "Income",
+        "Amount": 544.99,
+        "Reason": "Grants",
+        "Type": "Monthly",
+        "Label": "Food & Dining"
+    },
+    {
+        "Transaction_Id": "d0bb0e2c-1313-424d-93fe-d3ccc35b12b3",
+        "User_Id": 90260003,
+        "Timestamp": "2024-04-23 12:25",
+        "Category": "Spending",
+        "Amount": 233.93,
+        "Reason": "Entertainment",
+        "Type": "Daily",
+        "Label": "Leisure & Recreation"
+    },
+    {
+        "Transaction_Id": "a03ab057-47a1-49ae-91e8-8e71d61c0233",
+        "User_Id": 90260003,
+        "Timestamp": "2024-04-25 12:25",
+        "Category": "Income",
+        "Amount": 728.05,
+        "Reason": "Scholarship",
+        "Type": "Monthly",
+        "Label": "Food & Dining"
+    },
+    {
+        "Transaction_Id": "c628dd1e-7163-45d3-add1-caf3321bd003",
+        "User_Id": 90260003,
+        "Timestamp": "2024-04-25 12:25",
+        "Category": "Spending",
+        "Amount": 100.96,
+        "Reason": "Entertainment",
+        "Type": "Daily",
+        "Label": "Entertainment"
+    },
+    {
+        "Transaction_Id": "2fba7591-a490-436c-9761-355ade0852dc",
+        "User_Id": 90260003,
+        "Timestamp": "2024-04-25 12:25",
+        "Category": "Income",
+        "Amount": 328.42,
+        "Reason": "Crowdfunding",
+        "Type": "Daily",
+        "Label": "Health & Fitness"
+    },
+    {
+        "Transaction_Id": "ec05b1f1-62bd-40e0-9e97-a1949169278b",
+        "User_Id": 90260003,
+        "Timestamp": "2024-04-26 12:25",
+        "Category": "Income",
+        "Amount": 610.65,
+        "Reason": "Grants",
+        "Type": "Daily",
+        "Label": "Health & Fitness"
+    },
+    {
+        "Transaction_Id": "ebf8640a-e7e6-4d8d-be12-288a43893c4f",
+        "User_Id": 90260003,
+        "Timestamp": "2024-04-27 12:25",
+        "Category": "Spending",
+        "Amount": 313.6,
+        "Reason": "Gifts",
+        "Type": "Monthly",
+        "Label": "Utilities"
+    },
+    {
+        "Transaction_Id": "f758dbe2-84f0-442f-ae44-74de748d6e3d",
+        "User_Id": 90260003,
+        "Timestamp": "2024-04-27 12:25",
+        "Category": "Spending",
+        "Amount": 568.01,
+        "Reason": "Insurance",
+        "Type": "Daily",
+        "Label": "Leisure & Recreation"
+    },
+    {
+        "Transaction_Id": "8f99f0bd-e549-45cb-bac5-29fb86849a88",
+        "User_Id": 90260003,
+        "Timestamp": "2024-04-27 12:25",
+        "Category": "Spending",
+        "Amount": 11.71,
+        "Reason": "Maintenance",
+        "Type": "Monthly",
+        "Label": "Leisure & Recreation"
+    },
+    {
+        "Transaction_Id": "8ab4550e-63d8-44d6-a95a-62720f686c5c",
+        "User_Id": 90260003,
+        "Timestamp": "2024-04-27 12:25",
+        "Category": "Spending",
+        "Amount": 604.04,
+        "Reason": "Car Payment",
+        "Type": "Daily",
+        "Label": "Leisure & Recreation"
+    },
+    {
+        "Transaction_Id": "447a49b8-0a67-4d10-9eff-22313c46b51f",
+        "User_Id": 90260003,
+        "Timestamp": "2024-04-28 12:25",
+        "Category": "Income",
+        "Amount": 26.82,
+        "Reason": "Cryptocurrency",
+        "Type": "Monthly",
+        "Label": "Entertainment"
+    },
+    {
+        "Transaction_Id": "4cd506f5-01b4-4b56-a8e8-8f7413e73e0e",
+        "User_Id": 90260003,
+        "Timestamp": "2024-04-28 12:25",
+        "Category": "Spending",
+        "Amount": 390.88,
+        "Reason": "Rent",
+        "Type": "Monthly",
+        "Label": "Food & Dining"
+    },
+    {
+        "Transaction_Id": "87cab1ec-2c57-472c-9733-9baaf3be37f4",
+        "User_Id": 90260003,
+        "Timestamp": "2024-04-30 12:25",
+        "Category": "Income",
+        "Amount": 119.88,
+        "Reason": "Interest Income",
+        "Type": "Daily",
+        "Label": "Food & Dining"
+    },
+    {
+        "Transaction_Id": "7eef85d4-6694-4423-af64-6d9e5b890558",
+        "User_Id": 90260003,
+        "Timestamp": "2024-04-30 12:25",
+        "Category": "Income",
+        "Amount": 73.16,
+        "Reason": "Freelance Project",
+        "Type": "Daily",
+        "Label": "Leisure & Recreation"
+    },
+    {
+        "Transaction_Id": "8fc06ba0-e1dd-480e-8cc6-25820a55c152",
+        "User_Id": 90260003,
+        "Timestamp": "2024-04-30 12:25",
+        "Category": "Income",
+        "Amount": 895.26,
+        "Reason": "Freelance Project",
+        "Type": "Monthly",
+        "Label": "Utilities"
+    },
+    {
+        "Transaction_Id": "60d6d028-39d5-4ace-836e-fb570848f1ce",
+        "User_Id": 90260003,
+        "Timestamp": "2024-05-02 12:25",
+        "Category": "Income",
+        "Amount": 875.57,
+        "Reason": "Inheritance",
+        "Type": "Monthly",
+        "Label": "Utilities"
+    },
+    {
+        "Transaction_Id": "4d3e0fec-0eaf-410a-b6fd-8111b90d30d1",
+        "User_Id": 90260003,
+        "Timestamp": "2024-05-03 12:25",
+        "Category": "Spending",
+        "Amount": 60.34,
+        "Reason": "Pet Care",
+        "Type": "Daily",
+        "Label": "Entertainment"
+    },
+    {
+        "Transaction_Id": "c85db2a1-d1c5-41de-bc89-28ab19062231",
+        "User_Id": 90260003,
+        "Timestamp": "2024-05-03 12:25",
+        "Category": "Income",
+        "Amount": 488.14,
+        "Reason": "Side Business",
+        "Type": "Monthly",
+        "Label": "Entertainment"
+    },
+    {
+        "Transaction_Id": "7c2dc44e-067f-4c2f-8cd4-b2b23f30c2c0",
+        "User_Id": 90260003,
+        "Timestamp": "2024-05-03 12:25",
+        "Category": "Spending",
+        "Amount": 317.34,
+        "Reason": "Gifts",
+        "Type": "Daily",
+        "Label": "Food & Dining"
+    },
+    {
+        "Transaction_Id": "c723b256-9540-4c25-a012-c72e91463e98",
+        "User_Id": 90260003,
+        "Timestamp": "2024-05-04 12:25",
+        "Category": "Income",
+        "Amount": 24.28,
+        "Reason": "Selling Items",
+        "Type": "Daily",
+        "Label": "Health & Fitness"
+    },
+    {
+        "Transaction_Id": "761927eb-0e92-4fd3-b630-8d7012c6c9a6",
+        "User_Id": 90260003,
+        "Timestamp": "2024-05-04 12:25",
+        "Category": "Income",
+        "Amount": 566.85,
+        "Reason": "Cryptocurrency",
+        "Type": "Monthly",
+        "Label": "Entertainment"
+    },
+    {
+        "Transaction_Id": "7e88fd02-f90c-4bab-a39c-b4b350b71db8",
+        "User_Id": 90260003,
+        "Timestamp": "2024-05-04 12:25",
+        "Category": "Spending",
+        "Amount": 960.2,
+        "Reason": "Clothing",
+        "Type": "Daily",
+        "Label": "Utilities"
+    },
+    {
+        "Transaction_Id": "fbb1fdf2-ff1d-49ff-8821-f27e4a05be46",
+        "User_Id": 90260003,
+        "Timestamp": "2024-05-06 12:25",
+        "Category": "Spending",
+        "Amount": 535.46,
+        "Reason": "Travel",
+        "Type": "Daily",
+        "Label": "Food & Dining"
+    },
+    {
+        "Transaction_Id": "f8486bf2-49d2-4065-afe3-02db2047a17b",
+        "User_Id": 90260003,
+        "Timestamp": "2024-05-07 12:25",
+        "Category": "Spending",
+        "Amount": 747.72,
+        "Reason": "Insurance",
+        "Type": "Monthly",
+        "Label": "Health & Fitness"
+    },
+    {
+        "Transaction_Id": "1d0741dc-d001-4347-bf76-c36d922755f1",
+        "User_Id": 90260003,
+        "Timestamp": "2024-05-08 12:25",
+        "Category": "Spending",
+        "Amount": 624.31,
+        "Reason": "Education",
+        "Type": "Daily",
+        "Label": "Entertainment"
+    },
+    {
+        "Transaction_Id": "9b64a6b8-a8d6-4e80-a12f-1d171ffc57f6",
+        "User_Id": 90260003,
+        "Timestamp": "2024-05-09 12:25",
+        "Category": "Spending",
+        "Amount": 515.03,
+        "Reason": "Entertainment",
+        "Type": "Daily",
+        "Label": "Food & Dining"
+    },
+    {
+        "Transaction_Id": "9967ba37-1fa0-41c3-b299-7f2a6dff4fc4",
+        "User_Id": 90260003,
+        "Timestamp": "2024-05-10 12:25",
+        "Category": "Spending",
+        "Amount": 295.6,
+        "Reason": "Travel",
+        "Type": "Daily",
+        "Label": "Entertainment"
+    },
+    {
+        "Transaction_Id": "26c0152b-20e9-40a5-a69c-2c49778aa45d",
+        "User_Id": 90260003,
+        "Timestamp": "2024-05-10 12:25",
+        "Category": "Spending",
+        "Amount": 686.45,
+        "Reason": "Dining Out",
+        "Type": "Daily",
+        "Label": "Health & Fitness"
+    },
+    {
+        "Transaction_Id": "698abc15-43a1-4a08-9938-12c5d1ef4340",
+        "User_Id": 90260003,
+        "Timestamp": "2024-05-10 12:25",
+        "Category": "Spending",
+        "Amount": 785.93,
+        "Reason": "Home Improvement",
+        "Type": "Daily",
+        "Label": "Utilities"
+    },
+    {
+        "Transaction_Id": "94e70e5d-28b5-4b4b-b7fb-6f26e30c961d",
+        "User_Id": 90260003,
+        "Timestamp": "2024-05-10 12:25",
+        "Category": "Income",
+        "Amount": 112.49,
+        "Reason": "Interest Income",
+        "Type": "Monthly",
+        "Label": "Utilities"
+    },
+    {
+        "Transaction_Id": "4e0c826a-92d3-4f6f-8aa1-56f733042989",
+        "User_Id": 90260003,
+        "Timestamp": "2024-05-12 12:25",
+        "Category": "Income",
+        "Amount": 205.73,
+        "Reason": "Pension",
+        "Type": "Daily",
+        "Label": "Entertainment"
+    },
+    {
+        "Transaction_Id": "98e4d087-7d4a-4790-9543-b95d6cd3ee9b",
+        "User_Id": 90260003,
+        "Timestamp": "2024-05-12 12:25",
+        "Category": "Spending",
+        "Amount": 935.42,
+        "Reason": "Gifts",
+        "Type": "Monthly",
+        "Label": "Utilities"
+    },
+    {
+        "Transaction_Id": "9959a3fc-7dce-433d-b7e3-bfd113c79bcb",
+        "User_Id": 90260003,
+        "Timestamp": "2024-05-12 12:25",
+        "Category": "Income",
+        "Amount": 415.57,
+        "Reason": "Inheritance",
+        "Type": "Monthly",
+        "Label": "Leisure & Recreation"
+    },
+    {
+        "Transaction_Id": "f46347ce-5a8b-4894-b657-e3f9da8cf2f2",
+        "User_Id": 90260003,
+        "Timestamp": "2024-05-13 12:25",
+        "Category": "Income",
+        "Amount": 718.02,
+        "Reason": "Stock Market",
+        "Type": "Monthly",
+        "Label": "Leisure & Recreation"
+    },
+    {
+        "Transaction_Id": "64e4d33e-4558-4741-9010-d27de2a83eb9",
+        "User_Id": 90260003,
+        "Timestamp": "2024-05-13 12:25",
+        "Category": "Income",
+        "Amount": 824.36,
+        "Reason": "Dividends",
+        "Type": "Monthly",
+        "Label": "Health & Fitness"
+    },
+    {
+        "Transaction_Id": "883ed31e-4102-48b8-aa0b-2e23ce79060a",
+        "User_Id": 90260003,
+        "Timestamp": "2024-05-13 12:25",
+        "Category": "Income",
+        "Amount": 661.48,
+        "Reason": "Inheritance",
+        "Type": "Daily",
+        "Label": "Entertainment"
+    },
+    {
+        "Transaction_Id": "1bcca18d-dae5-424e-a27c-d05b87affdf9",
+        "User_Id": 90260003,
+        "Timestamp": "2024-05-14 12:25",
+        "Category": "Income",
+        "Amount": 49.64,
+        "Reason": "Freelance Project",
+        "Type": "Monthly",
+        "Label": "Leisure & Recreation"
+    },
+    {
+        "Transaction_Id": "030c512c-c725-4180-abe7-d8e4ae28c2fa",
+        "User_Id": 90260003,
+        "Timestamp": "2024-05-15 12:25",
+        "Category": "Spending",
+        "Amount": 554.89,
+        "Reason": "Groceries",
+        "Type": "Daily",
+        "Label": "Food & Dining"
+    },
+    {
+        "Transaction_Id": "fca365b8-01d1-4383-a373-a0ce5fc8820c",
+        "User_Id": 90260003,
+        "Timestamp": "2024-05-16 12:25",
+        "Category": "Income",
+        "Amount": 158.23,
+        "Reason": "Crowdfunding",
+        "Type": "Monthly",
+        "Label": "Entertainment"
+    },
+    {
+        "Transaction_Id": "1032ace8-9ab7-4913-8cf6-fd7dab938851",
+        "User_Id": 90260003,
+        "Timestamp": "2024-05-16 12:25",
+        "Category": "Spending",
+        "Amount": 168.78,
+        "Reason": "Entertainment",
+        "Type": "Monthly",
+        "Label": "Food & Dining"
+    },
+    {
+        "Transaction_Id": "55d0cc0b-cf84-47f0-b42a-d5de5d671a0f",
+        "User_Id": 90260003,
+        "Timestamp": "2024-05-17 12:25",
+        "Category": "Income",
+        "Amount": 597.27,
+        "Reason": "Crowdfunding",
+        "Type": "Monthly",
+        "Label": "Food & Dining"
+    },
+    {
+        "Transaction_Id": "b4e75b0c-51dd-4da9-99a9-95e3979aef7c",
+        "User_Id": 90260003,
+        "Timestamp": "2024-05-17 12:25",
+        "Category": "Spending",
+        "Amount": 58.94,
+        "Reason": "Travel",
+        "Type": "Daily",
+        "Label": "Entertainment"
+    },
+    {
+        "Transaction_Id": "80a2e59b-2eff-4fcb-b200-936cde749834",
+        "User_Id": 90260003,
+        "Timestamp": "2024-05-17 12:25",
+        "Category": "Spending",
+        "Amount": 582.2,
+        "Reason": "Travel",
+        "Type": "Daily",
+        "Label": "Utilities"
+    },
+    {
+        "Transaction_Id": "2a746603-71d6-4322-8f50-1c2d2c4a00c6",
+        "User_Id": 90260003,
+        "Timestamp": "2024-05-17 12:25",
+        "Category": "Spending",
+        "Amount": 53.7,
+        "Reason": "Insurance",
+        "Type": "Monthly",
+        "Label": "Entertainment"
+    },
+    {
+        "Transaction_Id": "9f1c2a06-0c2b-46a6-9d7b-39cb59bd6831",
+        "User_Id": 90260003,
+        "Timestamp": "2024-05-18 12:25",
+        "Category": "Spending",
+        "Amount": 783.68,
+        "Reason": "Groceries",
+        "Type": "Daily",
+        "Label": "Entertainment"
+    },
+    {
+        "Transaction_Id": "aa04763f-bc8d-4ba1-9430-0b5aeefc67ef",
+        "User_Id": 90260003,
+        "Timestamp": "2024-05-18 12:25",
+        "Category": "Income",
+        "Amount": 92.01,
+        "Reason": "Refund",
+        "Type": "Monthly",
+        "Label": "Entertainment"
+    },
+    {
+        "Transaction_Id": "7abc972f-b523-4857-b488-82cb0da679af",
+        "User_Id": 90260003,
+        "Timestamp": "2024-05-19 12:25",
+        "Category": "Spending",
+        "Amount": 874.6,
+        "Reason": "Subscriptions",
+        "Type": "Monthly",
+        "Label": "Entertainment"
+    },
+    {
+        "Transaction_Id": "38a27e6c-172e-4ea7-b1db-d6f8f68d3c4f",
+        "User_Id": 90260003,
+        "Timestamp": "2024-05-23 12:25",
+        "Category": "Spending",
+        "Amount": 203.9,
+        "Reason": "Car Payment",
+        "Type": "Daily",
+        "Label": "Entertainment"
+    },
+    {
+        "Transaction_Id": "e4b979e4-86df-4048-bf2b-b974018382fa",
+        "User_Id": 90260003,
+        "Timestamp": "2024-05-23 12:25",
+        "Category": "Spending",
+        "Amount": 762.24,
+        "Reason": "Rent",
+        "Type": "Daily",
+        "Label": "Leisure & Recreation"
+    },
+    {
+        "Transaction_Id": "2ab49277-f0d0-44c3-a018-ec4a232996c4",
+        "User_Id": 90260003,
+        "Timestamp": "2024-05-23 12:25",
+        "Category": "Income",
+        "Amount": 776.24,
+        "Reason": "Interest Income",
+        "Type": "Monthly",
+        "Label": "Leisure & Recreation"
+    },
+    {
+        "Transaction_Id": "00275d4d-7b0d-453e-9929-c5d4570d16e1",
+        "User_Id": 90260003,
+        "Timestamp": "2024-05-25 12:25",
+        "Category": "Income",
+        "Amount": 203.62,
+        "Reason": "Selling Items",
+        "Type": "Monthly",
+        "Label": "Entertainment"
+    },
+    {
+        "Transaction_Id": "703778dd-b6a5-4b35-bbe6-b741998f8250",
+        "User_Id": 90260003,
+        "Timestamp": "2024-05-25 12:25",
+        "Category": "Income",
+        "Amount": 529.02,
+        "Reason": "Dividends",
+        "Type": "Daily",
+        "Label": "Entertainment"
+    },
+    {
+        "Transaction_Id": "b29728cd-68b6-4f8a-a81b-91babf6bc708",
+        "User_Id": 90260003,
+        "Timestamp": "2024-05-26 12:25",
+        "Category": "Spending",
+        "Amount": 677.5,
+        "Reason": "Utilities",
+        "Type": "Daily",
+        "Label": "Utilities"
+    },
+    {
+        "Transaction_Id": "47277e3d-c840-4bc6-ae9a-7fe0207575cb",
+        "User_Id": 90260003,
+        "Timestamp": "2024-05-26 12:25",
+        "Category": "Spending",
+        "Amount": 904.63,
+        "Reason": "Charity",
+        "Type": "Daily",
+        "Label": "Health & Fitness"
+    },
+    {
+        "Transaction_Id": "d838fe81-e12d-4dc3-8b82-e804ed84d36b",
+        "User_Id": 90260003,
+        "Timestamp": "2024-05-27 12:25",
+        "Category": "Income",
+        "Amount": 960.81,
+        "Reason": "Investment Return",
+        "Type": "Monthly",
+        "Label": "Food & Dining"
+    },
+    {
+        "Transaction_Id": "659f4885-18fb-4d93-863e-8f9264b8e15e",
+        "User_Id": 90260003,
+        "Timestamp": "2024-05-28 12:25",
+        "Category": "Spending",
+        "Amount": 184.62,
+        "Reason": "Utilities",
+        "Type": "Monthly",
+        "Label": "Health & Fitness"
+    },
+    {
+        "Transaction_Id": "3a955a60-4c92-4311-9a38-761374fc2803",
+        "User_Id": 90260003,
+        "Timestamp": "2024-05-28 12:25",
+        "Category": "Income",
+        "Amount": 650.18,
+        "Reason": "Interest Income",
+        "Type": "Monthly",
+        "Label": "Leisure & Recreation"
+    },
+    {
+        "Transaction_Id": "1956fe4f-107c-431c-a91b-9fe39cf5aaf6",
+        "User_Id": 90260003,
+        "Timestamp": "2024-05-28 12:25",
+        "Category": "Income",
+        "Amount": 253.38,
+        "Reason": "Salary",
+        "Type": "Monthly",
+        "Label": "Food & Dining"
+    },
+    {
+        "Transaction_Id": "81165618-340d-442e-b267-a55054c43197",
+        "User_Id": 90260003,
+        "Timestamp": "2024-05-29 12:25",
+        "Category": "Income",
+        "Amount": 88.88,
+        "Reason": "Interest Income",
+        "Type": "Daily",
+        "Label": "Entertainment"
+    },
+    {
+        "Transaction_Id": "642b9b59-c7ac-4361-818a-e0a65792672e",
+        "User_Id": 90260003,
+        "Timestamp": "2024-05-30 12:25",
+        "Category": "Spending",
+        "Amount": 37.54,
+        "Reason": "Groceries",
+        "Type": "Monthly",
+        "Label": "Food & Dining"
+    },
+    {
+        "Transaction_Id": "f8b44a0c-b55e-4492-b309-cbcdb25474a6",
+        "User_Id": 90260003,
+        "Timestamp": "2024-05-30 12:25",
+        "Category": "Spending",
+        "Amount": 297.53,
+        "Reason": "Education",
+        "Type": "Monthly",
+        "Label": "Entertainment"
+    },
+    {
+        "Transaction_Id": "c971732e-761b-44e0-b15f-d9c35b8dabfa",
+        "User_Id": 90260003,
+        "Timestamp": "2024-05-30 12:25",
+        "Category": "Spending",
+        "Amount": 985.96,
+        "Reason": "Insurance",
+        "Type": "Daily",
+        "Label": "Health & Fitness"
+    },
+    {
+        "Transaction_Id": "befdb20a-c832-4695-86b9-366425c66f9e",
+        "User_Id": 90260003,
+        "Timestamp": "2024-05-31 12:25",
+        "Category": "Spending",
+        "Amount": 206.28,
+        "Reason": "Gym Membership",
+        "Type": "Daily",
+        "Label": "Entertainment"
+    },
+    {
+        "Transaction_Id": "80aa4c89-3b94-4b36-a703-2d17082a5016",
+        "User_Id": 90260003,
+        "Timestamp": "2024-06-01 12:25",
+        "Category": "Spending",
+        "Amount": 242.38,
+        "Reason": "Gifts",
+        "Type": "Daily",
+        "Label": "Health & Fitness"
+    },
+    {
+        "Transaction_Id": "04459f26-9b56-4603-bdf9-d065832ce764",
+        "User_Id": 90260003,
+        "Timestamp": "2024-06-02 12:25",
+        "Category": "Income",
+        "Amount": 377.22,
+        "Reason": "Refund",
+        "Type": "Monthly",
+        "Label": "Entertainment"
+    },
+    {
+        "Transaction_Id": "0623d7b7-c7fc-41a6-b5b3-a9f8a349fad3",
+        "User_Id": 90260003,
+        "Timestamp": "2024-06-03 12:25",
+        "Category": "Income",
+        "Amount": 703.62,
+        "Reason": "Crowdfunding",
+        "Type": "Monthly",
+        "Label": "Leisure & Recreation"
+    },
+    {
+        "Transaction_Id": "d2f4bc9c-6409-4e02-aec8-fb686888b028",
+        "User_Id": 90260003,
+        "Timestamp": "2024-06-03 12:25",
+        "Category": "Spending",
+        "Amount": 212.54,
+        "Reason": "Gifts",
+        "Type": "Monthly",
+        "Label": "Utilities"
+    },
+    {
+        "Transaction_Id": "0b5db154-f5c7-4baf-b694-eedc9a84cb61",
+        "User_Id": 90260003,
+        "Timestamp": "2024-06-05 12:25",
+        "Category": "Spending",
+        "Amount": 210.71,
+        "Reason": "Home Improvement",
+        "Type": "Monthly",
+        "Label": "Health & Fitness"
+    },
+    {
+        "Transaction_Id": "3d3cb2f8-3c8e-429a-ab2a-86e67e863dc5",
+        "User_Id": 90260003,
+        "Timestamp": "2024-06-06 12:25",
+        "Category": "Income",
+        "Amount": 93.73,
+        "Reason": "Scholarship",
+        "Type": "Daily",
+        "Label": "Leisure & Recreation"
+    },
+    {
+        "Transaction_Id": "db478d2b-5542-4259-b7f8-0506b4a1f778",
+        "User_Id": 90260003,
+        "Timestamp": "2024-06-06 12:25",
+        "Category": "Income",
+        "Amount": 944.84,
+        "Reason": "Stock Market",
+        "Type": "Monthly",
+        "Label": "Health & Fitness"
+    },
+    {
+        "Transaction_Id": "6285cdd0-ba86-4bc8-9f4d-451169596b6d",
+        "User_Id": 90260003,
+        "Timestamp": "2024-06-06 12:25",
+        "Category": "Income",
+        "Amount": 48.11,
+        "Reason": "Tax Refund",
+        "Type": "Daily",
+        "Label": "Leisure & Recreation"
+    },
+    {
+        "Transaction_Id": "1165a360-46ce-4b73-a264-d798947a3cdd",
+        "User_Id": 90260003,
+        "Timestamp": "2024-06-06 12:25",
+        "Category": "Spending",
+        "Amount": 22.08,
+        "Reason": "Home Improvement",
+        "Type": "Monthly",
+        "Label": "Utilities"
+    },
+    {
+        "Transaction_Id": "b325ba94-ee69-4435-84d9-9edc9a13ea60",
+        "User_Id": 90260003,
+        "Timestamp": "2024-06-07 12:25",
+        "Category": "Spending",
+        "Amount": 265.5,
+        "Reason": "Clothing",
+        "Type": "Daily",
+        "Label": "Entertainment"
+    },
+    {
+        "Transaction_Id": "c2bb61e3-8aa0-4ac8-8c6b-1ef21c294cde",
+        "User_Id": 90260003,
+        "Timestamp": "2024-06-07 12:25",
+        "Category": "Spending",
+        "Amount": 934.48,
+        "Reason": "Car Payment",
+        "Type": "Monthly",
+        "Label": "Utilities"
+    },
+    {
+        "Transaction_Id": "294eda47-7329-4cda-9a5a-e8b5a12ac949",
+        "User_Id": 90260003,
+        "Timestamp": "2024-06-07 12:25",
+        "Category": "Spending",
+        "Amount": 122.78,
+        "Reason": "Utilities",
+        "Type": "Daily",
+        "Label": "Food & Dining"
+    },
+    {
+        "Transaction_Id": "63d6a0e8-50aa-4d36-87c0-32ccdee9eff6",
+        "User_Id": 90260003,
+        "Timestamp": "2024-06-07 12:25",
+        "Category": "Spending",
+        "Amount": 119.87,
+        "Reason": "Gifts",
+        "Type": "Daily",
+        "Label": "Leisure & Recreation"
+    },
+    {
+        "Transaction_Id": "e4010530-0f3e-4681-9149-1dd5577b7391",
+        "User_Id": 90260003,
+        "Timestamp": "2024-06-07 12:25",
+        "Category": "Income",
+        "Amount": 210.99,
+        "Reason": "Rental Income",
+        "Type": "Daily",
+        "Label": "Entertainment"
+    },
+    {
+        "Transaction_Id": "de713b36-a620-4334-bc18-500181794ff6",
+        "User_Id": 90260003,
+        "Timestamp": "2024-06-09 12:25",
+        "Category": "Spending",
+        "Amount": 87.82,
+        "Reason": "Insurance",
+        "Type": "Monthly",
+        "Label": "Utilities"
+    },
+    {
+        "Transaction_Id": "70248016-443b-43b1-b438-39a8e2351ca2",
+        "User_Id": 90260003,
+        "Timestamp": "2024-06-09 12:25",
+        "Category": "Income",
+        "Amount": 128.62,
+        "Reason": "Pension",
+        "Type": "Daily",
+        "Label": "Entertainment"
+    },
+    {
+        "Transaction_Id": "b61d38f3-a5cc-40b7-85d0-ea1b72e8dd87",
+        "User_Id": 90260003,
+        "Timestamp": "2024-06-09 12:25",
+        "Category": "Income",
+        "Amount": 564.69,
+        "Reason": "Side Business",
+        "Type": "Daily",
+        "Label": "Utilities"
+    },
+    {
+        "Transaction_Id": "4193489d-77cb-4c6e-b3b0-279663b891c9",
+        "User_Id": 90260003,
+        "Timestamp": "2024-06-11 12:25",
+        "Category": "Income",
+        "Amount": 922.57,
+        "Reason": "Bonus",
+        "Type": "Monthly",
+        "Label": "Health & Fitness"
+    }
+]

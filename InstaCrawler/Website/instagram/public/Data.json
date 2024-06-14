@@ -13,7 +13,7 @@
     "$oid": "6658b86824b486688101497d"
   },
   "Timestamp": "2024-05-30 13:33",
-  "Category": "Expense",
+  "Category": "Spending",
   "Amount": 100,
   "Reason": "Grocery",
   "Type": "Daily"
@@ -23,7 +23,7 @@
     "$oid": "6658b87224b486688101497f"
   },
   "Timestamp": "2024-05-30 13:33",
-  "Category": "Expense",
+  "Category": "Spending",
   "Amount": 67,
   "Reason": "fido",
   "Type": "Monthly"

@@ -6,13 +6,13 @@ import { useDrag } from "@use-gesture/react";
 const TransactionListItem = ({
   icon: Icon,
   description,
-  date,
   time,
   amount,
   isSwiped,
   onSwipe,
   onUnSwipe,
   onClick,
+  type,
 }) => {
   const [showActions, setShowActions] = useState(isSwiped);
 
@@ -71,17 +71,27 @@ const TransactionListItem = ({
     }
   };
 
+  const truncateDescription = (description, maxLength = 15) => {
+    if (description.length > maxLength) {
+      return description.substring(0, maxLength - 3) + "...";
+    } else {
+      return description.padEnd(maxLength, " ");
+    }
+  };
+
   return (
     <animated.li onClick={handleClick} {...bind()} style={swipeAnimation}>
       <animated.p style={swipeTitle}>
         <animated.span style={swipeSvg}>
           <Icon />
         </animated.span>
-        {description}
+        {truncateDescription(description)}
       </animated.p>
       <animated.p style={swipeDate1}>
-        <span>{date}</span>
-        <animated.span style={swipeDate2}>• {time}</animated.span>
+        <span>{time.slice(0, 10)}</span>
+        <animated.span style={swipeDate2}>
+          • {type === "Monthly" ? "Monthly" : time.slice(10)}
+        </animated.span>
       </animated.p>
       <animated.p style={swipeAmount}>${amount}</animated.p>
       {showActions && (

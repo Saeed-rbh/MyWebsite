@@ -1,6 +1,6 @@
 import React from "react";
 
-const formatDate = ({ timestamp, type }) => {
+const formatDate = ({ timestamp, type, colorType }) => {
   const dateObj = new Date(timestamp);
   const monthNames = [
     "Jan",
@@ -22,6 +22,13 @@ const formatDate = ({ timestamp, type }) => {
   const hours = dateObj.getHours();
   const minutes = dateObj.getMinutes();
 
+  const amountStyle = {
+    background:
+      colorType === "Income"
+        ? "linear-gradient(165deg, var(--Fc-4) 30%, var(--Fc-2) 100%)"
+        : "linear-gradient(165deg, var(--Gc-4) 30%, var(--Gc-2) 100%)",
+  };
+
   const formattedDate = `${monthNames[monthIndex]} ${day}${
     day === 1
       ? "<sup>st</sup>"
@@ -39,7 +46,7 @@ const formatDate = ({ timestamp, type }) => {
       : "Monthly";
 
   return (
-    <div className="MoneyEntry_Detail">
+    <div className="MoneyEntry_Detail" style={amountStyle}>
       <h1 dangerouslySetInnerHTML={{ __html: formattedDate }} />
       <h1>
         {formattedTime} <span></span>
