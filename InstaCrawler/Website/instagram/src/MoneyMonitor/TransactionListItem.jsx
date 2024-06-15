@@ -71,7 +71,7 @@ const TransactionListItem = ({
     }
   };
 
-  const truncateDescription = (description, maxLength = 15) => {
+  const truncateDescription = (description, maxLength = 20) => {
     if (description.length > maxLength) {
       return description.substring(0, maxLength - 3) + "...";
     } else {
@@ -87,12 +87,12 @@ const TransactionListItem = ({
         </animated.span>
         {truncateDescription(description)}
       </animated.p>
-      <animated.p style={swipeDate1}>
-        <span>{time.slice(0, 10)}</span>
+      {/* <animated.p style={swipeDate1}>
+        <span>{time.slice(8, 10)}</span>
         <animated.span style={swipeDate2}>
           • {type === "Monthly" ? "Monthly" : time.slice(10)}
         </animated.span>
-      </animated.p>
+      </animated.p> */}
       <animated.p style={swipeAmount}>${amount}</animated.p>
       {showActions && (
         <animated.div style={swipeAction} className="transaction-actions">

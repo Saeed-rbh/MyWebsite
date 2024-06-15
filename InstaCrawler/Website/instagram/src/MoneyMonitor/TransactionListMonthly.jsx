@@ -58,14 +58,14 @@ const TransactionListMonthly = ({
           <span>{percentageChange}%</span>
           {percentageChange < 0 ? <FaArrowTrendDown /> : <FaArrowTrendUp />}
         </h2>
-        <h1>
+        {/* <h1>
           Total:{" "}
           <span
             style={{ color: isMoreClicked ? "var(--Fc-1)" : "var(--Gc-1)" }}
           >
             ${netTotal.toFixed(2)}
           </span>
-        </h1>
+        </h1> */}
       </div>
       <ul className="TransactionList_TransactionList">
         {filteredTransactions.map((transaction, index) => (

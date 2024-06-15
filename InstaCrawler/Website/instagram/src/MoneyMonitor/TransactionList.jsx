@@ -245,10 +245,10 @@ const TransactionList = ({
               style={springProps1}
             >
               <p onClick={() => setIsMoreClicked(null)}>
-                <span>My</span> {isMoreClicked} <span>Summary</span>
+                {currentMonth} <span>{isMoreClicked}</span>
               </p>
               <h1>
-                <span>{currentMonth}</span> Total:{" "}
+                <span></span> Balance:{" "}
                 <span style={colorStyle}>
                   ${Math.abs(totalAmount).toFixed(2)}
                 </span>

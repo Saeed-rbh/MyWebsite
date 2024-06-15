@@ -37,8 +37,8 @@ const MoneyEntry = ({
   setTotalIncome,
   spendingTransactions,
   incomeTransactions,
+  setIsMoreClicked,
 }) => {
-
   const incomeentries = Object.entries(incomeTransactions);
   const incomelastEntry = incomeentries[incomeentries.length - 1];
   const incometotalAmount = incomelastEntry[1].totalIncome;
@@ -130,10 +130,12 @@ const MoneyEntry = ({
         >
           <MoneyEntryAmount
             type={"Income"}
+            setIsMoreClicked={setIsMoreClicked}
             transaction={incomelastEntry[1].transactions[0]}
           />
           <MoneyEntryAmount
             type={"Spending"}
+            setIsMoreClicked={setIsMoreClicked}
             transaction={spendinglastEntry[1].transactions[0]}
           />
         </div>

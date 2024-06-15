@@ -136,7 +136,7 @@ const ScalableHeading = ({ children }) => {
   };
 
   const style = useSpring({
-    scale: isScaled ? 0.8 : 1,
+    scale: isScaled ? 0.85 : 1,
   });
 
   return (

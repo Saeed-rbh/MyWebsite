@@ -2,7 +2,7 @@ import React from "react";
 import FormatDate from "./formatDate"; // Change the import name accordingly
 import { useSpring, animated } from "react-spring";
 
-const MoneyEntryAmount = ({ type, transaction }) => {
+const MoneyEntryAmount = ({ type, transaction, setIsMoreClicked }) => {
   const amountStyle = {
     background:
       type === "Income"
@@ -60,6 +60,7 @@ const MoneyEntryAmount = ({ type, transaction }) => {
       onMouseLeave={handleMouseUp}
       onTouchStart={handleMouseDown}
       onTouchEnd={handleMouseUp}
+      onClick={() => setIsMoreClicked(type)}
     >
       <div className="MoneyEntry_Amount_Gradient" style={gradientStyle}></div>
       <p>{truncateDescription(truncateReason(transaction.Reason))}</p>
