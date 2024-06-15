@@ -25,8 +25,8 @@ const formatDate = ({ timestamp, type, colorType }) => {
   const amountStyle = {
     background:
       colorType === "Income"
-        ? "linear-gradient(165deg, var(--Fc-4) 30%, var(--Fc-2) 100%)"
-        : "linear-gradient(165deg, var(--Gc-4) 30%, var(--Gc-2) 100%)",
+        ? "linear-gradient(165deg, var(--Fc-4) 30%, var(--Fc-4) 100%)"
+        : "linear-gradient(165deg, var(--Gc-4) 30%, var(--Gc-4) 100%)",
   };
 
   const formattedDate = `${monthNames[monthIndex]} ${day}${

@@ -6,9 +6,25 @@ const MoneyEntryAmount = ({ type, transaction }) => {
   const amountStyle = {
     background:
       type === "Income"
-        ? "linear-gradient(165deg, var(--Fc-2) 30%, var(--Fc-4) 100%)"
-        : "linear-gradient(165deg, var(--Gc-2) 30%, var(--Gc-4) 100%)",
+        ? "linear-gradient(165deg, var(--Fc-4) 30%, var(--Fc-4) 100%)"
+        : "linear-gradient(165deg, var(--Gc-4) 30%, var(--Gc-4) 100%)",
+
+    border:
+      type === "Income" ? `1px solid var(--Fc-3)` : `2px solid var(--Gc-3)`,
+
+    boxShadow:
+      type === "Income"
+        ? `5px 5px 10px 0px var(--Fc-4)`
+        : `11px 25px 42px -4px var(--Gc-4)`,
   };
+
+  const gradientStyle = {
+    background:
+      type === "Income"
+        ? "linear-gradient(165deg, var(--Ec-1) 30%, var(--Fc-2) 100%)"
+        : "linear-gradient(165deg, var(--Ec-1) 30%, var(--Gc-2) 100%)",
+  };
+
   const truncateReason = (reason) => {
     return reason.length > 16 ? reason.slice(0, 12) + "..." : reason;
   };
@@ -43,6 +59,7 @@ const MoneyEntryAmount = ({ type, transaction }) => {
       onMouseUp={handleMouseUp}
       onMouseLeave={handleMouseUp}
     >
+      <div className="MoneyEntry_Amount_Gradient" style={gradientStyle}></div>
       <p>{truncateDescription(truncateReason(transaction.Reason))}</p>
       <p>
         <span></span>${transaction.Amount}{" "}

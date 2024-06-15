@@ -1,6 +1,6 @@
 :root {
   --Ac-1: rgba(255, 245, 240, 1);
-  --Ac-2: rgba(255, 245, 240, 0.6);
+  --Ac-2: rgba(255, 245, 240, 0.5);
   --Ac-3: rgba(255, 245, 240, 0.3);
   --Ac-4: rgba(255, 245, 240, 0.07);
 
@@ -26,13 +26,13 @@
 
   --Fc-1: rgba(131, 255, 201, 1);
   --Fc-2: rgba(131, 255, 201, 0.4);
-  --Fc-3: rgba(131, 255, 201, 0.3);
-  --Fc-4: rgba(131, 255, 201, 0.01);
+  --Fc-3: rgba(131, 255, 201, 0.2);
+  --Fc-4: rgba(131, 255, 201, 0.02);
 
   --Gc-1: rgba(255, 102, 102, 1);
   --Gc-2: rgba(255, 102, 102, 0.4);
-  --Gc-3: rgba(255, 102, 102, 0.3);
-  --Gc-4: rgba(255, 102, 102, 0.01);
+  --Gc-3: rgba(255, 102, 102, 0.2);
+  --Gc-4: rgba(255, 102, 102, 0.02);
 }
 
 .MoneyMonitor_Main {
@@ -51,7 +51,8 @@
   align-items: center;
   justify-content: center;
   height: 100%;
-  width: 600px;
+  width: 390px;
+  max-width: 100vw;
   margin: 0 0 20px 0;
   display: flex;
   align-items: flex-start;
@@ -98,8 +99,8 @@
 }
 
 .MoneyMonitor_title {
-  font-size: 1.5rem;
-  font-weight: 700;
+  font-size: 1.6rem;
+  font-weight: 200;
   color: var(--Ac-2);
   display: flex;
   flex-direction: column;
@@ -107,7 +108,28 @@
   font-family: "Rubik", sans-serif;
   margin-left: 5px;
 }
-
+.MoneyMonitor_title span:first-of-type {
+  font-size: 1.6rem;
+  font-weight: 500;
+  color: var(--Ac-2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.MoneyMonitor_title img {
+  height: 35px;
+  width: 35px;
+  opacity: 0.6;
+  border-radius: 100%;
+  margin: 0 10px;
+}
+.MoneyMonitor_Logo img {
+  height: 35px;
+  width: 35px;
+  opacity: 0.6;
+  border-radius: 100%;
+  margin: 0 10px;
+}
 .MoneyMonitor_Balance {
   color: var(--Ac-2);
   display: flex;
@@ -118,7 +140,7 @@
 
 .MoneyMonitor_Balance span:first-child {
   font-size: 1rem;
-  font-weight: 700;
+  font-weight: 500;
   margin-right: 5px;
   display: flex;
   flex-direction: row;
@@ -126,7 +148,7 @@
 }
 .MoneyMonitor_Balance span:first-child h2 {
   font-size: 1rem;
-  font-weight: 400;
+  font-weight: 200;
   margin-right: 5px;
   display: flex;
   flex-direction: row;
@@ -271,7 +293,7 @@
   font-size: 0.9rem;
   font-weight: 600;
   font-family: "Rubik", sans-serif;
-  color: #0c0c0c;
+  color: var(--Ac-2);
   margin: 0;
   text-transform: capitalize;
 }
@@ -283,7 +305,7 @@
   font-size: 1rem;
   font-weight: 400;
   font-family: "Rubik", sans-serif;
-  color: #0c0c0c;
+  color: var(--Ac-2);
   flex-direction: row;
   align-items: center;
 }
@@ -336,7 +358,7 @@
   font-size: 0.7rem;
   font-weight: 600;
   font-family: "Rubik", sans-serif;
-  color: var(--Ec-1);
+  color: var(--Ac-2);
   margin: 13px 0 0 20px;
   background-color: none;
 }
@@ -346,7 +368,7 @@
   font-size: 0.7rem;
   font-weight: 600;
   font-family: "Rubik", sans-serif;
-  color: var(--Ec-1);
+  color: var(--Ac-3);
   margin: 0px 0 0 20px;
   width: calc(100% - 20px);
   align-items: center;
@@ -379,12 +401,14 @@
   font-weight: 400;
   font-family: "Rubik", sans-serif;
   color: var(--Ac-2);
-  padding: 15px 0px;
+  padding: 15px 17px;
+  min-width: fit-content;
+  width: -webkit-fill-available;
   border-radius: 30px;
-  width: 25%;
-  margin: 8px 3px 5px 3px;
+  margin: 12px 3px 5px 3px;
   cursor: pointer;
-  background: linear-gradient(165deg, var(--Ac-4) 30%, var(--Ec-4) 100%);
+  background: linear-gradient(165deg, var(--Ac-4) 10%, var(--Ec-4) 100%);
+  border: 1px solid var(--Ac-3);
 }
 .MoneyMonitor_Menu h1:first-of-type {
   margin-left: 0;
@@ -434,7 +458,7 @@
   width: 25%;
   margin: 0 3px 5px 3px;
   left: 0px;
-  top: 30px;
+  top: 35px;
   width: 100%;
   display: flex;
   text-wrap: nowrap;
@@ -509,12 +533,7 @@
   right: 0;
   top: 20px;
 }
-.MoneyMonitor_Logo img {
-  height: 100%;
-  width: 100%;
-  opacity: 0.6;
-  border-radius: 100%;
-}
+
 .MoneyEntry_Amount:first-of-type {
   margin-left: 0;
 }
@@ -1428,4 +1447,15 @@
   border-radius: 10px;
   -webkit-box-shadow: inset 0 0 6px var(--Ec-3);
   background-color: var(--Bc-4);
+}
+
+.MoneyEntry_Amount_Gradient {
+  background: linear-gradient(165deg, var(--Ac-4) 30%, var(--Fc-1) 100%);
+  position: absolute;
+  right: -10px;
+  bottom: -10px;
+  width: 130px;
+  height: 140px;
+  border-radius: 100%;
+  filter: blur(25px);
 }

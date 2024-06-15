@@ -312,31 +312,29 @@ const MoneyMonitor = () => {
         <animated.div style={scaleStyle}>
           <div className="MoneyMonitor_Intro">
             <div className="MoneyMonitor_title">
-              <span>Your</span>
-              <span>Transactions</span>
-            </div>
-            <div className="MoneyMonitor_Balance">
               <span>
-                <h2>My</h2> Balance:{" "}
+                Your{" "}
+                <img
+                  src={`${process.env.PUBLIC_URL}/MoneyMonitor.png`}
+                  alt="MoneyMonitor Logo"
+                />
+                Transactions
               </span>
-              <span style={amountStyle}>
-                ${Math.abs(totalBalance).toFixed(2)}
-              </span>
+              <span>Dashboard</span>
             </div>
           </div>
           <div className="MoneyMonitor_Menu">
             <p>
               Add Transaction <span></span>
             </p>
-            <ScalableHeading>Daily Income</ScalableHeading>
-            <ScalableHeading>Daily Spending</ScalableHeading>
-            <ScalableHeading>Monthly Income</ScalableHeading>
-            <ScalableHeading>Monthly Spending</ScalableHeading>
+            <ScalableHeading>Income Transactions</ScalableHeading>
+            <ScalableHeading>Spending Transactions</ScalableHeading>
+            <ScalableHeading>Savings</ScalableHeading>
             <p>
               <span></span>
             </p>
           </div>
-          {Object.entries(incomeTransactions).length > 0 && (
+          {/* {Object.entries(incomeTransactions).length > 0 && (
             <MoneyEntry
               type="Income"
               setTotal={setTotalIncome}
@@ -351,7 +349,7 @@ const MoneyMonitor = () => {
               setIsMoreClicked={setIsMoreClicked}
               Transactions={spendingTransactions}
             />
-          )}
+          )} */}
         </animated.div>
       </div>
     </div>
