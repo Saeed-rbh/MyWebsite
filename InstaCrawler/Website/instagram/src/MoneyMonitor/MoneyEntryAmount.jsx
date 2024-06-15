@@ -58,6 +58,8 @@ const MoneyEntryAmount = ({ type, transaction }) => {
       onMouseDown={handleMouseDown}
       onMouseUp={handleMouseUp}
       onMouseLeave={handleMouseUp}
+      onTouchStart={handleMouseDown}
+      onTouchEnd={handleMouseUp}
     >
       <div className="MoneyEntry_Amount_Gradient" style={gradientStyle}></div>
       <p>{truncateDescription(truncateReason(transaction.Reason))}</p>

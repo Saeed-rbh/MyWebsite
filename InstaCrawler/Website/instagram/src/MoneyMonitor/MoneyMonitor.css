@@ -171,6 +171,7 @@
   align-items: flex-start;
   width: 100%;
   z-index: 10;
+  margin-top: 5px;
 }
 
 .MoneyEntry p:first-of-type {
