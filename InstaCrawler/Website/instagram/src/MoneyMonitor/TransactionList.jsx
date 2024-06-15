@@ -359,11 +359,11 @@ const TransactionList = ({
             </animated.div>
             <animated.div
               className="TransactionList_MonthlyMain"
-              onScroll={(event) =>
-                handleScroll(event) && swipedIndex[0] !== null
-                  ? handleUnSwipe
-                  : null
-              }
+              // onScroll={(event) =>
+              //   handleScroll(event) && swipedIndex[0] !== null
+              //     ? handleUnSwipe
+              //     : null
+              // }
               ref={monthlyMainRef}
               style={springProps4}
             >
