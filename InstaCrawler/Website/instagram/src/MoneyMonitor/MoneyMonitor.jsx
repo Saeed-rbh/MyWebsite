@@ -145,6 +145,8 @@ const ScalableHeading = ({ children }) => {
       onMouseDown={handleMouseDown}
       onMouseUp={handleMouseUp}
       onMouseLeave={handleMouseUp}
+      onTouchStart={handleMouseDown}
+      onTouchEnd={handleMouseUp}
     >
       {children}
     </animated.h1>
@@ -327,9 +329,15 @@ const MoneyMonitor = () => {
             <p>
               Add Transaction <span></span>
             </p>
-            <ScalableHeading>Income Transactions</ScalableHeading>
-            <ScalableHeading>Spending Transactions</ScalableHeading>
-            <ScalableHeading>Savings</ScalableHeading>
+            <ScalableHeading>
+              <span>Income</span> Transactions
+            </ScalableHeading>
+            <ScalableHeading>
+              <span>Spending</span> Transactions
+            </ScalableHeading>
+            <ScalableHeading>
+              <span>Savings</span>
+            </ScalableHeading>
             <p>
               <span></span>
             </p>

@@ -19,10 +19,10 @@
   --Dc-3: rgba(168, 229, 255, 0.3);
   --Dc-4: rgba(168, 229, 255, 0.1);
 
-  --Ec-1: rgb(23, 28, 36);
-  --Ec-2: rgba(23, 28, 36, 0.6);
-  --Ec-3: rgba(23, 28, 36, 0.2);
-  --Ec-4: rgba(23, 28, 36, 0);
+  --Ec-1: rgb(30, 35, 40);
+  --Ec-2: rgba(30, 35, 40, 0.6);
+  --Ec-3: rgba(30, 35, 40, 0.2);
+  --Ec-4: rgba(30, 35, 40, 0);
 
   --Fc-1: rgba(131, 255, 201, 1);
   --Fc-2: rgba(131, 255, 201, 0.4);
@@ -400,16 +400,19 @@
   position: relative;
   font-size: 0.7rem;
   background-color: var(--Ac-4);
-  font-weight: 400;
+  font-weight: 200;
   font-family: "Rubik", sans-serif;
   color: var(--Ac-2);
-  padding: 15px;
+  padding: 15px 16px;
   width: max-content;
   border-radius: 30px;
   margin: 12px 0px 5px 0px;
   cursor: pointer;
   background: linear-gradient(165deg, var(--Ac-4) 10%, var(--Ec-4) 100%);
   border: 1px solid var(--Ac-3);
+}
+.MoneyMonitor_Menu h1 span {
+  font-weight: 400;
 }
 .MoneyMonitor_Menu h1:first-of-type {
   margin-left: 0;
