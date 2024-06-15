@@ -175,7 +175,7 @@
 
 .MoneyEntry p:first-of-type {
   display: flex;
-  width: calc(100% - 20px);
+  width: calc(100% - 10px);
   flex-direction: row;
   justify-content: space-between;
   margin: 0px 0;
