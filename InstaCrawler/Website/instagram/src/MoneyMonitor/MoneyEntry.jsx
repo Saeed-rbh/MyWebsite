@@ -32,21 +32,32 @@ const ScalableElement = ({ children, className, onClick }) => {
   );
 };
 
-const MoneyEntry = ({ type, setTotal, setIsMoreClicked, Transactions }) => {
-  const entries = Object.entries(Transactions);
-  const lastEntry = entries[entries.length - 1];
+const MoneyEntry = ({
+  type,
+  setTotalExpense,
+  setTotalIncome,
+  spendingTransactions,
+  incomeTransactions,
+}) => {
+  console.log(spendingTransactions, incomeTransactions);
+  const incomeentries = Object.entries(incomeTransactions);
+  const incomelastEntry = incomeentries[incomeentries.length - 1];
+  const incometotalAmount = incomelastEntry[1].totalIncome;
 
-  const totalAmount =
-    type === "Income" ? lastEntry[1].totalIncome : lastEntry[1].totalSpending;
+  const spendingentries = Object.entries(spendingTransactions);
+  const spendinglastEntry = spendingentries[spendingentries.length - 1];
+  const spendingtotalAmount = spendinglastEntry[1].totalSpending;
+  const [totalBalance, setTotalBalance] = useState(0);
+
   useEffect(() => {
-    setTotal(totalAmount.toFixed(2));
-  }, [setTotal, lastEntry, totalAmount]);
+    setTotalExpense(spendingtotalAmount);
+    setTotalIncome(incometotalAmount);
+    setTotalBalance(incometotalAmount - spendingtotalAmount);
+  }, [spendingtotalAmount, incometotalAmount]);
 
   const totalStyle = {
     color:
-      type === "Income"
-        ? "rgba(131, 255, 201, 0.85)"
-        : "rgb(255 102 102 / 85%)",
+      totalBalance > 0 ? "rgba(131, 255, 201, 0.85)" : "rgb(255 102 102 / 85%)",
   };
   const containerRef = useRef(null);
   const [isDragging, setIsDragging] = useState(false);
@@ -76,23 +87,23 @@ const MoneyEntry = ({ type, setTotal, setIsMoreClicked, Transactions }) => {
     containerRef.current.scrollLeft = scrollLeft - walk;
   };
 
-  useEffect(() => {
-    const container = containerRef.current;
-    if (container && Transactions.length > 3) {
-      container.addEventListener("mousedown", handleMouseDown);
-      container.addEventListener("mouseleave", handleMouseLeave);
-      container.addEventListener("mouseup", handleMouseUp);
-      container.addEventListener("mousemove", handleMouseMove);
-    }
-    return () => {
-      if (container) {
-        container.removeEventListener("mousedown", handleMouseDown);
-        container.removeEventListener("mouseleave", handleMouseLeave);
-        container.removeEventListener("mouseup", handleMouseUp);
-        container.removeEventListener("mousemove", handleMouseMove);
-      }
-    };
-  }, [Transactions.length, containerRef.current]);
+  // useEffect(() => {
+  //   const container = containerRef.current;
+  //   if (container && Transactions.length > 3) {
+  //     container.addEventListener("mousedown", handleMouseDown);
+  //     container.addEventListener("mouseleave", handleMouseLeave);
+  //     container.addEventListener("mouseup", handleMouseUp);
+  //     container.addEventListener("mousemove", handleMouseMove);
+  //   }
+  //   return () => {
+  //     if (container) {
+  //       container.removeEventListener("mousedown", handleMouseDown);
+  //       container.removeEventListener("mouseleave", handleMouseLeave);
+  //       container.removeEventListener("mouseup", handleMouseUp);
+  //       container.removeEventListener("mousemove", handleMouseMove);
+  //     }
+  //   };
+  // }, [Transactions.length, containerRef.current]);
 
   return (
     <div className={`MoneyEntry`}>
@@ -101,22 +112,15 @@ const MoneyEntry = ({ type, setTotal, setIsMoreClicked, Transactions }) => {
           <span className={`MoneyEntry_Dot`} style={totalStyle}>
             •{" "}
           </span>
-          <h2>My</h2> {type}
+          {incomelastEntry[1].month} <h2>Summary</h2>
         </h1>
         <h1 className={`MoneyEntry_total`} style={totalStyle}>
           {" "}
-          <span className={`MoneyEntry_totalTitleMonth`}>
-            {lastEntry[1].month}
-          </span>
-          <span className={`MoneyEntry_totalTitle`}>Total: </span> $
-          {totalAmount.toFixed(2)}
+          <span className={`MoneyEntry_totalTitle`}>Balance: </span> $
+          {totalBalance.toFixed(2)}
         </h1>
       </p>
       <div className={`MoneyEntry_Data`}>
-        <ScalableElement className="MoneyEntry_Add">
-          <span>+</span>
-        </ScalableElement>
-
         <div
           className={`MoneyEntry_AmountBase`}
           ref={containerRef}
@@ -125,18 +129,15 @@ const MoneyEntry = ({ type, setTotal, setIsMoreClicked, Transactions }) => {
           onMouseUp={handleMouseUp}
           onMouseMove={handleMouseMove}
         >
-          {lastEntry[1].transactions.slice(0, 3).map((transaction, index) => (
-            <MoneyEntryAmount type={type} transaction={transaction} />
-          ))}
+          <MoneyEntryAmount
+            type={"Income"}
+            transaction={incomelastEntry[1].transactions[0]}
+          />
+          <MoneyEntryAmount
+            type={"Spending"}
+            transaction={spendinglastEntry[1].transactions[0]}
+          />
         </div>
-        <ScalableElement
-          className="MoneyEntry_More"
-          onClick={() => setIsMoreClicked(type)}
-        >
-          <span>
-            <FiArrowRight />
-          </span>
-        </ScalableElement>
       </div>
     </div>
   );

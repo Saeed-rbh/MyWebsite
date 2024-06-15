@@ -268,6 +268,11 @@ const MoneyMonitor = () => {
     config: config.slow,
   });
 
+  console.log(
+    Object.entries(incomeTransactions).length,
+    Object.entries(spendingTransactions).length
+  );
+
   return (
     <div className="MoneyMonitor_Main">
       {(Object.entries(incomeTransactions).length > 0 ||
@@ -342,22 +347,16 @@ const MoneyMonitor = () => {
               <span></span>
             </p>
           </div>
-          {/* {Object.entries(incomeTransactions).length > 0 && (
+          {(Object.entries(incomeTransactions).length > 0 ||
+            Object.entries(spendingTransactions).length > 0) && (
             <MoneyEntry
-              type="Income"
-              setTotal={setTotalIncome}
+              setTotalExpense={setTotalExpense}
+              setTotalIncome={setTotalIncome}
               setIsMoreClicked={setIsMoreClicked}
-              Transactions={incomeTransactions}
+              spendingTransactions={spendingTransactions}
+              incomeTransactions={incomeTransactions}
             />
           )}
-          {Object.entries(spendingTransactions).length > 0 && (
-            <MoneyEntry
-              type="Spending"
-              setTotal={setTotalExpense}
-              setIsMoreClicked={setIsMoreClicked}
-              Transactions={spendingTransactions}
-            />
-          )} */}
         </animated.div>
       </div>
     </div>

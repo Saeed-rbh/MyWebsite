@@ -19,10 +19,10 @@
   --Dc-3: rgba(168, 229, 255, 0.3);
   --Dc-4: rgba(168, 229, 255, 0.1);
 
-  --Ec-1: rgb(30, 35, 40);
-  --Ec-2: rgba(30, 35, 40, 0.6);
-  --Ec-3: rgba(30, 35, 40, 0.2);
-  --Ec-4: rgba(30, 35, 40, 0);
+  --Ec-1: rgb(27, 31, 36);
+  --Ec-2: rgba(27, 31, 36, 0.6);
+  --Ec-3: rgba(27, 31, 36, 0.2);
+  --Ec-4: rgba(27, 31, 36, 0);
 
   --Fc-1: rgba(131, 255, 201, 1);
   --Fc-2: rgba(131, 255, 201, 0.4);
@@ -107,7 +107,6 @@
   flex-direction: column;
   align-items: baseline;
   font-family: "Rubik", sans-serif;
-  margin-left: 5px;
 }
 .MoneyMonitor_title span:first-of-type {
   font-size: 1.8rem;
@@ -224,7 +223,6 @@
 
 .MoneyEntry_Data {
   width: -webkit-fill-available;
-  height: 110px;
   margin: 0 0 0 0;
   display: flex;
   flex-direction: row;
@@ -276,8 +274,8 @@
 .MoneyEntry_Amount {
   position: relative;
   height: 100px;
-  width: 160px;
-  min-width: 160px;
+  width: calc((390px - 20px) / 2);
+  height: calc((390px - 20px) / 2 / 1.6);
   border-radius: 30px;
   margin-left: 10px;
   display: flex;
