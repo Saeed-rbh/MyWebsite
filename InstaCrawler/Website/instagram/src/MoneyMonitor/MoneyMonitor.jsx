@@ -295,7 +295,7 @@ const MoneyMonitor = () => {
             <div className="MoneyMonitor_Logo">
               {" "}
               <img
-                src={`${process.env.PUBLIC_URL}/MoneyMonitor.png`}
+                src={`${process.env.PUBLIC_URL}/MoneyMonitor.jpg`}
                 alt="MoneyMonitor Logo"
               />
             </div>
@@ -315,7 +315,7 @@ const MoneyMonitor = () => {
               <span>
                 Your{" "}
                 <img
-                  src={`${process.env.PUBLIC_URL}/MoneyMonitor.png`}
+                  src={`${process.env.PUBLIC_URL}/MoneyMonitor.jpg`}
                   alt="MoneyMonitor Logo"
                 />
                 Transactions

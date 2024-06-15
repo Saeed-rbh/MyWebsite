@@ -117,11 +117,12 @@
   justify-content: center;
 }
 .MoneyMonitor_title img {
-  height: 35px;
-  width: 35px;
+  height: 40px;
+  width: 40px;
   opacity: 0.6;
   border-radius: 100%;
   margin: 0 10px;
+  border: 1px solid var(--Bc-2);
 }
 .MoneyMonitor_Logo img {
   height: 35px;
