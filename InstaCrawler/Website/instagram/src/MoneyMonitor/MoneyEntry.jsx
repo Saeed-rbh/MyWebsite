@@ -38,7 +38,7 @@ const MoneyEntry = ({
   spendingTransactions,
   incomeTransactions,
 }) => {
-  console.log(spendingTransactions, incomeTransactions);
+
   const incomeentries = Object.entries(incomeTransactions);
   const incomelastEntry = incomeentries[incomeentries.length - 1];
   const incometotalAmount = incomelastEntry[1].totalIncome;

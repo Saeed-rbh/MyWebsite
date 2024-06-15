@@ -96,7 +96,7 @@
   justify-content: space-between;
   width: 100%;
   z-index: 10;
-  padding: 0 10px;
+  padding: 0 5px;
 }
 
 .MoneyMonitor_title {
@@ -179,7 +179,7 @@
   flex-direction: row;
   justify-content: space-between;
   margin: 0px 0;
-  padding: 0 10px;
+  padding: 0 5px;
 }
 .MoneyEntry_total {
   font-size: 1rem;
@@ -275,10 +275,10 @@
 .MoneyEntry_Amount {
   position: relative;
   height: 100px;
-  width: calc((390px - 20px) / 2);
-  height: calc((390px - 20px) / 2 / 1.6);
+  width: calc((390px - 10px) / 2);
+  height: calc((390px - 10px) / 2 / 1.6);
   border-radius: 30px;
-  margin-left: 10px;
+  margin-left: 5px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -426,7 +426,7 @@
   font-weight: 400;
   font-family: "Rubik", sans-serif;
   color: var(--Ac-2);
-  padding: 10px 10px;
+  padding: 10px 5px;
   border-radius: 30px;
   width: 25%;
   margin: 0 3px 5px 3px;
@@ -1433,7 +1433,7 @@
   width: 100%;
   height: 100%;
 
-  padding: 0 10px;
+  padding: 0 5px;
 }
 .scroll-container::-webkit-scrollbar {
   height: 4px;

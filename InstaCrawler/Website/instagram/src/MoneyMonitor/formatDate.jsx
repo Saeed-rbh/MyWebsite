@@ -46,7 +46,7 @@ const formatDate = ({ timestamp, type, colorType }) => {
       : "Monthly";
 
   return (
-    <div className="MoneyEntry_Detail" style={amountStyle}>
+    <div className="MoneyEntry_Detail">
       <h1 dangerouslySetInnerHTML={{ __html: formattedDate }} />
       <h1>
         {formattedTime} <span></span>
