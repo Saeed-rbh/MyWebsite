@@ -33,7 +33,6 @@ const ScalableElement = ({ children, className, onClick }) => {
 };
 
 const MoneyEntry = ({
-  type,
   setTotalExpense,
   setTotalIncome,
   spendingTransactions,
