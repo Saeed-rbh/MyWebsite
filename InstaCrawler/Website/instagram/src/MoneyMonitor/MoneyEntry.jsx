@@ -132,12 +132,12 @@ const MoneyEntry = ({
           <MoneyEntryAmount
             type={"Income"}
             setIsMoreClicked={setIsMoreClicked}
-            transaction={incomelastEntry[1].transactions[0]}
+            transaction={incomelastEntry[1]}
           />
           <MoneyEntryAmount
             type={"Spending"}
             setIsMoreClicked={setIsMoreClicked}
-            transaction={spendinglastEntry[1].transactions[0]}
+            transaction={spendinglastEntry[1]}
           />
         </div>
       </div>

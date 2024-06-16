@@ -2,6 +2,7 @@ import React from "react";
 import FormatDate from "./formatDate"; // Change the import name accordingly
 import { useSpring, animated } from "react-spring";
 import { GoArrowUpRight, GoArrowDownLeft } from "react-icons/go";
+import { FaArrowTrendUp, FaArrowTrendDown } from "react-icons/fa6";
 
 const MoneyEntryAmount = ({ type, transaction, setIsMoreClicked }) => {
   const amountStyle = {
@@ -56,6 +57,12 @@ const MoneyEntryAmount = ({ type, transaction, setIsMoreClicked }) => {
     }
   };
 
+  const trendStyle = {
+    color: transaction.percentageChange > 0 ? "var(--Fc-1)" : "var(--Gc-1)",
+    fontSize: "0.8rem",
+    fontWeight: "600",
+  };
+
   return (
     <animated.div
       className="MoneyEntry_Amount"
@@ -74,17 +81,27 @@ const MoneyEntryAmount = ({ type, transaction, setIsMoreClicked }) => {
         {/* {truncateDescription(truncateReason(transaction.Reason))} */}
         {type}
       </p>
-      <p>
-        <span></span>${transaction.Amount}{" "}
-      </p>
+
       <div style={ColorStyle} className={`MoneyEntry_type_Open`}>
         {type === "Income" ? <GoArrowDownLeft /> : <GoArrowUpRight />}
       </div>
-      <FormatDate
+      <div className="MoneyEntry_Balance">
+        <h2>Total Amount:</h2>
+        <h1>${transaction.netTotal.toFixed(1)}</h1>
+      </div>
+      <div className="MoneyEntry_percentage" style={trendStyle}>
+        <span>{transaction.percentageChange}%</span>
+        {transaction.percentageChange < 0 ? (
+          <FaArrowTrendDown />
+        ) : (
+          <FaArrowTrendUp />
+        )}
+      </div>
+      {/* <FormatDate
         timestamp={transaction.Timestamp}
         type={transaction.Type}
         colorType={type}
-      />
+      /> */}
     </animated.div>
   );
 };

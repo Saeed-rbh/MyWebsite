@@ -289,27 +289,27 @@
 
 .MoneyEntry_Amount p:first-of-type {
   position: relative;
-  width: 85px;
   display: flex;
   padding: 15px 0 0 10px;
-  font-size: 0.9rem;
-  font-weight: 600;
+  font-size: 1.2rem;
+  font-weight: 200;
   font-family: "Rubik", sans-serif;
   color: var(--Ac-2);
   margin: 0;
   text-transform: capitalize;
   align-items: center;
-  justify-content: space-evenly;
+  justify-content: flex-start;
+  height: 25px;
 }
 .MoneyEntry_Amount p:nth-of-type(2) {
   position: relative;
   width: 120px;
   display: flex;
   margin: 0 0 2px 0px;
-  font-size: 1rem;
+  font-size: 0.6rem;
   font-weight: 400;
   font-family: "Rubik", sans-serif;
-  color: var(--Ac-2);
+  color: var(--Ac-3);
   flex-direction: row;
   align-items: center;
 }
@@ -1516,4 +1516,65 @@
   height: 70px;
   border-radius: 100%;
   filter: blur(25px);
+}
+
+.MoneyEntry_Balance {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  height: 50px;
+  border-radius: 20px;
+  margin: 20px 0 0 0;
+  font-size: 1.5rem;
+  font-weight: 100;
+  font-family: "Rubik", sans-serif;
+  bottom: 5px;
+  right: 20px;
+  color: var(--Ac-2);
+}
+
+.MoneyEntry_Balance h1 {
+  font-size: 1.5rem;
+  font-weight: 100;
+  font-family: "Rubik", sans-serif;
+  color: var(--Ac-2);
+  margin: 0;
+  margin-top: -2px;
+}
+.MoneyEntry_Balance h2 {
+  font-size: 0.7rem;
+  font-weight: 300;
+  font-family: "Rubik", sans-serif;
+  color: var(--Ac-3);
+  margin: 0;
+}
+.MoneyEntry_percentage {
+  position: absolute;
+  font-weight: 600;
+  font-family: "Rubik", sans-serif;
+  margin: 0;
+  width: fit-content;
+  width: -moz-fit-content;
+  display: flex;
+  opacity: 0.6;
+  align-items: center;
+  margin-right: 20px;
+  height: 50px;
+  bottom: 15px;
+  left: 25px;
+  justify-content: center;
+}
+.MoneyEntry_percentage span {
+  font-size: 0.7rem;
+  color: var(--Ac-1);
+}
+
+.MoneyEntry_percentage svg {
+  position: absolute;
+  font-size: 35px;
+  opacity: 0.3;
+  margin-left: 5px;
+  margin-top: 10px;
 }
