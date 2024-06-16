@@ -40,7 +40,7 @@ const MoneyEntryAmount = ({ type, transaction, setIsMoreClicked }) => {
   };
 
   const scaleStyle = useSpring({
-    scale: isScaled ? 0.95 : 1,
+    scale: isScaled ? 0.9 : 1,
   });
 
   const truncateDescription = (description, maxLength = 15) => {

@@ -15,7 +15,7 @@ const ScalableElement = ({ children, className, onClick }) => {
   };
 
   const style = useSpring({
-    scale: isScaled ? 0.85 : 1,
+    scale: isScaled ? 0.9 : 1,
   });
 
   return (
@@ -86,6 +86,8 @@ const MoneyEntry = ({
     containerRef.current.scrollLeft = scrollLeft - walk;
   };
 
+  const gradientStyle = {};
+
   // useEffect(() => {
   //   const container = containerRef.current;
   //   if (container && Transactions.length > 3) {
@@ -140,6 +142,13 @@ const MoneyEntry = ({
           />
         </div>
       </div>
+      <ScalableElement
+        className={`MoneyEntry_Savings`}
+        onClick={() => setIsMoreClicked("Saving")}
+      >
+        <div className="MoneyEntry_Amount_Gradients"></div>
+        Saving
+      </ScalableElement>
     </div>
   );
 };
