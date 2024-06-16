@@ -320,12 +320,12 @@ const MoneyMonitor = () => {
           <div className="MoneyMonitor_Intro">
             <div className="MoneyMonitor_title">
               <span>
-                Your{" "}
+                My{" "}
                 <img
                   src={`${process.env.PUBLIC_URL}/MoneyMonitor.jpg`}
                   alt="MoneyMonitor Logo"
                 />
-                Transactions
+                Money
               </span>
               <span>Dashboard</span>
             </div>
