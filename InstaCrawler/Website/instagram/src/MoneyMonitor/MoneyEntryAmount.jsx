@@ -58,7 +58,11 @@ const MoneyEntryAmount = ({ type, transaction, setIsMoreClicked }) => {
   };
 
   const trendStyle = {
-    color: transaction.percentageChange > 0 ? "var(--Fc-1)" : "var(--Gc-1)",
+    color:
+      (type === "Income" && transaction.percentageChange < 0) ||
+      (type === "Spending" && transaction.percentageChange > 0)
+        ? "var(--Gc-1)"
+        : "var(--Fc-1)",
     fontSize: "0.8rem",
     fontWeight: "600",
   };
@@ -101,8 +105,14 @@ const MoneyEntryAmount = ({ type, transaction, setIsMoreClicked }) => {
         <h1>${formatNetTotal(transaction.netTotal)}</h1>
       </div>
       <div className="MoneyEntry_percentage" style={trendStyle}>
-        <h3>{transaction.percentageChange}%</h3>
-        {transaction.percentageChange < 0 ? (
+        <h3>
+          {type === "Income"
+            ? transaction.percentageChange
+            : -1 * transaction.percentageChange}
+          %
+        </h3>
+        {(type === "Income" && transaction.percentageChange < 0) ||
+        (type === "Spending" && transaction.percentageChange > 0) ? (
           <FaArrowTrendDown />
         ) : (
           <FaArrowTrendUp />
