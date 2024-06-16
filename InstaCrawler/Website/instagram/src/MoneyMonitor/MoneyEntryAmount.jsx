@@ -63,6 +63,17 @@ const MoneyEntryAmount = ({ type, transaction, setIsMoreClicked }) => {
     fontWeight: "600",
   };
 
+  const formatNetTotal = (netTotal) => {
+    const floatNetTotal = parseFloat(netTotal);
+    if (floatNetTotal > 10000) {
+      return floatNetTotal.toFixed(0);
+    } else if (floatNetTotal > 1000) {
+      return floatNetTotal.toFixed(1);
+    } else {
+      return floatNetTotal.toFixed(2);
+    }
+  };
+
   return (
     <animated.div
       className="MoneyEntry_Amount"
@@ -87,10 +98,10 @@ const MoneyEntryAmount = ({ type, transaction, setIsMoreClicked }) => {
       </div>
       <div className="MoneyEntry_Balance">
         <h2>Total Amount:</h2>
-        <h1>${transaction.netTotal.toFixed(1)}</h1>
+        <h1>${formatNetTotal(transaction.netTotal)}</h1>
       </div>
       <div className="MoneyEntry_percentage" style={trendStyle}>
-        <span>{transaction.percentageChange}%</span>
+        <h3>{transaction.percentageChange}%</h3>
         {transaction.percentageChange < 0 ? (
           <FaArrowTrendDown />
         ) : (
