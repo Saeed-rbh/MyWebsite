@@ -1,5 +1,4 @@
 import React, { useEffect, useState, useRef } from "react";
-import { FiArrowRight } from "react-icons/fi"; // Assuming you're using react-icons for the arrow icon
 import MoneyEntryAmount from "./MoneyEntryAmount.jsx";
 import { useSpring, animated } from "react-spring";
 

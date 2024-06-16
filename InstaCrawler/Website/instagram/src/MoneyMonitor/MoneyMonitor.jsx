@@ -325,7 +325,6 @@ const MoneyMonitor = () => {
                   src={`${process.env.PUBLIC_URL}/MoneyMonitor.jpg`}
                   alt="MoneyMonitor Logo"
                 />
-                Money
               </span>
               <span>Dashboard</span>
             </div>

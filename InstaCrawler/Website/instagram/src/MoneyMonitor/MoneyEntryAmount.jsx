@@ -1,6 +1,7 @@
 import React from "react";
 import FormatDate from "./formatDate"; // Change the import name accordingly
 import { useSpring, animated } from "react-spring";
+import { GoArrowUpRight, GoArrowDownLeft } from "react-icons/go";
 
 const MoneyEntryAmount = ({ type, transaction, setIsMoreClicked }) => {
   const amountStyle = {
@@ -23,6 +24,10 @@ const MoneyEntryAmount = ({ type, transaction, setIsMoreClicked }) => {
       type === "Income"
         ? "linear-gradient(165deg, var(--Ec-1) 30%, var(--Fc-2) 100%)"
         : "linear-gradient(165deg, var(--Ec-1) 30%, var(--Gc-2) 100%)",
+  };
+
+  const ColorStyle = {
+    color: type === "Income" ? "var(--Fc-2)" : "var(--Gc-2) ",
   };
 
   const truncateReason = (reason) => {
@@ -63,10 +68,18 @@ const MoneyEntryAmount = ({ type, transaction, setIsMoreClicked }) => {
       onClick={() => setIsMoreClicked(type)}
     >
       <div className="MoneyEntry_Amount_Gradient" style={gradientStyle}></div>
-      <p>{truncateDescription(truncateReason(transaction.Reason))}</p>
+
+      <p>
+        <span className={`MoneyEntry_Dot`} style={gradientStyle}></span>
+        {/* {truncateDescription(truncateReason(transaction.Reason))} */}
+        {type}
+      </p>
       <p>
         <span></span>${transaction.Amount}{" "}
       </p>
+      <div style={ColorStyle} className={`MoneyEntry_type_Open`}>
+        {type === "Income" ? <GoArrowDownLeft /> : <GoArrowUpRight />}
+      </div>
       <FormatDate
         timestamp={transaction.Timestamp}
         type={transaction.Type}
