@@ -148,7 +148,14 @@ const MoneyEntry = ({
       >
         <div className="MoneyEntry_Amount_Gradients"></div>
         <h1>
-          <span className={`MoneyEntry_Dot`}></span>
+          <span
+            className={`MoneyEntry_Dot`}
+            style={{
+              background:
+                "linear-gradient(165deg, var(--Ec-1) 30%, var(--Ac-2) 100%)",
+              height: "2px",
+            }}
+          ></span>
           Saving
         </h1>
         <div

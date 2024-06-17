@@ -1581,11 +1581,11 @@
 .MoneyEntry_Dot {
   position: relative;
   background-color: var(--Ec-1);
-  height: 2px;
+  /* height: 2px; */
   width: 15px;
   border-radius: 15px;
   margin-right: 5px;
-  background: linear-gradient(165deg, var(--Ec-1) 30%, var(--Ac-2) 100%);
+  /* background: linear-gradient(165deg, var(--Ec-1) 30%, var(--Ac-2) 100%); */
 }
 
 .MoneyEntry_Savings h1 {
