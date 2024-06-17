@@ -23,8 +23,9 @@ const TransactionList = ({
   setIsMoreClicked,
   Transactions,
   dataAvailablity,
+  setWhichMonth,
+  whichMonth,
 }) => {
-  const [whichMonth, setWhichMonth] = useState(1);
   const [sortby, setSortby] = useState("All");
   const sortItems = ["All", "Daily", "Monthly"];
   const [totalAmount, setTotalAmount] = useState(0);
@@ -32,11 +33,9 @@ const TransactionList = ({
   const [labelDistribution, setLabelDistribution] = useState([]);
   useEffect(() => {
     if (Transactions.length !== 0) {
-      const entries = Object.entries(Transactions);
-      const lastEntry = entries[entries.length - whichMonth];
-      setTotalAmount(lastEntry[1].netTotal);
-      setCurrentMonth(lastEntry[1].month);
-      const sortedData = Object.entries(lastEntry[1].labelDistribution)
+      setTotalAmount(Transactions.netTotal);
+      setCurrentMonth(Transactions.month);
+      const sortedData = Object.entries(Transactions.labelDistribution)
         .map(([category, percentage]) => ({
           category,
           percentage: parseFloat(percentage),
@@ -222,6 +221,11 @@ const TransactionList = ({
     }
   }, [whichMonth]);
 
+  console.log(
+    Transactions.length !== 0 &&
+      Transactions.transactions.map((transactions) => transactions)
+  );
+
   return (
     <>
       {isAnimationEnds && (
@@ -367,31 +371,23 @@ const TransactionList = ({
               ref={monthlyMainRef}
               style={springProps4}
             >
-              {Object.values(Transactions)
-                .reverse()
-                .slice(whichMonth - 1, whichMonth)
-                .map((transactions, index) => (
-                  <TransactionListMonthly
-                    key={index}
-                    MainIndex={index}
-                    swipedIndex={swipedIndex}
-                    handleUnSwipe={handleUnSwipe}
-                    handleSwipe={handleSwipe}
-                    handleTransactionClick={handleTransactionClick}
-                    useCustomSpring={useCustomSpring}
-                    isMoreClicked={isMoreClicked}
-                    transactions={transactions.transactions}
-                    netTotal={transactions.netTotal}
-                    percentageChange={transactions.percentageChange}
-                    month={transactions.month}
-                    year={transactions.year}
-                    sortby={sortby}
-                    dataAvailablity={dataAvailablity}
-                    isLastTransaction={index === 1}
-                    setWhichMonth={setWhichMonth}
-                    whichMonth={whichMonth}
-                  />
-                ))}
+              <TransactionListMonthly
+                swipedIndex={swipedIndex}
+                handleUnSwipe={handleUnSwipe}
+                handleSwipe={handleSwipe}
+                handleTransactionClick={handleTransactionClick}
+                useCustomSpring={useCustomSpring}
+                isMoreClicked={isMoreClicked}
+                transactions={Transactions.transactions}
+                netTotal={Transactions.netTotal}
+                percentageChange={Transactions.percentageChange}
+                month={Transactions.month}
+                year={Transactions.year}
+                sortby={sortby}
+                dataAvailablity={dataAvailablity}
+                setWhichMonth={setWhichMonth}
+                whichMonth={whichMonth}
+              />
             </animated.div>
           </animated.div>
         </animated.div>

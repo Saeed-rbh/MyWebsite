@@ -5,6 +5,7 @@ import MoneyEntry from "./MoneyEntry.jsx";
 import TransactionList from "./TransactionList.jsx";
 import { animated, useSpring, config } from "react-spring";
 import { fetchTransactions } from "./transactionService";
+import { set, update } from "lodash";
 
 const groupTransactionsByMonth = (transactions) => {
   const groupedTransactions = {};
@@ -256,7 +257,6 @@ const MoneyMonitor = () => {
     getTransactions();
   }, []);
 
-  console.log(spendingTransactions, incomeTransactions, savingTransactions);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const [totalIncome, setTotalIncome] = useState(0);
@@ -267,10 +267,32 @@ const MoneyMonitor = () => {
     setTotalBalance(totalIncome - totalExpense);
   }, [totalIncome, totalExpense]);
 
-  const amountStyle = {
-    color:
-      totalBalance > 0 ? "rgba(131, 255, 201, 0.85)" : "rgb(255 102 102 / 85%)",
-  };
+  const [whichMonth, setWhichMonth] = useState(1);
+  const [lastIncomeEntry, setLastIncomeEntry] = useState({});
+  const [lastSpendingEntry, setLastSpendingEntry] = useState({});
+  const [lastSavingEntry, setLastSavingEntry] = useState({});
+
+  useEffect(() => {
+    if (Object.entries(incomeTransactions).length > 0) {
+      const incomeentries = Object.entries(incomeTransactions);
+      setLastIncomeEntry(incomeentries[incomeentries.length - whichMonth][1]);
+    }
+    if (Object.entries(spendingTransactions).length > 0) {
+      const spendingentries = Object.entries(spendingTransactions);
+      setLastSpendingEntry(
+        spendingentries[spendingentries.length - whichMonth][1]
+      );
+    }
+    if (Object.entries(savingTransactions).length > 0) {
+      const savingentries = Object.entries(savingTransactions);
+      setLastSavingEntry(savingentries[savingentries.length - whichMonth][1]);
+    }
+  }, [
+    whichMonth,
+    incomeTransactions,
+    spendingTransactions,
+    savingTransactions,
+  ]);
 
   const [isMoreClicked, setIsMoreClicked] = useState(null);
   const scaleStyle = useSpring({
@@ -290,15 +312,17 @@ const MoneyMonitor = () => {
         <TransactionList
           Transactions={
             isMoreClicked === "Income"
-              ? incomeTransactions
+              ? lastIncomeEntry
               : isMoreClicked === "Spending"
-              ? spendingTransactions
+              ? lastSpendingEntry
               : isMoreClicked === "Saving"
-              ? savingTransactions
+              ? lastSavingEntry
               : []
           }
           isMoreClicked={isMoreClicked}
           setIsMoreClicked={setIsMoreClicked}
+          setWhichMonth={setWhichMonth}
+          whichMonth={whichMonth}
           dataAvailablity={
             isMoreClicked === "Income"
               ? incomeAvailablity

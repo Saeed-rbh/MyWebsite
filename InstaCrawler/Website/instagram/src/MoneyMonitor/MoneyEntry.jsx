@@ -102,26 +102,6 @@ const MoneyEntry = ({
     marginTop: "0",
   };
 
-  const gradientStyle = {};
-
-  // useEffect(() => {
-  //   const container = containerRef.current;
-  //   if (container && Transactions.length > 3) {
-  //     container.addEventListener("mousedown", handleMouseDown);
-  //     container.addEventListener("mouseleave", handleMouseLeave);
-  //     container.addEventListener("mouseup", handleMouseUp);
-  //     container.addEventListener("mousemove", handleMouseMove);
-  //   }
-  //   return () => {
-  //     if (container) {
-  //       container.removeEventListener("mousedown", handleMouseDown);
-  //       container.removeEventListener("mouseleave", handleMouseLeave);
-  //       container.removeEventListener("mouseup", handleMouseUp);
-  //       container.removeEventListener("mousemove", handleMouseMove);
-  //     }
-  //   };
-  // }, [Transactions.length, containerRef.current]);
-
   return (
     <div className={`MoneyEntry`}>
       <p>

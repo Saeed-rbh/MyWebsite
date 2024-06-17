@@ -1,5 +1,4 @@
 import React from "react";
-import FormatDate from "./formatDate"; // Change the import name accordingly
 import { useSpring, animated } from "react-spring";
 import { GoArrowUpRight, GoArrowDownLeft } from "react-icons/go";
 import { FaArrowTrendUp, FaArrowTrendDown } from "react-icons/fa6";
@@ -31,10 +30,6 @@ const MoneyEntryAmount = ({ type, transaction, setIsMoreClicked }) => {
     color: type === "Income" ? "var(--Fc-2)" : "var(--Gc-2) ",
   };
 
-  const truncateReason = (reason) => {
-    return reason.length > 16 ? reason.slice(0, 12) + "..." : reason;
-  };
-
   const [isScaled, setIsScaled] = React.useState(false);
 
   const handleMouseDown = () => {
@@ -48,14 +43,6 @@ const MoneyEntryAmount = ({ type, transaction, setIsMoreClicked }) => {
   const scaleStyle = useSpring({
     scale: isScaled ? 0.9 : 1,
   });
-
-  const truncateDescription = (description, maxLength = 15) => {
-    if (description.length > maxLength) {
-      return description.substring(0, maxLength - 3) + "...";
-    } else {
-      return description;
-    }
-  };
 
   const trendStyle = {
     color:
@@ -93,7 +80,6 @@ const MoneyEntryAmount = ({ type, transaction, setIsMoreClicked }) => {
 
       <p>
         <span className={`MoneyEntry_Dot`} style={gradientStyle}></span>
-        {/* {truncateDescription(truncateReason(transaction.Reason))} */}
         {type}
       </p>
 
