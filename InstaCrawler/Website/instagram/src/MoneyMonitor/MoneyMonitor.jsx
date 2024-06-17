@@ -36,6 +36,7 @@ const groupTransactionsByMonth = (transactions) => {
         transactions: [],
         totalSpending: 0,
         totalIncome: 0,
+        totalSaving: 0,
         netTotal: 0,
         month: months[date.getMonth()],
         year: year,
@@ -50,12 +51,15 @@ const groupTransactionsByMonth = (transactions) => {
       groupedTransactions[key].totalSpending += transaction.Amount;
     } else if (transaction.Category === "Income") {
       groupedTransactions[key].totalIncome += transaction.Amount;
+    } else if (transaction.Category === "Save&Invest") {
+      groupedTransactions[key].totalSaving += transaction.Amount;
     }
 
     // Update net total
     groupedTransactions[key].netTotal =
       groupedTransactions[key].totalIncome +
-      groupedTransactions[key].totalSpending;
+      groupedTransactions[key].totalSpending +
+      groupedTransactions[key].totalSaving;
 
     // Count label occurrences
     const label = transaction.Label;
@@ -218,8 +222,10 @@ const getMonthDataAvailability = (data) => {
 const MoneyMonitor = () => {
   const [spendingTransactions, setSpendingTransactions] = useState([]);
   const [incomeTransactions, setIncomeTransactions] = useState([]);
+  const [savingTransactions, setSavingTransactions] = useState([]);
   const [incomeAvailablity, setIncomeAvailablity] = useState([]);
   const [spendingAvailablity, setSpendingAvailablity] = useState([]);
+  const [savingAvailablity, setSavingAvailablity] = useState([]);
 
   useEffect(() => {
     const getTransactions = async () => {
@@ -230,18 +236,27 @@ const MoneyMonitor = () => {
       const income = transactions.filter(
         (transaction) => transaction.Category === "Income"
       );
+      const saving = transactions.filter(
+        (transaction) => transaction.Category === "Save&Invest"
+      );
       setSpendingTransactions(groupTransactionsByMonth(spending));
       setIncomeTransactions(groupTransactionsByMonth(income));
+      setSavingTransactions(groupTransactionsByMonth(saving));
       setIncomeAvailablity(
         Object.entries(getMonthDataAvailability(income)).reverse()
       );
       setSpendingAvailablity(
         Object.entries(getMonthDataAvailability(spending)).reverse()
       );
+      setSavingAvailablity(
+        Object.entries(getMonthDataAvailability(saving)).reverse()
+      );
     };
 
     getTransactions();
   }, []);
+
+  console.log(spendingTransactions, incomeTransactions, savingTransactions);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const [totalIncome, setTotalIncome] = useState(0);
@@ -268,11 +283,6 @@ const MoneyMonitor = () => {
     config: config.slow,
   });
 
-  console.log(
-    Object.entries(incomeTransactions).length,
-    Object.entries(spendingTransactions).length
-  );
-
   return (
     <div className="MoneyMonitor_Main">
       {(Object.entries(incomeTransactions).length > 0 ||
@@ -283,6 +293,8 @@ const MoneyMonitor = () => {
               ? incomeTransactions
               : isMoreClicked === "Spending"
               ? spendingTransactions
+              : isMoreClicked === "Saving"
+              ? savingTransactions
               : []
           }
           isMoreClicked={isMoreClicked}
@@ -334,13 +346,13 @@ const MoneyMonitor = () => {
               Add Transaction <span></span>
             </p>
             <ScalableHeading>
-              <span>Income</span> Transactions
+              <span>Income</span> Transaction
             </ScalableHeading>
             <ScalableHeading>
-              <span>Spending</span> Transactions
+              <span>Spending</span> Transaction
             </ScalableHeading>
             <ScalableHeading>
-              <span>Savings</span>
+              <span>Save & Invest</span>
             </ScalableHeading>
             <p>
               <span></span>
@@ -354,6 +366,7 @@ const MoneyMonitor = () => {
               setIsMoreClicked={setIsMoreClicked}
               spendingTransactions={spendingTransactions}
               incomeTransactions={incomeTransactions}
+              savingTransactions={savingTransactions}
             />
           )}
         </animated.div>

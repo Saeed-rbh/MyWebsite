@@ -37,8 +37,11 @@ const MoneyEntry = ({
   setTotalIncome,
   spendingTransactions,
   incomeTransactions,
+  savingTransactions,
   setIsMoreClicked,
 }) => {
+  const [totalBalance, setTotalBalance] = useState(0);
+
   const incomeentries = Object.entries(incomeTransactions);
   const incomelastEntry = incomeentries[incomeentries.length - 1];
   const incometotalAmount = incomelastEntry[1].totalIncome;
@@ -46,7 +49,11 @@ const MoneyEntry = ({
   const spendingentries = Object.entries(spendingTransactions);
   const spendinglastEntry = spendingentries[spendingentries.length - 1];
   const spendingtotalAmount = spendinglastEntry[1].totalSpending;
-  const [totalBalance, setTotalBalance] = useState(0);
+
+  const savingentries = Object.entries(savingTransactions);
+  const savinglastEntry = savingentries[savingentries.length - 1];
+  const savingtotalAmount = savinglastEntry[1].totalSaving;
+  const SavingPercentage = savinglastEntry[1].percentageChange;
 
   useEffect(() => {
     setTotalExpense(spendingtotalAmount);
@@ -84,6 +91,15 @@ const MoneyEntry = ({
     const x = e.pageX - containerRef.current.offsetLeft;
     const walk = (x - startX) * 0.9;
     containerRef.current.scrollLeft = scrollLeft - walk;
+  };
+
+  const ColorStyle = {
+    color: SavingPercentage > 0 ? "var(--Fc-2)" : "var(--Gc-2) ",
+    flexDirection: "row",
+    alignItems: "center",
+    position: "relative",
+    bottom: "0",
+    marginTop: "0",
   };
 
   const gradientStyle = {};
@@ -156,20 +172,13 @@ const MoneyEntry = ({
               height: "2px",
             }}
           ></span>
-          <h2 style={{ width: "max-content" }}>Save & Invest</h2>
+          <h2 style={{ width: "max-content", marginLeft: "0" }}>
+            Save & Invest
+          </h2>
         </h1>
-        <div
-          className="MoneyEntry_percentage"
-          style={{
-            flexDirection: "row",
-            alignItems: "center",
-            position: "relative",
-            bottom: "0",
-            marginTop: "0",
-          }}
-        >
-          <h3>50%</h3>
-          <FaArrowTrendDown />
+        <div className="MoneyEntry_percentage" style={ColorStyle}>
+          <h3>{SavingPercentage}%</h3>
+          {SavingPercentage < 0 ? <FaArrowTrendDown /> : <FaArrowTrendUp />}
         </div>
         <div
           className="MoneyEntry_Balance"
@@ -183,7 +192,7 @@ const MoneyEntry = ({
           }}
         >
           <h2 style={{ marginRight: "5px" }}>Total:</h2>
-          <h1>$1500.2</h1>
+          <h1>${savingtotalAmount}</h1>
         </div>
       </ScalableElement>
     </div>
