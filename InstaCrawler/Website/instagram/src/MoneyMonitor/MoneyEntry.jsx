@@ -156,7 +156,7 @@ const MoneyEntry = ({
               height: "2px",
             }}
           ></span>
-          Saving
+          <h2 style={{ width: "max-content" }}>Save & Invest</h2>
         </h1>
         <div
           className="MoneyEntry_percentage"
