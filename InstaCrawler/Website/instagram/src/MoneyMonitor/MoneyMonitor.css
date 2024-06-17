@@ -1560,10 +1560,9 @@
   display: flex;
   opacity: 0.6;
   align-items: center;
-  margin-right: 20px;
   height: 50px;
   bottom: 10px;
-  left: 25px;
+  width: 41%;
   justify-content: center;
 }
 .MoneyEntry_percentage h3 {
@@ -1577,4 +1576,32 @@
   font-size: 35px;
   opacity: 0.3;
   margin-left: 3px;
+}
+
+.MoneyEntry_Dot {
+  position: relative;
+  background-color: var(--Ec-1);
+  height: 2px;
+  width: 15px;
+  border-radius: 15px;
+  margin-right: 5px;
+  background: linear-gradient(165deg, var(--Ec-1) 30%, var(--Ac-2) 100%);
+}
+
+.MoneyEntry_Savings h1 {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  position: relative;
+  display: flex;
+  font-size: 1.2rem;
+  font-weight: 200;
+  font-family: "Rubik", sans-serif;
+  color: var(--Ac-2);
+  margin: 0;
+  text-transform: capitalize;
+  align-items: center;
+  justify-content: flex-start;
 }

@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useRef } from "react";
 import MoneyEntryAmount from "./MoneyEntryAmount.jsx";
 import { useSpring, animated } from "react-spring";
+import { FaArrowTrendUp, FaArrowTrendDown } from "react-icons/fa6";
 
 const ScalableElement = ({ children, className, onClick }) => {
   const [isScaled, setIsScaled] = useState(false);
@@ -146,7 +147,37 @@ const MoneyEntry = ({
         onClick={() => setIsMoreClicked("Saving")}
       >
         <div className="MoneyEntry_Amount_Gradients"></div>
-        Saving
+        <h1>
+          <span className={`MoneyEntry_Dot`}></span>
+          Saving
+        </h1>
+        <div
+          className="MoneyEntry_percentage"
+          style={{
+            flexDirection: "row",
+            alignItems: "center",
+            position: "relative",
+            bottom: "0",
+            marginTop: "0",
+          }}
+        >
+          <h3>50%</h3>
+          <FaArrowTrendDown />
+        </div>
+        <div
+          className="MoneyEntry_Balance"
+          style={{
+            flexDirection: "row",
+            alignItems: "center",
+            position: "relative",
+            bottom: "0",
+            marginTop: "0",
+            right: "0",
+          }}
+        >
+          <h2 style={{ marginRight: "5px" }}>Total:</h2>
+          <h1>$1500.2</h1>
+        </div>
       </ScalableElement>
     </div>
   );

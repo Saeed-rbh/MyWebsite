@@ -118,11 +118,6 @@ const MoneyEntryAmount = ({ type, transaction, setIsMoreClicked }) => {
           <FaArrowTrendUp />
         )}
       </div>
-      {/* <FormatDate
-        timestamp={transaction.Timestamp}
-        type={transaction.Type}
-        colorType={type}
-      /> */}
     </animated.div>
   );
 };
