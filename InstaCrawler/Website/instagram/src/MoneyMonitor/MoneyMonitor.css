@@ -1605,3 +1605,14 @@
   align-items: center;
   justify-content: flex-start;
 }
+.MainStatestics {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  height: -webkit-fill-available;
+  margin: 20px 0 25px 0;
+  z-index: 10;
+}

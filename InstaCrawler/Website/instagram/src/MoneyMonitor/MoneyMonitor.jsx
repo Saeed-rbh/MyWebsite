@@ -5,7 +5,7 @@ import MoneyEntry from "./MoneyEntry.jsx";
 import TransactionList from "./TransactionList.jsx";
 import { animated, useSpring, easings } from "react-spring";
 import { fetchTransactions } from "./transactionService";
-import { set, update } from "lodash";
+import MainStatestics from "./MainStatestics.jsx";
 
 const groupTransactionsByMonth = (transactions) => {
   const groupedTransactions = {};
@@ -302,6 +302,7 @@ const MoneyMonitor = () => {
     width: "100%",
     scale: !!isMoreClicked ? 0.9 : 1,
     filter: !!isMoreClicked ? "blur(20px)" : "blur(0px)",
+    height: "-webkit-fill-available",
     config: {
       easing: easings.easeInOutCubic,
     },
@@ -384,6 +385,7 @@ const MoneyMonitor = () => {
               <span></span>
             </p>
           </div>
+          <MainStatestics />
           {(Object.entries(incomeTransactions).length > 0 ||
             Object.entries(spendingTransactions).length > 0) && (
             <MoneyEntry
