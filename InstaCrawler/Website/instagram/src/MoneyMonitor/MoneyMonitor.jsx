@@ -221,6 +221,21 @@ const getMonthDataAvailability = (data) => {
   return availability;
 };
 const MoneyMonitor = () => {
+  const [height, setHeight] = useState(window.innerHeight - 100);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setHeight(window.innerHeight - 500);
+    };
+
+    window.addEventListener("resize", handleResize);
+
+    // Cleanup event listener on component unmount
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
   const [spendingTransactions, setSpendingTransactions] = useState([]);
   const [incomeTransactions, setIncomeTransactions] = useState([]);
   const [savingTransactions, setSavingTransactions] = useState([]);
@@ -302,7 +317,7 @@ const MoneyMonitor = () => {
     width: "100%",
     scale: !!isMoreClicked ? 0.9 : 1,
     filter: !!isMoreClicked ? "blur(20px)" : "blur(0px)",
-    height: "-webkit-fill-available",
+    height: height,
     config: {
       easing: easings.easeInOutCubic,
     },
@@ -385,7 +400,7 @@ const MoneyMonitor = () => {
               <span></span>
             </p>
           </div>
-          <MainStatestics />
+          <MainStatestics height={height} />
           {(Object.entries(incomeTransactions).length > 0 ||
             Object.entries(spendingTransactions).length > 0) && (
             <MoneyEntry

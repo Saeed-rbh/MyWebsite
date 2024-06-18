@@ -1,9 +1,12 @@
 import React from "react";
 
-const MainStatestics = () => {
+const MainStatestics = ({ height }) => {
   return (
-    <div className="MainStatestics">
-      {/* Your component content goes here */}
+    <div
+      style={{ height: `${height - 225 - 85 - 55}px` }}
+      className="MainStatestics"
+    >
+      Hi
     </div>
   );
 };
