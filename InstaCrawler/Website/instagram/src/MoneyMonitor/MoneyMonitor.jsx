@@ -300,6 +300,8 @@ const MoneyMonitor = () => {
     }
   }, [isMoreClicked, income, spending, saving]);
 
+  console.log(transactions);
+
   return (
     <div className="MoneyMonitor_Main">
       <TransactionList

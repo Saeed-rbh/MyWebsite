@@ -28,7 +28,7 @@ const TransactionList = ({
   isMoreClicked,
   setIsMoreClicked,
   Transactions,
-  dataAvailablity,
+  dataAvailability,
   setWhichMonth,
   whichMonth,
 }) => {
@@ -234,6 +234,8 @@ const TransactionList = ({
     }
   }, [whichMonth]);
 
+  console.log(labelDistribution);
+
   return (
     <>
       {isAnimationEnds && (
@@ -339,7 +341,7 @@ const TransactionList = ({
               <animated.li>
                 <span>•</span>
                 {labelDistribution.length > 0
-                  ? labelDistribution[3].category.split(" ")[0]
+                  ? labelDistribution[2].category.split(" ")[0]
                   : ""}
               </animated.li>
               <animated.li>
@@ -393,7 +395,7 @@ const TransactionList = ({
                   month={Transactions.month}
                   year={Transactions.year}
                   sortby={sortby}
-                  dataAvailablity={dataAvailablity}
+                  dataAvailability={dataAvailability}
                   setWhichMonth={setWhichMonth}
                   whichMonth={whichMonth}
                 />

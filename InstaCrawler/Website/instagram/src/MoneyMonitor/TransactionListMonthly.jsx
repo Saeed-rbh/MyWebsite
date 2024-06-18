@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React from "react";
 import { LuCalendarClock } from "react-icons/lu";
 import { FaArrowTrendUp } from "react-icons/fa6";
 import { FaArrowTrendDown } from "react-icons/fa6";
@@ -18,7 +18,7 @@ const TransactionListMonthly = ({
   month,
   year,
   sortby,
-  dataAvailablity,
+  dataAvailability,
   setWhichMonth,
   whichMonth,
 }) => {
@@ -89,7 +89,7 @@ const TransactionListMonthly = ({
           <h1>
             What <span>Month</span> are you looking for ?
           </h1>
-          {/* {dataAvailablity.map((data, index) => (
+          {dataAvailability.map((data, index) => (
             <p
               style={{
                 background:
@@ -111,7 +111,7 @@ const TransactionListMonthly = ({
                 }}
               ></span>
             </p>
-          ))} */}
+          ))}
         </div>
       }
     </animated.div>
