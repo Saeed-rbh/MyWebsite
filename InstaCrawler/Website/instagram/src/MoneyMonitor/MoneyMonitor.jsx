@@ -43,19 +43,13 @@ const MoneyMonitor = () => {
     const handleResize = () => {
       setHeight(window.innerHeight - 500);
     };
-
     window.addEventListener("resize", handleResize);
-
-    // Cleanup event listener on component unmount
     return () => {
       window.removeEventListener("resize", handleResize);
     };
   }, []);
   const [whichMonth, setWhichMonth] = useState(1);
 
-  // const [spendingTransactions, setSpendingTransactions] = useState([]);
-  // const [incomeTransactions, setIncomeTransactions] = useState([]);
-  // const [savingTransactions, setSavingTransactions] = useState([]);
   const [incomeAvailability, setIncomeAvailability] = useState([]);
   const [spendingAvailability, setSpendingAvailability] = useState([]);
   const [savingAvailability, setSavingAvailability] = useState([]);
@@ -85,36 +79,6 @@ const MoneyMonitor = () => {
   }, [whichMonth]);
 
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-
-  const [totalIncome, setTotalIncome] = useState(0);
-  const [totalExpense, setTotalExpense] = useState(0);
-  const [totalBalance, setTotalBalance] = useState(0);
-
-  useEffect(() => {
-    setTotalBalance(totalIncome - totalExpense);
-  }, [totalIncome, totalExpense]);
-
-  // useEffect(() => {
-  //   if (Object.entries(incomeTransactions).length > 0) {
-  //     const incomeentries = Object.entries(incomeTransactions);
-  //     setLastIncomeEntry(incomeentries[incomeentries.length - whichMonth][1]);
-  //   }
-  //   if (Object.entries(spendingTransactions).length > 0) {
-  //     const spendingentries = Object.entries(spendingTransactions);
-  //     setLastSpendingEntry(
-  //       spendingentries[spendingentries.length - whichMonth][1]
-  //     );
-  //   }
-  //   if (Object.entries(savingTransactions).length > 0) {
-  //     const savingentries = Object.entries(savingTransactions);
-  //     setLastSavingEntry(savingentries[savingentries.length - whichMonth][1]);
-  //   }
-  // }, [
-  //   whichMonth,
-  //   incomeTransactions,
-  //   spendingTransactions,
-  //   savingTransactions,
-  // ]);
 
   const [isMoreClicked, setIsMoreClicked] = useState(null);
   const scaleStyle = useSpring({
@@ -151,6 +115,8 @@ const MoneyMonitor = () => {
             ? incomeAvailability
             : isMoreClicked === "Spending"
             ? spendingAvailability
+            : isMoreClicked === "Saving"
+            ? savingAvailability
             : []
         }
       />
@@ -207,8 +173,6 @@ const MoneyMonitor = () => {
           </div>
           <MainStatestics height={height} />
           <MoneyEntry
-            setTotalExpense={setTotalExpense}
-            setTotalIncome={setTotalIncome}
             setIsMoreClicked={setIsMoreClicked}
             spendingTransactions={lastSpendingEntry}
             incomeTransactions={lastIncomeEntry}

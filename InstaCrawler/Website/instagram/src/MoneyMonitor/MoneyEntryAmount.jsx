@@ -2,6 +2,7 @@ import React from "react";
 import { useSpring, animated } from "react-spring";
 import { GoArrowUpRight, GoArrowDownLeft } from "react-icons/go";
 import { FaArrowTrendUp, FaArrowTrendDown } from "react-icons/fa6";
+import { formatNetTotal } from "./tools";
 
 const MoneyEntryAmount = ({ type, transaction, setIsMoreClicked }) => {
   const amountStyle = {
@@ -52,17 +53,6 @@ const MoneyEntryAmount = ({ type, transaction, setIsMoreClicked }) => {
         : "var(--Fc-1)",
     fontSize: "0.8rem",
     fontWeight: "600",
-  };
-
-  const formatNetTotal = (netTotal) => {
-    const floatNetTotal = parseFloat(netTotal);
-    if (floatNetTotal > 10000) {
-      return floatNetTotal.toFixed(0);
-    } else if (floatNetTotal > 1000) {
-      return floatNetTotal.toFixed(1);
-    } else {
-      return floatNetTotal.toFixed(2);
-    }
   };
 
   return (

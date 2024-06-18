@@ -2,6 +2,7 @@ import React, { useEffect, useState, useRef } from "react";
 import MoneyEntryAmount from "./MoneyEntryAmount.jsx";
 import { useSpring, animated } from "react-spring";
 import { FaArrowTrendUp, FaArrowTrendDown } from "react-icons/fa6";
+import { formatNetTotal } from "./tools";
 
 const ScalableElement = ({ children, className, onClick }) => {
   const [isScaled, setIsScaled] = useState(false);
@@ -33,8 +34,6 @@ const ScalableElement = ({ children, className, onClick }) => {
 };
 
 const MoneyEntry = ({
-  setTotalExpense,
-  setTotalIncome,
   spendingTransactions,
   incomeTransactions,
   savingTransactions,
@@ -48,8 +47,6 @@ const MoneyEntry = ({
   const SavingPercentage = savingTransactions.percentageChange;
 
   useEffect(() => {
-    setTotalExpense(spendingtotalAmount);
-    setTotalIncome(incometotalAmount);
     setTotalBalance(incometotalAmount - spendingtotalAmount);
   }, [spendingtotalAmount, incometotalAmount]);
 
@@ -164,7 +161,7 @@ const MoneyEntry = ({
           }}
         >
           <h2 style={{ marginRight: "5px" }}>Total:</h2>
-          <h1>${savingtotalAmount}</h1>
+          <h1>${formatNetTotal(savingtotalAmount)}</h1>
         </div>
       </ScalableElement>
     </div>
