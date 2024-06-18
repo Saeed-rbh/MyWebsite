@@ -419,36 +419,13 @@
   font-weight: 200;
   font-family: "Rubik", sans-serif;
   color: var(--Ac-2);
-  padding: 15px 20px;
+  padding: 15px;
   width: max-content;
   border-radius: 30px;
-  margin: 12px 5px 5px 0px;
+  margin: 12px 0px 5px 0px;
   cursor: pointer;
   background: linear-gradient(165deg, var(--Ac-4) 10%, var(--Ec-4) 100%);
   border: 1px solid var(--Ac-3);
-  width: 13%;
-}
-.MoneyMonitor_Menu h2 {
-  position: relative;
-  font-size: 0.8rem;
-  font-weight: 400;
-  font-family: "Rubik", sans-serif;
-  color: var(--Ac-2);
-  width: max-content;
-  border-radius: 30px;
-  margin: 12px 10px 5px 0px;
-  cursor: pointer;
-  width: min-content;
-  text-align: left;
-}
-.MoneyMonitor_Menu h2 span {
-  margin-right: 0;
-  font-weight: 200;
-}
-.MoneyMonitor_Menu h1:last-of-type {
-  min-width: min-content;
-  width: fit-content;
-  width: -moz-fit-content;
 }
 .MoneyMonitor_Menu h1 span {
   font-weight: 400;
