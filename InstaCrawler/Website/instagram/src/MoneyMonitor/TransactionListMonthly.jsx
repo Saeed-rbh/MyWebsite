@@ -89,7 +89,7 @@ const TransactionListMonthly = ({
           <h1>
             What <span>Month</span> are you looking for ?
           </h1>
-          {dataAvailablity.map((data, index) => (
+          {/* {dataAvailablity.map((data, index) => (
             <p
               style={{
                 background:
@@ -111,7 +111,7 @@ const TransactionListMonthly = ({
                 }}
               ></span>
             </p>
-          ))}
+          ))} */}
         </div>
       }
     </animated.div>

@@ -41,7 +41,8 @@ const TransactionList = ({
     if (Transactions.length !== 0) {
       setTotalAmount(Transactions.netTotal);
       setCurrentMonth(Transactions.month);
-      const sortedData = Object.entries(Transactions.labelDistribution)
+      const distribution = Transactions.labelDistribution;
+      const sortedData = Object.entries(distribution)
         .map(([category, percentage]) => ({
           category,
           percentage: parseFloat(percentage),
@@ -218,14 +219,12 @@ const TransactionList = ({
       opacity: transactionClickAnim ? "1" : "0.7",
       scale: transactionClickAnim ? 1 : 0.9,
       height: "calc(100vh + 90px)",
-      // height: `calc(100vh + ${!isScrollingDown ? 90 : -80}px)`,
     },
     to: {
       filter: transactionClickAnim ? "blur(10px)" : "blur(0px)",
       opacity: transactionClickAnim ? "0.7" : "1",
       scale: transactionClickAnim ? 0.9 : 1,
       height: "calc(100vh + 90px)",
-      // height: `calc(100vh + ${isScrollingDown ? 90 : -80}px)`,
     },
   });
 
@@ -234,11 +233,6 @@ const TransactionList = ({
       monthlyMainRef.current.scrollTop = 0;
     }
   }, [whichMonth]);
-
-  console.log(
-    Transactions.length !== 0 &&
-      Transactions.transactions.map((transactions) => transactions)
-  );
 
   return (
     <>

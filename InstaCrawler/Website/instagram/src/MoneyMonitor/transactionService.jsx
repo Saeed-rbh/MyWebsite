@@ -96,12 +96,10 @@ const groupTransactionsByMonth = (transactions) => {
     groupedTransactions[key].labelDistribution = sortedLabelDistribution;
   });
 
-  // Convert the object to an array of [key, value] pairs and sort by key
   const sortedGroupedTransactions = Object.entries(groupedTransactions).sort(
     ([a], [b]) => a.localeCompare(b)
   );
 
-  // Calculate percentage change
   let previousNetTotal = null;
   sortedGroupedTransactions.forEach(([key, value], index) => {
     const currentNetTotal = value.netTotal;
@@ -116,7 +114,6 @@ const groupTransactionsByMonth = (transactions) => {
     previousNetTotal = currentNetTotal;
   });
 
-  // Convert back to an object
   return Object.fromEntries(sortedGroupedTransactions);
 };
 const getMonthDataAvailability = (data) => {
