@@ -51,34 +51,38 @@ const MoneyMonitor = () => {
       window.removeEventListener("resize", handleResize);
     };
   }, []);
+  const [whichMonth, setWhichMonth] = useState(1);
 
-  const [spendingTransactions, setSpendingTransactions] = useState([]);
-  const [incomeTransactions, setIncomeTransactions] = useState([]);
-  const [savingTransactions, setSavingTransactions] = useState([]);
+  // const [spendingTransactions, setSpendingTransactions] = useState([]);
+  // const [incomeTransactions, setIncomeTransactions] = useState([]);
+  // const [savingTransactions, setSavingTransactions] = useState([]);
   const [incomeAvailability, setIncomeAvailability] = useState([]);
   const [spendingAvailability, setSpendingAvailability] = useState([]);
   const [savingAvailability, setSavingAvailability] = useState([]);
+  const [lastIncomeEntry, setLastIncomeEntry] = useState({});
+  const [lastSpendingEntry, setLastSpendingEntry] = useState({});
+  const [lastSavingEntry, setLastSavingEntry] = useState({});
 
   useEffect(() => {
-    const processTransactions = async () => {
+    const processTransactions = async (whichMonth) => {
       const {
-        spendingTransactions,
-        incomeTransactions,
-        savingTransactions,
+        selectedIncome,
+        selectedspending,
+        selectedsaving,
         incomeAvailability,
         spendingAvailability,
         savingAvailability,
-      } = await fetchTransactions();
+      } = await fetchTransactions({ whichMonth });
 
-      setSpendingTransactions(spendingTransactions);
-      setIncomeTransactions(incomeTransactions);
-      setSavingTransactions(savingTransactions);
+      setLastIncomeEntry(selectedIncome);
+      setLastSpendingEntry(selectedspending);
+      setLastSavingEntry(selectedsaving);
       setIncomeAvailability(incomeAvailability);
       setSpendingAvailability(spendingAvailability);
       setSavingAvailability(savingAvailability);
     };
-    processTransactions();
-  }, []);
+    processTransactions(whichMonth);
+  }, [whichMonth]);
 
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
@@ -90,32 +94,27 @@ const MoneyMonitor = () => {
     setTotalBalance(totalIncome - totalExpense);
   }, [totalIncome, totalExpense]);
 
-  const [whichMonth, setWhichMonth] = useState(1);
-  const [lastIncomeEntry, setLastIncomeEntry] = useState({});
-  const [lastSpendingEntry, setLastSpendingEntry] = useState({});
-  const [lastSavingEntry, setLastSavingEntry] = useState({});
-
-  useEffect(() => {
-    if (Object.entries(incomeTransactions).length > 0) {
-      const incomeentries = Object.entries(incomeTransactions);
-      setLastIncomeEntry(incomeentries[incomeentries.length - whichMonth][1]);
-    }
-    if (Object.entries(spendingTransactions).length > 0) {
-      const spendingentries = Object.entries(spendingTransactions);
-      setLastSpendingEntry(
-        spendingentries[spendingentries.length - whichMonth][1]
-      );
-    }
-    if (Object.entries(savingTransactions).length > 0) {
-      const savingentries = Object.entries(savingTransactions);
-      setLastSavingEntry(savingentries[savingentries.length - whichMonth][1]);
-    }
-  }, [
-    whichMonth,
-    incomeTransactions,
-    spendingTransactions,
-    savingTransactions,
-  ]);
+  // useEffect(() => {
+  //   if (Object.entries(incomeTransactions).length > 0) {
+  //     const incomeentries = Object.entries(incomeTransactions);
+  //     setLastIncomeEntry(incomeentries[incomeentries.length - whichMonth][1]);
+  //   }
+  //   if (Object.entries(spendingTransactions).length > 0) {
+  //     const spendingentries = Object.entries(spendingTransactions);
+  //     setLastSpendingEntry(
+  //       spendingentries[spendingentries.length - whichMonth][1]
+  //     );
+  //   }
+  //   if (Object.entries(savingTransactions).length > 0) {
+  //     const savingentries = Object.entries(savingTransactions);
+  //     setLastSavingEntry(savingentries[savingentries.length - whichMonth][1]);
+  //   }
+  // }, [
+  //   whichMonth,
+  //   incomeTransactions,
+  //   spendingTransactions,
+  //   savingTransactions,
+  // ]);
 
   const [isMoreClicked, setIsMoreClicked] = useState(null);
   const scaleStyle = useSpring({
@@ -133,31 +132,29 @@ const MoneyMonitor = () => {
 
   return (
     <div className="MoneyMonitor_Main">
-      {(Object.entries(incomeTransactions).length > 0 ||
-        Object.entries(spendingTransactions).length > 0) && (
-        <TransactionList
-          Transactions={
-            isMoreClicked === "Income"
-              ? lastIncomeEntry
-              : isMoreClicked === "Spending"
-              ? lastSpendingEntry
-              : isMoreClicked === "Saving"
-              ? lastSavingEntry
-              : []
-          }
-          isMoreClicked={isMoreClicked}
-          setIsMoreClicked={setIsMoreClicked}
-          setWhichMonth={setWhichMonth}
-          whichMonth={whichMonth}
-          dataAvailablity={
-            isMoreClicked === "Income"
-              ? incomeAvailability
-              : isMoreClicked === "Spending"
-              ? spendingAvailability
-              : []
-          }
-        />
-      )}
+      <TransactionList
+        Transactions={
+          isMoreClicked === "Income"
+            ? lastIncomeEntry
+            : isMoreClicked === "Spending"
+            ? lastSpendingEntry
+            : isMoreClicked === "Saving"
+            ? lastSavingEntry
+            : []
+        }
+        isMoreClicked={isMoreClicked}
+        setIsMoreClicked={setIsMoreClicked}
+        setWhichMonth={setWhichMonth}
+        whichMonth={whichMonth}
+        dataAvailablity={
+          isMoreClicked === "Income"
+            ? incomeAvailability
+            : isMoreClicked === "Spending"
+            ? spendingAvailability
+            : []
+        }
+      />
+
       <div className="MoneyMonitor_Parent">
         <div className="MoneyMonitor_header">
           <div className="MoneyMonitor_User">
@@ -209,17 +206,14 @@ const MoneyMonitor = () => {
             </p>
           </div>
           <MainStatestics height={height} />
-          {(Object.entries(incomeTransactions).length > 0 ||
-            Object.entries(spendingTransactions).length > 0) && (
-            <MoneyEntry
-              setTotalExpense={setTotalExpense}
-              setTotalIncome={setTotalIncome}
-              setIsMoreClicked={setIsMoreClicked}
-              spendingTransactions={spendingTransactions}
-              incomeTransactions={incomeTransactions}
-              savingTransactions={savingTransactions}
-            />
-          )}
+          <MoneyEntry
+            setTotalExpense={setTotalExpense}
+            setTotalIncome={setTotalIncome}
+            setIsMoreClicked={setIsMoreClicked}
+            spendingTransactions={lastSpendingEntry}
+            incomeTransactions={lastIncomeEntry}
+            savingTransactions={lastSavingEntry}
+          />
         </animated.div>
       </div>
     </div>

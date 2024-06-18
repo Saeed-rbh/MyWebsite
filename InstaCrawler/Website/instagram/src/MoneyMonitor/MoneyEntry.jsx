@@ -42,18 +42,10 @@ const MoneyEntry = ({
 }) => {
   const [totalBalance, setTotalBalance] = useState(0);
 
-  const incomeentries = Object.entries(incomeTransactions);
-  const incomelastEntry = incomeentries[incomeentries.length - 1];
-  const incometotalAmount = incomelastEntry[1].totalIncome;
-
-  const spendingentries = Object.entries(spendingTransactions);
-  const spendinglastEntry = spendingentries[spendingentries.length - 1];
-  const spendingtotalAmount = spendinglastEntry[1].totalSpending;
-
-  const savingentries = Object.entries(savingTransactions);
-  const savinglastEntry = savingentries[savingentries.length - 1];
-  const savingtotalAmount = savinglastEntry[1].totalSaving;
-  const SavingPercentage = savinglastEntry[1].percentageChange;
+  const incometotalAmount = incomeTransactions.totalIncome;
+  const spendingtotalAmount = spendingTransactions.totalSpending;
+  const savingtotalAmount = savingTransactions.totalSaving;
+  const SavingPercentage = savingTransactions.percentageChange;
 
   useEffect(() => {
     setTotalExpense(spendingtotalAmount);
@@ -109,7 +101,7 @@ const MoneyEntry = ({
           <span className={`MoneyEntry_Dot`} style={totalStyle}>
             •{" "}
           </span>
-          {incomelastEntry[1].month} <h2>Summary</h2>
+          {incomeTransactions.month} <h2>Summary</h2>
         </h1>
         <h1 className={`MoneyEntry_total`} style={totalStyle}>
           {" "}
@@ -129,12 +121,12 @@ const MoneyEntry = ({
           <MoneyEntryAmount
             type={"Income"}
             setIsMoreClicked={setIsMoreClicked}
-            transaction={incomelastEntry[1]}
+            transaction={incomeTransactions}
           />
           <MoneyEntryAmount
             type={"Spending"}
             setIsMoreClicked={setIsMoreClicked}
-            transaction={spendinglastEntry[1]}
+            transaction={spendingTransactions}
           />
         </div>
       </div>

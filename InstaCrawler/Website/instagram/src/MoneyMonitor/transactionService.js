@@ -181,7 +181,8 @@ const getMonthDataAvailability = (data) => {
 
   return availability;
 };
-export const fetchTransactions = async () => {
+export const fetchTransactions = async ({ whichMonth }) => {
+  console.log(whichMonth);
   const response = await fetch("/transactions_sorted.json");
   const transactions = await response.json();
 
@@ -209,10 +210,20 @@ export const fetchTransactions = async () => {
     getMonthDataAvailability(saving)
   ).reverse();
 
+  const incomeentries = Object.entries(incomeTransactions);
+  const selectedIncome = incomeentries[incomeentries.length - whichMonth][1];
+
+  const spendingentries = Object.entries(spendingTransactions);
+  const selectedspending =
+    spendingentries[spendingentries.length - whichMonth][1];
+
+  const savingentries = Object.entries(savingTransactions);
+  const selectedsaving = savingentries[savingentries.length - whichMonth][1];
+
   return {
-    spendingTransactions,
-    incomeTransactions,
-    savingTransactions,
+    selectedIncome,
+    selectedspending,
+    selectedsaving,
     incomeAvailability,
     spendingAvailability,
     savingAvailability,
