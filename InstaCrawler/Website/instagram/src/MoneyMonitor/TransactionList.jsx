@@ -385,7 +385,7 @@ const TransactionList = ({
               ref={monthlyMainRef}
               style={springProps4}
             >
-              {/* {Transactions.length !== 0 && (
+              {Transactions.length !== 0 && (
                 <TransactionListMonthly
                   swipedIndex={swipedIndex}
                   handleUnSwipe={handleUnSwipe}
@@ -403,7 +403,7 @@ const TransactionList = ({
                   setWhichMonth={setWhichMonth}
                   whichMonth={whichMonth}
                 />
-              )} */}
+              )}
             </animated.div>
           </animated.div>
         </animated.div>

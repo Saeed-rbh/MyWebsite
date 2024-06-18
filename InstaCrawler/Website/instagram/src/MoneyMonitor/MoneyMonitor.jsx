@@ -318,6 +318,8 @@ const MoneyMonitor = () => {
     scale: !!isMoreClicked ? 0.9 : 1,
     filter: !!isMoreClicked ? "blur(20px)" : "blur(0px)",
     height: height,
+    alignItems: "center",
+    justifyContent: "center",
     config: {
       easing: easings.easeInOutCubic,
     },
@@ -383,23 +385,7 @@ const MoneyMonitor = () => {
               <span>Dashboard</span>
             </div>
           </div>
-          <div className="MoneyMonitor_Menu">
-            <p>
-              Add Transaction <span></span>
-            </p>
-            <ScalableHeading>
-              <span>Income</span> Transaction
-            </ScalableHeading>
-            <ScalableHeading>
-              <span>Spending</span> Transaction
-            </ScalableHeading>
-            <ScalableHeading>
-              <span>Save & Invest</span>
-            </ScalableHeading>
-            <p>
-              <span></span>
-            </p>
-          </div>
+
           <MainStatestics height={height} />
           {(Object.entries(incomeTransactions).length > 0 ||
             Object.entries(spendingTransactions).length > 0) && (
@@ -412,6 +398,27 @@ const MoneyMonitor = () => {
               savingTransactions={savingTransactions}
             />
           )}
+          <div className="MoneyMonitor_Menu">
+            {/* <p>
+              Add Transaction <span></span>
+            </p> */}
+            <h2>
+              <span className={`MoneyEntry_Dot`}>• </span>
+              Add <span>Transaction</span>
+            </h2>
+            <ScalableHeading>
+              <span>Income</span>
+            </ScalableHeading>
+            <ScalableHeading>
+              <span>Spending</span>
+            </ScalableHeading>
+            <ScalableHeading>
+              <span>Save & Invest</span>
+            </ScalableHeading>
+            <p>
+              <span></span>
+            </p>
+          </div>
         </animated.div>
       </div>
     </div>
