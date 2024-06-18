@@ -2,7 +2,13 @@ import React, { useEffect, useRef, useState } from "react";
 import { CiSearch, CiCalendarDate } from "react-icons/ci";
 import TransactionListMonthly from "./TransactionListMonthly";
 import TransactionModification from "./TransactionModification";
-import { useSprings, useSpring, animated, config } from "@react-spring/web";
+import {
+  useSprings,
+  useSpring,
+  animated,
+  config,
+  easings,
+} from "@react-spring/web";
 import { useDrag } from "@use-gesture/react";
 
 const useCustomSpring = (isMoreClicked, delay, isScrollingDown, scrollAble) => {
@@ -118,7 +124,9 @@ const TransactionList = ({
         filter: !!isMoreClicked ? "blur(0px)" : "blur(5px)",
         opacity: !isMoreClicked ? 0 : 1,
         height: !!isMoreClicked ? "calc(100vh - 65px)" : "calc(0vh - 65px)",
-        config: config.slow,
+        config: {
+          easing: easings.steps(5),
+        },
         onRest: () => {
           !isMoreClicked && setIsAnimationEnds(false);
         },
@@ -138,19 +146,25 @@ const TransactionList = ({
           isQuickDrag
         ) {
           api.start({
-            config: config.molasses,
+            config: {
+              easing: easings.easeInOutCubic,
+            },
             height: "calc(0vh - 65px)",
           });
           setIsMoreClicked(null);
         } else {
           api.start({
-            config: config.slow,
+            config: {
+              easing: easings.easeInOutCubic,
+            },
             height: `calc(100vh - 80px)`,
           });
         }
       } else {
         api.start({
-          config: config.gentle,
+          config: {
+            easing: easings.easeInOutCubic,
+          },
           height: `calc(100vh - ${newHeight}px)`,
         });
       }
@@ -371,23 +385,25 @@ const TransactionList = ({
               ref={monthlyMainRef}
               style={springProps4}
             >
-              <TransactionListMonthly
-                swipedIndex={swipedIndex}
-                handleUnSwipe={handleUnSwipe}
-                handleSwipe={handleSwipe}
-                handleTransactionClick={handleTransactionClick}
-                useCustomSpring={useCustomSpring}
-                isMoreClicked={isMoreClicked}
-                transactions={Transactions.transactions}
-                netTotal={Transactions.netTotal}
-                percentageChange={Transactions.percentageChange}
-                month={Transactions.month}
-                year={Transactions.year}
-                sortby={sortby}
-                dataAvailablity={dataAvailablity}
-                setWhichMonth={setWhichMonth}
-                whichMonth={whichMonth}
-              />
+              {Transactions.length !== 0 && (
+                <TransactionListMonthly
+                  swipedIndex={swipedIndex}
+                  handleUnSwipe={handleUnSwipe}
+                  handleSwipe={handleSwipe}
+                  handleTransactionClick={handleTransactionClick}
+                  useCustomSpring={useCustomSpring}
+                  isMoreClicked={isMoreClicked}
+                  transactions={Transactions.transactions}
+                  netTotal={Transactions.netTotal}
+                  percentageChange={Transactions.percentageChange}
+                  month={Transactions.month}
+                  year={Transactions.year}
+                  sortby={sortby}
+                  dataAvailablity={dataAvailablity}
+                  setWhichMonth={setWhichMonth}
+                  whichMonth={whichMonth}
+                />
+              )}
             </animated.div>
           </animated.div>
         </animated.div>

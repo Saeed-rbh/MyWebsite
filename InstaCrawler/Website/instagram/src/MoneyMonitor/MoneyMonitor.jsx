@@ -3,7 +3,7 @@ import "./MoneyMonitor.css";
 import MenuButton from "../Header/MenuButton.jsx";
 import MoneyEntry from "./MoneyEntry.jsx";
 import TransactionList from "./TransactionList.jsx";
-import { animated, useSpring, config } from "react-spring";
+import { animated, useSpring, easings } from "react-spring";
 import { fetchTransactions } from "./transactionService";
 import { set, update } from "lodash";
 
@@ -302,7 +302,9 @@ const MoneyMonitor = () => {
     width: "100%",
     scale: !!isMoreClicked ? 0.9 : 1,
     filter: !!isMoreClicked ? "blur(20px)" : "blur(0px)",
-    config: config.slow,
+    config: {
+      easing: easings.easeInOutCubic,
+    },
   });
 
   return (
