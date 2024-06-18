@@ -181,20 +181,24 @@ const getMonthDataAvailability = (data) => {
 
   return availability;
 };
-export const fetchTransactions = async ({ whichMonth }) => {
-  console.log(whichMonth);
-  const response = await fetch("/transactions_sorted.json");
-  const transactions = await response.json();
 
-  const spending = transactions.filter(
-    (transaction) => transaction.Category === "Spending"
-  );
-  const income = transactions.filter(
-    (transaction) => transaction.Category === "Income"
-  );
-  const saving = transactions.filter(
-    (transaction) => transaction.Category === "Save&Invest"
-  );
+const fetchJson = async (url) => {
+  const response = await fetch(url, { cache: "no-store" });
+  return response.json();
+};
+const filterTransactionsByCategory = (transactions, category) =>
+  transactions.filter((transaction) => transaction.Category === category);
+const getSelectedMonthData = (transactionsByMonth, whichMonth) => {
+  const entries = Object.entries(transactionsByMonth);
+  return entries[entries.length - whichMonth][1];
+};
+
+export const fetchTransactions = async ({ whichMonth }) => {
+  const transactions = await fetchJson("/transactions_sorted.json");
+
+  const spending = filterTransactionsByCategory(transactions, "Spending");
+  const income = filterTransactionsByCategory(transactions, "Income");
+  const saving = filterTransactionsByCategory(transactions, "Save&Invest");
 
   const spendingTransactions = groupTransactionsByMonth(spending);
   const incomeTransactions = groupTransactionsByMonth(income);
@@ -210,15 +214,12 @@ export const fetchTransactions = async ({ whichMonth }) => {
     getMonthDataAvailability(saving)
   ).reverse();
 
-  const incomeentries = Object.entries(incomeTransactions);
-  const selectedIncome = incomeentries[incomeentries.length - whichMonth][1];
-
-  const spendingentries = Object.entries(spendingTransactions);
-  const selectedspending =
-    spendingentries[spendingentries.length - whichMonth][1];
-
-  const savingentries = Object.entries(savingTransactions);
-  const selectedsaving = savingentries[savingentries.length - whichMonth][1];
+  const selectedIncome = getSelectedMonthData(incomeTransactions, whichMonth);
+  const selectedspending = getSelectedMonthData(
+    spendingTransactions,
+    whichMonth
+  );
+  const selectedsaving = getSelectedMonthData(savingTransactions, whichMonth);
 
   return {
     selectedIncome,
