@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { MdOutlineBrunchDining } from "react-icons/md";
 import { useSpring, animated, config } from "@react-spring/web";
 import { useDrag } from "@use-gesture/react";
@@ -16,6 +16,10 @@ const TransactionListItem = ({
 }) => {
   const [showActions, setShowActions] = useState(isSwiped);
   const [showActionsAnim, setShowActionsAnim] = useState(false);
+  const [isScaled, setIsScaled] = useState(false);
+
+  const handleMouseDown = useCallback(() => setIsScaled(true), []);
+  const handleMouseUp = useCallback(() => setIsScaled(false), []);
 
   useEffect(() => {
     if (!isSwiped) {
@@ -62,6 +66,7 @@ const TransactionListItem = ({
 
   const swipeStyle = useSpring({
     transform: isSwiped ? "translateX(-160px)" : "translateX(0px)",
+    scale: isScaled ? 0.9 : 1,
   });
 
   const swipeDate2 = useSpring({
@@ -85,7 +90,14 @@ const TransactionListItem = ({
   };
 
   return (
-    <animated.li onClick={handleClick} {...bind()} style={swipeStyle}>
+    <animated.li
+      onClick={handleClick}
+      {...bind()}
+      style={swipeStyle}
+      onMouseDown={handleMouseDown}
+      onMouseUp={handleMouseUp}
+      onMouseLeave={handleMouseUp}
+    >
       <animated.p>
         <animated.span>
           <Icon />

@@ -1,9 +1,93 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState, useCallback } from "react";
 import { CiSearch, CiCalendarDate } from "react-icons/ci";
 import TransactionListMonthly from "./TransactionListMonthly";
 import TransactionModification from "./TransactionModification";
 import { useSprings, useSpring, animated, config } from "@react-spring/web";
 import { useDrag } from "@use-gesture/react";
+
+const ScalableElement = ({
+  as: Component = "h1",
+  children,
+  className,
+  onClick,
+  key,
+  style,
+}) => {
+  const [isScaled, setIsScaled] = useState(false);
+
+  const handleMouseDown = useCallback(() => setIsScaled(true), []);
+  const handleMouseUp = useCallback(() => setIsScaled(false), []);
+
+  const style_2 = useSpring({
+    scale: isScaled ? 0.9 : 1,
+  });
+
+  const AnimatedComponent = animated(Component);
+
+  return (
+    <AnimatedComponent
+      key={key}
+      className={className}
+      style={{ ...style, ...style_2 }}
+      onClick={onClick}
+      onMouseDown={handleMouseDown}
+      onMouseUp={handleMouseUp}
+      onMouseLeave={handleMouseUp}
+    >
+      {children}
+    </AnimatedComponent>
+  );
+};
+
+// const ScalableElement = ({ children, className, onClick, key, style }) => {
+//   const [isScaled, setIsScaled] = useState(false);
+
+//   const handleMouseDown = useCallback(() => setIsScaled(true), []);
+//   const handleMouseUp = useCallback(() => setIsScaled(false), []);
+
+//   const style_2 = useSpring({
+//     scale: isScaled ? 0.9 : 1,
+//   });
+
+//   return (
+//     <animated.h1
+//       key={key}
+//       className={className}
+//       style={{ ...style, ...style_2 }}
+//       onClick={onClick}
+//       onMouseDown={handleMouseDown}
+//       onMouseUp={handleMouseUp}
+//       onMouseLeave={handleMouseUp}
+//     >
+//       {children}
+//     </animated.h1>
+//   );
+// };
+
+// const ScalableElement_2 = ({ children, className, onClick, key, style }) => {
+//   const [isScaled, setIsScaled] = useState(false);
+
+//   const handleMouseDown = useCallback(() => setIsScaled(true), []);
+//   const handleMouseUp = useCallback(() => setIsScaled(false), []);
+
+//   const style_2 = useSpring({
+//     scale: isScaled ? 0.9 : 1,
+//   });
+
+//   return (
+//     <animated.h2
+//       key={key}
+//       className={className}
+//       style={{ ...style, ...style_2 }}
+//       onClick={onClick}
+//       onMouseDown={handleMouseDown}
+//       onMouseUp={handleMouseUp}
+//       onMouseLeave={handleMouseUp}
+//     >
+//       {children}
+//     </animated.h2>
+//   );
+// };
 
 const useCustomSpring = (isMoreClicked, delay, isScrollingDown, scrollAble) => {
   return useSpring({
@@ -399,7 +483,8 @@ const TransactionList = ({
             <animated.div className="TransactionList_Menu" style={springProps3}>
               <p>Filter Transactions</p>
               {springs.map((props, index) => (
-                <animated.h1
+                <ScalableElement
+                  as="h1"
                   key={sortItems[index]}
                   style={{ ...props, background: "var(--Ec-2)" }}
                   onClick={() => setSortby(sortItems[index])}
@@ -409,16 +494,16 @@ const TransactionList = ({
                     className="CirleColor"
                   ></animated.div>
                   {sortItems[index]}
-                </animated.h1>
+                </ScalableElement>
               ))}
-              <h2>
+              <ScalableElement as="h2">
                 <animated.div className="CirleColor"></animated.div>
                 <CiSearch />
-              </h2>
-              <h2>
+              </ScalableElement>
+              <ScalableElement as="h2">
                 <animated.div className="CirleColor"></animated.div>
                 <CiCalendarDate />
-              </h2>
+              </ScalableElement>
               <p>
                 <span></span>
               </p>
