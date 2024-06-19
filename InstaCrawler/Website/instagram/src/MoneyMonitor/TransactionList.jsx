@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { CiSearch, CiCalendarDate } from "react-icons/ci";
 import TransactionListMonthly from "./TransactionListMonthly";
 import TransactionModification from "./TransactionModification";
-import { useSprings, useSpring, animated } from "@react-spring/web";
+import { useSprings, useSpring, animated, config } from "@react-spring/web";
 import { useDrag } from "@use-gesture/react";
 
 const useCustomSpring = (isMoreClicked, delay, isScrollingDown, scrollAble) => {
@@ -45,8 +45,6 @@ const TransactionList = ({
       setLabelDistribution(sortedData);
     }
   }, [Transactions, whichMonth]);
-
-  console.log(labelDistribution);
 
   const monthlyMainRef = useRef(null);
 
@@ -132,41 +130,50 @@ const TransactionList = ({
   }, [isMoreClicked, isAnimationEnds, api]);
 
   const bind = useDrag(
-    ({ movement: [, y], memo = false, last, velocity, event }) => {
+    ({
+      movement: [, y],
+      memo = false,
+      last,
+      velocity,
+      event,
+      initial: [, initialY],
+    }) => {
       const clientY = event.touches ? event.touches[0].clientY : event.clientY;
-
       if (!isMoreClicked) return memo;
       if (clientY - y > 250 || y < 0) return memo;
 
       const newHeight = Math.max(y + 65, 65);
-      const isQuickDrag = velocity[1] > 0.1;
+      const isQuickDragDown = velocity[1] > 0.01 && y > initialY;
+      const isQuickDragUp = velocity[1] > 0.1 && y < initialY;
 
       if (y > 0) {
         if (last) {
-          if (
-            window.innerHeight - newHeight < window.innerHeight / 2.2 ||
-            isQuickDrag
+          if (isQuickDragUp) {
+            api.start({
+              height: `calc(100vh - 80px)`,
+              config: config.slow,
+            });
+          } else if (isQuickDragDown) {
+            api.start({
+              height: "calc(0vh - 65px)",
+              config: config.slow,
+            });
+            setIsMoreClicked(null);
+          } else if (
+            window.innerHeight - newHeight <
+            window.innerHeight / 2.2
           ) {
             api.start({
-              // config: {
-              //   easing: easings.easeInOutCubic,
-              // },
               height: "calc(0vh - 65px)",
             });
             setIsMoreClicked(null);
           } else {
             api.start({
-              // config: {
-              //   easing: easings.easeInOutCubic,
-              // },
               height: `calc(100vh - 80px)`,
             });
           }
         } else {
           api.start({
-            // config: {
-            //   easing: easings.easeInOutCubic,
-            // },
             height: `calc(100vh - ${newHeight}px)`,
           });
         }
@@ -373,7 +380,7 @@ const TransactionList = ({
               {springs.map((props, index) => (
                 <animated.h1
                   key={sortItems[index]}
-                  style={{ ...props, background: "var(--Ec-3)" }}
+                  style={{ ...props, background: "var(--Ec-2)" }}
                   onClick={() => setSortby(sortItems[index])}
                 >
                   <animated.div

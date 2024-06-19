@@ -56,8 +56,6 @@ const MoneyEntry = ({
     marginTop: "0",
   };
 
-  console.log(!!savingPercentage);
-
   return (
     <div className="MoneyEntry">
       <div className="MoneyEntry_Title">

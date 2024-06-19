@@ -823,7 +823,7 @@
   background: var(--Ec-3);
   background: linear-gradient(165deg, var(--Ec-2) 40%, var(--Ec-4) 100%);
   padding: 10px 20px 10px 5px;
-  border-radius: 50px;
+  border-radius: 20px;
   cursor: pointer;
   overflow: hidden;
   justify-content: space-between;
@@ -838,9 +838,10 @@
   font-size: 1.4rem;
   margin-right: 7px;
   opacity: 0.7;
-  background: linear-gradient(160deg, var(--Ac-3) -30%, var(--Ec-4) 100%);
+  background: linear-gradient(160deg, var(--Ac-3) -120%, var(--Ec-4) 120%);
   padding: 10px;
-  border-radius: 30px;
+  border-radius: 15px;
+  color: var(--Bc-1);
 }
 
 .TransactionList_TransactionList li p {
