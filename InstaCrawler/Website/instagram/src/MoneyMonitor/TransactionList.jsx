@@ -177,9 +177,13 @@ const TransactionList = ({
   const [springs] = useSprings(
     sortItems.length,
     (index) => ({
-      background: sortby === sortItems[index] ? "var(--Bc-4)" : "var(--Ac-4)",
+      background: sortby === sortItems[index] ? "var(--Bc-2)" : "var(--Ac-3)",
       color: sortby === sortItems[index] ? "var(--Bc-1)" : "var(--Ac-2)",
       fontWeight: sortby === sortItems[index] ? "600" : "200",
+      border:
+        sortby === sortItems[index]
+          ? "1px solid var(--Bc-2)"
+          : "1px solid var(--Ac-3)",
     }),
     [sortby]
   );
@@ -366,16 +370,22 @@ const TransactionList = ({
               {springs.map((props, index) => (
                 <animated.h1
                   key={sortItems[index]}
-                  style={props}
+                  style={{ ...props, background: "var(--Ec-4)" }}
                   onClick={() => setSortby(sortItems[index])}
                 >
+                  <animated.div
+                    style={{ ...props, opacity: 0.7 }}
+                    className="CirleColor"
+                  ></animated.div>
                   {sortItems[index]}
                 </animated.h1>
               ))}
               <h2>
+                <animated.div className="CirleColor"></animated.div>
                 <CiSearch />
               </h2>
               <h2>
+                <animated.div className="CirleColor"></animated.div>
                 <CiCalendarDate />
               </h2>
               <p>
