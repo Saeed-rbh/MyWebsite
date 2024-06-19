@@ -2,6 +2,7 @@ import React, { useState, useEffect, useCallback } from "react";
 import { MdOutlineBrunchDining } from "react-icons/md";
 import { useSpring, animated, config } from "@react-spring/web";
 import { useDrag } from "@use-gesture/react";
+import { ScalableElement } from "./tools";
 
 const TransactionListItem = ({
   icon: Icon,
@@ -66,7 +67,7 @@ const TransactionListItem = ({
 
   const swipeStyle = useSpring({
     transform: isSwiped ? "translateX(-160px)" : "translateX(0px)",
-    scale: isScaled ? 0.9 : 1,
+    scale: isScaled && !isSwiped ? 0.9 : 1,
   });
 
   const swipeDate2 = useSpring({
@@ -115,8 +116,12 @@ const TransactionListItem = ({
       <animated.p>${amount}</animated.p>
       {showActionsAnim && (
         <animated.div style={swipeAction} className="transaction-actions">
-          <div className="modify-button">Modify</div>
-          <div className="delete-button">Delete</div>
+          <ScalableElement as="div" className="modify-button">
+            Modify
+          </ScalableElement>
+          <ScalableElement as="div" className="delete-button">
+            Delete
+          </ScalableElement>
         </animated.div>
       )}
     </animated.li>

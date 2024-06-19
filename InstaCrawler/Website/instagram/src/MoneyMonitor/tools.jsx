@@ -1,4 +1,5 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
+import { useSpring, animated } from "react-spring";
 
 export const formatNetTotal = (netTotal) => {
   const floatNetTotal = parseFloat(netTotal);
@@ -21,4 +22,40 @@ export const useWindowHeight = (initialOffset) => {
   }, [initialOffset]);
 
   return height;
+};
+
+export const ScalableElement = ({
+  as: Component = "h1",
+  children,
+  className,
+  onClick,
+  key,
+  style,
+}) => {
+  const [isScaled, setIsScaled] = useState(false);
+
+  const handleMouseDown = useCallback(() => setIsScaled(true), []);
+  const handleMouseUp = useCallback(() => setIsScaled(false), []);
+
+  const style_2 = useSpring({
+    scale: isScaled ? 0.9 : 1,
+  });
+
+  const AnimatedComponent = animated(Component);
+
+  return (
+    <AnimatedComponent
+      key={key}
+      className={className}
+      style={{ ...style, ...style_2 }}
+      onClick={onClick}
+      onMouseDown={handleMouseDown}
+      onMouseUp={handleMouseUp}
+      onMouseLeave={handleMouseUp}
+      onTouchStart={handleMouseDown}
+      onTouchEnd={handleMouseUp}
+    >
+      {children}
+    </AnimatedComponent>
+  );
 };

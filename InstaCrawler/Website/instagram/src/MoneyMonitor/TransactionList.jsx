@@ -1,46 +1,10 @@
-import React, { useEffect, useRef, useState, useCallback } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { CiSearch, CiCalendarDate } from "react-icons/ci";
 import TransactionListMonthly from "./TransactionListMonthly";
 import TransactionModification from "./TransactionModification";
 import { useSprings, useSpring, animated, config } from "@react-spring/web";
 import { useDrag } from "@use-gesture/react";
-
-const ScalableElement = ({
-  as: Component = "h1",
-  children,
-  className,
-  onClick,
-  key,
-  style,
-}) => {
-  const [isScaled, setIsScaled] = useState(false);
-
-  const handleMouseDown = useCallback(() => setIsScaled(true), []);
-  const handleMouseUp = useCallback(() => setIsScaled(false), []);
-
-  const style_2 = useSpring({
-    scale: isScaled ? 0.9 : 1,
-  });
-
-  const AnimatedComponent = animated(Component);
-
-  return (
-    <AnimatedComponent
-      key={key}
-      className={className}
-      style={{ ...style, ...style_2 }}
-      onClick={onClick}
-      onMouseDown={handleMouseDown}
-      onMouseUp={handleMouseUp}
-      onMouseLeave={handleMouseUp}
-      onTouchStart={handleMouseDown}
-      onTouchEnd={handleMouseUp}
-    >
-      {children}
-    </AnimatedComponent>
-  );
-};
-
+import { ScalableElement } from "./tools";
 // const ScalableElement = ({ children, className, onClick, key, style }) => {
 //   const [isScaled, setIsScaled] = useState(false);
 
