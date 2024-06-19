@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useState, useCallback } from "react";
 import MoneyEntryAmount from "./MoneyEntryAmount.jsx";
 import { useSpring, animated } from "react-spring";
 import { FaArrowTrendUp, FaArrowTrendDown } from "react-icons/fa6";
@@ -7,13 +7,8 @@ import { formatNetTotal } from "./tools";
 const ScalableElement = ({ children, className, onClick }) => {
   const [isScaled, setIsScaled] = useState(false);
 
-  const handleMouseDown = () => {
-    setIsScaled(true);
-  };
-
-  const handleMouseUp = () => {
-    setIsScaled(false);
-  };
+  const handleMouseDown = useCallback(() => setIsScaled(true), []);
+  const handleMouseUp = useCallback(() => setIsScaled(false), []);
 
   const style = useSpring({
     scale: isScaled ? 0.9 : 1,
@@ -38,52 +33,20 @@ const MoneyEntry = ({
   incomeTransactions,
   savingTransactions,
   setIsMoreClicked,
+  mainNetAmounts,
 }) => {
-  const [totalBalance, setTotalBalance] = useState(0);
-
-  const incometotalAmount = incomeTransactions.totalIncome;
-  const spendingtotalAmount = spendingTransactions.totalSpending;
   const savingtotalAmount = savingTransactions.totalSaving;
-  const SavingPercentage = savingTransactions.percentageChange;
-
-  useEffect(() => {
-    setTotalBalance(incometotalAmount - spendingtotalAmount);
-  }, [spendingtotalAmount, incometotalAmount]);
+  const savingPercentage = savingTransactions.percentageChange;
 
   const totalStyle = {
     color:
-      totalBalance > 0 ? "rgba(131, 255, 201, 0.85)" : "rgb(255 102 102 / 85%)",
-  };
-  const containerRef = useRef(null);
-  const [isDragging, setIsDragging] = useState(false);
-  const [startX, setStartX] = useState(0);
-  const [scrollLeft, setScrollLeft] = useState(0);
-
-  const handleMouseDown = (e) => {
-    if (!containerRef.current) return;
-    setIsDragging(true);
-    setStartX(e.pageX - containerRef.current.offsetLeft);
-    setScrollLeft(containerRef.current.scrollLeft);
+      mainNetAmounts.net > 0
+        ? "rgba(131, 255, 201, 0.85)"
+        : "rgb(255 102 102 / 85%)",
   };
 
-  const handleMouseLeave = () => {
-    setIsDragging(false);
-  };
-
-  const handleMouseUp = () => {
-    setIsDragging(false);
-  };
-
-  const handleMouseMove = (e) => {
-    if (!isDragging || !containerRef.current) return;
-    e.preventDefault();
-    const x = e.pageX - containerRef.current.offsetLeft;
-    const walk = (x - startX) * 0.9;
-    containerRef.current.scrollLeft = scrollLeft - walk;
-  };
-
-  const ColorStyle = {
-    color: SavingPercentage > 0 ? "var(--Fc-2)" : "var(--Gc-2) ",
+  const colorStyle = {
+    color: savingPercentage > 0 ? "var(--Fc-2)" : "var(--Gc-2)",
     flexDirection: "row",
     alignItems: "center",
     position: "relative",
@@ -92,62 +55,54 @@ const MoneyEntry = ({
   };
 
   return (
-    <div className={`MoneyEntry`}>
-      <p>
+    <div className="MoneyEntry">
+      <div className="MoneyEntry_Title">
         <h1>
-          <span className={`MoneyEntry_Dot`} style={totalStyle}>
+          <span className="MoneyEntry_Dot" style={totalStyle}>
             •{" "}
           </span>
-          {incomeTransactions.month} <h2>Summary</h2>
+          {incomeTransactions.month} <span>Summary</span>
         </h1>
-        <h1 className={`MoneyEntry_total`} style={totalStyle}>
-          {" "}
-          <span className={`MoneyEntry_totalTitle`}>Balance: </span> $
-          {totalBalance.toFixed(2)}
+        <h1 className="MoneyEntry_total" style={totalStyle}>
+          <span className="MoneyEntry_totalTitle">Balance: </span> $
+          {mainNetAmounts.net}
         </h1>
-      </p>
-      <div className={`MoneyEntry_Data`}>
-        <div
-          className={`MoneyEntry_AmountBase`}
-          ref={containerRef}
-          onMouseDown={handleMouseDown}
-          onMouseLeave={handleMouseLeave}
-          onMouseUp={handleMouseUp}
-          onMouseMove={handleMouseMove}
-        >
+      </div>
+      <div className="MoneyEntry_Data">
+        <div className="MoneyEntry_AmountBase">
           <MoneyEntryAmount
-            type={"Income"}
+            type="Income"
             setIsMoreClicked={setIsMoreClicked}
             transaction={incomeTransactions}
           />
           <MoneyEntryAmount
-            type={"Spending"}
+            type="Spending"
             setIsMoreClicked={setIsMoreClicked}
             transaction={spendingTransactions}
           />
         </div>
       </div>
       <ScalableElement
-        className={`MoneyEntry_Savings`}
+        className="MoneyEntry_Savings"
         onClick={() => setIsMoreClicked("Saving")}
       >
         <div className="MoneyEntry_Amount_Gradients"></div>
         <h1>
           <span
-            className={`MoneyEntry_Dot`}
+            className="MoneyEntry_Dot"
             style={{
               background:
                 "linear-gradient(165deg, var(--Ec-1) 30%, var(--Ac-2) 100%)",
               height: "2px",
             }}
           ></span>
-          <h2 style={{ width: "max-content", marginLeft: "0" }}>
+          <span style={{ width: "max-content", marginLeft: "0" }}>
             Save & Invest
-          </h2>
+          </span>
         </h1>
-        <div className="MoneyEntry_percentage" style={ColorStyle}>
-          <h3>{SavingPercentage}%</h3>
-          {SavingPercentage < 0 ? <FaArrowTrendDown /> : <FaArrowTrendUp />}
+        <div className="MoneyEntry_percentage" style={colorStyle}>
+          <h3>{savingPercentage}%</h3>
+          {savingPercentage < 0 ? <FaArrowTrendDown /> : <FaArrowTrendUp />}
         </div>
         <div
           className="MoneyEntry_Balance"

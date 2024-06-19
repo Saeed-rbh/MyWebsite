@@ -108,6 +108,7 @@
   flex-direction: row;
   align-items: baseline;
   font-family: "Rubik", sans-serif;
+  margin: 0;
 }
 .MoneyMonitor_title span:first-of-type {
   font-size: 1.8rem;
@@ -176,7 +177,7 @@
   height: 220px;
 }
 
-.MoneyEntry p:first-of-type {
+.MoneyEntry_Title {
   display: flex;
   width: calc(100% - 10px);
   flex-direction: row;
@@ -473,12 +474,12 @@
   font-weight: 400;
   font-family: "Rubik", sans-serif;
   color: var(--Ac-2);
-  padding: 10px 0px;
+  padding: 10px 5px;
   border-radius: 30px;
   width: 25%;
   margin: 0 3px 5px 3px;
   left: 0px;
-  top: 35px;
+  top: -20px;
   width: 100%;
   display: flex;
   text-wrap: nowrap;
