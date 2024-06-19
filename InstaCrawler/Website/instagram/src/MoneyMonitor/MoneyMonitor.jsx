@@ -112,6 +112,11 @@ const MoneyMonitor = () => {
     height,
   });
 
+  const BlurStyle = useSpring({
+    opacity: !isMoreClicked ? 0 : 1,
+    zIndex: !isMoreClicked ? 10 : 100,
+  });
+
   const transactions = useMemo(() => {
     if (isMoreClicked === "Income") return lastIncomeData;
     if (isMoreClicked === "Spending") return lastSpendingData;
@@ -128,6 +133,10 @@ const MoneyMonitor = () => {
 
   return (
     <div className="MoneyMonitor_Main">
+      <animated.div
+        className="MoneyMonitor_MainBlur"
+        style={BlurStyle}
+      ></animated.div>
       <TransactionList
         Transactions={transactions}
         isMoreClicked={isMoreClicked}
