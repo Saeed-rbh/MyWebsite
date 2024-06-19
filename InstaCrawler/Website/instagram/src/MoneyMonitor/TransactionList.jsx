@@ -113,7 +113,7 @@ const TransactionList = ({
 
   const [Open_TransactionList, api] = useSpring(() => ({
     scale: 0.9,
-    filter: "blur(5px)",
+    backdropFilter: "blur(5px)",
     opacity: 0,
     height: "calc(0vh - 65px)",
   }));
@@ -122,7 +122,7 @@ const TransactionList = ({
     isAnimationEnds &&
       api.start({
         scale: !!isMoreClicked ? 1 : 0.9,
-        filter: !!isMoreClicked ? "blur(0px)" : "blur(5px)",
+        backdropFilter: !!isMoreClicked ? "blur(10px)" : "blur(0px)",
         opacity: !isMoreClicked ? 0 : 1,
         height: !!isMoreClicked ? "calc(100vh - 65px)" : "calc(0vh - 65px)",
         // config: {
