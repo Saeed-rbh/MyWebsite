@@ -5,30 +5,6 @@ import { FaArrowTrendDown } from "react-icons/fa6";
 import TransactionListItem from "./TransactionListItem";
 import { useSpring, animated, config } from "react-spring";
 
-const ScalableElement = ({ children, className, onClick }) => {
-  const [isScaled, setIsScaled] = useState(false);
-
-  const handleMouseDown = useCallback(() => setIsScaled(true), []);
-  const handleMouseUp = useCallback(() => setIsScaled(false), []);
-
-  const style = useSpring({
-    scale: isScaled ? 0.9 : 1,
-  });
-
-  return (
-    <animated.div
-      className={className}
-      style={style}
-      onClick={onClick}
-      onMouseDown={handleMouseDown}
-      onMouseUp={handleMouseUp}
-      onMouseLeave={handleMouseUp}
-    >
-      {children}
-    </animated.div>
-  );
-};
-
 const TransactionListMonthly = ({
   MainIndex,
   swipedIndex,
