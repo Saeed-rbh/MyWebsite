@@ -96,6 +96,8 @@ const MoneyMonitor = () => {
     netAmounts: mainNetAmounts,
   } = useTransactionData(mainPageMonth);
 
+  console.log("MoneyMonitor");
+
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isMoreClicked, setIsMoreClicked] = useState(null);
 
@@ -105,7 +107,8 @@ const MoneyMonitor = () => {
     flexDirection: "column",
     width: "100%",
     scale: isMoreClicked ? 0.9 : 1,
-    filter: isMoreClicked ? "blur(20px)" : "blur(0px)",
+    opacity: isMoreClicked ? 0.5 : 1,
+    // filter: isMoreClicked ? "blur(20px)" : "blur(0px)",
     height,
   });
 
