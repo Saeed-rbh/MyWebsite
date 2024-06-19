@@ -49,16 +49,16 @@ const TransactionListMonthly = ({
 
   return (
     <animated.div className="TransactionList_Monthly" style={style}>
-      <div className="TransactionList_MonthlyTitle">
-        <p>
+      {/* <div className="TransactionList_MonthlyTitle"> */}
+      {/* <p>
           <LuCalendarClock />
           {month} <span>{year}</span>
         </p>
         <h2 style={trendStyle}>
           <span>{percentageChange}%</span>
           {percentageChange < 0 ? <FaArrowTrendDown /> : <FaArrowTrendUp />}
-        </h2>
-        {/* <h1>
+        </h2> */}
+      {/* <h1>
           Total:{" "}
           <span
             style={{ color: isMoreClicked ? "var(--Fc-1)" : "var(--Gc-1)" }}
@@ -66,7 +66,7 @@ const TransactionListMonthly = ({
             ${netTotal.toFixed(2)}
           </span>
         </h1> */}
-      </div>
+      {/* </div> */}
       <ul className="TransactionList_TransactionList">
         {filteredTransactions.map((transaction, index) => (
           <TransactionListItem

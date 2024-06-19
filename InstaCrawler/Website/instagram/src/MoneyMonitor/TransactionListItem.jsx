@@ -71,7 +71,7 @@ const TransactionListItem = ({
     }
   };
 
-  const truncateDescription = (description, maxLength = 20) => {
+  const truncateDescription = (description, maxLength = 30) => {
     if (description.length > maxLength) {
       return description.substring(0, maxLength - 3) + "...";
     } else {
