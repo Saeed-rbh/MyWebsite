@@ -370,11 +370,11 @@ const TransactionList = ({
               {springs.map((props, index) => (
                 <animated.h1
                   key={sortItems[index]}
-                  style={{ ...props, background: "var(--Ec-4)" }}
+                  style={{ ...props, background: "var(--Ec-2)" }}
                   onClick={() => setSortby(sortItems[index])}
                 >
                   <animated.div
-                    style={{ ...props, opacity: 0.7 }}
+                    style={{ ...props, opacity: 0.5 }}
                     className="CirleColor"
                   ></animated.div>
                   {sortItems[index]}
