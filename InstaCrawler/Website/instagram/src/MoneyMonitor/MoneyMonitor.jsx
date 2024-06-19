@@ -165,7 +165,7 @@ const MoneyMonitor = () => {
           />
         </header>
         <animated.div style={scaleStyle}>
-          <section className="MoneyMonitor_Intro">
+          {/* <section className="MoneyMonitor_Intro">
             <h1 className="MoneyMonitor_title">
               <span>
                 My{" "}
@@ -176,7 +176,7 @@ const MoneyMonitor = () => {
               </span>
               <span>Dashboard</span>
             </h1>
-          </section>
+          </section> */}
           <nav className="MoneyMonitor_Menu">
             <p>
               Add Transaction <span></span>

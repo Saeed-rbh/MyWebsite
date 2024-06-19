@@ -27,7 +27,7 @@ const TransactionListMonthly = ({
       ? transactions
       : transactions.filter((transaction) => transaction.Type === sortby);
 
-  const delay = 400 + 100 * MainIndex;
+  const delay = 300 + 20 * MainIndex;
   const style = useSpring({
     from: {
       opacity: !isMoreClicked ? 1 : 0,

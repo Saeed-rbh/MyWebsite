@@ -5,7 +5,7 @@ const MainStatestics = ({ height, netAmounts }) => {
   // console.log(netSeries);
   return (
     <div
-      style={{ height: `${height - 225 - 85 - 55}px` }}
+      style={{ height: `${height - 225 - 85 - 55 - 20}px` }}
       className="MainStatestics"
     >
       <ul>

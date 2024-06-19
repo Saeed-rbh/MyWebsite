@@ -2,13 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { CiSearch, CiCalendarDate } from "react-icons/ci";
 import TransactionListMonthly from "./TransactionListMonthly";
 import TransactionModification from "./TransactionModification";
-import {
-  useSprings,
-  useSpring,
-  animated,
-  config,
-  easings,
-} from "@react-spring/web";
+import { useSprings, useSpring, animated } from "@react-spring/web";
 import { useDrag } from "@use-gesture/react";
 
 const useCustomSpring = (isMoreClicked, delay, isScrollingDown, scrollAble) => {
@@ -18,9 +12,8 @@ const useCustomSpring = (isMoreClicked, delay, isScrollingDown, scrollAble) => {
     delay: !!isMoreClicked
       ? isScrollingDown !== null
         ? 0
-        : 100 + 100 * delay
+        : 100 + 50 * delay
       : 0,
-    // config: isScrollingDown !== null ? config.default : config.slow,
   });
 };
 
@@ -37,6 +30,7 @@ const TransactionList = ({
   const [totalAmount, setTotalAmount] = useState(0);
   const [currentMonth, setCurrentMonth] = useState("");
   const [labelDistribution, setLabelDistribution] = useState([]);
+
   useEffect(() => {
     if (Transactions.length !== 0) {
       setTotalAmount(Transactions.netTotal);
@@ -51,6 +45,8 @@ const TransactionList = ({
       setLabelDistribution(sortedData);
     }
   }, [Transactions, whichMonth]);
+
+  console.log(labelDistribution);
 
   const monthlyMainRef = useRef(null);
 
@@ -78,25 +74,28 @@ const TransactionList = ({
   const summaryStiles = [
     useSpring({
       width:
-        labelDistribution.length > 0
+        labelDistribution.length > 0 && !!labelDistribution[0]
           ? labelDistribution[0].percentage + "%"
           : "0%",
     }),
     useSpring({
       width:
-        labelDistribution.length > 0
+        labelDistribution.length > 0 && !!labelDistribution[1]
           ? labelDistribution[1].percentage + "%"
           : "0%",
     }),
     useSpring({
       width:
-        labelDistribution.length > 0
+        labelDistribution.length > 0 && !!labelDistribution[2]
           ? labelDistribution[2].percentage + "%"
           : "0%",
     }),
     useSpring({
       width:
-        labelDistribution.length > 2
+        labelDistribution.length > 2 &&
+        !!labelDistribution[0] &&
+        !!labelDistribution[1] &&
+        !!labelDistribution[2]
           ? 100 -
             (labelDistribution[0]?.percentage || 0) -
             (labelDistribution[1]?.percentage || 0) -
@@ -268,46 +267,56 @@ const TransactionList = ({
               className="TransactionList_SummaryAmount"
               style={springProps2}
             >
-              <animated.li style={summaryStiles[0]}>
-                $
-                {labelDistribution.length > 0
-                  ? (
-                      (labelDistribution[0].percentage * totalAmount) /
-                      100
-                    ).toFixed(0)
-                  : 0}
-              </animated.li>
-              <animated.li style={summaryStiles[1]}>
-                $
-                {labelDistribution.length > 0
-                  ? (
-                      (labelDistribution[1].percentage * totalAmount) /
-                      100
-                    ).toFixed(0)
-                  : 0}
-              </animated.li>
-              <animated.li style={summaryStiles[2]}>
-                $
-                {labelDistribution.length > 0
-                  ? (
-                      (labelDistribution[2].percentage * totalAmount) /
-                      100
-                    ).toFixed(0)
-                  : 0}
-              </animated.li>
-              <animated.li style={summaryStiles[3]}>
-                $
-                {labelDistribution.length > 0
-                  ? (
-                      ((100 -
-                        labelDistribution[0].percentage -
-                        labelDistribution[1].percentage -
-                        labelDistribution[2].percentage) *
-                        totalAmount) /
-                      100
-                    ).toFixed(0)
-                  : 0}
-              </animated.li>
+              {!!labelDistribution[0] && (
+                <animated.li style={summaryStiles[0]}>
+                  $
+                  {labelDistribution.length > 0
+                    ? (
+                        (labelDistribution[0].percentage * totalAmount) /
+                        100
+                      ).toFixed(0)
+                    : 0}
+                </animated.li>
+              )}
+              {!!labelDistribution[1] && (
+                <animated.li style={summaryStiles[1]}>
+                  $
+                  {labelDistribution.length > 0
+                    ? (
+                        (labelDistribution[1].percentage * totalAmount) /
+                        100
+                      ).toFixed(0)
+                    : 0}
+                </animated.li>
+              )}
+              {!!labelDistribution[2] && (
+                <animated.li style={summaryStiles[2]}>
+                  $
+                  {labelDistribution.length > 0
+                    ? (
+                        (labelDistribution[2].percentage * totalAmount) /
+                        100
+                      ).toFixed(0)
+                    : 0}
+                </animated.li>
+              )}
+              {!!labelDistribution[0] &&
+                !!labelDistribution[1] &&
+                !!labelDistribution[2] && (
+                  <animated.li style={summaryStiles[3]}>
+                    $
+                    {labelDistribution.length > 0
+                      ? (
+                          ((100 -
+                            labelDistribution[0].percentage -
+                            labelDistribution[1].percentage -
+                            labelDistribution[2].percentage) *
+                            totalAmount) /
+                          100
+                        ).toFixed(0)
+                      : 0}
+                  </animated.li>
+                )}
             </animated.div>
             <animated.div
               className="TransactionList_SummaryLines"
@@ -322,24 +331,30 @@ const TransactionList = ({
               className="TransactionList_SummaryNames"
               style={springProps2}
             >
-              <animated.li>
-                <span>•</span>
-                {labelDistribution.length > 0
-                  ? labelDistribution[0].category.split(" ")[0]
-                  : ""}
-              </animated.li>
-              <animated.li>
-                <span>•</span>
-                {labelDistribution.length > 0
-                  ? labelDistribution[1].category.split(" ")[0]
-                  : ""}
-              </animated.li>
-              <animated.li>
-                <span>•</span>
-                {labelDistribution.length > 0
-                  ? labelDistribution[2].category.split(" ")[0]
-                  : ""}
-              </animated.li>
+              {!!labelDistribution[0] && (
+                <animated.li>
+                  <span>•</span>
+                  {labelDistribution.length > 0
+                    ? labelDistribution[0].category.split(" ")[0]
+                    : ""}
+                </animated.li>
+              )}
+              {!!labelDistribution[1] && (
+                <animated.li>
+                  <span>•</span>
+                  {labelDistribution.length > 0
+                    ? labelDistribution[1].category.split(" ")[0]
+                    : ""}
+                </animated.li>
+              )}
+              {!!labelDistribution[2] && (
+                <animated.li>
+                  <span>•</span>
+                  {labelDistribution.length > 0
+                    ? labelDistribution[2].category.split(" ")[0]
+                    : ""}
+                </animated.li>
+              )}
               <animated.li>
                 <span>•</span>Other
               </animated.li>

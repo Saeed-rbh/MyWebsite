@@ -36,7 +36,9 @@ const MoneyEntry = ({
   mainNetAmounts,
 }) => {
   const savingtotalAmount = savingTransactions.totalSaving;
-  const savingPercentage = savingTransactions.percentageChange;
+  const savingPercentage = savingTransactions.percentageChange
+    ? savingTransactions.percentageChange
+    : 0;
 
   const totalStyle = {
     color:
@@ -53,6 +55,8 @@ const MoneyEntry = ({
     bottom: "0",
     marginTop: "0",
   };
+
+  console.log(!!savingPercentage);
 
   return (
     <div className="MoneyEntry">
@@ -100,10 +104,12 @@ const MoneyEntry = ({
             Save & Invest
           </span>
         </h1>
-        <div className="MoneyEntry_percentage" style={colorStyle}>
-          <h3>{savingPercentage}%</h3>
-          {savingPercentage < 0 ? <FaArrowTrendDown /> : <FaArrowTrendUp />}
-        </div>
+        {!!savingPercentage && (
+          <div className="MoneyEntry_percentage" style={colorStyle}>
+            <h3>{savingPercentage}%</h3>
+            {savingPercentage < 0 ? <FaArrowTrendDown /> : <FaArrowTrendUp />}
+          </div>
+        )}
         <div
           className="MoneyEntry_Balance"
           style={{
