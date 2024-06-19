@@ -374,7 +374,7 @@ const TransactionList = ({
                   onClick={() => setSortby(sortItems[index])}
                 >
                   <animated.div
-                    style={{ ...props, opacity: 0.5 }}
+                    style={{ ...props, opacity: 0.4 }}
                     className="CirleColor"
                   ></animated.div>
                   {sortItems[index]}
