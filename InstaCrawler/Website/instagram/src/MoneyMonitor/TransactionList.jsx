@@ -364,9 +364,7 @@ const TransactionList = ({
               </animated.li>
             </animated.div>
             <animated.div className="TransactionList_Menu" style={springProps3}>
-              <p>
-                Filter Transactions <span></span>
-              </p>
+              <p>Filter Transactions</p>
               {springs.map((props, index) => (
                 <animated.h1
                   key={sortItems[index]}
