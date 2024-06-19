@@ -281,7 +281,7 @@ const MoneyMonitor = () => {
     scale: !!isMoreClicked ? 0.9 : 1,
     filter: !!isMoreClicked ? "blur(20px)" : "blur(0px)",
     height,
-    config: { easing: easings.easeInOutCubic },
+    // config: { easing: easings.easeInOutCubic },
   });
 
   const transactions = useMemo(() => {

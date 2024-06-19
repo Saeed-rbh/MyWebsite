@@ -10,7 +10,7 @@ const MainStatestics = ({ height, netAmounts }) => {
     >
       <ul>
         {netSeries.map((Date, index) => (
-          <li>{netSeries[index][0]}</li>
+          <li>{netSeries[index][0] - index}</li>
         ))}
       </ul>
     </div>

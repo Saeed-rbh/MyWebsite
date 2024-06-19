@@ -20,7 +20,7 @@ const useCustomSpring = (isMoreClicked, delay, isScrollingDown, scrollAble) => {
         ? 0
         : 100 + 100 * delay
       : 0,
-    config: isScrollingDown !== null ? config.default : config.slow,
+    // config: isScrollingDown !== null ? config.default : config.slow,
   });
 };
 
@@ -125,9 +125,9 @@ const TransactionList = ({
         filter: !!isMoreClicked ? "blur(0px)" : "blur(5px)",
         opacity: !isMoreClicked ? 0 : 1,
         height: !!isMoreClicked ? "calc(100vh - 65px)" : "calc(0vh - 65px)",
-        config: {
-          easing: easings.steps(5),
-        },
+        // config: {
+        //   easing: easings.steps(5),
+        // },
         onRest: () => {
           !isMoreClicked && setIsAnimationEnds(false);
         },
@@ -147,25 +147,25 @@ const TransactionList = ({
           isQuickDrag
         ) {
           api.start({
-            config: {
-              easing: easings.easeInOutCubic,
-            },
+            // config: {
+            //   easing: easings.easeInOutCubic,
+            // },
             height: "calc(0vh - 65px)",
           });
           setIsMoreClicked(null);
         } else {
           api.start({
-            config: {
-              easing: easings.easeInOutCubic,
-            },
+            // config: {
+            //   easing: easings.easeInOutCubic,
+            // },
             height: `calc(100vh - 80px)`,
           });
         }
       } else {
         api.start({
-          config: {
-            easing: easings.easeInOutCubic,
-          },
+          // config: {
+          //   easing: easings.easeInOutCubic,
+          // },
           height: `calc(100vh - ${newHeight}px)`,
         });
       }
