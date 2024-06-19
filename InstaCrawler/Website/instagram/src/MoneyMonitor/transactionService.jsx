@@ -1,6 +1,8 @@
 const groupTransactionsByMonth = (transactions) => {
   const groupedTransactions = {};
 
+  console.log(transactions);
+
   transactions.sort((a, b) => new Date(a.Timestamp) - new Date(b.Timestamp));
 
   transactions.forEach((transaction) => {
