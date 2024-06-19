@@ -825,7 +825,7 @@
   padding: 10px 20px 10px 5px;
   border-radius: 20px;
   cursor: pointer;
-  overflow: hidden;
+  /* overflow: hidden; */
   justify-content: space-between;
 }
 
@@ -1154,7 +1154,7 @@
   justify-content: center;
   font-family: "Rubik", sans-serif;
   font-size: 0.7rem;
-  font-weight: 600;
+  font-weight: 400;
   position: absolute;
   right: 0;
 }
@@ -1162,9 +1162,13 @@
 .delete-button {
   background-color: var(--Bc-4);
   background: linear-gradient(165deg, var(--Bc-4) 30%, var(--Ec-4) 100%);
-  padding: 10px 20px;
-  border-radius: 30px;
+  padding: 0 20px;
+  height: 40px;
+  border-radius: 15px;
   cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .modify-button {
@@ -1172,9 +1176,13 @@
   margin-left: 5px;
   background-color: var(--Dc-4);
   background: linear-gradient(165deg, var(--Dc-4) 30%, var(--Ec-4) 100%);
-  padding: 10px 20px;
-  border-radius: 30px;
+  padding: 0 20px;
+  height: 40px;
+  border-radius: 15px;
   cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .TransactionModification {

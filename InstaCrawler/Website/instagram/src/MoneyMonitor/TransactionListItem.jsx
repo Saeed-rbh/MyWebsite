@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { MdOutlineBrunchDining } from "react-icons/md";
-import { useSpring, animated } from "@react-spring/web";
+import { useSpring, animated, config } from "@react-spring/web";
 import { useDrag } from "@use-gesture/react";
 
 const TransactionListItem = ({
@@ -15,6 +15,7 @@ const TransactionListItem = ({
   type,
 }) => {
   const [showActions, setShowActions] = useState(isSwiped);
+  const [showActionsAnim, setShowActionsAnim] = useState(false);
 
   useEffect(() => {
     if (!isSwiped) {
@@ -27,6 +28,7 @@ const TransactionListItem = ({
       if (!down && mx < -50) {
         onSwipe();
         setShowActions(true);
+        setShowActionsAnim(true);
       } else if (!down && mx > 50) {
         onUnSwipe();
       }
@@ -39,8 +41,10 @@ const TransactionListItem = ({
   });
 
   const swipeAction = useSpring({
-    transform: isSwiped ? "translateX(-10px)" : "translateX(50px)",
+    transform: isSwiped ? "translateX(160px)" : "translateX(200px)",
     opacity: isSwiped ? 1 : 0,
+    config: config.slow,
+    onRest: () => !showActions && setShowActionsAnim(false),
   });
 
   const swipeSvg = useSpring({
@@ -56,8 +60,8 @@ const TransactionListItem = ({
     transform: isSwiped ? "translateX(-40px)" : "translateX(0px)",
   });
 
-  const swipeDate1 = useSpring({
-    transform: isSwiped ? "translateX(-25px)" : "translateX(0px)",
+  const swipeStyle = useSpring({
+    transform: isSwiped ? "translateX(-160px)" : "translateX(0px)",
   });
 
   const swipeDate2 = useSpring({
@@ -81,9 +85,9 @@ const TransactionListItem = ({
   };
 
   return (
-    <animated.li onClick={handleClick} {...bind()} style={swipeAnimation}>
-      <animated.p style={swipeTitle}>
-        <animated.span style={swipeSvg}>
+    <animated.li onClick={handleClick} {...bind()} style={swipeStyle}>
+      <animated.p>
+        <animated.span>
           <Icon />
         </animated.span>
         {truncateDescription(description)}
@@ -94,8 +98,8 @@ const TransactionListItem = ({
           • {type === "Monthly" ? "Monthly" : time.slice(10)}
         </animated.span>
       </animated.p> */}
-      <animated.p style={swipeAmount}>${amount}</animated.p>
-      {showActions && (
+      <animated.p>${amount}</animated.p>
+      {showActionsAnim && (
         <animated.div style={swipeAction} className="transaction-actions">
           <div className="modify-button">Modify</div>
           <div className="delete-button">Delete</div>
