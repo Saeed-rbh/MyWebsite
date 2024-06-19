@@ -131,44 +131,49 @@ const TransactionList = ({
       });
   }, [isMoreClicked, isAnimationEnds, api]);
 
-  const bind = useDrag(({ movement: [, y], memo = false, last, velocity }) => {
-    if (!isMoreClicked) return memo;
+  const bind = useDrag(
+    ({ movement: [, y], memo = false, last, velocity, event }) => {
+      const clientY = event.touches ? event.touches[0].clientY : event.clientY;
 
-    const newHeight = Math.max(y + 65, 65);
-    const isQuickDrag = velocity[1] > 0.1;
+      if (!isMoreClicked) return memo;
+      if (clientY - y > 250 || y < 0) return memo;
 
-    if (y > 0) {
-      if (last) {
-        if (
-          window.innerHeight - newHeight < window.innerHeight / 2.2 ||
-          isQuickDrag
-        ) {
-          api.start({
-            // config: {
-            //   easing: easings.easeInOutCubic,
-            // },
-            height: "calc(0vh - 65px)",
-          });
-          setIsMoreClicked(null);
+      const newHeight = Math.max(y + 65, 65);
+      const isQuickDrag = velocity[1] > 0.1;
+
+      if (y > 0) {
+        if (last) {
+          if (
+            window.innerHeight - newHeight < window.innerHeight / 2.2 ||
+            isQuickDrag
+          ) {
+            api.start({
+              // config: {
+              //   easing: easings.easeInOutCubic,
+              // },
+              height: "calc(0vh - 65px)",
+            });
+            setIsMoreClicked(null);
+          } else {
+            api.start({
+              // config: {
+              //   easing: easings.easeInOutCubic,
+              // },
+              height: `calc(100vh - 80px)`,
+            });
+          }
         } else {
           api.start({
             // config: {
             //   easing: easings.easeInOutCubic,
             // },
-            height: `calc(100vh - 80px)`,
+            height: `calc(100vh - ${newHeight}px)`,
           });
         }
-      } else {
-        api.start({
-          // config: {
-          //   easing: easings.easeInOutCubic,
-          // },
-          height: `calc(100vh - ${newHeight}px)`,
-        });
       }
+      return memo;
     }
-    return memo;
-  });
+  );
 
   const colorStyle = {
     color: isMoreClicked === "Income" ? "var(--Fc-1)" : "var(--Gc-1)",

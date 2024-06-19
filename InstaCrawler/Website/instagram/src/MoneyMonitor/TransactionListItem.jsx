@@ -66,9 +66,10 @@ const TransactionListItem = ({
 
   const handleClick = (event) => {
     const { clientY } = event;
-    if (onClick) {
-      onClick(clientY);
-    }
+    console.log(clientY);
+    // if (onClick) {
+    //   onClick(clientY);
+    // }
   };
 
   const truncateDescription = (description, maxLength = 30) => {
