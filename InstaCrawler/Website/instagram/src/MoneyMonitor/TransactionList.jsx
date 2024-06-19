@@ -69,37 +69,57 @@ const TransactionList = ({
     setTransactionClick([null, null, null]);
   };
 
+  const SummaryWidth = [
+    labelDistribution.length > 0 &&
+    !!labelDistribution[0] &&
+    labelDistribution[0].percentage > 15
+      ? labelDistribution[0].percentage
+      : 0,
+    labelDistribution.length > 0 &&
+    !!labelDistribution[1] &&
+    labelDistribution[1].percentage > 15
+      ? labelDistribution[1].percentage
+      : 0,
+    labelDistribution.length > 0 &&
+    !!labelDistribution[2] &&
+    labelDistribution[2].percentage > 15
+      ? labelDistribution[2].percentage
+      : 0,
+    labelDistribution.length > 2 &&
+    !!labelDistribution[0] &&
+    !!labelDistribution[1] &&
+    !!labelDistribution[2]
+      ? 100 -
+        (labelDistribution[0]?.percentage > 15
+          ? labelDistribution[0].percentage
+          : 0) -
+        (labelDistribution[1]?.percentage > 15
+          ? labelDistribution[1].percentage
+          : 0) -
+        (labelDistribution[2]?.percentage > 15
+          ? labelDistribution[2].percentage
+          : 0)
+      : 0,
+  ];
+
+  console.log(SummaryWidth);
+
   const summaryStiles = [
     useSpring({
-      width:
-        labelDistribution.length > 0 && !!labelDistribution[0]
-          ? labelDistribution[0].percentage + "%"
-          : "0%",
+      width: SummaryWidth[0] + "%",
+      color: "var(--Cc-2)",
     }),
     useSpring({
-      width:
-        labelDistribution.length > 0 && !!labelDistribution[1]
-          ? labelDistribution[1].percentage + "%"
-          : "0%",
+      width: SummaryWidth[1] + "%",
+      color: "var(--Dc-2)",
     }),
     useSpring({
-      width:
-        labelDistribution.length > 0 && !!labelDistribution[2]
-          ? labelDistribution[2].percentage + "%"
-          : "0%",
+      width: SummaryWidth[2] + "%",
+      color: "var(--Bc-2)",
     }),
     useSpring({
-      width:
-        labelDistribution.length > 2 &&
-        !!labelDistribution[0] &&
-        !!labelDistribution[1] &&
-        !!labelDistribution[2]
-          ? 100 -
-            (labelDistribution[0]?.percentage || 0) -
-            (labelDistribution[1]?.percentage || 0) -
-            (labelDistribution[2]?.percentage || 0) +
-            "%"
-          : "0%",
+      width: SummaryWidth[3] + "%",
+      color: "var(--Ac-1)",
     }),
   ];
 
@@ -283,56 +303,38 @@ const TransactionList = ({
               className="TransactionList_SummaryAmount"
               style={springProps2}
             >
-              {!!labelDistribution[0] && (
+              {SummaryWidth[0] > 0 && (
                 <animated.li style={summaryStiles[0]}>
                   $
                   {labelDistribution.length > 0
-                    ? (
-                        (labelDistribution[0].percentage * totalAmount) /
-                        100
-                      ).toFixed(0)
+                    ? ((SummaryWidth[0] * totalAmount) / 100).toFixed(0)
                     : 0}
                 </animated.li>
               )}
-              {!!labelDistribution[1] && (
+              {SummaryWidth[1] > 0 && (
                 <animated.li style={summaryStiles[1]}>
                   $
                   {labelDistribution.length > 0
-                    ? (
-                        (labelDistribution[1].percentage * totalAmount) /
-                        100
-                      ).toFixed(0)
+                    ? ((SummaryWidth[1] * totalAmount) / 100).toFixed(0)
                     : 0}
                 </animated.li>
               )}
-              {!!labelDistribution[2] && (
+              {SummaryWidth[2] > 0 && (
                 <animated.li style={summaryStiles[2]}>
                   $
                   {labelDistribution.length > 0
-                    ? (
-                        (labelDistribution[2].percentage * totalAmount) /
-                        100
-                      ).toFixed(0)
+                    ? ((SummaryWidth[2] * totalAmount) / 100).toFixed(0)
                     : 0}
                 </animated.li>
               )}
-              {!!labelDistribution[0] &&
-                !!labelDistribution[1] &&
-                !!labelDistribution[2] && (
-                  <animated.li style={summaryStiles[3]}>
-                    $
-                    {labelDistribution.length > 0
-                      ? (
-                          ((100 -
-                            labelDistribution[0].percentage -
-                            labelDistribution[1].percentage -
-                            labelDistribution[2].percentage) *
-                            totalAmount) /
-                          100
-                        ).toFixed(0)
-                      : 0}
-                  </animated.li>
-                )}
+              {SummaryWidth[3] > 0 && (
+                <animated.li style={summaryStiles[3]}>
+                  $
+                  {labelDistribution.length > 0
+                    ? ((SummaryWidth[3] * totalAmount) / 100).toFixed(0)
+                    : 0}
+                </animated.li>
+              )}
             </animated.div>
             <animated.div
               className="TransactionList_SummaryLines"
@@ -347,33 +349,52 @@ const TransactionList = ({
               className="TransactionList_SummaryNames"
               style={springProps2}
             >
-              {!!labelDistribution[0] && (
+              {SummaryWidth[0] > 0 && (
                 <animated.li>
-                  <span>•</span>
+                  <animated.span
+                    style={{ ...summaryStiles[0], width: "fit-content" }}
+                  >
+                    •
+                  </animated.span>
                   {labelDistribution.length > 0
                     ? labelDistribution[0].category.split(" ")[0]
                     : ""}
                 </animated.li>
               )}
-              {!!labelDistribution[1] && (
+              {SummaryWidth[1] > 0 && (
                 <animated.li>
-                  <span>•</span>
+                  <animated.span
+                    style={{ ...summaryStiles[1], width: "fit-content" }}
+                  >
+                    •
+                  </animated.span>
                   {labelDistribution.length > 0
                     ? labelDistribution[1].category.split(" ")[0]
                     : ""}
                 </animated.li>
               )}
-              {!!labelDistribution[2] && (
+              {SummaryWidth[2] > 0 && (
                 <animated.li>
-                  <span>•</span>
+                  <animated.span
+                    style={{ ...summaryStiles[2], width: "fit-content" }}
+                  >
+                    •
+                  </animated.span>
                   {labelDistribution.length > 0
                     ? labelDistribution[2].category.split(" ")[0]
                     : ""}
                 </animated.li>
               )}
-              <animated.li>
-                <span>•</span>Other
-              </animated.li>
+              {SummaryWidth[3] > 0 && (
+                <animated.li>
+                  <animated.span
+                    style={{ ...summaryStiles[3], width: "fit-content" }}
+                  >
+                    •
+                  </animated.span>
+                  Other
+                </animated.li>
+              )}
             </animated.div>
             <animated.div className="TransactionList_Menu" style={springProps3}>
               <p>Filter Transactions</p>
