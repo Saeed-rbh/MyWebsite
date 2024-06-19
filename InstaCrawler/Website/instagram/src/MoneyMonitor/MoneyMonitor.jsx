@@ -227,6 +227,7 @@ const useTransactionData = (whichMonth) => {
     lastIncome: {},
     lastSpending: {},
     lastSaving: {},
+    netAmounts: {},
   });
 
   useEffect(() => {
@@ -238,6 +239,7 @@ const useTransactionData = (whichMonth) => {
         incomeAvailability,
         spendingAvailability,
         savingAvailability,
+        netAmounts,
       } = await fetchTransactions({ whichMonth });
 
       setData({
@@ -247,6 +249,7 @@ const useTransactionData = (whichMonth) => {
         lastIncome: selectedIncome,
         lastSpending: selectedspending,
         lastSaving: selectedsaving,
+        netAmounts: netAmounts,
       });
     };
     fetchData();
@@ -256,10 +259,17 @@ const useTransactionData = (whichMonth) => {
 };
 
 const MoneyMonitor = () => {
-  const height = useWindowHeight(500);
+  const height = useWindowHeight(100);
   const [whichMonth, setWhichMonth] = useState(1);
-  const { income, spending, saving, lastIncome, lastSpending, lastSaving } =
-    useTransactionData(whichMonth);
+  const {
+    income,
+    spending,
+    saving,
+    lastIncome,
+    lastSpending,
+    lastSaving,
+    netAmounts,
+  } = useTransactionData(whichMonth);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isMoreClicked, setIsMoreClicked] = useState(null);
 
@@ -299,8 +309,6 @@ const MoneyMonitor = () => {
         return [];
     }
   }, [isMoreClicked, income, spending, saving]);
-
-  console.log(transactions);
 
   return (
     <div className="MoneyMonitor_Main">
@@ -361,7 +369,7 @@ const MoneyMonitor = () => {
               <span></span>
             </p>
           </div>
-          <MainStatestics height={height} />
+          <MainStatestics height={height} netAmounts={netAmounts} />
           <MoneyEntry
             setIsMoreClicked={setIsMoreClicked}
             spendingTransactions={lastSpending}

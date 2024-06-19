@@ -1618,4 +1618,26 @@
   z-index: 10;
   background: linear-gradient(165deg, var(--Ac-4) 30%, var(--Ec-4) 100%);
   border-radius: 30px;
+  overflow: hidden;
+}
+
+.MainStatestics ul {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 0 10px;
+  height: 100%;
+}
+.MainStatestics ul li {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+  margin: 5px;
+  height: 60%;
+  background-color: var(--Ac-4);
+  border-radius: 30px;
 }

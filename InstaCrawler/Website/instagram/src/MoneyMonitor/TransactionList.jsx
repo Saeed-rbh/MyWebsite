@@ -234,8 +234,6 @@ const TransactionList = ({
     }
   }, [whichMonth]);
 
-  console.log(labelDistribution);
-
   return (
     <>
       {isAnimationEnds && (
