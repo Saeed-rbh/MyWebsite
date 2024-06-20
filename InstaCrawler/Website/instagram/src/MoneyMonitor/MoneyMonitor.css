@@ -965,8 +965,8 @@
   overflow: hidden;
 }
 .TransactionList_Menu h1:first-of-type {
-  width: 17px;
-  min-width: 17px;
+  /* width: 17px;
+  min-width: 17px; */
   margin-left: 0;
 }
 .TransactionList_Menu h1:last-of-type {
