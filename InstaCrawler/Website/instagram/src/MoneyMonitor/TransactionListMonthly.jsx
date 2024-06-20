@@ -98,8 +98,11 @@ const TransactionListMonthly = ({
               onClick={() => setWhichMonth(data[1][1])}
               key={index}
             >
-              <span>{data[0].split("-")[1]}</span>
-              <span>{data[0].split("-")[0]}</span>
+              <span>{data[0].split("-")[1]}</span> |
+              <span>
+                {data[0].split("-")[0].slice(2, 4)} -{" "}
+                {data[1][0] ? "Available" : "No Data"}
+              </span>
               <span
                 style={{
                   background:
@@ -107,7 +110,7 @@ const TransactionListMonthly = ({
                       ? "var(--Bc-1)"
                       : data[1][0]
                       ? "var(--Fc-1)"
-                      : "var(--Gc-2)",
+                      : "var(--Gc-1)",
                 }}
               ></span>
             </p>

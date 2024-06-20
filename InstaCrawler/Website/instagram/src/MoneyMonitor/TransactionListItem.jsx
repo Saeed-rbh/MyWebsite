@@ -48,8 +48,6 @@ const TransactionListItem = ({
     weekday: "long",
   }).format(date);
 
-  console.log(clockTime, weekdayName);
-
   const swipeAnimation = useSpring({
     onRest: () => setShowActions(isSwiped),
   });

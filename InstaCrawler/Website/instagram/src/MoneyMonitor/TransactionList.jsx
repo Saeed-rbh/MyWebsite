@@ -152,8 +152,6 @@ const TransactionList = ({
       : 0,
   ];
 
-  console.log(SummaryWidth);
-
   const summaryStiles = [
     useSpring({
       width: SummaryWidth[0] + "%",
@@ -301,13 +299,13 @@ const TransactionList = ({
       filter: transactionClickAnim ? "blur(0px)" : "blur(10px)",
       opacity: transactionClickAnim ? "1" : "0.7",
       scale: transactionClickAnim ? 1 : 0.9,
-      height: "calc(100vh + 90px)",
+      height: "calc(100vh - 50px))",
     },
     to: {
       filter: transactionClickAnim ? "blur(10px)" : "blur(0px)",
       opacity: transactionClickAnim ? "0.7" : "1",
       scale: transactionClickAnim ? 0.9 : 1,
-      height: "calc(100vh + 90px)",
+      height: "calc(100vh - 50px))",
     },
   });
 
@@ -447,7 +445,9 @@ const TransactionList = ({
               )}
             </animated.div>
             <animated.div className="TransactionList_Menu" style={springProps3}>
-              <p>Filter Transactions</p>
+              <p>
+                <h3>Filter</h3> Transactions
+              </p>
               {springs.map((props, index) => (
                 <ScalableElement
                   as="h1"
@@ -470,9 +470,7 @@ const TransactionList = ({
                 <animated.div className="CirleColor"></animated.div>
                 <CiCalendarDate />
               </ScalableElement>
-              <p>
-                <span></span>
-              </p>
+              <p></p>
             </animated.div>
             <animated.div
               className="TransactionList_MonthlyMain"

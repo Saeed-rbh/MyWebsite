@@ -7,7 +7,6 @@ import { animated, useSpring } from "react-spring";
 import { fetchTransactions } from "./transactionService";
 import MainStatestics from "./MainStatestics";
 import { useWindowHeight } from "./tools";
-import { m } from "framer-motion";
 
 const ScalableHeading = ({ children }) => {
   const [isScaled, setIsScaled] = useState(false);
@@ -96,10 +95,12 @@ const MoneyMonitor = () => {
     netAmounts: mainNetAmounts,
   } = useTransactionData(mainPageMonth);
 
-  console.log("MoneyMonitor");
-
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isMoreClicked, setIsMoreClicked] = useState(null);
+
+  useEffect(() => {
+    !isMoreClicked && setWhichMonth(1);
+  }, [isMoreClicked]);
 
   const scaleStyle = useSpring({
     position: "relative",
@@ -108,7 +109,6 @@ const MoneyMonitor = () => {
     width: "100%",
     scale: isMoreClicked ? 0.9 : 1,
     opacity: isMoreClicked ? 0.5 : 1,
-    // filter: isMoreClicked ? "blur(20px)" : "blur(0px)",
     height,
   });
 
