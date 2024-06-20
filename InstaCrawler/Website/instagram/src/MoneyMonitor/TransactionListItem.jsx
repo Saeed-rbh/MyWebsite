@@ -41,6 +41,15 @@ const TransactionListItem = ({
     { axis: "x" }
   );
 
+  const clockTime = time.split(" ")[1];
+  const dateArray = time.split(" ")[0].split("-");
+  const date = new Date(dateArray[0], dateArray[1] - 1, dateArray[2]);
+  const weekdayName = new Intl.DateTimeFormat("en-US", {
+    weekday: "long",
+  }).format(date);
+
+  console.log(clockTime, weekdayName);
+
   const swipeAnimation = useSpring({
     onRest: () => setShowActions(isSwiped),
   });
@@ -105,7 +114,12 @@ const TransactionListItem = ({
         <animated.span>
           <Icon />
         </animated.span>
-        {truncateDescription(description)}
+        <div className="transaction-Description">
+          {truncateDescription(description)}
+          <h3>
+            {dateArray[2]} | <span>{weekdayName}</span> - {clockTime}
+          </h3>
+        </div>
       </animated.p>
       {/* <animated.p style={swipeDate1}>
         <span>{time.slice(8, 10)}</span>

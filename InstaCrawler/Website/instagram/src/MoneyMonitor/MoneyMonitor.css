@@ -763,6 +763,38 @@
   display: flex;
   opacity: 0.7;
 }
+.transaction-Description {
+  font-size: 0.8rem;
+  font-weight: 400;
+  font-family: "Rubik", sans-serif;
+  color: var(--Ac-2);
+  margin: 0;
+  width: fit-content;
+  width: -moz-fit-content;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.transaction-Description h3 {
+  font-size: 0.7rem;
+  font-weight: 200;
+  font-family: "Rubik", sans-serif;
+  color: var(--Bc-1);
+  margin: 0;
+  width: fit-content;
+  width: -moz-fit-content;
+  display: flex;
+  opacity: 0.7;
+  flex-direction: row;
+  align-items: flex-start;
+  margin-top: 3px;
+}
+
+.transaction-Description h3 span {
+  color: var(--Ac-2);
+  opacity: 0.6;
+}
 
 .TransactionList_Wall h1 span {
   font-weight: 400;
