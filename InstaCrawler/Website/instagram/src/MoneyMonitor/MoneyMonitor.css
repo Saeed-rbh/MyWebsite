@@ -785,7 +785,7 @@
   width: fit-content;
   width: -moz-fit-content;
   display: flex;
-  opacity: 0.7;
+  opacity: 0.6;
   flex-direction: row;
   align-items: flex-start;
   margin-top: 3px;
@@ -896,8 +896,8 @@
 }
 
 .TransactionList_TransactionList li p:nth-of-type(2) {
-  font-size: 0.8rem;
-  font-weight: 400;
+  font-size: 1rem;
+  font-weight: 200;
   font-family: "Rubik", sans-serif;
   color: var(--Ac-2);
   opacity: 0.9;
