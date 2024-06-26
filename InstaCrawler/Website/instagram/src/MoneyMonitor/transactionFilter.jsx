@@ -17,7 +17,7 @@ const TransactionFilter = ({
     sortItems.length,
     (index) => ({
       background: sortby === sortItems[index] ? "var(--Bc-2)" : "var(--Ac-3)",
-      color: sortby === sortItems[index] ? "var(--Bc-1)" : "var(--Ac-2)",
+      color: sortby === sortItems[index] ? "var(--Bc-1)" : "var(--Ac-1)",
       fontWeight: sortby === sortItems[index] ? "600" : "200",
       border:
         sortby === sortItems[index]
