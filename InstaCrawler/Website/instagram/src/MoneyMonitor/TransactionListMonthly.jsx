@@ -1,7 +1,4 @@
-import React, { useState, useCallback } from "react";
-import { LuCalendarClock } from "react-icons/lu";
-import { FaArrowTrendUp } from "react-icons/fa6";
-import { FaArrowTrendDown } from "react-icons/fa6";
+import React from "react";
 import TransactionListItem from "./TransactionListItem";
 import { useSpring, animated, config } from "react-spring";
 
@@ -13,14 +10,8 @@ const TransactionListMonthly = ({
   handleTransactionClick,
   isMoreClicked,
   transactions,
-  netTotal,
   percentageChange,
-  month,
-  year,
   sortby,
-  dataAvailability,
-  setWhichMonth,
-  whichMonth,
 }) => {
   const filteredTransactions =
     sortby === "All"
@@ -49,24 +40,6 @@ const TransactionListMonthly = ({
 
   return (
     <animated.div className="TransactionList_Monthly" style={style}>
-      {/* <div className="TransactionList_MonthlyTitle"> */}
-      {/* <p>
-          <LuCalendarClock />
-          {month} <span>{year}</span>
-        </p>
-        <h2 style={trendStyle}>
-          <span>{percentageChange}%</span>
-          {percentageChange < 0 ? <FaArrowTrendDown /> : <FaArrowTrendUp />}
-        </h2> */}
-      {/* <h1>
-          Total:{" "}
-          <span
-            style={{ color: isMoreClicked ? "var(--Fc-1)" : "var(--Gc-1)" }}
-          >
-            ${netTotal.toFixed(2)}
-          </span>
-        </h1> */}
-      {/* </div> */}
       <ul className="TransactionList_TransactionList">
         {filteredTransactions.map((transaction, index) => (
           <TransactionListItem
@@ -84,39 +57,6 @@ const TransactionListMonthly = ({
           />
         ))}
       </ul>
-      {
-        <div className="TransactionList_MonthlyFooter">
-          <h1>
-            What <span>Month</span> are you looking for ?
-          </h1>
-          {dataAvailability.map((data, index) => (
-            <p
-              style={{
-                background:
-                  whichMonth === data[1][1] ? "var(--Bc-4)" : "var(--Ac-4)",
-              }}
-              onClick={() => setWhichMonth(data[1][1])}
-              key={index}
-            >
-              <span>{data[0].split("-")[1]}</span> |
-              <span>
-                {data[0].split("-")[0].slice(2, 4)} -{" "}
-                {data[1][0] ? "Available" : "No Data"}
-              </span>
-              <span
-                style={{
-                  background:
-                    whichMonth === data[1][1]
-                      ? "var(--Bc-1)"
-                      : data[1][0]
-                      ? "var(--Fc-1)"
-                      : "var(--Gc-1)",
-                }}
-              ></span>
-            </p>
-          ))}
-        </div>
-      }
     </animated.div>
   );
 };

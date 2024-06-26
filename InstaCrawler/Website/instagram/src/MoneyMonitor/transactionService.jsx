@@ -250,14 +250,12 @@ const filterTransactionsByCategory = (transactions, category) =>
   transactions.filter((transaction) => transaction.Category === category);
 const getSelectedMonthData = (transactionsByMonth, whichMonth) => {
   const entries = Object.entries(transactionsByMonth);
-  console.log(!!entries[entries.length - whichMonth]);
   return !!entries[entries.length - whichMonth]
     ? entries[entries.length - whichMonth][1]
     : null;
 };
 
 export const fetchTransactions = async ({ whichMonth }) => {
-  console.log("Fetching transactions", whichMonth);
   const transactions = await fetchJson("/transactions_sorted.json");
 
   const spending = filterTransactionsByCategory(transactions, "Spending");
@@ -291,7 +289,6 @@ export const fetchTransactions = async ({ whichMonth }) => {
     whichMonth
   );
   const selectedsaving = getSelectedMonthData(savingTransactions, whichMonth);
-  console.log("selectedsaving", selectedsaving);
 
   return {
     selectedIncome,

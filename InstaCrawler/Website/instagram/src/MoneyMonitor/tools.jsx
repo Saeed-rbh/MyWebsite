@@ -59,3 +59,20 @@ export const ScalableElement = ({
     </AnimatedComponent>
   );
 };
+
+export const useCustomSpring = (
+  isMoreClicked,
+  delay,
+  isScrollingDown,
+  scrollAble
+) => {
+  return useSpring({
+    opacity: !!isMoreClicked ? (isScrollingDown && scrollAble ? 0 : 1) : 0,
+    y: !!isMoreClicked ? (isScrollingDown && scrollAble ? -50 : 0) : 50,
+    delay: !!isMoreClicked
+      ? isScrollingDown !== null
+        ? 0
+        : 100 + 50 * delay
+      : 0,
+  });
+};

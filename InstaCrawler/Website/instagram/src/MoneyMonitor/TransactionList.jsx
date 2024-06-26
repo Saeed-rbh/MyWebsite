@@ -1,71 +1,11 @@
 import React, { useEffect, useRef, useState } from "react";
-import { CiSearch, CiCalendarDate } from "react-icons/ci";
 import TransactionListMonthly from "./TransactionListMonthly";
 import TransactionModification from "./TransactionModification";
-import { useSprings, useSpring, animated, config } from "@react-spring/web";
+import { useSpring, animated, config } from "@react-spring/web";
 import { useDrag } from "@use-gesture/react";
-import { ScalableElement } from "./tools";
-// const ScalableElement = ({ children, className, onClick, key, style }) => {
-//   const [isScaled, setIsScaled] = useState(false);
-
-//   const handleMouseDown = useCallback(() => setIsScaled(true), []);
-//   const handleMouseUp = useCallback(() => setIsScaled(false), []);
-
-//   const style_2 = useSpring({
-//     scale: isScaled ? 0.9 : 1,
-//   });
-
-//   return (
-//     <animated.h1
-//       key={key}
-//       className={className}
-//       style={{ ...style, ...style_2 }}
-//       onClick={onClick}
-//       onMouseDown={handleMouseDown}
-//       onMouseUp={handleMouseUp}
-//       onMouseLeave={handleMouseUp}
-//     >
-//       {children}
-//     </animated.h1>
-//   );
-// };
-
-// const ScalableElement_2 = ({ children, className, onClick, key, style }) => {
-//   const [isScaled, setIsScaled] = useState(false);
-
-//   const handleMouseDown = useCallback(() => setIsScaled(true), []);
-//   const handleMouseUp = useCallback(() => setIsScaled(false), []);
-
-//   const style_2 = useSpring({
-//     scale: isScaled ? 0.9 : 1,
-//   });
-
-//   return (
-//     <animated.h2
-//       key={key}
-//       className={className}
-//       style={{ ...style, ...style_2 }}
-//       onClick={onClick}
-//       onMouseDown={handleMouseDown}
-//       onMouseUp={handleMouseUp}
-//       onMouseLeave={handleMouseUp}
-//     >
-//       {children}
-//     </animated.h2>
-//   );
-// };
-
-const useCustomSpring = (isMoreClicked, delay, isScrollingDown, scrollAble) => {
-  return useSpring({
-    opacity: !!isMoreClicked ? (isScrollingDown && scrollAble ? 0 : 1) : 0,
-    y: !!isMoreClicked ? (isScrollingDown && scrollAble ? -50 : 0) : 50,
-    delay: !!isMoreClicked
-      ? isScrollingDown !== null
-        ? 0
-        : 100 + 50 * delay
-      : 0,
-  });
-};
+import TransactionFilter from "./transactionFilter";
+import { useCustomSpring } from "./tools";
+import ChooseTransactionMonth from "./ChooseTransactionMonth";
 
 const TransactionList = ({
   isMoreClicked,
@@ -76,7 +16,8 @@ const TransactionList = ({
   whichMonth,
 }) => {
   const [sortby, setSortby] = useState("All");
-  const sortItems = ["All", "Daily", "Monthly"];
+  const [isCalendarClicked, setIsCalendarClicked] = useState(false);
+
   const [totalAmount, setTotalAmount] = useState(0);
   const [currentMonth, setCurrentMonth] = useState("");
   const [labelDistribution, setLabelDistribution] = useState([]);
@@ -182,20 +123,28 @@ const TransactionList = ({
     height: "calc(0vh - 65px)",
   }));
 
+  const isOpenRef = React.useRef(isMoreClicked);
+
+  React.useEffect(() => {
+    isOpenRef.current = isMoreClicked;
+  }, [isMoreClicked]);
+
+  const handleOnRest = () => {
+    !isOpenRef.current && setIsAnimationEnds(false);
+    !isOpenRef.current && setIsCalendarClicked(false);
+  };
+
   useEffect(() => {
     isAnimationEnds &&
       api.start({
         scale: !!isMoreClicked ? 1 : 0.9,
         opacity: !isMoreClicked ? 0 : 1,
         height: !!isMoreClicked ? "calc(100vh - 65px)" : "calc(0vh - 65px)",
-        // config: {
-        //   easing: easings.steps(5),
-        // },
         onRest: () => {
-          !isMoreClicked && setIsAnimationEnds(false);
+          handleOnRest();
         },
       });
-  }, [isMoreClicked, isAnimationEnds, api]);
+  }, [isMoreClicked, isAnimationEnds, api, setIsCalendarClicked]);
 
   const bind = useDrag(
     ({
@@ -223,7 +172,7 @@ const TransactionList = ({
             });
           } else if (isQuickDragDown) {
             api.start({
-              height: "calc(0vh - 65px)",
+              height: "calc(10vh  - 80px)",
               config: config.slow,
             });
             setIsMoreClicked(null);
@@ -232,7 +181,7 @@ const TransactionList = ({
             window.innerHeight / 2.2
           ) {
             api.start({
-              height: "calc(0vh - 65px)",
+              height: "calc(10vh  - 80px)",
             });
             setIsMoreClicked(null);
           } else {
@@ -254,34 +203,7 @@ const TransactionList = ({
     color: isMoreClicked === "Income" ? "var(--Fc-1)" : "var(--Gc-1)",
   };
 
-  const [springs] = useSprings(
-    sortItems.length,
-    (index) => ({
-      background: sortby === sortItems[index] ? "var(--Bc-2)" : "var(--Ac-3)",
-      color: sortby === sortItems[index] ? "var(--Bc-1)" : "var(--Ac-2)",
-      fontWeight: sortby === sortItems[index] ? "600" : "200",
-      border:
-        sortby === sortItems[index]
-          ? "1px solid var(--Bc-2)"
-          : "1px solid var(--Ac-3)",
-    }),
-    [sortby]
-  );
-
-  const lastScrollTopRef = useRef(0);
   const [isScrollingDown, setIsScrollingDown] = useState(null);
-
-  const handleScroll = () => {
-    const currentScrollTop = monthlyMainRef.current.scrollTop;
-
-    if (currentScrollTop > lastScrollTopRef.current) {
-      setIsScrollingDown(true);
-    } else {
-      setIsScrollingDown(false);
-    }
-
-    lastScrollTopRef.current = currentScrollTop <= 0 ? 0 : currentScrollTop;
-  };
 
   const springProps1 = useCustomSpring(
     isMoreClicked,
@@ -290,7 +212,6 @@ const TransactionList = ({
     false
   );
   const springProps2 = useCustomSpring(isMoreClicked, 2, isScrollingDown, true);
-  const springProps3 = useCustomSpring(isMoreClicked, 3, isScrollingDown, true);
   const springProps4 = useSpring({
     y: isScrollingDown ? -160 : 0,
   });
@@ -444,34 +365,22 @@ const TransactionList = ({
                 </animated.li>
               )}
             </animated.div>
-            <animated.div className="TransactionList_Menu" style={springProps3}>
-              <p>
-                <h3>Filter</h3> Transactions
-              </p>
-              {springs.map((props, index) => (
-                <ScalableElement
-                  as="h1"
-                  key={sortItems[index]}
-                  style={{ ...props, background: "var(--Ec-2)" }}
-                  onClick={() => setSortby(sortItems[index])}
-                >
-                  <animated.div
-                    style={{ ...props, opacity: 0.4 }}
-                    className="CirleColor"
-                  ></animated.div>
-                  {sortItems[index]}
-                </ScalableElement>
-              ))}
-              <ScalableElement as="h2">
-                <animated.div className="CirleColor"></animated.div>
-                <CiSearch />
-              </ScalableElement>
-              <ScalableElement as="h2">
-                <animated.div className="CirleColor"></animated.div>
-                <CiCalendarDate />
-              </ScalableElement>
-              <p></p>
-            </animated.div>
+            <TransactionFilter
+              sortby={sortby}
+              setSortby={setSortby}
+              isMoreClicked={isMoreClicked}
+              isScrollingDown={isScrollingDown}
+              setIsCalendarClicked={setIsCalendarClicked}
+              isCalendarClicked={isCalendarClicked}
+            />
+            <ChooseTransactionMonth
+              dataAvailability={dataAvailability}
+              setWhichMonth={setWhichMonth}
+              whichMonth={whichMonth}
+              isClicked={isCalendarClicked}
+              setIsClicked={setIsCalendarClicked}
+            />
+
             <animated.div
               className="TransactionList_MonthlyMain"
               // onScroll={(event) =>

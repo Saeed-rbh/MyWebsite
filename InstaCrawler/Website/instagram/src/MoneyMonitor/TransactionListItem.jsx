@@ -53,7 +53,7 @@ const TransactionListItem = ({
   });
 
   const swipeAction = useSpring({
-    transform: isSwiped ? "translateX(160px)" : "translateX(200px)",
+    transform: isSwiped ? "translateX(120px)" : "translateX(200px)",
     opacity: isSwiped ? 1 : 0,
     config: config.slow,
     onRest: () => !showActions && setShowActionsAnim(false),
@@ -73,7 +73,7 @@ const TransactionListItem = ({
   });
 
   const swipeStyle = useSpring({
-    transform: isSwiped ? "translateX(-160px)" : "translateX(0px)",
+    transform: isSwiped ? "translateX(-120px)" : "translateX(0px)",
     scale: isScaled && !isSwiped ? 0.9 : 1,
   });
 

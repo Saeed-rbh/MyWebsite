@@ -1,0 +1,152 @@
+[
+    {
+        "Transaction_Id": "1518b635-b4ab-48a6-8207-5e8b65ad1181",
+        "User_Id": 90260003,
+        "Timestamp": "2024-05-19 14:33",
+        "Category": "Spending",
+        "Amount": 426.29,
+        "Reason": "Contribution to Savings Account",
+        "Type": "Monthly",
+        "Label": "Food & Dining"
+    },
+    {
+        "Transaction_Id": "7bfd8400-ecbb-40ef-aae1-5eafc0d6804b",
+        "User_Id": 90260003,
+        "Timestamp": "2024-05-20 14:33",
+        "Category": "Income",
+        "Amount": 549.2,
+        "Reason": "Contribution to Savings Account",
+        "Type": "Monthly",
+        "Label": "Health & Fitness"
+    },
+    {
+        "Transaction_Id": "d457ca98-3787-450b-a996-8c12f88d5e93",
+        "User_Id": 90260003,
+        "Timestamp": "2024-05-22 14:33",
+        "Category": "Spending",
+        "Amount": 725.05,
+        "Reason": "Investment in Retirement Fund",
+        "Type": "Monthly",
+        "Label": "Entertainment"
+    },
+    {
+        "Transaction_Id": "c371ccc9-d003-4986-8da6-35c05f1ed681",
+        "User_Id": 90260003,
+        "Timestamp": "2024-05-23 14:33",
+        "Category": "Income",
+        "Amount": 169.81,
+        "Reason": "Stock Market",
+        "Type": "Daily",
+        "Label": "Utilities"
+    },
+    {
+        "Transaction_Id": "2ff88330-0997-4d71-9855-8472b014bc15",
+        "User_Id": 90260003,
+        "Timestamp": "2024-05-25 14:33",
+        "Category": "Spending",
+        "Amount": 886.65,
+        "Reason": "Investment in Retirement Fund",
+        "Type": "Daily",
+        "Label": "Entertainment"
+    },
+    {
+        "Transaction_Id": "aee1284b-2553-40c8-816e-a260553a6944",
+        "User_Id": 90260003,
+        "Timestamp": "2024-05-28 14:33",
+        "Category": "Spending",
+        "Amount": 756.96,
+        "Reason": "Crowdfunding",
+        "Type": "Monthly",
+        "Label": "Food & Dining"
+    },
+    {
+        "Transaction_Id": "477d4cab-9725-47d5-97ec-1e3813f693c5",
+        "User_Id": 90260003,
+        "Timestamp": "2024-06-02 14:33",
+        "Category": "Spending",
+        "Amount": 982.74,
+        "Reason": "Cryptocurrency",
+        "Type": "Daily",
+        "Label": "Utilities"
+    },
+    {
+        "Transaction_Id": "56dd9878-b81a-4b2f-bca6-9b8f43a029fc",
+        "User_Id": 90260003,
+        "Timestamp": "2024-06-03 14:33",
+        "Category": "Save&Invest",
+        "Amount": 80.5,
+        "Reason": "Stock Market",
+        "Type": "Monthly",
+        "Label": "Utilities"
+    },
+    {
+        "Transaction_Id": "a8dae42c-74e1-4998-8f8e-4e86ea1b3695",
+        "User_Id": 90260003,
+        "Timestamp": "2024-06-05 14:33",
+        "Category": "Save&Invest",
+        "Amount": 127.84,
+        "Reason": "Crowdfunding",
+        "Type": "Daily",
+        "Label": "Health & Fitness"
+    },
+    {
+        "Transaction_Id": "a2363858-bf21-4d05-aae6-cd31115480ad",
+        "User_Id": 90260003,
+        "Timestamp": "2024-06-07 14:33",
+        "Category": "Spending",
+        "Amount": 587.83,
+        "Reason": "Investment in Retirement Fund",
+        "Type": "Monthly",
+        "Label": "Leisure & Recreation"
+    },
+    {
+        "Transaction_Id": "af176b8b-2f83-4914-9e44-faad4e8422b2",
+        "User_Id": 90260003,
+        "Timestamp": "2024-06-07 14:33",
+        "Category": "Save&Invest",
+        "Amount": 660.07,
+        "Reason": "Crowdfunding",
+        "Type": "Monthly",
+        "Label": "Health & Fitness"
+    },
+    {
+        "Transaction_Id": "fab1ab0c-8a70-439a-afa7-d0dc1d2bd4d3",
+        "User_Id": 90260003,
+        "Timestamp": "2024-06-11 14:33",
+        "Category": "Spending",
+        "Amount": 832.14,
+        "Reason": "Cryptocurrency",
+        "Type": "Daily",
+        "Label": "Health & Fitness"
+    },
+    {
+        "Transaction_Id": "dfd883a5-82eb-4ba0-9ea3-4e73236eb9a4",
+        "User_Id": 90260003,
+        "Timestamp": "2024-06-17 14:33",
+        "Category": "Save&Invest",
+        "Amount": 317.43,
+        "Reason": "Cryptocurrency",
+        "Type": "Monthly",
+        "Label": "Entertainment"
+    },
+    {
+        "Transaction_Id": "e798a316-cd14-462e-9a4d-5f19bdd0b240",
+        "User_Id": 90260003,
+        "Timestamp": "2024-06-18 14:33",
+        "Category": "Income",
+        "Amount": 475.79,
+        "Reason": "Stock Market",
+        "Type": "Monthly",
+        "Label": "Food & Dining"
+    },
+    {
+        "Transaction_Id": "d3fc5c7d-876b-414c-8e0c-b7ff6a32308e",
+        "User_Id": 90260003,
+        "Timestamp": "2024-06-18 14:33",
+        "Category": "Spending",
+        "Amount": 121.15,
+        "Reason": "Contribution to Savings Account",
+        "Type": "Monthly",
+        "Label": "Health & Fitness"
+    }
+]
