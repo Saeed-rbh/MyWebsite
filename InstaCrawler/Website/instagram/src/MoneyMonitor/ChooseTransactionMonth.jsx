@@ -1,6 +1,20 @@
 import React from "react";
 import { useSpring, animated } from "@react-spring/web";
 
+const monthMapping = {
+  Jan: 1,
+  Feb: 2,
+  Mar: 3,
+  Apr: 4,
+  May: 5,
+  Jun: 6,
+  Jul: 7,
+  Aug: 8,
+  Sep: 9,
+  Oct: 10,
+  Nov: 11,
+  Dec: 12,
+};
 function ChooseTransactionMonth({
   isClicked,
   setIsClicked,
@@ -37,11 +51,12 @@ function ChooseTransactionMonth({
                   style={{
                     ...clickAction2,
                     background:
-                      whichMonth === value[1] ? "var(--Bc-4)" : "var(--Ec-3)",
+                      whichMonth === value[1] ? "var(--Bc-3)" : "var(--Ec-2)",
                   }}
                   onClick={() => handleMonthClick(value[1])}
                   key={index}
                 >
+                  <span>{monthMapping[month]}</span>
                   <span>{month}</span>
                   <span
                     style={{

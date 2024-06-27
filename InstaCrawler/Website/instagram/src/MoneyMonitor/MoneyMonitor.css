@@ -1484,16 +1484,14 @@
 }
 
 .TransactionList_MonthlyFooter p {
-  background-color: var(--Ec-1);
-  border: 2px solid var(--Ac-4);
+  border: 1px solid var(--Bc-2);
   display: flex;
-  align-items: center;
   justify-content: flex-end;
-  margin: 3px 3px 3px 2.5px;
+  margin: 1px 1px 1px 1px;
   /* width: 25px; */
   border-radius: 30px;
   opacity: 0.7;
-  justify-content: center;
+  justify-content: space-evenly;
   align-items: center;
   flex-direction: column;
   /* padding: 10px 5px; */
@@ -1502,8 +1500,8 @@
   font-weight: 200;
   overflow: hidden;
   min-width: 40px;
-  width: 40px;
-  height: 65px;
+  width: 45px;
+  height: 70px;
 }
 
 .TransactionList_MonthlyFooter h3 {
@@ -1532,18 +1530,15 @@
 .TransactionList_MonthlyFooter p span {
   color: var(--Ac-1);
   font-weight: 600;
-  margin-left: 3px;
-  margin-right: 5px;
 }
 .TransactionList_MonthlyFooter p span:last-of-type {
-  position: absolute;
   background: var(--Fc-1);
   border-radius: 100%;
-  width: 10px;
-  height: 10px;
-  filter: blur(2px);
+  width: 15px;
+  height: 15px;
+  /* filter: blur(2px); */
   opacity: 0.7;
-  bottom: -5px;
+  margin: 0;
 }
 
 .TransactionList_MonthlyYear {
@@ -1555,22 +1550,28 @@
   align-items: flex-start;
   justify-content: center;
 }
-.TransactionList_MonthlyFooter p span:first-of-type {
+.TransactionList_MonthlyFooter p span:nth-last-of-type(3) {
+  color: var(--Ac-1);
+  font-weight: 200;
+  opacity: 1;
+  margin-bottom: -5px;
+  margin-top: 5px;
+}
+.TransactionList_MonthlyFooter p span:nth-last-of-type(2) {
   color: var(--Bc-1);
   font-weight: 400;
-  margin-right: 3px;
-  /* margin-bottom: 5px; */
+  opacity: 1;
 }
 .TransactionList_MonthlyFooter h1 {
   /* position: absolute; */
   color: var(--Ac-1);
-  top: 18px;
-  font-size: 0.7rem;
-  font-weight: 400;
+  top: 15px;
+  font-size: 0.9rem;
+  font-weight: 200;
   font-family: "Rubik", sans-serif;
   padding: 10px 0px;
   border-radius: 30px;
-  margin: 0 15px 5px 10px;
+  margin: 0 10px 5px 10px;
   width: auto;
   display: flex;
   text-wrap: nowrap;
@@ -1580,12 +1581,12 @@
   align-items: center;
   justify-content: space-between;
 }
-.TransactionList_MonthlyFooter h1 span:last-of-type {
+.TransactionList_MonthlyFooter h1 span {
   position: relative;
   margin: 0 5px 0 10px;
   width: 80%;
   height: 2px;
-  border-radius: 100%;
+  border-radius: 50px;
   background: linear-gradient(165deg, var(--Ec-4) 0%, var(--Bc-1) 100%);
 }
 
