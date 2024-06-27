@@ -100,7 +100,10 @@ const MoreOpen = ({ isClicked, setIsClicked, feed, MoreOpenHeight }) => {
         style={Open_TransactionList}
         {...bind()}
       >
-        <animated.div className="TransactionList_Wall">
+        <animated.div
+          className="TransactionList_Wall"
+          style={{ backgroundColor: "var(--Ec-3)" }}
+        >
           <div className="TransactionList_TopLine"></div>
           <ScalableElement
             as="div"
