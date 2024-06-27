@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useSpring, animated, config } from "@react-spring/web";
 import { useDrag } from "@use-gesture/react";
-
+import { RxCross2 } from "react-icons/rx";
+import { ScalableElement } from "./tools";
 const MoreOpen = ({ isClicked, setIsClicked, feed, MoreOpenHeight }) => {
   const [isAnimationEnds, setIsAnimationEnds] = useState(false);
   useEffect(() => {
@@ -101,6 +102,13 @@ const MoreOpen = ({ isClicked, setIsClicked, feed, MoreOpenHeight }) => {
       >
         <animated.div className="TransactionList_Wall">
           <div className="TransactionList_TopLine"></div>
+          <ScalableElement
+            as="div"
+            className="TransactionList_Close"
+            onClick={() => setIsClicked(false)}
+          >
+            <RxCross2 />
+          </ScalableElement>
           {feed()}
         </animated.div>
       </animated.div>
