@@ -13,7 +13,6 @@ const MoreOpen = ({ isClicked, setIsClicked, feed }) => {
     opacity: 0,
     height: "calc(0vh - 65px)",
     zIndex: 105,
-    backdropFilter: "blur(20px)",
   }));
 
   const isOpenRef = React.useRef(isClicked);
@@ -92,16 +91,18 @@ const MoreOpen = ({ isClicked, setIsClicked, feed }) => {
   );
 
   return (
-    <animated.div
-      className="TransactionList_Main"
-      style={Open_TransactionList}
-      {...bind()}
-    >
-      <animated.div className="TransactionList_Wall">
-        <div className="TransactionList_TopLine"></div>
-        {feed()}
+    <>
+      <animated.div
+        className="TransactionList_Main"
+        style={Open_TransactionList}
+        {...bind()}
+      >
+        <animated.div className="TransactionList_Wall">
+          <div className="TransactionList_TopLine"></div>
+          {feed()}
+        </animated.div>
       </animated.div>
-    </animated.div>
+    </>
   );
 };
 

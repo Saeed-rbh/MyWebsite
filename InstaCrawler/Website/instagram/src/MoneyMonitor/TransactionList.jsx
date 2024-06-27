@@ -16,7 +16,6 @@ const TransactionList = ({
   setWhichMonth,
   whichMonth,
 }) => {
-  console.log(Transactions);
   const [sortby, setSortby] = useState("All");
   const [isCalendarClicked, setIsCalendarClicked] = useState(false);
 
@@ -120,7 +119,7 @@ const TransactionList = ({
   }, [isMoreClicked]);
 
   const [Open_TransactionList, api] = useSpring(() => ({
-    scale: 0.9,
+    scale: isCalendarClicked ? 0.9 : 1,
     opacity: 0,
     height: "calc(0vh - 100px)",
   }));
@@ -139,14 +138,21 @@ const TransactionList = ({
   useEffect(() => {
     isAnimationEnds &&
       api.start({
-        scale: !!isMoreClicked ? 1 : 0.9,
+        scale: isCalendarClicked ? 0.9 : !!isMoreClicked ? 1 : 0.9,
         opacity: !isMoreClicked ? 0 : 1,
         height: !!isMoreClicked ? "calc(100vh - 100px)" : "calc(0vh - 100px)",
+        filter: isCalendarClicked ? "blur(10px)" : "blur(0px)",
         onRest: () => {
           handleOnRest();
         },
       });
-  }, [isMoreClicked, isAnimationEnds, api, setIsCalendarClicked]);
+  }, [
+    isMoreClicked,
+    isAnimationEnds,
+    api,
+    setIsCalendarClicked,
+    isCalendarClicked,
+  ]);
 
   const bind = useDrag(
     ({
@@ -392,13 +398,6 @@ const TransactionList = ({
               setIsCalendarClicked={setIsCalendarClicked}
               isCalendarClicked={isCalendarClicked}
             />
-            {/* <ChooseTransactionMonth
-              dataAvailability={dataAvailability}
-              setWhichMonth={setWhichMonth}
-              whichMonth={whichMonth}
-              isClicked={isCalendarClicked}
-              setIsClicked={setIsCalendarClicked}
-            /> */}
 
             <animated.div
               className="TransactionList_MonthlyMain"

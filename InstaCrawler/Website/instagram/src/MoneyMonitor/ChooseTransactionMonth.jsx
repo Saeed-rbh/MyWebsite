@@ -1,6 +1,5 @@
 import React from "react";
 import { useSpring, animated } from "@react-spring/web";
-import { LuMoveLeft, LuMoveRight } from "react-icons/lu";
 
 function ChooseTransactionMonth({
   isClicked,
@@ -58,31 +57,6 @@ function ChooseTransactionMonth({
               ))}
           </div>
         ))}
-        {/* {Object.entries(dataAvailability).map((data, index) => (
-          <animated.p
-            style={{
-              ...clickAction2,
-              background:
-                whichMonth === data[1][1] ? "var(--Bc-4)" : "var(--Ac-4)",
-            }}
-            onClick={() => handleMonthClick(data[1][1])}
-            key={index}
-          >
-            <span>{data[0].split("-")[0].slice(2, 4)} </span>
-          <h2></h2> 
-            <span>{data[0].split("-")[1]}</span>
-            <span
-              style={{
-                background:
-                  whichMonth === data[1][1]
-                    ? "var(--Bc-1)"
-                    : data[1][0]
-                    ? "var(--Fc-1)"
-                    : "var(--Gc-1)",
-              }}
-            ></span>
-          </animated.p>
-        ))}*/}
       </div>
     </animated.div>
   );
