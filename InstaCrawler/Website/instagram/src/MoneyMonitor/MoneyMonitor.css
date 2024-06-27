@@ -419,7 +419,7 @@
   background-color: var(--Ac-4);
   font-weight: 200;
   font-family: "Rubik", sans-serif;
-  color: var(--Ac-2);
+  color: var(--Ac-1);
   padding: 15px;
   width: max-content;
   border-radius: 30px;
@@ -595,6 +595,7 @@
   opacity: 1;
   touch-action: none;
   z-index: 101;
+  border-radius: 30px 30px 0 0;
 }
 .TransactionList_Wall {
   position: absolute;
@@ -602,9 +603,8 @@
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-  height: calc(100% - 50px);
+  height: calc(100%);
   padding-bottom: 10px;
-  top: 20px;
   width: calc(100%);
   background-color: var(--Ac-4);
   border-radius: 30px 30px 0 0;
@@ -1458,21 +1458,34 @@
   margin-right: 5px;
 }
 .TransactionList_MonthlyFooter {
+  /* padding: 30px 0; */
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  width: calc(100% - 0px);
+  padding-top: 0px;
+  border-radius: 30px;
+  flex-wrap: wrap;
+}
+
+.TransactionList_MonthlyNames {
   position: relative;
   display: flex;
   flex-direction: row;
   align-items: flex-start;
   justify-content: flex-start;
-  width: calc(100% - 0px);
-  height: 0px;
-  overflow: hidden;
-  padding-top: 0px;
+  width: calc(100% - 30px);
+  height: 4px;
+  margin: 0 0 0px 0;
+  height: 100%;
+  flex-wrap: wrap;
 }
 
 .TransactionList_MonthlyFooter p {
   background-color: var(--Ec-1);
-  width: fit-content;
-  width: -moz-fit-content;
+  border: 2px solid var(--Ac-4);
   display: flex;
   align-items: center;
   justify-content: flex-end;
@@ -1483,11 +1496,31 @@
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  padding: 10px 5px;
+  /* padding: 10px 5px; */
   cursor: pointer;
   font-size: 0.7rem;
   font-weight: 200;
   overflow: hidden;
+  min-width: 40px;
+  width: 40px;
+  height: 65px;
+}
+
+.TransactionList_MonthlyFooter h3 {
+  font-size: 0.8rem;
+  font-weight: 200;
+  font-family: "Rubik", sans-serif;
+  color: var(--Ac-2);
+  margin: 0;
+  margin: 10px 0 10px 10px;
+  width: 100%;
+  display: flex;
+}
+
+.TransactionList_MonthlyFooter h3 span {
+  font-weight: 400;
+  margin: 0 3px;
+  color: var(--Ac-1);
 }
 .TransactionList_MonthlyFooter h2 {
   width: 15px;
@@ -1512,6 +1545,16 @@
   opacity: 0.7;
   bottom: -5px;
 }
+
+.TransactionList_MonthlyYear {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin: 10px 0 0 0;
+  align-items: flex-start;
+  justify-content: center;
+}
 .TransactionList_MonthlyFooter p span:first-of-type {
   color: var(--Bc-1);
   font-weight: 400;
@@ -1519,29 +1562,44 @@
   /* margin-bottom: 5px; */
 }
 .TransactionList_MonthlyFooter h1 {
-  color: var(--Ac-2);
-  top: -10px;
-  left: 5px;
-  /* transform: translateY(-54px); */
-  font-weight: 400;
-  position: absolute;
+  /* position: absolute; */
+  color: var(--Ac-1);
+  top: 18px;
   font-size: 0.7rem;
-  font-weight: 200;
+  font-weight: 400;
   font-family: "Rubik", sans-serif;
-  color: var(--Ac-2);
   padding: 10px 0px;
   border-radius: 30px;
-  margin: 0 3px 5px 3px;
+  margin: 0 15px 5px 10px;
   width: auto;
   display: flex;
   text-wrap: nowrap;
-  flex-direction: row;
+  flex-direction: column;
+  /* width: 100%; */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
-.TransactionList_MonthlyFooter h1 span {
+.TransactionList_MonthlyFooter h1 span:last-of-type {
+  position: relative;
+  margin: 0 5px 0 10px;
+  width: 80%;
+  height: 2px;
+  border-radius: 100%;
+  background: linear-gradient(165deg, var(--Ec-4) 0%, var(--Bc-1) 100%);
+}
+
+.TransactionList_MonthlyFooter h1 svg {
   color: var(--Ac-1);
   opacity: 0.9;
   font-weight: 600;
-  margin: 0 3px;
+  margin: 0 5px;
+  font-size: 0.8rem;
+  background: var(--Ec-2);
+  height: 42px;
+  padding: 5px 9px;
+  border-radius: 15px;
+  margin-top: -20px;
 }
 
 .scroll-container {

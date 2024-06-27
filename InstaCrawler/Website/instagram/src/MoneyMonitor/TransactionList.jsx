@@ -6,6 +6,7 @@ import { useDrag } from "@use-gesture/react";
 import TransactionFilter from "./transactionFilter";
 import { useCustomSpring } from "./tools";
 import ChooseTransactionMonth from "./ChooseTransactionMonth";
+import MoreOpen from "./MoreOpen";
 
 const TransactionList = ({
   isMoreClicked,
@@ -15,6 +16,7 @@ const TransactionList = ({
   setWhichMonth,
   whichMonth,
 }) => {
+  console.log(Transactions);
   const [sortby, setSortby] = useState("All");
   const [isCalendarClicked, setIsCalendarClicked] = useState(false);
 
@@ -120,7 +122,7 @@ const TransactionList = ({
   const [Open_TransactionList, api] = useSpring(() => ({
     scale: 0.9,
     opacity: 0,
-    height: "calc(0vh - 65px)",
+    height: "calc(0vh - 100px)",
   }));
 
   const isOpenRef = React.useRef(isMoreClicked);
@@ -139,7 +141,7 @@ const TransactionList = ({
       api.start({
         scale: !!isMoreClicked ? 1 : 0.9,
         opacity: !isMoreClicked ? 0 : 1,
-        height: !!isMoreClicked ? "calc(100vh - 65px)" : "calc(0vh - 65px)",
+        height: !!isMoreClicked ? "calc(100vh - 100px)" : "calc(0vh - 100px)",
         onRest: () => {
           handleOnRest();
         },
@@ -159,7 +161,7 @@ const TransactionList = ({
       if (!isMoreClicked) return memo;
       if (clientY - y > 250 || y < 0) return memo;
 
-      const newHeight = Math.max(y + 65, 65);
+      const newHeight = Math.max(y + 100, 100);
       const isQuickDragDown = velocity[1] > 0.01 && y > initialY;
       const isQuickDragUp = velocity[1] > 0.1 && y < initialY;
 
@@ -236,8 +238,25 @@ const TransactionList = ({
     }
   }, [whichMonth]);
 
+  const calendarFeed = () => {
+    return (
+      <ChooseTransactionMonth
+        dataAvailability={dataAvailability}
+        setWhichMonth={setWhichMonth}
+        whichMonth={whichMonth}
+        isClicked={isCalendarClicked}
+        setIsClicked={setIsCalendarClicked}
+      />
+    );
+  };
+
   return (
     <>
+      <MoreOpen
+        isClicked={isCalendarClicked}
+        setIsClicked={setIsCalendarClicked}
+        feed={calendarFeed}
+      />
       {isAnimationEnds && (
         <animated.div
           className="TransactionList_Main"
@@ -373,13 +392,13 @@ const TransactionList = ({
               setIsCalendarClicked={setIsCalendarClicked}
               isCalendarClicked={isCalendarClicked}
             />
-            <ChooseTransactionMonth
+            {/* <ChooseTransactionMonth
               dataAvailability={dataAvailability}
               setWhichMonth={setWhichMonth}
               whichMonth={whichMonth}
               isClicked={isCalendarClicked}
               setIsClicked={setIsCalendarClicked}
-            />
+            /> */}
 
             <animated.div
               className="TransactionList_MonthlyMain"
