@@ -4,7 +4,7 @@ import TransactionModification from "./TransactionModification";
 import { useSpring, animated, config } from "@react-spring/web";
 import { useDrag } from "@use-gesture/react";
 import TransactionFilter from "./transactionFilter";
-import { useCustomSpring } from "./tools";
+import { useCustomSpring, useWindowHeight } from "./tools";
 import ChooseTransactionMonth from "./ChooseTransactionMonth";
 import MoreOpen from "./MoreOpen";
 
@@ -166,6 +166,7 @@ const TransactionList = ({
       const clientY = event.touches ? event.touches[0].clientY : event.clientY;
       if (!isMoreClicked) return memo;
       if (clientY - y > 250 || y < 0) return memo;
+      if (isCalendarClicked) return memo;
 
       const newHeight = Math.max(y + 100, 100);
       const isQuickDragDown = velocity[1] > 0.01 && y > initialY;
@@ -244,6 +245,13 @@ const TransactionList = ({
     }
   }, [whichMonth]);
 
+  const dataAvailabilityLength = Object.entries(dataAvailability).length;
+  const WindowHeight = useWindowHeight(100);
+  const MoreOpenHeight =
+    WindowHeight - 80 * dataAvailabilityLength > 100
+      ? WindowHeight - 80 * dataAvailabilityLength
+      : 100;
+
   const calendarFeed = () => {
     return (
       <ChooseTransactionMonth
@@ -262,6 +270,7 @@ const TransactionList = ({
         isClicked={isCalendarClicked}
         setIsClicked={setIsCalendarClicked}
         feed={calendarFeed}
+        MoreOpenHeight={MoreOpenHeight}
       />
       {isAnimationEnds && (
         <animated.div

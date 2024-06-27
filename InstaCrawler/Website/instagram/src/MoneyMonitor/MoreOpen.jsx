@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useSpring, animated, config } from "@react-spring/web";
 import { useDrag } from "@use-gesture/react";
 
-const MoreOpen = ({ isClicked, setIsClicked, feed }) => {
+const MoreOpen = ({ isClicked, setIsClicked, feed, MoreOpenHeight }) => {
   const [isAnimationEnds, setIsAnimationEnds] = useState(false);
   useEffect(() => {
     isClicked && setIsAnimationEnds(true);
@@ -30,7 +30,9 @@ const MoreOpen = ({ isClicked, setIsClicked, feed }) => {
       api.start({
         scale: !!isClicked ? 1 : 0.9,
         opacity: !isClicked ? 0 : 1,
-        height: !!isClicked ? "calc(100vh - 100px)" : "calc(0vh - 100px)",
+        height: !!isClicked
+          ? `calc(100vh - ${MoreOpenHeight}px)`
+          : `calc(0vh - ${MoreOpenHeight}px)`,
         onRest: () => {
           handleOnRest();
         },
@@ -48,9 +50,9 @@ const MoreOpen = ({ isClicked, setIsClicked, feed }) => {
     }) => {
       const clientY = event.touches ? event.touches[0].clientY : event.clientY;
       if (!isClicked) return memo;
-      if (clientY - y > 250 || y < 0) return memo;
+      if (clientY - y > 400 || y < 0) return memo;
 
-      const newHeight = Math.max(y + 100, 100);
+      const newHeight = Math.max(y + MoreOpenHeight, MoreOpenHeight);
       const isQuickDragDown = velocity[1] > 0.01 && y > initialY;
       const isQuickDragUp = velocity[1] > 0.1 && y < initialY;
 
@@ -58,12 +60,12 @@ const MoreOpen = ({ isClicked, setIsClicked, feed }) => {
         if (last) {
           if (isQuickDragUp) {
             api.start({
-              height: `calc(100vh - 100px)`,
+              height: `calc(100vh - ${MoreOpenHeight}px)`,
               config: config.slow,
             });
           } else if (isQuickDragDown) {
             api.start({
-              height: "calc(10vh  - 100px)",
+              height: `calc(10vh  - ${MoreOpenHeight}px)`,
               config: config.slow,
             });
             setIsClicked(false);
@@ -72,7 +74,7 @@ const MoreOpen = ({ isClicked, setIsClicked, feed }) => {
             window.innerHeight / 2.2
           ) {
             api.start({
-              height: "calc(10vh  - 100px)",
+              height: `calc(10vh  - ${MoreOpenHeight}px)`,
             });
             setIsClicked(false);
           } else {

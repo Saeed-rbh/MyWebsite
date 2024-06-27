@@ -1566,12 +1566,12 @@
   /* position: absolute; */
   color: var(--Ac-1);
   top: 15px;
-  font-size: 0.9rem;
+  font-size: 1rem;
   font-weight: 200;
   font-family: "Rubik", sans-serif;
   padding: 10px 0px;
   border-radius: 30px;
-  margin: 0 10px 5px 10px;
+  margin: 0 10px 5px 5px;
   width: auto;
   display: flex;
   text-wrap: nowrap;
