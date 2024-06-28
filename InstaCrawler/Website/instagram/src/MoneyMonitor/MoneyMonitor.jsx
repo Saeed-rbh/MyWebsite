@@ -195,6 +195,7 @@ const MoneyMonitor = () => {
             height={height}
             netAmounts={netAmountsData}
             mainPageMonth={mainPageMonth}
+            setMainPageMonth={setMainPageMonth}
           />
           {Object.keys(mainNetAmounts).length > 0 && (
             <MoneyEntry

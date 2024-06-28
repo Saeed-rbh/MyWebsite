@@ -238,13 +238,12 @@ const getNetAmounts = (income, spending, saving) => {
     const spendingTotal = Number(spending[month]?.netTotal.toFixed(2)) || 0; // Round and convert to number
     const savingTotal = Number(saving[month]?.netTotal.toFixed(2)) || 0; // Round and convert to number
     const netTotal = Number((incomeTotal - spendingTotal).toFixed(2));
-
     acc[month] = {
       income: incomeTotal,
       spending: spendingTotal,
       saving: savingTotal,
       net: netTotal,
-      month: monthsNames[Number(month.split("-")[1])],
+      month: monthsNames[Number(month.split("-")[1]) - 1],
     };
     return acc;
   }, {});

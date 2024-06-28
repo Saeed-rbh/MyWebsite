@@ -1788,7 +1788,7 @@
 
 .MainStatestics-dash {
   position: absolute;
-  width: 100%;
+  width: calc(100% - 105px);
   height: 2px;
   background-image: linear-gradient(to right, var(--Ac-2) 50%, var(--Ec-4) 0%);
   background-position: bottom;
@@ -1801,22 +1801,77 @@
   display: flex;
   align-items: center;
 }
-.MainStatestics-dash p {
+.MainStatestics-guid {
+  position: absolute;
+  color: var(--Ac-1);
+  display: flex;
+  flex-direction: column;
+  height: calc(100% - 100px);
+  align-items: flex-start;
+  justify-content: space-between;
+  font-size: 0.7rem;
+  font-weight: 300;
+  font-family: "Noto Sans", sans-serif;
+  margin: 50px 0 65px 0;
+  right: 10px;
+}
+
+.MainStatestics-guid p {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  width: fit-content;
+  margin: 0;
+  font-size: 0.7rem;
+  font-weight: 300;
+  font-family: "Noto Sans", sans-serif;
+  color: var(--Ac-1);
+  height: inherit;
+}
+
+.MainStatestics-guid span {
+  font-size: 2rem;
+  margin-right: 5px;
+}
+.MainStatestics-dash:nth-last-of-type(2) {
+  background-size: 7px 0.5px;
+}
+.MainStatestics-dash:nth-last-of-type(2) h1 {
   width: max-content;
-  background-color: var(--Ec-1);
-  padding: 0 10px;
+  margin-bottom: 0px;
+  font-size: 0.7rem;
+  font-weight: 300;
+  font-family: "Noto Sans", sans-serif;
+  color: var(--Ac-1);
+  height: inherit;
+}
+
+.MainStatestics-dash:nth-last-of-type(3) {
+  background-size: 7px 0.5px;
+}
+.MainStatestics-dash:nth-last-of-type(3) h1 {
+  width: max-content;
+  margin-top: -25px;
+  font-size: 0.7rem;
+  font-weight: 300;
+  font-family: "Noto Sans", sans-serif;
+  color: var(--Ac-1);
+  height: inherit;
 }
 
 .MainStatestics ul {
+  position: relative;
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  width: 100%;
+  width: calc(100% - 150px);
   padding: 0 10px;
   height: 100%;
-  padding-left: 70px;
+  padding-left: 45px;
   list-style-type: none;
+  overflow: hidden;
 }
 
 .MoneyMonitor_MainBlur {
@@ -1869,6 +1924,7 @@
   padding: 0 10px;
   height: 100%;
   margin: 0 15px;
+  cursor: pointer;
 }
 
 .MainStatestics-batch li:nth-last-of-type(1) {
