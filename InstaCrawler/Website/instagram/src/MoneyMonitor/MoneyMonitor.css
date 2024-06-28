@@ -1883,6 +1883,7 @@
   padding-left: 60px;
   list-style-type: none;
   overflow: hidden;
+  touch-action: none;
 }
 
 .MoneyMonitor_MainBlur {

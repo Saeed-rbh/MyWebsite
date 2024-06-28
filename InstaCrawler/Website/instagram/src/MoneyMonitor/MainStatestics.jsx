@@ -1,5 +1,5 @@
 import React, { useMemo, useRef, useState } from "react";
-import { useSprings, animated, useSpring } from "react-spring";
+import { useSprings, animated, useSpring, config } from "react-spring";
 import { useDrag } from "@use-gesture/react";
 
 // Constants
@@ -152,8 +152,9 @@ const MainStatestics = ({
 
   const bind = useDrag(({ down, movement: [mx], cancel, memo = false }) => {
     const newX = currentX + mx;
-    if (newX > 0) return setCurrentX(newX);
-    if (-1 * newX > 31.5 * springs.length) return setCurrentX(newX);
+    if (newX > 0) return setCurrentX(0);
+    if (-1 * newX > 31.5 * springs.length)
+      return setCurrentX(-31.5 * springs.length);
 
     if (!down) {
       setCurrentX(newX);
