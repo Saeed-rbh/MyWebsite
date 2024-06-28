@@ -1,3 +1,18 @@
+const monthsNames = [
+  "Jan",
+  "Feb",
+  "Mar",
+  "Apr",
+  "May",
+  "Jun",
+  "Jul",
+  "Aug",
+  "Sep",
+  "Oct",
+  "Nov",
+  "Dec",
+];
+
 const groupTransactionsByMonth = (transactions) => {
   const groupedTransactions = {};
 
@@ -118,21 +133,6 @@ const groupTransactionsByMonth = (transactions) => {
 };
 
 const getMonthDataAvailability = (data) => {
-  const months = [
-    "Jan",
-    "Feb",
-    "Mar",
-    "Apr",
-    "May",
-    "Jun",
-    "Jul",
-    "Aug",
-    "Sep",
-    "Oct",
-    "Nov",
-    "Dec",
-  ];
-
   const availability = {};
 
   // Populate availability with true for months with data
@@ -141,7 +141,7 @@ const getMonthDataAvailability = (data) => {
     const [year, month, day] = timestamp.split(" ")[0].split("-").map(Number);
 
     const date = new Date(year, month - 1, day); // Month is zero-indexed in Date
-    const monthName = months[date.getMonth()];
+    const monthName = monthsNames[date.getMonth()];
 
     if (!availability[year]) {
       availability[year] = {};
@@ -159,7 +159,7 @@ const getMonthDataAvailability = (data) => {
   // Populate months with no data as null
   while (currentMonth >= firstTransactionDate) {
     const year = currentMonth.getFullYear();
-    const monthName = months[currentMonth.getMonth()];
+    const monthName = monthsNames[currentMonth.getMonth()];
 
     if (!availability[year]) {
       availability[year] = {};
@@ -189,68 +189,6 @@ const getMonthDataAvailability = (data) => {
 
   return availability;
 };
-// const getMonthDataAvailability = (data) => {
-//   const months = [
-//     "Jan",
-//     "Feb",
-//     "Mar",
-//     "Apr",
-//     "May",
-//     "Jun",
-//     "Jul",
-//     "Aug",
-//     "Sep",
-//     "Oct",
-//     "Nov",
-//     "Dec",
-//   ];
-//   const availability = {};
-
-//   // Populate availability with true for months with data
-//   data.forEach((item) => {
-//     const timestamp = item.Timestamp;
-
-//     // Split timestamp into parts
-//     const parts = timestamp.split(" ")[0].split("-");
-//     const year = parseInt(parts[0]);
-//     const month = parseInt(parts[1]);
-//     const day = parseInt(parts[2]);
-
-//     const date = new Date(year, month - 1, day); // Month is zero-indexed in Date
-//     const monthName = months[date.getMonth()];
-//     const yearMonthKey = `${year}-${monthName}`;
-//     availability[yearMonthKey] = true;
-//   });
-
-//   // Determine the date range from the first transaction to the current date
-//   const firstTransactionDate = new Date(data[0].Timestamp);
-//   const currentDate = new Date(); // Current date
-//   const currentMonth = new Date(currentDate);
-//   let counter = 1;
-
-//   // Populate months with no data as null
-//   while (currentMonth >= firstTransactionDate) {
-//     const year = currentMonth.getFullYear();
-//     const monthName = months[currentMonth.getMonth()];
-//     const yearMonthKey = `${year}-${monthName}`;
-//     if (!(yearMonthKey in availability)) {
-//       availability[yearMonthKey] = [null, counter];
-//     } else {
-//       availability[yearMonthKey] = [availability[yearMonthKey], counter];
-//       counter++;
-//     }
-//     currentMonth.setMonth(currentMonth.getMonth() - 1);
-//   }
-
-//   for (const key in availability) {
-//     if (Array.isArray(availability[key])) {
-//       continue;
-//     }
-//     availability[key] = [availability[key], counter];
-//   }
-
-//   return availability;
-// };
 
 const getNetAmounts = (income, spending, saving) => {
   // Find the latest month from available data
@@ -299,15 +237,14 @@ const getNetAmounts = (income, spending, saving) => {
     const incomeTotal = Number(income[month]?.netTotal.toFixed(2)) || 0;
     const spendingTotal = Number(spending[month]?.netTotal.toFixed(2)) || 0; // Round and convert to number
     const savingTotal = Number(saving[month]?.netTotal.toFixed(2)) || 0; // Round and convert to number
-    const netTotal = Number(
-      (incomeTotal + spendingTotal + savingTotal).toFixed(2)
-    );
+    const netTotal = Number((incomeTotal - spendingTotal).toFixed(2));
 
     acc[month] = {
       income: incomeTotal,
       spending: spendingTotal,
       saving: savingTotal,
       net: netTotal,
+      month: monthsNames[Number(month.split("-")[1])],
     };
     return acc;
   }, {});

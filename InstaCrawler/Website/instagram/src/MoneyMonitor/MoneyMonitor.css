@@ -1,6 +1,6 @@
 :root {
   --Ac-1: rgba(255, 245, 240, 1);
-  --Ac-2: rgba(255, 245, 240, 0.8);
+  --Ac-2: rgba(255, 245, 240, 0.6);
   --Ac-3: rgba(255, 245, 240, 0.2);
   --Ac-4: rgba(255, 245, 240, 0.05);
 
@@ -299,7 +299,7 @@
   font-size: 1.2rem;
   font-weight: 200;
   font-family: "Noto Sans", sans-serif;
-  color: var(--Ac-2);
+  color: var(--Ac-1);
   margin: 0;
   text-transform: capitalize;
   align-items: center;
@@ -475,7 +475,7 @@
   font-size: 0.73rem;
   font-weight: 400;
   font-family: "Noto Sans", sans-serif;
-  color: var(--Ac-2);
+  color: var(--Ac-1);
   padding: 10px 5px;
   border-radius: 30px;
   width: 25%;
@@ -1705,7 +1705,7 @@
   font-size: 1.5rem;
   font-weight: 100;
   font-family: "Noto Sans", sans-serif;
-  color: var(--Ac-2);
+  color: var(--Ac-1);
   margin: 0;
   margin-top: -2px;
 }
@@ -1713,7 +1713,7 @@
   font-size: 0.7rem;
   font-weight: 300;
   font-family: "Noto Sans", sans-serif;
-  color: var(--Ac-3);
+  color: var(--Ac-2);
   margin: 0;
 }
 .MoneyEntry_percentage {
@@ -1765,7 +1765,7 @@
   font-size: 1.2rem;
   font-weight: 200;
   font-family: "Noto Sans", sans-serif;
-  color: var(--Ac-2);
+  color: var(--Ac-1);
   margin: 0;
   text-transform: capitalize;
   align-items: center;
@@ -1783,7 +1783,7 @@
   z-index: 10;
   border-radius: 30px;
   overflow: hidden;
-  margin: -5px 0;
+  margin: 15px 0 -15px 0;
 }
 
 .MainStatestics-dash {
@@ -1804,7 +1804,7 @@
 .MainStatestics-dash p {
   width: max-content;
   background-color: var(--Ec-1);
-  padding-right: 7px;
+  padding: 0 10px;
 }
 
 .MainStatestics ul {
@@ -1874,36 +1874,41 @@
 .MainStatestics-batch li:nth-last-of-type(1) {
   position: absolute;
   color: var(--Ac-1);
-  font-size: 0.75rem;
-  font-weight: 300;
+  font-size: 0.7rem;
+  font-weight: 500;
   font-family: "Noto Sans", sans-serif;
   display: flex;
-  bottom: 10px;
+  margin-top: 30px;
+  margin-right: 40px;
+  text-align: right;
+  width: 25px;
+  align-items: flex-end;
+  justify-content: flex-end;
 }
 .MainStatestics-batch li:nth-last-of-type(2) {
   position: absolute;
   background-color: var(--Fc-1);
-  background: linear-gradient(180deg, var(--Fc-1) 50%, var(--Fc-3) 100%);
+  background: linear-gradient(180deg, var(--Fc-1) 50%, var(--Fc-2) 100%);
   height: 30%;
-  margin-bottom: calc(20%);
+  bottom: calc(50% + 10px);
   width: 6px;
   border-radius: 20px;
 }
 .MainStatestics-batch li:nth-last-of-type(3) {
   position: absolute;
   background-color: var(--Gc-1);
-  background: linear-gradient(0deg, var(--Gc-1) 50%, var(--Gc-3) 100%);
+  background: linear-gradient(0deg, var(--Gc-1) 50%, var(--Gc-2) 100%);
   height: 30%;
-  margin-bottom: calc(-20%);
+  top: calc(50% + 10px);
   width: 6px;
   border-radius: 20px;
 }
 .MainStatestics-batch li:nth-last-of-type(4) {
   position: absolute;
   background-color: var(--Bc-1);
-  background: linear-gradient(180deg, var(--Bc-1) 50%, var(--Bc-3) 100%);
+  background: linear-gradient(180deg, var(--Bc-1) 50%, var(--Bc-2) 100%);
   height: 15%;
-  margin-bottom: calc(11%);
+  bottom: calc(50% + 10px);
   width: 6px;
   margin-left: 20px;
   border-radius: 20px;
@@ -1912,9 +1917,9 @@
 .MainStatestics-batch li:nth-last-of-type(5) {
   position: absolute;
   background-color: var(--Ac-1);
-  background: linear-gradient(180deg, var(--Ac-1) 50%, var(--Ac-3) 100%);
+  background: linear-gradient(180deg, var(--Ac-1) 50%, var(--Ac-2) 100%);
   height: 15%;
-  margin-bottom: calc(11%);
+  bottom: calc(50% + 10px);
   width: 6px;
   margin-left: -20px;
   border-radius: 20px;

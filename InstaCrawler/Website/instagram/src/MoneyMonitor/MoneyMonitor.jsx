@@ -191,7 +191,11 @@ const MoneyMonitor = () => {
               <span>Save & Invest</span>
             </ScalableHeading>
           </nav>
-          <MainStatestics height={height} netAmounts={netAmountsData} />
+          <MainStatestics
+            height={height}
+            netAmounts={netAmountsData}
+            mainPageMonth={mainPageMonth}
+          />
           {Object.keys(mainNetAmounts).length > 0 && (
             <MoneyEntry
               setIsMoreClicked={setIsMoreClicked}
