@@ -1806,33 +1806,37 @@
   color: var(--Ac-1);
   display: flex;
   flex-direction: column;
-  height: calc(100% - 100px);
-  align-items: flex-start;
-  justify-content: space-between;
+  height: calc(100%);
+  align-items: center;
+  justify-content: center;
   font-size: 0.7rem;
   font-weight: 300;
   font-family: "Noto Sans", sans-serif;
-  margin: 50px 0 65px 0;
   right: 0px;
+  margin-bottom: 5px;
 }
 
 .MainStatestics-guid p {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   align-items: center;
   justify-content: flex-start;
   width: fit-content;
-  margin: 0;
+  margin: 4px 0;
   font-size: 0.7rem;
   font-weight: 300;
   font-family: "Noto Sans", sans-serif;
   color: var(--Ac-1);
-  height: inherit;
+  height: fit-content;
 }
 
 .MainStatestics-guid span {
   font-size: 2rem;
-  margin-right: 5px;
+  margin-top: 5px;
+  width: 15px;
+  height: 2px;
+  outline: 3px solid var(--Ac-3);
+  border-radius: 30px;
 }
 .MainStatestics-dash:nth-last-of-type(2) {
   background-size: 7px 0.5px;
@@ -1845,6 +1849,7 @@
   font-family: "Noto Sans", sans-serif;
   color: var(--Ac-1);
   height: inherit;
+  margin-left: 10px;
 }
 
 .MainStatestics-dash:nth-last-of-type(3) {
@@ -1858,6 +1863,7 @@
   font-family: "Noto Sans", sans-serif;
   color: var(--Ac-1);
   height: inherit;
+  margin-left: 10px;
 }
 
 .MainStatestics ul {
@@ -1945,18 +1951,20 @@
   position: absolute;
   background-color: var(--Fc-1);
   background: linear-gradient(180deg, var(--Fc-1) 50%, var(--Fc-2) 100%);
+  outline: 2px solid var(--Fc-3);
   height: 30%;
   bottom: calc(50% + 10px);
-  width: 6px;
+  width: 4px;
   border-radius: 20px;
 }
 .MainStatestics-batch li:nth-last-of-type(3) {
   position: absolute;
   background-color: var(--Gc-1);
   background: linear-gradient(0deg, var(--Gc-1) 50%, var(--Gc-2) 100%);
+  outline: 2px solid var(--Gc-3);
   height: 30%;
   top: calc(50% + 10px);
-  width: 6px;
+  width: 4px;
   border-radius: 20px;
 }
 .MainStatestics-batch li:nth-last-of-type(4) {
@@ -1965,7 +1973,8 @@
   background: linear-gradient(180deg, var(--Bc-1) 50%, var(--Bc-2) 100%);
   height: 15%;
   bottom: calc(50% + 10px);
-  width: 6px;
+  width: 4px;
+  outline: 2px solid var(--Bc-3);
   margin-left: 20px;
   border-radius: 20px;
   z-index: 10000;
@@ -1976,7 +1985,8 @@
   background: linear-gradient(180deg, var(--Ac-1) 50%, var(--Ac-2) 100%);
   height: 15%;
   bottom: calc(50% + 10px);
-  width: 6px;
+  width: 4px;
+  outline: 2px solid var(--Ac-3);
   margin-left: -20px;
   border-radius: 20px;
   z-index: 10000;

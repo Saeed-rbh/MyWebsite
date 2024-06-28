@@ -97,7 +97,7 @@ const MainStatestics = ({
         ((height - 225 - 85) *
           processedData[mainPageMonth - 1].incomePercentage) /
           100 +
-        10
+        12
       : (height - 225 - 85) / 2,
   });
 
@@ -108,9 +108,52 @@ const MainStatestics = ({
         ((height - 225 - 85) *
           processedData[mainPageMonth - 1].spendingPercentage) /
           100 -
-        10
+        12
       : (height - 225 - 85) / 2,
   });
+
+  const data = processedData[mainPageMonth - 1];
+  const springGuid = useSprings(
+    4,
+    [
+      {
+        width: data
+          ? data.incomePercentage < 10
+            ? 10
+            : data.incomePercentage
+          : 10,
+        background: "var(--Fc-1)",
+        outline: "3px solid var(--Fc-3)",
+      },
+      {
+        width: data ? (data.netPercentage < 10 ? 10 : data.netPercentage) : 10,
+        background: "var(--Bc-1)",
+        outline: "3px solid var(--Bc-3)",
+      },
+      {
+        width: data
+          ? data.savingPercentage < 10
+            ? 10
+            : data.savingPercentage
+          : 10,
+        background: "var(--Ac-1)",
+        outline: "3px solid var(--Ac-3)",
+      },
+      {
+        width: data
+          ? data.spendingPercentage < 10
+            ? 10
+            : data.spendingPercentage
+          : 10,
+        background: "var(--Gc-1)",
+        outline: "3px solid var(--Gc-3)",
+      },
+    ].map((item) => ({
+      width: item.width,
+      background: item.background,
+      outline: item.outline,
+    }))
+  );
 
   return (
     <div
@@ -123,7 +166,7 @@ const MainStatestics = ({
         <h1>
           +
           {processedData[mainPageMonth - 1]
-            ? Number(processedData[mainPageMonth - 1].income.toFixed(1))
+            ? Number(processedData[mainPageMonth - 1].income.toFixed(0))
             : 0}
           $
         </h1>
@@ -133,7 +176,7 @@ const MainStatestics = ({
         <h1>
           -
           {processedData[mainPageMonth - 1]
-            ? Number(processedData[mainPageMonth - 1].spending.toFixed(1))
+            ? Number(processedData[mainPageMonth - 1].spending.toFixed(0))
             : 0}
           $
         </h1>
@@ -141,16 +184,44 @@ const MainStatestics = ({
 
       <div className="MainStatestics-guid">
         <p>
-          <span style={{ color: `var(--Fc-1)` }}>•</span> Income
+          Income
+          <animated.span
+            style={{
+              width: springGuid[0].width,
+              background: springGuid[0].background,
+              outline: springGuid[0].outline,
+            }}
+          ></animated.span>
         </p>
         <p>
-          <span style={{ color: `var(--Bc-1)` }}>•</span> Balance
+          Balance
+          <animated.span
+            style={{
+              width: springGuid[1].width,
+              background: springGuid[1].background,
+              outline: springGuid[1].outline,
+            }}
+          ></animated.span>
         </p>
         <p>
-          <span style={{ color: `var(--Ac-1)` }}>•</span> Saving
+          Saving
+          <animated.span
+            style={{
+              width: springGuid[2].width,
+              background: springGuid[2].background,
+              outline: springGuid[2].outline,
+            }}
+          ></animated.span>
         </p>
         <p>
-          <span style={{ color: `var(--Gc-1)` }}>•</span> Spending
+          Spending
+          <animated.span
+            style={{
+              width: springGuid[3].width,
+              background: springGuid[3].background,
+              outline: springGuid[3].outline,
+            }}
+          ></animated.span>
         </p>
       </div>
 
