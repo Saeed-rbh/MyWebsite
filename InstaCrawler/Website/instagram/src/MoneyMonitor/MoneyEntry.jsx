@@ -63,7 +63,7 @@ const MoneyEntry = ({
           <span className="MoneyEntry_Dot" style={totalStyle}>
             •{" "}
           </span>
-          {incomeTransactions.month} <span>Summary</span>
+          <span>{incomeTransactions.month}</span> Summary
         </h1>
         <h1 className="MoneyEntry_total" style={totalStyle}>
           <span className="MoneyEntry_totalTitle">Balance: </span> $

@@ -194,14 +194,14 @@
 }
 
 .MoneyEntry_totalTitle {
-  color: var(--Ac-2);
+  color: var(--Ac-1);
   font-size: 1rem;
   font-weight: 600;
   font-family: "Noto Sans", sans-serif;
   margin-right: 6px;
 }
 .MoneyEntry_totalTitleMonth {
-  color: var(--Ac-2);
+  color: var(--Ac-1);
   font-size: 1rem;
   font-weight: 200;
   font-family: "Noto Sans", sans-serif;
@@ -209,20 +209,18 @@
 }
 .MoneyEntry h1 {
   font-size: 1rem;
-  font-weight: 500;
+  font-weight: 100;
   font-family: "Noto Sans", sans-serif;
   display: flex;
   flex-direction: row;
   align-items: center;
+  color: var(--Ac-1);
+  margin: 15px 0 7px 0;
 }
-.MoneyEntry h2 {
-  font-size: 1rem;
+
+.MoneyEntry h1 span {
   font-weight: 300;
-  font-family: "Noto Sans", sans-serif;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  margin: 0 3px 0 5px;
+  margin-right: 3px;
 }
 .MoneyEntry_Dot {
   margin-right: 2px;
@@ -1836,6 +1834,7 @@
   height: 2px;
   outline: 3px solid var(--Ac-3);
   border-radius: 30px;
+  opacity: 0.7;
 }
 .MainStatestics-dash:nth-last-of-type(2) {
   background-size: 7px 0.5px;
