@@ -34,9 +34,7 @@ function ChooseTransactionMonth({
   return (
     <animated.div className="TransactionList_MonthlyFooter" style={clickAction}>
       <div className="TransactionList_MonthlyNames">
-        <h3>
-          What <span>Date</span> are you Lookomg for ?
-        </h3>
+        <h3>Timeline</h3>
         {Object.entries(dataAvailability).map(([year, monthsData]) => (
           <div key={year} className="TransactionList_MonthlyYear">
             <animated.h1>
