@@ -1470,6 +1470,7 @@
   padding-top: 0px;
   border-radius: 30px;
   flex-wrap: wrap;
+  margin-top: 10px;
 }
 
 .TransactionList_MonthlyNames {
@@ -1512,7 +1513,7 @@
   font-family: "Noto Sans", sans-serif;
   color: var(--Ac-2);
   margin: 0;
-  margin: -45px 0 10px 5px;
+  margin: -55px 0 10px 5px;
   display: flex;
 }
 
