@@ -93,23 +93,23 @@ const MainStatestics = ({
   const valueSpringIn = useSpring({
     position: "absolute",
     bottom: processedData[mainPageMonth - 1]
-      ? (height - 225 - 85) / 2 +
-        ((height - 225 - 85) *
+      ? (height - 225 - 85 + 20 - 50) / 2 +
+        ((height - 225 - 85 + 20 - 50) *
           processedData[mainPageMonth - 1].incomePercentage) /
           100 +
-        12
-      : (height - 225 - 85) / 2,
+        38
+      : (height - 225 - 85 + 20 - 50) / 2,
   });
 
   const valueSpringSp = useSpring({
     position: "absolute",
     bottom: processedData[mainPageMonth - 1]
-      ? (height - 225 - 85) / 2 -
-        ((height - 225 - 85) *
+      ? (height - 225 - 85 + 20 - 50) / 2 -
+        ((height - 225 - 85 + 20 - 50) *
           processedData[mainPageMonth - 1].spendingPercentage) /
-          100 -
+          100 +
         12
-      : (height - 225 - 85) / 2,
+      : (height - 225 - 85 + 20 - 50) / 2,
   });
 
   const data = processedData[mainPageMonth - 1];
@@ -157,7 +157,7 @@ const MainStatestics = ({
 
   return (
     <div
-      style={{ height: `${height - 225 - 85}px` }}
+      style={{ height: `${height - 225 - 85 + 20}px` }}
       className="MainStatestics"
     >
       <div className="MainStatestics-dash"></div>
