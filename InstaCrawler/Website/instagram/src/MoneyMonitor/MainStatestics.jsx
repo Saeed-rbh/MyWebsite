@@ -1,6 +1,6 @@
-import { delay } from "lodash";
-import React, { useMemo } from "react";
+import React, { useMemo, useRef, useState } from "react";
 import { useSprings, animated, useSpring } from "react-spring";
+import { useDrag } from "@use-gesture/react";
 
 // Constants
 const PERCENTAGE_FACTOR = 40;
@@ -44,8 +44,6 @@ const MainStatestics = ({
     );
   }, [last6MonthsData]);
 
-  console.log(maxValues);
-
   const processedData = useMemo(
     () =>
       last6MonthsData.map((d) => ({
@@ -82,12 +80,6 @@ const MainStatestics = ({
       },
       delay: index * 50,
     }))
-  );
-
-  console.log(
-    processedData[mainPageMonth - 1]
-      ? Number(processedData[mainPageMonth - 1].income.toFixed(0))
-      : 0
   );
 
   const valueSpringIn = useSpring({
@@ -154,6 +146,20 @@ const MainStatestics = ({
       outline: item.outline,
     }))
   );
+
+  const [{ x }, api] = useSpring(() => ({ x: 0 }));
+  const [currentX, setCurrentX] = useState(0);
+
+  const bind = useDrag(({ down, movement: [mx], cancel, memo = false }) => {
+    const newX = currentX + mx;
+    if (newX > 0) return setCurrentX(newX);
+    if (-1 * newX > 31.5 * springs.length) return setCurrentX(newX);
+
+    if (!down) {
+      setCurrentX(newX);
+    }
+    api.start({ x: down ? newX : newX });
+  });
 
   return (
     <div
@@ -225,13 +231,18 @@ const MainStatestics = ({
         </p>
       </div>
 
-      <ul>
+      <animated.ul {...bind()}>
         {springs.map((style, index) => (
           <animated.div
             key={index}
             className="MainStatestics-batch"
-            style={{ opacity: style.opacity }}
-            onClick={() => setMainPageMonth(index + 1)}
+            style={{
+              opacity: style.opacity,
+              transform: x.to((x) => `translate3d(${x}px,0,0)`),
+            }}
+            onClick={() => {
+              setMainPageMonth(index + 1);
+            }}
           >
             <li></li>
             <animated.li
@@ -259,7 +270,7 @@ const MainStatestics = ({
             <li>{processedData[index].month}</li>
           </animated.div>
         ))}
-      </ul>
+      </animated.ul>
     </div>
   );
 };

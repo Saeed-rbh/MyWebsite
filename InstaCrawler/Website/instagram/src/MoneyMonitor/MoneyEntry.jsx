@@ -35,8 +35,10 @@ const MoneyEntry = ({
   setIsMoreClicked,
   mainNetAmounts,
 }) => {
-  const savingtotalAmount = savingTransactions.totalSaving;
-  const savingPercentage = savingTransactions.percentageChange
+  const savingtotalAmount = savingTransactions
+    ? savingTransactions.totalSaving
+    : 0;
+  const savingPercentage = savingTransactions
     ? savingTransactions.percentageChange
     : 0;
 
