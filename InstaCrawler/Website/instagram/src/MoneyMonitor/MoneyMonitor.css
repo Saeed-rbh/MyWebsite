@@ -181,7 +181,7 @@
 
 .MoneyEntry_Title {
   display: flex;
-  width: calc(100% - 10px);
+  width: -webkit-fill-available;
   flex-direction: row;
   justify-content: space-between;
   margin: 0px 0;
@@ -470,20 +470,27 @@
 
 .MoneyMonitor_Menu p:last-of-type {
   position: absolute;
-  font-size: 0.73rem;
-  font-weight: 400;
+  font-size: 0.7rem;
+  font-weight: 100;
   font-family: "Noto Sans", sans-serif;
   color: var(--Ac-1);
   padding: 10px 5px;
   border-radius: 30px;
   width: 25%;
-  margin: 0 3px 5px 3px;
+  margin: 0 3px 3px 3px;
   left: 0px;
-  top: -25px;
-  width: 100%;
+  top: -23px;
   display: flex;
-  text-wrap: nowrap;
   align-items: center;
+  justify-content: left;
+}
+
+.MoneyMonitor_Menu p:last-of-type span {
+  font-weight: 300;
+  margin: 0 3px;
+  height: min-content;
+  width: min-content;
+  background: none;
 }
 
 .MoneyMonitor_header {

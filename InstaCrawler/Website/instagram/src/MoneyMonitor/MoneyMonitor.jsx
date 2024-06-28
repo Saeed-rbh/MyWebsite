@@ -179,7 +179,7 @@ const MoneyMonitor = () => {
           </section> */}
           <nav className="MoneyMonitor_Menu">
             <p>
-              Add Transaction <span></span>
+              Add <span>Transaction</span>
             </p>
             <ScalableHeading>
               <span>Income</span> Transaction
