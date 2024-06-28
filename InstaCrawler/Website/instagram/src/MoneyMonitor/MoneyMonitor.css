@@ -1790,9 +1790,9 @@
   position: absolute;
   width: calc(100% - 80px);
   height: 2px;
-  background-image: linear-gradient(to right, var(--Ac-2) 50%, var(--Ec-4) 0%);
+  background-image: linear-gradient(to right, var(--Ac-2) 40%, var(--Ec-4) 0%);
   background-position: bottom;
-  background-size: 5px 1px;
+  background-size: 3px 1px;
   background-repeat: repeat-x;
   color: var(--Ac-1);
   font-size: 0.7rem;
@@ -1845,7 +1845,7 @@
   width: max-content;
   margin-top: -25px;
   font-size: 0.7rem;
-  font-weight: 300;
+  font-weight: 500;
   font-family: "Noto Sans", sans-serif;
   color: var(--Ac-1);
   height: inherit;
@@ -1859,7 +1859,7 @@
   width: max-content;
   margin-bottom: 0;
   font-size: 0.7rem;
-  font-weight: 300;
+  font-weight: 500;
   font-family: "Noto Sans", sans-serif;
   color: var(--Ac-1);
   height: inherit;
