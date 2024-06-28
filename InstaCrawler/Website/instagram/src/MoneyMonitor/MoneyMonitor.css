@@ -1,7 +1,7 @@
 :root {
   --Ac-1: rgba(255, 245, 240, 1);
   --Ac-2: rgba(255, 245, 240, 0.8);
-  --Ac-3: rgba(255, 245, 240, 0.3);
+  --Ac-3: rgba(255, 245, 240, 0.2);
   --Ac-4: rgba(255, 245, 240, 0.05);
 
   --Bc-1: rgba(212, 157, 129, 1);
@@ -1781,9 +1781,30 @@
   /* height: -webkit-fill-available;
   min-width: -webkit-fill-available; */
   z-index: 10;
-  background: linear-gradient(165deg, var(--Ac-4) 30%, var(--Ec-4) 100%);
   border-radius: 30px;
   overflow: hidden;
+  margin: -5px 0;
+}
+
+.MainStatestics-dash {
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  background-image: linear-gradient(to right, var(--Ac-2) 50%, var(--Ec-4) 0%);
+  background-position: bottom;
+  background-size: 5px 1px;
+  background-repeat: repeat-x;
+  color: var(--Ac-1);
+  font-size: 0.7rem;
+  font-weight: 300;
+  font-family: "Noto Sans", sans-serif;
+  display: flex;
+  align-items: center;
+}
+.MainStatestics-dash p {
+  width: max-content;
+  background-color: var(--Ec-1);
+  padding-right: 7px;
 }
 
 .MainStatestics ul {
@@ -1794,17 +1815,8 @@
   width: 100%;
   padding: 0 10px;
   height: 100%;
-}
-.MainStatestics ul li {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0 20px;
-  margin: 5px;
-  height: 60%;
-  background-color: var(--Ac-4);
-  border-radius: 30px;
+  padding-left: 70px;
+  list-style-type: none;
 }
 
 .MoneyMonitor_MainBlur {
@@ -1846,4 +1858,74 @@
   font-size: 1.5rem;
   right: 5px;
   top: 5px;
+}
+
+.MainStatestics-batch {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 0 10px;
+  height: 100%;
+  margin: 0 15px;
+}
+
+.MainStatestics-batch li:nth-last-of-type(1) {
+  position: absolute;
+  color: var(--Ac-1);
+  font-size: 0.75rem;
+  font-weight: 300;
+  font-family: "Noto Sans", sans-serif;
+  display: flex;
+  bottom: 10px;
+}
+.MainStatestics-batch li:nth-last-of-type(2) {
+  position: absolute;
+  background-color: var(--Fc-1);
+  background: linear-gradient(180deg, var(--Fc-1) 50%, var(--Fc-3) 100%);
+  height: 30%;
+  margin-bottom: calc(20%);
+  width: 6px;
+  border-radius: 20px;
+}
+.MainStatestics-batch li:nth-last-of-type(3) {
+  position: absolute;
+  background-color: var(--Gc-1);
+  background: linear-gradient(0deg, var(--Gc-1) 50%, var(--Gc-3) 100%);
+  height: 30%;
+  margin-bottom: calc(-20%);
+  width: 6px;
+  border-radius: 20px;
+}
+.MainStatestics-batch li:nth-last-of-type(4) {
+  position: absolute;
+  background-color: var(--Bc-1);
+  background: linear-gradient(180deg, var(--Bc-1) 50%, var(--Bc-3) 100%);
+  height: 15%;
+  margin-bottom: calc(11%);
+  width: 6px;
+  margin-left: 20px;
+  border-radius: 20px;
+  z-index: 10000;
+}
+.MainStatestics-batch li:nth-last-of-type(5) {
+  position: absolute;
+  background-color: var(--Ac-1);
+  background: linear-gradient(180deg, var(--Ac-1) 50%, var(--Ac-3) 100%);
+  height: 15%;
+  margin-bottom: calc(11%);
+  width: 6px;
+  margin-left: -20px;
+  border-radius: 20px;
+  z-index: 10000;
+}
+
+.MainStatestics-batch li:nth-last-of-type(6) {
+  position: absolute;
+  background-color: var(--Ac-1);
+  height: 5px;
+  width: 5px;
+  outline: 4px solid var(--Ac-3);
+  border-radius: 100%;
 }

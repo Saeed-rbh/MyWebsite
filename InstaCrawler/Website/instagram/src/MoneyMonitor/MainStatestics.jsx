@@ -5,12 +5,22 @@ const MainStatestics = ({ height, netAmounts }) => {
   // console.log(netSeries);
   return (
     <div
-      style={{ height: `${height - 225 - 85 - 55 - 20}px` }}
+      style={{ height: `${height - 225 - 85}px` }}
       className="MainStatestics"
     >
+      <div className="MainStatestics-dash">
+        <p>0</p>
+      </div>
       <ul>
         {netSeries.map((Date, index) => (
-          <li>{netSeries[index][0]}</li>
+          <div className="MainStatestics-batch">
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li>Feb</li>
+          </div>
         ))}
       </ul>
     </div>
