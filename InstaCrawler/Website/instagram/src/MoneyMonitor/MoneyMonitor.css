@@ -1493,7 +1493,7 @@
   margin: 1px 1px 1px 1px;
   /* width: 25px; */
   border-radius: 30px;
-  opacity: 0.7;
+  opacity: 0.85;
   justify-content: space-evenly;
   align-items: center;
   flex-direction: column;
@@ -1511,7 +1511,7 @@
   font-size: 1rem;
   font-weight: 100;
   font-family: "Noto Sans", sans-serif;
-  color: var(--Ac-2);
+  color: var(--Ac-1);
   margin: 0;
   margin: -55px 0 10px 5px;
   display: flex;
@@ -1541,6 +1541,12 @@
   /* filter: blur(2px); */
   opacity: 0.7;
   margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.TransactionList_MonthlyFooter p span:last-of-type svg {
+  color: var(--Ec-1);
 }
 
 .TransactionList_MonthlyYear {

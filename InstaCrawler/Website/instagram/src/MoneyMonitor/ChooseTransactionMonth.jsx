@@ -1,6 +1,7 @@
 import React from "react";
 import { useSpring, animated } from "@react-spring/web";
-
+import { FaCheck } from "react-icons/fa";
+import { FaXmark } from "react-icons/fa6";
 const monthMapping = {
   Jan: 1,
   Feb: 2,
@@ -64,8 +65,12 @@ function ChooseTransactionMonth({
                           : value[0]
                           ? "var(--Fc-1)"
                           : "var(--Gc-1)",
+
+                      fontSize: value[0] ? "0.5rem" : "0.7rem",
                     }}
-                  ></span>
+                  >
+                    {value[0] ? <FaCheck /> : <FaXmark />}
+                  </span>
                 </animated.p>
               ))}
           </div>
