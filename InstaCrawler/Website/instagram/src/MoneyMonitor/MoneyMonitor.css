@@ -767,7 +767,6 @@
   margin: 10px 0 25px 0;
   width: calc(100% - 80px);
   display: flex;
-  opacity: 0.8;
 }
 .transaction-Description {
   font-size: 0.8rem;
@@ -791,7 +790,6 @@
   width: fit-content;
   width: -moz-fit-content;
   display: flex;
-  opacity: 0.8;
   flex-direction: row;
   align-items: flex-start;
   margin-top: 3px;
@@ -799,7 +797,6 @@
 
 .transaction-Description h3 span {
   color: var(--Ac-2);
-  opacity: 0.8;
 }
 
 .TransactionList_Wall h1 span {
@@ -948,7 +945,7 @@
   font-size: 0.73rem;
   font-weight: 400;
   font-family: "Noto Sans", sans-serif;
-  color: var(--Ac-2);
+  color: var(--Ac-1);
   padding: 10px 0px;
   border-radius: 30px;
   margin: 0 0 0 3px;
@@ -1008,6 +1005,11 @@
   border: 1px solid var(--Ac-3);
   background: var(--Ec-3);
   overflow: hidden;
+  background: var(--Ec-2);
+  color: rgb(255, 245, 240);
+  font-weight: 200;
+  border: 1px solid rgba(255, 245, 240, 0.2);
+  transform: none;
 }
 
 .TransactionList_Menu h2 svg {
