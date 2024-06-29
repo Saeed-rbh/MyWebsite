@@ -56,6 +56,8 @@ const MainStatestics = ({
     [last6MonthsData, maxValues]
   );
 
+  console.log(processedData);
+
   const springs = useSprings(
     processedData.length,
     processedData.map((d, index) => ({
@@ -66,8 +68,13 @@ const MainStatestics = ({
         incomeHeight: "0%",
       },
       to: {
+        savingDesplay: d.savingPercentage === 0 ? "none" : "flex",
+        netDesplay: d.netPercentage === 0 ? "none" : "flex",
         savingHeight: `${d.savingPercentage}%`,
-        netHeight: `${d.netPercentage}%`,
+        netBottom: d.netPercentage > 0 ? "calc(50% + 10px)" : "none",
+        netTop: d.netPercentage < 0 ? "calc(50% + 10px)" : "none",
+        netHeight:
+          d.netPercentage > 0 ? `${d.netPercentage}%` : `${-d.netPercentage}%`,
         spendingHeight: `${
           d.spendingPercentage === 0 ? MIN_PERCENTAGE : d.spendingPercentage
         }%`,
@@ -85,11 +92,18 @@ const MainStatestics = ({
   const valueSpringIn = useSpring({
     position: "absolute",
     bottom: processedData[mainPageMonth - 1]
-      ? (height - 225 - 85 + 20 - 50) / 2 +
-        ((height - 225 - 85 + 20 - 50) *
-          processedData[mainPageMonth - 1].incomePercentage) /
-          100 +
-        38
+      ? processedData[mainPageMonth - 1].incomePercentage >
+        processedData[mainPageMonth - 1].savingPercentage
+        ? (height - 225 - 85 + 20 - 50) / 2 +
+          ((height - 225 - 85 + 20 - 50) *
+            processedData[mainPageMonth - 1].incomePercentage) /
+            100 +
+          38
+        : (height - 225 - 85 + 20 - 50) / 2 +
+          ((height - 225 - 85 + 20 - 50) *
+            processedData[mainPageMonth - 1].savingPercentage) /
+            100 +
+          38
       : (height - 225 - 85 + 20 - 50) / 2,
   });
 
@@ -152,7 +166,7 @@ const MainStatestics = ({
 
   const bind = useDrag(({ down, movement: [mx], cancel, memo = false }) => {
     const newX = currentX + mx;
-    if (newX > 0) return setCurrentX(0);
+    if (newX > 0) return setCurrentX(0) && setMainPageMonth(1);
     if (-1 * newX > 31.5 * springs.length)
       return setCurrentX(-31.5 * springs.length);
 
@@ -166,6 +180,7 @@ const MainStatestics = ({
     <div
       style={{ height: `${height - 225 - 85 + 20}px` }}
       className="MainStatestics"
+      {...bind()}
     >
       <div className="MainStatestics-dash"></div>
 
@@ -232,7 +247,7 @@ const MainStatestics = ({
         </p>
       </div>
 
-      <animated.ul {...bind()}>
+      <animated.ul>
         {springs.map((style, index) => (
           <animated.div
             key={index}
@@ -240,20 +255,36 @@ const MainStatestics = ({
             style={{
               opacity: style.opacity,
               transform: x.to((x) => `translate3d(${x}px,0,0)`),
+              cursor:
+                processedData[index].income +
+                  processedData[index].spending +
+                  processedData[index].saving +
+                  processedData[index].net !==
+                0
+                  ? "pointer"
+                  : "default",
             }}
             onClick={() => {
-              setMainPageMonth(index + 1);
+              processedData[index].income +
+                processedData[index].spending +
+                processedData[index].saving +
+                processedData[index].net !==
+                0 && setMainPageMonth(index + 1);
             }}
           >
             <li></li>
             <animated.li
               style={{
                 height: style.savingHeight,
+                display: style.savingDesplay,
               }}
             ></animated.li>
             <animated.li
               style={{
                 height: style.netHeight,
+                display: style.netDesplay,
+                bottom: style.netBottom,
+                top: style.netTop,
               }}
             ></animated.li>
             <animated.li
