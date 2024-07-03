@@ -31,14 +31,14 @@ const AddTransaction = () => {
         Add <span>Transaction</span>
       </p>
       <ScalableHeading>
-        <GoArrowDownLeft /> <span>Income</span>
+        <GoArrowDownLeft color="var(--Fc-1)" /> <span>Income</span>
       </ScalableHeading>
       <ScalableHeading>
-        <GoArrowUpRight />
+        <GoArrowUpRight color="var(--Gc-1)" />
         <span>Spending</span>
       </ScalableHeading>
       <ScalableHeading>
-        <GoPlus /> <span>Save & Invest</span>
+        <GoPlus color="var(--Ac-1)" /> <span>Save & Invest</span>
       </ScalableHeading>
     </nav>
   );
