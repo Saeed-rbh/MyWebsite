@@ -1937,7 +1937,7 @@
   font-size: 0.7rem;
   font-weight: 300;
   font-family: "Noto Sans", sans-serif;
-  right: 10px;
+  right: 5px;
   margin-bottom: 5px;
 }
 
@@ -1998,10 +1998,10 @@
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  width: calc(100% - 150px);
+  width: calc(100% - 122px);
   padding: 0 10px;
   height: 100%;
-  padding-left: 60px;
+  padding-left: 50px;
   list-style-type: none;
   overflow: hidden;
   margin: 0;
@@ -2054,7 +2054,7 @@
   align-items: center;
   justify-content: center;
   width: 100%;
-  padding: 0 10px;
+  padding: 0 11px;
   height: 100%;
   margin: 0 15px;
   cursor: pointer;
@@ -2067,12 +2067,20 @@
   font-weight: 500;
   font-family: "Noto Sans", sans-serif;
   display: flex;
-  margin-top: 30px;
+  margin-top: 40px;
   margin-right: 40px;
   text-align: right;
   width: 25px;
   align-items: flex-end;
   justify-content: flex-end;
+  flex-direction: column;
+}
+
+.MainStatestics-batch li:nth-last-of-type(1) span {
+  color: var(--Bc-1);
+  font-weight: 600;
+  margin-top: -1px;
+  font-size: 0.6rem;
 }
 .MainStatestics-batch li:nth-last-of-type(2) {
   position: absolute;

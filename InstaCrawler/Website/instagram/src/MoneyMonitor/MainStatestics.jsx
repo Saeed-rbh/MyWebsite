@@ -24,7 +24,12 @@ const MainStatestics = ({
   );
 
   const last6MonthsData = useMemo(
-    () => netSeries.map(([, value]) => value),
+    () => netSeries.map(([Date, value]) => value),
+    [netSeries]
+  );
+
+  const MonthsData = useMemo(
+    () => netSeries.map(([Date, value]) => Date.split("-")[0]),
     [netSeries]
   );
 
@@ -48,14 +53,15 @@ const MainStatestics = ({
 
   const processedData = useMemo(
     () =>
-      last6MonthsData.map((d) => ({
+      last6MonthsData.map((d, index) => ({
         ...d,
         incomePercentage: calculatePercentage(d.income, maxValues),
         netPercentage: calculatePercentage(d.net, maxValues),
         savingPercentage: calculatePercentage(d.saving, maxValues),
         spendingPercentage: calculatePercentage(d.spending, maxValues),
+        year: MonthsData[index],
       })),
-    [last6MonthsData, maxValues]
+    [last6MonthsData, maxValues, MonthsData]
   );
 
   useEffect(() => {
@@ -186,6 +192,8 @@ const MainStatestics = ({
     }
     api.start({ x: down ? newX : newX });
   });
+
+  console.log(processedData[0]);
 
   return (
     <div
@@ -356,7 +364,10 @@ const MainStatestics = ({
                   background: style.incomeBg,
                 }}
               ></animated.li>
-              <li>{processedData[index].month}</li>
+              <li>
+                {processedData[index].month}{" "}
+                <span>{processedData[index].year}</span>
+              </li>
             </animated.div>
           ))}
         </animated.ul>

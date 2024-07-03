@@ -125,7 +125,7 @@ const TransactionList = ({
   const [Open_TransactionList, api] = useSpring(() => ({
     scale: isCalendarClicked ? 0.9 : 1,
     opacity: 0,
-    height: "calc(0vh - 100px)",
+    height: "calc(10vh - 80px)",
   }));
 
   const isOpenRef = React.useRef(isMoreClicked);
@@ -144,7 +144,7 @@ const TransactionList = ({
       api.start({
         scale: isCalendarClicked ? 0.9 : !!isMoreClicked ? 1 : 0.9,
         opacity: !isMoreClicked ? 0 : 1,
-        height: !!isMoreClicked ? "calc(100vh - 100px)" : "calc(0vh - 100px)",
+        height: !!isMoreClicked ? "calc(100vh - 80px)" : "calc(10vh - 80px)",
         filter: isCalendarClicked ? "blur(10px)" : "blur(0px)",
         onRest: () => {
           handleOnRest();
