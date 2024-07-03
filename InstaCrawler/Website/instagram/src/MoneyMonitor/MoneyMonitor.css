@@ -862,7 +862,7 @@
   display: flex;
   flex-direction: row;
   align-items: center;
-  width: calc(100% - 10px);
+  width: calc(100% - 13px);
   height: 40px;
   margin-bottom: 5px;
   font-size: 0.8rem;
@@ -872,10 +872,11 @@
   background: var(--Ec-3);
   background: linear-gradient(165deg, var(--Ec-2) 40%, var(--Ec-4) 100%);
   padding: 10px 20px 10px 5px;
-  border-radius: 20px;
+  border-radius: 22px;
   cursor: pointer;
   /* overflow: hidden; */
   justify-content: space-between;
+  border: 2px solid var(--Ec-2);
 }
 
 .TransactionList_TransactionList span {
@@ -887,10 +888,11 @@
   font-size: 1.4rem;
   margin-right: 7px;
   opacity: 0.9;
-  background: linear-gradient(160deg, var(--Ac-3) -120%, var(--Ec-4) 120%);
+  background: linear-gradient(160deg, var(--Ec-3) -120%, var(--Ec-4) 120%);
   padding: 10px;
   border-radius: 15px;
   color: var(--Bc-1);
+  border: 2px solid var(--Ac-3);
 }
 
 .TransactionList_TransactionList li p {
