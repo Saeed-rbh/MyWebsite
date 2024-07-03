@@ -189,6 +189,7 @@ const TransactionList = ({
               config: config.slow,
             });
             setIsMoreClicked(null);
+            handleSwipe();
           } else if (
             window.innerHeight - newHeight <
             window.innerHeight / 2.2
@@ -197,6 +198,7 @@ const TransactionList = ({
               height: "calc(10vh  - 80px)",
             });
             setIsMoreClicked(null);
+            handleSwipe();
           } else {
             api.start({
               height: `calc(100vh - 80px)`,
@@ -287,6 +289,12 @@ const TransactionList = ({
     );
   };
 
+  useEffect(() => {
+    if (!(!isCalendarClicked && isAnimationEnds)) {
+      handleUnSwipe();
+    }
+  }, [isCalendarClicked, isAnimationEnds]);
+
   return (
     <>
       <MoreOpen
@@ -319,7 +327,7 @@ const TransactionList = ({
                 {currentMonth} - {currentYear} <span>{isMoreClicked}</span>
               </p>
               <h1>
-                <span></span> Balance:{" "}
+                <span></span> Total:{" "}
                 <span style={colorStyle}>
                   ${Math.abs(totalAmount).toFixed(2)}
                 </span>

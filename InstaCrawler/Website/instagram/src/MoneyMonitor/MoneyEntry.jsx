@@ -95,6 +95,7 @@ const MoneyEntry = ({
           <span
             className="MoneyEntry_Dot"
             style={{
+              width: "15px",
               background:
                 "linear-gradient(165deg, var(--Ec-1) 30%, var(--Ac-2) 100%)",
               height: "2px",
@@ -104,12 +105,12 @@ const MoneyEntry = ({
             Save & Invest
           </span>
         </h1>
-        {!!savingPercentage && (
+        {/* {!!savingPercentage && (
           <div className="MoneyEntry_percentage" style={colorStyle}>
             <h3>{savingPercentage}%</h3>
             {savingPercentage < 0 ? <FaArrowTrendDown /> : <FaArrowTrendUp />}
           </div>
-        )}
+        )} */}
         <div
           className="MoneyEntry_Balance"
           style={{

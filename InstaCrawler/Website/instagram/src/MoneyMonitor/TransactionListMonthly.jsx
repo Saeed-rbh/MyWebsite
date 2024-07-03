@@ -11,7 +11,7 @@ const TransactionListMonthly = ({
   isMoreClicked,
   transactions,
   sortby,
-  scroll,
+  stationary,
 }) => {
   const filteredTransactions =
     sortby === "All"

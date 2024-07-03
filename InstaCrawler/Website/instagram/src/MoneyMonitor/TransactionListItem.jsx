@@ -48,28 +48,11 @@ const TransactionListItem = ({
     weekday: "long",
   }).format(date);
 
-  const swipeAnimation = useSpring({
-    onRest: () => setShowActions(isSwiped),
-  });
-
   const swipeAction = useSpring({
     transform: isSwiped ? "translateX(120px)" : "translateX(200px)",
     opacity: isSwiped ? 1 : 0,
     config: config.slow,
     onRest: () => !showActions && setShowActionsAnim(false),
-  });
-
-  const swipeSvg = useSpring({
-    opacity: isSwiped ? 0 : 1,
-  });
-
-  const swipeAmount = useSpring({
-    transform: isSwiped ? "translateX(-65px)" : "translateX(0px)",
-    marginRight: isSwiped ? "100px" : "0px",
-  });
-
-  const swipeTitle = useSpring({
-    transform: isSwiped ? "translateX(-40px)" : "translateX(0px)",
   });
 
   const swipeStyle = useSpring({
@@ -79,7 +62,7 @@ const TransactionListItem = ({
 
   const handleClick = (event) => {
     const { clientY } = event;
-    console.log(clientY);
+    // console.log(clientY);
     // if (onClick) {
     //   onClick(clientY);
     // }

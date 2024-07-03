@@ -219,7 +219,8 @@
 
 .MoneyEntry h1 span {
   font-weight: 300;
-  margin-right: 3px;
+  margin-right: 5px;
+  width: min-content;
 }
 .MoneyEntry_Dot {
   margin-right: 2px;
@@ -491,7 +492,7 @@
   width: 25%;
   margin: 0 3px 3px 3px;
   left: 0px;
-  top: -23px;
+  top: -25px;
   display: flex;
   align-items: center;
   justify-content: left;
@@ -1097,7 +1098,7 @@
   width: calc(100% - 30px);
   height: -moz-fit-content;
   height: fit-content;
-  margin: 0px 15px 5px 0;
+  margin: 0px 15px 10px 0;
   border-radius: 30px;
 }
 
