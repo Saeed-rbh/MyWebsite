@@ -420,13 +420,23 @@
   font-weight: 200;
   font-family: "Noto Sans", sans-serif;
   color: var(--Ac-1);
-  padding: 15px;
+  padding: 5px 20px 5px 5px;
   width: max-content;
   border-radius: 30px;
   margin: 12px 0px 5px 0px;
   cursor: pointer;
   background: linear-gradient(165deg, var(--Ac-4) 10%, var(--Ec-4) 100%);
   border: 1px solid var(--Ac-3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.MoneyMonitor_Menu h1 svg {
+  font-size: 1.2rem;
+  margin-right: 10px;
+  background: linear-gradient(165deg, var(--Ac-4) 10%, var(--Ec-4) 100%);
+  padding: 8px;
+  border-radius: 50px;
 }
 .MoneyMonitor_Menu h1 span {
   font-weight: 400;

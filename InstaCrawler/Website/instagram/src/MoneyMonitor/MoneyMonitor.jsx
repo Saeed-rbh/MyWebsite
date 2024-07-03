@@ -144,8 +144,9 @@ const MoneyMonitor = () => {
             isMenuOpen={isMenuOpen}
           />
         </header>
-        <AddTransaction />
+
         <animated.div style={scaleStyle}>
+          <AddTransaction />
           <MainStatestics
             height={height}
             netAmounts={netAmountsData}

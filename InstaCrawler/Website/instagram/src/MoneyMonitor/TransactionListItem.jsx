@@ -77,10 +77,6 @@ const TransactionListItem = ({
     scale: isScaled && !isSwiped ? 0.9 : 1,
   });
 
-  const swipeDate2 = useSpring({
-    opacity: isSwiped ? 0 : 0.7,
-  });
-
   const handleClick = (event) => {
     const { clientY } = event;
     console.log(clientY);
@@ -119,12 +115,6 @@ const TransactionListItem = ({
           </h3>
         </div>
       </animated.p>
-      {/* <animated.p style={swipeDate1}>
-        <span>{time.slice(8, 10)}</span>
-        <animated.span style={swipeDate2}>
-          • {type === "Monthly" ? "Monthly" : time.slice(10)}
-        </animated.span>
-      </animated.p> */}
       <animated.p>${amount}</animated.p>
       {showActionsAnim && (
         <animated.div style={swipeAction} className="transaction-actions">

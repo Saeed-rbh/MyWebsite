@@ -10,8 +10,8 @@ const TransactionListMonthly = ({
   handleTransactionClick,
   isMoreClicked,
   transactions,
-  percentageChange,
   sortby,
+  scroll,
 }) => {
   const filteredTransactions =
     sortby === "All"
@@ -31,12 +31,6 @@ const TransactionListMonthly = ({
     delay: isMoreClicked ? delay : 1000,
     config: config.slow,
   });
-
-  const trendStyle = {
-    color: percentageChange > 0 ? "var(--Fc-1)" : "var(--Gc-1)",
-    fontSize: "0.8rem",
-    fontWeight: "600",
-  };
 
   return (
     <animated.div className="TransactionList_Monthly" style={style}>

@@ -1,5 +1,6 @@
 import React, { useCallback, useState } from "react";
 import { animated, useSpring } from "react-spring";
+import { GoArrowUpRight, GoArrowDownLeft, GoPlus } from "react-icons/go";
 
 const ScalableHeading = ({ children }) => {
   const [isScaled, setIsScaled] = useState(false);
@@ -30,13 +31,14 @@ const AddTransaction = () => {
         Add <span>Transaction</span>
       </p>
       <ScalableHeading>
-        <span>Income</span> Transaction
+        <GoArrowDownLeft /> <span>Income</span>
       </ScalableHeading>
       <ScalableHeading>
-        <span>Spending</span> Transaction
+        <GoArrowUpRight />
+        <span>Spending</span>
       </ScalableHeading>
       <ScalableHeading>
-        <span>Save & Invest</span>
+        <GoPlus /> <span>Save & Invest</span>
       </ScalableHeading>
     </nav>
   );

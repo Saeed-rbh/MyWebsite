@@ -24,8 +24,6 @@ const TransactionList = ({
   const [currentYear, setCurrentYear] = useState("");
   const [labelDistribution, setLabelDistribution] = useState([]);
 
-  console.log(Transactions);
-
   useEffect(() => {
     if (Transactions.length !== 0) {
       setTotalAmount(Transactions.netTotal);

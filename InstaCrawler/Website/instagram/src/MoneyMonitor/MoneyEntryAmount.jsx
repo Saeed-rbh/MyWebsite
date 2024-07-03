@@ -1,7 +1,6 @@
 import React from "react";
 import { useSpring, animated } from "react-spring";
 import { GoArrowUpRight, GoArrowDownLeft } from "react-icons/go";
-import { FaArrowTrendUp, FaArrowTrendDown } from "react-icons/fa6";
 import { formatNetTotal } from "./tools";
 
 const MoneyEntryAmount = ({ type, transaction, setIsMoreClicked }) => {
