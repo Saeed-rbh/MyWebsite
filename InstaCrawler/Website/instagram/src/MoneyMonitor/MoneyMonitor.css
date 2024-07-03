@@ -416,28 +416,30 @@
 .MoneyMonitor_Menu h1 {
   position: relative;
   font-size: 0.7rem;
-  background-color: var(--Ac-4);
+  /* background-color: var(--Ac-4); */
   font-weight: 200;
   font-family: "Noto Sans", sans-serif;
   color: var(--Ac-1);
-  padding: 5px 18px 5px 5px;
-  width: max-content;
+  padding: 5px 17px 5px 5px;
   border-radius: 30px;
   margin: 12px 0px 5px 0px;
   cursor: pointer;
-  background: linear-gradient(165deg, var(--Ac-4) 10%, var(--Ec-4) 100%);
+  /* background: linear-gradient(165deg, var(--Ac-4) 10%, var(--Ec-4) 100%); */
   border: 1px solid var(--Ac-3);
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
+  overflow: hidden;
+  background: var(--Ec-2);
 }
 .MoneyMonitor_Menu h1 svg {
   font-size: 1.2rem;
-  margin-right: 8px;
-  background: linear-gradient(165deg, var(--Ec-1) 10%, var(--Ec-3) 100%);
+  margin-right: 9px;
+  background: linear-gradient(165deg, var(--Ec-2) 10%, var(--Ec-3) 100%);
   padding: 10px;
   border-radius: 50px;
   color: var(--Ac-2);
+  z-index: 10;
 }
 .MoneyMonitor_Menu h1 span {
   font-weight: 400;

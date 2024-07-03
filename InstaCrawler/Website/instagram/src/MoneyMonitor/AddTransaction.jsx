@@ -31,14 +31,29 @@ const AddTransaction = () => {
         Add <span>Transaction</span>
       </p>
       <ScalableHeading>
-        <GoArrowDownLeft color="var(--Fc-2)" /> <span>Income</span>
+        <GoArrowDownLeft color="var(--Fc-2)" />
+        <animated.div
+          style={{ opacity: 0.4 }}
+          className="CirleColor"
+        ></animated.div>
+        <span>Income</span>
       </ScalableHeading>
       <ScalableHeading>
         <GoArrowUpRight color="var(--Gc-2)" />
+        <animated.div
+          style={{ opacity: 0.4 }}
+          className="CirleColor"
+        ></animated.div>
+
         <span>Spending</span>
       </ScalableHeading>
       <ScalableHeading>
-        <GoPlus color="var(--Ac-2)" /> <span>Save & Invest</span>
+        <GoPlus color="var(--Ac-2)" />
+        <animated.div
+          style={{ opacity: 0.4 }}
+          className="CirleColor"
+        ></animated.div>
+        <span>Save & Invest</span>
       </ScalableHeading>
     </nav>
   );
