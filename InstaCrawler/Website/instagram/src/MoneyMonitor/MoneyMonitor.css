@@ -175,7 +175,6 @@
   align-items: flex-start;
   width: 100%;
   z-index: 10;
-  margin-top: 5px;
   height: 220px;
 }
 
@@ -420,7 +419,7 @@
   font-weight: 200;
   font-family: "Noto Sans", sans-serif;
   color: var(--Ac-1);
-  padding: 5px 17px 5px 5px;
+  padding: 5px 18px 5px 5px;
   border-radius: 30px;
   margin: 12px 0px 5px 0px;
   cursor: pointer;
@@ -434,8 +433,8 @@
 }
 .MoneyMonitor_Menu h1 svg {
   font-size: 1.2rem;
-  margin-right: 9px;
-  background: linear-gradient(165deg, var(--Ec-2) 10%, var(--Ec-3) 100%);
+  margin-right: 8px;
+  background: linear-gradient(165deg, var(--Ec-2) 10%, var(--Ec-4) 100%);
   padding: 10px;
   border-radius: 50px;
   color: var(--Ac-2);

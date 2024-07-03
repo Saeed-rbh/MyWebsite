@@ -251,7 +251,6 @@ const MainStatestics = ({
             key={index}
             className="MainStatestics-batch"
             style={{
-              // opacity: style.opacity,
               opacity: x.to((x) => {
                 const threshold = 50 * (index + 1) - 30;
                 const distance = -x - threshold;

@@ -16,6 +16,8 @@ const TransactionList = ({
   setWhichMonth,
   whichMonth,
 }) => {
+  const WindowHeight = useWindowHeight(100);
+
   const [sortby, setSortby] = useState("All");
   const [isCalendarClicked, setIsCalendarClicked] = useState(false);
 
@@ -224,6 +226,7 @@ const TransactionList = ({
   );
   const springProps2 = useCustomSpring(isMoreClicked, 2, isScrollingDown, true);
   const springProps4 = useSpring({
+    height: WindowHeight - 210,
     y: isScrollingDown ? -160 : 0,
   });
   const ClickBlurStyle = useSpring({
@@ -249,7 +252,6 @@ const TransactionList = ({
 
   const dataAvailabilityLength = Object.entries(dataAvailability).length;
 
-  const WindowHeight = useWindowHeight(100);
   const [elementLength, setElementLength] = useState(0);
 
   useEffect(() => {
