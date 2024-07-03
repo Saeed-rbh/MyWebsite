@@ -188,7 +188,6 @@ const getMonthDataAvailability = (data) => {
 };
 
 const getNetAmounts = (income, spending, saving) => {
-  // Find the latest month from available data
   const incomeMonths = Object.keys(income);
   const spendingMonths = Object.keys(spending);
   const savingMonths = Object.keys(saving);
@@ -201,12 +200,10 @@ const getNetAmounts = (income, spending, saving) => {
     return latest;
   }, null);
 
-  // Get current calendar month
   const currentDate = new Date();
   const currentYear = currentDate.getFullYear();
-  const currentMonth = currentDate.getMonth() + 1; // Month is zero-indexed
+  const currentMonth = currentDate.getMonth() + 1;
 
-  // Generate an array of months from the latest month to the current month
   const months = [];
   const [latestYear, latestMonthNum] = latestMonth.split("-").map(Number);
   let tempDate = new Date(latestYear, latestMonthNum - 1);
@@ -220,20 +217,18 @@ const getNetAmounts = (income, spending, saving) => {
     const month = tempDate.getMonth() + 1;
     months.push(`${year}-${month.toString().padStart(2, "0")}`);
 
-    // Increment the month, taking care of year transition if needed
     if (tempDate.getMonth() === 11) {
       tempDate.setFullYear(tempDate.getFullYear() + 1);
-      tempDate.setMonth(0); // January (0-indexed)
+      tempDate.setMonth(0);
     } else {
       tempDate.setMonth(tempDate.getMonth() + 1);
     }
   }
 
-  // Fill in the data for each month
   const result = months.reduce((acc, month) => {
     const incomeTotal = Number(income[month]?.netTotal?.toFixed(2)) || 0;
-    const spendingTotal = Number(spending[month]?.netTotal?.toFixed(2)) || 0; // Round and convert to number
-    const savingTotal = Number(saving[month]?.netTotal?.toFixed(2)) || 0; // Round and convert to number
+    const spendingTotal = Number(spending[month]?.netTotal?.toFixed(2)) || 0;
+    const savingTotal = Number(saving[month]?.netTotal?.toFixed(2)) || 0;
     const netTotal = Number((incomeTotal - spendingTotal).toFixed(2));
     acc[month] = {
       income: incomeTotal,
@@ -282,12 +277,6 @@ export const fetchTransactions = async ({ whichMonth }) => {
     getMonthDataAvailability(savingTransactions)
   ).reverse();
 
-  const netAmounts = getNetAmounts(
-    incomeTransactions,
-    spendingTransactions,
-    savingTransactions
-  );
-
   const selectedIncome = getSelectedMonthData(incomeTransactions, whichMonth);
 
   const selectedspending = getSelectedMonthData(
@@ -295,6 +284,12 @@ export const fetchTransactions = async ({ whichMonth }) => {
     whichMonth
   );
   const selectedsaving = getSelectedMonthData(savingTransactions, whichMonth);
+
+  const netAmounts = getNetAmounts(
+    incomeTransactions,
+    spendingTransactions,
+    savingTransactions
+  );
 
   return {
     selectedIncome,

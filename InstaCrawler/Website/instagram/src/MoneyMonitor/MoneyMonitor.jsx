@@ -161,7 +161,7 @@ const MoneyMonitor = () => {
               savingTransactions={mainLastSaving}
               mainNetAmounts={
                 Object.entries(mainNetAmounts)[
-                  Object.keys(mainNetAmounts).length - mainPageMonth
+                  Object.keys(mainNetAmounts).length - mainPageMonth - 1
                 ][1]
               }
             />

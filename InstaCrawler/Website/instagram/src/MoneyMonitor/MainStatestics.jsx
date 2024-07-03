@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { useSprings, animated, useSpring } from "react-spring";
 import { useDrag } from "@use-gesture/react";
 
@@ -56,6 +56,16 @@ const MainStatestics = ({
     [last6MonthsData, maxValues]
   );
 
+  useEffect(() => {
+    processedData.length > 0 &&
+      processedData[mainPageMonth].income +
+        processedData[mainPageMonth].spending +
+        processedData[mainPageMonth].saving +
+        processedData[mainPageMonth].net ===
+        0 &&
+      setMainPageMonth(mainPageMonth + 1);
+  }, [processedData]);
+
   const springs = useSprings(
     processedData.length,
     processedData.map((d, index) => ({
@@ -89,17 +99,17 @@ const MainStatestics = ({
 
   const valueSpringIn = useSpring({
     position: "absolute",
-    bottom: processedData[mainPageMonth - 1]
-      ? processedData[mainPageMonth - 1].incomePercentage >
-        processedData[mainPageMonth - 1].savingPercentage
+    bottom: processedData[mainPageMonth]
+      ? processedData[mainPageMonth].incomePercentage >
+        processedData[mainPageMonth].savingPercentage
         ? (height - 225 - 85 + 20 - 50) / 2 +
           ((height - 225 - 85 + 20 - 50) *
-            processedData[mainPageMonth - 1].incomePercentage) /
+            processedData[mainPageMonth].incomePercentage) /
             100 +
           38
         : (height - 225 - 85 + 20 - 50) / 2 +
           ((height - 225 - 85 + 20 - 50) *
-            processedData[mainPageMonth - 1].savingPercentage) /
+            processedData[mainPageMonth].savingPercentage) /
             100 +
           38
       : (height - 225 - 85 + 20 - 50) / 2,
@@ -107,16 +117,16 @@ const MainStatestics = ({
 
   const valueSpringSp = useSpring({
     position: "absolute",
-    bottom: processedData[mainPageMonth - 1]
+    bottom: processedData[mainPageMonth]
       ? (height - 225 - 85 + 20 - 50) / 2 -
         ((height - 225 - 85 + 20 - 50) *
-          processedData[mainPageMonth - 1].spendingPercentage) /
+          processedData[mainPageMonth].spendingPercentage) /
           100 +
         12
       : (height - 225 - 85 + 20 - 50) / 2,
   });
 
-  const data = processedData[mainPageMonth - 1];
+  const data = processedData[mainPageMonth];
   const springGuid = useSprings(
     4,
     [
@@ -185,8 +195,8 @@ const MainStatestics = ({
       <animated.div style={valueSpringIn} className="MainStatestics-dash">
         <h1>
           +
-          {processedData[mainPageMonth - 1]
-            ? Number(processedData[mainPageMonth - 1].income.toFixed(0))
+          {processedData[mainPageMonth]
+            ? Number(processedData[mainPageMonth].income.toFixed(0))
             : 0}
           $
         </h1>
@@ -195,8 +205,8 @@ const MainStatestics = ({
       <animated.div style={valueSpringSp} className="MainStatestics-dash">
         <h1>
           -
-          {processedData[mainPageMonth - 1]
-            ? Number(processedData[mainPageMonth - 1].spending.toFixed(0))
+          {processedData[mainPageMonth]
+            ? Number(processedData[mainPageMonth].spending.toFixed(0))
             : 0}
           $
         </h1>
@@ -256,10 +266,9 @@ const MainStatestics = ({
                 const distance = -x - threshold;
 
                 const minOpacity = 0.0;
-                const maxOpacity = index + 1 === mainPageMonth ? 0.8 : 0.4;
+                const maxOpacity = index === mainPageMonth ? 0.8 : 0.4;
                 const fadeDistance = 5;
 
-                // Sigmoid function for smooth transition
                 const sigmoid = (x) => 1 / (1 + Math.exp(-x));
                 const transition = sigmoid(distance / fadeDistance);
 
@@ -282,7 +291,7 @@ const MainStatestics = ({
                 processedData[index].spending +
                 processedData[index].saving +
                 processedData[index].net !==
-                0 && setMainPageMonth(index + 1);
+                0 && setMainPageMonth(index);
             }}
           >
             <li></li>
