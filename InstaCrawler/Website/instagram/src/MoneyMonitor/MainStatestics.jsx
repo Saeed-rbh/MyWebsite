@@ -141,32 +141,36 @@ const MainStatestics = ({
     [
       {
         width: data
-          ? data.incomePercentage < 10
+          ? data.incomePercentage * 0.9 < 10
             ? 10
-            : data.incomePercentage
+            : data.incomePercentage * 0.9
           : 10,
         background: "var(--Fc-1)",
         outline: "3px solid var(--Fc-3)",
       },
       {
-        width: data ? (data.netPercentage < 10 ? 10 : data.netPercentage) : 10,
+        width: data
+          ? data.netPercentage * 0.9 < 10
+            ? 10
+            : data.netPercentage * 0.9
+          : 10,
         background: "var(--Bc-1)",
         outline: "3px solid var(--Bc-3)",
       },
       {
         width: data
-          ? data.savingPercentage < 10
+          ? data.savingPercentage * 0.9 < 10
             ? 10
-            : data.savingPercentage
+            : data.savingPercentage * 0.9
           : 10,
         background: "var(--Ac-1)",
         outline: "3px solid var(--Ac-3)",
       },
       {
         width: data
-          ? data.spendingPercentage < 10
+          ? data.spendingPercentage * 0.9 < 10
             ? 10
-            : data.spendingPercentage
+            : data.spendingPercentage * 0.9
           : 10,
         background: "var(--Gc-1)",
         outline: "3px solid var(--Gc-3)",

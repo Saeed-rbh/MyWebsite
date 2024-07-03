@@ -214,7 +214,7 @@
   flex-direction: row;
   align-items: center;
   color: var(--Ac-1);
-  margin: 10px 0 10px 0;
+  margin: 7px 0 10px 0;
 }
 
 .MoneyEntry h1 span {
@@ -280,7 +280,7 @@
   position: relative;
   height: 100px;
   width: calc((390px - 10px) / 2);
-  height: calc((390px - 10px) / 2 / 1.6);
+  height: calc((390px - 20px) / 2 / 1.6);
   border-radius: 30px;
   margin-left: 5px;
   display: flex;
