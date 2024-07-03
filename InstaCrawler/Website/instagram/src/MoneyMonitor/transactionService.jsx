@@ -164,57 +164,25 @@ const groupTransactionsByMonth = (transactions) => {
 const getMonthDataAvailability = (data) => {
   const availability = {};
 
+  let counter = Object.entries(data).length;
+
   // Populate availability with true for months with data
-  data.forEach((item) => {
-    const timestamp = item.Timestamp;
-    const [year, month, day] = timestamp.split(" ")[0].split("-").map(Number);
-
-    const date = new Date(year, month - 1, day); // Month is zero-indexed in Date
-    const monthName = monthsNames[date.getMonth()];
-
-    if (!availability[year]) {
-      availability[year] = {};
-    }
-
-    availability[year][monthName] = true;
-  });
-
-  // Determine the date range from the first transaction to the current date
-  const firstTransactionDate = new Date(data[0].Timestamp);
-  const currentDate = new Date();
-  const currentMonth = new Date(currentDate);
-  let counter = 1;
-
-  // Populate months with no data as null
-  while (currentMonth >= firstTransactionDate) {
-    const year = currentMonth.getFullYear();
-    const monthName = monthsNames[currentMonth.getMonth()];
+  Object.entries(data).forEach((item) => {
+    const timestamp = item[0];
+    const [year, month] = timestamp.split("-");
+    const monthName = monthsNames[Number(month) - 1];
+    counter--;
 
     if (!availability[year]) {
       availability[year] = {};
     }
 
-    if (!(monthName in availability[year])) {
-      availability[year][monthName] = [null, counter];
+    if (Object.entries(item[1]).length > 0) {
+      availability[year][monthName] = [true, counter];
     } else {
-      availability[year][monthName] = [availability[year][monthName], counter];
-      counter++;
+      availability[year][monthName] = [false, counter];
     }
-
-    currentMonth.setMonth(currentMonth.getMonth() - 1);
-  }
-
-  // Assign counter for months without data
-  for (const year in availability) {
-    for (const monthName in availability[year]) {
-      if (!Array.isArray(availability[year][monthName])) {
-        availability[year][monthName] = [
-          availability[year][monthName],
-          counter,
-        ];
-      }
-    }
-  }
+  });
 
   return availability;
 };
@@ -288,8 +256,8 @@ const filterTransactionsByCategory = (transactions, category) =>
   transactions.filter((transaction) => transaction.Category === category);
 const getSelectedMonthData = (transactionsByMonth, whichMonth) => {
   const entries = Object.entries(transactionsByMonth);
-  return !!entries[entries.length - whichMonth]
-    ? entries[entries.length - whichMonth][1]
+  return !!entries[entries.length - whichMonth - 1]
+    ? entries[entries.length - whichMonth - 1][1]
     : null;
 };
 
@@ -305,13 +273,13 @@ export const fetchTransactions = async ({ whichMonth }) => {
   const savingTransactions = groupTransactionsByMonth(saving);
 
   const incomeAvailability = Object.entries(
-    getMonthDataAvailability(income)
+    getMonthDataAvailability(incomeTransactions)
   ).reverse();
   const spendingAvailability = Object.entries(
-    getMonthDataAvailability(spending)
+    getMonthDataAvailability(spendingTransactions)
   ).reverse();
   const savingAvailability = Object.entries(
-    getMonthDataAvailability(saving)
+    getMonthDataAvailability(savingTransactions)
   ).reverse();
 
   const netAmounts = getNetAmounts(

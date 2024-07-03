@@ -1,5 +1,5 @@
-import React, { useMemo, useRef, useState } from "react";
-import { useSprings, animated, useSpring, config } from "react-spring";
+import React, { useMemo, useState } from "react";
+import { useSprings, animated, useSpring } from "react-spring";
 import { useDrag } from "@use-gesture/react";
 
 // Constants
@@ -55,8 +55,6 @@ const MainStatestics = ({
       })),
     [last6MonthsData, maxValues]
   );
-
-  console.log(processedData);
 
   const springs = useSprings(
     processedData.length,
@@ -166,6 +164,7 @@ const MainStatestics = ({
 
   const bind = useDrag(({ down, movement: [mx], cancel, memo = false }) => {
     const newX = currentX + mx;
+    console.log(newX);
     if (newX > 0) return setCurrentX(0) && setMainPageMonth(1);
     if (-1 * newX > 31.5 * springs.length)
       return setCurrentX(-31.5 * springs.length);
@@ -253,7 +252,23 @@ const MainStatestics = ({
             key={index}
             className="MainStatestics-batch"
             style={{
-              opacity: style.opacity,
+              // opacity: style.opacity,
+              opacity: x.to((x) => {
+                const threshold = 50 * (index + 1) - 30;
+                const distance = -x - threshold;
+
+                const minOpacity = 0.0;
+                const maxOpacity = index + 1 === mainPageMonth ? 0.8 : 0.4;
+                const fadeDistance = 5;
+
+                // Sigmoid function for smooth transition
+                const sigmoid = (x) => 1 / (1 + Math.exp(-x));
+                const transition = sigmoid(distance / fadeDistance);
+
+                const opacity =
+                  maxOpacity * (1 - transition) + minOpacity * transition;
+                return opacity;
+              }),
               transform: x.to((x) => `translate3d(${x}px,0,0)`),
               cursor:
                 processedData[index].income +

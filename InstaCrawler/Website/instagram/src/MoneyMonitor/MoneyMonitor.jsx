@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useCallback, useMemo } from "react";
+import React, { useEffect, useState, useMemo } from "react";
 import "./MoneyMonitor.css";
 import MenuButton from "../Header/MenuButton";
 import MoneyEntry from "./MoneyEntry";
@@ -7,28 +7,7 @@ import { animated, useSpring } from "react-spring";
 import { fetchTransactions } from "./transactionService";
 import MainStatestics from "./MainStatestics";
 import { useWindowHeight } from "./tools";
-
-const ScalableHeading = ({ children }) => {
-  const [isScaled, setIsScaled] = useState(false);
-
-  const handleMouseDown = useCallback(() => setIsScaled(true), []);
-  const handleMouseUp = useCallback(() => setIsScaled(false), []);
-
-  const style = useSpring({ scale: isScaled ? 0.85 : 1 });
-
-  return (
-    <animated.h1
-      style={style}
-      onMouseDown={handleMouseDown}
-      onMouseUp={handleMouseUp}
-      onMouseLeave={handleMouseUp}
-      onTouchStart={handleMouseDown}
-      onTouchEnd={handleMouseUp}
-    >
-      {children}
-    </animated.h1>
-  );
-};
+import AddTransaction from "./AddTransaction";
 
 const useTransactionData = (whichMonth) => {
   const [data, setData] = useState({
@@ -77,6 +56,7 @@ const useMainPageMonth = () => {
 const MoneyMonitor = () => {
   const height = useWindowHeight(100);
   const [whichMonth, setWhichMonth] = useState(1);
+
   const {
     income: incomeData,
     spending: spendingData,
@@ -164,33 +144,8 @@ const MoneyMonitor = () => {
             isMenuOpen={isMenuOpen}
           />
         </header>
+        <AddTransaction />
         <animated.div style={scaleStyle}>
-          {/* <section className="MoneyMonitor_Intro">
-            <h1 className="MoneyMonitor_title">
-              <span>
-                My{" "}
-                <img
-                  src={`${process.env.PUBLIC_URL}/MoneyMonitor.jpg`}
-                  alt="MoneyMonitor Logo"
-                />
-              </span>
-              <span>Dashboard</span>
-            </h1>
-          </section> */}
-          <nav className="MoneyMonitor_Menu">
-            <p>
-              Add <span>Transaction</span>
-            </p>
-            <ScalableHeading>
-              <span>Income</span> Transaction
-            </ScalableHeading>
-            <ScalableHeading>
-              <span>Spending</span> Transaction
-            </ScalableHeading>
-            <ScalableHeading>
-              <span>Save & Invest</span>
-            </ScalableHeading>
-          </nav>
           <MainStatestics
             height={height}
             netAmounts={netAmountsData}

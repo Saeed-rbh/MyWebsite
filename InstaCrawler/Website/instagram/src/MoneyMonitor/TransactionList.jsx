@@ -21,12 +21,16 @@ const TransactionList = ({
 
   const [totalAmount, setTotalAmount] = useState(0);
   const [currentMonth, setCurrentMonth] = useState("");
+  const [currentYear, setCurrentYear] = useState("");
   const [labelDistribution, setLabelDistribution] = useState([]);
+
+  console.log(Transactions);
 
   useEffect(() => {
     if (Transactions.length !== 0) {
       setTotalAmount(Transactions.netTotal);
       setCurrentMonth(Transactions.month);
+      setCurrentYear(Transactions.year);
       const distribution = Transactions.labelDistribution;
       const sortedData = Object.entries(distribution)
         .map(([category, percentage]) => ({
@@ -246,10 +250,29 @@ const TransactionList = ({
   }, [whichMonth]);
 
   const dataAvailabilityLength = Object.entries(dataAvailability).length;
+
   const WindowHeight = useWindowHeight(100);
+  const [elementLength, setElementLength] = useState(0);
+
+  useEffect(() => {
+    let totalElementLength = 0;
+
+    for (let index = 0; index < dataAvailabilityLength; index++) {
+      const entries = Object.entries(dataAvailability);
+      if (entries[index]) {
+        const innerEntries = Object.entries(entries[index][1]);
+        if (innerEntries[1]) {
+          totalElementLength += Object.entries(innerEntries[1][1]).length;
+        }
+      }
+    }
+
+    setElementLength(totalElementLength);
+  }, [dataAvailability, dataAvailabilityLength]);
+
   const MoreOpenHeight =
-    WindowHeight - 80 * dataAvailabilityLength > 100
-      ? WindowHeight - 80 * dataAvailabilityLength
+    WindowHeight - 70 * Math.ceil(elementLength / 6) > 100
+      ? WindowHeight - 70 * Math.ceil(elementLength / 6)
       : 100;
 
   const calendarFeed = () => {
@@ -293,7 +316,7 @@ const TransactionList = ({
               style={springProps1}
             >
               <p onClick={() => setIsMoreClicked(null)}>
-                {currentMonth} <span>{isMoreClicked}</span>
+                {currentMonth} - {currentYear} <span>{isMoreClicked}</span>
               </p>
               <h1>
                 <span></span> Balance:{" "}
