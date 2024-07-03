@@ -280,7 +280,7 @@
   position: relative;
   height: 100px;
   width: calc((390px - 10px) / 2);
-  height: calc((390px - 10px) / 2 / 1.6);
+  height: calc((390px - 30px) / 2 / 1.6);
   border-radius: 30px;
   margin-left: 5px;
   display: flex;

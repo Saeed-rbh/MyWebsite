@@ -3,7 +3,7 @@ import { useSprings, animated, useSpring } from "react-spring";
 import { useDrag } from "@use-gesture/react";
 
 // Constants
-const PERCENTAGE_FACTOR = 40;
+const PERCENTAGE_FACTOR = 35;
 const MIN_PERCENTAGE = 10;
 const FALLBACK_COLOR = "var(--Ac-2)";
 
@@ -102,28 +102,28 @@ const MainStatestics = ({
     bottom: processedData[mainPageMonth]
       ? processedData[mainPageMonth].incomePercentage >
         processedData[mainPageMonth].savingPercentage
-        ? (height - 225 - 85 + 20 - 50) / 2 +
-          ((height - 225 - 85 + 20 - 50) *
+        ? (height - 225 - 85 + 20 + 10 - 50) / 2 +
+          ((height - 225 - 85 + 20 + 10 - 50) *
             processedData[mainPageMonth].incomePercentage) /
             100 +
           38
-        : (height - 225 - 85 + 20 - 50) / 2 +
-          ((height - 225 - 85 + 20 - 50) *
+        : (height - 225 - 85 + 20 + 10 - 50) / 2 +
+          ((height - 225 - 85 + 20 + 10 - 50) *
             processedData[mainPageMonth].savingPercentage) /
             100 +
           38
-      : (height - 225 - 85 + 20 - 50) / 2,
+      : (height - 225 - 85 + 20 + 10 - 50) / 2,
   });
 
   const valueSpringSp = useSpring({
     position: "absolute",
     bottom: processedData[mainPageMonth]
-      ? (height - 225 - 85 + 20 - 50) / 2 -
-        ((height - 225 - 85 + 20 - 50) *
+      ? (height - 225 - 85 + 20 + 10 - 50) / 2 -
+        ((height - 225 - 85 + 20 + 10 - 50) *
           processedData[mainPageMonth].spendingPercentage) /
           100 +
         12
-      : (height - 225 - 85 + 20 - 50) / 2,
+      : (height - 225 - 85 + 20 + 10 - 50) / 2,
   });
 
   const data = processedData[mainPageMonth];
@@ -186,7 +186,7 @@ const MainStatestics = ({
 
   return (
     <div
-      style={{ height: `${height - 225 - 85 + 20}px` }}
+      style={{ height: `${height - 225 - 85 + 20 + 10 + 10}px` }}
       className="MainStatestics"
       {...bind()}
     >
