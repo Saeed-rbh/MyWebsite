@@ -214,7 +214,7 @@
   flex-direction: row;
   align-items: center;
   color: var(--Ac-1);
-  margin: 15px 0 7px 0;
+  margin: 10px 0 10px 0;
 }
 
 .MoneyEntry h1 span {
@@ -280,7 +280,7 @@
   position: relative;
   height: 100px;
   width: calc((390px - 10px) / 2);
-  height: calc((390px - 30px) / 2 / 1.6);
+  height: calc((390px - 10px) / 2 / 1.6);
   border-radius: 30px;
   margin-left: 5px;
   display: flex;
@@ -335,7 +335,7 @@
   height: 2px;
   width: 15px;
   border-radius: 15px;
-  margin-right: 7px;
+  margin-right: 10px;
 }
 
 .MoneyEntry_Amount span:last-of-type {
@@ -344,7 +344,7 @@
   height: 2px;
   width: 15px;
   border-radius: 15px;
-  margin-right: 5px;
+  margin-right: 7px;
 }
 
 .MoneyMonitor_ExpenseAmount p:first-of-type {
@@ -1805,7 +1805,7 @@
   z-index: 10;
   border-radius: 30px;
   overflow: hidden;
-  margin: 5px 0 -15px 0;
+  margin: 7px 0 -18px 0;
   touch-action: none;
   /* background: linear-gradient(165deg, var(--Ac-4) 30%, var(--Ac-4) 100%); */
 }

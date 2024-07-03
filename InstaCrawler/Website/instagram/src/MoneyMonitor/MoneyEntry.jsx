@@ -99,6 +99,7 @@ const MoneyEntry = ({
               background:
                 "linear-gradient(165deg, var(--Ec-1) 30%, var(--Ac-2) 100%)",
               height: "2px",
+              marginRight: "7px",
             }}
           ></span>
           <span style={{ width: "max-content", marginLeft: "0" }}>
