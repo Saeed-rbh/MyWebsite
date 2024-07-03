@@ -49,10 +49,16 @@ function ChooseTransactionMonth({
                 <animated.p
                   style={{
                     ...clickAction2,
+                    cursor: value[0] ? "pointer" : "unset",
+                    opacity: value[0] ? 1 : 0.7,
                     background:
-                      whichMonth === value[1] ? "var(--Bc-3)" : "var(--Ec-2)",
+                      whichMonth === value[1]
+                        ? "var(--Bc-3)"
+                        : value[0]
+                        ? "var(--Ec-2)"
+                        : "var(--Ac-4)",
                   }}
-                  onClick={() => handleMonthClick(value[1])}
+                  onClick={() => value[0] && handleMonthClick(value[1])}
                   key={index}
                 >
                   <span>{monthMapping[month]}</span>
