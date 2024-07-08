@@ -79,7 +79,7 @@ const MoneyMonitor = () => {
 
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isMoreClicked, setIsMoreClicked] = useState(null);
-  const [isAddClicked, setIsAddClicked] = useState(null);
+  const [isAddClicked, setIsAddClicked] = useState(true);
 
   useEffect(() => {
     !isMoreClicked && setWhichMonth(1);
