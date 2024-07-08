@@ -8,6 +8,8 @@ import { fetchTransactions } from "./transactionService";
 import MainStatestics from "./MainStatestics";
 import { useWindowHeight } from "./tools";
 import AddTransaction from "./AddTransaction";
+import MoreOpen from "./MoreOpen";
+import AddTransactionFeed from "./AddTransactionFeed";
 
 const useTransactionData = (whichMonth) => {
   const [data, setData] = useState({
@@ -77,6 +79,7 @@ const MoneyMonitor = () => {
 
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isMoreClicked, setIsMoreClicked] = useState(null);
+  const [isAddClicked, setIsAddClicked] = useState(null);
 
   useEffect(() => {
     !isMoreClicked && setWhichMonth(1);
@@ -87,8 +90,9 @@ const MoneyMonitor = () => {
     display: "flex",
     flexDirection: "column",
     width: "100%",
-    scale: isMoreClicked ? 0.9 : 1,
-    opacity: isMoreClicked ? 0.5 : 1,
+    scale: isMoreClicked || isAddClicked !== null ? 0.9 : 1,
+    opacity: isMoreClicked || isAddClicked !== null ? 0.5 : 1,
+    filter: isAddClicked !== null ? "blur(10px)" : "blur(0px)",
     height,
   });
 
@@ -111,8 +115,20 @@ const MoneyMonitor = () => {
     return [];
   }, [isMoreClicked, incomeData, spendingData, savingData]);
 
+  console.log(isAddClicked);
+
+  const AddFeed = () => {
+    return <AddTransactionFeed isAddClicked={isAddClicked} />;
+  };
+
   return (
     <div className="MoneyMonitor_Main">
+      <MoreOpen
+        isClicked={isAddClicked}
+        setIsClicked={setIsAddClicked}
+        feed={AddFeed}
+        MoreOpenHeight={200}
+      />
       <animated.div
         className="MoneyMonitor_MainBlur"
         style={BlurStyle}
@@ -146,7 +162,7 @@ const MoneyMonitor = () => {
         </header>
 
         <animated.div style={scaleStyle}>
-          <AddTransaction />
+          <AddTransaction setIsAddClicked={setIsAddClicked} />
           <MainStatestics
             height={height}
             netAmounts={netAmountsData}

@@ -1,8 +1,6 @@
 import React, { useEffect, useMemo, useState } from "react";
 import { useSprings, animated, useSpring } from "react-spring";
 import { useDrag } from "@use-gesture/react";
-import { MdKeyboardArrowRight, MdKeyboardArrowLeft } from "react-icons/md";
-import { ScalableElement } from "./tools";
 
 // Constants
 const PERCENTAGE_FACTOR = 40;
@@ -123,7 +121,6 @@ const MainStatestics = ({
       : 0,
   });
 
-  // console.log(0.01 * processedData[mainPageMonth].spendingPercentage);
   const valueSpringSp = useSpring({
     position: "absolute",
     y: processedData[mainPageMonth]
@@ -196,8 +193,6 @@ const MainStatestics = ({
     }
     api.start({ x: down ? newX : newX });
   });
-
-  console.log(processedData[0]);
 
   return (
     <div

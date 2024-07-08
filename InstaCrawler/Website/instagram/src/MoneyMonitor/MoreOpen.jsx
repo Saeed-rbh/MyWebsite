@@ -6,7 +6,7 @@ import { ScalableElement } from "./tools";
 const MoreOpen = ({ isClicked, setIsClicked, feed, MoreOpenHeight }) => {
   const [isAnimationEnds, setIsAnimationEnds] = useState(false);
   useEffect(() => {
-    isClicked && setIsAnimationEnds(true);
+    !!isClicked && setIsAnimationEnds(true);
   }, [isClicked]);
 
   const [Open_TransactionList, api] = useSpring(() => ({
@@ -95,36 +95,38 @@ const MoreOpen = ({ isClicked, setIsClicked, feed, MoreOpenHeight }) => {
 
   return (
     <>
-      <animated.div
-        className="TransactionList_Main"
-        style={Open_TransactionList}
-        {...bind()}
-      >
+      {isAnimationEnds && (
         <animated.div
-          className="TransactionList_Wall"
-          style={{ background: "var(--Ec-2)" }}
+          className="TransactionList_Main"
+          style={Open_TransactionList}
+          {...bind()}
         >
-          <div
-            className="TransactionList_TopLine"
-            style={{
-              background: "var(--Ac-3)",
-              height: "1px",
-              marginTop: "30px",
-              width: "75%",
-              marginRight: "55px",
-              opacity: "0.5",
-            }}
-          ></div>
-          <ScalableElement
-            as="div"
-            className="TransactionList_Close"
-            onClick={() => setIsClicked(false)}
+          <animated.div
+            className="TransactionList_Wall"
+            style={{ background: "var(--Ec-2)" }}
           >
-            <RxCross2 />
-          </ScalableElement>
-          {feed()}
+            <div
+              className="TransactionList_TopLine"
+              style={{
+                background: "var(--Ac-3)",
+                height: "1px",
+                marginTop: "30px",
+                width: "75%",
+                marginRight: "55px",
+                opacity: "0.5",
+              }}
+            ></div>
+            <ScalableElement
+              as="div"
+              className="TransactionList_Close"
+              onClick={() => setIsClicked(null)}
+            >
+              <RxCross2 />
+            </ScalableElement>
+            {feed()}
+          </animated.div>
         </animated.div>
-      </animated.div>
+      )}
     </>
   );
 };

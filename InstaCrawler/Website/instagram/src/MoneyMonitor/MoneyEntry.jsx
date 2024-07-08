@@ -1,7 +1,6 @@
 import React, { useState, useCallback } from "react";
 import MoneyEntryAmount from "./MoneyEntryAmount.jsx";
 import { useSpring, animated } from "react-spring";
-import { FaArrowTrendUp, FaArrowTrendDown } from "react-icons/fa6";
 import { formatNetTotal } from "./tools";
 
 const ScalableElement = ({ children, className, onClick }) => {

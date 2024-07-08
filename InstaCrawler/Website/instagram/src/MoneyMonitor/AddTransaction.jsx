@@ -1,44 +1,23 @@
-import React, { useCallback, useState } from "react";
-import { animated, useSpring } from "react-spring";
+import React from "react";
+import { animated } from "react-spring";
 import { GoArrowUpRight, GoArrowDownLeft, GoPlus } from "react-icons/go";
+import { ScalableElement } from "./tools";
 
-const ScalableHeading = ({ children }) => {
-  const [isScaled, setIsScaled] = useState(false);
-
-  const handleMouseDown = useCallback(() => setIsScaled(true), []);
-  const handleMouseUp = useCallback(() => setIsScaled(false), []);
-
-  const style = useSpring({ scale: isScaled ? 0.85 : 1 });
-
-  return (
-    <animated.h1
-      style={style}
-      onMouseDown={handleMouseDown}
-      onMouseUp={handleMouseUp}
-      onMouseLeave={handleMouseUp}
-      onTouchStart={handleMouseDown}
-      onTouchEnd={handleMouseUp}
-    >
-      {children}
-    </animated.h1>
-  );
-};
-
-const AddTransaction = () => {
+const AddTransaction = ({ setIsAddClicked }) => {
   return (
     <nav className="MoneyMonitor_Menu">
       <p>
         Add <span>Transaction</span>
       </p>
-      <ScalableHeading>
+      <ScalableElement as="h1" onClick={() => setIsAddClicked("Income")}>
         <GoArrowDownLeft color="var(--Fc-2)" />
         <animated.div
           style={{ opacity: 0.4 }}
           className="CirleColor"
         ></animated.div>
         <span>Income</span>
-      </ScalableHeading>
-      <ScalableHeading>
+      </ScalableElement>
+      <ScalableElement as="h1" onClick={() => setIsAddClicked("Spending")}>
         <GoArrowUpRight color="var(--Gc-2)" />
         <animated.div
           style={{ opacity: 0.4 }}
@@ -46,15 +25,15 @@ const AddTransaction = () => {
         ></animated.div>
 
         <span>Spending</span>
-      </ScalableHeading>
-      <ScalableHeading>
+      </ScalableElement>
+      <ScalableElement as="h1" onClick={() => setIsAddClicked("Save & Invest")}>
         <GoPlus color="var(--Ac-2)" />
         <animated.div
           style={{ opacity: 0.4 }}
           className="CirleColor"
         ></animated.div>
         <span>Save & Invest</span>
-      </ScalableHeading>
+      </ScalableElement>
     </nav>
   );
 };
