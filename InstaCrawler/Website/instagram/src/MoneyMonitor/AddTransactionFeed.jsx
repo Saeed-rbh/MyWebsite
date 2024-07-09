@@ -81,7 +81,16 @@ function AddTransactionFeed({ isAddClicked }) {
     return (
       <div>
         {transitions((style, item) =>
-          item ? <animated.div style={style}>{getIcon()}</animated.div> : ""
+          item ? (
+            <animated.div
+              className="AddTransactionFeed_AmountLogo"
+              style={style}
+            >
+              {getIcon()}
+            </animated.div>
+          ) : (
+            ""
+          )
         )}
       </div>
     );
@@ -104,10 +113,7 @@ function AddTransactionFeed({ isAddClicked }) {
             onChange={handleChange}
           />
         </li>
-        <div className="AddTransactionFeed_AmountLogo">
-          <AmountLogo value={value} />
-        </div>
-
+        <AmountLogo value={value} />
         <li>
           <label>Reason:</label>
           <textarea

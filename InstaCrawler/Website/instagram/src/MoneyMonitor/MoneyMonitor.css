@@ -2195,12 +2195,15 @@
   font-size: 0.8rem;
   font-weight: 600;
   font-family: "Noto Sans", sans-serif;
-  color: var(--Ac-2);
+  color: var(--Ac-1);
   border: none;
   text-wrap: wrap;
   overflow: hidden;
   resize: none;
   /* margin: 10px 0; */
+}
+.AddTransactionFeed ul li textarea::placeholder {
+  color: var(--Ac-3);
 }
 .AddTransactionFeed ul li:nth-last-of-type(1) textarea {
   height: 50px;
