@@ -163,13 +163,13 @@ function AddTransactionFeed({ isAddClicked }) {
           <label>Reason</label>
           <textarea
             type="text"
-            maxlength="75"
+            maxlength="50"
             placeholder="Shopping for party"
             value={reason}
             onChange={handleReason}
           />
           <h1>
-            Character:<span>{ReasonCount} </span>| 75
+            Character:<span>{ReasonCount} </span>| 50
           </h1>
           <ScalableElement as="h2" onClick={handleErase}>
             Clear All
@@ -178,10 +178,10 @@ function AddTransactionFeed({ isAddClicked }) {
           <hr />
         </li>
         <li>
-          <label>Time & Date</label>
+          <label>Date & Time</label>
           <textarea
             type="text"
-            maxlength="75"
+            maxlength="50"
             placeholder="Shopping for party"
           />
         </li>
