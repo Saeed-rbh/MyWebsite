@@ -76,7 +76,7 @@ function AddTransactionFeed({ isAddClicked }) {
       : "var(--Gc-2)";
   }, [value.length]);
 
-  const handleValueChange = () => {
+  const handleValueChange = useCallback(() => {
     if (value.length === 0 && previousValue.current === 2) {
       setAnimate1(true);
       Imidiate.current = true;
@@ -103,21 +103,11 @@ function AddTransactionFeed({ isAddClicked }) {
     } else if (value.length === 5 && previousValue.current === 6) {
       setAnimate3(false);
     }
-  };
+  }, [value.length]);
 
   const handleOnRest = () => {
     Imidiate.current = false;
   };
-
-  const cond1 = useMemo(() => {
-    return [Animate1 && Imidiate.current, !Animate1 && Imidiate.current];
-  }, [Animate1]);
-  const cond2 = useMemo(() => {
-    return [Animate1 && Imidiate.current, !Animate1 && Imidiate.current];
-  }, [Animate1]);
-  const cond3 = useMemo(() => {
-    return [Animate1 && Imidiate.current, !Animate1 && Imidiate.current];
-  }, [Animate1]);
 
   useEffect(() => {
     if (
@@ -135,15 +125,15 @@ function AddTransactionFeed({ isAddClicked }) {
   const springProps = (animate, Imidiate) => ({
     from: {
       opacity: animate ? 0 : 1,
-      transform: animate ? "scale(1.5)" : "scale(1)",
+      transform: animate ? "scale(2)" : "scale(1)",
       fontSize: fontSize,
     },
     to: {
       opacity: !animate ? 0 : 1,
-      transform: !animate ? "scale(1.5)" : "scale(1)",
+      transform: !animate ? "scale(2)" : "scale(1)",
       fontSize: fontSize,
     },
-    config: { duration: 500 },
+    config: { duration: 300 },
     onRest: animate && Imidiate ? handleOnRest : undefined,
   });
 
@@ -163,6 +153,7 @@ function AddTransactionFeed({ isAddClicked }) {
           <textarea
             type="text"
             maxlength="20"
+            inputmode="numeric"
             placeholder="$1000"
             value={value}
             onChange={handleChange}
