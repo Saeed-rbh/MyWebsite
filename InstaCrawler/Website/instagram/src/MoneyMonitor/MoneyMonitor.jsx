@@ -115,8 +115,6 @@ const MoneyMonitor = () => {
     return [];
   }, [isMoreClicked, incomeData, spendingData, savingData]);
 
-  console.log(isAddClicked);
-
   const AddFeed = () => {
     return <AddTransactionFeed isAddClicked={isAddClicked} />;
   };

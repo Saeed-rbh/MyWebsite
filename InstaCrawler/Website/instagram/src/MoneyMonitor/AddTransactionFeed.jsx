@@ -97,12 +97,12 @@ function AddTransactionFeed({ isAddClicked }) {
 
   const springProps = (animate, Imidiate) => ({
     from: {
-      opacity: animate ? 0 : 0.4,
+      opacity: animate ? 0 : 0.6,
       transform: animate ? "scale(1.5)" : "scale(1)",
       fontSize: fontSize,
     },
     to: {
-      opacity: !animate ? 0 : 0.4,
+      opacity: !animate ? 0 : 0.6,
       transform: !animate ? "scale(1.5)" : "scale(1)",
       fontSize: fontSize,
     },
@@ -121,7 +121,7 @@ function AddTransactionFeed({ isAddClicked }) {
 
       <ul>
         <li>
-          <label>Amount:</label>
+          <label>Amount</label>
           <textarea
             type="text"
             maxlength="20"
@@ -130,25 +130,29 @@ function AddTransactionFeed({ isAddClicked }) {
             value={value}
             onChange={handleChange}
           />
+          <AmountLogo
+            Animate1={Animate1}
+            Animate2={Animate2}
+            style1={style1}
+            style2={style2}
+            fontColor={fontColor}
+          />
+          <hr />
+          <hr />
         </li>
-        <AmountLogo
-          Animate1={Animate1}
-          Animate2={Animate2}
-          style1={style1}
-          style2={style2}
-          fontColor={fontColor}
-        />
 
         <li>
-          <label>Reason:</label>
+          <label>Reason</label>
           <textarea
             type="text"
             maxlength="75"
             placeholder="Shopping for party"
           />
+          <hr />
+          <hr />
         </li>
         <li>
-          <label>Time & Date:</label>
+          <label>Time & Date</label>
           <textarea
             type="text"
             maxlength="75"
