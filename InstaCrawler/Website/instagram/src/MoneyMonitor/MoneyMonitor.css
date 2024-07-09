@@ -2178,7 +2178,8 @@
 }
 
 .AddTransactionFeed ul li {
-  margin-bottom: 10px;
+  position: relative;
+  margin-bottom: 20px;
   width: 100%;
   display: flex;
   list-style-type: none;
@@ -2190,9 +2191,9 @@
   width: -webkit-fill-available;
   height: 15px;
   background: var(--Ac-4);
-  padding: 15px 20px;
+  padding: 25px 20px 15px 25px;
   outline: 1px solid var(--Ac-3);
-  border-radius: 25px;
+  border-radius: 35px;
   font-size: 0.8rem;
   font-weight: 600;
   font-family: "Noto Sans", sans-serif;
@@ -2206,31 +2207,49 @@
 .AddTransactionFeed ul li textarea::placeholder {
   color: var(--Ac-3);
 }
-.AddTransactionFeed ul li:nth-last-of-type(1) textarea {
+.AddTransactionFeed ul li:nth-last-of-type(2) textarea {
   height: 60px;
 }
 .AddTransactionFeed ul li label {
+  position: absolute;
   margin: 0;
   width: max-content;
   margin-right: 15px;
-  transform: translateY(12px);
-  font-size: 0.8rem;
-  font-weight: 400;
+  font-size: 0.6rem;
+  font-weight: 600;
   font-family: "Noto Sans", sans-serif;
   color: var(--Ac-1);
+  top: -15px;
+  left: 20px;
+  background-color: var(--Ec-4);
+  padding: 10px 20px;
+  border-radius: 20px;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  outline: 1px solid var(--Ac-3);
+  width: 80px;
+}
+
+.AddTransactionFeed ul li:nth-last-of-type(2) label {
+  /* right: 10px;
+  left: auto; */
 }
 
 .AddTransactionFeed_AmountLogo {
   position: absolute;
   color: var(--Ac-1);
   font-size: 0.7rem;
-  top: 20px;
-  right: 18px;
+
   display: flex;
   align-items: center;
   justify-content: center;
   height: 20px;
   width: 20px;
+  top: 15px;
+  right: 10px;
+  padding: 8px;
+  /* background-color: var(--Ec-2);
+  border-radius: 30px; */
 }
 .AddTransactionFeed_Logo {
   position: "absolute";
@@ -2239,4 +2258,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.AddTransactionFeed ul li:nth-last-of-type(1) {
+  flex-direction: column;
 }
