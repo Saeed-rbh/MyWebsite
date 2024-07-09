@@ -39,6 +39,7 @@ function AddTransactionFeed({ isAddClicked }) {
         : "var(--Gc-2)";
 
     useEffect(() => {
+      if (Imidiate) return;
       if (value.length === 0 && previousValue.current === 2) {
         setAnimate1(true);
         setImidiate(true);
