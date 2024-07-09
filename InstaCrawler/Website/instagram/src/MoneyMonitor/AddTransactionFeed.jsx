@@ -8,6 +8,7 @@ import React, {
 import { FaCheck } from "react-icons/fa";
 import { FaXmark } from "react-icons/fa6";
 import { useSpring, animated } from "react-spring";
+import { ScalableElement } from "./tools";
 
 const AmountLogo = ({ Animate1, Animate2, style1, style2, fontColor }) => {
   return (
@@ -39,8 +40,9 @@ function AddTransactionFeed({ isAddClicked }) {
   const [value, setValue] = useState("");
 
   const handleChange = (event) => {
-    const newValue = event.target.value.replace(/[^0-9]/g, "");
-    setValue(newValue.length > 0 ? `$${newValue}` : "");
+    const numericValue = event.target.value.replace(/[^0-9]/g, ""); // Remove non-numeric characters
+    const formattedValue = new Intl.NumberFormat().format(numericValue); // Format the number with commas
+    setValue(numericValue.length > 0 ? `$${formattedValue}` : "");
   };
   useEffect(() => {
     setValue("");
@@ -113,6 +115,22 @@ function AddTransactionFeed({ isAddClicked }) {
   const style1 = useSpring(springProps(Animate1, Imidiate.current));
   const style2 = useSpring(springProps(Animate2, Imidiate.current));
 
+  const [reason, setReason] = useState("");
+  const [ReasonCount, setReasonCount] = useState(0);
+
+  const handleReason = (event) => {
+    const newValue = event.target.value.replace(/\n/g, "");
+    setReason(newValue);
+    setReasonCount(newValue.length);
+  };
+
+  console.log(ReasonCount);
+
+  const handleErase = () => {
+    setReason("");
+    setReasonCount(0);
+  };
+
   return (
     <div className="AddTransactionFeed">
       <h3>
@@ -147,7 +165,15 @@ function AddTransactionFeed({ isAddClicked }) {
             type="text"
             maxlength="75"
             placeholder="Shopping for party"
+            value={reason}
+            onChange={handleReason}
           />
+          <h1>
+            Character:<span>{ReasonCount} </span>| 75
+          </h1>
+          <ScalableElement as="h2" onClick={handleErase}>
+            Clear All
+          </ScalableElement>
           <hr />
           <hr />
         </li>
