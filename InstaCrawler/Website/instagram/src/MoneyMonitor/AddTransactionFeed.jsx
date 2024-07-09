@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { FaCheck } from "react-icons/fa";
 import { FaXmark } from "react-icons/fa6";
 import { MdOutlineAttachMoney } from "react-icons/md";
-import { useTransition, animated } from "react-spring";
+import { useSpring, animated } from "react-spring";
 
 function AddTransactionFeed({ isAddClicked }) {
   const DotStyle = {
@@ -21,76 +21,128 @@ function AddTransactionFeed({ isAddClicked }) {
     setValue(newValue.length > 0 ? `$${newValue}` : "");
   };
 
-  const [displayValue, setDisplayValue] = useState(value);
-  const prevValueRef = useRef("");
+  const previousValue = useRef(value.length);
+  const [Animate1, setAnimate1] = useState(true);
+  const [Animate2, setAnimate2] = useState(false);
+  const [Animate3, setAnimate3] = useState(false);
+  const [Imidiate, setImidiate] = useState(false);
 
-  const AmountLogo = () => {
-    const [showIcon, setShowIcon] = useState(false);
-
-    console.log(showIcon);
-
-    useEffect(() => {
-      const prevValueLength = prevValueRef.current.length;
-      const currentValueLength = value.length;
-
-      if (
-        (prevValueLength === 0 && currentValueLength === 2) ||
-        (prevValueLength === 2 && currentValueLength === 0) ||
-        (prevValueLength === 5 && currentValueLength === 6) ||
-        (prevValueLength === 6 && currentValueLength === 5)
-      ) {
-        setShowIcon(true);
-      } else {
-        setShowIcon(false);
-        setDisplayValue(value);
-      }
-      prevValueRef.current = value;
-    }, [value]);
-
+  const AmountLogo = ({ value }) => {
     const fontSize =
-      displayValue.length > 5
-        ? "1.3rem"
-        : displayValue.length > 0
-        ? "0.7rem"
-        : "0.8rem";
+      value.length > 5 ? "1.3rem" : value.length > 0 ? "0.7rem" : "0.8rem";
 
     const fontColor =
-      displayValue.length > 5
+      value.length > 5
         ? "var(--Bc-2)"
-        : displayValue.length > 0
+        : value.length > 0
         ? "var(--Fc-2)"
         : "var(--Gc-2)";
 
-    const transitions = useTransition(displayValue, {
-      from: { opacity: 0, transform: "scale(1.5)" },
-      enter: { opacity: 1, transform: "scale(1)" },
-      leave: { opacity: 0, transform: "scale(1.5)" },
+    useEffect(() => {
+      if (value.length === 0 && previousValue.current === 2) {
+        setAnimate1(true);
+        setImidiate(true);
+      } else if (value.length === 2 && previousValue.current === 0) {
+        setAnimate1(false);
+      }
+
+      if (
+        (value.length === 2 && previousValue.current === 0) ||
+        (value.length === 5 && previousValue.current === 6)
+      ) {
+        setAnimate2(true);
+        setImidiate(true);
+      } else if (
+        (value.length === 0 && previousValue.current === 2) ||
+        (value.length === 6 && previousValue.current === 5)
+      ) {
+        setAnimate2(false);
+      }
+
+      if (value.length === 6 && previousValue.current === 5) {
+        setAnimate3(true);
+        setImidiate(true);
+      } else if (value.length === 5 && previousValue.current === 6) {
+        setAnimate3(false);
+      }
+
+      previousValue.current = value.length;
+    }, [value]);
+
+    const style1 = useSpring({
+      from: {
+        opacity: Animate1 ? 0 : 1,
+        transform: Animate1 ? "scale(2)" : "scale(1)",
+        fontSize: fontSize,
+      },
+      to: {
+        opacity: !Animate1 ? 0 : 1,
+        transform: !Animate1 ? "scale(2)" : "scale(1)",
+        fontSize: fontSize,
+      },
+      immediate: !Imidiate,
       config: { duration: 500 },
+      onRest: () => {
+        if (Imidiate) {
+          setImidiate(false);
+        }
+      },
+    });
+    const style2 = useSpring({
+      from: {
+        opacity: Animate2 ? 0 : 1,
+        transform: Animate2 ? "scale(2)" : "scale(1)",
+        fontSize: fontSize,
+      },
+      to: {
+        opacity: !Animate2 ? 0 : 1,
+        transform: !Animate2 ? "scale(2)" : "scale(1)",
+        fontSize: fontSize,
+      },
+      immediate: !Imidiate,
+      config: { duration: 500 },
+      onRest: () => {
+        if (Imidiate) {
+          setImidiate(false);
+        }
+      },
+    });
+    const style3 = useSpring({
+      from: {
+        opacity: Animate3 ? 0 : 1,
+        transform: Animate3 ? "scale(2)" : "scale(1)",
+        fontSize: fontSize,
+      },
+      to: {
+        opacity: !Animate3 ? 0 : 1,
+        transform: !Animate3 ? "scale(2)" : "scale(1)",
+        fontSize: fontSize,
+      },
+      immediate: !Imidiate,
+      config: { duration: 500 },
+      onRest: () => {
+        if (Imidiate) {
+          setImidiate(false);
+        }
+      },
     });
 
-    const getIcon = () => {
-      if (displayValue.length > 5) {
-        return <MdOutlineAttachMoney fontSize={fontSize} color={fontColor} />;
-      } else if (displayValue.length > 0) {
-        return <FaCheck fontSize={fontSize} color={fontColor} />;
-      } else {
-        return <FaXmark fontSize={fontSize} color={fontColor} />;
-      }
-    };
-
     return (
-      <div>
-        {transitions((style, item) =>
-          item ? (
-            <animated.div
-              className="AddTransactionFeed_AmountLogo"
-              style={style}
-            >
-              {getIcon()}
-            </animated.div>
-          ) : (
-            ""
-          )
+      <div className="AddTransactionFeed_AmountLogo">
+        {Animate1 && (
+          <animated.div style={style1} className="AddTransactionFeed_Logo">
+            <FaXmark color={fontColor} />
+          </animated.div>
+        )}
+        {Animate2 && (
+          <animated.div style={style2} className="AddTransactionFeed_Logo">
+            <FaCheck color={fontColor} />
+          </animated.div>
+        )}
+        {Animate3 && (
+          <animated.div style={style3} className="AddTransactionFeed_Logo">
+            <MdOutlineAttachMoney color={fontColor} />
+          </animated.div>
         )}
       </div>
     );

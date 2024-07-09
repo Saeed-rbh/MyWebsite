@@ -127,7 +127,7 @@ const MoneyMonitor = () => {
         isClicked={isAddClicked}
         setIsClicked={setIsAddClicked}
         feed={AddFeed}
-        MoreOpenHeight={200}
+        MoreOpenHeight={100}
       />
       <animated.div
         className="MoneyMonitor_MainBlur"
