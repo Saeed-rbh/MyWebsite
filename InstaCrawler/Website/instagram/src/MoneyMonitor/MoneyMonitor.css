@@ -2179,7 +2179,7 @@
 
 .AddTransactionFeed ul li {
   position: relative;
-  margin-bottom: 25px;
+  margin-bottom: 15px;
   width: 100%;
   display: flex;
   list-style-type: none;
@@ -2187,50 +2187,76 @@
   flex-direction: row;
   /* align-items: center; */
 }
-.AddTransactionFeed ul li textarea {
+
+.Add_Reason textarea {
   width: -webkit-fill-available;
-  height: 15px;
+  height: 65px;
   background: var(--Ac-4);
-  padding: 25px 25px 20px 30px;
+  padding: 15px 25px 20px 30px;
   outline: 1px solid var(--Ac-3);
   border-radius: 25px;
   font-size: 0.8rem;
-  font-weight: 600;
+  font-weight: 300;
   font-family: "Noto Sans", sans-serif;
   color: var(--Ac-1);
   border: none;
   text-wrap: wrap;
   overflow: hidden;
   resize: none;
-  /* margin: 10px 0; */
+  padding-left: 90px;
 }
-.AddTransactionFeed ul li textarea::placeholder {
+.Add_Reason textarea::placeholder {
   color: var(--Ac-2);
   font-weight: 400;
   opacity: 0.7;
+  margin-left: 10px;
 }
 
-.Add_Reason textarea {
-  height: 60px !important;
+.Add_Amount textarea {
+  width: -webkit-fill-available;
+  height: 15px;
+  background: var(--Ac-4);
+  padding: 15px 25px 20px 30px;
+  outline: 1px solid var(--Ac-3);
+  border-radius: 25px;
+  font-size: 0.8rem;
+  font-weight: 300;
+  font-family: "Noto Sans", sans-serif;
+  color: var(--Ac-1);
+  border: none;
+  text-wrap: wrap;
+  overflow: hidden;
+  resize: none;
+  padding-left: 90px;
 }
+.Add_Amount textarea::placeholder {
+  color: var(--Ac-2);
+  font-weight: 400;
+  opacity: 0.7;
+  margin-left: 10px;
+}
+
 .AddTransactionFeed ul li label {
   position: absolute;
   margin: 0;
   width: max-content;
-  margin-right: 15px;
-  font-size: 0.7rem;
-  font-weight: 500;
+  font-size: 0.8rem;
+  font-weight: 400;
   font-family: "Noto Sans", sans-serif;
-  color: var(--Ac-1);
-  top: -18px;
-  left: 20px;
-  background-color: var(--Ec-4);
-  padding: 10px 17px;
+  color: var(--Bc-1);
+  /* top: -18px; */
+  /* left: 20px; */
+  /* background-color: var(--Ec-4); */
+  top: 15px;
+  left: 25px;
   border-radius: 20px;
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  outline: 1px solid var(--Ac-3);
+  height: 20px;
+  text-align: center;
+  /* backdrop-filter: blur(10px); */
+  /* -webkit-backdrop-filter: blur(10px);
+  outline: 1px solid var(--Ac-3); */
   width: 80px;
+  display: flex;
 }
 
 .AddTransactionFeed_AmountLogo {
@@ -2275,8 +2301,8 @@
 
 .Add_Reason h1 {
   position: absolute;
-  bottom: 10px;
-  left: 30px;
+  bottom: 20px;
+  left: 25px;
   color: var(--Bc-2);
   font-size: 0.7rem;
   font-weight: 400;
@@ -2323,6 +2349,9 @@
   resize: none;
   flex-direction: row;
   align-items: flex-start;
+  margin-top: 10px;
+  margin-bottom: 20px !important;
+  display: flex;
 }
 
 .Add_DateTime h1 {
@@ -2335,28 +2364,57 @@
   margin-bottom: 0;
 }
 
-.Add_DateTime textarea {
-  height: 15px !important;
-  width: 15px !important;
-  padding: 15px !important;
-  border-radius: 15px !important;
-  align-items: center;
-  justify-content: center;
+.Add_DateTime {
+  width: -webkit-fill-available;
+  height: 50px;
+  padding: 0px;
+  border-radius: 25px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  font-family: "Noto Sans", sans-serif;
+  color: var(--Ac-1);
+  border: none;
+  text-wrap: wrap;
+  resize: none;
+  flex-direction: row;
+  align-items: flex-start;
+  margin-top: 10px;
+  margin-bottom: 20px !important;
   display: flex;
-  text-align-last: center;
-  text-align: center;
+}
+.Add_DateTime textarea {
+  height: 45px;
+  width: 45px;
+  padding: 15px 0px 10px 0px;
+  border-radius: 15px;
+  box-sizing: border-box;
   margin: 0 5px;
   background: var(--Ac-4);
+  outline: 1px solid var(--Ac-3);
+  font-size: 0.8rem;
+  font-weight: 300;
+  font-family: "Noto Sans", sans-serif;
+  color: var(--Ac-1);
+  border: none;
+  text-wrap: wrap;
+  overflow: hidden;
+  resize: none;
+  text-align: center;
+}
+.Add_DateTime textarea::placeholder {
+  color: var(--Ac-2);
+  font-weight: 400;
+  opacity: 0.7;
 }
 
 .Add_DateTime h1:last-of-type textarea:last-of-type {
-  width: 40px !important;
+  width: 70px !important;
 }
 
 .Add_DateTime h1:first-of-type p {
   position: absolute;
   left: 5px;
-  top: -35px;
+  top: -37px;
   display: flex;
   align-items: center;
   justify-content: flex-start;
@@ -2370,7 +2428,7 @@
 .Add_DateTime h1:last-of-type p {
   position: absolute;
   left: 5px;
-  top: -35px;
+  top: -37px;
   display: flex;
   align-items: center;
   justify-content: flex-start;
@@ -2434,12 +2492,12 @@
 .Add_Category p {
   position: relative;
   display: flex;
-  margin-left: 30px;
+  margin-left: 25px;
   margin-right: 7px;
   font-size: 0.8rem;
   font-weight: 400;
   font-family: "Noto Sans", sans-serif;
-  color: var(--Ac-1);
+  color: var(--Bc-1);
   border-radius: 25px;
   cursor: pointer;
   width: max-content;
@@ -2479,7 +2537,7 @@
   align-items: center;
   justify-content: flex-start;
   width: calc(100% - 40px);
-  margin: 0 20px;
+  margin: 0 15px;
   list-style-type: none;
   overflow: hidden;
 }

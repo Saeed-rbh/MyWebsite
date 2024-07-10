@@ -172,8 +172,8 @@ function AddTransactionFeed({ isAddClicked }) {
       </h3>
 
       <ul>
-        <li>
-          <label>Amount</label>
+        <li className="Add_Amount">
+          <label>Amount | </label>
           <textarea
             type="text"
             maxlength="20"
@@ -193,7 +193,7 @@ function AddTransactionFeed({ isAddClicked }) {
           <hr />
         </li>
         <li className="Add_Reason">
-          <label>Reason</label>
+          <label>Reason | </label>
           <textarea
             type="text"
             maxlength="50"
@@ -217,13 +217,15 @@ function AddTransactionFeed({ isAddClicked }) {
             </p>
             <textarea
               type="text"
-              maxlength="50"
+              maxlength="2"
+              inputmode="numeric"
               placeholder={currentTime.hours}
             />
             :
             <textarea
               type="text"
-              maxlength="50"
+              maxlength="2"
+              inputmode="numeric"
               placeholder={currentTime.minutes}
             />
           </h1>
@@ -233,19 +235,22 @@ function AddTransactionFeed({ isAddClicked }) {
             </p>
             <textarea
               type="text"
-              maxlength="50"
+              maxlength="2"
+              inputmode="numeric"
               placeholder={currentTime.day}
             />
             /
             <textarea
               type="text"
-              maxlength="50"
+              maxlength="2"
+              inputmode="numeric"
               placeholder={currentTime.month}
             />
             /
             <textarea
               type="text"
-              maxlength="50"
+              maxlength="4"
+              inputmode="numeric"
               placeholder={currentTime.year}
             />
             {/* <ScalableElement as="h2" onClick={handleErase}>
@@ -258,7 +263,7 @@ function AddTransactionFeed({ isAddClicked }) {
         </li>
         <li className="Add_Category">
           <p>
-            Category{" "}
+            Category |{" "}
             <h1>
               <MdOutlineAutoAwesome />
               Auto Detect
