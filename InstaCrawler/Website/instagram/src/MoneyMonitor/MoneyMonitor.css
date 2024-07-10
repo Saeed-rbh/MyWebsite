@@ -2174,12 +2174,13 @@
   align-items: flex-start;
   list-style-type: none;
   padding: 0;
-  margin: 10px 0;
+  margin: 2% 0;
+  height: 100%;
 }
 
 .AddTransactionFeed ul li {
   position: relative;
-  margin-bottom: 15px;
+  margin-bottom: 4%;
   width: 100%;
   display: flex;
   list-style-type: none;
@@ -2188,9 +2189,14 @@
   /* align-items: center; */
 }
 
+.Add_Reason {
+  height: 20%;
+  box-sizing: border-box;
+}
+
 .Add_Reason textarea {
   width: -webkit-fill-available;
-  height: 65px;
+  height: 100%;
   background: var(--Ac-4);
   padding: 15px 25px 20px 30px;
   outline: 1px solid var(--Ac-3);
@@ -2204,6 +2210,7 @@
   overflow: hidden;
   resize: none;
   padding-left: 90px;
+  box-sizing: border-box;
 }
 .Add_Reason textarea::placeholder {
   color: var(--Ac-2);
@@ -2212,9 +2219,13 @@
   margin-left: 10px;
 }
 
+.Add_Amount {
+  height: 10%;
+  box-sizing: border-box;
+}
 .Add_Amount textarea {
   width: -webkit-fill-available;
-  height: 15px;
+  height: 100%;
   background: var(--Ac-4);
   padding: 20px 25px 20px 30px;
   outline: 1px solid var(--Ac-3);
@@ -2228,6 +2239,7 @@
   overflow: hidden;
   resize: none;
   padding-left: 90px;
+  box-sizing: border-box;
 }
 .Add_Amount textarea::placeholder {
   color: var(--Ac-2);
@@ -2349,9 +2361,9 @@
   opacity: 0.7;
 }
 
-.Add_DateTime {
+/* .Add_DateTime {
   width: -webkit-fill-available;
-  height: 50px;
+  height: 25%;
   padding: 0px;
   border-radius: 25px;
   font-size: 0.8rem;
@@ -2366,21 +2378,23 @@
   margin-top: 10px;
   margin-bottom: 20px !important;
   display: flex;
-}
+  box-sizing: ;
+} */
 
 .Add_DateTime h1 {
   position: relative;
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  margin-top: 10px;
   color: var(--Bc-1);
-  margin-bottom: 0;
+  margin: 0;
+  height: 100%;
 }
 
 .Add_DateTime {
+  position: relative;
   width: -webkit-fill-available;
-  height: 50px;
+  height: 10%;
   padding: 0px;
   border-radius: 25px;
   font-size: 0.8rem;
@@ -2392,13 +2406,13 @@
   resize: none;
   flex-direction: row;
   align-items: flex-start;
-  margin-top: 12px;
-  margin-bottom: 25px !important;
+  margin-top: 5%;
   display: flex;
+  box-sizing: border-box;
 }
 .Add_DateTime textarea {
-  height: 48px;
-  width: 48px;
+  height: 95%;
+  aspect-ratio: 1/1;
   padding: 15px 0px 10px 0px;
   border-radius: 15px;
   box-sizing: border-box;
@@ -2500,10 +2514,11 @@
   justify-content: flex-start;
   background: var(--Ac-4);
   outline: 1px solid var(--Ac-3);
-  height: 115px;
+  height: 25%;
   border-radius: 25px;
   width: 100%;
   padding: 5px 0;
+  box-sizing: border-box;
 }
 .Add_Category p {
   position: relative;
@@ -2592,23 +2607,24 @@
   position: relative;
   display: flex;
   flex-direction: row;
-  align-items: flex-start;
-  justify-content: flex-start;
+  align-items: center;
+  justify-content: center;
   /* background: var(--Ac-4);
   outline: 1px solid var(--Ac-3); */
-  height: 40px;
+  height: 10%;
   border-radius: 25px;
   width: 100%;
 }
 
 .Add_Confirm h1 {
   margin: 0;
-  height: 41px;
+  height: calc(100% + 2px);
   font-size: 0.7rem;
   font-weight: 300;
   font-family: "Noto Sans", sans-serif;
   color: var(--Ac-1);
   padding: 5px;
+  box-sizing: border-box;
 
   cursor: pointer;
   margin-right: 5px;
@@ -2642,11 +2658,11 @@
   border-radius: 25px;
   cursor: pointer;
   margin-left: 5px;
-  background: var(--Bc-4);
-  outline: 1px solid var(--Bc-3);
+  background: var(--Bc-3);
+  outline: 1px solid var(--Bc-2);
   display: flex;
   align-items: center;
   justify-content: center;
   width: 50%;
-  height: 50px;
+  height: 100%;
 }
