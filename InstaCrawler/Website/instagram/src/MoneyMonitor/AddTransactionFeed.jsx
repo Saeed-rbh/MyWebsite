@@ -9,6 +9,15 @@ import { FaCheck } from "react-icons/fa";
 import { FaXmark } from "react-icons/fa6";
 import { useSpring, animated } from "react-spring";
 import { ScalableElement } from "./tools";
+import { MdOutlineAutoAwesome } from "react-icons/md";
+
+const List = [
+  "Categoty 1",
+  "Categoty 2",
+  "Categoty 3",
+  "Categoty 4",
+  "Categoty 5",
+];
 
 const AmountLogo = ({ Animate1, Animate2, style1, style2, fontColor }) => {
   return (
@@ -131,6 +140,31 @@ function AddTransactionFeed({ isAddClicked }) {
     setReasonCount(0);
   };
 
+  const [currentTime, setCurrentTime] = useState({
+    hours: "",
+    minutes: "",
+    year: "",
+    month: "",
+    day: "",
+  });
+
+  useEffect(() => {
+    const now = new Date();
+    const hours = now.getHours();
+    const minutes = now.getMinutes();
+    const date = now.toLocaleDateString().split("/");
+
+    setCurrentTime({
+      hours: hours < 10 ? `0${hours}` : hours,
+      minutes: minutes < 10 ? `0${minutes}` : minutes,
+      year: date[2],
+      month: date[1],
+      day: date[0],
+    });
+  }, []);
+
+  console.log(currentTime);
+
   return (
     <div className="AddTransactionFeed">
       <h3>
@@ -158,8 +192,7 @@ function AddTransactionFeed({ isAddClicked }) {
           <hr />
           <hr />
         </li>
-
-        <li>
+        <li className="Add_Reason">
           <label>Reason</label>
           <textarea
             type="text"
@@ -177,13 +210,67 @@ function AddTransactionFeed({ isAddClicked }) {
           <hr />
           <hr />
         </li>
-        <li>
-          <label>Date & Time</label>
-          <textarea
-            type="text"
-            maxlength="50"
-            placeholder="Shopping for party"
-          />
+        <li className="Add_DateTime">
+          <h1>
+            <p>
+              • Time <span></span>
+            </p>
+            <textarea
+              type="text"
+              maxlength="50"
+              placeholder={currentTime.hours}
+            />
+            :
+            <textarea
+              type="text"
+              maxlength="50"
+              placeholder={currentTime.minutes}
+            />
+          </h1>
+          <h1>
+            <p>
+              • Date <span></span>
+            </p>
+            <textarea
+              type="text"
+              maxlength="50"
+              placeholder={currentTime.day}
+            />
+            /
+            <textarea
+              type="text"
+              maxlength="50"
+              placeholder={currentTime.month}
+            />
+            /
+            <textarea
+              type="text"
+              maxlength="50"
+              placeholder={currentTime.year}
+            />
+            {/* <ScalableElement as="h2" onClick={handleErase}>
+              Now
+            </ScalableElement>
+            <ScalableElement as="h2" onClick={handleErase}>
+              Calendar
+            </ScalableElement> */}
+          </h1>
+        </li>
+        <li className="Add_Category">
+          <p>
+            Category{" "}
+            <h1>
+              <MdOutlineAutoAwesome />
+              Auto Detect
+            </h1>
+          </p>{" "}
+          <div className="Add_Category_items">
+            {List.map((item) => (
+              <ScalableElement as="h2" key={item}>
+                {item}
+              </ScalableElement>
+            ))}
+          </div>
         </li>
       </ul>
     </div>
