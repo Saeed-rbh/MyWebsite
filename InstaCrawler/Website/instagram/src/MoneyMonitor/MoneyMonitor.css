@@ -2452,6 +2452,12 @@
   resize: none;
   text-align: center;
 }
+.Add_DateTime textarea:first-of-type {
+  margin-left: 0;
+}
+.Add_DateTime textarea:last-of-type {
+  margin-right: 0;
+}
 .Add_DateTime textarea::placeholder {
   color: var(--Ac-2);
   font-weight: 400;
@@ -2534,18 +2540,19 @@
   display: flex;
   flex-direction: column !important;
   align-items: flex-start;
-  justify-content: flex-start;
+  justify-content: space-between;
   background: var(--Ac-4);
   outline: 1px solid var(--Ac-3);
-  height: 25%;
+  height: 27%;
   border-radius: 25px;
   width: 100%;
-  padding: 5px 0;
+  padding: 10px 0;
   box-sizing: border-box;
 }
 .Add_Category p {
   position: relative;
   display: flex;
+  margin: 0;
   margin-left: 25px;
   margin-right: 7px;
   font-size: 0.8rem;
@@ -2598,7 +2605,7 @@
   list-style-type: none;
   overflow-y: visible;
   overflow-x: auto;
-  height: 80px;
+  height: max-content;
   box-sizing: border-box;
 }
 
@@ -2651,7 +2658,6 @@
   font-weight: 300;
   font-family: "Noto Sans", sans-serif;
   color: var(--Ac-1);
-  padding: 5px;
   box-sizing: border-box;
 
   cursor: pointer;
