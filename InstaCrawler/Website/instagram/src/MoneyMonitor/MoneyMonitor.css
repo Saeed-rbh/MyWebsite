@@ -2392,20 +2392,30 @@
   box-sizing: ;
 } */
 
-.Add_DateTime h1 {
+.Add_DateTime h1:first-of-type {
   position: relative;
   display: flex;
   align-items: center;
   color: var(--Bc-1);
   margin: 0;
   height: 100%;
-  width: max-content;
+  width: 40%;
+}
+
+.Add_DateTime h1:last-of-type {
+  position: relative;
+  display: flex;
+  align-items: center;
+  color: var(--Bc-1);
+  margin: 0;
+  height: 100%;
+  width: 60%;
 }
 
 .Add_DateTime {
   position: relative;
   width: -webkit-fill-available;
-  height: 10%;
+  height: 11%;
   padding: 0px;
   border-radius: 25px;
   font-size: 0.8rem;
@@ -2548,6 +2558,7 @@
   text-wrap: nowrap;
   justify-content: center;
   align-items: center;
+  box-sizing: border-box;
 }
 
 .Add_Category h1 {
@@ -2567,11 +2578,13 @@
   width: max-content;
   align-items: center;
   justify-content: center;
+  box-sizing: border-box;
 }
 .Add_Category h1 svg {
   font-size: 0.65rem;
   margin-right: 5px;
   color: var(--Bc-1);
+  box-sizing: border-box;
 }
 
 .Add_Category_items {
@@ -2583,8 +2596,10 @@
   width: calc(100% - 40px);
   margin: 0 15px;
   list-style-type: none;
-  overflow-y: hidden;
+  overflow-y: visible;
   overflow-x: auto;
+  height: 80px;
+  box-sizing: border-box;
 }
 
 .Add_Category_items::-webkit-scrollbar {
