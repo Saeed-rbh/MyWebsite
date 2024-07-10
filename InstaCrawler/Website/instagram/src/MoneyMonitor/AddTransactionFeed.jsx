@@ -152,8 +152,12 @@ function AddTransactionFeed({ isAddClicked }) {
     const now = new Date();
     const hours = now.getHours();
     const minutes = now.getMinutes();
-    const date = now.toLocaleDateString().split("/");
-
+    let date = now.toLocaleDateString();
+    if (date.includes("/")) {
+      date = date.split("/");
+    } else if (date.includes("-")) {
+      date = date.split("-");
+    }
     setCurrentTime({
       hours: hours < 10 ? `0${hours}` : hours,
       minutes: minutes < 10 ? `0${minutes}` : minutes,
