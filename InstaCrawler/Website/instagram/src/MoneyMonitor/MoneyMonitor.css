@@ -2380,7 +2380,7 @@
   color: var(--Bc-1);
   margin: 0;
   height: 100%;
-  width: auto;
+  width: 40%;
 }
 
 .Add_DateTime h1:last-of-type {
@@ -2390,14 +2390,14 @@
   color: var(--Bc-1);
   margin: 0;
   height: 100%;
-  width: auto;
+  width: 60%;
   justify-content: flex-end;
 }
 
 .Add_DateTime {
   position: relative;
   width: -webkit-fill-available;
-  height: 10%;
+  height: 11%;
   padding: 0px;
   border-radius: 25px;
   font-size: 0.8rem;
@@ -2477,7 +2477,7 @@
   top: -35px;
   display: flex;
   align-items: center;
-  justify-content: flex-start;
+  justify-content: flex-end;
   align-items: center;
   width: 100%;
   font-size: 0.8rem;
@@ -2490,7 +2490,7 @@
   position: relative;
   height: 1px;
   transform: translateY(2px);
-  width: -webkit-fill-available;
+  width: 100%;
   background: linear-gradient(165deg, var(--Ac-3) 30%, var(--Ec-4) 100%);
   margin: 0 0 0 10px;
 }
@@ -2633,7 +2633,7 @@
   justify-content: center;
   /* background: var(--Ac-4);
   outline: 1px solid var(--Ac-3); */
-  height: 12%;
+  height: 10%;
   border-radius: 25px;
   width: 100%;
 }
