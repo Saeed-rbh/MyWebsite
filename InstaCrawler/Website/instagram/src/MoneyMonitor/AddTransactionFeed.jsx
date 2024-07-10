@@ -133,8 +133,6 @@ function AddTransactionFeed({ isAddClicked }) {
     setReasonCount(newValue.length);
   };
 
-  console.log(ReasonCount);
-
   const handleErase = () => {
     setReason("");
     setReasonCount(0);
@@ -152,22 +150,13 @@ function AddTransactionFeed({ isAddClicked }) {
     const now = new Date();
     const hours = now.getHours();
     const minutes = now.getMinutes();
-    let date = now.toLocaleDateString();
-    let year = "";
-    let month = "";
-    let day = "";
+    const year = now.getFullYear();
+    let month = now.getMonth() + 1;
+    let day = now.getDate();
 
-    if (date.includes("/")) {
-      date = date.split("/");
-      year = date[2];
-      month = date[0].length === 2 ? date[0] : `0${date[0]}`;
-      day = date[1].length === 2 ? date[1] : `0${date[1]}`;
-    } else if (date.includes("-")) {
-      date = date.split("-");
-      year = date[1];
-      month = date[0].length === 2 ? date[0] : `0${date[0]}`;
-      day = date[2].length === 2 ? date[2] : `0${date[2]}`;
-    }
+    month = month < 10 ? `0${month}` : month;
+    day = day < 10 ? `0${day}` : day;
+
     setCurrentTime({
       hours: hours < 10 ? `0${hours}` : hours,
       minutes: minutes < 10 ? `0${minutes}` : minutes,
@@ -176,8 +165,6 @@ function AddTransactionFeed({ isAddClicked }) {
       day: day,
     });
   }, []);
-
-  console.log(currentTime);
 
   return (
     <div className="AddTransactionFeed">

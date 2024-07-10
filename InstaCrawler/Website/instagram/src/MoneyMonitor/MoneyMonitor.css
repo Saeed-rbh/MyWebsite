@@ -2560,22 +2560,8 @@
 }
 
 .Add_Category_items::-webkit-scrollbar {
-  /* height: 1px;
-  background-color: var(--Ac-4); */
   display: none;
 }
-
-/* .Add_Category_items::-webkit-scrollbar-track {
-  -webkit-box-shadow: inset 0 0 2px var(--Ec-3);
-  border-radius: 10px;
-  background-color: var(--Ec-4);
-}
-
-.Add_Category_items::-webkit-scrollbar-thumb {
-  border-radius: 10px;
-  -webkit-box-shadow: inset 0 0 6px var(--Ec-3);
-  background-color: var(--Bc-4);
-} */
 
 .Add_Category_items h2 {
   position: relative;
