@@ -184,18 +184,18 @@ function AddTransactionFeed({ isAddClicked }) {
 
   const AnountStyle = useSpring({
     opacity: AnountFocused ? 0.8 : 1,
-    left: AnountFocused ? "35px" : "25px",
+    left: AnountFocused ? "30px" : "25px",
   });
   const textareaStyle = useSpring({
-    paddingLeft: AnountFocused ? "95px" : "90px",
+    // paddingLeft: AnountFocused ? "95px" : "90px",
   });
 
   const ReasonStyle = useSpring({
     opacity: ReasonFocused ? 0.8 : 1,
-    left: ReasonFocused ? "35px" : "25px",
+    left: ReasonFocused ? "30px" : "25px",
   });
   const ReasontextareaStyle = useSpring({
-    paddingLeft: ReasonFocused ? "95px" : "90px",
+    // paddingLeft: ReasonFocused ? "95px" : "90px",
   });
   const ReasonCharareaStyle = useSpring({
     opacity: ReasonFocused ? 1 : 0.8,
@@ -323,6 +323,13 @@ function AddTransactionFeed({ isAddClicked }) {
               </ScalableElement>
             ))}
           </div>
+        </li>
+        <li className="Add_Confirm">
+          <h1>
+            <ScalableElement as="span">Daily</ScalableElement>
+            <ScalableElement as="span">Monthly</ScalableElement>
+          </h1>
+          <ScalableElement as="h2">Confirm</ScalableElement>
         </li>
       </ul>
     </div>

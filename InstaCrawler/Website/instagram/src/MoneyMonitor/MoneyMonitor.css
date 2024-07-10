@@ -2587,3 +2587,66 @@
   align-items: center;
   justify-content: center;
 }
+
+.Add_Confirm {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: flex-start;
+  /* background: var(--Ac-4);
+  outline: 1px solid var(--Ac-3); */
+  height: 40px;
+  border-radius: 25px;
+  width: 100%;
+}
+
+.Add_Confirm h1 {
+  margin: 0;
+  height: 41px;
+  font-size: 0.7rem;
+  font-weight: 300;
+  font-family: "Noto Sans", sans-serif;
+  color: var(--Ac-1);
+  padding: 5px;
+
+  cursor: pointer;
+  margin-right: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 50%;
+  outline: 1px solid var(--Ac-3);
+  border-radius: 25px;
+}
+
+.Add_Confirm h1 span {
+  width: 50%;
+  height: 100%;
+  background: var(--Ac-4);
+  border-radius: 25px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.Add_Confirm h1 span:first-of-type {
+  background: var(--Bc-4);
+}
+
+.Add_Confirm h2 {
+  margin: 0;
+  font-size: 0.8rem;
+  font-weight: 400;
+  font-family: "Noto Sans", sans-serif;
+  color: var(--Ac-1);
+  border-radius: 25px;
+  cursor: pointer;
+  margin-left: 5px;
+  background: var(--Bc-4);
+  outline: 1px solid var(--Bc-3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 50%;
+  height: 50px;
+}
