@@ -8,7 +8,7 @@ import React, {
 import { FaCheck } from "react-icons/fa";
 import { FaXmark } from "react-icons/fa6";
 import { useSpring, animated } from "react-spring";
-import { ScalableElement } from "./tools";
+import { ScalableElement, useWindowHeight } from "./tools";
 import { MdOutlineAutoAwesome } from "react-icons/md";
 
 const List = [
@@ -37,6 +37,8 @@ const AmountLogo = ({ Animate1, Animate2, style1, style2, fontColor }) => {
 };
 
 function AddTransactionFeed({ isAddClicked }) {
+  const height = useWindowHeight(160);
+
   const DotStyle = {
     color:
       isAddClicked === "Income"
@@ -183,7 +185,7 @@ function AddTransactionFeed({ isAddClicked }) {
   };
 
   const AnountStyle = useSpring({
-    opacity: AnountFocused ? 0.8 : 1,
+    // opacity: AnountFocused ? 0.8 : 1,
     left: AnountFocused ? "30px" : "25px",
   });
   const textareaStyle = useSpring({
@@ -191,19 +193,19 @@ function AddTransactionFeed({ isAddClicked }) {
   });
 
   const ReasonStyle = useSpring({
-    opacity: ReasonFocused ? 0.8 : 1,
+    // opacity: ReasonFocused ? 0.8 : 1,
     left: ReasonFocused ? "30px" : "25px",
   });
   const ReasontextareaStyle = useSpring({
     // paddingLeft: ReasonFocused ? "95px" : "90px",
   });
   const ReasonCharareaStyle = useSpring({
-    opacity: ReasonFocused ? 1 : 0.8,
+    // opacity: ReasonFocused ? 1 : 0.8,
     // left: ReasonFocused ? "35px" : "25px",
   });
 
   return (
-    <div className="AddTransactionFeed">
+    <div className="AddTransactionFeed" style={{ height: `${height}px` }}>
       <h3>
         <span style={DotStyle}>•</span>Add New <span>{isAddClicked}</span>
       </h3>
