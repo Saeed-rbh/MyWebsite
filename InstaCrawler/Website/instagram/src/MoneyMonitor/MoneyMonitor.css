@@ -2396,10 +2396,10 @@
   position: relative;
   display: flex;
   align-items: center;
-  justify-content: flex-start;
   color: var(--Bc-1);
   margin: 0;
   height: 100%;
+  width: max-content;
 }
 
 .Add_DateTime {
@@ -2421,6 +2421,7 @@
   display: flex;
   box-sizing: border-box;
   width: 100%;
+  justify-content: space-between;
 }
 .Add_DateTime textarea {
   height: 95%;
