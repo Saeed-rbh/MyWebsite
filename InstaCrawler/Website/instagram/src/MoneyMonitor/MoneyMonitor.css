@@ -815,7 +815,9 @@
 
 .TransactionList_Wall h1 span {
   font-weight: 400;
-  margin: 0 3px;
+}
+.TransactionList_Wall h1 span:first-of-type {
+  margin-right: 5px;
 }
 
 .TransactionList_Title {
@@ -2409,6 +2411,7 @@
   margin-top: 5%;
   display: flex;
   box-sizing: border-box;
+  width: 100%;
 }
 .Add_DateTime textarea {
   height: 95%;
@@ -2631,7 +2634,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 50%;
+  width: 60%;
   outline: 1px solid var(--Ac-3);
   border-radius: 25px;
 }
@@ -2663,6 +2666,6 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 50%;
+  width: 40%;
   height: 100%;
 }
