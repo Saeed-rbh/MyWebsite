@@ -2392,20 +2392,20 @@
   resize: none;
   flex-direction: row;
   align-items: flex-start;
-  margin-top: 10px;
-  margin-bottom: 23px !important;
+  margin-top: 12px;
+  margin-bottom: 25px !important;
   display: flex;
 }
 .Add_DateTime textarea {
-  height: 47px;
-  width: 47px;
+  height: 48px;
+  width: 48px;
   padding: 15px 0px 10px 0px;
   border-radius: 15px;
   box-sizing: border-box;
   margin: 0 5px;
   background: var(--Ac-4);
   outline: 1px solid var(--Ac-3);
-  font-size: 0.85rem;
+  font-size: 0.9rem;
   font-weight: 300;
   font-family: "Noto Sans", sans-serif;
   color: var(--Ac-1);
