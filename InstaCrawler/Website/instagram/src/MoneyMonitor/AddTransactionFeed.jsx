@@ -166,6 +166,42 @@ function AddTransactionFeed({ isAddClicked }) {
     });
   }, []);
 
+  const [AnountFocused, setAnountFocused] = useState(false);
+  const handleAnountFocus = () => {
+    setAnountFocused(true);
+  };
+  const handleAnountBlur = () => {
+    setAnountFocused(false);
+  };
+
+  const [ReasonFocused, setReasonFocused] = useState(false);
+  const handleReasonFocus = () => {
+    setReasonFocused(true);
+  };
+  const handleReasonBlur = () => {
+    setReasonFocused(false);
+  };
+
+  const AnountStyle = useSpring({
+    opacity: AnountFocused ? 0.8 : 1,
+    left: AnountFocused ? "35px" : "25px",
+  });
+  const textareaStyle = useSpring({
+    paddingLeft: AnountFocused ? "95px" : "90px",
+  });
+
+  const ReasonStyle = useSpring({
+    opacity: ReasonFocused ? 0.8 : 1,
+    left: ReasonFocused ? "35px" : "25px",
+  });
+  const ReasontextareaStyle = useSpring({
+    paddingLeft: ReasonFocused ? "95px" : "90px",
+  });
+  const ReasonCharareaStyle = useSpring({
+    opacity: ReasonFocused ? 1 : 0.8,
+    // left: ReasonFocused ? "35px" : "25px",
+  });
+
   return (
     <div className="AddTransactionFeed">
       <h3>
@@ -174,14 +210,19 @@ function AddTransactionFeed({ isAddClicked }) {
 
       <ul>
         <li className="Add_Amount">
-          <label>Amount | </label>
-          <textarea
+          <animated.label style={AnountStyle}>
+            Amount {AnountFocused ? ":" : "|"}{" "}
+          </animated.label>
+          <animated.textarea
             type="text"
             maxlength="20"
             inputmode="numeric"
             placeholder="$1000"
             value={value}
             onChange={handleChange}
+            onFocus={handleAnountFocus}
+            onBlur={handleAnountBlur}
+            style={textareaStyle}
           />
           <AmountLogo
             Animate1={Animate1}
@@ -194,17 +235,22 @@ function AddTransactionFeed({ isAddClicked }) {
           <hr />
         </li>
         <li className="Add_Reason">
-          <label>Reason | </label>
-          <textarea
+          <animated.label style={ReasonStyle}>
+            Reason {ReasonFocused ? ":" : "|"}{" "}
+          </animated.label>
+          <animated.textarea
             type="text"
             maxlength="50"
             placeholder="Shopping for party"
             value={reason}
             onChange={handleReason}
+            onFocus={handleReasonFocus}
+            onBlur={handleReasonBlur}
+            style={ReasontextareaStyle}
           />
-          <h1>
+          <animated.h1 style={ReasonCharareaStyle}>
             Character:<span>{ReasonCount} </span>| 50
-          </h1>
+          </animated.h1>
           <ScalableElement as="h2" onClick={handleErase}>
             Clear All
           </ScalableElement>
