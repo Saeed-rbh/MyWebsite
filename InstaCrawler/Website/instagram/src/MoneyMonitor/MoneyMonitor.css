@@ -2222,14 +2222,19 @@
 }
 
 .Add_Amount {
+  position: relative;
   height: 10%;
   box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .Add_Amount textarea {
+  position: relative;
   width: -webkit-fill-available;
   height: 100%;
   background: var(--Ac-4);
-  padding: 20px 25px 20px 30px;
+  padding: calc(10% - 20px) 25px calc(10% - 20px) 30px;
   outline: 1px solid var(--Ac-3);
   border-radius: 25px;
   font-size: 0.8rem;
@@ -2242,12 +2247,16 @@
   resize: none;
   padding-left: 90px;
   box-sizing: border-box;
+  justify-content: center;
+  display: flex;
+  align-items: center;
+  vertical-align: middle;
+  line-height: 20px;
 }
 .Add_Amount textarea::placeholder {
   color: var(--Ac-2);
   font-weight: 400;
   opacity: 0.7;
-  margin-left: 10px;
 }
 
 .AddTransactionFeed ul li label {
@@ -2271,10 +2280,11 @@
   outline: 1px solid var(--Ac-3); */
   width: 80px;
   display: flex;
+  box-sizing: border-box;
 }
 
 .Add_Amount label {
-  top: 19px;
+  top: calc(50% - 10px);
 }
 
 .Add_Reason label {
@@ -2291,9 +2301,8 @@
   justify-content: center;
   height: 20px;
   width: 20px;
-  top: 10px;
-  right: 10px;
-  padding: 8px;
+  right: 20px;
+  top: calc(50% - 10px);
   /* background-color: var(--Ec-2);
   border-radius: 30px; */
 }
