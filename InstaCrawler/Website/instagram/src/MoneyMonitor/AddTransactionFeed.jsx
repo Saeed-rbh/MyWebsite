@@ -153,17 +153,27 @@ function AddTransactionFeed({ isAddClicked }) {
     const hours = now.getHours();
     const minutes = now.getMinutes();
     let date = now.toLocaleDateString();
+    let year = "";
+    let month = "";
+    let day = "";
+
     if (date.includes("/")) {
       date = date.split("/");
+      year = date[2];
+      month = date[0].length === 2 ? date[0] : `0${date[0]}`;
+      day = date[1].length === 2 ? date[1] : `0${date[1]}`;
     } else if (date.includes("-")) {
       date = date.split("-");
+      year = date[1];
+      month = date[0].length === 2 ? date[0] : `0${date[0]}`;
+      day = date[2].length === 2 ? date[2] : `0${date[2]}`;
     }
     setCurrentTime({
       hours: hours < 10 ? `0${hours}` : hours,
       minutes: minutes < 10 ? `0${minutes}` : minutes,
-      year: date[2],
-      month: date[1],
-      day: date[0],
+      year: year,
+      month: month,
+      day: day,
     });
   }, []);
 
