@@ -2562,6 +2562,12 @@
 .Add_Category_items::-webkit-scrollbar {
   display: none;
 }
+.Add_Category_items::-webkit-scrollbar-track {
+  display: none;
+}
+.Add_Category_items::-webkit-scrollbar-thumb {
+  display: none;
+}
 
 .Add_Category_items h2 {
   position: relative;
