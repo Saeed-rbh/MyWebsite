@@ -2391,6 +2391,7 @@
   height: 55%;
   width: 40%;
   margin-top: 20px;
+  z-index: 2;
 }
 
 .Add_DateTime h1:last-of-type {
@@ -2403,6 +2404,7 @@
   width: 60%;
   justify-content: flex-end;
   margin-top: 20px;
+  z-index: 2;
 }
 
 .Add_DateTime {
@@ -2513,12 +2515,10 @@
 
 .Add_DateTime h2 {
   position: absolute;
-
   display: flex;
   align-items: center;
   justify-content: center;
   align-items: center;
-
   border-radius: 100px;
   font-size: 0.8rem;
   font-weight: 300;
@@ -2526,8 +2526,13 @@
   text-wrap: nowrap;
   color: var(--Ac-1);
   margin: 0;
-  right: 5px;
-  bottom: 1px;
+  right: 0;
+  top: calc(60% + 20px);
+  background-color: var(--Ec-2);
+  outline: 1px solid var(--Ac-3);
+  height: 40%;
+  width: 35%;
+  z-index: 1;
 }
 .Add_DateTime h2 svg {
   margin-top: 1px;
@@ -2535,8 +2540,7 @@
 }
 
 .Add_DateTime h2:last-of-type {
-  left: 5px;
-  right: inherit;
+  right: 37%;
 }
 
 .Add_Category {
