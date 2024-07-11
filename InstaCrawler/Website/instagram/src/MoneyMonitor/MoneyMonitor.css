@@ -2342,8 +2342,8 @@
 
 .Add_Reason h1 {
   position: absolute;
-  bottom: 18px;
-  left: 25px;
+  bottom: 15px;
+  left: 20px;
   color: var(--Bc-1);
   font-size: 0.7rem;
   font-weight: 400;
@@ -2388,10 +2388,8 @@
   align-items: center;
   color: var(--Bc-1);
   margin: 0;
-  height: 55%;
+  height: 100%;
   width: 40%;
-  margin-top: 20px;
-  z-index: 2;
 }
 
 .Add_DateTime h1:last-of-type {
@@ -2400,17 +2398,15 @@
   align-items: center;
   color: var(--Bc-1);
   margin: 0;
-  height: 55%;
+  height: 100%;
   width: 60%;
   justify-content: flex-end;
-  margin-top: 20px;
-  z-index: 2;
 }
 
 .Add_DateTime {
   position: relative;
   width: -webkit-fill-available;
-  height: 22%;
+  height: 12%;
   padding: 0px;
   border-radius: 30px;
   font-size: 0.8rem;
@@ -2422,12 +2418,11 @@
   resize: none;
   flex-direction: row;
   align-items: flex-start;
-  margin-top: 0%;
+  margin-top: calc(9%) !important;
   display: flex;
   box-sizing: border-box;
   width: 100%;
   justify-content: flex-start;
-  margin-top: 3% !important;
 }
 .Add_DateTime textarea {
   position: relative;
@@ -2515,32 +2510,29 @@
 
 .Add_DateTime h2 {
   position: absolute;
+
   display: flex;
   align-items: center;
   justify-content: center;
   align-items: center;
+  width: 20px;
+  height: 20px;
   border-radius: 100px;
   font-size: 0.8rem;
   font-weight: 300;
   font-family: "Noto Sans", sans-serif;
   text-wrap: nowrap;
   color: var(--Ac-1);
-  margin: 0;
-  right: 0;
-  top: calc(60% + 20px);
-  background-color: var(--Ec-2);
-  outline: 1px solid var(--Ac-3);
-  height: 40%;
-  width: 35%;
-  z-index: 1;
+  padding: 15px;
+  background: linear-gradient(165deg, var(--Bc-3) 30%, var(--Ec-4) 100%);
 }
-.Add_DateTime h2 svg {
-  margin-top: 1px;
-  margin-right: 5px;
+.Add_DateTime h2:first-of-type {
+  right: 5px;
+  bottom: -75px;
 }
-
 .Add_DateTime h2:last-of-type {
-  right: 37%;
+  right: 65px;
+  bottom: -75px;
 }
 
 .Add_Category {
@@ -2551,18 +2543,18 @@
   justify-content: space-between;
   background: var(--Ac-4);
   outline: 1px solid var(--Ac-3);
-  height: 24%;
+  height: 28%;
   border-radius: 30px;
   width: 100%;
-  padding: 10px 0;
+  padding: 8px 0 7% 0;
   box-sizing: border-box;
 }
 .Add_Category p {
   position: relative;
   display: flex;
   margin: 0;
-  margin-left: 25px;
-  margin-right: 7px;
+  /* margin-left: 25px;
+  margin-right: 7px; */
   font-size: 0.8rem;
   font-weight: 400;
   font-family: "Noto Sans", sans-serif;
@@ -2571,23 +2563,24 @@
   cursor: pointer;
   width: max-content;
   text-wrap: nowrap;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
+  width: 100%;
   box-sizing: border-box;
-  height: 35px;
+  padding-left: 20px;
+  padding-right: 8px;
 }
 
 .Add_Category h1 {
   position: relative;
   display: flex;
-  height: 100%;
   font-size: 0.7rem;
   font-weight: 200;
   font-family: "Noto Sans", sans-serif;
   color: var(--Ac-1);
   cursor: pointer;
-  margin: 0 10px;
-  padding: 10px 15px;
+  margin: 0;
+  padding: 15px 20px;
   background: var(--Bc-4);
   border-radius: 30px;
   /* outline: 1px solid var(--Ac-3); */
@@ -2603,14 +2596,36 @@
   box-sizing: border-box;
 }
 
+.Add_Category_guid {
+  position: absolute;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  bottom: 3.5%;
+  /* right: 10%; */
+  color: var(--Ac-2);
+  font-family: "Noto Sans", sans-serif;
+  font-weight: 300;
+  width: 100%;
+}
+.Add_Category_guid span {
+  font-size: 0.6rem;
+  margin: 0 5px;
+  color: var(--Ac-2);
+}
+.Add_Category_guid svg {
+  font-size: 1rem;
+  margin: 2px -2px 0 0;
+}
 .Add_Category_items {
   position: relative;
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: flex-start;
-  width: calc(100% - 40px);
-  margin: 0 15px;
+  width: calc(100% - 25px);
+  margin: 0 5px 0 10px;
   list-style-type: none;
   overflow-y: visible;
   overflow-x: auto;

@@ -10,8 +10,8 @@ import { FaXmark } from "react-icons/fa6";
 import { useSpring, animated } from "react-spring";
 import { ScalableElement, useWindowHeight } from "./tools";
 import { MdOutlineAutoAwesome } from "react-icons/md";
-import { CiCalendarDate, CiClock2 } from "react-icons/ci";
-import { SiNow } from "react-icons/si";
+import { VscArrowSmallLeft, VscArrowSmallRight } from "react-icons/vsc";
+
 const List = [
   "Categoty 1",
   "Categoty 2",
@@ -187,7 +187,7 @@ function AddTransactionFeed({ isAddClicked }) {
 
   const AnountStyle = useSpring({
     // opacity: AnountFocused ? 0.8 : 1,
-    left: AnountFocused ? "30px" : "25px",
+    left: AnountFocused ? "25px" : "20px",
   });
   const textareaStyle = useSpring({
     // paddingLeft: AnountFocused ? "95px" : "90px",
@@ -195,7 +195,7 @@ function AddTransactionFeed({ isAddClicked }) {
 
   const ReasonStyle = useSpring({
     // opacity: ReasonFocused ? 0.8 : 1,
-    left: ReasonFocused ? "30px" : "25px",
+    left: ReasonFocused ? "25px" : "20px",
   });
   const ReasontextareaStyle = useSpring({
     // paddingLeft: ReasonFocused ? "95px" : "90px",
@@ -325,12 +325,6 @@ function AddTransactionFeed({ isAddClicked }) {
               Calendar
             </ScalableElement> */}
           </h1>
-          <h2>
-            <CiCalendarDate /> Calendar{" "}
-          </h2>
-          <h2>
-            <CiClock2 /> Today{" "}
-          </h2>
         </li>
         <li className="Add_Category">
           <p>
@@ -346,6 +340,12 @@ function AddTransactionFeed({ isAddClicked }) {
                 {item}
               </ScalableElement>
             ))}
+          </div>
+          <div className="Add_Category_guid">
+            <VscArrowSmallLeft />
+
+            <span>Drag Left & Right</span>
+            <VscArrowSmallRight />
           </div>
         </li>
         <li className="Add_Confirm">
