@@ -2660,7 +2660,7 @@
   min-width: 40%;
   margin-right: 5px;
   outline: 1px solid var(--Ac-3);
-  border-radius: 25px;
+  border-radius: 35px;
 }
 
 .Add_Confirm h1 span {
@@ -2697,7 +2697,7 @@
   font-weight: 400;
   font-family: "Noto Sans", sans-serif;
   color: var(--Ac-1);
-  border-radius: 25px;
+  border-radius: 35px;
   cursor: pointer;
   background: var(--Bc-3);
   outline: 1px solid var(--Bc-2);
