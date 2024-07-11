@@ -2183,13 +2183,17 @@
 
 .AddTransactionFeed ul li {
   position: relative;
-  margin-bottom: 4%;
+  margin-top: 4%;
   width: 100%;
   display: flex;
   list-style-type: none;
   /* flex-direction: column; */
   flex-direction: row;
   /* align-items: center; */
+}
+
+.AddTransactionFeed ul li:first-of-type {
+  margin-top: 0;
 }
 
 .Add_Reason {
@@ -2384,8 +2388,9 @@
   align-items: center;
   color: var(--Bc-1);
   margin: 0;
-  height: 100%;
+  height: 55%;
   width: 40%;
+  margin-top: 20px;
 }
 
 .Add_DateTime h1:last-of-type {
@@ -2394,15 +2399,16 @@
   align-items: center;
   color: var(--Bc-1);
   margin: 0;
-  height: 100%;
+  height: 55%;
   width: 60%;
   justify-content: flex-end;
+  margin-top: 20px;
 }
 
 .Add_DateTime {
   position: relative;
   width: -webkit-fill-available;
-  height: 10%;
+  height: 23%;
   padding: 0px;
   border-radius: 30px;
   font-size: 0.8rem;
@@ -2414,15 +2420,17 @@
   resize: none;
   flex-direction: row;
   align-items: flex-start;
-  margin-top: 5%;
+  margin-top: 0%;
   display: flex;
   box-sizing: border-box;
   width: 100%;
-  justify-content: space-between;
+  justify-content: flex-start;
+  margin-top: 3% !important;
 }
 .Add_DateTime textarea {
   position: relative;
   height: 100%;
+  max-height: 50px;
   aspect-ratio: 1/1;
   /* padding: 15px 0px 15px 0px; */
   border-radius: 16px;
@@ -2465,7 +2473,7 @@
 
 .Add_DateTime h1:first-of-type p {
   position: absolute;
-  top: -35px;
+  top: -20px;
   display: flex;
   align-items: center;
   justify-content: flex-start;
@@ -2476,11 +2484,12 @@
   font-family: "Noto Sans", sans-serif;
   text-wrap: nowrap;
   color: var(--Bc-1);
+  margin: 0;
 }
 .Add_DateTime h1:last-of-type p {
   position: absolute;
   color: var(--Bc-1);
-  top: -35px;
+  top: -20px;
   display: flex;
   align-items: center;
   justify-content: flex-end;
@@ -2490,6 +2499,7 @@
   font-weight: 400;
   font-family: "Noto Sans", sans-serif;
   text-wrap: nowrap;
+  margin: 0;
 }
 
 .Add_DateTime h1 p span {

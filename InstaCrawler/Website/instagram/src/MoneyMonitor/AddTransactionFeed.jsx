@@ -37,7 +37,7 @@ const AmountLogo = ({ Animate1, Animate2, style1, style2, fontColor }) => {
 };
 
 function AddTransactionFeed({ isAddClicked }) {
-  const height = useWindowHeight(160);
+  const height = Math.min(useWindowHeight(160), 500);
 
   const DotStyle = {
     color:
