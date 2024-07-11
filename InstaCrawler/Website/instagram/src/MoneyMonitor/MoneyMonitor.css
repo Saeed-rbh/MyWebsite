@@ -2224,7 +2224,7 @@
 
 .Add_Amount {
   position: relative;
-  height: 10%;
+  height: 11%;
   box-sizing: border-box;
   display: flex;
   align-items: center;
@@ -2235,7 +2235,7 @@
   width: -webkit-fill-available;
   height: 100%;
   background: var(--Ac-4);
-  padding: calc(10% - 20px) 25px calc(10% - 20px) 30px;
+  /* padding: calc(11% - 20px) 25px calc(11% - 20px) 30px; */
   outline: 1px solid var(--Ac-3);
   border-radius: 25px;
   font-size: 0.8rem;
@@ -2248,11 +2248,16 @@
   resize: none;
   padding-left: 90px;
   box-sizing: border-box;
+
+  text-wrap: wrap;
+  overflow: hidden;
+  resize: none;
+  box-sizing: border-box;
   justify-content: center;
-  display: flex;
-  align-items: center;
-  vertical-align: middle;
-  line-height: 20px;
+  justify-self: center;
+  align-self: center;
+  align-content: center;
+  justify-items: center;
 }
 .Add_Amount textarea::placeholder {
   color: var(--Ac-2);
@@ -2397,7 +2402,7 @@
 .Add_DateTime {
   position: relative;
   width: -webkit-fill-available;
-  height: 11%;
+  height: 10%;
   padding: 0px;
   border-radius: 25px;
   font-size: 0.8rem;
@@ -2419,7 +2424,7 @@
   height: 100%;
   aspect-ratio: 1/1;
   /* padding: 15px 0px 15px 0px; */
-  border-radius: 15px;
+  border-radius: 16px;
   box-sizing: border-box;
   margin: 0 5px;
   background: var(--Ac-4);
@@ -2454,7 +2459,7 @@
 }
 
 .Add_DateTime h1:last-of-type textarea:last-of-type {
-  width: 70px !important;
+  width: 70px;
 }
 
 .Add_DateTime h1:first-of-type p {
@@ -2530,10 +2535,10 @@
   justify-content: space-between;
   background: var(--Ac-4);
   outline: 1px solid var(--Ac-3);
-  height: 25%;
+  height: 23%;
   border-radius: 25px;
   width: 100%;
-  padding: 10px 0;
+  padding: 8px 0;
   box-sizing: border-box;
 }
 .Add_Category p {
@@ -2640,12 +2645,13 @@
 
 .Add_Confirm h1 {
   margin: 0;
-  height: calc(100% + 2px);
+  height: calc(100% + 4px);
   font-size: 0.7rem;
   font-weight: 300;
   font-family: "Noto Sans", sans-serif;
   color: var(--Ac-1);
   box-sizing: border-box;
+  padding: 2px;
 
   cursor: pointer;
   margin-right: 5px;
@@ -2660,14 +2666,23 @@
 .Add_Confirm h1 span {
   width: 50%;
   height: 100%;
-  background: var(--Ac-4);
+  /* background: var(--Ac-4); */
   border-radius: 25px;
   display: flex;
   align-items: center;
   justify-content: center;
 }
-.Add_Confirm h1 span:first-of-type {
+
+.Add_Confirm span:last-of-type {
+  position: absolute;
+  width: calc(50% - 2px);
+  height: calc(100% - 4px);
   background: var(--Bc-4);
+  border-radius: 25px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  left: 2px;
 }
 
 .Add_Confirm h2 {
