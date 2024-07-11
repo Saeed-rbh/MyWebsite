@@ -2408,7 +2408,7 @@
 .Add_DateTime {
   position: relative;
   width: -webkit-fill-available;
-  height: 23%;
+  height: 22%;
   padding: 0px;
   border-radius: 30px;
   font-size: 0.8rem;
@@ -2518,24 +2518,25 @@
   align-items: center;
   justify-content: center;
   align-items: center;
-  width: 20px;
-  height: 20px;
+
   border-radius: 100px;
   font-size: 0.8rem;
   font-weight: 300;
   font-family: "Noto Sans", sans-serif;
   text-wrap: nowrap;
   color: var(--Ac-1);
-  padding: 15px;
-  background: linear-gradient(165deg, var(--Bc-3) 30%, var(--Ec-4) 100%);
-}
-.Add_DateTime h2:first-of-type {
+  margin: 0;
   right: 5px;
-  bottom: -75px;
+  bottom: 1px;
 }
+.Add_DateTime h2 svg {
+  margin-top: 1px;
+  margin-right: 5px;
+}
+
 .Add_DateTime h2:last-of-type {
-  right: 65px;
-  bottom: -75px;
+  left: 5px;
+  right: inherit;
 }
 
 .Add_Category {
@@ -2546,10 +2547,10 @@
   justify-content: space-between;
   background: var(--Ac-4);
   outline: 1px solid var(--Ac-3);
-  height: 23%;
+  height: 24%;
   border-radius: 30px;
   width: 100%;
-  padding: 8px 0;
+  padding: 10px 0;
   box-sizing: border-box;
 }
 .Add_Category p {
@@ -2569,11 +2570,13 @@
   justify-content: center;
   align-items: center;
   box-sizing: border-box;
+  height: 35px;
 }
 
 .Add_Category h1 {
   position: relative;
   display: flex;
+  height: 100%;
   font-size: 0.7rem;
   font-weight: 200;
   font-family: "Noto Sans", sans-serif;

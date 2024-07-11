@@ -10,7 +10,8 @@ import { FaXmark } from "react-icons/fa6";
 import { useSpring, animated } from "react-spring";
 import { ScalableElement, useWindowHeight } from "./tools";
 import { MdOutlineAutoAwesome } from "react-icons/md";
-
+import { CiCalendarDate, CiClock2 } from "react-icons/ci";
+import { SiNow } from "react-icons/si";
 const List = [
   "Categoty 1",
   "Categoty 2",
@@ -324,6 +325,12 @@ function AddTransactionFeed({ isAddClicked }) {
               Calendar
             </ScalableElement> */}
           </h1>
+          <h2>
+            <CiCalendarDate /> Calendar{" "}
+          </h2>
+          <h2>
+            <CiClock2 /> Today{" "}
+          </h2>
         </li>
         <li className="Add_Category">
           <p>

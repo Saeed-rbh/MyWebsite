@@ -3,7 +3,6 @@ import { useSpring, animated } from "@react-spring/web";
 import { MdOutlineBrunchDining } from "react-icons/md";
 import { FaCaretDown } from "react-icons/fa";
 import { IoClose } from "react-icons/io5";
-import ModifyCategory from "./Modify_category";
 
 const transactions = [
   [
