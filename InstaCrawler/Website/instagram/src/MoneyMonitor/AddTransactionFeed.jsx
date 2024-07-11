@@ -212,6 +212,13 @@ function AddTransactionFeed({ isAddClicked }) {
     // right: whichType ? "60%" : "10%",
   });
 
+  const ConfirmStyleDay = useSpring({
+    x: whichType ? 0 : 3,
+  });
+  const ConfirmStyleMonth = useSpring({
+    x: whichType ? -4 : 0,
+  });
+
   return (
     <div className="AddTransactionFeed" style={{ height: `${height}px` }}>
       <h3>
@@ -336,10 +343,18 @@ function AddTransactionFeed({ isAddClicked }) {
         </li>
         <li className="Add_Confirm">
           <h1>
-            <ScalableElement as="span" onClick={() => setWhichType(true)}>
+            <ScalableElement
+              as="span"
+              onClick={() => setWhichType(true)}
+              style={ConfirmStyleDay}
+            >
               Daily
             </ScalableElement>
-            <ScalableElement as="span" onClick={() => setWhichType(false)}>
+            <ScalableElement
+              as="span"
+              onClick={() => setWhichType(false)}
+              style={ConfirmStyleMonth}
+            >
               Monthly
             </ScalableElement>
             <animated.span style={ConfirmStyle}></animated.span>

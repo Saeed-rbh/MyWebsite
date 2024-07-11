@@ -2203,7 +2203,7 @@
   background: var(--Ac-4);
   padding: 15px 25px 20px 30px;
   outline: 1px solid var(--Ac-3);
-  border-radius: 25px;
+  border-radius: 30px;
   font-size: 0.8rem;
   font-weight: 300;
   font-family: "Noto Sans", sans-serif;
@@ -2237,7 +2237,7 @@
   background: var(--Ac-4);
   /* padding: calc(11% - 20px) 25px calc(11% - 20px) 30px; */
   outline: 1px solid var(--Ac-3);
-  border-radius: 25px;
+  border-radius: 30px;
   font-size: 0.8rem;
   font-weight: 300;
   font-family: "Noto Sans", sans-serif;
@@ -2404,7 +2404,7 @@
   width: -webkit-fill-available;
   height: 10%;
   padding: 0px;
-  border-radius: 25px;
+  border-radius: 30px;
   font-size: 0.8rem;
   font-weight: 600;
   font-family: "Noto Sans", sans-serif;
@@ -2537,7 +2537,7 @@
   background: var(--Ac-4);
   outline: 1px solid var(--Ac-3);
   height: 23%;
-  border-radius: 25px;
+  border-radius: 30px;
   width: 100%;
   padding: 8px 0;
   box-sizing: border-box;
@@ -2568,12 +2568,11 @@
   font-weight: 200;
   font-family: "Noto Sans", sans-serif;
   color: var(--Ac-1);
-  border-radius: 25px;
   cursor: pointer;
   margin: 0 10px;
   padding: 10px 15px;
   background: var(--Bc-4);
-  border-radius: 25px;
+  border-radius: 30px;
   /* outline: 1px solid var(--Ac-3); */
   width: max-content;
   align-items: center;
@@ -2638,7 +2637,7 @@
   align-items: center;
   justify-content: space-around;
   height: 11%;
-  border-radius: 25px;
+  border-radius: 30px;
   width: 100%;
 }
 
@@ -2661,6 +2660,7 @@
   margin-right: 5px;
   outline: 1px solid var(--Ac-3);
   border-radius: 35px;
+  background: var(--Ac-4);
 }
 
 .Add_Confirm h1 span {
@@ -2668,7 +2668,7 @@
   width: 60%;
   height: 100%;
   /* background: var(--Ac-4); */
-  border-radius: 25px;
+  border-radius: 30px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -2682,12 +2682,13 @@
   position: absolute;
   width: calc(40%);
   height: calc(100% - 4px);
-  background: var(--Bc-4);
-  border-radius: 25px;
+  background: var(--Bc-3);
+  border-radius: 30px;
   display: flex;
   align-items: center;
   justify-content: center;
   left: 2px;
+  opacity: 0.8;
 }
 
 .Add_Confirm h2 {
