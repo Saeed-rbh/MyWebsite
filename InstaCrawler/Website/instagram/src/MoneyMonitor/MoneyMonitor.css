@@ -2193,7 +2193,7 @@
 }
 
 .Add_Reason {
-  height: 23%;
+  height: 21%;
   box-sizing: border-box;
 }
 
@@ -2421,6 +2421,7 @@
   justify-content: space-between;
 }
 .Add_DateTime textarea {
+  position: relative;
   height: 100%;
   aspect-ratio: 1/1;
   /* padding: 15px 0px 15px 0px; */
@@ -2636,9 +2637,7 @@
   flex-direction: row;
   align-items: center;
   justify-content: space-around;
-  /* background: var(--Ac-4);
-  outline: 1px solid var(--Ac-3); */
-  height: 10%;
+  height: 11%;
   border-radius: 25px;
   width: 100%;
 }
@@ -2657,8 +2656,8 @@
   justify-content: center;
   padding: 2px;
   box-sizing: border-box;
-  width: 45%;
-  min-width: 45%;
+  width: 40%;
+  min-width: 40%;
   margin-right: 5px;
   outline: 1px solid var(--Ac-3);
   border-radius: 25px;
@@ -2666,7 +2665,7 @@
 
 .Add_Confirm h1 span {
   position: relative;
-  width: 50%;
+  width: 60%;
   height: 100%;
   /* background: var(--Ac-4); */
   border-radius: 25px;
@@ -2675,9 +2674,13 @@
   justify-content: center;
 }
 
+.Add_Confirm span:first-of-type {
+  width: 40%;
+}
+
 .Add_Confirm span:last-of-type {
   position: absolute;
-  width: calc(50%);
+  width: calc(40%);
   height: calc(100% - 4px);
   background: var(--Bc-4);
   border-radius: 25px;

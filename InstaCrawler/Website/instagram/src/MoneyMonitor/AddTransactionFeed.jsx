@@ -206,8 +206,10 @@ function AddTransactionFeed({ isAddClicked }) {
 
   const [whichType, setWhichType] = useState(true);
   const ConfirmStyle = useSpring({
-    left: whichType ? "0%" : "50%",
+    left: whichType ? "0%" : "43%",
+    width: whichType ? "40%" : "57%",
     marginLeft: whichType ? 2 : -2,
+    // right: whichType ? "60%" : "10%",
   });
 
   return (
