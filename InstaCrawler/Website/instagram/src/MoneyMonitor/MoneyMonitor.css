@@ -2635,7 +2635,7 @@
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: center;
+  justify-content: space-around;
   /* background: var(--Ac-4);
   outline: 1px solid var(--Ac-3); */
   height: 10%;
@@ -2644,26 +2644,28 @@
 }
 
 .Add_Confirm h1 {
+  position: relative;
   margin: 0;
   height: calc(100% + 4px);
   font-size: 0.7rem;
   font-weight: 300;
   font-family: "Noto Sans", sans-serif;
   color: var(--Ac-1);
-  box-sizing: border-box;
-  padding: 2px;
-
   cursor: pointer;
-  margin-right: 5px;
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 60%;
+  padding: 2px;
+  box-sizing: border-box;
+  width: 45%;
+  min-width: 45%;
+  margin-right: 5px;
   outline: 1px solid var(--Ac-3);
   border-radius: 25px;
 }
 
 .Add_Confirm h1 span {
+  position: relative;
   width: 50%;
   height: 100%;
   /* background: var(--Ac-4); */
@@ -2675,7 +2677,7 @@
 
 .Add_Confirm span:last-of-type {
   position: absolute;
-  width: calc(50% - 2px);
+  width: calc(50%);
   height: calc(100% - 4px);
   background: var(--Bc-4);
   border-radius: 25px;
@@ -2686,6 +2688,7 @@
 }
 
 .Add_Confirm h2 {
+  position: relative;
   margin: 0;
   font-size: 0.8rem;
   font-weight: 400;
@@ -2693,12 +2696,11 @@
   color: var(--Ac-1);
   border-radius: 25px;
   cursor: pointer;
-  margin-left: 5px;
   background: var(--Bc-3);
   outline: 1px solid var(--Bc-2);
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 40%;
+  width: -webkit-fill-available;
   height: 100%;
 }
