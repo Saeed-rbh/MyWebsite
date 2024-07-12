@@ -28,6 +28,61 @@ import { MdOutlineWorkOutline } from "react-icons/md";
 import { TbMoneybag } from "react-icons/tb";
 import { PiHandCoinsDuotone } from "react-icons/pi";
 
+const useNumericInput = (
+  initialValue,
+  min,
+  max,
+  shouldWaitForCompleteInput = false
+) => {
+  const [value, setValue] = useState(initialValue);
+  const [isValid, setIsValid] = useState(true);
+
+  const handleChange = useCallback(
+    (event) => {
+      const numericValue = event.target.value.replace(/[^0-9]/g, "");
+      setValue(numericValue);
+
+      if (shouldWaitForCompleteInput && numericValue.length < 4) {
+        setIsValid(true); // If waiting for complete input and less than 4 digits, consider valid
+      } else {
+        if (
+          numericValue === "" ||
+          (parseInt(numericValue, 10) >= min &&
+            parseInt(numericValue, 10) <= max)
+        ) {
+          setIsValid(true);
+        } else {
+          setIsValid(false);
+        }
+      }
+    },
+    [min, max, shouldWaitForCompleteInput]
+  );
+
+  const handleBlur = useCallback(() => {
+    let numericValue =
+      value === ""
+        ? ""
+        : Math.max(min, Math.min(max, parseInt(value, 10))).toString();
+    setValue(numericValue);
+
+    if (shouldWaitForCompleteInput && value.length < 4) {
+      setIsValid(true); // If waiting for complete input and less than 4 digits, consider valid
+    } else {
+      if (
+        value !== "" &&
+        (parseInt(value, 10) < min || parseInt(value, 10) > max)
+      ) {
+        setIsValid(false); // Mark as invalid if out of range
+      } else {
+        setIsValid(true); // Mark as valid if within range
+      }
+    }
+  }, [value, min, max, shouldWaitForCompleteInput]);
+
+  return [value, handleChange, handleBlur, isValid];
+};
+
 const spending_categories = [
   ["Housing & Utilities", <TbHomeBolt />],
   ["Transportation", <RiSubwayLine />],
@@ -70,8 +125,8 @@ const AmountLogo = ({ Animate1, Animate2, style1, style2, fontColor }) => {
   );
 };
 
-function AddTransactionFeed({ isAddClicked }) {
-  const height = Math.min(useWindowHeight(160), 500);
+function AddTransactionFeed({ isAddClicked, setIsClicked, setAddTransaction }) {
+  const height = Math.max(Math.min(useWindowHeight(160), 500), 470);
 
   const OriginalList =
     isAddClicked === "Income"
@@ -95,6 +150,7 @@ function AddTransactionFeed({ isAddClicked }) {
   const [value, setValue] = useState("");
 
   const handleChange = (event) => {
+    setValueError(true);
     const numericValue = event.target.value.replace(/[^0-9]/g, ""); // Remove non-numeric characters
     const formattedValue = new Intl.NumberFormat().format(numericValue); // Format the number with commas
     setValue(numericValue.length > 0 ? `$${formattedValue}` : "");
@@ -228,24 +284,14 @@ function AddTransactionFeed({ isAddClicked }) {
     setReasonFocused(false);
   };
 
+  const [valueError, setValueError] = useState(true);
   const AnountStyle = useSpring({
     // opacity: AnountFocused ? 0.8 : 1,
     left: AnountFocused ? "25px" : "20px",
+    color: valueError ? "var(--Bc-1)" : "var(--Gc-1)",
   });
-  const textareaStyle = useSpring({
-    // paddingLeft: AnountFocused ? "95px" : "90px",
-  });
-
-  const ReasonStyle = useSpring({
-    // opacity: ReasonFocused ? 0.8 : 1,
-    left: ReasonFocused ? "25px" : "20px",
-  });
-  const ReasontextareaStyle = useSpring({
-    // paddingLeft: ReasonFocused ? "95px" : "90px",
-  });
-  const ReasonCharareaStyle = useSpring({
-    // opacity: ReasonFocused ? 1 : 0.8,
-    // left: ReasonFocused ? "35px" : "25px",
+  const AnountBorderStyle = useSpring({
+    outline: valueError ? "1px solid var(--Ac-4)" : "1px solid var(--Gc-2)",
   });
 
   const [whichType, setWhichType] = useState(true);
@@ -331,6 +377,50 @@ function AddTransactionFeed({ isAddClicked }) {
     }
   };
 
+  const [hour, handleHourChange, handleHourBlur, isHourValid] = useNumericInput(
+    "",
+    0,
+    23
+  );
+  const [minute, handleMinuteChange, handleMinuteBlur, isMinuteValid] =
+    useNumericInput("", 0, 59);
+  const [day, handleDayChange, handleDayBlur, isDayValid] = useNumericInput(
+    "",
+    1,
+    31
+  );
+  const [month, handleMonthChange, handleMonthBlur, isMonthValid] =
+    useNumericInput("", 1, 12);
+  const [year, handleYearChange, handleYearBlur, isYearValid] = useNumericInput(
+    "",
+    2023,
+    currentTime.year,
+    true
+  );
+
+  const getBorderStyle = (isValid) =>
+    isValid ? {} : { border: "1px solid var(--Gc-2)" };
+
+  const handleAddClick = () => {
+    value.length < 1 ? setValueError(false) : setValueError(true);
+    if (value.length > 0) {
+      const newTransaction = {
+        Amount: Number(value.replace(/[^0-9]/g, "")),
+        Reason: reason,
+        Label: selectedCategory[0],
+        Timestamp: `${year.length < 1 ? currentTime.year : year}-${
+          month.length < 1 ? currentTime.month : month
+        }-${day.length < 1 ? currentTime.day : day} ${
+          hour.length < 1 ? currentTime.hours : hour
+        }:${minute.length < 1 ? currentTime.minutes : minute}`,
+        Type: whichType ? "Daily" : "Monthly",
+        Category: isAddClicked,
+      };
+      setAddTransaction(newTransaction);
+      setIsClicked(null);
+    }
+  };
+
   return (
     <div className="AddTransactionFeed" style={{ height: `${height}px` }}>
       <h3>
@@ -338,7 +428,7 @@ function AddTransactionFeed({ isAddClicked }) {
       </h3>
 
       <ul>
-        <li className="Add_Amount">
+        <animated.li className="Add_Amount" style={AnountBorderStyle}>
           <animated.label style={AnountStyle}>
             Amount {AnountFocused ? ":" : "|"}{" "}
           </animated.label>
@@ -351,7 +441,6 @@ function AddTransactionFeed({ isAddClicked }) {
             onChange={handleChange}
             onFocus={handleAnountFocus}
             onBlur={handleAnountBlur}
-            style={textareaStyle}
           />
           <AmountLogo
             Animate1={Animate1}
@@ -362,11 +451,9 @@ function AddTransactionFeed({ isAddClicked }) {
           />
           <hr />
           <hr />
-        </li>
+        </animated.li>
         <li className="Add_Reason">
-          <animated.label style={ReasonStyle}>
-            Reason {ReasonFocused ? ":" : "|"}{" "}
-          </animated.label>
+          <animated.label>Reason {ReasonFocused ? ":" : "|"} </animated.label>
           <animated.textarea
             type="text"
             maxlength="50"
@@ -375,9 +462,8 @@ function AddTransactionFeed({ isAddClicked }) {
             onChange={handleReason}
             onFocus={handleReasonFocus}
             onBlur={handleReasonBlur}
-            style={ReasontextareaStyle}
           />
-          <animated.h1 style={ReasonCharareaStyle}>
+          <animated.h1>
             Character:<span>{ReasonCount} </span>| 50
           </animated.h1>
           <ScalableElement as="h2" onClick={handleErase}>
@@ -396,6 +482,10 @@ function AddTransactionFeed({ isAddClicked }) {
               maxlength="2"
               inputmode="numeric"
               placeholder={currentTime.hours}
+              value={hour}
+              onChange={handleHourChange}
+              onBlur={handleHourBlur}
+              style={getBorderStyle(isHourValid)}
             />
             :
             <textarea
@@ -403,6 +493,10 @@ function AddTransactionFeed({ isAddClicked }) {
               maxlength="2"
               inputmode="numeric"
               placeholder={currentTime.minutes}
+              value={minute}
+              onChange={handleMinuteChange}
+              onBlur={handleMinuteBlur}
+              style={getBorderStyle(isMinuteValid)}
             />
           </h1>
           <h1>
@@ -414,6 +508,10 @@ function AddTransactionFeed({ isAddClicked }) {
               maxlength="2"
               inputmode="numeric"
               placeholder={currentTime.day}
+              value={day}
+              onChange={handleDayChange}
+              onBlur={handleDayBlur}
+              style={getBorderStyle(isDayValid)}
             />
             /
             <textarea
@@ -421,6 +519,10 @@ function AddTransactionFeed({ isAddClicked }) {
               maxlength="2"
               inputmode="numeric"
               placeholder={currentTime.month}
+              value={month}
+              onChange={handleMonthChange}
+              onBlur={handleMonthBlur}
+              style={getBorderStyle(isMonthValid)}
             />
             /
             <textarea
@@ -428,13 +530,11 @@ function AddTransactionFeed({ isAddClicked }) {
               maxlength="4"
               inputmode="numeric"
               placeholder={currentTime.year}
+              value={year}
+              onChange={handleYearChange}
+              onBlur={handleYearBlur}
+              style={getBorderStyle(isYearValid)}
             />
-            {/* <ScalableElement as="h2" onClick={handleErase}>
-              Now
-            </ScalableElement>
-            <ScalableElement as="h2" onClick={handleErase}>
-              Calendar
-            </ScalableElement> */}
           </h1>
         </li>
         <li className="Add_Category">
@@ -484,7 +584,9 @@ function AddTransactionFeed({ isAddClicked }) {
             </ScalableElement>
             <animated.span style={ConfirmStyle}></animated.span>
           </h1>
-          <ScalableElement as="h2">Add Transaction</ScalableElement>
+          <ScalableElement as="h2" onClick={() => handleAddClick()}>
+            Add Transaction
+          </ScalableElement>
         </li>
       </ul>
     </div>

@@ -79,7 +79,7 @@ const MoneyMonitor = () => {
 
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isMoreClicked, setIsMoreClicked] = useState(null);
-  const [isAddClicked, setIsAddClicked] = useState(true);
+  const [isAddClicked, setIsAddClicked] = useState(null);
 
   useEffect(() => {
     !isMoreClicked && setWhichMonth(1);
@@ -115,9 +115,18 @@ const MoneyMonitor = () => {
     return [];
   }, [isMoreClicked, incomeData, spendingData, savingData]);
 
+  const [addTransaction, setAddTransaction] = useState("");
   const AddFeed = () => {
-    return <AddTransactionFeed isAddClicked={isAddClicked} />;
+    return (
+      <AddTransactionFeed
+        isAddClicked={isAddClicked}
+        setIsClicked={setIsAddClicked}
+        setAddTransaction={setAddTransaction}
+      />
+    );
   };
+
+  console.log(addTransaction);
 
   return (
     <div className="MoneyMonitor_Main">
