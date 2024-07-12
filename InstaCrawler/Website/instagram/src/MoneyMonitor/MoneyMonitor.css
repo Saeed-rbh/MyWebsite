@@ -2605,14 +2605,15 @@
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  bottom: 7px;
+  bottom: 6px;
   right: 15%;
   color: var(--Ac-2);
   font-family: "Noto Sans", sans-serif;
   font-weight: 300;
   backdrop-filter: blur(50px);
-  padding: 0 10px;
+  padding: 0 1px;
   -webkit-backdrop-filter: blur(50px);
+  background-color: var(--Ec-4);
   height: 5px;
   /* width: 100%; */
 }
@@ -2637,7 +2638,8 @@
   overflow-x: auto;
   height: max-content;
   box-sizing: border-box;
-  outline: 1px solid var(--Ac-3);
+  outline: 2px solid var(--Ec-1);
+  background: var(--Ec-3);
   padding: 8px 10px 8px 10px;
   border-radius: 35px;
 }
