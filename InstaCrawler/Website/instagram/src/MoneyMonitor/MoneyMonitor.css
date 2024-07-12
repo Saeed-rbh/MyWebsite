@@ -2221,6 +2221,7 @@
   resize: none;
   padding-left: 90px;
   box-sizing: border-box;
+  background: linear-gradient(170deg, var(--Ac-3) -150%, var(--Ec-4) 95%);
 }
 .Add_Reason textarea::placeholder {
   color: var(--Ac-2);
@@ -2245,7 +2246,7 @@
   position: relative;
   width: -webkit-fill-available;
   height: 100%;
-  background: var(--Ec-4);
+  background: linear-gradient(170deg, var(--Ac-3) -150%, var(--Ec-4) 95%);
   /* padding: calc(11% - 20px) 25px calc(11% - 20px) 30px; */
   outline: 1px solid var(--Ac-3);
   border-radius: 30px;
@@ -2549,6 +2550,7 @@
   align-items: flex-start;
   justify-content: flex-end;
   background: var(--Ec-4);
+  background: linear-gradient(170deg, var(--Ac-3) -150%, var(--Ec-4) 95%);
   outline: 1px solid var(--Ac-3);
   height: 26%;
   border-radius: 30px;
@@ -2603,6 +2605,7 @@
   margin: 0;
   padding: 15px 20px;
   background: var(--Ec-4);
+  background: linear-gradient(170deg, var(--Bc-3) -20%, var(--Ec-4) 100%);
   border-radius: 30px;
   /* outline: 1px solid var(--Ac-3); */
   width: max-content;
@@ -2727,6 +2730,7 @@
   border-radius: 35px;
   background: var(--Ec-4);
   overflow: hidden;
+  background: linear-gradient(170deg, var(--Ac-3) -150%, var(--Ec-4) 95%);
 }
 
 .Add_Confirm h1 span {
@@ -2749,6 +2753,7 @@
   width: calc(40%);
   height: calc(100% - 4px);
   background: var(--Bc-4);
+  background: linear-gradient(165deg, var(--Bc-2) 0%, var(--Ec-4) 95%);
   border-radius: 30px;
   display: flex;
   align-items: center;
@@ -2768,6 +2773,7 @@
   border-radius: 35px;
   cursor: pointer;
   background: var(--Ec-3);
+  background: linear-gradient(170deg, var(--Bc-1) -150%, var(--Ec-4) 95%);
   outline: 1px solid var(--Bc-2);
   display: flex;
   align-items: center;
