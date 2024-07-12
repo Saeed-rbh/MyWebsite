@@ -2546,7 +2546,7 @@
   height: 24.5%;
   border-radius: 30px;
   width: 100%;
-  padding: 0 8px 8px 8px;
+  padding: 0 8px 10px 8px;
   box-sizing: border-box;
 }
 .Add_Category p {
@@ -2605,17 +2605,15 @@
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  bottom: 6px;
+  bottom: 8px;
   right: 15%;
   color: var(--Ac-2);
   font-family: "Noto Sans", sans-serif;
   font-weight: 300;
-  backdrop-filter: blur(50px);
-  padding: 0 1px;
-  -webkit-backdrop-filter: blur(50px);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
   background-color: var(--Ec-4);
   height: 5px;
-  /* width: 100%; */
 }
 .Add_Category_guid span {
   font-size: 0.6rem;
@@ -2638,7 +2636,7 @@
   overflow-x: auto;
   height: max-content;
   box-sizing: border-box;
-  outline: 2px solid var(--Ec-1);
+  outline: 1px solid var(--Ec-1);
   background: var(--Ec-3);
   padding: 8px 10px 8px 10px;
   border-radius: 35px;
@@ -2665,7 +2663,7 @@
   cursor: pointer;
   padding: 15px 20px;
   background: var(--Ec-2);
-  margin: 1px;
+  margin: 0 2px;
   outline: 1px solid var(--Ac-3);
   width: max-content;
   text-wrap: nowrap;
