@@ -283,7 +283,7 @@ function AddTransactionFeed({ isAddClicked }) {
           <animated.label style={ReasonStyle}>
             Reason {ReasonFocused ? ":" : "|"}{" "}
           </animated.label>
-          <Gradient blur={40} />
+          <Gradient blur={50} opacity={0.45} />
           <animated.textarea
             type="text"
             maxlength="50"
@@ -365,6 +365,13 @@ function AddTransactionFeed({ isAddClicked }) {
           </p>{" "}
           <div className="Add_Category_items">
             <h1 onClick={() => handleChangeCategory("Auto Detect")}>
+              <Gradient
+                blur={40}
+                opacity={0.9}
+                top={80}
+                left={25}
+                background="var(--Bc-2)"
+              />
               <MdOutlineAutoAwesome />
               Auto Detect
             </h1>
@@ -403,12 +410,18 @@ function AddTransactionFeed({ isAddClicked }) {
               Monthly
             </ScalableElement>
             <animated.span style={ConfirmStyle}>
-              <Gradient blur={20} opacity={1} background="var(--Bc-2)" />
+              <Gradient blur={10} opacity={0.8} background="var(--Bc-2)" />
             </animated.span>
           </h1>
           <ScalableElement as="h2">
-            <Gradient blur={40} opacity={1} background="var(--Bc-2)" />
-            Confirm
+            <Gradient
+              blur={45}
+              opacity={1}
+              top={60}
+              left={20}
+              background="var(--Bc-2)"
+            />
+            Add Transaction
           </ScalableElement>
         </li>
       </ul>

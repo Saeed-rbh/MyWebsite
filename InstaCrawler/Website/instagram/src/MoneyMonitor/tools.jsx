@@ -81,6 +81,8 @@ export const Gradient = ({
   opacity = 0.4,
   blur = 10,
   background = "var(--Ac-3)",
+  left = 20,
+  top = 40,
 }) => {
   return (
     <animated.div
@@ -88,6 +90,8 @@ export const Gradient = ({
         opacity: opacity,
         filter: `blur(${blur}px)`,
         background: background,
+        left: `-${left}%`,
+        top: `-${top}%`,
       }}
       className="CirleColor"
     ></animated.div>

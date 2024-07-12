@@ -2231,7 +2231,7 @@
 
 .Add_Amount {
   position: relative;
-  height: 11%;
+  height: 12%;
   box-sizing: border-box;
   display: flex;
   align-items: center;
@@ -2602,7 +2602,7 @@
   cursor: pointer;
   margin: 0;
   padding: 15px 20px;
-  background: var(--Bc-4);
+  background: var(--Ec-4);
   border-radius: 30px;
   /* outline: 1px solid var(--Ac-3); */
   width: max-content;
@@ -2611,6 +2611,8 @@
   box-sizing: border-box;
   width: max-content;
   text-wrap: nowrap;
+  overflow: hidden;
+  min-width: 120px;
 }
 .Add_Category h1 svg {
   font-size: 0.65rem;
@@ -2689,6 +2691,7 @@
   text-wrap: nowrap;
   align-items: center;
   justify-content: center;
+  background: linear-gradient(165deg, var(--Ac-4) -20%, var(--Ec-2) 100%);
 }
 
 .Add_Confirm {
