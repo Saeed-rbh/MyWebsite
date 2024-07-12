@@ -8,7 +8,7 @@ import React, {
 import { FaCheck } from "react-icons/fa";
 import { FaXmark } from "react-icons/fa6";
 import { useSpring, animated } from "react-spring";
-import { ScalableElement, useWindowHeight, Gradient } from "./tools";
+import { ScalableElement, useWindowHeight } from "./tools";
 import { MdOutlineAutoAwesome } from "react-icons/md";
 import { VscArrowSmallLeft, VscArrowSmallRight } from "react-icons/vsc";
 
