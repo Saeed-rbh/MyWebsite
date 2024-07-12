@@ -29,12 +29,20 @@ export const ScalableElement = ({
   children,
   className,
   onClick,
+  onMouseDown,
   key,
   style,
 }) => {
   const [isScaled, setIsScaled] = useState(false);
 
-  const handleMouseDown = useCallback(() => setIsScaled(true), []);
+  const handleMouseDown = useCallback(
+    (e) => {
+      setIsScaled(true);
+      if (onMouseDown) onMouseDown();
+    },
+    [onMouseDown]
+  );
+
   const handleMouseUp = useCallback(() => setIsScaled(false), []);
 
   const style_2 = useSpring({

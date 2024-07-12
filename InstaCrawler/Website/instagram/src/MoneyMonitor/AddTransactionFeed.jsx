@@ -5,19 +5,52 @@ import React, {
   useMemo,
   useCallback,
 } from "react";
+import { useDrag } from "@use-gesture/react";
+
 import { FaCheck } from "react-icons/fa";
 import { FaXmark } from "react-icons/fa6";
-import { useSpring, animated } from "react-spring";
+import { useSpring, animated, useSprings } from "react-spring";
 import { ScalableElement, useWindowHeight } from "./tools";
 import { MdOutlineAutoAwesome } from "react-icons/md";
 import { VscArrowSmallLeft, VscArrowSmallRight } from "react-icons/vsc";
+import { MdOutlineSsidChart } from "react-icons/md";
+import { TbHomeDollar } from "react-icons/tb";
+import { BiQuestionMark } from "react-icons/bi";
+import { LiaPiggyBankSolid } from "react-icons/lia";
+import { TbHomeBolt } from "react-icons/tb";
+import { RiSubwayLine } from "react-icons/ri";
+import { MdOutlineLocalGroceryStore } from "react-icons/md";
+import { PiPillBold } from "react-icons/pi";
+import { MdOutlineSchool } from "react-icons/md";
+import { BiDrink } from "react-icons/bi";
+import { MdAssuredWorkload } from "react-icons/md";
+import { MdOutlineWorkOutline } from "react-icons/md";
+import { TbMoneybag } from "react-icons/tb";
+import { PiHandCoinsDuotone } from "react-icons/pi";
 
-const List = [
-  "Categoty 1",
-  "Categoty 2",
-  "Categoty 3",
-  "Categoty 4",
-  "Categoty 5",
+const spending_categories = [
+  ["Housing & Utilities", <TbHomeBolt />],
+  ["Transportation", <RiSubwayLine />],
+  ["Groceries & Dining", <MdOutlineLocalGroceryStore />],
+  ["Medical & Health", <PiPillBold />],
+  ["Education & Training", <MdOutlineSchool />],
+  ["Leisure & Recreation", <BiDrink />],
+  ["Other", <BiQuestionMark />],
+];
+
+const Income_categories = [
+  ["Employment Income", <MdOutlineWorkOutline />],
+  ["Employee Benefits", <PiHandCoinsDuotone />],
+  ["Government Benefits", <MdAssuredWorkload />],
+  ["Investment Income", <TbMoneybag />],
+  ["Other", <BiQuestionMark />],
+];
+
+const SaveInvest_categories = [
+  ["Savings Account", <LiaPiggyBankSolid />],
+  ["Stocks", <MdOutlineSsidChart />],
+  ["Real Estate", <TbHomeDollar />],
+  ["Other", <BiQuestionMark />],
 ];
 
 const AmountLogo = ({ Animate1, Animate2, style1, style2, fontColor }) => {
@@ -39,6 +72,16 @@ const AmountLogo = ({ Animate1, Animate2, style1, style2, fontColor }) => {
 
 function AddTransactionFeed({ isAddClicked }) {
   const height = Math.min(useWindowHeight(160), 500);
+
+  const OriginalList =
+    isAddClicked === "Income"
+      ? Income_categories
+      : isAddClicked === "Spending"
+      ? spending_categories
+      : SaveInvest_categories;
+
+  const AutoDetect = ["Auto Detect", <MdOutlineAutoAwesome />];
+  const List = [AutoDetect, ...OriginalList];
 
   const DotStyle = {
     color:
@@ -220,9 +263,10 @@ function AddTransactionFeed({ isAddClicked }) {
     x: whichType ? -4 : 0,
   });
 
-  const [selectedCategory, setSelectedCategory] = useState("Auto Detect");
-  const [newCategory, setNewCategory] = useState("Auto Detect");
+  const [selectedCategory, setSelectedCategory] = useState(List[0]);
+  const [newCategory, setNewCategory] = useState(List[0]);
   const [fading, setFading] = useState(false);
+  const [isDragging, setIsDragging] = useState(false);
 
   const handleChangeCategory = (newCategory) => {
     if (newCategory === selectedCategory) return;
@@ -245,6 +289,47 @@ function AddTransactionFeed({ isAddClicked }) {
     transform: !fading ? "translateX(0px)" : "translateX(-10px)",
     config: { duration: 400 },
   });
+
+  const [draggedX, setDraggedX] = useState(0);
+
+  const listSprings = useSprings(
+    List.length,
+    List.map((item) => ({
+      transform: `translateX(-${draggedX}px)`,
+      backgroundColor:
+        item[0] === selectedCategory[0] ? `var(--Bc-3)` : `var(--Ec-4)`,
+    }))
+  );
+
+  const containerRef = useRef(null);
+  const [containerWidth, setContainerWidth] = useState(0);
+  const [contentWidth, setContentWidth] = useState(0);
+
+  useEffect(() => {
+    if (containerRef.current) {
+      setContainerWidth(containerRef.current.clientWidth);
+      setContentWidth(containerRef.current.scrollWidth);
+    }
+  }, []);
+
+  const bind = useDrag(({ movement: [mx], dragging }) => {
+    const maxDrag = contentWidth - containerWidth;
+    const newDraggedX = draggedX - mx / 15;
+    const constrainedX = Math.max(0, Math.min(maxDrag, newDraggedX));
+    setDraggedX(constrainedX);
+    isDragging && setIsDragging(mx !== 0 ? false : true);
+  });
+
+  const handleMouseDown = () => {
+    console.log(isDragging);
+    setIsDragging(true);
+  };
+
+  const handleClick = (item) => {
+    if (isDragging) {
+      handleChangeCategory(List[item]);
+    }
+  };
 
   return (
     <div className="AddTransactionFeed" style={{ height: `${height}px` }}>
@@ -356,22 +441,21 @@ function AddTransactionFeed({ isAddClicked }) {
           <p>
             Category |{" "}
             <animated.span style={fading ? fadeOutRight : fadeInLeft}>
-              <MdOutlineAutoAwesome />
-              {selectedCategory}
+              {selectedCategory[1]}
+              {selectedCategory[0]}
             </animated.span>
           </p>{" "}
-          <div className="Add_Category_items">
-            <h1 onClick={() => handleChangeCategory("Auto Detect")}>
-              <MdOutlineAutoAwesome />
-              Auto Detect
-            </h1>
-            {List.map((item) => (
+          <div className="Add_Category_items" ref={containerRef} {...bind()}>
+            {listSprings.map((animation, index) => (
               <ScalableElement
+                style={animation}
                 as="h2"
-                key={item}
-                onClick={() => handleChangeCategory(item)}
+                key={index}
+                onMouseDown={() => handleMouseDown(index)}
+                onClick={() => handleClick(index)}
               >
-                {item}
+                {List[index][1]}
+                {List[index][0]}
               </ScalableElement>
             ))}
           </div>
