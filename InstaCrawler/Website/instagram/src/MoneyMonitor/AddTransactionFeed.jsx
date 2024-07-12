@@ -220,6 +220,32 @@ function AddTransactionFeed({ isAddClicked }) {
     x: whichType ? -4 : 0,
   });
 
+  const [selectedCategory, setSelectedCategory] = useState("Auto Detect");
+  const [newCategory, setNewCategory] = useState("Auto Detect");
+  const [fading, setFading] = useState(false);
+
+  const handleChangeCategory = (newCategory) => {
+    if (newCategory === selectedCategory) return;
+    setFading(true);
+    setNewCategory(newCategory);
+  };
+
+  const fadeOutRight = useSpring({
+    opacity: fading ? 0 : 1,
+    transform: fading ? "translateX(20px)" : "translateX(0px)",
+    config: { duration: 500 },
+    onRest: () => {
+      setSelectedCategory(newCategory);
+      setFading(false);
+    },
+  });
+
+  const fadeInLeft = useSpring({
+    opacity: !fading ? 1 : 0,
+    transform: !fading ? "translateX(0px)" : "translateX(20px)",
+    config: { duration: 500 },
+  });
+
   return (
     <div className="AddTransactionFeed" style={{ height: `${height}px` }}>
       <h3>
@@ -327,14 +353,24 @@ function AddTransactionFeed({ isAddClicked }) {
           </h1>
         </li>
         <li className="Add_Category">
-          <p>Category | </p>{" "}
+          <p>
+            Category |{" "}
+            <animated.span style={fading ? fadeOutRight : fadeInLeft}>
+              <MdOutlineAutoAwesome />
+              {selectedCategory}
+            </animated.span>
+          </p>{" "}
           <div className="Add_Category_items">
-            <h1>
+            <h1 onClick={() => handleChangeCategory("Auto Detect")}>
               <MdOutlineAutoAwesome />
               Auto Detect
             </h1>
             {List.map((item) => (
-              <ScalableElement as="h2" key={item}>
+              <ScalableElement
+                as="h2"
+                key={item}
+                onClick={() => handleChangeCategory(item)}
+              >
                 {item}
               </ScalableElement>
             ))}

@@ -2543,10 +2543,10 @@
   justify-content: flex-end;
   background: var(--Ac-4);
   outline: 1px solid var(--Ac-3);
-  height: 24.5%;
+  height: 26%;
   border-radius: 30px;
   width: 100%;
-  padding: 0 8px 10px 8px;
+  padding: 0 8px 15px 8px;
   box-sizing: border-box;
 }
 .Add_Category p {
@@ -2565,11 +2565,23 @@
   text-wrap: nowrap;
   justify-content: space-between;
   align-items: center;
-  width: 100%;
   box-sizing: border-box;
   left: 20px;
   padding-right: 8px;
   top: 15px;
+}
+
+.Add_Category p span {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 10px;
+  color: var(--Ac-2);
+}
+
+.Add_Category p span svg {
+  margin-right: 5px;
+  color: var(--Ac-2);
 }
 
 .Add_Category h1 {
@@ -2605,7 +2617,7 @@
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  bottom: 8px;
+  bottom: 12px;
   right: 15%;
   color: var(--Ac-2);
   font-family: "Noto Sans", sans-serif;
@@ -2678,6 +2690,7 @@
   align-items: center;
   justify-content: space-around;
   height: 12%;
+  max-height: 55px;
   border-radius: 30px;
   width: 100%;
 }
