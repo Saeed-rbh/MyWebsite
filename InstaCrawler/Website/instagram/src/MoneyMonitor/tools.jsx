@@ -76,3 +76,20 @@ export const useCustomSpring = (
       : 0,
   });
 };
+
+export const Gradient = ({
+  opacity = 0.4,
+  blur = 10,
+  background = "var(--Ac-3)",
+}) => {
+  return (
+    <animated.div
+      style={{
+        opacity: opacity,
+        filter: `blur(${blur}px)`,
+        background: background,
+      }}
+      className="CirleColor"
+    ></animated.div>
+  );
+};

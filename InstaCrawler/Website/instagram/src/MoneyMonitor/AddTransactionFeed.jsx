@@ -8,7 +8,7 @@ import React, {
 import { FaCheck } from "react-icons/fa";
 import { FaXmark } from "react-icons/fa6";
 import { useSpring, animated } from "react-spring";
-import { ScalableElement, useWindowHeight } from "./tools";
+import { ScalableElement, useWindowHeight, Gradient } from "./tools";
 import { MdOutlineAutoAwesome } from "react-icons/md";
 import { VscArrowSmallLeft, VscArrowSmallRight } from "react-icons/vsc";
 
@@ -257,6 +257,7 @@ function AddTransactionFeed({ isAddClicked }) {
           <animated.label style={AnountStyle}>
             Amount {AnountFocused ? ":" : "|"}{" "}
           </animated.label>
+          <Gradient blur={30} />
           <animated.textarea
             type="text"
             maxlength="20"
@@ -282,6 +283,7 @@ function AddTransactionFeed({ isAddClicked }) {
           <animated.label style={ReasonStyle}>
             Reason {ReasonFocused ? ":" : "|"}{" "}
           </animated.label>
+          <Gradient blur={40} />
           <animated.textarea
             type="text"
             maxlength="50"
@@ -353,6 +355,7 @@ function AddTransactionFeed({ isAddClicked }) {
           </h1>
         </li>
         <li className="Add_Category">
+          <Gradient blur={70} opacity={0.5} />
           <p>
             Category |{" "}
             <animated.span style={fading ? fadeOutRight : fadeInLeft}>
@@ -384,6 +387,7 @@ function AddTransactionFeed({ isAddClicked }) {
         </li>
         <li className="Add_Confirm">
           <h1>
+            <Gradient blur={50} opacity={1} />
             <ScalableElement
               as="span"
               onClick={() => setWhichType(true)}
@@ -398,9 +402,14 @@ function AddTransactionFeed({ isAddClicked }) {
             >
               Monthly
             </ScalableElement>
-            <animated.span style={ConfirmStyle}></animated.span>
+            <animated.span style={ConfirmStyle}>
+              <Gradient blur={20} opacity={1} background="var(--Bc-2)" />
+            </animated.span>
           </h1>
-          <ScalableElement as="h2">Confirm</ScalableElement>
+          <ScalableElement as="h2">
+            <Gradient blur={40} opacity={1} background="var(--Bc-2)" />
+            Confirm
+          </ScalableElement>
         </li>
       </ul>
     </div>

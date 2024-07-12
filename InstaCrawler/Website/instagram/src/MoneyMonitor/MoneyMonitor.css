@@ -2199,12 +2199,15 @@
 .Add_Reason {
   height: 21%;
   box-sizing: border-box;
+  overflow: hidden;
+  border-radius: 30px;
+  padding: 1px;
 }
 
 .Add_Reason textarea {
   width: -webkit-fill-available;
   height: 100%;
-  background: var(--Ac-4);
+  background: var(--Ec-4);
   padding: 15px 25px 20px 30px;
   outline: 1px solid var(--Ac-3);
   border-radius: 30px;
@@ -2233,12 +2236,16 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  overflow: hidden;
+  border-radius: 30px;
+  box-sizing: border-box;
+  padding: 1px;
 }
 .Add_Amount textarea {
   position: relative;
   width: -webkit-fill-available;
   height: 100%;
-  background: var(--Ac-4);
+  background: var(--Ec-4);
   /* padding: calc(11% - 20px) 25px calc(11% - 20px) 30px; */
   outline: 1px solid var(--Ac-3);
   border-radius: 30px;
@@ -2311,7 +2318,7 @@
   justify-content: center;
   height: 20px;
   width: 20px;
-  right: 20px;
+  right: 18px;
   top: calc(50% - 10px);
   /* background-color: var(--Ec-2);
   border-radius: 30px; */
@@ -2430,10 +2437,10 @@
   max-height: 50px;
   aspect-ratio: 1/1;
   /* padding: 15px 0px 15px 0px; */
-  border-radius: 16px;
+  border-radius: 17px;
   box-sizing: border-box;
   margin: 0 5px;
-  background: var(--Ac-4);
+  background: linear-gradient(160deg, var(--Ac-3) -80%, var(--Ec-4) 80%);
   outline: 1px solid var(--Ac-3);
   font-size: 0.9rem;
   font-weight: 300;
@@ -2541,13 +2548,14 @@
   flex-direction: column !important;
   align-items: flex-start;
   justify-content: flex-end;
-  background: var(--Ac-4);
+  background: var(--Ec-4);
   outline: 1px solid var(--Ac-3);
   height: 26%;
   border-radius: 30px;
   width: 100%;
   padding: 0 8px 15px 8px;
   box-sizing: border-box;
+  overflow: hidden;
 }
 .Add_Category p {
   position: absolute;
@@ -2617,7 +2625,7 @@
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  bottom: 12px;
+  bottom: 13px;
   right: 15%;
   color: var(--Ac-2);
   font-family: "Noto Sans", sans-serif;
@@ -2714,7 +2722,8 @@
   margin-right: 5px;
   outline: 1px solid var(--Ac-3);
   border-radius: 35px;
-  background: var(--Ac-4);
+  background: var(--Ec-4);
+  overflow: hidden;
 }
 
 .Add_Confirm h1 span {
@@ -2736,13 +2745,14 @@
   position: absolute;
   width: calc(40%);
   height: calc(100% - 4px);
-  background: var(--Bc-3);
+  background: var(--Bc-4);
   border-radius: 30px;
   display: flex;
   align-items: center;
   justify-content: center;
   left: 2px;
   opacity: 0.8;
+  overflow: hidden;
 }
 
 .Add_Confirm h2 {
@@ -2754,11 +2764,12 @@
   color: var(--Ac-1);
   border-radius: 35px;
   cursor: pointer;
-  background: var(--Bc-3);
+  background: var(--Ec-3);
   outline: 1px solid var(--Bc-2);
   display: flex;
   align-items: center;
   justify-content: center;
   width: -webkit-fill-available;
   height: 100%;
+  overflow: hidden;
 }
