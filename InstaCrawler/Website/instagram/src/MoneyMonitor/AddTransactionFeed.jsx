@@ -327,14 +327,12 @@ function AddTransactionFeed({ isAddClicked }) {
           </h1>
         </li>
         <li className="Add_Category">
-          <p>
-            Category |{" "}
+          <p>Category | </p>{" "}
+          <div className="Add_Category_items">
             <h1>
               <MdOutlineAutoAwesome />
               Auto Detect
             </h1>
-          </p>{" "}
-          <div className="Add_Category_items">
             {List.map((item) => (
               <ScalableElement as="h2" key={item}>
                 {item}

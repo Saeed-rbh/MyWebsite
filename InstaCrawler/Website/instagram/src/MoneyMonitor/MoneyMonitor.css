@@ -2540,20 +2540,20 @@
   display: flex;
   flex-direction: column !important;
   align-items: flex-start;
-  justify-content: space-between;
+  justify-content: flex-end;
   background: var(--Ac-4);
   outline: 1px solid var(--Ac-3);
-  height: 28%;
+  height: 24.5%;
   border-radius: 30px;
   width: 100%;
-  padding: 8px 0 7% 0;
+  padding: 0 8px 8px 8px;
   box-sizing: border-box;
 }
 .Add_Category p {
-  position: relative;
+  position: absolute;
   display: flex;
   margin: 0;
-  /* margin-left: 25px;
+  /* margin-fleft: 25px;
   margin-right: 7px; */
   font-size: 0.8rem;
   font-weight: 400;
@@ -2567,8 +2567,9 @@
   align-items: center;
   width: 100%;
   box-sizing: border-box;
-  padding-left: 20px;
+  left: 20px;
   padding-right: 8px;
+  top: 15px;
 }
 
 .Add_Category h1 {
@@ -2588,6 +2589,8 @@
   align-items: center;
   justify-content: center;
   box-sizing: border-box;
+  width: max-content;
+  text-wrap: nowrap;
 }
 .Add_Category h1 svg {
   font-size: 0.65rem;
@@ -2602,12 +2605,16 @@
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  bottom: 3.5%;
-  /* right: 10%; */
+  bottom: 7px;
+  right: 15%;
   color: var(--Ac-2);
   font-family: "Noto Sans", sans-serif;
   font-weight: 300;
-  width: 100%;
+  backdrop-filter: blur(10px);
+  padding: 0 10px;
+  -webkit-backdrop-filter: blur(10px);
+  height: 5px;
+  /* width: 100%; */
 }
 .Add_Category_guid span {
   font-size: 0.6rem;
@@ -2624,13 +2631,15 @@
   flex-direction: row;
   align-items: center;
   justify-content: flex-start;
-  width: calc(100% - 25px);
-  margin: 0 5px 0 10px;
+  width: 100%;
   list-style-type: none;
   overflow-y: visible;
   overflow-x: auto;
   height: max-content;
   box-sizing: border-box;
+  outline: 1px solid var(--Ac-3);
+  padding: 7px 10px 9px 10px;
+  border-radius: 35px;
 }
 
 .Add_Category_items::-webkit-scrollbar {
