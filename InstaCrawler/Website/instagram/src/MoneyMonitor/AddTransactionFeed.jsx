@@ -232,18 +232,18 @@ function AddTransactionFeed({ isAddClicked }) {
 
   const fadeOutRight = useSpring({
     opacity: fading ? 0 : 1,
-    transform: fading ? "translateX(20px)" : "translateX(0px)",
+    transform: fading ? "translateX(10px)" : "translateX(0px)",
     config: { duration: 500 },
     onRest: () => {
       setSelectedCategory(newCategory);
-      setFading(false);
+      setTimeout(() => setFading(false), 200);
     },
   });
 
   const fadeInLeft = useSpring({
     opacity: !fading ? 1 : 0,
-    transform: !fading ? "translateX(0px)" : "translateX(20px)",
-    config: { duration: 500 },
+    transform: !fading ? "translateX(0px)" : "translateX(-10px)",
+    config: { duration: 400 },
   });
 
   return (
