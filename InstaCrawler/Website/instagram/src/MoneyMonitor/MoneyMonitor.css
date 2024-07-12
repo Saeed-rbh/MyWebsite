@@ -2610,9 +2610,9 @@
   color: var(--Ac-2);
   font-family: "Noto Sans", sans-serif;
   font-weight: 300;
-  backdrop-filter: blur(10px);
+  backdrop-filter: blur(50px);
   padding: 0 10px;
-  -webkit-backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(50px);
   height: 5px;
   /* width: 100%; */
 }
@@ -2638,7 +2638,7 @@
   height: max-content;
   box-sizing: border-box;
   outline: 1px solid var(--Ac-3);
-  padding: 7px 10px 9px 10px;
+  padding: 8px 10px 8px 10px;
   border-radius: 35px;
 }
 
