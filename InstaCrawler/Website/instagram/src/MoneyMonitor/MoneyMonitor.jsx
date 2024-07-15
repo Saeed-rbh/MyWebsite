@@ -9,7 +9,8 @@ import MainStatestics from "./MainStatestics";
 import { useWindowHeight } from "./tools";
 import AddTransaction from "./AddTransaction";
 import MoreOpen from "./MoreOpen";
-import AddTransactionFeed from "./AddTransactionFeed";
+import AddTransactionFeed from "./transactionFeedPage/AddTransactionFeed";
+import Notif from "./addedTransactionNotif/Notif";
 
 const useTransactionData = (whichMonth) => {
   const [data, setData] = useState({
@@ -115,7 +116,14 @@ const MoneyMonitor = () => {
     return [];
   }, [isMoreClicked, incomeData, spendingData, savingData]);
 
-  const [addTransaction, setAddTransaction] = useState("");
+  const [addTransaction, setAddTransaction] = useState({
+    Amount: 1000,
+    Category: "Save & Invest",
+    Label: "Auto Detect",
+    Reason: "for shopping on month of July",
+    Timestamp: "2024-07-15 13:30",
+    Type: "Daily",
+  });
   const AddFeed = () => {
     return (
       <AddTransactionFeed
@@ -125,8 +133,6 @@ const MoneyMonitor = () => {
       />
     );
   };
-
-  console.log(addTransaction);
 
   return (
     <div className="MoneyMonitor_Main">
@@ -148,7 +154,12 @@ const MoneyMonitor = () => {
         whichMonth={whichMonth}
         dataAvailability={dataAvailability}
       />
+
       <div className="MoneyMonitor_Parent">
+        <Notif
+          addTransaction={addTransaction}
+          setAddTransaction={setAddTransaction}
+        />
         <header className="MoneyMonitor_header">
           <div className="MoneyMonitor_User">
             <div className="MoneyMonitor_Logo">

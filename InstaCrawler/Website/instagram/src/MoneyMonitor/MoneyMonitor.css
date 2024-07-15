@@ -2797,3 +2797,152 @@
   height: 100%;
   overflow: hidden;
 }
+
+.addedTransactionNotif {
+  position: absolute;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 150px;
+  background: var(--Ec-3);
+  border-radius: 30px;
+  color: var(--Bc-1);
+  font-size: 1.5rem;
+  font-weight: 300;
+  font-family: "Noto Sans", sans-serif;
+  z-index: 10000;
+  top: 15px;
+  outline: 1px solid var(--Bc-3);
+  box-shadow: 0 15px 20px 0px var(--Ec-1);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.Notif_Type {
+  position: absolute;
+  font-size: 0.9rem;
+  font-weight: 400;
+  font-family: "Noto Sans", sans-serif;
+  color: var(--Ac-1);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  top: 10px;
+  left: 10px;
+  background: none;
+  height: max-content;
+  width: max-content;
+}
+.Notif_Type h1 {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  font-size: 0.8rem;
+  font-weight: 400;
+  color: var(--Ac-1);
+  margin: 0;
+  line-height: 15px;
+}
+
+.Notif_Type h1 span {
+  font-weight: 200;
+  line-height: 15px;
+}
+
+.Notif_Type svg {
+  font-size: 1.2rem;
+  margin-right: 8px;
+  background: linear-gradient(165deg, var(--Ac-4) 10%, var(--Ec-4) 100%);
+  padding: 10px;
+  border-radius: 50px;
+  color: var(--Ac-2);
+  z-index: 10;
+}
+
+.Notif_Amount {
+  position: absolute;
+  font-family: "Noto Sans", sans-serif;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  bottom: 20px;
+  left: 57px;
+  height: 35px;
+}
+.Notif_Amount h1 {
+  font-size: 0.7rem;
+  font-weight: 300;
+  color: var(--Bc-1);
+  margin: 0;
+}
+.Notif_Amount h2 {
+  font-size: 1.4rem;
+  font-weight: 300;
+  color: var(--Ac-1);
+  margin: 0;
+  margin-top: -3px;
+}
+
+.Notif_Time {
+  position: absolute;
+  font-family: "Noto Sans", sans-serif;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  top: 15px;
+  right: 40px;
+  height: 35px;
+}
+.Notif_Time h1 {
+  font-size: 0.7rem;
+  font-weight: 300;
+  color: var(--Bc-1);
+  margin: 0;
+  line-height: 15px;
+}
+.Notif_Time h2 {
+  font-size: 0.8rem;
+  font-weight: 300;
+  color: var(--Ac-1);
+  margin: 0;
+  line-height: 15px;
+}
+
+.Notif_Time h2 span {
+  margin-left: 5px;
+}
+
+.Notif_Reason {
+  position: absolute;
+  font-family: "Noto Sans", sans-serif;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  bottom: 60px;
+  left: 57px;
+  height: 35px;
+}
+.Notif_Reason h1 {
+  font-size: 0.7rem;
+  font-weight: 300;
+  color: var(--Bc-1);
+  margin: 0;
+  line-height: 15px;
+}
+.Notif_Reason h2 {
+  font-size: 0.8rem;
+  font-weight: 300;
+  color: var(--Ac-1);
+  margin: 0;
+  line-height: 15px;
+}
