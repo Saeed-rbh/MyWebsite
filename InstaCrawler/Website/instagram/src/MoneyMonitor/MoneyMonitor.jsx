@@ -94,7 +94,6 @@ const MoneyMonitor = () => {
     scale: isMoreClicked || isAddClicked !== null ? 0.9 : 1,
     opacity: isMoreClicked || isAddClicked !== null ? 0.5 : 1,
     filter: isAddClicked !== null ? "blur(10px)" : "blur(0px)",
-    height,
   });
 
   const BlurStyle = useSpring({

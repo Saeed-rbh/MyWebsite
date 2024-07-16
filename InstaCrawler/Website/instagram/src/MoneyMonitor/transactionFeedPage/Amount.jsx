@@ -44,17 +44,7 @@ const Amount = ({
     }
   }, [modifyValue, value.length]);
 
-  const [AnountFocused, setAnountFocused] = useState(false);
-
-  const handleAnountFocus = () => {
-    setAnountFocused(true);
-  };
-  const handleAnountBlur = () => {
-    setAnountFocused(false);
-  };
-
   const AnountStyle = useSpring({
-    left: AnountFocused ? "25px" : "20px",
     color: valueError ? "var(--Bc-1)" : "var(--Gc-1)",
   });
   const AnountBorderStyle = useSpring({
@@ -137,9 +127,7 @@ const Amount = ({
 
   return (
     <animated.li className="Add_Amount" style={AnountBorderStyle}>
-      <animated.label style={AnountStyle}>
-        Amount {AnountFocused ? ":" : "|"}{" "}
-      </animated.label>
+      <animated.label style={AnountStyle}>Amount |</animated.label>
       <animated.textarea
         type="text"
         defaultValue={fornatDefualtValue}
@@ -148,8 +136,6 @@ const Amount = ({
         placeholder="$1000"
         value={modifyValue ? value : fornatDefualtValue}
         onChange={handleChange}
-        onFocus={handleAnountFocus}
-        onBlur={handleAnountBlur}
       />
       <AmountLogo
         Animate1={Animate1}

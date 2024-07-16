@@ -3,14 +3,6 @@ import { animated } from "react-spring";
 import { ScalableElement } from "../tools";
 
 const Reason = ({ reason, setReason, defaultValue }) => {
-  const [ReasonFocused, setReasonFocused] = useState(false);
-  const handleReasonFocus = () => {
-    setReasonFocused(true);
-  };
-  const handleReasonBlur = () => {
-    setReasonFocused(false);
-  };
-
   const [ReasonCount, setReasonCount] = useState(0);
 
   const handleReason = (event) => {
@@ -26,7 +18,7 @@ const Reason = ({ reason, setReason, defaultValue }) => {
 
   return (
     <li className="Add_Reason">
-      <animated.label>Reason {ReasonFocused ? ":" : "|"} </animated.label>
+      <animated.label>Reason | </animated.label>
       <animated.textarea
         type="text"
         maxlength="50"
@@ -34,8 +26,6 @@ const Reason = ({ reason, setReason, defaultValue }) => {
         defaultValue={defaultValue}
         value={reason}
         onChange={handleReason}
-        onFocus={handleReasonFocus}
-        onBlur={handleReasonBlur}
       />
       <animated.h1>
         Character:<span>{ReasonCount} </span>| 50
