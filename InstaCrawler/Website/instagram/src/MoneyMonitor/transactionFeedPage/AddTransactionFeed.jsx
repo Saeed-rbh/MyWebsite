@@ -101,17 +101,46 @@ function AddTransactionFeed({
   );
 
   const handleAddClick = () => {
-    value.length < 1 ? setValueError(false) : setValueError(true);
-    if (value.length > 0) {
+    value.length < 1 && !Modify ? setValueError(false) : setValueError(true);
+    if (value.length > 0 || Modify) {
+      const yearSave =
+        year.value.length < 1
+          ? Modify
+            ? addTransaction.Timestamp.split(" ")[0].split("-")[0]
+            : currentTime.year
+          : year.value;
+      const monthSave =
+        month.value.length < 1
+          ? Modify
+            ? addTransaction.Timestamp.split(" ")[0].split("-")[1]
+            : currentTime.month
+          : month.value;
+      const daySave =
+        day.value.length < 1
+          ? Modify
+            ? addTransaction.Timestamp.split(" ")[0].split("-")[2]
+            : currentTime.day
+          : day.value;
+      const hourSave =
+        hour.value.length < 1
+          ? Modify
+            ? addTransaction.Timestamp.split(" ")[1].split(":")[0]
+            : currentTime.hours
+          : hour.value;
+      const minuteSave =
+        minute.value.length < 1
+          ? Modify
+            ? addTransaction.Timestamp.split(" ")[1].split(":")[1]
+            : currentTime.minutes
+          : minute.value;
       const newTransaction = {
-        Amount: Number(value.replace(/[^0-9]/g, "")),
-        Reason: reason,
+        Amount:
+          Number(value.replace(/[^0-9]/g, "")) !== 0
+            ? Number(value.replace(/[^0-9]/g, ""))
+            : addTransaction.Amount,
+        Reason: reason.length !== 0 ? reason : addTransaction.Reason,
         Label: selectedCategory[0],
-        Timestamp: `${year.value.length < 1 ? currentTime.year : year.value}-${
-          month.value.length < 1 ? currentTime.month : month.value
-        }-${day.value.length < 1 ? currentTime.day : day.value} ${
-          hour.value.length < 1 ? currentTime.hours : hour.value
-        }:${minute.value.length < 1 ? currentTime.minutes : minute.value}`,
+        Timestamp: `${yearSave}-${monthSave}-${daySave} ${hourSave}:${minuteSave}`,
         Type: whichType ? "Daily" : "Monthly",
         Category: isAddClicked,
       };

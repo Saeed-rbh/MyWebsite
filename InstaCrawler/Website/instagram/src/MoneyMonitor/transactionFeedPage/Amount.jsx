@@ -33,6 +33,16 @@ const Amount = ({
   setValueError,
   defaultValue,
 }) => {
+  let fornatDefualtValue = new Intl.NumberFormat().format(defaultValue);
+  fornatDefualtValue =
+    fornatDefualtValue[0] !== 0 ? `$${fornatDefualtValue}` : "";
+  const [modifyValue, setmodifyValue] = useState(false);
+  useEffect(() => {
+    if (!modifyValue && value.length > 0) {
+      setmodifyValue(true);
+    }
+  }, [modifyValue, value.length]);
+
   const [AnountFocused, setAnountFocused] = useState(false);
 
   const handleAnountFocus = () => {
@@ -131,11 +141,11 @@ const Amount = ({
       </animated.label>
       <animated.textarea
         type="text"
-        defaultValue={defaultValue}
+        defaultValue={fornatDefualtValue}
         maxlength="20"
         inputmode="numeric"
         placeholder="$1000"
-        value={value}
+        value={modifyValue ? value : fornatDefualtValue}
         onChange={handleChange}
         onFocus={handleAnountFocus}
         onBlur={handleAnountBlur}
