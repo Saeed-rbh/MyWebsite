@@ -2672,7 +2672,7 @@
   box-sizing: border-box;
   /* outline: 1px solid var(--Ec-1); */
   /* background: var(--Ec-2); */
-  padding: 0 8px;
+  padding: 1px 8px;
   border-radius: 35px;
 }
 
