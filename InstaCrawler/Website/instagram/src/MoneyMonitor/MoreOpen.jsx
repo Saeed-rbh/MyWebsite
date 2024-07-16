@@ -39,9 +39,7 @@ const MoreOpen = ({
         scale: !!isClicked ? 1 : 0.9,
         opacity: !isClicked ? 0 : 1,
         top: !!isClicked ? `${MoreOpenHeight}px` : `${height}px`,
-        height: !!isClicked
-          ? `calc(100vh - ${MoreOpenHeight}px)`
-          : `calc(0vh - ${MoreOpenHeight}px)`,
+        height: `calc(100vh - ${MoreOpenHeight}px)`,
         onRest: () => {
           handleOnRest();
         },
@@ -69,12 +67,12 @@ const MoreOpen = ({
         if (last) {
           if (isQuickDragUp) {
             api.start({
-              height: `calc(100vh - ${MoreOpenHeight}px)`,
+              top: `${MoreOpenHeight}px`,
               config: config.slow,
             });
           } else if (isQuickDragDown) {
             api.start({
-              height: `calc(10vh  - ${MoreOpenHeight}px)`,
+              top: `${height}px`,
               config: config.slow,
             });
             setIsClicked(null);
@@ -83,17 +81,17 @@ const MoreOpen = ({
             window.innerHeight / 2.2
           ) {
             api.start({
-              height: `calc(10vh  - ${MoreOpenHeight}px)`,
+              top: `${height}px`,
             });
             setIsClicked(null);
           } else {
             api.start({
-              height: `calc(100vh - 100px)`,
+              top: `${MoreOpenHeight}px`,
             });
           }
         } else {
           api.start({
-            height: `calc(100vh - ${newHeight}px)`,
+            top: `${newHeight}px`,
           });
         }
       }

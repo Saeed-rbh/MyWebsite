@@ -1,7 +1,7 @@
 :root {
   --Ac-1: rgba(255, 245, 240, 1);
   --Ac-2: rgba(255, 245, 240, 0.6);
-  --Ac-3: rgba(255, 245, 240, 0.4);
+  --Ac-3: rgba(255, 245, 240, 0.35);
   --Ac-4: rgba(255, 245, 240, 0.05);
 
   --Bc-1: rgba(212, 157, 129, 1);
@@ -2251,8 +2251,9 @@
   position: relative;
   width: -webkit-fill-available;
   height: 100%;
+
   background: linear-gradient(170deg, var(--Ac-3) -150%, var(--Ec-4) 95%);
-  /* padding: calc(11% - 20px) 25px calc(11% - 20px) 30px; */
+
   outline: 1px solid var(--Ac-3);
   border-radius: 30px;
   font-size: 0.8rem;
