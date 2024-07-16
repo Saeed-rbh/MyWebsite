@@ -4,7 +4,6 @@ import { useDrag } from "@use-gesture/react";
 import { RxCross2 } from "react-icons/rx";
 import { ScalableElement } from "./tools";
 const MoreOpen = ({
-  height,
   isClicked,
   setIsClicked,
   feed,
@@ -38,8 +37,9 @@ const MoreOpen = ({
       api.start({
         scale: !!isClicked ? 1 : 0.9,
         opacity: !isClicked ? 0 : 1,
-        top: !!isClicked ? `${MoreOpenHeight}px` : `${height}px`,
-        height: `calc(100vh - ${MoreOpenHeight}px)`,
+        height: !!isClicked
+          ? `calc(100vh - ${MoreOpenHeight}px)`
+          : `calc(0vh - ${MoreOpenHeight}px)`,
         onRest: () => {
           handleOnRest();
         },
@@ -67,12 +67,12 @@ const MoreOpen = ({
         if (last) {
           if (isQuickDragUp) {
             api.start({
-              top: `${MoreOpenHeight}px`,
+              height: `calc(100vh - ${MoreOpenHeight}px)`,
               config: config.slow,
             });
           } else if (isQuickDragDown) {
             api.start({
-              top: `${height}px`,
+              height: `calc(10vh  - ${MoreOpenHeight}px)`,
               config: config.slow,
             });
             setIsClicked(null);
@@ -81,17 +81,17 @@ const MoreOpen = ({
             window.innerHeight / 2.2
           ) {
             api.start({
-              top: `${height}px`,
+              height: `calc(10vh  - ${MoreOpenHeight}px)`,
             });
             setIsClicked(null);
           } else {
             api.start({
-              top: `${MoreOpenHeight}px`,
+              height: `calc(100vh - 100px)`,
             });
           }
         } else {
           api.start({
-            top: `${newHeight}px`,
+            height: `calc(100vh - ${newHeight}px)`,
           });
         }
       }

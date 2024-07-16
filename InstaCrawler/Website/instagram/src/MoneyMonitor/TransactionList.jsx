@@ -125,7 +125,7 @@ const TransactionList = ({
   const [Open_TransactionList, api] = useSpring(() => ({
     scale: isCalendarClicked ? 0.9 : 1,
     opacity: 0,
-    height: "calc(10vh - 80px)",
+    height: "calc(10vh - 100px)",
   }));
 
   const isOpenRef = React.useRef(isMoreClicked);
@@ -144,7 +144,7 @@ const TransactionList = ({
       api.start({
         scale: isCalendarClicked ? 0.9 : !!isMoreClicked ? 1 : 0.9,
         opacity: !isMoreClicked ? 0 : 1,
-        height: !!isMoreClicked ? "calc(100vh - 80px)" : "calc(10vh - 80px)",
+        height: !!isMoreClicked ? "calc(100vh - 100px)" : "calc(10vh - 100px)",
         filter: isCalendarClicked ? "blur(10px)" : "blur(0px)",
         onRest: () => {
           handleOnRest();
@@ -180,12 +180,12 @@ const TransactionList = ({
         if (last) {
           if (isQuickDragUp) {
             api.start({
-              height: `calc(100vh - 80px)`,
+              height: `calc(100vh - 100px)`,
               config: config.slow,
             });
           } else if (isQuickDragDown) {
             api.start({
-              height: "calc(10vh  - 80px)",
+              height: "calc(10vh  - 100px)",
               config: config.slow,
             });
             setIsMoreClicked(null);
@@ -195,13 +195,13 @@ const TransactionList = ({
             window.innerHeight / 2.2
           ) {
             api.start({
-              height: "calc(10vh  - 80px)",
+              height: "calc(10vh  - 100px)",
             });
             setIsMoreClicked(null);
             handleSwipe();
           } else {
             api.start({
-              height: `calc(100vh - 80px)`,
+              height: `calc(100vh - 100px)`,
             });
           }
         } else {
