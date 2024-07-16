@@ -28,16 +28,17 @@ const Notif = ({
       <GoPlus color="var(--Ac-2)" />
     );
 
-  // useEffect(() => {
-  //   if (!open && addTransaction.Type.length > 0) {
-  //     setOpen(true);
-  //   }
-  // }, [addTransaction.Type]);
-
   useEffect(() => {
     if (open) {
       const timer = setTimeout(() => {
         setOpen(false);
+        api.start({
+          scale: 0.95,
+          y: -170,
+          onRest: () => {
+            handleFinish();
+          },
+        });
       }, 5000);
 
       return () => clearTimeout(timer);

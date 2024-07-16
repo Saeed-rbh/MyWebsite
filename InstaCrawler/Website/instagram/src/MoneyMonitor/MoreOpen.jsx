@@ -69,7 +69,7 @@ const MoreOpen = ({ isClicked, setIsClicked, feed, MoreOpenHeight }) => {
               height: `calc(10vh  - ${MoreOpenHeight}px)`,
               config: config.slow,
             });
-            setIsClicked(false);
+            setIsClicked(null);
           } else if (
             window.innerHeight - newHeight <
             window.innerHeight / 2.2
@@ -77,7 +77,7 @@ const MoreOpen = ({ isClicked, setIsClicked, feed, MoreOpenHeight }) => {
             api.start({
               height: `calc(10vh  - ${MoreOpenHeight}px)`,
             });
-            setIsClicked(false);
+            setIsClicked(null);
           } else {
             api.start({
               height: `calc(100vh - 100px)`,

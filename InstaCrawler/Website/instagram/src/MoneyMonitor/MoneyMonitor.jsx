@@ -146,7 +146,7 @@ const MoneyMonitor = () => {
     }
   }, [modify]);
 
-  console.log(isAddClicked, modify, addTransaction);
+  console.log(isAddClicked);
   return (
     <div className="MoneyMonitor_Main">
       <MoreOpen
