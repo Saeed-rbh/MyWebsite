@@ -97,7 +97,8 @@ const MainStatestics = ({
           d.incomePercentage === 0 ? MIN_PERCENTAGE : d.incomePercentage
         }%`,
         incomeBg: d.incomePercentage === 0 ? FALLBACK_COLOR : null,
-        opacity: index + 1 === mainPageMonth ? 0.8 : 0.4,
+        opacity: index + 1 === mainPageMonth ? 0.9 : 0.5,
+        filter: index === mainPageMonth ? "grayscale(0)" : "grayscale(0.4)",
       },
       delay: index * 50,
     }))
@@ -318,6 +319,7 @@ const MainStatestics = ({
                     maxOpacity * (1 - transition) + minOpacity * transition;
                   return opacity;
                 }),
+                filter: style.filter,
                 transform: x.to((x) => `translate3d(${x}px,0,0)`),
                 cursor:
                   processedData[index].income +
