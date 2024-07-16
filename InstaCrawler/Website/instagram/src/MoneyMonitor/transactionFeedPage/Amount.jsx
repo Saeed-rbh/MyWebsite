@@ -26,7 +26,13 @@ const AmountLogo = ({ Animate1, Animate2, style1, style2, fontColor }) => {
   );
 };
 
-const Amount = ({ value, setValue, valueError, setValueError }) => {
+const Amount = ({
+  value,
+  setValue,
+  valueError,
+  setValueError,
+  defaultValue,
+}) => {
   const [AnountFocused, setAnountFocused] = useState(false);
 
   const handleAnountFocus = () => {
@@ -125,6 +131,7 @@ const Amount = ({ value, setValue, valueError, setValueError }) => {
       </animated.label>
       <animated.textarea
         type="text"
+        defaultValue={defaultValue}
         maxlength="20"
         inputmode="numeric"
         placeholder="$1000"

@@ -4,11 +4,18 @@ import { useDrag } from "@use-gesture/react";
 import { ScalableElement } from "../tools";
 import { VscArrowSmallLeft, VscArrowSmallRight } from "react-icons/vsc";
 
-const Category = ({ List, selectedCategory, setSelectedCategory }) => {
+const Category = ({
+  List,
+  selectedCategory,
+  setSelectedCategory,
+  defaultValue,
+}) => {
   const containerRef = useRef(null);
 
   const [fading, setFading] = useState(false);
-  const [newCategory, setNewCategory] = useState(List[0]);
+  const [newCategory, setNewCategory] = useState(
+    defaultValue.length > 0 ? defaultValue : List[0]
+  );
 
   const [isDragging, setIsDragging] = useState(false);
 
@@ -19,7 +26,6 @@ const Category = ({ List, selectedCategory, setSelectedCategory }) => {
   };
 
   const handleMouseDown = () => {
-    console.log(isDragging);
     setIsDragging(true);
   };
 
@@ -62,7 +68,9 @@ const Category = ({ List, selectedCategory, setSelectedCategory }) => {
     List.map((item) => ({
       transform: `translateX(-${draggedX}px)`,
       backgroundColor:
-        item[0] === selectedCategory[0] ? `var(--Bc-3)` : `var(--Ec-4)`,
+        item[0] === selectedCategory[0] || item[0] === defaultValue
+          ? `var(--Bc-3)`
+          : `var(--Ec-4)`,
     }))
   );
 

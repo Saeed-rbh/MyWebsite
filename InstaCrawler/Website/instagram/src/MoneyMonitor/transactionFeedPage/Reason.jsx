@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { animated } from "react-spring";
 import { ScalableElement } from "../tools";
 
-const Reason = ({ reason, setReason }) => {
+const Reason = ({ reason, setReason, defaultValue }) => {
   const [ReasonFocused, setReasonFocused] = useState(false);
   const handleReasonFocus = () => {
     setReasonFocused(true);
@@ -31,6 +31,7 @@ const Reason = ({ reason, setReason }) => {
         type="text"
         maxlength="50"
         placeholder="Shopping for party"
+        defaultValue={defaultValue}
         value={reason}
         onChange={handleReason}
         onFocus={handleReasonFocus}

@@ -117,12 +117,12 @@ const MoneyMonitor = () => {
   }, [isMoreClicked, incomeData, spendingData, savingData]);
 
   const [addTransaction, setAddTransaction] = useState({
-    Amount: 1000,
-    Category: "Save & Invest",
-    Label: "Auto Detect",
-    Reason: "for shopping on month of July",
-    Timestamp: "2024-07-15 13:30",
-    Type: "Daily",
+    Amount: "",
+    Category: "",
+    Label: "",
+    Reason: "",
+    Timestamp: "",
+    Type: "",
   });
   const AddFeed = () => {
     return (
@@ -130,10 +130,23 @@ const MoneyMonitor = () => {
         isAddClicked={isAddClicked}
         setIsClicked={setIsAddClicked}
         setAddTransaction={setAddTransaction}
+        addTransaction={addTransaction}
+        setModify={setModify}
+        setOpen={setOpen}
       />
     );
   };
 
+  const [modify, setModify] = useState(false);
+  const [open, setOpen] = useState(false);
+
+  useEffect(() => {
+    if (modify) {
+      setIsAddClicked(addTransaction.Category);
+    }
+  }, [modify]);
+
+  console.log(isAddClicked, modify, addTransaction);
   return (
     <div className="MoneyMonitor_Main">
       <MoreOpen
@@ -159,6 +172,10 @@ const MoneyMonitor = () => {
         <Notif
           addTransaction={addTransaction}
           setAddTransaction={setAddTransaction}
+          modify={modify}
+          setModify={setModify}
+          open={open}
+          setOpen={setOpen}
         />
         <header className="MoneyMonitor_header">
           <div className="MoneyMonitor_User">

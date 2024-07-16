@@ -1,6 +1,15 @@
 import React from "react";
 
-const DateTime = ({ currentTime, hour, minute, day, month, year }) => {
+const DateTime = ({
+  currentTime,
+  hour,
+  minute,
+  day,
+  month,
+  year,
+  defaultValue,
+}) => {
+  const Modify = defaultValue.length > 0;
   const getBorderStyle = (isValid) =>
     isValid ? {} : { border: "1px solid var(--Gc-2)" };
 
@@ -19,6 +28,7 @@ const DateTime = ({ currentTime, hour, minute, day, month, year }) => {
           onChange={hour.handleChange}
           onBlur={hour.handleBlur}
           style={getBorderStyle(hour.isValid)}
+          defaultValue={Modify ? defaultValue.split(" ")[1].split(":")[0] : ""}
         />
         :
         <textarea
@@ -30,6 +40,7 @@ const DateTime = ({ currentTime, hour, minute, day, month, year }) => {
           onChange={minute.handleChange}
           onBlur={minute.handleBlur}
           style={getBorderStyle(minute.isValid)}
+          defaultValue={Modify ? defaultValue.split(" ")[1].split(":")[1] : ""}
         />
       </h1>
       <h1>
@@ -45,6 +56,7 @@ const DateTime = ({ currentTime, hour, minute, day, month, year }) => {
           onChange={day.handleChange}
           onBlur={day}
           style={getBorderStyle(day.isValid)}
+          defaultValue={Modify ? defaultValue.split(" ")[0].split("-")[2] : ""}
         />
         /
         <textarea
@@ -56,6 +68,7 @@ const DateTime = ({ currentTime, hour, minute, day, month, year }) => {
           onChange={month.handleChange}
           onBlur={month.handleBlur}
           style={getBorderStyle(month.isValid)}
+          defaultValue={Modify ? defaultValue.split(" ")[0].split("-")[1] : ""}
         />
         /
         <textarea
@@ -67,6 +80,7 @@ const DateTime = ({ currentTime, hour, minute, day, month, year }) => {
           onChange={year.handleChange}
           onBlur={year.handleBlur}
           style={getBorderStyle(year.isValid)}
+          defaultValue={Modify ? defaultValue.split(" ")[0].split("-")[0] : ""}
         />
       </h1>
     </li>

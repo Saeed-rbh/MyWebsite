@@ -13,7 +13,16 @@ import {
 import { useWindowHeight } from "../tools";
 import { MdOutlineAutoAwesome } from "react-icons/md";
 
-function AddTransactionFeed({ isAddClicked, setIsClicked, setAddTransaction }) {
+function AddTransactionFeed({
+  isAddClicked,
+  setIsClicked,
+  setAddTransaction,
+  addTransaction,
+  setModify,
+  setOpen,
+}) {
+  const Modify = addTransaction.Amount > 0 ? true : false;
+
   const height = Math.max(Math.min(useWindowHeight(160), 500), 470);
 
   const OriginalList =
@@ -25,7 +34,10 @@ function AddTransactionFeed({ isAddClicked, setIsClicked, setAddTransaction }) {
 
   const AutoDetect = ["Auto Detect", <MdOutlineAutoAwesome />];
   const List = [AutoDetect, ...OriginalList];
-  const [selectedCategory, setSelectedCategory] = useState(List[0]);
+  const ModifyLabel = List.find((person) => person[0] === addTransaction.Label);
+  const [selectedCategory, setSelectedCategory] = useState(
+    Modify ? ModifyLabel : List[0]
+  );
 
   const DotStyle = {
     color:
@@ -37,6 +49,7 @@ function AddTransactionFeed({ isAddClicked, setIsClicked, setAddTransaction }) {
   };
 
   const [value, setValue] = useState("");
+
   const [valueError, setValueError] = useState(true);
 
   useEffect(() => {
@@ -79,7 +92,13 @@ function AddTransactionFeed({ isAddClicked, setIsClicked, setAddTransaction }) {
   const [month] = useNumericInput("", 1, 12);
   const [year] = useNumericInput("", 2023, currentTime.year, true);
 
-  const [whichType, setWhichType] = useState(true);
+  const [whichType, setWhichType] = useState(
+    addTransaction.Type === "Daily"
+      ? true
+      : addTransaction.Type === "Monthly"
+      ? false
+      : true
+  );
 
   const handleAddClick = () => {
     value.length < 1 ? setValueError(false) : setValueError(true);
@@ -98,6 +117,8 @@ function AddTransactionFeed({ isAddClicked, setIsClicked, setAddTransaction }) {
       };
       setAddTransaction(newTransaction);
       setIsClicked(null);
+      setModify(false);
+      setOpen(true);
     }
   };
 
@@ -110,11 +131,16 @@ function AddTransactionFeed({ isAddClicked, setIsClicked, setAddTransaction }) {
       <ul>
         <Amount
           value={value}
+          defaultValue={Modify ? addTransaction.Amount : ""}
           setValue={setValue}
           valueError={valueError}
           setValueError={setValueError}
         />
-        <Reason Reason={Reason} setReason={setReason} />
+        <Reason
+          Reason={Reason}
+          setReason={setReason}
+          defaultValue={Modify ? addTransaction.Reason : ""}
+        />
         <DateTime
           currentTime={currentTime}
           hour={hour}
@@ -122,11 +148,13 @@ function AddTransactionFeed({ isAddClicked, setIsClicked, setAddTransaction }) {
           minute={minute}
           month={month}
           year={year}
+          defaultValue={Modify ? addTransaction.Timestamp : ""}
         />
         <Category
           List={List}
           setSelectedCategory={setSelectedCategory}
           selectedCategory={selectedCategory}
+          defaultValue={Modify ? addTransaction.Label : ""}
         />
         <Confirm
           whichType={whichType}
