@@ -57,7 +57,7 @@ const useMainPageMonth = () => {
 };
 
 const MoneyMonitor = () => {
-  const height = useWindowHeight(0);
+  const height = useWindowHeight(100);
   const [whichMonth, setWhichMonth] = useState(1);
 
   const {
