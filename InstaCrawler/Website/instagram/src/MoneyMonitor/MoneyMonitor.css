@@ -2561,7 +2561,7 @@
   height: 26%;
   border-radius: 30px;
   width: 100%;
-  padding: 45px 8px 25px 8px;
+  padding: 30px 8px 10px 8px;
   box-sizing: border-box;
   overflow: hidden;
 }
@@ -2643,8 +2643,8 @@
   font-family: "Noto Sans", sans-serif;
   font-weight: 300;
   /* backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  background-color: var(--Ec-4); */
+  -webkit-backdrop-filter: blur(20px); */
+  background-color: var(--Ec-4);
   width: 100%;
   box-sizing: border-box;
 }
@@ -2670,8 +2670,8 @@
   height: max-content;
   box-sizing: border-box;
   /* outline: 1px solid var(--Ec-1); */
-  /* background: var(--Ec-2); */
-  padding: 1px 8px;
+  background: var(--Ec-3);
+  padding: 8px;
   border-radius: 35px;
 }
 
