@@ -4,6 +4,7 @@ import { useDrag } from "@use-gesture/react";
 import { RxCross2 } from "react-icons/rx";
 import { ScalableElement } from "./tools";
 const MoreOpen = ({
+  height,
   isClicked,
   setIsClicked,
   feed,
@@ -37,6 +38,7 @@ const MoreOpen = ({
       api.start({
         scale: !!isClicked ? 1 : 0.9,
         opacity: !isClicked ? 0 : 1,
+        top: !!isClicked ? `${MoreOpenHeight}px` : `${height}px`,
         height: !!isClicked
           ? `calc(100vh - ${MoreOpenHeight}px)`
           : `calc(0vh - ${MoreOpenHeight}px)`,

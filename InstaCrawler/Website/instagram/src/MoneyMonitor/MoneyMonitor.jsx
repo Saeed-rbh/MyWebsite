@@ -57,7 +57,7 @@ const useMainPageMonth = () => {
 };
 
 const MoneyMonitor = () => {
-  const height = useWindowHeight(100);
+  const height = useWindowHeight(0);
   const [whichMonth, setWhichMonth] = useState(1);
 
   const {
@@ -163,11 +163,8 @@ const MoneyMonitor = () => {
         feed={AddFeed}
         MoreOpenHeight={100}
         handleCloseAddTransaction={handleCloseAddTransaction}
+        height={height}
       />
-      {/* <animated.div
-        className="MoneyMonitor_MainBlur"
-        style={BlurStyle}
-      ></animated.div> */}
       <TransactionList
         Transactions={transactions}
         isMoreClicked={isMoreClicked}
