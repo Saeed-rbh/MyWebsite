@@ -2637,7 +2637,7 @@
   flex-direction: row;
   align-items: center;
   justify-content: space-evenly;
-  bottom: 11px;
+  bottom: 2px;
   right: 0;
   color: var(--Ac-2);
   font-family: "Noto Sans", sans-serif;
@@ -2645,7 +2645,6 @@
   /* backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   background-color: var(--Ec-4); */
-  height: 5px;
   width: 100%;
   box-sizing: border-box;
 }
@@ -2655,7 +2654,7 @@
   color: var(--Ac-2);
 }
 .Add_Category_guid svg {
-  font-size: 1rem;
+  font-size: 1.3rem;
   margin: 2px -2px 0 0;
 }
 .Add_Category_items {
