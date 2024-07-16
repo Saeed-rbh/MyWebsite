@@ -3,7 +3,13 @@ import { useSpring, animated, config } from "@react-spring/web";
 import { useDrag } from "@use-gesture/react";
 import { RxCross2 } from "react-icons/rx";
 import { ScalableElement } from "./tools";
-const MoreOpen = ({ isClicked, setIsClicked, feed, MoreOpenHeight }) => {
+const MoreOpen = ({
+  isClicked,
+  setIsClicked,
+  feed,
+  MoreOpenHeight,
+  handleCloseAddTransaction,
+}) => {
   const [isAnimationEnds, setIsAnimationEnds] = useState(false);
   useEffect(() => {
     !!isClicked && setIsAnimationEnds(true);
@@ -93,6 +99,11 @@ const MoreOpen = ({ isClicked, setIsClicked, feed, MoreOpenHeight }) => {
     }
   );
 
+  const handleCloseClick = () => {
+    setIsClicked(null);
+    handleCloseAddTransaction && handleCloseAddTransaction();
+  };
+
   return (
     <>
       {isAnimationEnds && (
@@ -119,7 +130,7 @@ const MoreOpen = ({ isClicked, setIsClicked, feed, MoreOpenHeight }) => {
             <ScalableElement
               as="div"
               className="TransactionList_Close"
-              onClick={() => setIsClicked(null)}
+              onClick={handleCloseClick}
             >
               <RxCross2 />
             </ScalableElement>

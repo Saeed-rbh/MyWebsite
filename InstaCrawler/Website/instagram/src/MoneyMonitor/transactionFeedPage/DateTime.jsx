@@ -68,7 +68,7 @@ const DateTime = ({
       ]);
     }
   }, [currentTime]);
-  console.log(hour.value);
+
   return (
     <li className="Add_DateTime">
       <h1>

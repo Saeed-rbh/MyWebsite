@@ -124,6 +124,16 @@ const MoneyMonitor = () => {
     Timestamp: "",
     Type: "",
   });
+  const handleCloseAddTransaction = () => {
+    setAddTransaction({
+      Amount: "",
+      Category: "",
+      Label: "",
+      Reason: "",
+      Timestamp: "",
+      Type: "",
+    });
+  };
   const AddFeed = () => {
     return (
       <AddTransactionFeed
@@ -153,6 +163,7 @@ const MoneyMonitor = () => {
         setIsClicked={setIsAddClicked}
         feed={AddFeed}
         MoreOpenHeight={100}
+        handleCloseAddTransaction={handleCloseAddTransaction}
       />
       <animated.div
         className="MoneyMonitor_MainBlur"

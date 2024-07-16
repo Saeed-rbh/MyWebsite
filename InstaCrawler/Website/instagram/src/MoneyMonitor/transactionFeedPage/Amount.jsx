@@ -34,8 +34,9 @@ const Amount = ({
   defaultValue,
 }) => {
   let fornatDefualtValue = new Intl.NumberFormat().format(defaultValue);
+
   fornatDefualtValue =
-    fornatDefualtValue[0] !== 0 ? `$${fornatDefualtValue}` : "";
+    Number(fornatDefualtValue[0]) !== 0 ? `$${fornatDefualtValue}` : "";
   const [modifyValue, setmodifyValue] = useState(false);
   useEffect(() => {
     if (!modifyValue && value.length > 0) {
