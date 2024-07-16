@@ -2558,10 +2558,10 @@
   background: var(--Ec-4);
   background: linear-gradient(170deg, var(--Ac-3) -150%, var(--Ec-4) 95%);
   outline: 1px solid var(--Ac-3);
-  height: 26%;
+  height: 24%;
   border-radius: 30px;
   width: 100%;
-  padding: 30px 8px 10px 8px;
+  /* padding: 40px 8px 0px 8px; */
   box-sizing: border-box;
   overflow: hidden;
 }
@@ -2658,12 +2658,12 @@
   margin: 2px -2px 0 0;
 }
 .Add_Category_items {
-  position: relative;
+  position: absolute;
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: flex-start;
-  width: 100%;
+  width: calc(100% - 10px);
   list-style-type: none;
   overflow-y: visible;
   overflow-x: auto;
@@ -2671,8 +2671,10 @@
   box-sizing: border-box;
   /* outline: 1px solid var(--Ec-1); */
   background: var(--Ec-3);
-  padding: 8px;
+  padding: 10px 8px;
   border-radius: 35px;
+  bottom: 5px;
+  margin: 0 5px;
 }
 
 .Add_Category_items::-webkit-scrollbar {

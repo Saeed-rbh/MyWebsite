@@ -105,12 +105,12 @@ const Category = ({
           </ScalableElement>
         ))}
       </div>
-      <div className="Add_Category_guid">
+      {/* <div className="Add_Category_guid">
         <VscArrowSmallLeft />
 
         <span>Drag Left & Right</span>
         <VscArrowSmallRight />
-      </div>
+      </div> */}
     </li>
   );
 };
