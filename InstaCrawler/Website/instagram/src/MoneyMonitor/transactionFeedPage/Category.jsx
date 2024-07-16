@@ -2,7 +2,6 @@ import React, { useState, useRef, useEffect } from "react";
 import { useSprings, useSpring, animated } from "react-spring";
 import { useDrag } from "@use-gesture/react";
 import { ScalableElement } from "../tools";
-import { VscArrowSmallLeft, VscArrowSmallRight } from "react-icons/vsc";
 
 const Category = ({
   List,
@@ -68,9 +67,7 @@ const Category = ({
     List.map((item) => ({
       transform: `translateX(-${draggedX}px)`,
       backgroundColor:
-        item[0] === selectedCategory[0] || item[0] === defaultValue
-          ? `var(--Bc-3)`
-          : `var(--Ec-4)`,
+        item[0] === selectedCategory[0] ? `var(--Bc-3)` : `var(--Ec-4)`,
     }))
   );
 
