@@ -93,7 +93,7 @@ const MoneyMonitor = () => {
     width: "100%",
     scale: isMoreClicked || isAddClicked !== null ? 0.9 : 1,
     opacity: isMoreClicked || isAddClicked !== null ? 0.5 : 1,
-    filter: isAddClicked !== null ? "blur(10px)" : "blur(0px)",
+    filter: isMoreClicked || isAddClicked !== null ? "blur(10px)" : "blur(0px)",
   });
 
   const BlurStyle = useSpring({
@@ -164,10 +164,10 @@ const MoneyMonitor = () => {
         MoreOpenHeight={100}
         handleCloseAddTransaction={handleCloseAddTransaction}
       />
-      <animated.div
+      {/* <animated.div
         className="MoneyMonitor_MainBlur"
         style={BlurStyle}
-      ></animated.div>
+      ></animated.div> */}
       <TransactionList
         Transactions={transactions}
         isMoreClicked={isMoreClicked}
