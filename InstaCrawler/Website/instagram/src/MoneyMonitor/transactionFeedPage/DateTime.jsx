@@ -77,8 +77,8 @@ const DateTime = ({
         </p>
         <textarea
           type="text"
-          maxlength="2"
-          inputmode="numeric"
+          maxLength="2"
+          inputMode="numeric"
           placeholder={currentTime.hours}
           value={
             ModifiedTime[0] || !Modify
@@ -86,15 +86,15 @@ const DateTime = ({
               : defaultValue.split(" ")[1].split(":")[0]
           }
           onChange={hour.handleChange}
-          onBlur={hour.handleBlur}
+          // onBlur={hour.handleBlur}
           style={getBorderStyle(hour.isValid)}
           defaultValue={Modify ? defaultValue.split(" ")[1].split(":")[0] : ""}
         />
         :
         <textarea
           type="text"
-          maxlength="2"
-          inputmode="numeric"
+          maxLength="2"
+          inputMode="numeric"
           placeholder={currentTime.minutes}
           value={
             ModifiedTime[1] || !Modify
@@ -113,8 +113,8 @@ const DateTime = ({
         </p>
         <textarea
           type="text"
-          maxlength="2"
-          inputmode="numeric"
+          maxLength="2"
+          inputMode="numeric"
           placeholder={currentTime.day}
           value={
             ModifiedTime[2] || !Modify
@@ -122,15 +122,15 @@ const DateTime = ({
               : defaultValue.split(" ")[0].split("-")[2]
           }
           onChange={day.handleChange}
-          onBlur={day}
+          onBlur={day.handleBlur}
           style={getBorderStyle(day.isValid)}
           defaultValue={Modify ? defaultValue.split(" ")[0].split("-")[2] : ""}
         />
         /
         <textarea
           type="text"
-          maxlength="2"
-          inputmode="numeric"
+          maxLength="2"
+          inputMode="numeric"
           placeholder={currentTime.month}
           value={
             ModifiedTime[3] || !Modify
@@ -145,8 +145,8 @@ const DateTime = ({
         /
         <textarea
           type="text"
-          maxlength="4"
-          inputmode="numeric"
+          maxLength="4"
+          inputMode="numeric"
           placeholder={currentTime.year}
           value={
             ModifiedTime[4] || !Modify

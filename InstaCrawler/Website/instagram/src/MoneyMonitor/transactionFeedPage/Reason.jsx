@@ -21,7 +21,7 @@ const Reason = ({ reason, setReason, defaultValue }) => {
       <animated.label>Reason | </animated.label>
       <animated.textarea
         type="text"
-        maxlength="50"
+        inputMode="50"
         placeholder="Shopping for party"
         defaultValue={defaultValue}
         value={reason}

@@ -12,6 +12,7 @@ import {
 } from "./Categories";
 import { useWindowHeight } from "../tools";
 import { MdOutlineAutoAwesome } from "react-icons/md";
+import { animated, useSpring } from "react-spring";
 
 function AddTransactionFeed({
   isAddClicked,
@@ -151,8 +152,14 @@ function AddTransactionFeed({
     }
   };
 
+  const fade = useSpring({
+    from: { opacity: isAddClicked !== null ? 0 : 1, height: `${height}px` },
+    to: { opacity: isAddClicked !== null ? 1 : 0, height: `${height}px` },
+    config: { duration: 500 },
+  });
+
   return (
-    <div className="AddTransactionFeed" style={{ height: `${height}px` }}>
+    <animated.div className="AddTransactionFeed" style={fade}>
       <h3>
         <span style={DotStyle}>•</span>Add New <span>{isAddClicked}</span>
       </h3>
@@ -191,7 +198,7 @@ function AddTransactionFeed({
           handleAddClick={handleAddClick}
         />
       </ul>
-    </div>
+    </animated.div>
   );
 }
 

@@ -131,8 +131,8 @@ const Amount = ({
       <animated.textarea
         type="text"
         defaultValue={fornatDefualtValue}
-        maxlength="20"
-        inputmode="numeric"
+        maxLength="20"
+        inputMode="numeric"
         placeholder="$1000"
         value={modifyValue ? value : fornatDefualtValue}
         onChange={handleChange}
