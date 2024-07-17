@@ -600,9 +600,7 @@
   display: none;
 }
 
-/* ############ Transaction List*/
-
-.TransactionList_Main {
+.MoreOpen_Main {
   position: absolute;
   display: flex;
   flex-direction: column;
@@ -618,7 +616,7 @@
   z-index: 101;
   border-radius: 30px 30px 0 0;
 }
-.TransactionList_Wall {
+.MoreOpen_Wall {
   position: absolute;
   display: flex;
   flex-direction: column;
@@ -633,11 +631,11 @@
   overflow: auto;
 }
 
-.TransactionList_Wall::-webkit-scrollbar {
+.MoreOpen_Wall::-webkit-scrollbar {
   display: none;
 }
 
-.TransactionList_TopLine {
+.MoreOpen_TopLine {
   position: absolute;
   display: flex;
   flex-direction: row;
@@ -651,24 +649,85 @@
   top: 25px;
 }
 
+.MoreOpen_Close {
+  position: absolute;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  width: 55px;
+  height: 55px;
+  background: var(--Ec-1);
+  border: 1px solid var(--Ac-3);
+  border-radius: 100%;
+  cursor: pointer;
+  right: 0;
+  color: var(--Bc-2);
+  font-size: 1.5rem;
+  right: 10px;
+  top: 10px;
+  z-index: 50;
+}
+
+/* ############ Transaction List*/
+
+.TransactionList_Main {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  opacity: 1;
+  touch-action: none;
+  padding: 0 5px;
+  top: 25px;
+  box-sizing: border-box;
+}
+.TransactionList_Wall {
+  position: re;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  height: calc(100%);
+  padding-bottom: 10px;
+  width: calc(100%);
+  border-radius: 35px 35px 0 0;
+  padding: 30px 10px 0 10px;
+  overflow: auto;
+}
+
+.TransactionList_Wall::-webkit-scrollbar {
+  display: none;
+}
 .TransactionList_Wall p {
   position: relative;
-  font-size: 0.8rem;
-  font-weight: 600;
+  font-size: 1.3rem;
+  font-weight: 200;
   font-family: "Noto Sans", sans-serif;
   color: var(--Ac-1);
   width: calc(100% - 80px);
   display: flex;
-  opacity: 0.85;
+  margin-top: -20px;
+  margin-left: 10px;
+  align-items: baseline;
+  justify-content: flex-start;
+  flex-direction: row;
 }
 
 .TransactionList_Wall p span {
-  font-weight: 400;
-  margin: 0 3px;
   opacity: 0.7;
   width: max-content;
+  color: var(--Ac-1);
+  margin-left: 3px;
 }
-
+.TransactionList_TitleMonth {
+  font-size: 0.7rem;
+  color: var(--Bc-1);
+  font-weight: 400;
+  margin-left: 5px;
+}
 .TransactionList_SummaryLines {
   position: relative;
   display: flex;
@@ -803,7 +862,7 @@
 
 .transaction-Description h3 {
   font-size: 0.7rem;
-  font-weight: 200;
+  font-weight: 300;
   font-family: "Noto Sans", sans-serif;
   color: var(--Bc-1);
   margin: 0;
@@ -816,7 +875,8 @@
 }
 
 .transaction-Description h3 span {
-  color: var(--Ac-2);
+  color: var(--Ac-1);
+  font-weight: 300;
 }
 
 .TransactionList_Wall h1 span {
@@ -834,26 +894,28 @@
   justify-content: space-between;
   width: calc(100% - 15px);
   height: 4px;
-  margin: 0 0 25px 0;
+  margin: 0 0 15px 0;
   height: 10px;
   padding: 0 5px;
 }
 .TransactionList_Title h1 {
-  position: relative;
+  position: absolute;
   font-size: 0.8rem;
-  font-weight: 600;
+  font-weight: 200;
   font-family: "Noto Sans", sans-serif;
-  color: var(--Ac-2);
+  color: var(--Ac-1);
   margin: 0;
   width: fit-content;
   width: -moz-fit-content;
   display: flex;
-  opacity: 0.7;
+  opacity: 1;
+  margin-top: -35px;
+  right: 65px;
 }
 
-/* .TransactionList_Title h1 span {
-  color: var(--Fc-1);
-} */
+.TransactionList_Title h1 span {
+  margin-left: 3px;
+}
 
 .TransactionList_TransactionList {
   position: relative;
@@ -862,7 +924,7 @@
   align-items: center;
   justify-content: flex-start;
   width: 100%;
-  margin: 5px 0 -5px 0;
+  margin: 0px 0 -5px 0;
   padding: 0;
 }
 
@@ -879,7 +941,7 @@
   font-family: "Noto Sans", sans-serif;
   color: var(--Ac-2);
   background: var(--Ec-3);
-  background: linear-gradient(165deg, var(--Ec-2) 40%, var(--Ec-4) 100%);
+  background: linear-gradient(165deg, var(--Ec-1) 40%, var(--Ec-4) 100%);
   padding: 10px 20px 10px 5px;
   border-radius: 20px;
   cursor: pointer;
@@ -1491,7 +1553,7 @@
 }
 .TransactionList_MonthlyFooter {
   /* padding: 30px 0; */
-  position: relative;
+  position: absolute;
   display: flex;
   flex-direction: row;
   align-items: flex-start;
@@ -1500,6 +1562,7 @@
   padding-top: 0px;
   border-radius: 30px;
   flex-wrap: wrap;
+  top: 70px;
 }
 
 .TransactionList_MonthlyNames {
@@ -2036,24 +2099,6 @@
   border-radius: 50px;
   filter: blur(10px);
   opacity: 0.5;
-}
-.TransactionList_Close {
-  position: absolute;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-  width: 55px;
-  height: 55px;
-  background: var(--Ec-1);
-  border: 1px solid var(--Ac-3);
-  border-radius: 100%;
-  cursor: pointer;
-  right: 0;
-  color: var(--Bc-2);
-  font-size: 1.5rem;
-  right: 10px;
-  top: 10px;
 }
 
 .MainStatestics-batch {

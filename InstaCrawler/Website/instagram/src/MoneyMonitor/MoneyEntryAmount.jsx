@@ -117,16 +117,7 @@ const MoneyEntryAmount = ({ type, transaction, setIsMoreClicked }) => {
             : "Total Amount"}
           :
         </h2>
-        <h1
-          style={{
-            color:
-              type === "Balance"
-                ? formatNetTotal(BannerAmount) > 0
-                  ? "var(--Fc-1)"
-                  : "var(--Gc-1)"
-                : "var(--Ac-1)",
-          }}
-        >
+        <h1>
           {type === "Balance"
             ? formatNetTotal(BannerAmount) > 0
               ? "+"

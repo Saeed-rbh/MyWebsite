@@ -108,16 +108,16 @@ const MoreOpen = ({
     <>
       {isAnimationEnds && (
         <animated.div
-          className="TransactionList_Main"
+          className="MoreOpen_Main"
           style={Open_TransactionList}
           {...bind()}
         >
           <animated.div
-            className="TransactionList_Wall"
+            className="MoreOpen_Wall"
             style={{ background: "var(--Ec-2)" }}
           >
             <div
-              className="TransactionList_TopLine"
+              className="MoreOpen_TopLine"
               style={{
                 background: "var(--Ac-3)",
                 height: "1px",
@@ -129,7 +129,7 @@ const MoreOpen = ({
             ></div>
             <ScalableElement
               as="div"
-              className="TransactionList_Close"
+              className="MoreOpen_Close"
               onClick={handleCloseClick}
             >
               <RxCross2 />

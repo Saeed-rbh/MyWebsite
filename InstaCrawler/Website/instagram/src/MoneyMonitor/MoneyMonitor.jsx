@@ -158,6 +158,27 @@ const MoneyMonitor = () => {
     );
   };
 
+  const TransactionFeed = () => {
+    return (
+      // <AddTransactionFeed
+      //   isAddClicked={isAddClicked}
+      //   setIsClicked={setIsAddClicked}
+      //   setAddTransaction={setAddTransaction}
+      //   addTransaction={addTransaction}
+      //   setModify={setModify}
+      //   setOpen={setOpen}
+      // />
+      <TransactionList
+        Transactions={transactions}
+        isMoreClicked={isMoreClicked}
+        setIsMoreClicked={setIsMoreClicked}
+        setWhichMonth={setWhichMonth}
+        whichMonth={whichMonth}
+        dataAvailability={dataAvailability}
+      />
+    );
+  };
+
   const [modify, setModify] = useState(false);
   const [open, setOpen] = useState(false);
 
@@ -177,14 +198,22 @@ const MoneyMonitor = () => {
         handleCloseAddTransaction={handleCloseAddTransaction}
         height={height}
       />
-      <TransactionList
+      <MoreOpen
+        isClicked={isMoreClicked}
+        setIsClicked={setIsMoreClicked}
+        feed={TransactionFeed}
+        MoreOpenHeight={100}
+        handleCloseAddTransaction={handleCloseAddTransaction}
+        height={height}
+      />
+      {/* <TransactionList
         Transactions={transactions}
         isMoreClicked={isMoreClicked}
         setIsMoreClicked={setIsMoreClicked}
         setWhichMonth={setWhichMonth}
         whichMonth={whichMonth}
         dataAvailability={dataAvailability}
-      />
+      /> */}
 
       <div className="MoneyMonitor_Parent">
         <Notif

@@ -1,8 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import TransactionListMonthly from "./TransactionListMonthly";
 import TransactionModification from "./TransactionModification";
-import { useSpring, animated, config } from "@react-spring/web";
-import { useDrag } from "@use-gesture/react";
+import { useSpring, animated } from "@react-spring/web";
 import TransactionFilter from "./transactionFilter";
 import { useCustomSpring, useWindowHeight } from "./tools";
 import ChooseTransactionMonth from "./ChooseTransactionMonth";
@@ -128,9 +127,9 @@ const TransactionList = ({
     height: "calc(10vh - 100px)",
   }));
 
-  const isOpenRef = React.useRef(isMoreClicked);
+  const isOpenRef = useRef(isMoreClicked);
 
-  React.useEffect(() => {
+  useEffect(() => {
     isOpenRef.current = isMoreClicked;
   }, [isMoreClicked]);
 
@@ -157,62 +156,6 @@ const TransactionList = ({
     setIsCalendarClicked,
     isCalendarClicked,
   ]);
-
-  const bind = useDrag(
-    ({
-      movement: [, y],
-      memo = false,
-      last,
-      velocity,
-      event,
-      initial: [, initialY],
-    }) => {
-      const clientY = event.touches ? event.touches[0].clientY : event.clientY;
-      if (!isMoreClicked) return memo;
-      if (clientY - y > 250 || y < 0) return memo;
-      if (isCalendarClicked) return memo;
-
-      const newHeight = Math.max(y + 100, 100);
-      const isQuickDragDown = velocity[1] > 0.01 && y > initialY;
-      const isQuickDragUp = velocity[1] > 0.1 && y < initialY;
-
-      if (y > 0) {
-        if (last) {
-          if (isQuickDragUp) {
-            api.start({
-              height: `calc(100vh - 100px)`,
-              config: config.slow,
-            });
-          } else if (isQuickDragDown) {
-            api.start({
-              height: "calc(10vh  - 100px)",
-              config: config.slow,
-            });
-            setIsMoreClicked(null);
-            handleSwipe();
-          } else if (
-            window.innerHeight - newHeight <
-            window.innerHeight / 2.2
-          ) {
-            api.start({
-              height: "calc(10vh  - 100px)",
-            });
-            setIsMoreClicked(null);
-            handleSwipe();
-          } else {
-            api.start({
-              height: `calc(100vh - 100px)`,
-            });
-          }
-        } else {
-          api.start({
-            height: `calc(100vh - ${newHeight}px)`,
-          });
-        }
-      }
-      return memo;
-    }
-  );
 
   const colorStyle = {
     color: isMoreClicked === "Income" ? "var(--Fc-1)" : "var(--Gc-1)",
@@ -307,7 +250,6 @@ const TransactionList = ({
         <animated.div
           className="TransactionList_Main"
           style={Open_TransactionList}
-          {...bind()}
         >
           {transactionClick[0] !== null && (
             <TransactionModification
@@ -323,11 +265,14 @@ const TransactionList = ({
               className="TransactionList_Title"
               style={springProps1}
             >
-              <p onClick={() => setIsMoreClicked(null)}>
-                {currentMonth} - {currentYear} <span>{isMoreClicked}</span>
+              <p style={colorStyle} onClick={() => setIsMoreClicked(null)}>
+                •<span>{isMoreClicked}</span>
+                <div className="TransactionList_TitleMonth">
+                  {currentMonth} | {currentYear}
+                </div>
               </p>
               <h1>
-                <span></span> Total:{" "}
+                Total:{" "}
                 <span style={colorStyle}>
                   ${Math.abs(totalAmount).toFixed(2)}
                 </span>
@@ -441,11 +386,6 @@ const TransactionList = ({
 
             <animated.div
               className="TransactionList_MonthlyMain"
-              // onScroll={(event) =>
-              //   handleScroll(event) && swipedIndex[0] !== null
-              //     ? handleUnSwipe
-              //     : null
-              // }
               ref={monthlyMainRef}
               style={springProps4}
             >
