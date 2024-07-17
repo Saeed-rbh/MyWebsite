@@ -1,6 +1,6 @@
 import React from "react";
 import TransactionListItem from "./TransactionListItem";
-import { useSpring, animated, config } from "react-spring";
+import { animated } from "react-spring";
 
 const TransactionListMonthly = ({
   MainIndex,
@@ -8,29 +8,13 @@ const TransactionListMonthly = ({
   handleUnSwipe,
   handleSwipe,
   handleTransactionClick,
-  isMoreClicked,
   transactions,
   sortby,
-  stationary,
 }) => {
   const filteredTransactions =
     sortby === "All"
       ? transactions
       : transactions.filter((transaction) => transaction.Type === sortby);
-
-  // const delay = 300 + 20 * MainIndex;
-  // const style = useSpring({
-  //   from: {
-  //     opacity: !isMoreClicked ? 1 : 0,
-  //     y: !isMoreClicked ? 0 : 50,
-  //   },
-  //   to: {
-  //     opacity: isMoreClicked ? 1 : 0,
-  //     y: isMoreClicked ? 0 : 50,
-  //   },
-  //   delay: isMoreClicked ? delay : 1000,
-  //   config: config.slow,
-  // });
 
   return (
     <animated.div className="TransactionList_Monthly">
@@ -47,7 +31,7 @@ const TransactionListMonthly = ({
             isSwiped={swipedIndex[1] === index && swipedIndex[0] === MainIndex}
             onSwipe={() => handleSwipe(MainIndex, index)}
             onUnSwipe={handleUnSwipe}
-            onClick={(y) => handleTransactionClick(MainIndex, index, y)}
+            onClick={(y) => handleTransactionClick(transaction)}
           />
         ))}
       </ul>

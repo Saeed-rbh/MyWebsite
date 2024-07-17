@@ -14,6 +14,8 @@ const TransactionList = ({
   dataAvailability,
   setWhichMonth,
   whichMonth,
+  setIsAddClicked,
+  setAddTransaction,
 }) => {
   const WindowHeight = useWindowHeight(100);
 
@@ -55,13 +57,22 @@ const TransactionList = ({
     setSwipedIndex([null, null]);
   };
 
-  const handleTransactionClick = (MainIndex, index, y) => {
-    setTransactionClick([MainIndex, index, y]);
-    settransactionClickAnim(true);
+  const handleTransactionClick = (transaction) => {
+    // setTransactionClick([MainIndex, index, y]);
+    // settransactionClickAnim(true);
+    setIsAddClicked(transaction.Category);
+    setAddTransaction({
+      Amount: transaction.Amount,
+      Category: transaction.Category,
+      Label: transaction.Label,
+      Reason: transaction.Reason,
+      Timestamp: transaction.Timestamp,
+      Type: transaction.Type,
+    });
   };
 
   const handleTransactionUnClick = () => {
-    setTransactionClick([null, null, null]);
+    // setTransactionClick([null, null, null]);
   };
 
   const SummaryWidth = [
@@ -163,17 +174,10 @@ const TransactionList = ({
 
   const [isScrollingDown, setIsScrollingDown] = useState(null);
 
-  const springProps1 = useCustomSpring(
-    isMoreClicked,
-    1,
-    isScrollingDown,
-    false
-  );
-  // const springProps2 = useCustomSpring(isMoreClicked, 2, isScrollingDown, true);
   const springProps4 = useSpring({
     height: WindowHeight - 210,
-    // y: isScrollingDown ? -160 : 0,
   });
+
   const ClickBlurStyle = useSpring({
     from: {
       filter: transactionClickAnim ? "blur(0px)" : "blur(10px)",
@@ -261,10 +265,7 @@ const TransactionList = ({
           )}
           <animated.div className="TransactionList_Wall" style={ClickBlurStyle}>
             <div className="TransactionList_TopLine"></div>
-            <animated.div
-              className="TransactionList_Title"
-              // style={springProps1}
-            >
+            <animated.div className="TransactionList_Title">
               <p style={colorStyle} onClick={() => setIsMoreClicked(null)}>
                 •<span>{isMoreClicked}</span>
                 <div className="TransactionList_TitleMonth">
@@ -396,7 +397,6 @@ const TransactionList = ({
                   handleSwipe={handleSwipe}
                   handleTransactionClick={handleTransactionClick}
                   useCustomSpring={useCustomSpring}
-                  isMoreClicked={isMoreClicked}
                   transactions={Transactions.transactions}
                   netTotal={Transactions.netTotal}
                   percentageChange={Transactions.percentageChange}

@@ -258,6 +258,7 @@ export const fetchTransactions = async ({ whichMonth }) => {
   const transactions = await fetchJson("/transactions_sorted.json");
 
   const spending = filterTransactionsByCategory(transactions, ["Spending"]);
+
   const income = filterTransactionsByCategory(transactions, ["Income"]);
   const saving = filterTransactionsByCategory(transactions, ["Save&Invest"]);
   const total = filterTransactionsByCategory(transactions, [

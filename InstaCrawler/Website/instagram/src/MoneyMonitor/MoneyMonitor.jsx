@@ -58,13 +58,13 @@ const useTransactionData = (whichMonth) => {
 };
 
 const useMainPageMonth = () => {
-  const [mainPageMonth, setMainPageMonth] = useState(1);
+  const [mainPageMonth, setMainPageMonth] = useState(0);
   return { mainPageMonth, setMainPageMonth };
 };
 
 const MoneyMonitor = () => {
   const height = useWindowHeight(100);
-  const [whichMonth, setWhichMonth] = useState(1);
+  const [whichMonth, setWhichMonth] = useState(0);
 
   const {
     income: incomeData,
@@ -92,8 +92,8 @@ const MoneyMonitor = () => {
   const [isAddClicked, setIsAddClicked] = useState(null);
 
   useEffect(() => {
-    !isMoreClicked && setWhichMonth(1);
-  }, [isMoreClicked]);
+    !isMoreClicked && setWhichMonth(mainPageMonth);
+  }, [isMoreClicked, mainPageMonth]);
 
   const scaleStyle = useSpring({
     position: "relative",
@@ -145,6 +145,7 @@ const MoneyMonitor = () => {
       Type: "",
     });
   };
+
   const AddFeed = () => {
     return (
       <AddTransactionFeed
@@ -160,14 +161,6 @@ const MoneyMonitor = () => {
 
   const TransactionFeed = () => {
     return (
-      // <AddTransactionFeed
-      //   isAddClicked={isAddClicked}
-      //   setIsClicked={setIsAddClicked}
-      //   setAddTransaction={setAddTransaction}
-      //   addTransaction={addTransaction}
-      //   setModify={setModify}
-      //   setOpen={setOpen}
-      // />
       <TransactionList
         Transactions={transactions}
         isMoreClicked={isMoreClicked}
@@ -175,6 +168,8 @@ const MoneyMonitor = () => {
         setWhichMonth={setWhichMonth}
         whichMonth={whichMonth}
         dataAvailability={dataAvailability}
+        setIsAddClicked={setIsAddClicked}
+        setAddTransaction={setAddTransaction}
       />
     );
   };
@@ -197,6 +192,7 @@ const MoneyMonitor = () => {
         MoreOpenHeight={100}
         handleCloseAddTransaction={handleCloseAddTransaction}
         height={height}
+        zIndex={110}
       />
       <MoreOpen
         isClicked={isMoreClicked}
@@ -205,15 +201,8 @@ const MoneyMonitor = () => {
         MoreOpenHeight={100}
         handleCloseAddTransaction={handleCloseAddTransaction}
         height={height}
+        blur={isAddClicked}
       />
-      {/* <TransactionList
-        Transactions={transactions}
-        isMoreClicked={isMoreClicked}
-        setIsMoreClicked={setIsMoreClicked}
-        setWhichMonth={setWhichMonth}
-        whichMonth={whichMonth}
-        dataAvailability={dataAvailability}
-      /> */}
 
       <div className="MoneyMonitor_Parent">
         <Notif

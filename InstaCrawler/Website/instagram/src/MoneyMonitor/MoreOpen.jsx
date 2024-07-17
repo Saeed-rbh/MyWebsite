@@ -9,6 +9,8 @@ const MoreOpen = ({
   feed,
   MoreOpenHeight,
   handleCloseAddTransaction,
+  zIndex = 105,
+  blur = null,
 }) => {
   const [isAnimationEnds, setIsAnimationEnds] = useState(false);
   useEffect(() => {
@@ -19,8 +21,25 @@ const MoreOpen = ({
     scale: 0.9,
     opacity: 0,
     height: "calc(0vh - 65px)",
-    zIndex: 105,
+    zIndex: zIndex,
+    filter: "blur(0px)",
   }));
+
+  useEffect(() => {
+    if (blur !== null) {
+      api.start({
+        scale: 0.9,
+        opacity: 0.5,
+        filter: "blur(10px)",
+      });
+    } else {
+      api.start({
+        scale: 1,
+        opacity: 1,
+        filter: "blur(0px)",
+      });
+    }
+  }, [blur, api]);
 
   const isOpenRef = React.useRef(isClicked);
 
