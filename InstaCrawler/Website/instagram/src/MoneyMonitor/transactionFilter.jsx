@@ -16,10 +16,10 @@ const TransactionFilter = ({
   const [springs] = useSprings(
     sortItems.length,
     (index) => ({
-      background: sortby === sortItems[index] ? "var(--Bc-2)" : "var(--Ac-3)",
+      filter: sortby === sortItems[index] ? "grayscale(0)" : "grayscale(1)",
       color: sortby === sortItems[index] ? "var(--Bc-1)" : "var(--Ac-1)",
       fontWeight: sortby === sortItems[index] ? "600" : "200",
-      border:
+      outline:
         sortby === sortItems[index]
           ? "1px solid var(--Bc-2)"
           : "1px solid var(--Ac-3)",
@@ -27,10 +27,8 @@ const TransactionFilter = ({
     [sortby]
   );
 
-  const springProps = useCustomSpring(isMoreClicked, 3, isScrollingDown, true);
-
   return (
-    <animated.div className="TransactionList_Menu" style={springProps}>
+    <animated.div className="TransactionList_Menu">
       <p>
         <h3>Filter</h3> Transactions
       </p>
@@ -38,25 +36,19 @@ const TransactionFilter = ({
         <ScalableElement
           as="h1"
           key={sortItems[index]}
-          style={{ ...props, background: "var(--Ec-2)" }}
+          style={{ ...props }}
           onClick={() => setSortby(sortItems[index])}
         >
-          <animated.div
-            style={{ ...props, opacity: 0.4 }}
-            className="CirleColor"
-          ></animated.div>
           {sortItems[index]}
         </ScalableElement>
       ))}
       <ScalableElement as="h2">
-        <animated.div className="CirleColor"></animated.div>
         <CiSearch />
       </ScalableElement>
       <ScalableElement
         as="h2"
         onClick={() => setIsCalendarClicked(!isCalendarClicked)}
       >
-        <animated.div className="CirleColor"></animated.div>
         <CiCalendarDate />
       </ScalableElement>
       <p></p>

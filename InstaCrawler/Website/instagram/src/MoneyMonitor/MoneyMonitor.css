@@ -628,7 +628,8 @@
   border-radius: 35px 35px 0 0;
   padding: 20px 5px;
   border: 1px solid var(--Ac-3);
-  overflow: auto;
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 
 .MoreOpen_Wall::-webkit-scrollbar {
@@ -1047,10 +1048,14 @@
   padding: 15px;
   border-radius: 30px;
   cursor: pointer;
-  border: 1px solid var(--Ac-3);
   height: 17px;
   background: var(--Ec-1);
   overflow: hidden;
+  background: radial-gradient(
+    circle at 30% -20%,
+    var(--Bc-1) -100%,
+    var(--Ec-4) 65%
+  );
 }
 .TransactionList_Menu h1:first-of-type {
   /* width: 17px;
@@ -1087,14 +1092,16 @@
   padding: 15px;
   border-radius: 30px;
   cursor: pointer;
-  border: 1px solid var(--Ac-3);
-  background: var(--Ec-3);
   overflow: hidden;
-  background: var(--Ec-2);
   color: rgb(255, 245, 240);
   font-weight: 200;
-  border: 1px solid rgba(255, 245, 240, 0.2);
+  outline: 1px solid var(--Ac-3);
   transform: none;
+  background: radial-gradient(
+    circle at 30% -20%,
+    var(--Bc-1) -100%,
+    var(--Ec-4) 65%
+  );
 }
 
 .TransactionList_Menu h2 svg {

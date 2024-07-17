@@ -169,10 +169,10 @@ const TransactionList = ({
     isScrollingDown,
     false
   );
-  const springProps2 = useCustomSpring(isMoreClicked, 2, isScrollingDown, true);
+  // const springProps2 = useCustomSpring(isMoreClicked, 2, isScrollingDown, true);
   const springProps4 = useSpring({
     height: WindowHeight - 210,
-    y: isScrollingDown ? -160 : 0,
+    // y: isScrollingDown ? -160 : 0,
   });
   const ClickBlurStyle = useSpring({
     from: {
@@ -263,7 +263,7 @@ const TransactionList = ({
             <div className="TransactionList_TopLine"></div>
             <animated.div
               className="TransactionList_Title"
-              style={springProps1}
+              // style={springProps1}
             >
               <p style={colorStyle} onClick={() => setIsMoreClicked(null)}>
                 •<span>{isMoreClicked}</span>
@@ -280,7 +280,7 @@ const TransactionList = ({
             </animated.div>
             <animated.div
               className="TransactionList_SummaryAmount"
-              style={springProps2}
+              // style={springProps2}
             >
               {SummaryWidth[0] > 0 && (
                 <animated.li style={summaryStiles[0]}>
@@ -317,7 +317,7 @@ const TransactionList = ({
             </animated.div>
             <animated.div
               className="TransactionList_SummaryLines"
-              style={springProps2}
+              // style={springProps2}
             >
               <animated.li style={summaryStiles[0]}></animated.li>
               <animated.li style={summaryStiles[1]}></animated.li>
@@ -326,7 +326,7 @@ const TransactionList = ({
             </animated.div>
             <animated.div
               className="TransactionList_SummaryNames"
-              style={springProps2}
+              // style={springProps2}
             >
               {SummaryWidth[0] > 0 && (
                 <animated.li>
