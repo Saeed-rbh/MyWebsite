@@ -6,8 +6,6 @@ import { CiSearch, CiCalendarDate } from "react-icons/ci";
 const TransactionFilter = ({
   sortby,
   setSortby,
-  isMoreClicked,
-  isScrollingDown,
   setIsCalendarClicked,
   isCalendarClicked,
 }) => {
@@ -22,7 +20,7 @@ const TransactionFilter = ({
       outline:
         sortby === sortItems[index]
           ? "1px solid var(--Bc-2)"
-          : "1px solid var(--Ac-3)",
+          : "1px solid var(--Bc-2)",
     }),
     [sortby]
   );

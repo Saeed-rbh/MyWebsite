@@ -1102,6 +1102,7 @@
     var(--Bc-1) -100%,
     var(--Ec-4) 65%
   );
+  filter: grayscale(1);
 }
 
 .TransactionList_Menu h2 svg {

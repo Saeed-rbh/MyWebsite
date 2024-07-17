@@ -216,8 +216,8 @@ const TransactionList = ({
   }, [dataAvailability, dataAvailabilityLength]);
 
   const MoreOpenHeight =
-    WindowHeight - 70 * Math.ceil(elementLength / 6) > 100
-      ? WindowHeight - 70 * Math.ceil(elementLength / 6)
+    WindowHeight - 80 * Math.ceil(elementLength / 6) > 100
+      ? WindowHeight - 80 * Math.ceil(elementLength / 6)
       : 100;
 
   const calendarFeed = () => {
