@@ -1,4 +1,3 @@
-
 import { MdOutlineSsidChart } from "react-icons/md";
 import { TbHomeDollar } from "react-icons/tb";
 import { BiQuestionMark } from "react-icons/bi";
@@ -13,6 +12,7 @@ import { MdAssuredWorkload } from "react-icons/md";
 import { MdOutlineWorkOutline } from "react-icons/md";
 import { TbMoneybag } from "react-icons/tb";
 import { PiHandCoinsDuotone } from "react-icons/pi";
+import { BiLogoBitcoin } from "react-icons/bi";
 
 export const spending_categories = [
   ["Housing & Utilities", <TbHomeBolt />],
@@ -35,6 +35,7 @@ export const Income_categories = [
 export const SaveInvest_categories = [
   ["Savings Account", <LiaPiggyBankSolid />],
   ["Stocks", <MdOutlineSsidChart />],
+  ["Cryptocurrency", <BiLogoBitcoin />],
   ["Real Estate", <TbHomeDollar />],
   ["Other", <BiQuestionMark />],
 ];

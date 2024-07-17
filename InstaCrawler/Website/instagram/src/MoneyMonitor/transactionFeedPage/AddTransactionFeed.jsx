@@ -134,17 +134,28 @@ function AddTransactionFeed({
             ? addTransaction.Timestamp.split(" ")[1].split(":")[1]
             : currentTime.minutes
           : minute.value;
+
+      const selectedReason =
+        reason.length !== 0 ? reason : addTransaction.Reason;
+
+      if (selectedCategory[0] === "Auto Detect") {
+        fetchLabel({
+          reason: selectedReason,
+          type: isAddClicked,
+        });
+      }
       const newTransaction = {
         Amount:
           Number(value.replace(/[^0-9]/g, "")) !== 0
             ? Number(value.replace(/[^0-9]/g, ""))
             : addTransaction.Amount,
-        Reason: reason.length !== 0 ? reason : addTransaction.Reason,
-        Label: selectedCategory[0],
+        Reason: selectedReason,
+        Label: autoLabel.length > 0 ? autoLabel : selectedCategory[0],
         Timestamp: `${yearSave}-${monthSave}-${daySave} ${hourSave}:${minuteSave}`,
         Type: whichType ? "Daily" : "Monthly",
         Category: isAddClicked,
       };
+
       setAddTransaction(newTransaction);
       setIsClicked(null);
       setModify(false);
@@ -157,6 +168,35 @@ function AddTransactionFeed({
     to: { opacity: isAddClicked !== null ? 1 : 0, height: `${height}px` },
     config: { duration: 500 },
   });
+
+  const [autoLabel, setAutoLabel] = useState("");
+
+  const fetchLabel = async (Data) => {
+    const response = await fetch("/api/get-label", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(Data),
+    });
+    const data = await response.json();
+    const autoLabel = List.find((item) => item[0] === data.label);
+    setAutoLabel(autoLabel);
+  };
+
+  useEffect(() => {
+    if (autoLabel.length > 0) {
+      const newTransaction = {
+        Amount: addTransaction.Amount,
+        Reason: addTransaction.Reason,
+        Label: autoLabel[0],
+        Timestamp: addTransaction.Timestamp,
+        Type: addTransaction.Type,
+        Category: addTransaction.Category,
+      };
+      setAddTransaction(newTransaction);
+    }
+  }, [autoLabel]);
 
   return (
     <animated.div className="AddTransactionFeed" style={fade}>

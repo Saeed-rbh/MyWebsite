@@ -1,9 +1,10 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { animated, useSpring } from "react-spring";
 import { GoArrowUpRight, GoArrowDownLeft, GoPlus } from "react-icons/go";
 import CircularProgressBar from "./CircularProgressBar";
 import { ScalableElement } from "../tools";
 import { useDrag } from "@use-gesture/react";
+import { FaXmark } from "react-icons/fa6";
 
 const Notif = ({
   addTransaction,
@@ -13,6 +14,8 @@ const Notif = ({
   setOpen,
   open,
 }) => {
+  const [close, setClose] = useState(false);
+
   const Amount = new Intl.NumberFormat().format(addTransaction.Amount);
   const Reason =
     addTransaction.Reason && addTransaction.Reason.length > 0
@@ -29,7 +32,7 @@ const Notif = ({
     );
 
   useEffect(() => {
-    if (open) {
+    if (open && !close) {
       const timer = setTimeout(() => {
         setOpen(false);
         api.start({
@@ -43,7 +46,7 @@ const Notif = ({
 
       return () => clearTimeout(timer);
     }
-  }, [open, setAddTransaction]);
+  }, [open, setAddTransaction, close]);
 
   const handleFinish = () => {
     setAddTransaction({
@@ -61,6 +64,8 @@ const Notif = ({
     y: open ? 0 : -170,
     config: { tension: 200, friction: 35 },
     delay: !open ? 0 : 100,
+    height: 150,
+    border: "0px solid var(--Gc-2)",
     // onRest: !open ? handleFinish : null,
   }));
 
@@ -86,9 +91,12 @@ const Notif = ({
         if (last) {
           if (isQuickDragUp) {
             setOpen(false);
+            setClose(false);
             api.start({
               y: -170,
               scale: 0.95,
+              height: 150,
+              border: "0px solid var(--Gc-2)",
               onRest: () => {
                 handleFinish();
               },
@@ -101,14 +109,24 @@ const Notif = ({
   );
 
   const HandleDelete = () => {
-    setOpen(false);
+    setClose(true);
     api.start({
-      scale: 0.95,
-      y: -170,
-      onRest: () => {
-        handleFinish();
-      },
+      height: 55,
+      border: "1px solid var(--Gc-2)",
     });
+    setTimeout(() => {
+      setOpen(false);
+      setClose(false);
+      api.start({
+        y: -170,
+        scale: 0.95,
+        height: 150,
+        border: "0px solid var(--Gc-2)",
+        onRest: () => {
+          handleFinish();
+        },
+      });
+    }, 1500);
   };
 
   const HandleModify = () => {
@@ -119,6 +137,17 @@ const Notif = ({
       y: -170,
     });
   };
+  const CloseOpacityStyle = useSpring({
+    opacity: !close ? (open ? 1 : 0) : 0,
+    y: !close ? (open ? 0 : -20) : -10,
+    delay: close ? 0 : 100,
+  });
+
+  const CloseInOpacityStyle = useSpring({
+    opacity: close ? 1 : 0,
+    y: close ? 0 : 50,
+    delay: close ? 0 : 100,
+  });
 
   return (
     <animated.div
@@ -126,22 +155,22 @@ const Notif = ({
       className="addedTransactionNotif"
       {...bind()}
     >
-      <div className="Notif_Type">
+      <animated.div className="Notif_Type" style={CloseOpacityStyle}>
         {Logo}
         <animated.div style={{ opacity: 0.4 }}></animated.div>
         <h1>
           <span>{addTransaction.Type}</span> {addTransaction.Category}
         </h1>
-      </div>
-      <div className="Notif_Amount">
+      </animated.div>
+      <animated.div style={CloseOpacityStyle} className="Notif_Amount">
         <h1>Amount:</h1>
         <h2>${Amount}</h2>
-      </div>
-      <div className="Notif_Reason">
-        <h1>Reason:</h1>
+      </animated.div>
+      <animated.div style={CloseOpacityStyle} className="Notif_Reason">
+        <h1>{addTransaction.Label}</h1>
         <h2>{Reason}</h2>
-      </div>
-      <div className="Notif_Time">
+      </animated.div>
+      <animated.div style={CloseOpacityStyle} className="Notif_Time">
         <h1>Date & Time:</h1>
         <h2>
           {addTransaction.Timestamp && addTransaction.Timestamp.split(" ")[0]}
@@ -149,8 +178,8 @@ const Notif = ({
             {addTransaction.Timestamp && addTransaction.Timestamp.split(" ")[1]}
           </span>
         </h2>
-      </div>
-      <div className="Notif_counter">
+      </animated.div>
+      <animated.div style={CloseOpacityStyle} className="Notif_counter">
         <CircularProgressBar
           key={open ? "open" : "closed"}
           pathColor="var(--Gc-2)"
@@ -158,15 +187,31 @@ const Notif = ({
           valueStart={open ? 100 : 0}
           valueEnd={0}
         />
-      </div>
-      <ScalableElement as="div" className="Notif_Delete" onClick={HandleDelete}>
+      </animated.div>
+      <ScalableElement
+        style={CloseOpacityStyle}
+        as="div"
+        className="Notif_Delete"
+        onClick={HandleDelete}
+      >
         <GoPlus color="var(--Ac-1)" />
         Delete
       </ScalableElement>
-      <ScalableElement as="div" className="Notif_Modify" onClick={HandleModify}>
+      <ScalableElement
+        style={CloseOpacityStyle}
+        as="div"
+        className="Notif_Modify"
+        onClick={HandleModify}
+      >
         <GoPlus color="var(--Ac-1)" />
         Modify
       </ScalableElement>
+      {close && (
+        <animated.div style={CloseInOpacityStyle} className="Notif_Deleted">
+          <span>Transaction Deleted</span>
+          <FaXmark color="var(--Gc-1)" />
+        </animated.div>
+      )}
     </animated.div>
   );
 };

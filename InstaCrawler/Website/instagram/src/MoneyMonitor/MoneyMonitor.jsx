@@ -155,6 +155,8 @@ const MoneyMonitor = () => {
     }
   }, [modify]);
 
+  console.log(addTransaction);
+
   return (
     <div className="MoneyMonitor_Main">
       <MoreOpen

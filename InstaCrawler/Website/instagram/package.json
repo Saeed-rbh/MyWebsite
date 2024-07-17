@@ -19,6 +19,7 @@
     "file-saver": "^2.0.5",
     "framer-motion": "^10.2.4",
     "lodash": "^4.17.21",
+    "morgan": "^1.10.0",
     "prop-types": "^15.8.1",
     "react": "^18.2.0",
     "react-circular-progressbar": "^2.1.0",
@@ -46,6 +47,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
+  "proxy": "http://localhost:5000",
   "eslintConfig": {
     "extends": [
       "react-app",
