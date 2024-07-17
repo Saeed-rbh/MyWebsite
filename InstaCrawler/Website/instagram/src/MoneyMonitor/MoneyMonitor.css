@@ -216,7 +216,7 @@
   flex-direction: row;
   align-items: center;
   color: var(--Ac-1);
-  margin: 7px 0 10px 0;
+  margin: 0 0 10px 0;
 }
 
 .MoneyEntry h1 span {
@@ -232,7 +232,7 @@
   width: -webkit-fill-available;
   margin: -2px 0 0 0;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   cursor: pointer;
   position: relative;
 }
@@ -516,7 +516,7 @@
   width: 100%;
   width: 100%;
   height: 50px;
-  margin: 10px 0 25px 0;
+  margin: 10px 0 20px 0;
   z-index: 101;
 }
 .MoneyMonitor_User {
@@ -593,6 +593,7 @@
   user-select: none;
   -webkit-user-select: none;
   box-sizing: border-box;
+  margin-bottom: 5px;
 }
 
 .MoneyEntry_AmountBase::-webkit-scrollbar {
@@ -1813,7 +1814,7 @@
   z-index: 10;
   border-radius: 30px;
   overflow: hidden;
-  margin: 7px 0 -18px 0;
+  margin: 0 0 -15px 0;
   touch-action: none;
   /* background: linear-gradient(165deg, var(--Ac-4) 30%, var(--Ac-4) 100%); */
 }

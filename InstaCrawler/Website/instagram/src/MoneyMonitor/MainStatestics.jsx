@@ -104,18 +104,20 @@ const MainStatestics = ({
     }))
   );
 
+  const heightFactor = height - 225 - 85 + 20 + 10 - 65;
+
   const valueSpringIn = useSpring({
     position: "absolute",
     y: processedData[mainPageMonth]
       ? processedData[mainPageMonth].incomePercentage >
         processedData[mainPageMonth].savingPercentage
         ? -1 *
-            (height - 225 - 85 + 20 + 10 - 50) *
+            heightFactor *
             0.01 *
             processedData[mainPageMonth].incomePercentage -
           25
         : -1 *
-            (height - 225 - 85 + 20 + 10 - 50) *
+            heightFactor *
             0.01 *
             processedData[mainPageMonth].savingPercentage -
           25
@@ -125,7 +127,7 @@ const MainStatestics = ({
   const valueSpringSp = useSpring({
     position: "absolute",
     y: processedData[mainPageMonth]
-      ? (height - 225 - 85 + 20 + 10 - 50) *
+      ? heightFactor *
           0.01 *
           1.1 *
           processedData[mainPageMonth].spendingPercentage +
@@ -197,7 +199,7 @@ const MainStatestics = ({
 
   return (
     <div
-      style={{ height: `${height - 225 - 85 + 20 + 10 + 10}px` }}
+      style={{ height: `${heightFactor + 60}px` }}
       className="MainStatestics"
       {...bind()}
     >

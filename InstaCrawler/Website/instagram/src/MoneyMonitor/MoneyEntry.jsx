@@ -66,10 +66,10 @@ const MoneyEntry = ({
           </span>
           <span>{incomeTransactions.month}</span> Summary
         </h1>
-        <h1 className="MoneyEntry_total" style={totalStyle}>
+        {/* <h1 className="MoneyEntry_total" style={totalStyle}>
           <span className="MoneyEntry_totalTitle">Balance: </span> $
           {mainNetAmounts.net}
-        </h1>
+        </h1> */}
       </div>
       <div className="MoneyEntry_Data">
         <div className="MoneyEntry_AmountBase">
@@ -84,8 +84,20 @@ const MoneyEntry = ({
             transaction={spendingTransactions}
           />
         </div>
+        <div className="MoneyEntry_AmountBase">
+          <MoneyEntryAmount
+            type="Save & Invest"
+            setIsMoreClicked={setIsMoreClicked}
+            transaction={incomeTransactions}
+          />
+          <MoneyEntryAmount
+            type="Balance"
+            setIsMoreClicked={setIsMoreClicked}
+            transaction={spendingTransactions}
+          />
+        </div>
       </div>
-      <ScalableElement
+      {/* <ScalableElement
         className="MoneyEntry_Savings"
         onClick={() => setIsMoreClicked("Saving")}
       >
@@ -105,12 +117,7 @@ const MoneyEntry = ({
             Save & Invest
           </span>
         </h1>
-        {/* {!!savingPercentage && (
-          <div className="MoneyEntry_percentage" style={colorStyle}>
-            <h3>{savingPercentage}%</h3>
-            {savingPercentage < 0 ? <FaArrowTrendDown /> : <FaArrowTrendUp />}
-          </div>
-        )} */}
+
         <div
           className="MoneyEntry_Balance"
           style={{
@@ -125,7 +132,7 @@ const MoneyEntry = ({
           <h2 style={{ marginRight: "5px" }}>Total:</h2>
           <h1>${formatNetTotal(savingtotalAmount)}</h1>
         </div>
-      </ScalableElement>
+      </ScalableElement> */}
     </div>
   );
 };
