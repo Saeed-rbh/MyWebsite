@@ -104,7 +104,7 @@ const MainStatestics = ({
     }))
   );
 
-  const heightFactor = height - 225 - 85 + 20 + 10 - 65;
+  const heightFactor = height - 225 - 85 + 20 + 10 - 70;
 
   const valueSpringIn = useSpring({
     position: "absolute",
@@ -235,21 +235,20 @@ const MainStatestics = ({
       <div className="MainStatestics-Graph">
         <div
           className="MainStatestics-dash"
-          style={{ marginLeft: "20px", width: "calc(100% - 100px)" }}
+          style={{ marginLeft: "20px", width: "calc(100%)" }}
         ></div>
         <animated.div style={valueSpringIn} className="MainStatestics-dash">
           <h1>
-            +
+            + $
             {processedData[mainPageMonth]
               ? Number(processedData[mainPageMonth].income.toFixed(0))
               : 0}
-            $
           </h1>
         </animated.div>
 
         <animated.div style={valueSpringSp} className="MainStatestics-dash">
           <h1>
-            -
+            - $
             {processedData[mainPageMonth]
               ? Number(processedData[mainPageMonth].spending.toFixed(0))
               : 0}
@@ -257,7 +256,7 @@ const MainStatestics = ({
           </h1>
         </animated.div>
 
-        <div className="MainStatestics-guid">
+        {/* <div className="MainStatestics-guid">
           <p>
             Income
             <animated.span
@@ -298,7 +297,7 @@ const MainStatestics = ({
               }}
             ></animated.span>
           </p>
-        </div>
+        </div> */}
 
         <animated.ul>
           {springs.map((style, index) => (

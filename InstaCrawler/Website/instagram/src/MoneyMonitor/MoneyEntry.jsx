@@ -1,31 +1,31 @@
 import React, { useState, useCallback } from "react";
 import MoneyEntryAmount from "./MoneyEntryAmount.jsx";
-import { useSpring, animated } from "react-spring";
-import { formatNetTotal } from "./tools";
+// import { useSpring, animated } from "react-spring";
+// import { formatNetTotal } from "./tools";
 
-const ScalableElement = ({ children, className, onClick }) => {
-  const [isScaled, setIsScaled] = useState(false);
+// const ScalableElement = ({ children, className, onClick }) => {
+//   const [isScaled, setIsScaled] = useState(false);
 
-  const handleMouseDown = useCallback(() => setIsScaled(true), []);
-  const handleMouseUp = useCallback(() => setIsScaled(false), []);
+//   const handleMouseDown = useCallback(() => setIsScaled(true), []);
+//   const handleMouseUp = useCallback(() => setIsScaled(false), []);
 
-  const style = useSpring({
-    scale: isScaled ? 0.9 : 1,
-  });
+//   const style = useSpring({
+//     scale: isScaled ? 0.9 : 1,
+//   });
 
-  return (
-    <animated.div
-      className={className}
-      style={style}
-      onClick={onClick}
-      onMouseDown={handleMouseDown}
-      onMouseUp={handleMouseUp}
-      onMouseLeave={handleMouseUp}
-    >
-      {children}
-    </animated.div>
-  );
-};
+//   return (
+//     <animated.div
+//       className={className}
+//       style={style}
+//       onClick={onClick}
+//       onMouseDown={handleMouseDown}
+//       onMouseUp={handleMouseUp}
+//       onMouseLeave={handleMouseUp}
+//     >
+//       {children}
+//     </animated.div>
+//   );
+// };
 
 const MoneyEntry = ({
   spendingTransactions,
@@ -34,12 +34,12 @@ const MoneyEntry = ({
   setIsMoreClicked,
   mainNetAmounts,
 }) => {
-  const savingtotalAmount = savingTransactions
-    ? savingTransactions.totalSaving
-    : 0;
-  const savingPercentage = savingTransactions
-    ? savingTransactions.percentageChange
-    : 0;
+  // const savingtotalAmount = savingTransactions
+  //   ? savingTransactions.totalSaving
+  //   : 0;
+  // const savingPercentage = savingTransactions
+  //   ? savingTransactions.percentageChange
+  //   : 0;
 
   const totalStyle = {
     color:
@@ -48,14 +48,14 @@ const MoneyEntry = ({
         : "rgb(255 102 102 / 85%)",
   };
 
-  const colorStyle = {
-    color: savingPercentage > 0 ? "var(--Fc-2)" : "var(--Gc-2)",
-    flexDirection: "row",
-    alignItems: "center",
-    position: "relative",
-    bottom: "0",
-    marginTop: "0",
-  };
+  // const colorStyle = {
+  //   color: savingPercentage > 0 ? "var(--Fc-2)" : "var(--Gc-2)",
+  //   flexDirection: "row",
+  //   alignItems: "center",
+  //   position: "relative",
+  //   bottom: "0",
+  //   marginTop: "0",
+  // };
 
   return (
     <div className="MoneyEntry">
@@ -88,7 +88,7 @@ const MoneyEntry = ({
           <MoneyEntryAmount
             type="Save & Invest"
             setIsMoreClicked={setIsMoreClicked}
-            transaction={incomeTransactions}
+            transaction={savingTransactions}
           />
           <MoneyEntryAmount
             type="Balance"

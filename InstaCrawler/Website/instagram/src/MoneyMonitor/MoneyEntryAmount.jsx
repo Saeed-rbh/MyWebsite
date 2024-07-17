@@ -64,7 +64,7 @@ const MoneyEntryAmount = ({ type, transaction, setIsMoreClicked }) => {
   const widthFactor =
     type === "Save & Invest" ? 1.12 : type === "Balance" ? 0.88 : 1;
   const heightFactor =
-    type === "Save & Invest" || type === "Balance" ? 0.9 : 0.95;
+    type === "Save & Invest" || type === "Balance" ? 0.95 : 0.95;
   const scaleStyle = useSpring({
     scale: isScaled ? 0.9 : 1,
     width: ((390 - 10) / 2) * widthFactor,
