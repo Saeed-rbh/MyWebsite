@@ -26,7 +26,7 @@ const AddTransaction = ({ setIsAddClicked }) => {
 
         <span>Spending</span>
       </ScalableElement>
-      <ScalableElement as="h1" onClick={() => setIsAddClicked("Save & Invest")}>
+      <ScalableElement as="h1" onClick={() => setIsAddClicked("Save&Invest")}>
         <GoPlus color="var(--Ac-2)" />
         <animated.div
           style={{ opacity: 0.4 }}

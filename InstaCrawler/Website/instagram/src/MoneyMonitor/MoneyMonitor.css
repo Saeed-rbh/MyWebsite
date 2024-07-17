@@ -1814,7 +1814,7 @@
   z-index: 10;
   border-radius: 30px;
   overflow: hidden;
-  margin: -5px 0 -10px 0;
+  margin: -7px 0 -15px 0;
   touch-action: none;
   /* background: linear-gradient(165deg, var(--Ac-4) 30%, var(--Ac-4) 100%); */
 }
@@ -1845,7 +1845,6 @@
   justify-content: flex-start;
   width: fit-content;
   height: 40px;
-  margin-bottom: 5px;
   font-size: 1rem;
   font-weight: 100;
   font-family: "Noto Sans", sans-serif;
@@ -1854,7 +1853,7 @@
   margin: 0;
   display: flex;
   align-items: center;
-  top: 0px;
+  top: 3px;
   left: 5px;
 }
 .MainStatestics h3 span {

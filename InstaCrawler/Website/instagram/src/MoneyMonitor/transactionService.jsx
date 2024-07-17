@@ -83,17 +83,13 @@ const groupTransactionsByMonth = (transactions) => {
 
     if (transaction.Category === "Spending") {
       groupedTransactions[key].totalSpending += transaction.Amount;
+      groupedTransactions[key].netTotal -= transaction.Amount;
     } else if (transaction.Category === "Income") {
       groupedTransactions[key].totalIncome += transaction.Amount;
+      groupedTransactions[key].netTotal += transaction.Amount;
     } else if (transaction.Category === "Save&Invest") {
       groupedTransactions[key].totalSaving += transaction.Amount;
     }
-
-    // Update net total
-    groupedTransactions[key].netTotal =
-      groupedTransactions[key].totalIncome +
-      groupedTransactions[key].totalSpending +
-      groupedTransactions[key].totalSaving;
 
     // Count label occurrences
     const label = transaction.Label;
@@ -227,8 +223,9 @@ const getNetAmounts = (income, spending, saving) => {
 
   const result = months.reduce((acc, month) => {
     const incomeTotal = Number(income[month]?.netTotal?.toFixed(2)) || 0;
-    const spendingTotal = Number(spending[month]?.netTotal?.toFixed(2)) || 0;
-    const savingTotal = Number(saving[month]?.netTotal?.toFixed(2)) || 0;
+    const spendingTotal =
+      -1 * Number(spending[month]?.netTotal?.toFixed(2)) || 0;
+    const savingTotal = Number(saving[month]?.totalSaving?.toFixed(2)) || 0;
     const netTotal = Number((incomeTotal - spendingTotal).toFixed(2));
     acc[month] = {
       income: incomeTotal,
@@ -248,7 +245,8 @@ const fetchJson = async (url) => {
   return response.json();
 };
 const filterTransactionsByCategory = (transactions, category) =>
-  transactions.filter((transaction) => transaction.Category === category);
+  transactions.filter((transaction) => category.includes(transaction.Category));
+
 const getSelectedMonthData = (transactionsByMonth, whichMonth) => {
   const entries = Object.entries(transactionsByMonth);
   return !!entries[entries.length - whichMonth - 1]
@@ -259,13 +257,19 @@ const getSelectedMonthData = (transactionsByMonth, whichMonth) => {
 export const fetchTransactions = async ({ whichMonth }) => {
   const transactions = await fetchJson("/transactions_sorted.json");
 
-  const spending = filterTransactionsByCategory(transactions, "Spending");
-  const income = filterTransactionsByCategory(transactions, "Income");
-  const saving = filterTransactionsByCategory(transactions, "Save&Invest");
+  const spending = filterTransactionsByCategory(transactions, ["Spending"]);
+  const income = filterTransactionsByCategory(transactions, ["Income"]);
+  const saving = filterTransactionsByCategory(transactions, ["Save&Invest"]);
+  const total = filterTransactionsByCategory(transactions, [
+    "Save&Invest",
+    "Spending",
+    "Income",
+  ]);
 
   const spendingTransactions = groupTransactionsByMonth(spending);
   const incomeTransactions = groupTransactionsByMonth(income);
   const savingTransactions = groupTransactionsByMonth(saving);
+  const totalTransactions = groupTransactionsByMonth(total);
 
   const incomeAvailability = Object.entries(
     getMonthDataAvailability(incomeTransactions)
@@ -277,6 +281,10 @@ export const fetchTransactions = async ({ whichMonth }) => {
     getMonthDataAvailability(savingTransactions)
   ).reverse();
 
+  const totalAvailability = Object.entries(
+    getMonthDataAvailability(totalTransactions)
+  ).reverse();
+
   const selectedIncome = getSelectedMonthData(incomeTransactions, whichMonth);
 
   const selectedspending = getSelectedMonthData(
@@ -284,6 +292,8 @@ export const fetchTransactions = async ({ whichMonth }) => {
     whichMonth
   );
   const selectedsaving = getSelectedMonthData(savingTransactions, whichMonth);
+
+  const selectedTotal = getSelectedMonthData(totalTransactions, whichMonth);
 
   const netAmounts = getNetAmounts(
     incomeTransactions,
@@ -295,9 +305,11 @@ export const fetchTransactions = async ({ whichMonth }) => {
     selectedIncome,
     selectedspending,
     selectedsaving,
+    selectedTotal,
     incomeAvailability,
     spendingAvailability,
     savingAvailability,
+    totalAvailability,
     netAmounts,
   };
 };

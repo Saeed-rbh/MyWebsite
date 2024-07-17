@@ -3,9 +3,9 @@ import { useSpring, animated } from "react-spring";
 
 export const formatNetTotal = (netTotal) => {
   const floatNetTotal = parseFloat(netTotal);
-  if (floatNetTotal > 10000) {
+  if (floatNetTotal > 10000 || floatNetTotal < -10000) {
     return floatNetTotal.toFixed(0);
-  } else if (floatNetTotal > 1000) {
+  } else if (floatNetTotal > 1000 || floatNetTotal < -1000) {
     return floatNetTotal.toFixed(1);
   } else {
     return floatNetTotal.toFixed(2);

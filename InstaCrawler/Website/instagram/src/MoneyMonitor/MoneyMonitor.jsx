@@ -17,9 +17,11 @@ const useTransactionData = (whichMonth) => {
     income: [],
     spending: [],
     saving: [],
+    total: [],
     lastIncome: {},
     lastSpending: {},
     lastSaving: {},
+    lastTotal: {},
     netAmounts: {},
   });
 
@@ -29,9 +31,11 @@ const useTransactionData = (whichMonth) => {
         selectedIncome,
         selectedspending,
         selectedsaving,
+        selectedTotal,
         incomeAvailability,
         spendingAvailability,
         savingAvailability,
+        totalAvailability,
         netAmounts,
       } = await fetchTransactions({ whichMonth });
 
@@ -39,9 +43,11 @@ const useTransactionData = (whichMonth) => {
         income: incomeAvailability,
         spending: spendingAvailability,
         saving: savingAvailability,
+        total: totalAvailability,
         lastIncome: selectedIncome,
         lastSpending: selectedspending,
         lastSaving: selectedsaving,
+        lastTotal: selectedTotal,
         netAmounts: netAmounts,
       });
     };
@@ -64,9 +70,11 @@ const MoneyMonitor = () => {
     income: incomeData,
     spending: spendingData,
     saving: savingData,
+    total: totalData,
     lastIncome: lastIncomeData,
     lastSpending: lastSpendingData,
     lastSaving: lastSavingData,
+    lastTotal: lastTotalData,
     netAmounts: netAmountsData,
   } = useTransactionData(whichMonth);
 
@@ -75,6 +83,7 @@ const MoneyMonitor = () => {
     lastIncome: mainLastIncome,
     lastSpending: mainLastSpending,
     lastSaving: mainLastSaving,
+    lastTotal: mainLastTotal,
     netAmounts: mainNetAmounts,
   } = useTransactionData(mainPageMonth);
 
@@ -96,24 +105,27 @@ const MoneyMonitor = () => {
     filter: isMoreClicked || isAddClicked !== null ? "blur(10px)" : "blur(0px)",
   });
 
-  const BlurStyle = useSpring({
-    opacity: !isMoreClicked ? 0 : 1,
-    zIndex: !isMoreClicked ? 10 : 100,
-  });
-
   const transactions = useMemo(() => {
     if (isMoreClicked === "Income") return lastIncomeData;
     if (isMoreClicked === "Spending") return lastSpendingData;
-    if (isMoreClicked === "Saving") return lastSavingData;
+    if (isMoreClicked === "Save&Invest") return lastSavingData;
+    if (isMoreClicked === "Balance") return lastTotalData;
     return [];
-  }, [isMoreClicked, lastIncomeData, lastSpendingData, lastSavingData]);
+  }, [
+    isMoreClicked,
+    lastIncomeData,
+    lastSpendingData,
+    lastSavingData,
+    lastTotalData,
+  ]);
 
   const dataAvailability = useMemo(() => {
     if (isMoreClicked === "Income") return incomeData;
     if (isMoreClicked === "Spending") return spendingData;
-    if (isMoreClicked === "Saving") return savingData;
+    if (isMoreClicked === "Save&Invest") return savingData;
+    if (isMoreClicked === "Balance") return totalData;
     return [];
-  }, [isMoreClicked, incomeData, spendingData, savingData]);
+  }, [isMoreClicked, incomeData, spendingData, savingData, totalData]);
 
   const [addTransaction, setAddTransaction] = useState({
     Amount: "",
@@ -216,6 +228,7 @@ const MoneyMonitor = () => {
               spendingTransactions={mainLastSpending}
               incomeTransactions={mainLastIncome}
               savingTransactions={mainLastSaving}
+              totalTransactions={mainLastTotal}
               mainNetAmounts={
                 Object.entries(mainNetAmounts)[
                   Object.keys(mainNetAmounts).length - mainPageMonth - 1

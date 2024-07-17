@@ -1,61 +1,20 @@
-import React, { useState, useCallback } from "react";
+import React from "react";
 import MoneyEntryAmount from "./MoneyEntryAmount.jsx";
-// import { useSpring, animated } from "react-spring";
-// import { formatNetTotal } from "./tools";
-
-// const ScalableElement = ({ children, className, onClick }) => {
-//   const [isScaled, setIsScaled] = useState(false);
-
-//   const handleMouseDown = useCallback(() => setIsScaled(true), []);
-//   const handleMouseUp = useCallback(() => setIsScaled(false), []);
-
-//   const style = useSpring({
-//     scale: isScaled ? 0.9 : 1,
-//   });
-
-//   return (
-//     <animated.div
-//       className={className}
-//       style={style}
-//       onClick={onClick}
-//       onMouseDown={handleMouseDown}
-//       onMouseUp={handleMouseUp}
-//       onMouseLeave={handleMouseUp}
-//     >
-//       {children}
-//     </animated.div>
-//   );
-// };
 
 const MoneyEntry = ({
   spendingTransactions,
   incomeTransactions,
   savingTransactions,
+  totalTransactions,
   setIsMoreClicked,
   mainNetAmounts,
 }) => {
-  // const savingtotalAmount = savingTransactions
-  //   ? savingTransactions.totalSaving
-  //   : 0;
-  // const savingPercentage = savingTransactions
-  //   ? savingTransactions.percentageChange
-  //   : 0;
-
   const totalStyle = {
     color:
       mainNetAmounts.net > 0
         ? "rgba(131, 255, 201, 0.85)"
         : "rgb(255 102 102 / 85%)",
   };
-
-  // const colorStyle = {
-  //   color: savingPercentage > 0 ? "var(--Fc-2)" : "var(--Gc-2)",
-  //   flexDirection: "row",
-  //   alignItems: "center",
-  //   position: "relative",
-  //   bottom: "0",
-  //   marginTop: "0",
-  // };
 
   return (
     <div className="MoneyEntry">
@@ -66,10 +25,6 @@ const MoneyEntry = ({
           </span>
           <span>{incomeTransactions.month}</span> Summary
         </h1>
-        {/* <h1 className="MoneyEntry_total" style={totalStyle}>
-          <span className="MoneyEntry_totalTitle">Balance: </span> $
-          {mainNetAmounts.net}
-        </h1> */}
       </div>
       <div className="MoneyEntry_Data">
         <div className="MoneyEntry_AmountBase">
@@ -86,53 +41,17 @@ const MoneyEntry = ({
         </div>
         <div className="MoneyEntry_AmountBase">
           <MoneyEntryAmount
-            type="Save & Invest"
+            type="Save&Invest"
             setIsMoreClicked={setIsMoreClicked}
             transaction={savingTransactions}
           />
           <MoneyEntryAmount
             type="Balance"
             setIsMoreClicked={setIsMoreClicked}
-            transaction={spendingTransactions}
+            transaction={totalTransactions}
           />
         </div>
       </div>
-      {/* <ScalableElement
-        className="MoneyEntry_Savings"
-        onClick={() => setIsMoreClicked("Saving")}
-      >
-        <div className="MoneyEntry_Amount_Gradients"></div>
-        <h1>
-          <span
-            className="MoneyEntry_Dot"
-            style={{
-              width: "15px",
-              background:
-                "linear-gradient(165deg, var(--Ec-1) 30%, var(--Ac-2) 100%)",
-              height: "2px",
-              marginRight: "7px",
-            }}
-          ></span>
-          <span style={{ width: "max-content", marginLeft: "0" }}>
-            Save & Invest
-          </span>
-        </h1>
-
-        <div
-          className="MoneyEntry_Balance"
-          style={{
-            flexDirection: "row",
-            alignItems: "center",
-            position: "relative",
-            bottom: "0",
-            marginTop: "0",
-            right: "0",
-          }}
-        >
-          <h2 style={{ marginRight: "5px" }}>Total:</h2>
-          <h1>${formatNetTotal(savingtotalAmount)}</h1>
-        </div>
-      </ScalableElement> */}
     </div>
   );
 };
