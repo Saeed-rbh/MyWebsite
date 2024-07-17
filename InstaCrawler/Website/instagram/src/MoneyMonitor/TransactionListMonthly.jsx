@@ -18,22 +18,22 @@ const TransactionListMonthly = ({
       ? transactions
       : transactions.filter((transaction) => transaction.Type === sortby);
 
-  const delay = 300 + 20 * MainIndex;
-  const style = useSpring({
-    from: {
-      opacity: !isMoreClicked ? 1 : 0,
-      y: !isMoreClicked ? 0 : 50,
-    },
-    to: {
-      opacity: isMoreClicked ? 1 : 0,
-      y: isMoreClicked ? 0 : 50,
-    },
-    delay: isMoreClicked ? delay : 1000,
-    config: config.slow,
-  });
+  // const delay = 300 + 20 * MainIndex;
+  // const style = useSpring({
+  //   from: {
+  //     opacity: !isMoreClicked ? 1 : 0,
+  //     y: !isMoreClicked ? 0 : 50,
+  //   },
+  //   to: {
+  //     opacity: isMoreClicked ? 1 : 0,
+  //     y: isMoreClicked ? 0 : 50,
+  //   },
+  //   delay: isMoreClicked ? delay : 1000,
+  //   config: config.slow,
+  // });
 
   return (
-    <animated.div className="TransactionList_Monthly" style={style}>
+    <animated.div className="TransactionList_Monthly">
       <ul className="TransactionList_TransactionList">
         {filteredTransactions.map((transaction, index) => (
           <TransactionListItem

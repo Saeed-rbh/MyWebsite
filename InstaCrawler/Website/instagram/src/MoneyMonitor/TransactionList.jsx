@@ -34,7 +34,7 @@ const TransactionList = ({
       const sortedData = Object.entries(distribution)
         .map(([category, percentage]) => ({
           category,
-          percentage: parseFloat(percentage),
+          percentage: parseFloat(Math.abs(percentage)),
         }))
         .sort((a, b) => b.percentage - a.percentage);
       setLabelDistribution(sortedData);
@@ -286,7 +286,7 @@ const TransactionList = ({
                 <animated.li style={summaryStiles[0]}>
                   $
                   {labelDistribution.length > 0
-                    ? ((SummaryWidth[0] * totalAmount) / 100).toFixed(0)
+                    ? Math.abs((SummaryWidth[0] * totalAmount) / 100).toFixed(0)
                     : 0}
                 </animated.li>
               )}
@@ -294,7 +294,7 @@ const TransactionList = ({
                 <animated.li style={summaryStiles[1]}>
                   $
                   {labelDistribution.length > 0
-                    ? ((SummaryWidth[1] * totalAmount) / 100).toFixed(0)
+                    ? Math.abs((SummaryWidth[1] * totalAmount) / 100).toFixed(0)
                     : 0}
                 </animated.li>
               )}
@@ -302,7 +302,7 @@ const TransactionList = ({
                 <animated.li style={summaryStiles[2]}>
                   $
                   {labelDistribution.length > 0
-                    ? ((SummaryWidth[2] * totalAmount) / 100).toFixed(0)
+                    ? Math.abs((SummaryWidth[2] * totalAmount) / 100).toFixed(0)
                     : 0}
                 </animated.li>
               )}
@@ -310,7 +310,7 @@ const TransactionList = ({
                 <animated.li style={summaryStiles[3]}>
                   $
                   {labelDistribution.length > 0
-                    ? ((SummaryWidth[3] * totalAmount) / 100).toFixed(0)
+                    ? Math.abs((SummaryWidth[3] * totalAmount) / 100).toFixed(0)
                     : 0}
                 </animated.li>
               )}
