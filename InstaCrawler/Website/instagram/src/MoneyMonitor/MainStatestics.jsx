@@ -108,20 +108,42 @@ const MainStatestics = ({
 
   const valueSpringIn = useSpring({
     position: "absolute",
-    y: processedData[mainPageMonth]
-      ? processedData[mainPageMonth].incomePercentage >
-        processedData[mainPageMonth].savingPercentage
-        ? -1 *
+    y: Math.min(
+      0,
+      processedData[mainPageMonth] &&
+        -1 *
+          heightFactor *
+          0.01 *
+          processedData[mainPageMonth].incomePercentage -
+          25,
+      processedData[mainPageMonth] &&
+        -1 *
+          heightFactor *
+          0.01 *
+          processedData[mainPageMonth].savingPercentage -
+          25
+    ),
+  });
+
+  const valueSpringInText = useSpring({
+    marginBottom:
+      Math.min(
+        0,
+        processedData[mainPageMonth] &&
+          -1 *
             heightFactor *
             0.01 *
             processedData[mainPageMonth].incomePercentage -
-          25
-        : -1 *
+            25,
+        processedData[mainPageMonth] &&
+          -1 *
             heightFactor *
             0.01 *
             processedData[mainPageMonth].savingPercentage -
-          25
-      : 0,
+            25
+      ) < -60
+        ? 0
+        : 40,
   });
 
   const valueSpringSp = useSpring({
@@ -133,6 +155,18 @@ const MainStatestics = ({
           processedData[mainPageMonth].spendingPercentage +
         15
       : 0,
+  });
+  const valueSpringSpText = useSpring({
+    marginTop:
+      processedData[mainPageMonth] &&
+      heightFactor *
+        0.01 *
+        1.1 *
+        processedData[mainPageMonth].spendingPercentage +
+        15 >
+        50
+        ? -25
+        : 15,
   });
 
   const data = processedData[mainPageMonth];
@@ -238,22 +272,22 @@ const MainStatestics = ({
           style={{ marginLeft: "20px", width: "calc(100%)" }}
         ></div>
         <animated.div style={valueSpringIn} className="MainStatestics-dash">
-          <h1>
+          <animated.h1 style={valueSpringInText}>
             + $
             {processedData[mainPageMonth]
               ? Number(processedData[mainPageMonth].income.toFixed(0))
               : 0}
-          </h1>
+          </animated.h1>
         </animated.div>
 
         <animated.div style={valueSpringSp} className="MainStatestics-dash">
-          <h1>
+          <animated.h1 style={valueSpringSpText}>
             - $
             {processedData[mainPageMonth]
               ? Number(processedData[mainPageMonth].spending.toFixed(0))
               : 0}
             $
-          </h1>
+          </animated.h1>
         </animated.div>
 
         {/* <div className="MainStatestics-guid">
