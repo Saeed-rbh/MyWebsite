@@ -41,25 +41,36 @@ const MainStatestics = ({
       }),
       { maxIncome: 0, maxNet: 0, maxSaving: 0, maxSpending: 0 }
     );
-    return Math.max(
+
+    const maxOfAll = Math.max(
       allValues.maxIncome,
       allValues.maxNet,
       allValues.maxSaving,
       allValues.maxSpending
     );
+
+    let highestCategory = "";
+    if (maxOfAll === allValues.maxIncome) highestCategory = "Income";
+    else if (maxOfAll === allValues.maxNet) highestCategory = "Net";
+    else if (maxOfAll === allValues.maxSaving) highestCategory = "Saving";
+    else if (maxOfAll === allValues.maxSpending) highestCategory = "Spending";
+
+    return { maxOfAll, highestCategory };
   }, [last6MonthsData]);
+
+  const marginTop = maxValues.highestCategory === "Spending" ? 20 : 30;
 
   const processedData = useMemo(
     () =>
       last6MonthsData.map((d, index) => ({
         ...d,
-        incomePercentage: calculatePercentage(d.income, maxValues),
-        netPercentage: calculatePercentage(d.net, maxValues),
-        savingPercentage: calculatePercentage(d.saving, maxValues),
-        spendingPercentage: calculatePercentage(d.spending, maxValues),
+        incomePercentage: calculatePercentage(d.income, maxValues.maxOfAll),
+        netPercentage: calculatePercentage(d.net, maxValues.maxOfAll),
+        savingPercentage: calculatePercentage(d.saving, maxValues.maxOfAll),
+        spendingPercentage: calculatePercentage(d.spending, maxValues.maxOfAll),
         year: MonthsData[index],
       })),
-    [last6MonthsData, maxValues, MonthsData]
+    [last6MonthsData, maxValues.maxOfAll, MonthsData]
   );
 
   useEffect(() => {
@@ -266,7 +277,10 @@ const MainStatestics = ({
         Current Month
       </ScalableElement> */}
 
-      <div className="MainStatestics-Graph">
+      <div
+        className="MainStatestics-Graph"
+        style={{ marginTop: `${marginTop}px` }}
+      >
         <div
           className="MainStatestics-dash"
           style={{ marginLeft: "20px", width: "calc(100%)" }}
