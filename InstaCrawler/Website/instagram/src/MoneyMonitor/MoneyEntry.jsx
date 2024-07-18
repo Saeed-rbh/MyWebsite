@@ -1,17 +1,10 @@
 import React from "react";
 import MoneyEntryAmount from "./MoneyEntryAmount.jsx";
 
-const MoneyEntry = ({
-  spendingTransactions,
-  incomeTransactions,
-  savingTransactions,
-  totalTransactions,
-  setIsMoreClicked,
-  mainNetAmounts,
-}) => {
+const MoneyEntry = ({ Transactions, setIsMoreClicked }) => {
   const totalStyle = {
     color:
-      mainNetAmounts.net > 0
+      Transactions.netTotal > 0
         ? "rgba(131, 255, 201, 0.85)"
         : "rgb(255 102 102 / 85%)",
   };
@@ -23,7 +16,7 @@ const MoneyEntry = ({
           <span className="MoneyEntry_Dot" style={totalStyle}>
             •{" "}
           </span>
-          <span>{incomeTransactions.month}</span> Summary
+          <span>{Transactions.month}</span> Summary
         </h1>
       </div>
       <div className="MoneyEntry_Data">
@@ -31,24 +24,24 @@ const MoneyEntry = ({
           <MoneyEntryAmount
             type="Income"
             setIsMoreClicked={setIsMoreClicked}
-            transaction={incomeTransactions}
+            transaction={Transactions}
           />
           <MoneyEntryAmount
             type="Spending"
             setIsMoreClicked={setIsMoreClicked}
-            transaction={spendingTransactions}
+            transaction={Transactions}
           />
         </div>
         <div className="MoneyEntry_AmountBase">
           <MoneyEntryAmount
             type="Save&Invest"
             setIsMoreClicked={setIsMoreClicked}
-            transaction={savingTransactions}
+            transaction={Transactions}
           />
           <MoneyEntryAmount
             type="Balance"
             setIsMoreClicked={setIsMoreClicked}
-            transaction={totalTransactions}
+            transaction={Transactions}
           />
         </div>
       </div>

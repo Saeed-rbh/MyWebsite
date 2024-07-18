@@ -9,6 +9,7 @@ import MoreOpen from "./MoreOpen";
 
 const TransactionList = ({
   isMoreClicked,
+  selectedData,
   setIsMoreClicked,
   Transactions,
   dataAvailability,
@@ -28,11 +29,11 @@ const TransactionList = ({
   const [labelDistribution, setLabelDistribution] = useState([]);
 
   useEffect(() => {
-    if (Transactions.length !== 0) {
-      setTotalAmount(Transactions.netTotal);
-      setCurrentMonth(Transactions.month);
-      setCurrentYear(Transactions.year);
-      const distribution = Transactions.labelDistribution;
+    if (selectedData.length !== 0) {
+      setTotalAmount(selectedData.netTotal);
+      setCurrentMonth(selectedData.month);
+      setCurrentYear(selectedData.year);
+      const distribution = selectedData.labelDistribution;
       const sortedData = Object.entries(distribution)
         .map(([category, percentage]) => ({
           category,
@@ -41,7 +42,7 @@ const TransactionList = ({
         .sort((a, b) => b.percentage - a.percentage);
       setLabelDistribution(sortedData);
     }
-  }, [Transactions, whichMonth]);
+  }, [selectedData, whichMonth]);
 
   const monthlyMainRef = useRef(null);
 
@@ -390,18 +391,18 @@ const TransactionList = ({
               ref={monthlyMainRef}
               style={springProps4}
             >
-              {Transactions.length !== 0 && (
+              {selectedData.length !== 0 && (
                 <TransactionListMonthly
                   swipedIndex={swipedIndex}
                   handleUnSwipe={handleUnSwipe}
                   handleSwipe={handleSwipe}
                   handleTransactionClick={handleTransactionClick}
                   useCustomSpring={useCustomSpring}
-                  transactions={Transactions.transactions}
-                  netTotal={Transactions.netTotal}
-                  percentageChange={Transactions.percentageChange}
-                  month={Transactions.month}
-                  year={Transactions.year}
+                  transactions={Transactions}
+                  netTotal={selectedData.netTotal}
+                  percentageChange={selectedData.percentageChange}
+                  month={selectedData.month}
+                  year={selectedData.year}
                   sortby={sortby}
                   dataAvailability={dataAvailability}
                   setWhichMonth={setWhichMonth}

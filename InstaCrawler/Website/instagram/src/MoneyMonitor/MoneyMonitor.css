@@ -2030,7 +2030,6 @@
   font-family: "Noto Sans", sans-serif;
   display: flex;
   align-items: center;
-  margin-left: 5px;
 }
 .MainStatestics-guid {
   position: absolute;
@@ -2081,7 +2080,7 @@
   font-family: "Noto Sans", sans-serif;
   color: var(--Ac-1);
   height: inherit;
-  margin-left: 10px;
+  margin-left: 5px;
 }
 
 .MainStatestics-dash:nth-last-of-type(2) {
@@ -2095,7 +2094,7 @@
   font-family: "Noto Sans", sans-serif;
   color: var(--Ac-1);
   height: inherit;
-  margin-left: 10px;
+  margin-left: 5px;
 }
 
 .MainStatestics ul {

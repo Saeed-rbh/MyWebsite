@@ -183,12 +183,67 @@ const getMonthDataAvailability = (data) => {
   return availability;
 };
 
-const getNetAmounts = (income, spending, saving) => {
-  const incomeMonths = Object.keys(income);
-  const spendingMonths = Object.keys(spending);
-  const savingMonths = Object.keys(saving);
+// const getNetAmounts = (income, spending, saving) => {
+//   const incomeMonths = Object.keys(income);
+//   const spendingMonths = Object.keys(spending);
+//   const savingMonths = Object.keys(saving);
 
-  const allMonths = [...incomeMonths, ...spendingMonths, ...savingMonths];
+//   const allMonths = [...incomeMonths, ...spendingMonths, ...savingMonths];
+//   const latestMonth = allMonths.reduce((latest, month) => {
+//     if (!latest || new Date(month) < new Date(latest)) {
+//       return month;
+//     }
+//     return latest;
+//   }, null);
+
+//   const currentDate = new Date();
+//   const currentYear = currentDate.getFullYear();
+//   const currentMonth = currentDate.getMonth() + 1;
+
+//   const months = [];
+//   const [latestYear, latestMonthNum] = latestMonth.split("-").map(Number);
+//   let tempDate = new Date(latestYear, latestMonthNum - 1);
+
+//   while (
+//     tempDate.getFullYear() < currentYear ||
+//     (tempDate.getFullYear() === currentYear &&
+//       tempDate.getMonth() <= currentMonth - 1)
+//   ) {
+//     const year = tempDate.getFullYear();
+//     const month = tempDate.getMonth() + 1;
+//     months.push(`${year}-${month.toString().padStart(2, "0")}`);
+
+//     if (tempDate.getMonth() === 11) {
+//       tempDate.setFullYear(tempDate.getFullYear() + 1);
+//       tempDate.setMonth(0);
+//     } else {
+//       tempDate.setMonth(tempDate.getMonth() + 1);
+//     }
+//   }
+
+//   const result = months.reduce((acc, month) => {
+//     const incomeTotal = Number(income[month]?.netTotal?.toFixed(2)) || 0;
+//     const spendingTotal =
+//       -1 * Number(spending[month]?.netTotal?.toFixed(2)) || 0;
+//     const savingTotal = Number(saving[month]?.totalSaving?.toFixed(2)) || 0;
+//     const netTotal = Number((incomeTotal - spendingTotal).toFixed(2));
+//     acc[month] = {
+//       income: incomeTotal,
+//       spending: spendingTotal,
+//       saving: savingTotal,
+//       net: netTotal,
+//       month: monthsNames[Number(month.split("-")[1]) - 1],
+//     };
+//     return acc;
+//   }, {});
+
+//   return result;
+// };
+
+const getNetAmounts = (Transactions) => {
+  const TransObject = Object.keys(Transactions);
+  const allMonths = [...TransObject];
+
   const latestMonth = allMonths.reduce((latest, month) => {
     if (!latest || new Date(month) < new Date(latest)) {
       return month;
@@ -222,11 +277,13 @@ const getNetAmounts = (income, spending, saving) => {
   }
 
   const result = months.reduce((acc, month) => {
-    const incomeTotal = Number(income[month]?.netTotal?.toFixed(2)) || 0;
+    const incomeTotal =
+      Number(Transactions[month]?.totalIncome?.toFixed(2)) || 0;
     const spendingTotal =
-      -1 * Number(spending[month]?.netTotal?.toFixed(2)) || 0;
-    const savingTotal = Number(saving[month]?.totalSaving?.toFixed(2)) || 0;
-    const netTotal = Number((incomeTotal - spendingTotal).toFixed(2));
+      Number(Transactions[month]?.totalSpending?.toFixed(2)) || 0;
+    const savingTotal =
+      Number(Transactions[month]?.totalSaving?.toFixed(2)) || 0;
+    const netTotal = Number(Transactions[month]?.netTotal?.toFixed(2)) || 0;
     acc[month] = {
       income: incomeTotal,
       spending: spendingTotal,
@@ -255,62 +312,31 @@ const getSelectedMonthData = (transactionsByMonth, whichMonth) => {
 };
 
 export const fetchTransactions = async ({ whichMonth }) => {
-  const transactions = await fetchJson("/transactions_sorted.json");
-
-  const spending = filterTransactionsByCategory(transactions, ["Spending"]);
-
-  const income = filterTransactionsByCategory(transactions, ["Income"]);
-  const saving = filterTransactionsByCategory(transactions, ["Save&Invest"]);
-  const total = filterTransactionsByCategory(transactions, [
+  const allTransactions = await fetchJson("/transactions_sorted.json");
+  const total = filterTransactionsByCategory(allTransactions, [
     "Save&Invest",
     "Spending",
     "Income",
   ]);
 
-  const spendingTransactions = groupTransactionsByMonth(spending);
-  const incomeTransactions = groupTransactionsByMonth(income);
-  const savingTransactions = groupTransactionsByMonth(saving);
   const totalTransactions = groupTransactionsByMonth(total);
 
-  const incomeAvailability = Object.entries(
-    getMonthDataAvailability(incomeTransactions)
-  ).reverse();
-  const spendingAvailability = Object.entries(
-    getMonthDataAvailability(spendingTransactions)
-  ).reverse();
-  const savingAvailability = Object.entries(
-    getMonthDataAvailability(savingTransactions)
-  ).reverse();
-
-  const totalAvailability = Object.entries(
+  const Availability = Object.entries(
     getMonthDataAvailability(totalTransactions)
   ).reverse();
 
-  const selectedIncome = getSelectedMonthData(incomeTransactions, whichMonth);
+  const selected = getSelectedMonthData(totalTransactions, whichMonth);
 
-  const selectedspending = getSelectedMonthData(
-    spendingTransactions,
-    whichMonth
-  );
-  const selectedsaving = getSelectedMonthData(savingTransactions, whichMonth);
+  const { transactions, ...rest } = selected;
 
-  const selectedTotal = getSelectedMonthData(totalTransactions, whichMonth);
+  console.log(rest);
 
-  const netAmounts = getNetAmounts(
-    incomeTransactions,
-    spendingTransactions,
-    savingTransactions
-  );
+  const netAmounts = getNetAmounts(totalTransactions);
 
   return {
-    selectedIncome,
-    selectedspending,
-    selectedsaving,
-    selectedTotal,
-    incomeAvailability,
-    spendingAvailability,
-    savingAvailability,
-    totalAvailability,
+    selected,
+    Availability,
+    transactions,
     netAmounts,
   };
 };

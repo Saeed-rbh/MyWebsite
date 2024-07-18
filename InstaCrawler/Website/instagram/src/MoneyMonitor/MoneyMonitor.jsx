@@ -3,7 +3,7 @@ import "./MoneyMonitor.css";
 import MenuButton from "../Header/MenuButton";
 import MoneyEntry from "./MoneyEntry";
 import TransactionList from "./TransactionList";
-import { animated, useSpring } from "react-spring";
+import { a, animated, useSpring } from "react-spring";
 import { fetchTransactions } from "./transactionService";
 import MainStatestics from "./MainStatestics";
 import { useWindowHeight } from "./tools";
@@ -14,40 +14,22 @@ import Notif from "./addedTransactionNotif/Notif";
 
 const useTransactionData = (whichMonth) => {
   const [data, setData] = useState({
-    income: [],
-    spending: [],
-    saving: [],
-    total: [],
-    lastIncome: {},
-    lastSpending: {},
-    lastSaving: {},
-    lastTotal: {},
-    netAmounts: {},
+    selected: [],
+    Availability: [],
+    netAmounts: [],
   });
 
   useEffect(() => {
     const fetchData = async () => {
-      const {
-        selectedIncome,
-        selectedspending,
-        selectedsaving,
-        selectedTotal,
-        incomeAvailability,
-        spendingAvailability,
-        savingAvailability,
-        totalAvailability,
-        netAmounts,
-      } = await fetchTransactions({ whichMonth });
+      const { selected, Availability, netAmounts, transactions } =
+        await fetchTransactions({
+          whichMonth,
+        });
 
       setData({
-        income: incomeAvailability,
-        spending: spendingAvailability,
-        saving: savingAvailability,
-        total: totalAvailability,
-        lastIncome: selectedIncome,
-        lastSpending: selectedspending,
-        lastSaving: selectedsaving,
-        lastTotal: selectedTotal,
+        selected: selected,
+        Availability: Availability,
+        transactions: transactions,
         netAmounts: netAmounts,
       });
     };
@@ -67,25 +49,14 @@ const MoneyMonitor = () => {
   const [whichMonth, setWhichMonth] = useState(0);
 
   const {
-    income: incomeData,
-    spending: spendingData,
-    saving: savingData,
-    total: totalData,
-    lastIncome: lastIncomeData,
-    lastSpending: lastSpendingData,
-    lastSaving: lastSavingData,
-    lastTotal: lastTotalData,
+    selected: selectedData,
+    Availability: availabilityData,
     netAmounts: netAmountsData,
+    transactions: transactionsData,
   } = useTransactionData(whichMonth);
 
   const { mainPageMonth, setMainPageMonth } = useMainPageMonth();
-  const {
-    lastIncome: mainLastIncome,
-    lastSpending: mainLastSpending,
-    lastSaving: mainLastSaving,
-    lastTotal: mainLastTotal,
-    netAmounts: mainNetAmounts,
-  } = useTransactionData(mainPageMonth);
+  const { selected: mainSelected } = useTransactionData(mainPageMonth);
 
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isMoreClicked, setIsMoreClicked] = useState(null);
@@ -104,28 +75,6 @@ const MoneyMonitor = () => {
     opacity: isMoreClicked || isAddClicked !== null ? 0.5 : 1,
     filter: isMoreClicked || isAddClicked !== null ? "blur(10px)" : "blur(0px)",
   });
-
-  const transactions = useMemo(() => {
-    if (isMoreClicked === "Income") return lastIncomeData;
-    if (isMoreClicked === "Spending") return lastSpendingData;
-    if (isMoreClicked === "Save&Invest") return lastSavingData;
-    if (isMoreClicked === "Balance") return lastTotalData;
-    return [];
-  }, [
-    isMoreClicked,
-    lastIncomeData,
-    lastSpendingData,
-    lastSavingData,
-    lastTotalData,
-  ]);
-
-  const dataAvailability = useMemo(() => {
-    if (isMoreClicked === "Income") return incomeData;
-    if (isMoreClicked === "Spending") return spendingData;
-    if (isMoreClicked === "Save&Invest") return savingData;
-    if (isMoreClicked === "Balance") return totalData;
-    return [];
-  }, [isMoreClicked, incomeData, spendingData, savingData, totalData]);
 
   const [addTransaction, setAddTransaction] = useState({
     Amount: "",
@@ -162,12 +111,13 @@ const MoneyMonitor = () => {
   const TransactionFeed = () => {
     return (
       <TransactionList
-        Transactions={transactions}
+        Transactions={transactionsData}
+        selectedData={selectedData}
         isMoreClicked={isMoreClicked}
         setIsMoreClicked={setIsMoreClicked}
         setWhichMonth={setWhichMonth}
         whichMonth={whichMonth}
-        dataAvailability={dataAvailability}
+        dataAvailability={availabilityData}
         setIsAddClicked={setIsAddClicked}
         setAddTransaction={setAddTransaction}
       />
@@ -240,18 +190,10 @@ const MoneyMonitor = () => {
             mainPageMonth={mainPageMonth}
             setMainPageMonth={setMainPageMonth}
           />
-          {Object.keys(mainNetAmounts).length > 0 && (
+          {Object.keys(mainSelected).length > 0 && (
             <MoneyEntry
               setIsMoreClicked={setIsMoreClicked}
-              spendingTransactions={mainLastSpending}
-              incomeTransactions={mainLastIncome}
-              savingTransactions={mainLastSaving}
-              totalTransactions={mainLastTotal}
-              mainNetAmounts={
-                Object.entries(mainNetAmounts)[
-                  Object.keys(mainNetAmounts).length - mainPageMonth - 1
-                ][1]
-              }
+              Transactions={mainSelected}
             />
           )}
         </animated.div>

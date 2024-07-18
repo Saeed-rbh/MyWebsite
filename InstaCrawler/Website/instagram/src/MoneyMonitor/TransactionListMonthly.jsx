@@ -15,7 +15,7 @@ const TransactionListMonthly = ({
     sortby === "All"
       ? transactions
       : transactions.filter((transaction) => transaction.Type === sortby);
-
+  console.log(transactions);
   return (
     <animated.div className="TransactionList_Monthly">
       <ul className="TransactionList_TransactionList">
