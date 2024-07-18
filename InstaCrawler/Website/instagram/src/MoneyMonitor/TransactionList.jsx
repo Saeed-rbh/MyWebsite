@@ -18,6 +18,14 @@ const TransactionList = ({
   setIsAddClicked,
   setAddTransaction,
 }) => {
+  console.log(isMoreClicked);
+  const filteredTransactions =
+    isMoreClicked === "Balance"
+      ? Transactions
+      : Transactions.filter(
+          (transaction) => transaction.Category === isMoreClicked
+        );
+
   const WindowHeight = useWindowHeight(100);
 
   const [sortby, setSortby] = useState("All");
@@ -398,7 +406,7 @@ const TransactionList = ({
                   handleSwipe={handleSwipe}
                   handleTransactionClick={handleTransactionClick}
                   useCustomSpring={useCustomSpring}
-                  transactions={Transactions}
+                  transactions={filteredTransactions}
                   netTotal={selectedData.netTotal}
                   percentageChange={selectedData.percentageChange}
                   month={selectedData.month}
