@@ -325,11 +325,10 @@ export const fetchTransactions = async ({ whichMonth }) => {
     getMonthDataAvailability(totalTransactions)
   ).reverse();
 
-  const selected = getSelectedMonthData(totalTransactions, whichMonth);
-
-  const { transactions, ...rest } = selected;
-
-  console.log(rest);
+  const { transactions, ...selected } = getSelectedMonthData(
+    totalTransactions,
+    whichMonth
+  );
 
   const netAmounts = getNetAmounts(totalTransactions);
 

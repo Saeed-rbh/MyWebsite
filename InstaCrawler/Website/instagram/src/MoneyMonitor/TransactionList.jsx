@@ -18,7 +18,6 @@ const TransactionList = ({
   setIsAddClicked,
   setAddTransaction,
 }) => {
-  console.log(isMoreClicked);
   const filteredTransactions =
     isMoreClicked === "Balance"
       ? Transactions
@@ -176,9 +175,19 @@ const TransactionList = ({
     setIsCalendarClicked,
     isCalendarClicked,
   ]);
-
+  console.log();
   const colorStyle = {
-    color: isMoreClicked === "Income" ? "var(--Fc-1)" : "var(--Gc-1)",
+    // color: isMoreClicked === "Income" ? "var(--Fc-1)" : "var(--Gc-1)",
+    color:
+      isMoreClicked === "Income"
+        ? "var(--Fc-2)"
+        : isMoreClicked === "Spending"
+        ? "var(--Gc-2)"
+        : isMoreClicked === "Save&Invest"
+        ? "var(--Bc-2)"
+        : selectedData.netTotal > 0
+        ? "var(--Fc-2)"
+        : "var(--Gc-2)",
   };
 
   const [isScrollingDown, setIsScrollingDown] = useState(null);
