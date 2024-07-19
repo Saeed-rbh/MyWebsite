@@ -40,6 +40,38 @@ const fillMissingMonths = (data) => {
   return filledData;
 };
 
+const LabelDistribution = (Amount, labels) => {
+
+
+  const labelPercentages = Object.keys(labels).map((label) => {
+    return {
+      label: label,
+      percentage: (labels[label] / Amount) * 100, // Convert to string with 2 decimal places
+    };
+  });
+
+  // Sort labels by percentage descending, with stability by label name
+  labelPercentages.sort((a, b) => {
+    if (b.percentage !== a.percentage) {
+      return b.percentage - a.percentage; // Sort by percentage descending
+    } else {
+      return a.label.localeCompare(b.label); // Maintain stability by label name
+    }
+  });
+
+  // Reconstruct label distribution with sorted percentages
+  const sortedLabelDistributionSpending = {};
+  labelPercentages.forEach((item) => {
+    sortedLabelDistributionSpending[item.label] = Number(
+      item.percentage.toFixed(2)
+    );
+  });
+
+  // Assign sorted label distribution back to groupedTransactions
+
+  return sortedLabelDistributionSpending;
+};
+
 const groupTransactionsByMonth = (transactions) => {
   const groupedTransactions = {};
 
@@ -75,63 +107,94 @@ const groupTransactionsByMonth = (transactions) => {
         month: months[date.getMonth()],
         year: year,
         percentageChange: null,
+        labelDistributionSpending: {},
+        labelDistributionIncome: {},
+        labelDistributionSaving: {},
         labelDistribution: {},
       };
     }
 
     groupedTransactions[key].transactions.push(transaction);
+    const label = transaction.Label;
 
     if (transaction.Category === "Spending") {
       groupedTransactions[key].totalSpending += transaction.Amount;
       groupedTransactions[key].netTotal -= transaction.Amount;
+      if (label) {
+        if (groupedTransactions[key].labelDistributionSpending[label]) {
+          groupedTransactions[key].labelDistributionSpending[label] +=
+            transaction.Amount;
+        } else {
+          groupedTransactions[key].labelDistributionSpending[label] =
+            transaction.Amount;
+        }
+      }
     } else if (transaction.Category === "Income") {
       groupedTransactions[key].totalIncome += transaction.Amount;
       groupedTransactions[key].netTotal += transaction.Amount;
+      if (label) {
+        if (groupedTransactions[key].labelDistributionIncome[label]) {
+          groupedTransactions[key].labelDistributionIncome[label] +=
+            transaction.Amount;
+        } else {
+          groupedTransactions[key].labelDistributionIncome[label] =
+            transaction.Amount;
+        }
+      }
     } else if (transaction.Category === "Save&Invest") {
       groupedTransactions[key].totalSaving += transaction.Amount;
-    }
-
-    // Count label occurrences
-    const label = transaction.Label;
-    if (label) {
-      if (groupedTransactions[key].labelDistribution[label]) {
-        groupedTransactions[key].labelDistribution[label] += transaction.Amount;
-      } else {
-        groupedTransactions[key].labelDistribution[label] = transaction.Amount;
+      if (label) {
+        if (groupedTransactions[key].labelDistributionSaving[label]) {
+          groupedTransactions[key].labelDistributionSaving[label] +=
+            transaction.Amount;
+        } else {
+          groupedTransactions[key].labelDistributionSaving[label] =
+            transaction.Amount;
+        }
       }
     }
   });
 
   // Determine top labels and sort by percentage (with stability)
   Object.keys(groupedTransactions).forEach((key) => {
-    const totalAmount = groupedTransactions[key].netTotal;
-    const labels = groupedTransactions[key].labelDistribution;
+    const SpendingAmount = groupedTransactions[key].totalSpending;
+    const labelSpending = groupedTransactions[key].labelDistributionSpending;
 
-    // Calculate percentages and prepare for sorting
-    const labelPercentages = Object.keys(labels).map((label) => {
-      return {
-        label,
-        percentage: (labels[label] / totalAmount) * 100,
-      };
-    });
+    groupedTransactions[key].labelDistributionSpending = LabelDistribution(
+      SpendingAmount,
+      labelSpending
+    );
 
-    // Sort labels by percentage descending, with stability by label name
-    labelPercentages.sort((a, b) => {
-      if (b.percentage !== a.percentage) {
-        return b.percentage - a.percentage; // Sort by percentage descending
-      } else {
-        return a.label.localeCompare(b.label); // Maintain stability by label name
-      }
-    });
+    const IncomeAmount = groupedTransactions[key].totalIncome;
+    const labelIncome = groupedTransactions[key].labelDistributionIncome;
+    groupedTransactions[key].labelDistributionIncome = LabelDistribution(
+      IncomeAmount,
+      labelIncome
+    );
 
-    // Reconstruct label distribution with sorted percentages
-    const sortedLabelDistribution = {};
-    labelPercentages.forEach((item) => {
-      sortedLabelDistribution[item.label] = item.percentage.toFixed(2);
-    });
+    const SavingAmount = groupedTransactions[key].totalSaving;
+    const labelSaving = groupedTransactions[key].labelDistributionSaving;
+    groupedTransactions[key].labelDistributionSaving = LabelDistribution(
+      SavingAmount,
+      labelSaving
+    );
 
-    // Assign sorted label distribution back to groupedTransactions
-    groupedTransactions[key].labelDistribution = sortedLabelDistribution;
+    const netTotal =
+      groupedTransactions[key].totalSpending +
+      groupedTransactions[key].totalIncome +
+      groupedTransactions[key].totalSaving;
+
+    groupedTransactions[key].labelDistribution = {
+      Spending: Number(
+        ((groupedTransactions[key].totalSpending / netTotal) * 100).toFixed(2)
+      ),
+      Income: Number(
+        ((groupedTransactions[key].totalIncome / netTotal) * 100).toFixed(2)
+      ),
+      Saving: Number(
+        ((groupedTransactions[key].totalSaving / netTotal) * 100).toFixed(2)
+      ),
+    };
   });
 
   const sortedGroupedTransactions = Object.entries(groupedTransactions).sort(
@@ -182,63 +245,6 @@ const getMonthDataAvailability = (data) => {
 
   return availability;
 };
-
-// const getNetAmounts = (income, spending, saving) => {
-//   const incomeMonths = Object.keys(income);
-//   const spendingMonths = Object.keys(spending);
-//   const savingMonths = Object.keys(saving);
-
-//   const allMonths = [...incomeMonths, ...spendingMonths, ...savingMonths];
-//   const latestMonth = allMonths.reduce((latest, month) => {
-//     if (!latest || new Date(month) < new Date(latest)) {
-//       return month;
-//     }
-//     return latest;
-//   }, null);
-
-//   const currentDate = new Date();
-//   const currentYear = currentDate.getFullYear();
-//   const currentMonth = currentDate.getMonth() + 1;
-
-//   const months = [];
-//   const [latestYear, latestMonthNum] = latestMonth.split("-").map(Number);
-//   let tempDate = new Date(latestYear, latestMonthNum - 1);
-
-//   while (
-//     tempDate.getFullYear() < currentYear ||
-//     (tempDate.getFullYear() === currentYear &&
-//       tempDate.getMonth() <= currentMonth - 1)
-//   ) {
-//     const year = tempDate.getFullYear();
-//     const month = tempDate.getMonth() + 1;
-//     months.push(`${year}-${month.toString().padStart(2, "0")}`);
-
-//     if (tempDate.getMonth() === 11) {
-//       tempDate.setFullYear(tempDate.getFullYear() + 1);
-//       tempDate.setMonth(0);
-//     } else {
-//       tempDate.setMonth(tempDate.getMonth() + 1);
-//     }
-//   }
-
-//   const result = months.reduce((acc, month) => {
-//     const incomeTotal = Number(income[month]?.netTotal?.toFixed(2)) || 0;
-//     const spendingTotal =
-//       -1 * Number(spending[month]?.netTotal?.toFixed(2)) || 0;
-//     const savingTotal = Number(saving[month]?.totalSaving?.toFixed(2)) || 0;
-//     const netTotal = Number((incomeTotal - spendingTotal).toFixed(2));
-//     acc[month] = {
-//       income: incomeTotal,
-//       spending: spendingTotal,
-//       saving: savingTotal,
-//       net: netTotal,
-//       month: monthsNames[Number(month.split("-")[1]) - 1],
-//     };
-//     return acc;
-//   }, {});
-
-//   return result;
-// };
 
 const getNetAmounts = (Transactions) => {
   const TransObject = Object.keys(Transactions);
@@ -301,8 +307,6 @@ const fetchJson = async (url) => {
   const response = await fetch(url, { cache: "no-store" });
   return response.json();
 };
-const filterTransactionsByCategory = (transactions, category) =>
-  transactions.filter((transaction) => category.includes(transaction.Category));
 
 const getSelectedMonthData = (transactionsByMonth, whichMonth) => {
   const entries = Object.entries(transactionsByMonth);
@@ -313,13 +317,8 @@ const getSelectedMonthData = (transactionsByMonth, whichMonth) => {
 
 export const fetchTransactions = async ({ whichMonth }) => {
   const allTransactions = await fetchJson("/transactions_sorted.json");
-  const total = filterTransactionsByCategory(allTransactions, [
-    "Save&Invest",
-    "Spending",
-    "Income",
-  ]);
 
-  const totalTransactions = groupTransactionsByMonth(total);
+  const totalTransactions = groupTransactionsByMonth(allTransactions);
 
   const Availability = Object.entries(
     getMonthDataAvailability(totalTransactions)

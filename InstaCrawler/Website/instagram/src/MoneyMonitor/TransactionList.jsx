@@ -40,16 +40,51 @@ const TransactionList = ({
       setTotalAmount(selectedData.netTotal);
       setCurrentMonth(selectedData.month);
       setCurrentYear(selectedData.year);
-      const distribution = selectedData.labelDistribution;
+
+      const distribution =
+        isMoreClicked === "Balance"
+          ? selectedData.labelDistribution
+          : isMoreClicked === "Income"
+          ? selectedData.labelDistributionIncome
+          : isMoreClicked === "Spending"
+          ? selectedData.labelDistributionSpending
+          : selectedData.labelDistributionSaving;
+
+      console.log(distribution);
+
+      let other = 0;
       const sortedData = Object.entries(distribution)
-        .map(([category, percentage]) => ({
-          category,
-          percentage: parseFloat(Math.abs(percentage)),
-        }))
+        .map(([category, percentage]) => {
+          const percentageValue = percentage;
+          if (
+            category !== "Other" &&
+            (Object.entries(distribution).length < 4 || percentageValue > 15)
+          ) {
+            return {
+              category,
+              percentage: percentageValue,
+            };
+          } else {
+            other += percentageValue;
+            return null;
+          }
+        })
+        .filter((item) => item !== null)
         .sort((a, b) => b.percentage - a.percentage);
+      if (sortedData.length === 1) {
+        sortedData.push(null, null);
+      } else if (sortedData.length === 2) {
+        sortedData.push(null);
+      } else if (sortedData.length > 3) {
+        for (let index = 3; index < sortedData.length; index++) {
+          other += sortedData[index].percentage;
+        }
+        sortedData.slice(0, 3);
+      }
+      sortedData.push({ category: "Other", percentage: other });
       setLabelDistribution(sortedData);
     }
-  }, [selectedData, whichMonth]);
+  }, [selectedData, whichMonth, isMoreClicked]);
 
   const monthlyMainRef = useRef(null);
 
@@ -66,8 +101,6 @@ const TransactionList = ({
   };
 
   const handleTransactionClick = (transaction) => {
-    // setTransactionClick([MainIndex, index, y]);
-    // settransactionClickAnim(true);
     setIsAddClicked(transaction.Category);
     setAddTransaction({
       Amount: transaction.Amount,
@@ -79,59 +112,46 @@ const TransactionList = ({
     });
   };
 
-  const handleTransactionUnClick = () => {
-    // setTransactionClick([null, null, null]);
-  };
+  const handleTransactionUnClick = () => {};
 
   const SummaryWidth = [
-    labelDistribution.length > 0 &&
-    !!labelDistribution[0] &&
-    labelDistribution[0].percentage > 15
+    labelDistribution.length > 0 && !!labelDistribution[0]
       ? labelDistribution[0].percentage
       : 0,
-    labelDistribution.length > 0 &&
-    !!labelDistribution[1] &&
-    labelDistribution[1].percentage > 15
+    labelDistribution.length > 0 && !!labelDistribution[1]
       ? labelDistribution[1].percentage
       : 0,
-    labelDistribution.length > 0 &&
-    !!labelDistribution[2] &&
-    labelDistribution[2].percentage > 15
+    labelDistribution.length > 0 && !!labelDistribution[2]
       ? labelDistribution[2].percentage
       : 0,
-    labelDistribution.length > 2 &&
-    !!labelDistribution[0] &&
-    !!labelDistribution[1] &&
-    !!labelDistribution[2]
-      ? 100 -
-        (labelDistribution[0]?.percentage > 15
-          ? labelDistribution[0].percentage
-          : 0) -
-        (labelDistribution[1]?.percentage > 15
-          ? labelDistribution[1].percentage
-          : 0) -
-        (labelDistribution[2]?.percentage > 15
-          ? labelDistribution[2].percentage
-          : 0)
+    labelDistribution.length > 0 && !!labelDistribution[3]
+      ? labelDistribution[3].percentage
       : 0,
   ];
 
   const summaryStiles = [
     useSpring({
       width: SummaryWidth[0] + "%",
-      color: "var(--Cc-2)",
+      color: isMoreClicked === "Balance" ? "var(--Ac-2)" : "var(--Cc-2)",
+      backgroundColor:
+        isMoreClicked === "Balance" ? "var(--Ac-2)" : "var(--Cc-2)",
     }),
     useSpring({
       width: SummaryWidth[1] + "%",
-      color: "var(--Dc-2)",
+      color: isMoreClicked === "Balance" ? "var(--Fc-2)" : "var(--Dc-2)",
+      backgroundColor:
+        isMoreClicked === "Balance" ? "var(--Fc-2)" : "var(--Dc-2)",
     }),
     useSpring({
       width: SummaryWidth[2] + "%",
-      color: "var(--Bc-2)",
+      color: isMoreClicked === "Balance" ? "var(--Gc-2)" : "var(--Bc-2)",
+      backgroundColor:
+        isMoreClicked === "Balance" ? "var(--Gc-2)" : "var(--Bc-2)",
     }),
     useSpring({
       width: SummaryWidth[3] + "%",
       color: "var(--Ac-1)",
+      backgroundColor: "var(--Ac-2)",
     }),
   ];
 
@@ -175,9 +195,8 @@ const TransactionList = ({
     setIsCalendarClicked,
     isCalendarClicked,
   ]);
-  console.log();
+
   const colorStyle = {
-    // color: isMoreClicked === "Income" ? "var(--Fc-1)" : "var(--Gc-1)",
     color:
       isMoreClicked === "Income"
         ? "var(--Fc-2)"
@@ -189,8 +208,6 @@ const TransactionList = ({
         ? "var(--Fc-2)"
         : "var(--Gc-2)",
   };
-
-  const [isScrollingDown, setIsScrollingDown] = useState(null);
 
   const springProps4 = useSpring({
     height: WindowHeight - 210,
@@ -302,7 +319,12 @@ const TransactionList = ({
               // style={springProps2}
             >
               {SummaryWidth[0] > 0 && (
-                <animated.li style={summaryStiles[0]}>
+                <animated.li
+                  style={{
+                    ...summaryStiles[0],
+                    backgroundColor: "transparent",
+                  }}
+                >
                   $
                   {labelDistribution.length > 0
                     ? Math.abs((SummaryWidth[0] * totalAmount) / 100).toFixed(0)
@@ -310,7 +332,12 @@ const TransactionList = ({
                 </animated.li>
               )}
               {SummaryWidth[1] > 0 && (
-                <animated.li style={summaryStiles[1]}>
+                <animated.li
+                  style={{
+                    ...summaryStiles[1],
+                    backgroundColor: "transparent",
+                  }}
+                >
                   $
                   {labelDistribution.length > 0
                     ? Math.abs((SummaryWidth[1] * totalAmount) / 100).toFixed(0)
@@ -318,7 +345,12 @@ const TransactionList = ({
                 </animated.li>
               )}
               {SummaryWidth[2] > 0 && (
-                <animated.li style={summaryStiles[2]}>
+                <animated.li
+                  style={{
+                    ...summaryStiles[2],
+                    backgroundColor: "transparent",
+                  }}
+                >
                   $
                   {labelDistribution.length > 0
                     ? Math.abs((SummaryWidth[2] * totalAmount) / 100).toFixed(0)
@@ -326,7 +358,12 @@ const TransactionList = ({
                 </animated.li>
               )}
               {SummaryWidth[3] > 0 && (
-                <animated.li style={summaryStiles[3]}>
+                <animated.li
+                  style={{
+                    ...summaryStiles[3],
+                    backgroundColor: "transparent",
+                  }}
+                >
                   $
                   {labelDistribution.length > 0
                     ? Math.abs((SummaryWidth[3] * totalAmount) / 100).toFixed(0)
@@ -350,7 +387,11 @@ const TransactionList = ({
               {SummaryWidth[0] > 0 && (
                 <animated.li>
                   <animated.span
-                    style={{ ...summaryStiles[0], width: "fit-content" }}
+                    style={{
+                      ...summaryStiles[0],
+                      width: "fit-content",
+                      backgroundColor: "transparent",
+                    }}
                   >
                     •
                   </animated.span>
@@ -362,7 +403,11 @@ const TransactionList = ({
               {SummaryWidth[1] > 0 && (
                 <animated.li>
                   <animated.span
-                    style={{ ...summaryStiles[1], width: "fit-content" }}
+                    style={{
+                      ...summaryStiles[1],
+                      width: "fit-content",
+                      backgroundColor: "transparent",
+                    }}
                   >
                     •
                   </animated.span>
@@ -374,7 +419,11 @@ const TransactionList = ({
               {SummaryWidth[2] > 0 && (
                 <animated.li>
                   <animated.span
-                    style={{ ...summaryStiles[2], width: "fit-content" }}
+                    style={{
+                      ...summaryStiles[2],
+                      width: "fit-content",
+                      backgroundColor: "transparent",
+                    }}
                   >
                     •
                   </animated.span>
@@ -386,7 +435,11 @@ const TransactionList = ({
               {SummaryWidth[3] > 0 && (
                 <animated.li>
                   <animated.span
-                    style={{ ...summaryStiles[3], width: "fit-content" }}
+                    style={{
+                      ...summaryStiles[3],
+                      width: "fit-content",
+                      backgroundColor: "transparent",
+                    }}
                   >
                     •
                   </animated.span>
@@ -398,7 +451,6 @@ const TransactionList = ({
               sortby={sortby}
               setSortby={setSortby}
               isMoreClicked={isMoreClicked}
-              isScrollingDown={isScrollingDown}
               setIsCalendarClicked={setIsCalendarClicked}
               isCalendarClicked={isCalendarClicked}
             />

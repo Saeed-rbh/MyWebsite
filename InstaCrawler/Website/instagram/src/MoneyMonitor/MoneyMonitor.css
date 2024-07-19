@@ -703,7 +703,7 @@
 }
 .TransactionList_Wall p {
   position: relative;
-  font-size: 1.3rem;
+  font-size: 1.5rem;
   font-weight: 200;
   font-family: "Noto Sans", sans-serif;
   color: var(--Ac-1);
@@ -714,6 +714,7 @@
   align-items: baseline;
   justify-content: flex-start;
   flex-direction: row;
+  width: auto;
 }
 
 .TransactionList_Wall p span {
@@ -723,10 +724,12 @@
   margin-left: 3px;
 }
 .TransactionList_TitleMonth {
+  position: absolute;
   font-size: 0.7rem;
   color: var(--Bc-1);
   font-weight: 400;
-  margin-left: 5px;
+  bottom: -17px;
+  left: 15px;
 }
 .TransactionList_SummaryLines {
   position: relative;
@@ -884,6 +887,8 @@
 }
 .TransactionList_Wall h1 span:first-of-type {
   margin-right: 5px;
+  font-size: 1.5rem;
+  font-weight: 200;
 }
 
 .TransactionList_Title {
@@ -894,7 +899,7 @@
   justify-content: space-between;
   width: calc(100% - 15px);
   height: 4px;
-  margin: 0 0 15px 0;
+  margin: 0 0 20px 0;
   height: 10px;
   padding: 0 5px;
 }
@@ -909,8 +914,9 @@
   width: -moz-fit-content;
   display: flex;
   opacity: 1;
-  margin-top: -35px;
+  margin-top: -40px;
   right: 65px;
+  align-items: baseline;
 }
 
 .TransactionList_Title h1 span {
