@@ -209,6 +209,8 @@ function AddTransactionFeed({
           setValue={setValue}
           valueError={valueError}
           setValueError={setValueError}
+          whichType={whichType}
+          setWhichType={setWhichType}
         />
         <Reason
           Reason={Reason}
@@ -230,11 +232,7 @@ function AddTransactionFeed({
           selectedCategory={selectedCategory}
           defaultValue={Modify ? addTransaction.Label : ""}
         />
-        <Confirm
-          whichType={whichType}
-          setWhichType={setWhichType}
-          handleAddClick={handleAddClick}
-        />
+        <Confirm handleAddClick={handleAddClick} />
       </ul>
     </animated.div>
   );

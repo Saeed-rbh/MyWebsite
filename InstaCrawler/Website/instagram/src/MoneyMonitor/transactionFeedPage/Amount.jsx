@@ -8,6 +8,7 @@ import React, {
 import { useSpring, animated } from "react-spring";
 import { FaCheck } from "react-icons/fa";
 import { FaXmark } from "react-icons/fa6";
+import { ScalableElement } from "../tools";
 
 const AmountLogo = ({ Animate1, Animate2, style1, style2, fontColor }) => {
   return (
@@ -32,7 +33,22 @@ const Amount = ({
   valueError,
   setValueError,
   defaultValue,
+  whichType,
+  setWhichType,
 }) => {
+  const ConfirmStyle = useSpring({
+    left: whichType ? "0%" : "43%",
+    width: whichType ? "40%" : "57%",
+    marginLeft: whichType ? 2 : -2,
+  });
+
+  const ConfirmStyleDay = useSpring({
+    x: whichType ? 0 : 3,
+  });
+  const ConfirmStyleMonth = useSpring({
+    x: whichType ? -4 : 0,
+  });
+
   let fornatDefualtValue = new Intl.NumberFormat().format(defaultValue);
 
   fornatDefualtValue =
@@ -146,6 +162,23 @@ const Amount = ({
       />
       <hr />
       <hr />
+      <h1>
+        <ScalableElement
+          as="span"
+          onClick={() => setWhichType(true)}
+          style={ConfirmStyleDay}
+        >
+          Daily
+        </ScalableElement>
+        <ScalableElement
+          as="span"
+          onClick={() => setWhichType(false)}
+          style={ConfirmStyleMonth}
+        >
+          Monthly
+        </ScalableElement>
+        <animated.span style={ConfirmStyle}></animated.span>
+      </h1>
     </animated.li>
   );
 };
