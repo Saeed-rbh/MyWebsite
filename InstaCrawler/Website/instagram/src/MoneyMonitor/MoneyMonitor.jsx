@@ -11,6 +11,7 @@ import AddTransaction from "./AddTransaction";
 import MoreOpen from "./MoreOpen";
 import AddTransactionFeed from "./transactionFeedPage/AddTransactionFeed";
 import Notif from "./addedTransactionNotif/Notif";
+import axios from "axios";
 
 const useTransactionData = (whichMonth) => {
   const [data, setData] = useState({

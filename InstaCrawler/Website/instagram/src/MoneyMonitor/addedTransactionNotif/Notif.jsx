@@ -5,6 +5,7 @@ import CircularProgressBar from "./CircularProgressBar";
 import { ScalableElement } from "../tools";
 import { useDrag } from "@use-gesture/react";
 import { FaXmark } from "react-icons/fa6";
+import { sendDataToDB } from "../apiService/apiService";
 
 const Notif = ({
   addTransaction,
@@ -49,6 +50,7 @@ const Notif = ({
   }, [open, setAddTransaction, close]);
 
   const handleFinish = () => {
+    sendDataToDB({ record_entry: addTransaction });
     setAddTransaction({
       Amount: 0,
       Category: "",

@@ -2909,6 +2909,7 @@
   box-shadow: 0 15px 20px 0px var(--Ec-1);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
+  touch-action: none;
 }
 
 .Notif_Type {
