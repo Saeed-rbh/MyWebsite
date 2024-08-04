@@ -1,4 +1,5 @@
 import { format, parse, addMonths, isBefore } from "date-fns";
+import { GetDataFromDB } from "./apiService/apiService";
 
 const monthsNames = [
   "Jan",
@@ -41,8 +42,6 @@ const fillMissingMonths = (data) => {
 };
 
 const LabelDistribution = (Amount, labels) => {
-
-
   const labelPercentages = Object.keys(labels).map((label) => {
     return {
       label: label,
@@ -317,6 +316,7 @@ const getSelectedMonthData = (transactionsByMonth, whichMonth) => {
 
 export const fetchTransactions = async ({ whichMonth }) => {
   const allTransactions = await fetchJson("/transactions_sorted.json");
+  // const allTransactions = await GetDataFromDB();
 
   const totalTransactions = groupTransactionsByMonth(allTransactions);
 

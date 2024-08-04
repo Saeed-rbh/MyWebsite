@@ -5,7 +5,12 @@ import CircularProgressBar from "./CircularProgressBar";
 import { ScalableElement } from "../tools";
 import { useDrag } from "@use-gesture/react";
 import { FaXmark } from "react-icons/fa6";
-import { sendDataToDB } from "../apiService/apiService";
+
+import {
+  sendDataToDB,
+  GetLabel,
+  GetDataFromDB,
+} from "../apiService/apiService";
 
 const Notif = ({
   addTransaction,
@@ -49,8 +54,15 @@ const Notif = ({
     }
   }, [open, setAddTransaction, close]);
 
-  const handleFinish = () => {
-    sendDataToDB({ record_entry: addTransaction });
+  async function processTransaction(addTransaction) {
+    let Label = addTransaction.Label;
+    if (addTransaction.Reason.length > 0 && Label === "Auto Detect") {
+      Label = await GetLabel({ record_entry: addTransaction });
+    } else {
+      Label = "other";
+    }
+    addTransaction.Label = Label;
+    await sendDataToDB({ record_entry: addTransaction });
     setAddTransaction({
       Amount: 0,
       Category: "",
@@ -59,6 +71,11 @@ const Notif = ({
       Timestamp: "",
       Type: "",
     });
+    const NewData = await GetDataFromDB();
+  }
+
+  const handleFinish = () => {
+    processTransaction(addTransaction);
   };
 
   const [openStyle, api] = useSpring(() => ({
