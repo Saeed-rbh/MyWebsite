@@ -795,6 +795,9 @@
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
   }
+  .HomeConsole {
+    bottom: 10px;
+  }
   .b-hr {
     display: none;
   }
@@ -830,9 +833,7 @@
   .HomePage-M {
     width: 100vw;
   }
-  .HomeConsole {
-    bottom: 10px;
-  }
+
   .MainHeader {
     top: 10px;
   }
