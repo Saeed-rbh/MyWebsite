@@ -3,25 +3,11 @@ import { animated, useSpring, easings } from "react-spring";
 import { calculateBackgroundImage, ImageDiv, ContentDiv } from "./Components";
 import { useUtilize } from "../../Styles/useUtilize";
 import myImage from "../../../../src/Image/AcademicImg.jpeg";
-import useElementSize from "../../Styles/useElementSize";
 
 export const Affiliation = () => {
-  const mainElementSize = useElementSize("MoreInfoAcademic");
   const componentName = "Affiliation";
-  const {
-    name,
-    size,
-    title,
-    padding,
-    height,
-    rand,
-    stages,
-    isActive,
-    ParentRef,
-    styles,
-    titleStyle,
-    MainStyle,
-  } = useUtilize(componentName);
+  const { name, size, title, padding, rand, isActive, ParentRef } =
+    useUtilize(componentName);
 
   const openClose = useMemo(() => (isActive ? 2 : 1), [isActive]);
   const [randomStart] = useState(rand);
@@ -53,31 +39,15 @@ export const Affiliation = () => {
     [backgroundAnim, randomStart, openClose]
   );
 
-  const [, leftPadding, , rightPadding] = padding;
-  const widthOffset = leftPadding + rightPadding;
-
-  const calculateWidth = (stages, mainElementSize, height) => {
-    return stages[2] || stages[3]
-      ? `${mainElementSize.width - widthOffset - height - 50}px`
-      : `${0.38 * mainElementSize.width - height - 40}px`;
-  };
-
-  const calculatePadding = (padding) => {
-    return `${padding[0]}px ${padding[1]}px ${padding[2]}px ${padding[3]}px`;
-  };
-
   const animatedStyle = useSpring({
     backgroundColor: "rgba(0, 0, 0, 0.3)",
     backgroundImage,
     top: "-5px",
-    width: useMemo(
-      () => calculateWidth(stages, mainElementSize, height),
-      [stages, mainElementSize, height]
-    ),
-    height: height,
-    left: `${height + 50}px`,
+    width: 280,
+    left: `${100 + 40}px`,
+    height: 100,
+    padding: 15,
     easing: easings.easeOutCubic,
-    padding: useMemo(() => calculatePadding(padding), [padding]),
   });
 
   const animatedImgDiv = useSpring({
@@ -86,19 +56,36 @@ export const Affiliation = () => {
     display: "flex",
     borderRadius: "40px",
     top: "-5px",
-    height: height,
-    width: `${height}px`,
-    minWidth: height,
+    height: 100,
+    padding: 15,
+    width: 100,
+    minWidth: 100,
     left: "0%",
     easing: easings.easeOutCubic,
-    padding: useMemo(() => calculatePadding(padding), [padding]),
   });
+
+  const styles = {
+    borderRadius: "40px",
+    height: "90px",
+    top: "250px",
+    cursor: "pointer",
+    filter: "blur(0px)",
+    opacity: 1,
+    backgroundColor: "rgba(0, 0, 0, 0)",
+    overflow: "visible",
+    width: "440px",
+    padding: "20px 20px 18px",
+    zIndex: 10,
+    backgroundImage: "none",
+    transform: "none",
+    left: "35px",
+  };
 
   return (
     <animated.div
       ref={ParentRef}
       style={{
-        ...styles.base,
+        ...styles,
         backgroundColor: "rgba(0, 0, 0, 0)",
         backgroundImage: "none",
       }}
@@ -112,8 +99,6 @@ export const Affiliation = () => {
         size={size}
         title={title}
         padding={padding}
-        titleStyle={titleStyle}
-        MainStyle={MainStyle}
       />
     </animated.div>
   );

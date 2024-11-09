@@ -10,29 +10,20 @@ const ImageDiv = ({ animatedStyle, imageSrc }) => (
   </animated.div>
 );
 
-const ContentDiv = ({
-  animatedStyle,
-  name,
-  size,
-  title,
-  padding,
-  titleStyle,
-  MainStyle,
-}) => (
+const ContentDiv = ({ animatedStyle, name, size, title, padding }) => (
   <animated.div className={name} style={animatedStyle}>
     <animated.p
       style={{
-        ...titleStyle,
         transform: `translateY(${-(size[0] + padding[0] + padding[2]) / 2}px)`,
       }}
     >
       {title}
     </animated.p>
-    <animated.h1 style={MainStyle}>
+    <animated.h1>
       PhD, <ExternalLink href="https://www.picssl.ca/">PICSSL Lab</ExternalLink>
     </animated.h1>
-    <animated.h1 style={MainStyle}>Lassonde School of Engineering</animated.h1>
-    <animated.h1 style={MainStyle}>
+    <animated.h1>Lassonde School of Engineering</animated.h1>
+    <animated.h1>
       <ExternalLink href="https://www.yorku.ca/">York University</ExternalLink>{" "}
       <animated.h1>Toronto, CA</animated.h1>
     </animated.h1>

@@ -37,10 +37,9 @@ const PersonalDetails = ({ MainStyle }) => (
   </animated.div>
 );
 
-const PersonalTitle = ({ title, size, padding, style }) => (
+const PersonalTitle = ({ title, size, padding }) => (
   <animated.p
     style={{
-      ...style,
       transform: `translateY(${-(size[0] + padding[0] + padding[2]) / 2}px)`,
     }}
   >

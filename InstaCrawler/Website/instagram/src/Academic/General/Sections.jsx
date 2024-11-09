@@ -15,13 +15,14 @@ const Sections = ({ renderSection }) => {
   const components = [
     PersonalInfo,
     Affiliation,
-    Qualifications,
-    Skills,
     ResearchInterests,
-    Papers,
-    Awards,
-    Conference,
-    Teaching,
+    // Qualifications,
+    // Skills,
+
+    // Papers,
+    // Awards,
+    // Conference,
+    // Teaching,
   ];
 
   return (

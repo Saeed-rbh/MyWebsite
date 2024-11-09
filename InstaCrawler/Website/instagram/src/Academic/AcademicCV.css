@@ -647,7 +647,6 @@
   flex-direction: row;
   justify-content: flex-start;
   flex-wrap: wrap;
-  justify-content: space-around;
 }
 .RInterests a {
   opacity: 0.7;
@@ -898,13 +897,14 @@
   margin: 0;
 }
 .CVHeader {
-  display: flex;
+  position: absolute;
   flex-direction: column;
-  position: relative;
   color: #ffffff;
   align-items: baseline;
   z-index: 21;
-  width: 90vw;
+  left: 100px;
+  top: 80px;
+  box-sizing: border-box;
 }
 .Awards-Details svg {
   font-size: 5px;
