@@ -20,7 +20,7 @@ export const PersonalInfo = () => {
     zIndex: "10",
     transform: "none",
     left: "35px",
-    top: "100px",
+    top: "110px",
   };
 
   const MainStyle = {

@@ -10,7 +10,7 @@ const ResearchInterests = () => {
     borderRadius: "40px",
     height: 100,
     padding: "18px 15px 12px 15px",
-    top: "400px",
+    top: "410px",
     cursor: "pointer",
     filter: "blur(0px)",
     opacity: 1,

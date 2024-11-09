@@ -67,7 +67,7 @@ export const Affiliation = () => {
   const styles = {
     borderRadius: "40px",
     height: "90px",
-    top: "250px",
+    top: "260px",
     cursor: "pointer",
     filter: "blur(0px)",
     opacity: 1,
