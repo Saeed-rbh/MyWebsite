@@ -63,13 +63,13 @@ const Footer = () => {
       step === 0
         ? { y: 0, opacity: 1 }
         : step === 1
-        ? { width: "70px", height: "70px" }
+        ? { width: "70px", height: "80px" }
         : step === 2
-        ? { width: "50px", height: "50px" }
+        ? { width: "60px", height: "60px" }
         : step === 3
         ? {
             width: `${width}px`,
-            height: "50px",
+            height: "60px",
             // marginRight: "70px",
             y: isMenuOpen ? -10 : 0,
           }
