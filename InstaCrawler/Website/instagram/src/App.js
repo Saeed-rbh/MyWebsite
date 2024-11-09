@@ -86,7 +86,7 @@ function App() {
         </div>
         {/* {visibility && <Header />} */}
         {visibility && <Menu />}
-        {/* {visibility && <Footer />} */}
+        {visibility && <Footer />}
         {visibility && (
           <Suspense fallback={<div>Loading...</div>}>
             <Routes>
