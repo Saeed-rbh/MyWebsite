@@ -75,8 +75,8 @@ const MainTitle = ({ duration, initialDelay, delayIncrement }) => {
     visibility,
     animationFinished,
     setAnimationFinished,
-    xDiff: [-40, 10],
-    yDiff: [-8, 25],
+    xDiff: [-30, stages[2] ? 10 : 0],
+    yDiff: [0, stages[2] ? 25 : 0],
     scaleDiff: [0.65, 1],
     stages,
   });
@@ -85,8 +85,8 @@ const MainTitle = ({ duration, initialDelay, delayIncrement }) => {
     visibility,
     animationFinished,
     setAnimationFinished,
-    xDiff: [-40, 10],
-    yDiff: [-10, 25],
+    xDiff: [-30, stages[2] ? 10 : 0],
+    yDiff: [0, stages[2] ? 25 : 0],
     scaleDiff: [0.65, 1],
     stages,
   });
@@ -94,6 +94,8 @@ const MainTitle = ({ duration, initialDelay, delayIncrement }) => {
   const elementSize = useElementSize("AcademicCV-M");
   const CVHeader = useSpring({
     maxWidth: `${stages[2] || stages[3] ? 620 * 0.95 : elementSize.width}px`,
+    // left: stages[2] ? "50px" : "30px",
+    // top: stages[2] ? "80px" : "50px",
   });
 
   return (

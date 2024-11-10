@@ -26,7 +26,7 @@ export const sectionProperties = [
     background: "rgb(0 0 0 / 50%)",
     padding: [25, 0, 23, 0],
     size: [130, 450],
-    top: 150,
+    top: 140,
     fixed: true,
     Rand: Math.random(),
     list: [],
