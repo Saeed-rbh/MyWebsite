@@ -16,12 +16,13 @@ export const PersonalInfo = () => {
     cursor: "pointer",
     filter: "blur(0px)",
     opacity: "1",
-    backgroundColor: "rgba(250, 250, 250, 0.05)",
+    backgroundColor: "rgba(0, 0, 0, 0.3)",
     overflow: "visible",
     width: stages[2] ? "calc(100% - 5px)" : `${size[1]}px`,
+    border: "1px solid rgba(250, 250, 250, 0.2)",
     zIndex: "10",
     left: stages[2] ? "0px" : "35px",
-    top: stages[2] ? `calc(5vh + ${top - 40}px)` : `calc(5vh + ${top}px)`,
+    top: stages[2] ? `calc(5vh + ${top - 45}px)` : `calc(5vh + ${top}px)`,
   };
 
   const StyleAnim = useSpring({
@@ -38,7 +39,7 @@ export const PersonalInfo = () => {
     justifyContent: "space-around",
     alignItems: "center",
     width: "100%",
-    margin: "5px",
+    margin: "7px",
   };
 
   const MainAnim = useSpring({
