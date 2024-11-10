@@ -25,7 +25,7 @@ export const sectionProperties = [
     title: "Personal Info",
     background: "rgb(0 0 0 / 50%)",
     padding: [25, 0, 23, 0],
-    size: [120, 450],
+    size: [130, 450],
     top: 150,
     fixed: true,
     Rand: Math.random(),

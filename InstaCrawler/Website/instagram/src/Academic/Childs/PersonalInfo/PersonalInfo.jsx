@@ -18,10 +18,10 @@ export const PersonalInfo = () => {
     opacity: "1",
     backgroundColor: "rgba(0, 0, 0, 0.3)",
     overflow: "visible",
-    width: stages[2] ? "calc(100%)" : `${size[1]}px`,
+    width: stages[2] ? "calc(100% + 5px)" : `${size[1]}px`,
     zIndex: "10",
-    left: stages[2] ? "0" : "35px",
-    top: stages[2] ? `calc(5vh + ${top + 10}px)` : `calc(5vh + ${top}px)`,
+    left: stages[2] ? "-5px" : "35px",
+    top: stages[2] ? `calc(5vh + ${top - 50}px)` : `calc(5vh + ${top}px)`,
   };
 
   const StyleAnim = useSpring({
