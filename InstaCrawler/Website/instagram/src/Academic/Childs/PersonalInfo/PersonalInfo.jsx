@@ -3,12 +3,19 @@ import { animated, useSpring } from "react-spring";
 import { ContactDetails, PersonalTitle, PersonalDetails } from "./ExternalLink";
 import { useUtilize } from "../../Styles/useUtilize";
 import { useSelector } from "react-redux";
+import useScrollPosition from "../../General/useScrollPosition";
 
 export const PersonalInfo = () => {
   const componentName = "PersonalInfo";
   const { size, padding, title, name, ParentRef, top } =
     useUtilize(componentName);
-  const stages = useSelector((state) => state.data.stages);
+
+  const { stages, scollableRef } = useSelector((state) => state.data);
+
+  const scrollPosition = useScrollPosition(scollableRef);
+
+  // Calculate progress between 0 and 30 for smooth transition (0 to 1)
+  const progress = Math.min(Math.max(scrollPosition / 20, 0), 1);
 
   const Style = {
     borderRadius: "30px",
@@ -27,9 +34,18 @@ export const PersonalInfo = () => {
 
   const StyleAnim = useSpring({
     from: { opacity: 0, transform: "scale(1.1)  translateY(20px)" },
-    to: { opacity: 1, transform: "scale(1)  translateY(0px)" },
+    to: {
+      opacity: progress < 1 ? 1 : 0,
+      transform: "scale(1)  translateY(0px)",
+    },
     delay: 500,
     config: { duration: 500 },
+  });
+
+  const StyleScroll = useSpring({
+    opacity: 1 - progress, // Gradually decrease opacity from 1 to 0
+    filter: `blur(${5 * progress}px)`, // Gradually increase blur from 0px to 5px
+    scale: 1 - (1 - 0.95) * progress, // Gradually decrease scale from 1 to 0.95
   });
 
   const Main = {
@@ -57,7 +73,7 @@ export const PersonalInfo = () => {
   return (
     <animated.div
       ref={ParentRef}
-      style={{ ...Style, ...StyleAnim }}
+      style={{ ...Style, ...StyleAnim, ...StyleScroll }}
       className={name}
       id={name}
     >

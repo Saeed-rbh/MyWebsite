@@ -6,8 +6,7 @@ import { List as ResearchInterestsList } from "../Childs/ResearchInterests/List"
 import { List as SkillsList } from "../Childs/Skills/List";
 import { List as TeachingList } from "../Childs/Teaching/List";
 
-// sectionComponents.js
-
+// sectionComponents.jsx
 export { default as PersonalInfo } from "../Childs/PersonalInfo/PersonalInfo";
 export { default as Affiliation } from "../Childs/Affiliation/Affiliation";
 export { default as Qualifications } from "../Childs/Qualifications/Qualifications";
