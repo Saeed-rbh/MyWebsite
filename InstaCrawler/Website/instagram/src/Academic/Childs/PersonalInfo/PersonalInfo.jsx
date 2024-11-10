@@ -19,7 +19,7 @@ export const PersonalInfo = () => {
     backgroundColor: "rgba(0, 0, 0, 0.3)",
     overflow: "visible",
     width: stages[2] ? "calc(100% - 5px)" : `${size[1]}px`,
-    border: "2px solid rgba(212, 157, 129, 0.111-)",
+    border: "2px solid rgba(212, 157, 129, 0.1)",
     zIndex: "10",
     left: stages[2] ? "0px" : "35px",
     top: stages[2] ? `calc(5vh + ${top - 45}px)` : `calc(5vh + ${top}px)`,
