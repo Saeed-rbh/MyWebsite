@@ -31,7 +31,7 @@ const MainStyleComponent = () => {
   const mainStyle = useSpring({
     position: "relative",
     height: 70,
-    width: stages[2] ? "93%" : "100%",
+    width: stages[2] ? "90%" : "100%",
     // paddingLeft: stages[2] ? "5%" : "0%",
     display: "flex",
     y: scrollEffect[0],

@@ -16,11 +16,11 @@ export const PersonalInfo = () => {
     cursor: "pointer",
     filter: "blur(0px)",
     opacity: "1",
-    backgroundColor: "rgba(0, 0, 0, 0.3)",
+    backgroundColor: "rgba(250, 250, 250, 0.05)",
     overflow: "visible",
-    width: stages[2] ? "calc(100% + 5px)" : `${size[1]}px`,
+    width: stages[2] ? "calc(100%)" : `${size[1]}px`,
     zIndex: "10",
-    left: stages[2] ? "-5px" : "35px",
+    left: stages[2] ? "0px" : "35px",
     top: stages[2] ? `calc(5vh + ${top - 50}px)` : `calc(5vh + ${top}px)`,
   };
 
