@@ -5,7 +5,7 @@ import { useSelector } from "react-redux";
 
 const MainStyleComponent = () => {
   // Interpolates between two values based on scroll position
-  const scrollPosition = useScroll() / 20;
+  const scrollPosition = useScroll() / 30;
 
   const interpolateValue = useCallback((value, [endValue, startValue]) => {
     return startValue + (endValue - startValue) * value;
