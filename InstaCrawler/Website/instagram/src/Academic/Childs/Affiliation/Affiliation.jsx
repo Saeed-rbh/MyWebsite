@@ -2,7 +2,7 @@ import React, { useState, useMemo } from "react";
 import { animated, useSpring, easings } from "react-spring";
 import { calculateBackgroundImage, ImageDiv, ContentDiv } from "./Components";
 import { useUtilize } from "../../Styles/useUtilize";
-import myImage from "../../../../src/Image/AcademicImg.jpeg";
+import myImage from "../../../../src/Image/AcademicImg.JPG";
 
 export const Affiliation = () => {
   const componentName = "Affiliation";

@@ -14,12 +14,11 @@ import {
 const Sections = ({ renderSection }) => {
   const components = [
     PersonalInfo,
-    Affiliation,
-    ResearchInterests,
+    // Affiliation,
+    // ResearchInterests,
     // Qualifications,
-    // Skills,
-
     // Papers,
+    // Skills,
     // Awards,
     // Conference,
     // Teaching,

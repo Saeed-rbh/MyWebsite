@@ -85,9 +85,9 @@ const AcademicCV = () => {
     return 0;
   }, [scrollPosition]);
   const moreAcademicInfoStyle = useSpring({
-    transform: `scale(${stages[3] ? 1 : scale})`,
-    maxHeight: `${mainMaxHeight}px`,
-    maxWidth: `${stages[2] || stages[3] ? 620 : elementSize.width}px`,
+    // transform: `scale(${stages[3] ? 1 : scale})`,
+    // maxHeight: `${mainMaxHeight}px`,
+    // maxWidth: `${stages[2] || stages[3] ? 620 : elementSize.width}px`,
     top: useMemo(
       () =>
         conditionStage
@@ -101,7 +101,7 @@ const AcademicCV = () => {
     ),
     marginTop: stages[2] ? -80 : stages[3] ? -60 : 0,
 
-    overflow: useMemo(
+    overflowY: useMemo(
       () =>
         toggle[0]
           ? "hidden"

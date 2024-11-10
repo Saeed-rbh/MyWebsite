@@ -4,18 +4,16 @@
   align-items: center;
   justify-content: center; */
   width: 90vw;
-  height: 75vh;
+  height: 90vh;
   font-family: "Roboto", sans-serif;
   font-size: 1.2rem;
-  padding: 13vh 5vw;
-  width: calc(100vw);
+  /* padding: 13vh 5vw; */
   /* height: calc(100vh - 85px); */
   font-family: "Roboto", sans-serif;
-  padding: 70px 50px 10px 0px;
+  /* padding: 70px 50px 10px 0px; */
   position: fixed;
   bottom: 15px;
-  top: 0px;
-  height: -webkit-fill-available;
+  top: 5vh;
   display: flex;
   align-items: center;
   flex-direction: column;
@@ -902,7 +900,7 @@
   color: #ffffff;
   align-items: baseline;
   z-index: 21;
-  left: 100px;
+  left: 50px;
   top: 80px;
   box-sizing: border-box;
 }
@@ -1211,14 +1209,14 @@
   height: -webkit-fill-available;
   font-family: "Roboto", sans-serif;
   position: relative;
-  max-width: 1200px;
+  /* max-width: 1200px; */
   z-index: 11;
   border-radius: 25px;
   display: flex;
   flex-direction: column;
   scroll-snap-type: mandatory;
   -webkit-overflow-scrolling: touch;
-  overflow-x: visible;
+  overflow-x: hidden;
 }
 .MoreInfoAcademicInner {
   position: absolute;

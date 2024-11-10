@@ -49,7 +49,7 @@ const InteractiveDiv = (props) => {
     <animated.div
       className={name}
       id={name}
-      style={styles.base}
+      style={{ ...styles.base, left: "500px" }}
       {...eventHandlers}
     >
       {clickableContent}

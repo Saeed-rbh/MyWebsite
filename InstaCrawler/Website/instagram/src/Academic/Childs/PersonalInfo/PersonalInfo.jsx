@@ -1,5 +1,5 @@
 import React, { useMemo } from "react";
-import { animated } from "react-spring";
+import { animated, useSpring } from "react-spring";
 import { ContactDetails, PersonalTitle, PersonalDetails } from "./ExternalLink";
 import { useUtilize } from "../../Styles/useUtilize";
 
@@ -7,7 +7,7 @@ export const PersonalInfo = () => {
   const componentName = "PersonalInfo";
   const { size, padding, title, name, ParentRef } = useUtilize(componentName);
 
-  const Style1 = {
+  const Style = {
     borderRadius: "40px",
     height: 100,
     padding: 15,
@@ -16,14 +16,20 @@ export const PersonalInfo = () => {
     opacity: "1",
     backgroundColor: "rgba(0, 0, 0, 0.3)",
     overflow: "visible",
-    width: "420px",
+    width: window.innerWidth <= 768 ? "calc(100% - 30px)" : "420px",
     zIndex: "10",
-    transform: "none",
-    left: "35px",
-    top: "110px",
+    left: window.innerWidth <= 768 ? "0" : "35px",
+    top: window.innerWidth <= 768 ? "calc(5vh + 100px)" : "calc(5vh + 150px)",
   };
 
-  const MainStyle = {
+  const StyleAnim = useSpring({
+    from: { opacity: 0, transform: "scale(1.1)  translateY(20px)" },
+    to: { opacity: 1, transform: "scale(1)  translateY(0px)" },
+    delay: 500,
+    config: { duration: 500 },
+  });
+
+  const Main = {
     padding: "0px 20px",
     display: "flex",
     flexDirection: "row",
@@ -33,16 +39,28 @@ export const PersonalInfo = () => {
     margin: "5px",
   };
 
+  const MainAnim = useSpring({
+    from: { opacity: 0, transform: "scale(1.1)  translateY(10px)" },
+    to: { opacity: 1, transform: "scale(1)  translateY(0px)" },
+    delay: 500,
+    config: { duration: 500 },
+  });
+
   const memoizedTitle = useMemo(
     () => <PersonalTitle title={title} size={size} padding={padding} />,
     [title, size, padding]
   );
 
   return (
-    <animated.div ref={ParentRef} style={Style1} className={name} id={name}>
+    <animated.div
+      ref={ParentRef}
+      style={{ ...Style, ...StyleAnim }}
+      className={name}
+      id={name}
+    >
       {memoizedTitle}
-      <PersonalDetails MainStyle={MainStyle} />
-      <ContactDetails MainStyle={MainStyle} />
+      <PersonalDetails MainStyle={{ ...Main, ...MainAnim }} />
+      <ContactDetails MainStyle={{ ...Main, ...MainAnim }} />
     </animated.div>
   );
 };
