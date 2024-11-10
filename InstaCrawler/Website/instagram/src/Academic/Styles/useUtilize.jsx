@@ -31,6 +31,7 @@ export const useUtilize = (componentName) => {
   const {
     explanation,
     height,
+    top,
     rand,
     size,
     padding,
@@ -41,6 +42,8 @@ export const useUtilize = (componentName) => {
     seqId,
     widthSplit,
   } = data;
+
+  console.log(data);
 
   const isActive = useMemo(
     () => toggle[0] && toggle[1] === title,
@@ -110,6 +113,7 @@ export const useUtilize = (componentName) => {
     seqId,
     explanation,
     height,
+    top,
     rand,
     size,
     padding,

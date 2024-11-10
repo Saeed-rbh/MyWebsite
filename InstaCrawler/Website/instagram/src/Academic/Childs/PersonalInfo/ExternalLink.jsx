@@ -40,7 +40,7 @@ const PersonalDetails = ({ MainStyle }) => (
 const PersonalTitle = ({ title, size, padding }) => (
   <animated.p
     style={{
-      transform: `translateY(${-(size[0] + padding[0] + padding[2]) / 2}px)`,
+      transform: `translateY(${-size[0] / 2}px)`,
     }}
   >
     {title}

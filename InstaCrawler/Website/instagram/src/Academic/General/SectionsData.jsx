@@ -146,7 +146,7 @@ const SectionsData = (data, MainElementSize, sequence, Stages) => {
       ...section,
       height: section.size[0] + exception_H,
       width: section.size[1],
-      top: topValue,
+      top: section.top,
       iniRL: currentIniRL,
       seqId: sequenceId,
       widthSplit: widthSplit,

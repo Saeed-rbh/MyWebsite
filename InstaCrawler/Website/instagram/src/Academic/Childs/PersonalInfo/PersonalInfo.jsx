@@ -6,22 +6,22 @@ import { useSelector } from "react-redux";
 
 export const PersonalInfo = () => {
   const componentName = "PersonalInfo";
-  const { size, padding, title, name, ParentRef } = useUtilize(componentName);
+  const { size, padding, title, name, ParentRef, top } =
+    useUtilize(componentName);
   const stages = useSelector((state) => state.data.stages);
 
   const Style = {
-    borderRadius: "40px",
-    height: 100,
-    padding: 15,
+    borderRadius: "30px",
+    height: `${size[0]}px`,
     cursor: "pointer",
     filter: "blur(0px)",
     opacity: "1",
     backgroundColor: "rgba(0, 0, 0, 0.3)",
     overflow: "visible",
-    width: stages[2] ? "calc(100% - 30px)" : "420px",
+    width: stages[2] ? "calc(100%)" : `${size[1]}px`,
     zIndex: "10",
     left: stages[2] ? "0" : "35px",
-    top: stages[2] ? "calc(5vh + 160px)" : "calc(5vh + 150px)",
+    top: stages[2] ? `calc(5vh + ${top + 10}px)` : `calc(5vh + ${top}px)`,
   };
 
   const StyleAnim = useSpring({
