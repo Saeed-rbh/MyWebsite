@@ -75,8 +75,8 @@ const MainTitle = ({ duration, initialDelay, delayIncrement }) => {
     visibility,
     animationFinished,
     setAnimationFinished,
-    xDiff: [-25, 0],
-    yDiff: [-22, 0],
+    xDiff: [-40, 0],
+    yDiff: [-8, 25],
     scaleDiff: [0.65, 1],
     stages,
   });
@@ -85,8 +85,8 @@ const MainTitle = ({ duration, initialDelay, delayIncrement }) => {
     visibility,
     animationFinished,
     setAnimationFinished,
-    xDiff: [-55, 0],
-    yDiff: [-25, 0],
+    xDiff: [-40, 0],
+    yDiff: [-10, 25],
     scaleDiff: [0.65, 1],
     stages,
   });

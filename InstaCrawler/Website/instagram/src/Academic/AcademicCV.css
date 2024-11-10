@@ -1320,3 +1320,19 @@
   height: 20px;
   /* margin-bottom: -10px; */
 }
+
+@media only screen and (max-width: 768px) {
+  .AcademicCV-M {
+    width: 95vw;
+  }
+  .CVHeader {
+    top: 60px;
+    left: 10px;
+  }
+  .CVHeader span {
+    font-size: 70px;
+  }
+  .CVHeader p {
+    font-size: 40px;
+  }
+}

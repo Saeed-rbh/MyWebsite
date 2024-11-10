@@ -14,24 +14,25 @@ const MainStyleComponent = () => {
   // Computes the style effect based on scroll position
   const scrollEffect = useMemo(() => {
     if (scrollPosition < 0)
-      return [interpolateValue(scrollPosition, [-58 / 3, -12]), 1, 0, 1];
+      return [interpolateValue(scrollPosition, [10 / 3, -12]), 1, 0, 1];
     if (scrollPosition < 1) {
       return [
-        interpolateValue(scrollPosition, [-58, -12]),
+        interpolateValue(scrollPosition, [0, 20]),
         interpolateValue(scrollPosition, [0.9, 1]),
         interpolateValue(scrollPosition, [-10, 0]),
         interpolateValue(scrollPosition, [0, 1]),
       ];
     }
-    return [-58, 0.9, -10, 0];
+    return [0, 0.9, -10, 0];
   }, [scrollPosition, interpolateValue]);
 
   const stages = useSelector((state) => state.data.stages);
 
   const mainStyle = useSpring({
-    position: "relative",
+    position: "absolute",
+    top: 0,
     height: 70,
-    width: stages[2] ? "93%" : "100%",
+    width: stages[2] ? "95%" : "100%",
     // paddingLeft: stages[2] ? "5%" : "0%",
     display: "flex",
     y: scrollEffect[0],

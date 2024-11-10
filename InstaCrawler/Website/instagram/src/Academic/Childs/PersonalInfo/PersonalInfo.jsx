@@ -2,10 +2,12 @@ import React, { useMemo } from "react";
 import { animated, useSpring } from "react-spring";
 import { ContactDetails, PersonalTitle, PersonalDetails } from "./ExternalLink";
 import { useUtilize } from "../../Styles/useUtilize";
+import { useSelector } from "react-redux";
 
 export const PersonalInfo = () => {
   const componentName = "PersonalInfo";
   const { size, padding, title, name, ParentRef } = useUtilize(componentName);
+  const stages = useSelector((state) => state.data.stages);
 
   const Style = {
     borderRadius: "40px",
@@ -16,10 +18,10 @@ export const PersonalInfo = () => {
     opacity: "1",
     backgroundColor: "rgba(0, 0, 0, 0.3)",
     overflow: "visible",
-    width: window.innerWidth <= 768 ? "calc(100% - 30px)" : "420px",
+    width: stages[2] ? "calc(100% - 30px)" : "420px",
     zIndex: "10",
-    left: window.innerWidth <= 768 ? "0" : "35px",
-    top: window.innerWidth <= 768 ? "calc(5vh + 100px)" : "calc(5vh + 150px)",
+    left: stages[2] ? "0" : "35px",
+    top: stages[2] ? "calc(5vh + 160px)" : "calc(5vh + 150px)",
   };
 
   const StyleAnim = useSpring({
