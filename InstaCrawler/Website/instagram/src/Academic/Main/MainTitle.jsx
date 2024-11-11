@@ -68,7 +68,7 @@ const useTitleAnimation = ({
 const MainTitle = ({ duration, initialDelay, delayIncrement }) => {
   const { visibility } = useSelector((state) => state.visibility);
   const [animationFinished, setAnimationFinished] = useState(false);
-  const scrollPosition = useScroll() / 30;
+  const scrollPosition = useScroll() / 40;
   const stages = useSelector((state) => state.data.stages);
   const title1Style = useTitleAnimation({
     scrollPosition,
