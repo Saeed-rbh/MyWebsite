@@ -36,7 +36,7 @@ const useTitleAnimation = ({
     if (scrollPosition <= 0) {
       return [
         xDiff[1],
-        interpolateValue(scrollPosition, [yDiff[0] / 5, yDiff[1]]),
+        interpolateValue(scrollPosition, [yDiff[0] / 3, yDiff[1]]),
         scaleDiff[1],
       ];
     } else if (scrollPosition < 1) {
