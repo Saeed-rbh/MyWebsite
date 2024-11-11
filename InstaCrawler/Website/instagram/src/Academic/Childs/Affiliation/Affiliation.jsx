@@ -3,12 +3,30 @@ import { animated, useSpring, easings } from "react-spring";
 import { calculateBackgroundImage, ImageDiv, ContentDiv } from "./Components";
 import { useUtilize } from "../../Styles/useUtilize";
 import myImage from "../../../../src/Image/AcademicImg.JPG";
+import { useSelector } from "react-redux";
+import useScrollPosition from "../../General/useScrollPosition";
 
 export const Affiliation = () => {
   const componentName = "Affiliation";
-  const { name, size, title, padding, rand, isActive, ParentRef } =
+  const { name, size, title, padding, top, rand, isActive, ParentRef } =
     useUtilize(componentName);
 
+  const { stages, scollableRef } = useSelector((state) => state.data);
+  const height = stages ? size[0] - 10 : size[0];
+  const { scrollTop } = useScrollPosition(scollableRef);
+
+  const startScroll = 120; // Where you want progress to start
+  const endScroll = 120 + height; // Where you want progress to end
+  const progress = Math.min(
+    Math.max((scrollTop - startScroll) / (endScroll - startScroll), 0),
+    1
+  );
+
+  const StyleScroll = useSpring({
+    opacity: 1 - progress, // Gradually decrease opacity from 1 to 0 as progress increases from 0 to 1
+    filter: `blur(${5 * progress}px)`, // Gradually increase blur from 0px to 5px as progress increases
+    scale: 1 - (1 - 0.95) * progress, // Gradually decrease scale from 1 to 0.95 as progress increases
+  });
   const openClose = useMemo(() => (isActive ? 2 : 1), [isActive]);
   const [randomStart] = useState(rand);
 
@@ -42,50 +60,64 @@ export const Affiliation = () => {
   const animatedStyle = useSpring({
     backgroundColor: "rgba(0, 0, 0, 0.3)",
     backgroundImage,
+    border: "2px solid rgba(212, 157, 129, 0.1)",
     top: "-5px",
-    width: 280,
-    left: `${100 + 40}px`,
-    height: 100,
+    width: `${size[1] - height - 5}px`,
+    maxWidth: "-webkit-fill-available",
+    left: `${height + 5}px`,
+    height: height,
     padding: 15,
     easing: easings.easeOutCubic,
+    boxSizing: "border-box",
   });
 
   const animatedImgDiv = useSpring({
     backgroundColor: "rgba(0, 0, 0, 0.3)",
+    border: "2px solid rgba(212, 157, 129, 0.1)",
     position: "absolute",
     display: "flex",
     borderRadius: "40px",
     top: "-5px",
-    height: 100,
+    height: height,
     padding: 15,
-    width: 100,
-    minWidth: 100,
+    width: height,
+    minWidth: height,
     left: "0%",
     easing: easings.easeOutCubic,
+    boxSizing: "border-box",
   });
 
-  const styles = {
-    borderRadius: "40px",
-    height: "90px",
-    top: "260px",
+  const Style = {
+    borderRadius: "35px",
+    height: height,
     cursor: "pointer",
     filter: "blur(0px)",
-    opacity: 1,
-    backgroundColor: "rgba(0, 0, 0, 0)",
+    opacity: "1",
+    backgroundColor: "rgba(0, 0, 0, 0.3)",
     overflow: "visible",
-    width: "440px",
-    padding: "20px 20px 18px",
-    zIndex: 10,
-    backgroundImage: "none",
-    transform: "none",
-    left: "35px",
+    width: stages[2] ? "calc(100% - 5px)" : `${size[1]}px`,
+    zIndex: "10",
+    left: stages[2] ? "0px" : "35px",
+    top: stages[2] ? `calc(5vh + ${top - 45}px)` : `calc(5vh + ${top}px)`,
   };
+
+  const StyleAnim = useSpring({
+    from: { opacity: 0, transform: "scale(1.1)  translateY(20px)" },
+    to: {
+      opacity: progress < 1 ? 1 : 0,
+      transform: "scale(1)  translateY(0px)",
+    },
+    delay: 500,
+    config: { duration: 500 },
+  });
 
   return (
     <animated.div
       ref={ParentRef}
       style={{
-        ...styles,
+        ...Style,
+        ...StyleAnim,
+        ...StyleScroll,
         backgroundColor: "rgba(0, 0, 0, 0)",
         backgroundImage: "none",
       }}
@@ -99,6 +131,7 @@ export const Affiliation = () => {
         size={size}
         title={title}
         padding={padding}
+        height={height}
       />
     </animated.div>
   );

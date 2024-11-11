@@ -14,7 +14,7 @@ import {
 const Sections = ({ renderSection }) => {
   const components = [
     PersonalInfo,
-    // Affiliation,
+    Affiliation,
     // ResearchInterests,
     // Qualifications,
     // Papers,

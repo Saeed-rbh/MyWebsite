@@ -31,7 +31,7 @@ const useScrollHandler = ({
           currentValue ? currentIndex : maxIndex,
         -1
       );
-      console.log(highestTrueIndex);
+
       const newIndex = highestTrueIndex + 1;
       if (
         newIndex >= 0 &&

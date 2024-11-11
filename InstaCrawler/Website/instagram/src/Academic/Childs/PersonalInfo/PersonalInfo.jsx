@@ -12,13 +12,18 @@ export const PersonalInfo = () => {
 
   const { stages, scollableRef } = useSelector((state) => state.data);
 
-  const scrollPosition = useScrollPosition(scollableRef);
+  const { scrollTop } = useScrollPosition(scollableRef);
 
   // Calculate progress between 0 and 30 for smooth transition (0 to 1)
-  const progress = Math.min(Math.max(scrollPosition / 20, 0), 1);
+  const startScroll = 20; // Where you want progress to start
+  const endScroll = 20 + size[0]; // Where you want progress to end
+  const progress = Math.min(
+    Math.max((scrollTop - startScroll) / (endScroll - startScroll), 0),
+    1
+  );
 
   const Style = {
-    borderRadius: "30px",
+    borderRadius: "35px",
     height: `${size[0]}px`,
     cursor: "pointer",
     filter: "blur(0px)",

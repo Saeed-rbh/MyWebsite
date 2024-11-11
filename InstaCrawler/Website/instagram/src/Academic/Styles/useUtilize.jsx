@@ -43,8 +43,6 @@ export const useUtilize = (componentName) => {
     widthSplit,
   } = data;
 
-  console.log(data);
-
   const isActive = useMemo(
     () => toggle[0] && toggle[1] === title,
     [toggle, title]
