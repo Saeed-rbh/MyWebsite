@@ -32,7 +32,7 @@ const useTitleAnimation = ({
   scaleDiff,
   stages,
 }) => {
-  const scroll = scrollPosition / 40;
+  const scroll = scrollPosition / 50;
   const [x, y, scale] = useMemo(() => {
     if (scroll <= 0) {
       return [
