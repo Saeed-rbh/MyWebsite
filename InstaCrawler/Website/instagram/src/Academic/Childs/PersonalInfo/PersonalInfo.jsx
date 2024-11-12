@@ -15,8 +15,8 @@ export const PersonalInfo = () => {
   const { scrollTop } = useScrollPosition(scollableRef);
 
   // Calculate progress between 0 and 30 for smooth transition (0 to 1)
-  const startScroll = top - 90; // Where you want progress to start
-  const endScroll = top - 90 + size[0]; // Where you want progress to end
+  const startScroll = top - 70; // Where you want progress to start
+  const endScroll = top - 70 + size[0]; // Where you want progress to end
   const progress = Math.min(
     Math.max((scrollTop - startScroll) / (endScroll - startScroll), 0),
     1
@@ -34,7 +34,7 @@ export const PersonalInfo = () => {
     border: "2px solid rgba(212, 157, 129, 0.1)",
     zIndex: "10",
     left: stages[2] ? "0px" : "35px",
-    top: stages[2] ? `calc(5vh + ${top + 20}px)` : `calc(5vh + ${top}px)`,
+    top: stages[2] ? `calc(5vh + ${top + 15}px)` : `calc(5vh + ${top}px)`,
   };
 
   const StyleAnim = useSpring({

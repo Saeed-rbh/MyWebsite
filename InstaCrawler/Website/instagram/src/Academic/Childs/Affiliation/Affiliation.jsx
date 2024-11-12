@@ -15,8 +15,8 @@ export const Affiliation = () => {
   const height = stages ? size[0] - 10 : size[0];
   const { scrollTop } = useScrollPosition(scollableRef);
 
-  const startScroll = top - 90; // Where you want progress to start
-  const endScroll = top - 90 + height; // Where you want progress to end
+  const startScroll = top - 70; // Where you want progress to start
+  const endScroll = top - 70 + height; // Where you want progress to end
   const progress = Math.min(
     Math.max((scrollTop - startScroll) / (endScroll - startScroll), 0),
     1
@@ -100,7 +100,7 @@ export const Affiliation = () => {
     width: stages[2] ? "calc(100%)" : `${size[1]}px`,
     zIndex: "10",
     left: stages[2] ? "0px" : "35px",
-    top: stages[2] ? `calc(5vh + ${top + 20}px)` : `calc(5vh + ${top}px)`,
+    top: stages[2] ? `calc(5vh + ${top + 15}px)` : `calc(5vh + ${top}px)`,
   };
 
   const StyleAnim = useSpring({
