@@ -114,7 +114,8 @@ export const Affiliation = () => {
     delay: 500,
     config: {
       duration: progress && progress !== 0 ? 0 : 800,
-      easing: progress && progress !== 0 ? "" : easings.easeInQuad,
+      easing:
+        progress && progress !== 0 ? easings.steps(5) : easings.easeInQuad,
     },
   });
 
