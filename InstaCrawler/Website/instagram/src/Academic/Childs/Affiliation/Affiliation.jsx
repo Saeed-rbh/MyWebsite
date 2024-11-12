@@ -15,8 +15,8 @@ export const Affiliation = () => {
   const height = stages ? size[0] - 10 : size[0];
   const { scrollTop } = useScrollPosition(scollableRef);
 
-  const startScroll = top - 70; // Where you want progress to start
-  const endScroll = top - 70 + height; // Where you want progress to end
+  const startScroll = top - 60; // Where you want progress to start
+  const endScroll = top - 60 + height; // Where you want progress to end
   const progress = Math.min(
     Math.max((scrollTop - startScroll) / (endScroll - startScroll), 0),
     1
