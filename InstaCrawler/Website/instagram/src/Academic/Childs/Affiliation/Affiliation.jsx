@@ -83,7 +83,7 @@ export const Affiliation = () => {
     minWidth: height,
     left: "0%",
     boxSizing: "border-box",
-    
+
     config: {
       easing: easings.easeOutCubic,
     },
@@ -114,7 +114,7 @@ export const Affiliation = () => {
     delay: 500,
     config: {
       duration: progress && progress !== 0 ? 0 : 800,
-      easing: easings.easeInQuad,
+      easing: progress && progress !== 0 ? "" : easings.easeInQuad,
     },
   });
 

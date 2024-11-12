@@ -48,7 +48,7 @@ export const PersonalInfo = () => {
     delay: progress && progress !== 0 ? "" : 500,
     config: {
       duration: progress && progress !== 0 ? 0 : 500,
-      easing: easings.easeInQuad,
+      easing: progress && progress !== 0 ? "" : easings.easeInQuad,
     },
   });
 
