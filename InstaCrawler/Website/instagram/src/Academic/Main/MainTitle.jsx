@@ -32,12 +32,12 @@ const useTitleAnimation = ({
   scaleDiff,
   stages,
 }) => {
-  const scroll = scrollPosition / 60;
+  const scroll = scrollPosition / 50;
   const [x, y, scale] = useMemo(() => {
     if (scroll <= 0) {
       return [
         xDiff[1],
-        interpolateValue(scroll, [yDiff[0] / 3, yDiff[1]]),
+        interpolateValue((scroll * 5) / 7, [yDiff[0] / 3, yDiff[1]]),
         scaleDiff[1],
       ];
     } else if (scroll < 1) {
