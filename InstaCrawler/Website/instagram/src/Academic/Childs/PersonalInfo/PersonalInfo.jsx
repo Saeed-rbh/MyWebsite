@@ -1,5 +1,5 @@
 import React, { useMemo } from "react";
-import { animated, useSpring } from "react-spring";
+import { animated, useSpring, easings } from "react-spring";
 import { ContactDetails, PersonalTitle, PersonalDetails } from "./ExternalLink";
 import { useUtilize } from "../../Styles/useUtilize";
 import { useSelector } from "react-redux";
@@ -38,19 +38,18 @@ export const PersonalInfo = () => {
   };
 
   const StyleAnim = useSpring({
-    from: { opacity: 0, transform: "scale(1.1)  translateY(20px)" },
+    from: { opacity: 0, scale: 1.1, y: 20 },
     to: {
-      opacity: progress < 1 ? 1 : 0,
-      transform: "scale(1)  translateY(0px)",
+      opacity: progress ? 1 - progress : 1,
+      y: 0,
+      scale: progress ? 1 - (1 - 0.95) * progress : 1,
+      filter: `blur(${5 * progress}px)`,
     },
-    delay: 500,
-    config: { duration: 500 },
-  });
-
-  const StyleScroll = useSpring({
-    opacity: 1 - progress, // Gradually decrease opacity from 1 to 0
-    filter: `blur(${5 * progress}px)`, // Gradually increase blur from 0px to 5px
-    scale: 1 - (1 - 0.95) * progress, // Gradually decrease scale from 1 to 0.95
+    delay: progress && progress !== 0 ? "" : 500,
+    config: {
+      duration: progress && progress !== 0 ? 0 : 500,
+      easing: easings.easeInQuad,
+    },
   });
 
   const Main = {
@@ -63,12 +62,12 @@ export const PersonalInfo = () => {
     margin: "7px",
   };
 
-  const MainAnim = useSpring({
-    from: { opacity: 0, transform: "scale(1.1)  translateY(10px)" },
-    to: { opacity: 1, transform: "scale(1)  translateY(0px)" },
-    delay: 500,
-    config: { duration: 500 },
-  });
+  // const MainAnim = useSpring({
+  //   from: { opacity: 0, transform: "scale(1.1)  translateY(10px)" },
+  //   to: { opacity: 1, transform: "scale(1)  translateY(0px)" },
+  //   delay: 500,
+  //   config: { duration: 500, easing: easings.easeInQuad },
+  // });
 
   const memoizedTitle = useMemo(
     () => <PersonalTitle title={title} size={size} padding={padding} />,
@@ -78,13 +77,13 @@ export const PersonalInfo = () => {
   return (
     <animated.div
       ref={ParentRef}
-      style={{ ...Style, ...StyleAnim, ...StyleScroll }}
+      style={{ ...Style, ...StyleAnim }}
       className={name}
       id={name}
     >
       {memoizedTitle}
-      <PersonalDetails MainStyle={{ ...Main, ...MainAnim }} />
-      <ContactDetails MainStyle={{ ...Main, ...MainAnim }} />
+      <PersonalDetails MainStyle={{ ...Main }} />
+      <ContactDetails MainStyle={{ ...Main }} />
     </animated.div>
   );
 };

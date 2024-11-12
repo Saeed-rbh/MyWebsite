@@ -22,11 +22,6 @@ export const Affiliation = () => {
     1
   );
 
-  const StyleScroll = useSpring({
-    opacity: 1 - progress, // Gradually decrease opacity from 1 to 0 as progress increases from 0 to 1
-    filter: `blur(${5 * progress}px)`, // Gradually increase blur from 0px to 5px as progress increases
-    scale: 1 - (1 - 0.95) * progress, // Gradually decrease scale from 1 to 0.95 as progress increases
-  });
   const openClose = useMemo(() => (isActive ? 2 : 1), [isActive]);
   const [randomStart] = useState(rand);
 
@@ -67,8 +62,10 @@ export const Affiliation = () => {
     left: `${height + 5}px`,
     height: height,
     padding: 15,
-    easing: easings.easeOutCubic,
     boxSizing: "border-box",
+    config: {
+      easing: easings.easeOutCubic,
+    },
   });
 
   const animatedImgDiv = useSpring({
@@ -85,8 +82,11 @@ export const Affiliation = () => {
     width: height,
     minWidth: height,
     left: "0%",
-    easing: easings.easeOutCubic,
     boxSizing: "border-box",
+    
+    config: {
+      easing: easings.easeOutCubic,
+    },
   });
 
   const Style = {
@@ -99,18 +99,23 @@ export const Affiliation = () => {
     overflow: "visible",
     width: stages[2] ? "calc(100%)" : `${size[1]}px`,
     zIndex: "10",
-    left: stages[2] ? "-2.5px" : "35px",
+    left: stages[2] ? "0px" : "35px",
     top: stages[2] ? `calc(5vh + ${top - 45}px)` : `calc(5vh + ${top}px)`,
   };
 
   const StyleAnim = useSpring({
-    from: { opacity: 0, transform: "scale(1.1)  translateY(20px)" },
+    from: { opacity: 0, scale: 1.1, y: 20 },
     to: {
-      opacity: progress < 1 ? 1 : 0,
-      transform: "scale(1)  translateY(0px)",
+      opacity: progress ? 1 - progress : 1,
+      y: 0,
+      scale: progress ? 1 - (1 - 0.95) * progress : 1,
+      filter: `blur(${5 * progress}px)`,
     },
     delay: 500,
-    config: { duration: 500 },
+    config: {
+      duration: progress && progress !== 0 ? 0 : 800,
+      easing: easings.easeInQuad,
+    },
   });
 
   return (
@@ -119,7 +124,6 @@ export const Affiliation = () => {
       style={{
         ...Style,
         ...StyleAnim,
-        ...StyleScroll,
         backgroundColor: "rgba(0, 0, 0, 0)",
         backgroundImage: "none",
       }}

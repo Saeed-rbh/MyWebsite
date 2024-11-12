@@ -15,7 +15,7 @@ const MainStyleComponent = () => {
   // Computes the style effect based on scroll position
   const scrollEffect = useMemo(() => {
     if (scrollPosition / 40 < 0)
-      return [interpolateValue(scrollPosition / 40, [0 / 3, 20]), 1, 0, 1];
+      return [interpolateValue(scrollPosition / 20, [0 / 3, 20]), 1, 0, 1];
     if (scrollPosition / 40 < 1) {
       return [
         interpolateValue(scrollPosition / 40, [0, 20]),
