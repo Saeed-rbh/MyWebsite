@@ -37,7 +37,7 @@ const useTitleAnimation = ({
     if (scroll <= 0) {
       return [
         xDiff[1],
-        interpolateValue(scroll * 2, [yDiff[0] / 3, yDiff[1]]),
+        interpolateValue(scroll, [yDiff[0] / 3, yDiff[1]]),
         scaleDiff[1],
       ];
     } else if (scroll < 1) {
@@ -78,7 +78,7 @@ const MainTitle = ({ duration, initialDelay, delayIncrement }) => {
     animationFinished,
     setAnimationFinished,
     xDiff: [-35, stages[2] ? 0 : 0],
-    yDiff: [-10, stages[2] ? 20 : 0],
+    yDiff: [-10, stages[2] ? 25 : 0],
     scaleDiff: [0.65, 1],
     stages,
   });
@@ -88,7 +88,7 @@ const MainTitle = ({ duration, initialDelay, delayIncrement }) => {
     animationFinished,
     setAnimationFinished,
     xDiff: [-35, stages[2] ? 0 : 0],
-    yDiff: [-10, stages[2] ? 20 : 0],
+    yDiff: [-10, stages[2] ? 25 : 0],
     scaleDiff: [0.65, 1],
     stages,
   });
