@@ -1,11 +1,17 @@
 import { ExternalLink } from "../PersonalInfo/ExternalLink";
 import { animated } from "react-spring";
 
-const ImageDiv = ({ animatedStyle, imageSrc }) => (
+const ImageDiv = ({ animatedStyle, imageSrc, height }) => (
   <animated.div style={animatedStyle}>
     <animated.img
       src={imageSrc}
-      style={{ margin: 0, borderRadius: "100%", opacity: 0.7 }}
+      style={{
+        margin: 0,
+        borderRadius: "100%",
+        opacity: 0.7,
+        height: `${height - 30}px`,
+        width: `${height - 30}px`,
+      }}
     />
   </animated.div>
 );

@@ -23,7 +23,7 @@ export const PersonalInfo = () => {
   );
 
   const Style = {
-    borderRadius: "35px",
+    borderRadius: "40px",
     height: `${size[0]}px`,
     cursor: "pointer",
     filter: "blur(0px)",

@@ -63,7 +63,7 @@ export const Affiliation = () => {
     border: "2px solid rgba(212, 157, 129, 0.1)",
     top: "-5px",
     width: `${size[1] - height - 5}px`,
-    maxWidth: "-webkit-fill-available",
+    maxWidth: `calc(100% - ${height + 5}px)`,
     left: `${height + 5}px`,
     height: height,
     padding: 15,
@@ -77,6 +77,8 @@ export const Affiliation = () => {
     position: "absolute",
     display: "flex",
     borderRadius: "40px",
+    alignItems: "center",
+    justifyContent: "center",
     top: "-5px",
     height: height,
     padding: 15,
@@ -124,7 +126,11 @@ export const Affiliation = () => {
       className={name}
       id={name}
     >
-      <ImageDiv animatedStyle={animatedImgDiv} imageSrc={myImage} />
+      <ImageDiv
+        animatedStyle={animatedImgDiv}
+        imageSrc={myImage}
+        height={height}
+      />
       <ContentDiv
         animatedStyle={animatedStyle}
         name={name}
