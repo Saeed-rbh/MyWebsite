@@ -1,11 +1,12 @@
 import { useMemo, useCallback } from "react";
 import { useSpring } from "react-spring";
-import { useScroll } from "../../General/ScrollProvider";
+import useScrollPosition from "../../General/useScrollPosition";
 import { useSelector } from "react-redux";
 
 const MainStyleComponent = () => {
   // Interpolates between two values based on scroll position
-  const scrollPosition = useScroll() / 30;
+  const { stages, scollableRef } = useSelector((state) => state.data);
+  const { scrollPosition } = useScrollPosition(scollableRef);
 
   const interpolateValue = useCallback((value, [endValue, startValue]) => {
     return startValue + (endValue - startValue) * value;
@@ -25,8 +26,6 @@ const MainStyleComponent = () => {
     }
     return [0, 0.9, -10, 0];
   }, [scrollPosition, interpolateValue]);
-
-  const stages = useSelector((state) => state.data.stages);
 
   const mainStyle = useSpring({
     position: "relative",

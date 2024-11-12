@@ -1,8 +1,8 @@
 import React, { useMemo, useState } from "react";
 import { animated, useSpring } from "react-spring";
 import { useSelector } from "react-redux";
-import { useScroll } from "../General/ScrollProvider";
 import useElementSize from "../Styles/useElementSize";
+import useScrollPosition from "../General/useScrollPosition";
 
 // AnimatedSpan component for individual letters
 const AnimatedSpan = ({ letter, delay, duration }) => {
@@ -68,15 +68,17 @@ const useTitleAnimation = ({
 const MainTitle = ({ duration, initialDelay, delayIncrement }) => {
   const { visibility } = useSelector((state) => state.visibility);
   const [animationFinished, setAnimationFinished] = useState(false);
-  const scrollPosition = useScroll() / 40;
-  const stages = useSelector((state) => state.data.stages);
+  const { stages, scollableRef } = useSelector((state) => state.data);
+  // const scrollPosition = useScroll() / 40;
+  const { scrollPosition } = useScrollPosition(scollableRef);
+
   const title1Style = useTitleAnimation({
     scrollPosition,
     visibility,
     animationFinished,
     setAnimationFinished,
     xDiff: [-35, stages[2] ? 0 : 0],
-    yDiff: [0, stages[2] ? 25 : 0],
+    yDiff: [-10, stages[2] ? 20 : 0],
     scaleDiff: [0.65, 1],
     stages,
   });
@@ -86,7 +88,7 @@ const MainTitle = ({ duration, initialDelay, delayIncrement }) => {
     animationFinished,
     setAnimationFinished,
     xDiff: [-35, stages[2] ? 0 : 0],
-    yDiff: [0, stages[2] ? 25 : 0],
+    yDiff: [-10, stages[2] ? 20 : 0],
     scaleDiff: [0.65, 1],
     stages,
   });
