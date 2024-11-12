@@ -14,14 +14,14 @@ const MainStyleComponent = () => {
 
   // Computes the style effect based on scroll position
   const scrollEffect = useMemo(() => {
-    if (scrollPosition < 0)
-      return [interpolateValue(scrollPosition, [0 / 3, 20]), 1, 0, 1];
-    if (scrollPosition < 1) {
+    if (scrollPosition / 40 < 0)
+      return [interpolateValue(scrollPosition / 40, [0 / 3, 20]), 1, 0, 1];
+    if (scrollPosition / 40 < 1) {
       return [
-        interpolateValue(scrollPosition, [0, 20]),
-        interpolateValue(scrollPosition, [0.9, 1]),
-        interpolateValue(scrollPosition, [-10, 0]),
-        interpolateValue(scrollPosition, [0, 1]),
+        interpolateValue(scrollPosition / 40, [0, 20]),
+        interpolateValue(scrollPosition / 40, [0.9, 1]),
+        interpolateValue(scrollPosition / 40, [-10, 0]),
+        interpolateValue(scrollPosition / 40, [0, 1]),
       ];
     }
     return [0, 0.9, -10, 0];

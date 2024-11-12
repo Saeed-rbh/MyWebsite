@@ -32,22 +32,23 @@ const useTitleAnimation = ({
   scaleDiff,
   stages,
 }) => {
+  const scroll = scrollPosition / 40;
   const [x, y, scale] = useMemo(() => {
-    if (scrollPosition <= 0) {
+    if (scroll <= 0) {
       return [
         xDiff[1],
-        interpolateValue(scrollPosition, [yDiff[0] / 3, yDiff[1]]),
+        interpolateValue(scroll, [yDiff[0] / 3, yDiff[1]]),
         scaleDiff[1],
       ];
-    } else if (scrollPosition < 1) {
+    } else if (scroll < 1) {
       return [
-        interpolateValue(scrollPosition, xDiff),
-        interpolateValue(scrollPosition, yDiff),
-        interpolateValue(scrollPosition, scaleDiff),
+        interpolateValue(scroll, xDiff),
+        interpolateValue(scroll, yDiff),
+        interpolateValue(scroll, scaleDiff),
       ];
     }
     return [xDiff[0], yDiff[0], scaleDiff[0]];
-  }, [scrollPosition, xDiff, yDiff, scaleDiff]);
+  }, [scroll, xDiff, yDiff, scaleDiff]);
 
   return useSpring({
     from: { opacity: 0, x: xDiff[0], y: yDiff[1], display: "flex" },
@@ -69,7 +70,6 @@ const MainTitle = ({ duration, initialDelay, delayIncrement }) => {
   const { visibility } = useSelector((state) => state.visibility);
   const [animationFinished, setAnimationFinished] = useState(false);
   const { stages, scollableRef } = useSelector((state) => state.data);
-  // const scrollPosition = useScroll() / 40;
   const { scrollPosition } = useScrollPosition(scollableRef);
 
   const title1Style = useTitleAnimation({
