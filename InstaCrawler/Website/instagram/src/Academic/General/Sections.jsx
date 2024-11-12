@@ -15,7 +15,7 @@ const Sections = ({ renderSection }) => {
   const components = [
     PersonalInfo,
     Affiliation,
-    // ResearchInterests,
+    ResearchInterests,
     // Qualifications,
     // Papers,
     // Skills,
