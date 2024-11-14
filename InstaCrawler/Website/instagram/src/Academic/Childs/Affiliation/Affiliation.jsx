@@ -26,7 +26,6 @@ export const Affiliation = () => {
   useEffect(() => {
     if (toggle[0] && toggle[1] !== name) {
       setOtherActive(true);
-      console.log("toggle", toggle);
     } else {
       setOtherActive(false);
     }
@@ -131,7 +130,8 @@ export const Affiliation = () => {
     },
   });
   const StyleAnim2 = useSpring({
-    filter: otherActive ? "blur(10px)" : `blur(${5 * progress}px)`,
+    filter:
+      otherActive && progress !== 1 ? "blur(10px)" : `blur(${5 * progress}px)`,
   });
 
   return (
