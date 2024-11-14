@@ -14,7 +14,7 @@ const AcademicCV = () => {
   const maxScale = 2;
   const minHeight = 650;
   const maxHeight = 1500;
-  const EXTRA_SPACE = 30;
+  const EXTRA_SPACE = 100;
 
   const elementSize = useElementSize("AcademicCV-M");
   const [scale, setScale] = useState(1);
@@ -67,6 +67,11 @@ const AcademicCV = () => {
 
   const lastValue = useMemo(() => {
     const lastElement = data.length ? data[data.length - 1] : null;
+    console.log(
+      data[data.length - 1],
+      lastElement.top + lastElement.height + EXTRA_SPACE
+    );
+
     return lastElement
       ? lastElement.top + lastElement.height + EXTRA_SPACE
       : 1000;
