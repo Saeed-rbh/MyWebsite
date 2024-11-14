@@ -17,8 +17,8 @@ function Qualifications() {
   const { scrollTop } = useScrollPosition(scollableRef);
 
   // Calculate progress between 0 and 30 for smooth transition (0 to 1)
-  const startScroll = top - 60 + 520; // Where you want progress to start
-  const endScroll = top - 60 + size[0] + 520; // Where you want progress to end
+  const startScroll = top - 60 + 510; // Where you want progress to start
+  const endScroll = top - 60 + size[0] + 510; // Where you want progress to end
   const progress = Math.min(
     Math.max((scrollTop - startScroll) / (endScroll - startScroll), 0),
     1
@@ -35,7 +35,7 @@ function Qualifications() {
     border: "2px solid rgba(212, 157, 129, 0.1)",
     zIndex: "10",
     left: stages[2] ? "0px" : "500px",
-    top: stages[2] ? `calc(5vh + ${top + 15 + 520}px)` : `calc(5vh + ${top}px)`,
+    top: stages[2] ? `calc(5vh + ${top + 15 + 510}px)` : `calc(5vh + ${top}px)`,
     overflow: "hidden",
   };
 
@@ -47,7 +47,7 @@ function Qualifications() {
       scale: stages[2] && progress ? 1 - (1 - 0.95) * progress : 1,
       filter: stages[2] && `blur(${5 * progress}px)`,
     },
-    delay: stages[2] && progress && progress !== 0 ? 0 : 500,
+    delay: stages[2] && progress && progress !== 0 ? 0 : 1400,
     config: {
       duration: stages[2] && progress && progress !== 0 ? 0 : 500,
       easing:
