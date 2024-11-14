@@ -44,6 +44,8 @@ export const useUtilize = (componentName) => {
     background,
     seqId,
     widthSplit,
+    adjustTop,
+    adjustHeight,
     adjustViewport,
   } = data;
 
@@ -122,6 +124,8 @@ export const useUtilize = (componentName) => {
     top,
     rand,
     size,
+    adjustTop,
+    adjustHeight,
     padding,
     stages,
     title,
