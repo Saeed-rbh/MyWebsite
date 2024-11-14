@@ -1,7 +1,7 @@
 import React from "react";
-import { animated } from "react-spring";
 import TitleText from "./useTitleText";
 import { useClickableContent } from "../../General/useClickableContent";
+import { animated, useSpring, easings } from "react-spring";
 
 const InteractiveDiv = (props) => {
   const {
@@ -14,7 +14,6 @@ const InteractiveDiv = (props) => {
     isHovered,
     isClickable,
     TextRef,
-    styles,
     handleClickClose,
     handleMouseUp,
     handleMouseDown,
@@ -23,6 +22,7 @@ const InteractiveDiv = (props) => {
     MainStyle,
     seqId,
     widthSplit,
+    style,
   } = props;
 
   const clickableContent = useClickableContent(
@@ -45,11 +45,19 @@ const InteractiveDiv = (props) => {
     onTouchEnd: handleMouseUp,
   };
 
+  const h1Style = useSpring({
+    position: "absolute",
+    opacity: 0.2,
+    fontSize: 100,
+    top: -55,
+    left: -10,
+  });
+
   return (
     <animated.div
       className={name}
       id={name}
-      style={{ ...styles.base, left: "500px" }}
+      style={{ ...style }}
       {...eventHandlers}
     >
       {clickableContent}
@@ -59,7 +67,7 @@ const InteractiveDiv = (props) => {
         explanation={explanation}
         widthSplit={widthSplit}
       />
-      <animated.h1 ref={TextRef} style={styles.text}>
+      <animated.h1 style={h1Style} ref={TextRef}>
         {title}
       </animated.h1>
       <animated.div style={MainStyle}>{props.children}</animated.div>

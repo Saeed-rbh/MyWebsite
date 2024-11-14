@@ -1,6 +1,8 @@
 import React, { useCallback, useRef, useMemo, useState } from "react";
 import { useDispatch, useSelector, shallowEqual } from "react-redux";
 import { updateToggle, updateHover } from "../../actions/Actions";
+import { useStyles } from "./useStyles";
+import { useTitleAnimationStyle } from "./otherStyles";
 
 export const useUtilize = (componentName) => {
   const data = useSelector(
@@ -38,6 +40,7 @@ export const useUtilize = (componentName) => {
     list,
     title,
     name,
+    fixed,
     background,
     seqId,
     widthSplit,
@@ -106,6 +109,9 @@ export const useUtilize = (componentName) => {
     setHover([false, title]);
   }, [setHover, title]);
 
+  const styles = useStyles(toggle, data, hover, ChildRefs, stages);
+  const { MainStyle, titleStyle } = useTitleAnimationStyle(seqId, fixed);
+
   return {
     list,
     seqId,
@@ -131,5 +137,8 @@ export const useUtilize = (componentName) => {
     handleMouseDown,
     handleMouseEnter,
     handleMouseLeave,
+    styles,
+    titleStyle,
+    MainStyle,
   };
 };
