@@ -118,13 +118,17 @@ function Qualifications() {
     const viewportHeight = window.innerHeight;
     let newAdjustedTop = top + 570;
     let newAdjustedHeight = size[0] + (isActive ? 250 : 0);
+    const ModifyTop = 80;
 
     if (isActive) {
-      if (newAdjustedTop + newAdjustedHeight > viewportHeight + scrollTop) {
+      if (
+        newAdjustedTop + newAdjustedHeight >
+        viewportHeight + scrollTop - ModifyTop
+      ) {
         // If the component bottom goes out of view, adjust the top position
         newAdjustedTop =
           Math.max(viewportHeight + scrollTop - newAdjustedHeight, scrollTop) -
-          100;
+          ModifyTop;
       }
       if (newAdjustedHeight > viewportHeight) {
         // If the component is taller than the viewport, set the top to current scroll position and allow scrolling
