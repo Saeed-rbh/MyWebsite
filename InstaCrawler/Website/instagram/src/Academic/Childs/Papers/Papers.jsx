@@ -8,14 +8,13 @@ import { useSelector } from "react-redux";
 import { useSpring, easings } from "react-spring";
 import useScrollPosition from "../../General/useScrollPosition";
 
-const componentName = "Papers";
-
 const Papers = () => {
+  const componentName = "Published Papers";
   const utilizeProps = useUtilize(componentName);
   const [adjustedTop, setAdjustedTop] = useState(0);
   const [adjustedHeight, setAdjustedHeight] = useState(0);
 
-  const { size, top, isActive, adjustViewport, adjustTop, adjustHeight } =
+  const { size, top, isActive, adjustViewport, adjustTop, adjustHeight, name } =
     useUtilize(componentName);
   const { stages, scollableRef, toggle } = useSelector((state) => state.data);
   const { scrollTop } = useScrollPosition(scollableRef);
@@ -100,10 +99,23 @@ const Papers = () => {
       : `${adjustedHeight}px`,
   });
 
+  const [otherActive, setOtherActive] = useState(false);
+  useEffect(() => {
+    if (toggle[0] && toggle[1] !== name) {
+      setOtherActive(true);
+    } else {
+      setOtherActive(false);
+    }
+  }, [toggle, name]);
+  const StyleAnim2 = useSpring({
+    filter:
+      otherActive && progress !== 1 ? "blur(10px)" : `blur(${5 * progress}px)`,
+  });
+
   return (
     <InteractiveDiv
       {...utilizeProps}
-      style={{ ...Style, ...StyleAnim, ...styleHeight }}
+      style={{ ...Style, ...StyleAnim, ...styleHeight, ...StyleAnim2 }}
     >
       <RecentPaper
         isActive={utilizeProps.isActive}

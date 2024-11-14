@@ -12,7 +12,7 @@ function Qualifications() {
   const [adjustedTop, setAdjustedTop] = useState(0);
   const [adjustedHeight, setAdjustedHeight] = useState(0);
 
-  const { size, top, isActive, adjustViewport, adjustTop, adjustHeight } =
+  const { size, top, isActive, adjustViewport, adjustTop, adjustHeight, name } =
     useUtilize(componentName);
   const { stages, scollableRef, toggle } = useSelector((state) => state.data);
   const { scrollTop } = useScrollPosition(scollableRef);
@@ -84,6 +84,19 @@ function Qualifications() {
     },
   });
 
+  const [otherActive, setOtherActive] = useState(false);
+  useEffect(() => {
+    if (toggle[0] && toggle[1] !== name) {
+      setOtherActive(true);
+    } else {
+      setOtherActive(false);
+    }
+  }, [toggle, name]);
+  const StyleAnim2 = useSpring({
+    filter:
+      otherActive && progress !== 1 ? "blur(10px)" : `blur(${5 * progress}px)`,
+  });
+
   const styleHeight = useSpring({
     top: `${adjustedTop}px`,
     height: stages[2]
@@ -100,7 +113,7 @@ function Qualifications() {
   return (
     <InteractiveDiv
       {...utilizeProps}
-      style={{ ...Style, ...StyleAnim, ...styleHeight }}
+      style={{ ...Style, ...StyleAnim, ...styleHeight, ...StyleAnim2 }}
     >
       <QualificationMain
         ChildRefs={utilizeProps.ChildRefs}
