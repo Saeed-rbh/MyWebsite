@@ -120,20 +120,22 @@ function Qualifications() {
     let newAdjustedHeight = size[0] + (isActive ? 250 : 0);
 
     if (isActive) {
-      if (newAdjustedTop + newAdjustedHeight > viewportHeight) {
+      if (newAdjustedTop + newAdjustedHeight > viewportHeight + scrollTop) {
         // If the component bottom goes out of view, adjust the top position
-        newAdjustedTop = Math.max(viewportHeight - newAdjustedHeight, 0);
+        newAdjustedTop =
+          Math.max(viewportHeight + scrollTop - newAdjustedHeight, scrollTop) -
+          100;
       }
       if (newAdjustedHeight > viewportHeight) {
-        // If the component is taller than the viewport, set the top to 0 and allow scrolling
-        newAdjustedTop = 0;
+        // If the component is taller than the viewport, set the top to current scroll position and allow scrolling
+        newAdjustedTop = scrollTop;
         newAdjustedHeight = viewportHeight;
       }
     }
 
     setAdjustedTop(newAdjustedTop);
     setAdjustedHeight(newAdjustedHeight);
-  }, [isActive, size, top]);
+  }, [isActive, size, top, scrollTop]);
 
   const Style = {
     borderRadius: "40px",
@@ -172,7 +174,7 @@ function Qualifications() {
     top: `${adjustedTop}px`,
     height: stages[2]
       ? isActive
-        ? `${adjustedHeight + 20 + 250}px`
+        ? `${adjustedHeight + 20}px`
         : `${adjustedHeight + 20}px`
       : toggle[2]
       ? `${adjustedHeight + 20}px`
