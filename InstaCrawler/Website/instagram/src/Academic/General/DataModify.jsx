@@ -6,11 +6,11 @@ import { useSelector } from "react-redux";
 const useSequence = (stages) =>
   useMemo(() => {
     return stages[2] || stages[3]
-      ? [0, 1, 4, 2, 5, 3, 8, 6, 7]
+      ? [0, 1, 2, 3, 4, 5, 6, 7, 8]
       : stages[1]
-      ? [0, 1, 4, 5, 2, 8, 3, 7, 6]
+      ? [0, 1, 2, 3, 4, 5, 6, 7, 8]
       : stages[0]
-      ? [0, 1, 2, 4, 3, 5, 6, 7, 8]
+      ? [0, 1, 2, 3, 4, 5, 6, 7, 8]
       : [0, 1, 2, 3, 4, 5, 6, 7, 8];
   }, [stages]);
 
