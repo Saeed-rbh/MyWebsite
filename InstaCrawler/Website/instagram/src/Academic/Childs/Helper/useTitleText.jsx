@@ -24,7 +24,7 @@ const TitleText = ({ isActive, title, explanation, widthSplit }) => {
   const factor = Math.min((width[2] / width[0]) * 0.7, 1.5) * widthSplitFactor;
 
   const mainStyle = useSpring({
-    top: isActive ? 25 : 20,
+    top: isActive ? 25 : 15,
     width: "100%",
     justifyContent: "center",
     alignItems: "baseline",

@@ -67,10 +67,6 @@ const AcademicCV = () => {
 
   const lastValue = useMemo(() => {
     const lastElement = data.length ? data[data.length - 1] : null;
-    console.log(
-      data[data.length - 1],
-      lastElement.top + lastElement.height + EXTRA_SPACE
-    );
 
     return lastElement
       ? lastElement.top + lastElement.height + EXTRA_SPACE

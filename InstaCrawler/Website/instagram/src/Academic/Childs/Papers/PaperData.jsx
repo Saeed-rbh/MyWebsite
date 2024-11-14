@@ -17,8 +17,8 @@ const PaperData = ({ isActive, skillElementRef, stages }) => {
     //   : "100%",
     marginLeft: isActive ? "10px" : stages[2] ? "0px" : "45px",
     marginRight: isActive ? "10px" : stages[2] ? "-10px" : "45px",
-    paddingLeft: isActive ? "30px" : stages[2] ? "5px" : "30px",
-    paddingRight: isActive ? "30px" : stages[2] ? "50px" : "30px",
+    paddingLeft: isActive ? "30px" : stages[2] ? "20px" : "30px",
+    paddingRight: isActive ? "30px" : stages[2] ? "80px" : "30px",
     paddingTop: isActive ? "8px" : stages[2] ? "10px" : "5px",
     paddingBottom: isActive ? "8px" : stages[2] || stages[3] ? "10px" : "5px",
     easing: easings.easeOutCubic,
@@ -51,12 +51,12 @@ const PaperData = ({ isActive, skillElementRef, stages }) => {
         </p>
         <p>8</p>
       </animated.div>
-      <animated.div style={Scale}>
+      {/* <animated.div style={Scale}>
         <p>
           i10- <span>index</span>
         </p>
         <p>7</p>
-      </animated.div>
+      </animated.div> */}
     </animated.div>
   );
 };
