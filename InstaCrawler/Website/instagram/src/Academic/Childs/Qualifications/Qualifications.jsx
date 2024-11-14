@@ -10,10 +10,8 @@ function Qualifications() {
   const componentName = "Qualifications";
   const utilizeProps = useUtilize(componentName);
 
-  const { size, top } = useUtilize(componentName);
-
-  const { stages, scollableRef } = useSelector((state) => state.data);
-
+  const { size, top, isActive } = useUtilize(componentName);
+  const { stages, scollableRef, toggle } = useSelector((state) => state.data);
   const { scrollTop } = useScrollPosition(scollableRef);
 
   // Calculate progress between 0 and 30 for smooth transition (0 to 1)
@@ -26,7 +24,6 @@ function Qualifications() {
 
   const Style = {
     borderRadius: "40px",
-    height: stages[2] ? `${size[0] + 20}px` : `${size[0]}px`,
     cursor: "pointer",
     filter: "blur(0px)",
     opacity: "1",
@@ -38,6 +35,8 @@ function Qualifications() {
     top: stages[2] ? `calc(5vh + ${top + 15 + 510}px)` : `calc(5vh + ${top}px)`,
     overflow: "hidden",
   };
+
+  console.log(toggle[2]);
 
   const StyleAnim = useSpring({
     from: { opacity: 0, scale: 1.1, y: 20 },
@@ -57,14 +56,28 @@ function Qualifications() {
     },
   });
 
+  const styleHeight = useSpring({
+    height: stages[2]
+      ? `${size[0] + 20}px`
+      : toggle[2]
+      ? `${size[0] + 20}px`
+      : isActive
+      ? `${size[0] + 250}px`
+      : `${size[0]}px`,
+  });
+
   return (
-    <InteractiveDiv {...utilizeProps} style={{ ...Style, ...StyleAnim }}>
+    <InteractiveDiv
+      {...utilizeProps}
+      style={{ ...Style, ...StyleAnim, ...styleHeight }}
+    >
       <QualificationMain
         ChildRefs={utilizeProps.ChildRefs}
         styles={utilizeProps.styles}
         ParentRef={utilizeProps.ParentRef}
         List={utilizeProps.list}
         isActive={utilizeProps.isActive}
+        toggle={toggle}
       />
     </InteractiveDiv>
   );

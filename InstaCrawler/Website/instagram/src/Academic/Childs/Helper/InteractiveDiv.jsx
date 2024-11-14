@@ -1,7 +1,7 @@
 import React from "react";
 import TitleText from "./useTitleText";
 import { useClickableContent } from "../../General/useClickableContent";
-import { animated, useSpring, easings } from "react-spring";
+import { animated, useSpring } from "react-spring";
 
 const InteractiveDiv = (props) => {
   const {
@@ -49,8 +49,8 @@ const InteractiveDiv = (props) => {
     position: "absolute",
     opacity: 0.15,
     fontSize: 100,
-    top: -55,
-    left: -10,
+    top: isActive ? -50 : -55,
+    left: isActive ? -5 : -10,
   });
 
   return (

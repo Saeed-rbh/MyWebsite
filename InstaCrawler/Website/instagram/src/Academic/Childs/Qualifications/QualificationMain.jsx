@@ -17,10 +17,16 @@ const QualificationItem = ({ qualification, refStyle, style, titleStyle }) => (
   </animated.div>
 );
 
-const QualificationMain = ({ ChildRefs, ParentRef, List, isActive }) => {
+const QualificationMain = ({
+  ChildRefs,
+  ParentRef,
+  List,
+  isActive,
+  toggle,
+}) => {
   const style = useSpring({
     display: "flex",
-    marginTop: 50,
+    marginTop: toggle[0] ? 0 : 50,
   });
   const titleStyle = useSpring({
     marginLeft: !isActive ? 0 : -5,
@@ -28,12 +34,16 @@ const QualificationMain = ({ ChildRefs, ParentRef, List, isActive }) => {
     backgroundColor: "rgba(250, 250, 250, 0.1)",
   });
 
+  const main = useSpring({
+    marginTop: toggle[2] ? 55 : toggle[0] ? 70 : 50,
+  });
+
   if (!List || List.length === 0) {
     return null;
   }
 
   return (
-    <animated.div ref={ParentRef} className="QualiMain">
+    <animated.div style={main} ref={ParentRef} className="QualiMain">
       {List.map((qualification, index) => (
         <QualificationItem
           key={index}

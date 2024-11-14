@@ -14,7 +14,7 @@ export const useUtilize = (componentName) => {
   const updateVariables = useSelector((state) => state.data);
   const stages = updateVariables.stages;
   const toggle = updateVariables.toggle;
-  const hover = updateVariables.toggle;
+  const hover = updateVariables.hover;
 
   const dispatch = useDispatch();
   const setToggle = useCallback(
@@ -46,10 +46,9 @@ export const useUtilize = (componentName) => {
     widthSplit,
   } = data;
 
-  const isActive = useMemo(
-    () => toggle[0] && toggle[1] === title,
-    [toggle, title]
-  );
+  const isActive = useMemo(() => {
+    return toggle[0] && toggle[1] === title;
+  }, [toggle, title]);
 
   const isHovered = useMemo(
     () => hover[1] === title && hover[0] && !stages[2],
@@ -81,6 +80,8 @@ export const useUtilize = (componentName) => {
         } else {
           setToggle([false, title, false]);
         }
+      } else {
+        setToggle([true, title, false]);
       }
     },
     [touchStartPos, toggle, setToggle, title, isClickable]
@@ -93,8 +94,8 @@ export const useUtilize = (componentName) => {
           x: event.touches[0].clientX,
           y: event.touches[0].clientY,
         });
-        setToggle([false, title, true]);
       }
+      !toggle[0] && setToggle([false, title, true]);
     },
     [toggle, setToggle, title, isClickable]
   );
@@ -124,6 +125,7 @@ export const useUtilize = (componentName) => {
     stages,
     title,
     name,
+    toggle,
     background,
     isActive,
     isHovered,

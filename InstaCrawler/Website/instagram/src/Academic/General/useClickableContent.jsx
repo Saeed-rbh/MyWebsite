@@ -25,25 +25,23 @@ export const useClickableContent = (
           handleClickClose={handleClickClose}
           backgroundColor={background}
         />
-        {!stages[2] && (
-          <MoreInfo
-            CloseOpen={isActive}
-            MouseHover={isHovered}
-            Show={false}
-            backgroundColor={background}
-            Stages={stages}
-          />
-        )}
-        {(stages[2] || stages[3]) && (
-          <OpenIcon
-            isOpen={true}
-            CloseOpen={isActive}
-            handleClickClose={handleClickClose}
-            backgroundColor={background}
-            seqId={seqId}
-            widthSplit={widthSplit}
-          />
-        )}
+
+        <MoreInfo
+          CloseOpen={isActive}
+          MouseHover={isHovered}
+          Show={false}
+          backgroundColor={background}
+          Stages={stages}
+        />
+
+        <OpenIcon
+          isOpen={true}
+          CloseOpen={isActive}
+          handleClickClose={handleClickClose}
+          backgroundColor={background}
+          seqId={seqId}
+          widthSplit={widthSplit}
+        />
       </>
     );
   }, [
