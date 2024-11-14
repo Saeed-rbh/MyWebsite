@@ -47,7 +47,7 @@ const InteractiveDiv = (props) => {
 
   const h1Style = useSpring({
     position: "absolute",
-    opacity: 0.2,
+    opacity: 0.15,
     fontSize: 100,
     top: -55,
     left: -10,

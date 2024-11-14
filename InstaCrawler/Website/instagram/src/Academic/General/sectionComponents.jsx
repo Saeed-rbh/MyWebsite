@@ -51,7 +51,7 @@ export const sectionProperties = [
     background: "rgb(0 0 0 / 30%)",
     padding: [15, 30, 15, 20],
     size: [180, 450],
-    top: 25,
+    top: 30,
     fixed: false,
     Rand: Math.random(),
     list: QualificationsList,
