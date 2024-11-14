@@ -96,7 +96,7 @@ import InteractiveDiv from "../Helper/InteractiveDiv";
 import QualificationMain from "./QualificationMain";
 
 function Qualifications() {
-  const adjustTop = 510;
+  const adjustTop = 560;
   const adjustHeight = 250;
   const componentName = "Qualifications";
   const utilizeProps = useUtilize(componentName);

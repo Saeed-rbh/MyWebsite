@@ -14,7 +14,7 @@ export const useClickableContent = (
 ) => {
   const ClickableContent = useMemo(() => {
     if (!isClickable) return null;
-    const background = "rgb(212 157 129 / 12%)";
+    const background = "rgb(212 157 129 / 10%)";
 
     return (
       <>
@@ -40,7 +40,7 @@ export const useClickableContent = (
           handleClickClose={handleClickClose}
           backgroundColor={background}
           seqId={seqId}
-          widthSplit={widthSplit}
+          widthSplit={false}
         />
       </>
     );
