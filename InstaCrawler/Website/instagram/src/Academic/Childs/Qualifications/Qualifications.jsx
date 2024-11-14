@@ -18,8 +18,8 @@ function Qualifications() {
   const { scrollTop } = useScrollPosition(scollableRef);
 
   // Calculate progress between 0 and 30 for smooth transition (0 to 1)
-  const startScroll = top - adjustViewport + adjustTop; // Where you want progress to start
-  const endScroll = top - adjustViewport + size[0] + adjustTop; // Where you want progress to end
+  const startScroll = top - adjustViewport; // Where you want progress to start
+  const endScroll = top - adjustViewport + size[0]; // Where you want progress to end
   const progress = Math.min(
     Math.max((scrollTop - startScroll) / (endScroll - startScroll), 0),
     1
@@ -28,7 +28,7 @@ function Qualifications() {
   // Determine viewport dimensions and adjust component position accordingly
   useEffect(() => {
     const viewportHeight = window.innerHeight;
-    let newAdjustedTop = top + adjustViewport + (stages[2] ? adjustTop : 0);
+    let newAdjustedTop = top + adjustViewport + (!stages[2] ? adjustTop : 0);
     let newAdjustedHeight = size[0] + (isActive ? adjustHeight : 0);
     const ModifyTop = 80;
 
