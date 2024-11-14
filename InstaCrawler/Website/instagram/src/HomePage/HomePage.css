@@ -633,8 +633,8 @@
   background-color: #00000060;
   border-radius: 100px;
   flex-direction: row;
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
+  /* backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px); */
 }
 @media only screen and (max-width: 1120px) {
   .MainHeader {
@@ -806,7 +806,7 @@
     line-height: 60px;
   }
   .icon-wrapper {
-    background-color: #000000d8;
+    background-color: #ffffff09;
   }
   .animated-option-wrapper:nth-of-type(n + 2) {
     background-color: #000000d8;

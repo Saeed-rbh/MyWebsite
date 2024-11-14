@@ -8,15 +8,24 @@ import useScrollPosition from "../../General/useScrollPosition";
 
 export const Affiliation = () => {
   const componentName = "Affiliation";
-  const { name, size, title, padding, top, rand, isActive, ParentRef } =
-    useUtilize(componentName);
+  const {
+    name,
+    size,
+    title,
+    padding,
+    top,
+    rand,
+    isActive,
+    ParentRef,
+    adjustViewport,
+  } = useUtilize(componentName);
 
   const { stages, scollableRef, toggle } = useSelector((state) => state.data);
   const height = stages ? size[0] - 10 : size[0];
   const { scrollTop } = useScrollPosition(scollableRef);
 
-  const startScroll = top - 60; // Where you want progress to start
-  const endScroll = top - 60 + height; // Where you want progress to end
+  const startScroll = top - adjustViewport; // Where you want progress to start
+  const endScroll = top - adjustViewport + height; // Where you want progress to end
   const progress = Math.min(
     Math.max((scrollTop - startScroll) / (endScroll - startScroll), 0),
     1

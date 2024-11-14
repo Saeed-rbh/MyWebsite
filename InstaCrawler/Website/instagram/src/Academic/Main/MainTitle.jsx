@@ -53,7 +53,7 @@ const useTitleAnimation = ({
   return useSpring({
     from: { opacity: 0, x: xDiff[0], y: yDiff[1], display: "flex" },
     to: {
-      opacity: visibility ? 0.7 : 0,
+      opacity: scroll > 0 ? 0 : visibility ? 0.7 : 0,
       x: visibility ? x : xDiff[0],
       y,
       scale,
@@ -79,7 +79,7 @@ const MainTitle = ({ duration, initialDelay, delayIncrement }) => {
     setAnimationFinished,
     xDiff: [-35, stages[2] ? 0 : 0],
     yDiff: [-10, stages[2] ? 25 : -40],
-    scaleDiff: [0.65, 1],
+    scaleDiff: [0.5, 1],
     stages,
   });
   const title2Style = useTitleAnimation({
@@ -89,7 +89,7 @@ const MainTitle = ({ duration, initialDelay, delayIncrement }) => {
     setAnimationFinished,
     xDiff: [-35, stages[2] ? 0 : 0],
     yDiff: [-10, stages[2] ? 25 : -40],
-    scaleDiff: [0.65, 1],
+    scaleDiff: [0.5, 1],
     stages,
   });
 

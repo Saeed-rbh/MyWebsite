@@ -98,13 +98,12 @@ import QualificationMain from "./QualificationMain";
 function Qualifications() {
   const adjustTop = 510;
   const adjustHeight = 250;
-  const adjustViewport = 60;
   const componentName = "Qualifications";
   const utilizeProps = useUtilize(componentName);
   const [adjustedTop, setAdjustedTop] = useState(0);
   const [adjustedHeight, setAdjustedHeight] = useState(0);
 
-  const { size, top, isActive } = useUtilize(componentName);
+  const { size, top, isActive, adjustViewport } = useUtilize(componentName);
   const { stages, scollableRef, toggle } = useSelector((state) => state.data);
   const { scrollTop } = useScrollPosition(scollableRef);
 

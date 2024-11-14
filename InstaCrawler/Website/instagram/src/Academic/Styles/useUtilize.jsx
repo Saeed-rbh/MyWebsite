@@ -44,6 +44,7 @@ export const useUtilize = (componentName) => {
     background,
     seqId,
     widthSplit,
+    adjustViewport,
   } = data;
 
   const isActive = useMemo(() => {
@@ -142,5 +143,6 @@ export const useUtilize = (componentName) => {
     styles,
     titleStyle,
     MainStyle,
+    adjustViewport,
   };
 };

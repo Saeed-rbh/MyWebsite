@@ -6,15 +6,16 @@ import useScrollPosition from "../../General/useScrollPosition";
 
 const ResearchInterests = () => {
   const componentName = "ResearchInterests";
-  const { list, size, title, name, ParentRef, top } = useUtilize(componentName);
+  const { list, size, title, name, ParentRef, top, adjustViewport } =
+    useUtilize(componentName);
 
   const { stages, scollableRef, toggle } = useSelector((state) => state.data);
 
   const { scrollTop } = useScrollPosition(scollableRef);
 
   // Calculate progress between 0 and 30 for smooth transition (0 to 1)
-  const startScroll = top - 60; // Where you want progress to start
-  const endScroll = top - 60 + size[0]; // Where you want progress to end
+  const startScroll = top - adjustViewport; // Where you want progress to start
+  const endScroll = top - adjustViewport + size[0]; // Where you want progress to end
   const progress = Math.min(
     Math.max((scrollTop - startScroll) / (endScroll - startScroll), 0),
     1
