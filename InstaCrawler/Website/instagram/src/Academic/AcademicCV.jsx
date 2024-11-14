@@ -14,7 +14,7 @@ const AcademicCV = () => {
   const maxScale = 2;
   const minHeight = 650;
   const maxHeight = 1500;
-  const EXTRA_SPACE = 100;
+  const EXTRA_SPACE = 200;
 
   const elementSize = useElementSize("AcademicCV-M");
   const [scale, setScale] = useState(1);
