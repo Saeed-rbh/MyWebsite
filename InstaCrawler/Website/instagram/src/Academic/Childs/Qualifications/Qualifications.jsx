@@ -58,7 +58,9 @@ function Qualifications() {
 
   const styleHeight = useSpring({
     height: stages[2]
-      ? `${size[0] + 20}px`
+      ? isActive
+        ? `${size[0] + 20 + 250}px`
+        : `${size[0] + 20}px`
       : toggle[2]
       ? `${size[0] + 20}px`
       : isActive
