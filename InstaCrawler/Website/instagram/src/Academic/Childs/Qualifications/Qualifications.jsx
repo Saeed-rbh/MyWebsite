@@ -96,6 +96,9 @@ import InteractiveDiv from "../Helper/InteractiveDiv";
 import QualificationMain from "./QualificationMain";
 
 function Qualifications() {
+  const adjustTop = 510;
+  const adjustHeight = 250;
+  const adjustViewport = 60;
   const componentName = "Qualifications";
   const utilizeProps = useUtilize(componentName);
   const [adjustedTop, setAdjustedTop] = useState(0);
@@ -106,8 +109,8 @@ function Qualifications() {
   const { scrollTop } = useScrollPosition(scollableRef);
 
   // Calculate progress between 0 and 30 for smooth transition (0 to 1)
-  const startScroll = top - 60 + 510; // Where you want progress to start
-  const endScroll = top - 60 + size[0] + 510; // Where you want progress to end
+  const startScroll = top - adjustViewport + adjustTop; // Where you want progress to start
+  const endScroll = top - adjustViewport + size[0] + adjustTop; // Where you want progress to end
   const progress = Math.min(
     Math.max((scrollTop - startScroll) / (endScroll - startScroll), 0),
     1
@@ -116,8 +119,8 @@ function Qualifications() {
   // Determine viewport dimensions and adjust component position accordingly
   useEffect(() => {
     const viewportHeight = window.innerHeight;
-    let newAdjustedTop = top + 570;
-    let newAdjustedHeight = size[0] + (isActive ? 250 : 0);
+    let newAdjustedTop = top + adjustTop + adjustViewport;
+    let newAdjustedHeight = size[0] + (isActive ? adjustHeight : 0);
     const ModifyTop = 80;
 
     if (isActive) {
