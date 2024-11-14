@@ -157,8 +157,6 @@ function Qualifications() {
     overflow: adjustedHeight > window.innerHeight ? "auto" : "hidden",
   };
 
-  console.log(toggle[2]);
-
   const StyleAnim = useSpring({
     from: { opacity: 0, scale: 1.1, y: 20 },
     to: {

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { animated, useSpring, easings } from "react-spring";
 import { useUtilize } from "../../Styles/useUtilize";
 import { useSelector } from "react-redux";
@@ -8,7 +8,7 @@ const ResearchInterests = () => {
   const componentName = "ResearchInterests";
   const { list, size, title, name, ParentRef, top } = useUtilize(componentName);
 
-  const { stages, scollableRef } = useSelector((state) => state.data);
+  const { stages, scollableRef, toggle } = useSelector((state) => state.data);
 
   const { scrollTop } = useScrollPosition(scollableRef);
 
@@ -19,6 +19,16 @@ const ResearchInterests = () => {
     Math.max((scrollTop - startScroll) / (endScroll - startScroll), 0),
     1
   );
+
+  const [otherActive, setOtherActive] = useState(false);
+  useEffect(() => {
+    if (toggle[0] && toggle[1] !== name) {
+      setOtherActive(true);
+      console.log("toggle", toggle);
+    } else {
+      setOtherActive(false);
+    }
+  }, [toggle, name]);
 
   const style = {
     borderRadius: "40px",
@@ -52,6 +62,10 @@ const ResearchInterests = () => {
           : easings.easeInQuad,
     },
   });
+  const StyleAnim2 = useSpring({
+    filter: otherActive ? "blur(10px)" : `blur(${5 * progress}px)`,
+  });
+
   const Main = {
     padding: stages[2] ? "17px 15px 10px 5px" : "17px 10px",
     display: "flex",
@@ -67,7 +81,7 @@ const ResearchInterests = () => {
   return (
     <animated.div
       ref={ParentRef}
-      style={{ ...style, ...StyleAnim }}
+      style={{ ...style, ...StyleAnim, ...StyleAnim2 }}
       className={name}
       id={name}
     >

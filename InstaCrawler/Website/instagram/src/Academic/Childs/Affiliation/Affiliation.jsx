@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from "react";
+import React, { useState, useMemo, useEffect } from "react";
 import { animated, useSpring, easings } from "react-spring";
 import { calculateBackgroundImage, ImageDiv, ContentDiv } from "./Components";
 import { useUtilize } from "../../Styles/useUtilize";
@@ -11,7 +11,7 @@ export const Affiliation = () => {
   const { name, size, title, padding, top, rand, isActive, ParentRef } =
     useUtilize(componentName);
 
-  const { stages, scollableRef } = useSelector((state) => state.data);
+  const { stages, scollableRef, toggle } = useSelector((state) => state.data);
   const height = stages ? size[0] - 10 : size[0];
   const { scrollTop } = useScrollPosition(scollableRef);
 
@@ -21,6 +21,16 @@ export const Affiliation = () => {
     Math.max((scrollTop - startScroll) / (endScroll - startScroll), 0),
     1
   );
+
+  const [otherActive, setOtherActive] = useState(false);
+  useEffect(() => {
+    if (toggle[0] && toggle[1] !== name) {
+      setOtherActive(true);
+      console.log("toggle", toggle);
+    } else {
+      setOtherActive(false);
+    }
+  }, [toggle, name]);
 
   const openClose = useMemo(() => (isActive ? 2 : 1), [isActive]);
   const [randomStart] = useState(rand);
@@ -120,6 +130,9 @@ export const Affiliation = () => {
           : easings.easeInQuad,
     },
   });
+  const StyleAnim2 = useSpring({
+    filter: otherActive ? "blur(10px)" : `blur(${5 * progress}px)`,
+  });
 
   return (
     <animated.div
@@ -127,6 +140,7 @@ export const Affiliation = () => {
       style={{
         ...Style,
         ...StyleAnim,
+        ...StyleAnim2,
         backgroundColor: "rgba(0, 0, 0, 0)",
         backgroundImage: "none",
       }}

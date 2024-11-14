@@ -1,4 +1,4 @@
-import React, { useMemo } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { animated, useSpring, easings } from "react-spring";
 import { ContactDetails, PersonalTitle, PersonalDetails } from "./ExternalLink";
 import { useUtilize } from "../../Styles/useUtilize";
@@ -10,9 +10,19 @@ export const PersonalInfo = () => {
   const { size, padding, title, name, ParentRef, top } =
     useUtilize(componentName);
 
-  const { stages, scollableRef } = useSelector((state) => state.data);
+  const { stages, scollableRef, toggle } = useSelector((state) => state.data);
 
   const { scrollTop } = useScrollPosition(scollableRef);
+
+  const [otherActive, setOtherActive] = useState(false);
+  useEffect(() => {
+    if (toggle[0] && toggle[1] !== name) {
+      setOtherActive(true);
+      console.log("toggle", toggle);
+    } else {
+      setOtherActive(false);
+    }
+  }, [toggle, name]);
 
   // Calculate progress between 0 and 30 for smooth transition (0 to 1)
   const startScroll = top - 60; // Where you want progress to start
@@ -43,7 +53,6 @@ export const PersonalInfo = () => {
       opacity: progress ? 1 - progress : 1,
       y: 0,
       scale: progress ? 1 - (1 - 0.95) * progress : 1,
-      filter: `blur(${5 * progress}px)`,
     },
     delay: stages[2] && progress && progress !== 0 ? 0 : 500,
     config: {
@@ -53,6 +62,9 @@ export const PersonalInfo = () => {
           ? easings.steps(5)
           : easings.easeInQuad,
     },
+  });
+  const StyleAnim2 = useSpring({
+    filter: otherActive ? "blur(10px)" : `blur(${5 * progress}px)`,
   });
 
   const Main = {
@@ -65,13 +77,6 @@ export const PersonalInfo = () => {
     margin: "7px",
   };
 
-  // const MainAnim = useSpring({
-  //   from: { opacity: 0, transform: "scale(1.1)  translateY(10px)" },
-  //   to: { opacity: 1, transform: "scale(1)  translateY(0px)" },
-  //   delay: 500,
-  //   config: { duration: 500, easing: easings.easeInQuad },
-  // });
-
   const memoizedTitle = useMemo(
     () => <PersonalTitle title={title} size={size} padding={padding} />,
     [title, size, padding]
@@ -80,7 +85,7 @@ export const PersonalInfo = () => {
   return (
     <animated.div
       ref={ParentRef}
-      style={{ ...Style, ...StyleAnim }}
+      style={{ ...Style, ...StyleAnim, ...StyleAnim2 }}
       className={name}
       id={name}
     >
