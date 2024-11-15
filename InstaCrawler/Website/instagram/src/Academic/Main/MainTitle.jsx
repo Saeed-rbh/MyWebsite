@@ -33,30 +33,30 @@ const useTitleAnimation = ({
   stages,
 }) => {
   const scroll = scrollPosition / 50;
-  const [x, y, scale] = useMemo(() => {
-    if (scroll <= 0) {
-      return [
-        xDiff[1],
-        interpolateValue((scroll * 5) / 7, [yDiff[0] / 3, yDiff[1]]),
-        scaleDiff[1],
-      ];
-    } else if (scroll < 1) {
-      return [
-        interpolateValue(scroll, xDiff),
-        interpolateValue(scroll, yDiff),
-        interpolateValue(scroll, scaleDiff),
-      ];
-    }
-    return [xDiff[0], yDiff[0], scaleDiff[0]];
-  }, [scroll, xDiff, yDiff, scaleDiff]);
+  // const [x, y, scale] = useMemo(() => {
+  //   if (scroll <= 0) {
+  //     return [
+  //       xDiff[1],
+  //       interpolateValue((scroll * 5) / 7, [yDiff[0] / 3, yDiff[1]]),
+  //       scaleDiff[1],
+  //     ];
+  //   } else if () {
+  //     return [xDiff[1], yDiff[0] * 5, scaleDiff[0]];
+  //   }
+  // }, [scroll, xDiff, yDiff, scaleDiff]);
 
   return useSpring({
     from: { opacity: 0, x: xDiff[0], y: yDiff[1], display: "flex" },
     to: {
       opacity: scroll > 0 ? 0 : visibility ? 0.7 : 0,
-      x: visibility ? x : xDiff[0],
-      y,
-      scale,
+      x: visibility ? xDiff[1] : xDiff[0],
+      y:
+        scroll <= 0
+          ? interpolateValue((scroll * 5) / 7, [yDiff[0] / 3, yDiff[1]])
+          : scroll > 0
+          ? yDiff[1] - 100
+          : yDiff[1],
+      // scale: scroll > 0 ? 0 : 1,
       // paddingLeft: stages[2] ? "5%" : "0%",
     },
     delay: animationFinished ? 0 : 500,
@@ -79,7 +79,7 @@ const MainTitle = ({ duration, initialDelay, delayIncrement }) => {
     setAnimationFinished,
     xDiff: [-35, stages[2] ? 0 : 0],
     yDiff: [-10, stages[2] ? 25 : -40],
-    scaleDiff: [0.5, 1],
+    scaleDiff: [0.9, 1],
     stages,
   });
   const title2Style = useTitleAnimation({
@@ -89,7 +89,7 @@ const MainTitle = ({ duration, initialDelay, delayIncrement }) => {
     setAnimationFinished,
     xDiff: [-35, stages[2] ? 0 : 0],
     yDiff: [-10, stages[2] ? 25 : -40],
-    scaleDiff: [0.5, 1],
+    scaleDiff: [0.9, 1],
     stages,
   });
 
