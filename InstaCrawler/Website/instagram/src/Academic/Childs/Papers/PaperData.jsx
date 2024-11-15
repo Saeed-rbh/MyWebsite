@@ -1,26 +1,30 @@
 import React from "react";
 import { animated, useSpring, easings } from "react-spring";
 
-const PaperData = ({ isActive, skillElementRef, stages }) => {
+const PaperData = ({ isActive, stages, size }) => {
   const CloseOpenStyleInfo = useSpring({
-    bottom: isActive
+    position: "absolute",
+    top: isActive
       ? stages[2]
-        ? "60px"
-        : "40px"
+        ? size[0] - 110
+        : 40
       : stages[2]
-      ? "-10px"
-      : "-10px",
+      ? size[0] - 50
+      : -10,
+    width: "calc(100% - 20px)",
+    height: "60px",
     // width: isActive
     //   ? "calc(100% - 95px)"
     //   : stages[2] || stages[3]
     //   ? "calc(100% - 45px)"
     //   : "100%",
-    marginLeft: isActive ? "10px" : stages[2] ? "0px" : "45px",
-    marginRight: isActive ? "10px" : stages[2] ? "-10px" : "45px",
+    marginLeft: isActive ? "10px" : stages[2] ? "10px" : "45px",
+    marginRight: isActive ? "10px" : stages[2] ? "10px" : "45px",
     paddingLeft: isActive ? "30px" : stages[2] ? "20px" : "30px",
-    paddingRight: isActive ? "30px" : stages[2] ? "80px" : "30px",
+    paddingRight: isActive ? "30px" : stages[2] ? "50px" : "30px",
     paddingTop: isActive ? "8px" : stages[2] ? "10px" : "5px",
     paddingBottom: isActive ? "8px" : stages[2] || stages[3] ? "10px" : "5px",
+    boxSizing: "border-box",
     easing: easings.easeOutCubic,
     duration: 100,
   });
@@ -33,7 +37,7 @@ const PaperData = ({ isActive, skillElementRef, stages }) => {
     <animated.div
       className="Paper-Data"
       style={CloseOpenStyleInfo}
-      ref={skillElementRef}
+      // ref={skillElementRef}
     >
       <animated.div style={Scale}>
         <p>

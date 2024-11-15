@@ -125,6 +125,7 @@ const Papers = () => {
       <PaperData
         isActive={utilizeProps.isActive}
         stages={utilizeProps.stages}
+        size={utilizeProps.size}
       />
       <MoreInfoPapers
         isActive={utilizeProps.isActive}

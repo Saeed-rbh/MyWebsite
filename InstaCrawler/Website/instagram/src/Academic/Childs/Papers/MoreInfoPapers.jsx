@@ -13,7 +13,7 @@ const MoreInfoPapers = ({
   const CloseOpenStylePapers = useSpring({
     top: isActive
       ? stages[2]
-        ? "150px"
+        ? "160px"
         : "160px"
       : isHovered
       ? "220px"
