@@ -2,6 +2,7 @@ import React, { useState, useRef, useMemo } from "react";
 import { useSpring, animated } from "react-spring";
 import { HiArrowNarrowRight, HiArrowNarrowLeft } from "react-icons/hi";
 import { useSelector } from "react-redux";
+import useScrollPosition from "../../General/useScrollPosition";
 
 const commonStyle = {
   display: "flex",
@@ -23,13 +24,16 @@ const ScrollControls = ({ scrollEffect }) => {
   const { visibility } = useSelector((state) => state.visibility);
   const [animationFinished, setAnimationFinished] = useState(false);
   const scrollEndRef = useRef(false);
-  const stages = useSelector((state) => state.data.stages);
+  const { stages, scollableRef } = useSelector((state) => state.data);
+  const { scrollPosition } = useScrollPosition(scollableRef);
+
+  console.log(scrollPosition);
 
   const titleStyle = useSpring({
     from: { opacity: 0, y: 10 },
     to: {
-      opacity: visibility ? 0.7 : 0,
-      y: visibility ? -2 : 15,
+      opacity: scrollPosition <= 0 ? 0.8 : 0,
+      y: scrollPosition <= 0 ? -2 : -15,
       width: stages[2] ? "98%" : "100%",
     },
     delay: animationFinished ? 0 : 700,

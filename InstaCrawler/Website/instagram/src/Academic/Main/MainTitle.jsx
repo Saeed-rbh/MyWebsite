@@ -33,31 +33,19 @@ const useTitleAnimation = ({
   stages,
 }) => {
   const scroll = scrollPosition / 50;
-  // const [x, y, scale] = useMemo(() => {
-  //   if (scroll <= 0) {
-  //     return [
-  //       xDiff[1],
-  //       interpolateValue((scroll * 5) / 7, [yDiff[0] / 3, yDiff[1]]),
-  //       scaleDiff[1],
-  //     ];
-  //   } else if () {
-  //     return [xDiff[1], yDiff[0] * 5, scaleDiff[0]];
-  //   }
-  // }, [scroll, xDiff, yDiff, scaleDiff]);
 
   return useSpring({
     from: { opacity: 0, x: xDiff[0], y: yDiff[1], display: "flex" },
     to: {
       opacity: scroll > 0 ? 0 : visibility ? 0.7 : 0,
-      x: visibility ? xDiff[1] : xDiff[0],
+      x: scroll <= 0 ? xDiff[1] : xDiff[1] - 10,
       y:
         scroll <= 0
           ? interpolateValue((scroll * 5) / 7, [yDiff[0] / 3, yDiff[1]])
           : scroll > 0
-          ? yDiff[1] - 100
+          ? yDiff[1] - 50
           : yDiff[1],
-      // scale: scroll > 0 ? 0 : 1,
-      // paddingLeft: stages[2] ? "5%" : "0%",
+      scale: scroll > 0 ? 0.9 : 1,
     },
     delay: animationFinished ? 0 : 500,
     config: { duration: animationFinished ? undefined : 800 },
