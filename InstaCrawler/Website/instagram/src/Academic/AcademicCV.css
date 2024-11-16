@@ -103,10 +103,10 @@
   font-size: 12px;
   line-height: 18px;
   font-weight: 700;
-  padding-top: 20px;
+  padding-top: 25px;
   text-align: -webkit-auto;
   transition: box-shadow 0.2s ease-in-out;
-  border-radius: 25px;
+  border-radius: 30px;
   box-shadow: rgb(0 0 0 / 50%) 0px 20px 20px 0px;
   padding-top: 20px;
   /* background-image: linear-gradient(
@@ -115,10 +115,11 @@
     rgb(255 255 255 / 0%)
   ); */
   font-family: "Rubik", sans-serif;
+  background: rgba(255, 255, 255, 0.05);
   font-size: 12px;
   line-height: 18px;
   font-weight: 500;
-  padding: 10px 20px;
+  padding: 15px 20px 10px 20px;
   min-height: 50px;
   justify-content: center;
   display: flex;
@@ -150,7 +151,7 @@
   border: 0;
   font: inherit;
   vertical-align: baseline;
-  margin-top: -2px;
+  margin-top: 5px;
   display: flex;
   flex-direction: row;
   align-items: center;

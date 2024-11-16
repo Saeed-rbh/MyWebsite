@@ -92,7 +92,7 @@ export const sectionProperties = [
     size: [190, 450],
     top: 220 + 580,
     adjustTop: -580,
-    adjustHeight: 500,
+    adjustHeight: 700,
     adjustViewport: 10,
     fixed: false,
     Rand: Math.random(),

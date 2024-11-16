@@ -37,13 +37,14 @@ const RecentPaper = ({ isActive, stages, list }) => {
                 <animated.div
                   className="PaperData"
                   style={{
-                    backgroundImage: "none",
+                    background: "none",
                     boxShadow: "none",
                     padding: "10px 0px",
+                    border: "none",
                   }}
                 >
                   <p>{paper.title}</p>
-                  <div className="paper-details">
+                  <div className="paper-details" style={{ marginTop: -2 }}>
                     <p>The Journal of Physical Chemistry C</p>
                     <div></div>
                   </div>
