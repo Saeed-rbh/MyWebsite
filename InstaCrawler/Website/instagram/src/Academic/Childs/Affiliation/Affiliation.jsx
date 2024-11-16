@@ -74,7 +74,7 @@ export const Affiliation = () => {
   const animatedStyle = useSpring({
     backgroundColor: "rgba(0, 0, 0, 0.3)",
     backgroundImage,
-    border: "2px solid rgba(212, 157, 129, 0.1)",
+    border: "2px solid rgba(212, 157, 129, 0.2)",
     top: "-5px",
     width: `${size[1] - height - 5}px`,
     maxWidth: `calc(100% - ${height + 5}px)`,
