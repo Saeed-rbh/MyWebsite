@@ -7,10 +7,10 @@ const PaperData = ({ isActive, stages, size }) => {
     top: isActive
       ? stages[2]
         ? size[0] - 110
-        : 40
+        : size[0] - 110
       : stages[2]
       ? size[0] - 50
-      : -10,
+      : size[0] - 70,
     width: "calc(100% - 20px)",
     height: "60px",
     // width: isActive
@@ -18,11 +18,11 @@ const PaperData = ({ isActive, stages, size }) => {
     //   : stages[2] || stages[3]
     //   ? "calc(100% - 45px)"
     //   : "100%",
-    marginLeft: isActive ? "10px" : stages[2] ? "10px" : "45px",
-    marginRight: isActive ? "10px" : stages[2] ? "10px" : "45px",
-    paddingLeft: isActive ? "30px" : stages[2] ? "20px" : "30px",
-    paddingRight: isActive ? "30px" : stages[2] ? "50px" : "30px",
-    paddingTop: isActive ? "8px" : stages[2] ? "10px" : "5px",
+    marginLeft: isActive ? "10px" : stages[2] ? "10px" : "10px",
+    marginRight: isActive ? "10px" : stages[2] ? "10px" : "10px",
+    paddingLeft: isActive ? "30px" : stages[2] ? "20px" : "20px",
+    paddingRight: isActive ? "30px" : stages[2] ? "50px" : "50px",
+    paddingTop: isActive ? "8px" : stages[2] ? "10px" : "10px",
     paddingBottom: isActive ? "8px" : stages[2] || stages[3] ? "10px" : "5px",
     boxSizing: "border-box",
     easing: easings.easeOutCubic,

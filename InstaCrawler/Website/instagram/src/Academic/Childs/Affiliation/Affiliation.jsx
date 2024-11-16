@@ -5,6 +5,7 @@ import { useUtilize } from "../../Styles/useUtilize";
 import myImage from "../../../../src/Image/AcademicImg.JPG";
 import { useSelector } from "react-redux";
 import useScrollPosition from "../../General/useScrollPosition";
+import { useClickOtherFade } from "../../Styles/otherStyles";
 
 export const Affiliation = () => {
   const componentName = "Affiliation";
@@ -88,7 +89,7 @@ export const Affiliation = () => {
 
   const animatedImgDiv = useSpring({
     backgroundColor: "rgba(0, 0, 0, 0.3)",
-    border: "2px solid rgba(212, 157, 129, 0.1)",
+    border: "2px solid rgba(212, 157, 129, 0.2)",
     position: "absolute",
     display: "flex",
     borderRadius: "40px",
@@ -138,11 +139,7 @@ export const Affiliation = () => {
           : easings.easeInQuad,
     },
   });
-  const StyleAnim2 = useSpring({
-    filter:
-      otherActive && progress !== 1 ? "blur(10px)" : `blur(${5 * progress}px)`,
-  });
-
+  const StyleAnim2 = useClickOtherFade(otherActive, progress);
   return (
     <animated.div
       ref={ParentRef}

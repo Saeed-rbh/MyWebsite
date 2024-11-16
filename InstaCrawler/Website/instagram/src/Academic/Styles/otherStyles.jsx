@@ -102,3 +102,10 @@ export const useMoreStyle = (isActive, fixed, stages) => {
     paddingRight: !isActive ? 0 : 15,
   });
 };
+
+export const useClickOtherFade = (otherActive, progress) => {
+  return useSpring({
+    filter:
+      otherActive && progress !== 1 ? "blur(20px)" : `blur(${5 * progress}px)`,
+  });
+};

@@ -4,6 +4,7 @@ import { ContactDetails, PersonalTitle, PersonalDetails } from "./ExternalLink";
 import { useUtilize } from "../../Styles/useUtilize";
 import { useSelector } from "react-redux";
 import useScrollPosition from "../../General/useScrollPosition";
+import { useClickOtherFade } from "../../Styles/otherStyles";
 
 export const PersonalInfo = () => {
   const componentName = "PersonalInfo";
@@ -40,7 +41,7 @@ export const PersonalInfo = () => {
     backgroundColor: "rgba(0, 0, 0, 0.3)",
     overflow: "visible",
     width: stages[2] ? "calc(100% - 5px)" : `${size[1]}px`,
-    border: "2px solid rgba(212, 157, 129, 0.1)",
+    border: "2px solid rgba(212, 157, 129, 0.2)",
     zIndex: "10",
     left: stages[2] ? "0px" : "35px",
     top: stages[2] ? `calc(5vh + ${top + 15}px)` : `calc(5vh + ${top}px)`,
@@ -62,10 +63,7 @@ export const PersonalInfo = () => {
           : easings.easeInQuad,
     },
   });
-  const StyleAnim2 = useSpring({
-    filter:
-      otherActive && progress !== 1 ? "blur(10px)" : `blur(${5 * progress}px)`,
-  });
+  const StyleAnim2 = useClickOtherFade(otherActive, progress);
 
   const Main = {
     padding: "0px 20px",

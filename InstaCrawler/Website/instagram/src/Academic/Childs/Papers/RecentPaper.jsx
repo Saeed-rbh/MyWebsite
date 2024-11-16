@@ -4,7 +4,7 @@ import { animated, useSpring, easings } from "react-spring";
 const RecentPaper = ({ isActive, stages, list }) => {
   const CloseOpenStyleRecent = useSpring({
     opacity: isActive ? "0" : "1",
-    top: stages[2] ? "30px" : isActive ? "20px" : "20px",
+    top: stages[2] ? "30px" : isActive ? "27px" : "27px",
     marginLeft: stages[2] ? "65px" : "75px",
     marginRight: stages[2] ? "0px" : "45px",
     easing: easings.easeOutCubic,
@@ -12,7 +12,7 @@ const RecentPaper = ({ isActive, stages, list }) => {
   });
   const CloseOpenStyleRecentTitle = useSpring({
     opacity: isActive ? "0" : "1",
-    top: stages[2] ? "55px" : isActive ? "45px" : "45px",
+    top: stages[2] ? "55px" : isActive ? "55px" : "55px",
     marginLeft: stages[2] ? "8px" : "17px",
     easing: easings.easeOutCubic,
     config: { duration: 100 },

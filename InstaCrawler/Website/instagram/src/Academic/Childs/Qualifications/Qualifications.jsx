@@ -5,6 +5,7 @@ import { useSelector } from "react-redux";
 import useScrollPosition from "../../General/useScrollPosition";
 import InteractiveDiv from "../Helper/InteractiveDiv";
 import QualificationMain from "./QualificationMain";
+import { useClickOtherFade } from "../../Styles/otherStyles";
 
 function Qualifications() {
   const componentName = "Qualifications";
@@ -60,7 +61,7 @@ function Qualifications() {
     opacity: "1",
     backgroundColor: "rgba(0, 0, 0, 0.3)",
     width: stages[2] ? "calc(100% - 5px)" : `calc(100% - ${size[1] + 100}px)`,
-    border: "2px solid rgba(212, 157, 129, 0.1)",
+    border: "2px solid rgba(212, 157, 129, 0.2)",
     zIndex: "10",
     left: stages[2] ? "0px" : "500px",
     overflow: adjustedHeight > window.innerHeight ? "auto" : "hidden",
@@ -92,10 +93,7 @@ function Qualifications() {
       setOtherActive(false);
     }
   }, [toggle, name]);
-  const StyleAnim2 = useSpring({
-    filter:
-      otherActive && progress !== 1 ? "blur(10px)" : `blur(${5 * progress}px)`,
-  });
+  const StyleAnim2 = useClickOtherFade(otherActive, progress);
 
   const styleHeight = useSpring({
     top: `${adjustedTop}px`,
