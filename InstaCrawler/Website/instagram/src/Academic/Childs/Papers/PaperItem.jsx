@@ -20,7 +20,7 @@ const PaperItem = ({
 }) => {
   const openInfoMainStyle = useSpring({
     paddingBottom: Openclose ? "0px" : "100px",
-    marginBottom: isOpen ? "40px" : "0px",
+    marginBottom: isOpen ? "60px" : "0px",
   });
 
   const openInfoStyle = useSpring({
@@ -54,7 +54,7 @@ const PaperItem = ({
   }, [setPaperSvgHover]);
 
   const [inViewRef, inView] = useInView({
-    threshold: 0.5,
+    threshold: 0.3,
   });
 
   const fadeStyle = useSpring({
@@ -93,14 +93,22 @@ const PaperItem = ({
           </div>
         </div>
       </div>
-      <animated.div className="MoreInfo" style={openInfoStyle}>
-        <p className="ReferMoreInfo" onClick={() => openInNewTab(paper.link)}>
+      <div className="MoreInfo">
+        <animated.p
+          className="ReferMoreInfo"
+          style={openInfoStyle}
+          onClick={() => openInNewTab(paper.link)}
+        >
           Online Version <SiGooglescholar />
-        </p>
-        <p className="ReferMoreInfo" onClick={() => openInNewTab(paper.pdf)}>
+        </animated.p>
+        <animated.p
+          className="ReferMoreInfo"
+          style={openInfoStyle}
+          onClick={() => openInNewTab(paper.pdf)}
+        >
           Download PDF <RiDownloadCloudFill />
-        </p>
-      </animated.div>
+        </animated.p>
+      </div>
     </animated.div>
   );
 };
