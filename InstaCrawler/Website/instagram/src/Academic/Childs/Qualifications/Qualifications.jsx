@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { useSpring, easings } from "react-spring";
 import { useUtilize } from "../../Styles/useUtilize";
 import { useSelector } from "react-redux";
@@ -67,23 +67,23 @@ function Qualifications() {
     overflow: adjustedHeight > window.innerHeight ? "auto" : "hidden",
   };
 
-  const StyleAnim = useSpring({
-    from: { opacity: 0, scale: 1.1, y: 20 },
-    to: {
-      opacity: stages[2] && progress ? 1 - progress : 1,
-      y: 0,
-      scale: stages[2] && progress ? 1 - (1 - 0.95) * progress : 1,
-      filter: stages[2] && `blur(${5 * progress}px)`,
-    },
-    delay: stages[2] && progress && progress !== 0 ? 0 : 1400,
-    config: {
-      duration: stages[2] && progress && progress !== 0 ? 0 : 500,
-      easing:
-        stages[2] && progress && progress !== 0
-          ? easings.steps(5)
-          : easings.easeInQuad,
-    },
-  });
+  // const StyleAnim = useSpring({
+  //   from: { opacity: 0, scale: 1.1, y: 20 },
+  //   to: {
+  //     opacity: stages[2] && progress ? 1 - progress : 1,
+  //     y: 0,
+  //     scale: stages[2] && progress ? 1 - (1 - 0.95) * progress : 1,
+  //     filter: stages[2] && `blur(${5 * progress}px)`,
+  //   },
+  //   delay: stages[2] && progress && progress !== 0 ? 0 : 1400,
+  //   config: {
+  //     duration: stages[2] && progress && progress !== 0 ? 0 : 500,
+  //     easing:
+  //       stages[2] && progress && progress !== 0
+  //         ? easings.steps(5)
+  //         : easings.easeInQuad,
+  //   },
+  // });
 
   const [otherActive, setOtherActive] = useState(false);
   useEffect(() => {
@@ -93,7 +93,6 @@ function Qualifications() {
       setOtherActive(false);
     }
   }, [toggle, name]);
-  const StyleAnim2 = useClickOtherFade(otherActive, progress);
 
   const styleHeight = useSpring({
     top: `${adjustedTop}px`,
@@ -108,10 +107,35 @@ function Qualifications() {
       : `${adjustedHeight}px`,
   });
 
+  const Loaded = useRef(false);
+  const initialStyleAnim = useSpring({
+    from: { opacity: 0, scale: 1.1, y: 20 },
+    to: { opacity: 1, scale: 1, y: 0 },
+    delay: 1400,
+    config: { duration: 500, easing: easings.easeInQuad },
+    onRest: () => {
+      Loaded.current = true;
+    },
+  });
+  const loadedStyleAnim = useSpring({
+    opacity: 1 - progress,
+    scale: 1 - (1 - 0.95) * progress,
+  });
+  const otherFadeAnim = useClickOtherFade(otherActive, progress);
+  // Combine animations based on Loaded state
+  const combinedStyleAnim = Loaded.current
+    ? { ...loadedStyleAnim }
+    : { ...initialStyleAnim };
+
   return (
     <InteractiveDiv
       {...utilizeProps}
-      style={{ ...Style, ...StyleAnim, ...styleHeight, ...StyleAnim2 }}
+      style={{
+        ...Style,
+        ...otherFadeAnim,
+        ...styleHeight,
+        ...combinedStyleAnim,
+      }}
     >
       <QualificationMain
         ChildRefs={utilizeProps.ChildRefs}

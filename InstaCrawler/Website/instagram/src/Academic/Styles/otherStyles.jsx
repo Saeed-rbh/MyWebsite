@@ -1,6 +1,7 @@
-import { useSpring } from "react-spring";
+import { useSpring, easings } from "react-spring";
 import { useMemo, useState } from "react";
 import { useSelector } from "react-redux";
+import { useRef, useEffect } from "react";
 
 // Hook for second text style
 export const useSecondTextStyle = (isActive, stages) => {
@@ -109,3 +110,50 @@ export const useClickOtherFade = (otherActive, progress) => {
       otherActive && progress !== 1 ? "blur(20px)" : `blur(${5 * progress}px)`,
   });
 };
+
+export const useCombinedAnimation = ({ progress, toggle, name, id }) => {
+  const Loaded = useRef(false);
+
+  const [otherActive, setOtherActive] = useState(false);
+  useEffect(() => {
+    if (toggle[0] && toggle[1] !== name) {
+      setOtherActive(true);
+    } else {
+      setOtherActive(false);
+    }
+  }, [toggle, name]);
+
+  const initialStyleAnim = useSpring({
+    from: { opacity: 0, scale: 1.1, y: 20 },
+    to: { opacity: 1, scale: 1, y: 0 },
+    delay: 500 + id * 300,
+    config: { duration: 500, easing: easings.easeInQuad },
+    onRest: () => {
+      Loaded.current = true;
+    },
+  });
+
+  const loadedStyleAnim = useSpring({
+    opacity: 1 - progress,
+    scale: 1 - (1 - 0.95) * progress,
+  });
+
+  const otherFadeAnim = useClickOtherFade(otherActive, progress);
+
+  // Combine animations based on Loaded state
+  const combinedStyleAnim = Loaded.current
+    ? { ...loadedStyleAnim, ...otherFadeAnim }
+    : { ...initialStyleAnim, ...otherFadeAnim };
+
+  return combinedStyleAnim;
+};
+
+// Usage Example
+/*
+import { useCombinedAnimation } from './useCombinedAnimation';
+
+function MyComponent({ progress, otherActive }) {
+  const combinedStyle = useCombinedAnimation({ progress, otherActive });
+  return <animated.div style={combinedStyle}>Hello World</animated.div>;
+}
+*/

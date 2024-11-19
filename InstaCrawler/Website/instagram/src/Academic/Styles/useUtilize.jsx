@@ -33,6 +33,7 @@ export const useUtilize = (componentName) => {
   );
 
   const {
+    id,
     explanation,
     height,
     top,
@@ -120,6 +121,7 @@ export const useUtilize = (componentName) => {
   const { MainStyle, titleStyle } = useTitleAnimationStyle(seqId, fixed);
 
   return {
+    id,
     list,
     seqId,
     explanation,
