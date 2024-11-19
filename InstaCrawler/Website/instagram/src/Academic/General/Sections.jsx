@@ -5,7 +5,7 @@ import {
   Qualifications,
   ResearchInterests,
   Papers,
-  // Awards,
+  Awards,
   Skills,
   Conference,
   Teaching,
@@ -19,8 +19,8 @@ const Sections = ({ renderSection }) => {
     Qualifications,
     Papers,
     Skills,
-    // Awards,
-    // Conference,
+    Awards,
+    Conference,
     // Teaching,
   ];
 

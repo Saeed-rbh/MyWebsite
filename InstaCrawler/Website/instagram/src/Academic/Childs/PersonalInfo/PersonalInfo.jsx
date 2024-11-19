@@ -8,8 +8,16 @@ import { useClickOtherFade } from "../../Styles/otherStyles";
 
 export const PersonalInfo = () => {
   const componentName = "PersonalInfo";
-  const { size, padding, title, name, ParentRef, top, adjustViewport } =
-    useUtilize(componentName);
+  const {
+    size,
+    padding,
+    title,
+    name,
+    ParentRef,
+    top,
+    adjustViewport,
+    adjustTop,
+  } = useUtilize(componentName);
 
   const { stages, scollableRef, toggle } = useSelector((state) => state.data);
 
@@ -44,7 +52,9 @@ export const PersonalInfo = () => {
     border: "2px solid rgba(212, 157, 129, 0.2)",
     zIndex: "10",
     left: stages[2] ? "0px" : "35px",
-    top: stages[2] ? `calc(5vh + ${top + 15}px)` : `calc(5vh + ${top}px)`,
+    top: stages[2]
+      ? `calc(5vh + ${top + 15}px)`
+      : `calc(5vh + ${top + adjustTop}px)`,
   };
 
   const StyleAnim = useSpring({

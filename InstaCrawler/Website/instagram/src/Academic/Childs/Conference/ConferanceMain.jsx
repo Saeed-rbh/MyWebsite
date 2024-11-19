@@ -11,17 +11,17 @@ const ConferanceMain = ({
   stages,
 }) => {
   const fontStyle = useSpring({
-    fontSize: isActive ? 12 : 11,
+    // fontSize: isActive ? 12 : 11,
     marginBottom: isActive ? 10 : 0,
-    marginLeft: isActive ? 0 : 10,
+    // marginLeft: isActive ? 0 : 10,
+  });
+  const Anim = useSpring({
+    marginTop: stages[2] ? (isActive ? 35 : 15) : isActive ? 40 : 20,
+    marginLeft: 30,
   });
   const Conferences = List.map((Conferences, index) => (
     <animated.div
-      style={
-        index !== 0
-          ? { ...styles.title, ...styles.titlewidth }
-          : styles.titlewidth
-      }
+      style={{ marginTop: 10 }}
       className="Awards-Title"
       ref={ChildRefs.current[index]}
       key={index}
@@ -36,7 +36,7 @@ const ConferanceMain = ({
     <animated.div
       style={{
         ...styles.More,
-        marginTop: 0,
+        ...Anim,
       }}
       className="Awards-Details"
       ref={ParentRef}

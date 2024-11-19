@@ -19,6 +19,7 @@ export const Affiliation = () => {
     isActive,
     ParentRef,
     adjustViewport,
+    adjustTop,
   } = useUtilize(componentName);
 
   const { stages, scollableRef, toggle } = useSelector((state) => state.data);
@@ -119,7 +120,9 @@ export const Affiliation = () => {
     width: stages[2] ? "calc(100%)" : `${size[1]}px`,
     zIndex: "10",
     left: stages[2] ? "0px" : "35px",
-    top: stages[2] ? `calc(5vh + ${top + 15}px)` : `calc(5vh + ${top}px)`,
+    top: stages[2]
+      ? `calc(5vh + ${top + 15}px)`
+      : `calc(5vh + ${top + adjustTop}px)`,
   };
 
   const StyleAnim = useSpring({

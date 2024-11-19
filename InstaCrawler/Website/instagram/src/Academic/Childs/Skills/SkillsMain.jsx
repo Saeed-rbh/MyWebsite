@@ -9,14 +9,10 @@ const SkillsMain = ({
   ParentRef,
   List,
   stages,
-  title,
   isActive,
 }) => {
-  const Space = stages[0] ? 3 : stages[1] ? 0 : 1;
-
   const updateVariables = useSelector((state) => state.data);
   const toggle = updateVariables.toggle;
-  const hover = updateVariables.hover;
 
   const getListItemHeight = (Skill, s) => {
     if (Skill.id === 1 && s === Skill.skill[1] && !toggle[0]) {
@@ -24,22 +20,14 @@ const SkillsMain = ({
     } else {
       return "25px";
     }
-    // if (!(Skill.id === 1 && s === Skill.skill[Space])) {
-    //   return "25px";
-    // }
-    // if (!toggle[0] && !hover[0] && hover[1] === title) {
-    //   return "25px";
-    // }
-    // return hover[1] === title ? "25px" : "40px";
   };
   const Anim = useSpring({
-    marginTop: stages[2] ? (isActive ? 35 : 20) : 0,
+    marginTop: stages[2] ? (isActive ? 35 : 20) : isActive ? 30 : 10,
   });
 
   const SkillSoftwares = List.map((Skill, index) => (
     <animated.div
       ref={ChildRefs.current[index]}
-      // style={index !== 0 ? { ...styles.title } : null}
       className="Skill-Title"
       key={Skill.Title}
     >
