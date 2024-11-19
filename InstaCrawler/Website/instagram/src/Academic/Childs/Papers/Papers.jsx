@@ -35,8 +35,6 @@ const Papers = () => {
     let newAdjustedHeight = size[0] + (isActive ? adjustHeight : 0);
     const ModifyTop = 80;
 
-    console.log(newAdjustedHeight, viewportHeight);
-
     if (isActive) {
       if (
         newAdjustedTop + newAdjustedHeight >
@@ -48,8 +46,6 @@ const Papers = () => {
           ModifyTop;
       }
       if (newAdjustedHeight > viewportHeight) {
-        console.log("newAdjustedHeight > viewportHeight");
-
         // If the component is taller than the viewport, set the top to current scroll position and allow scrolling
         newAdjustedTop = scrollTop + ModifyTop;
         newAdjustedHeight = viewportHeight;

@@ -1,9 +1,17 @@
 import React from "react";
-import { animated } from "react-spring";
+import { animated, useSpring } from "react-spring";
 import { getProficiencyLevel } from "./getProficiencyLevel";
 import { useSelector } from "react-redux";
 
-const SkillsMain = ({ ChildRefs, styles, ParentRef, List, stages, title }) => {
+const SkillsMain = ({
+  ChildRefs,
+  styles,
+  ParentRef,
+  List,
+  stages,
+  title,
+  isActive,
+}) => {
   const Space = stages[0] ? 3 : stages[1] ? 0 : 1;
 
   const updateVariables = useSelector((state) => state.data);
@@ -24,11 +32,14 @@ const SkillsMain = ({ ChildRefs, styles, ParentRef, List, stages, title }) => {
     // }
     // return hover[1] === title ? "25px" : "40px";
   };
+  const Anim = useSpring({
+    marginTop: stages[2] ? (isActive ? 35 : 20) : 0,
+  });
 
   const SkillSoftwares = List.map((Skill, index) => (
     <animated.div
       ref={ChildRefs.current[index]}
-      style={index !== 0 ? styles.title : null}
+      // style={index !== 0 ? { ...styles.title } : null}
       className="Skill-Title"
       key={Skill.Title}
     >
@@ -51,7 +62,11 @@ const SkillsMain = ({ ChildRefs, styles, ParentRef, List, stages, title }) => {
   ));
 
   return (
-    <animated.div style={styles.More} ref={ParentRef} className="Skill">
+    <animated.div
+      style={{ ...styles.More, ...Anim }}
+      ref={ParentRef}
+      className="Skill"
+    >
       {SkillSoftwares}
     </animated.div>
   );

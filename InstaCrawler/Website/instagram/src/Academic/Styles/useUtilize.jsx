@@ -7,7 +7,9 @@ import { useTitleAnimationStyle } from "./otherStyles";
 export const useUtilize = (componentName) => {
   const data = useSelector(
     (state) =>
-      state.data.academicData.find((item) => item.name === componentName),
+      state.data.academicData.find(
+        (item) => item.name === componentName || item.title === componentName
+      ),
     shallowEqual
   );
 
@@ -50,8 +52,8 @@ export const useUtilize = (componentName) => {
   } = data;
 
   const isActive = useMemo(() => {
-    return toggle[0] && toggle[1] === title;
-  }, [toggle, title]);
+    return toggle[0] && toggle[1] === name;
+  }, [toggle, name]);
 
   const isHovered = useMemo(
     () => hover[1] === title && hover[0] && !stages[2],
@@ -64,8 +66,8 @@ export const useUtilize = (componentName) => {
   const ChildRefs = useRef(list.map(() => React.createRef()));
 
   const handleClickClose = useCallback(() => {
-    setToggle([false, title, false]);
-  }, [setToggle, title]);
+    setToggle([false, name, false]);
+  }, [setToggle, name]);
 
   const [touchStartPos, setTouchStartPos] = useState({ x: 0, y: 0 });
   const handleMouseUp = useCallback(
@@ -79,15 +81,15 @@ export const useUtilize = (componentName) => {
         const scrollThreshold = 10;
 
         if (distance < scrollThreshold) {
-          setToggle([true, title, false]);
+          setToggle([true, name, false]);
         } else {
-          setToggle([false, title, false]);
+          setToggle([false, name, false]);
         }
       } else {
-        setToggle([true, title, false]);
+        setToggle([true, name, false]);
       }
     },
-    [touchStartPos, toggle, setToggle, title, isClickable]
+    [touchStartPos, toggle, setToggle, name, isClickable]
   );
 
   const handleMouseDown = useCallback(
@@ -98,9 +100,9 @@ export const useUtilize = (componentName) => {
           y: event.touches[0].clientY,
         });
       }
-      !toggle[0] && setToggle([false, title, true]);
+      !toggle[0] && setToggle([false, name, true]);
     },
-    [toggle, setToggle, title, isClickable]
+    [toggle, setToggle, name, isClickable]
   );
 
   const handleMouseEnter = useCallback(() => {

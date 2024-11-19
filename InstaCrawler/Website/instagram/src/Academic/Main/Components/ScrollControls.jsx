@@ -27,8 +27,6 @@ const ScrollControls = ({ scrollEffect }) => {
   const { stages, scollableRef } = useSelector((state) => state.data);
   const { scrollPosition } = useScrollPosition(scollableRef);
 
-  console.log(scrollPosition);
-
   const titleStyle = useSpring({
     from: { opacity: 0, y: 10 },
     to: {

@@ -33,7 +33,7 @@ const ResearchInterests = () => {
 
   const style = {
     borderRadius: "40px",
-    height: `${size[0]}px`,
+    height: stages[2] ? `${size[0] * 2 - 20}px` : `${size[0]}px`,
     cursor: "pointer",
     filter: "blur(0px)",
     opacity: "1",
@@ -69,7 +69,7 @@ const ResearchInterests = () => {
   });
 
   const Main = {
-    padding: stages[2] ? "17px 15px 10px 5px" : "17px 10px",
+    padding: stages[2] ? "17px 15px 10px 5px" : "11px 10px",
     display: "flex",
     flexDirection: "row",
     alignItems: "center",
@@ -91,7 +91,7 @@ const ResearchInterests = () => {
         {title}
       </animated.h1>
       <animated.div className="RInterests" style={Main}>
-        {list.slice(0, stages[2] ? 4 : 5).map((topic) => (
+        {list.slice(0, stages[2] ? 4 : 3).map((topic) => (
           <a key={topic.label} href={topic.href}>
             {topic.label}
           </a>
