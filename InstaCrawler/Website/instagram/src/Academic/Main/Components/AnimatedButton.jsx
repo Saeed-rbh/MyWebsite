@@ -14,7 +14,7 @@ const useAnimationState = (
   const springProps = useSpring({
     from: { opacity: 0, x: state ? 30 : 0, scale: state ? 1.2 : 1 },
     to: {
-      opacity: visibility ? (isSelected ? 0.8 : 0.4) : 0,
+      opacity: visibility ? (isSelected ? 0.9 : 0.6) : 0,
       x: visibility ? 0 : state ? 30 : 0,
       scale: visibility ? 1 : state ? 1.2 : 1,
     },
@@ -44,7 +44,6 @@ const useOpacityStyle = (index, isSelected) => {
 
 // AnimatedButton component
 const AnimatedButton = ({ index, item, isSelected, onClick }) => {
-
   const springStyle = useSpringStyle(index, isSelected);
   const opacityStyle = useOpacityStyle(index, isSelected);
 
