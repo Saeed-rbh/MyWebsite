@@ -141,14 +141,6 @@ export const PersonalInfo = () => {
   const { stages, scollableRef, toggle } = useSelector((state) => state.data);
   const { scrollTop } = useScrollPosition(scollableRef);
 
-  // Calculate progress between 0 and 1 for smooth transition
-  const startScroll = top - adjustViewport; // Where progress starts
-  const endScroll = top - adjustViewport + size[0]; // Where progress ends
-  const progress = Math.min(
-    Math.max((scrollTop - startScroll) / (endScroll - startScroll), 0),
-    1
-  );
-
   const Style = {
     borderRadius: "40px",
     height: `${size[0]}px`,
@@ -176,7 +168,15 @@ export const PersonalInfo = () => {
     margin: "7px",
   };
 
-  const combinedStyle = useCombinedAnimation({ progress, toggle, name, id });
+  const combinedStyle = useCombinedAnimation({
+    top,
+    adjustViewport,
+    size,
+    scrollTop,
+    toggle,
+    name,
+    id,
+  });
 
   const memoizedTitle = useMemo(
     () => <PersonalTitle title={title} size={size} padding={padding} />,

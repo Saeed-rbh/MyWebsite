@@ -111,8 +111,23 @@ export const useClickOtherFade = (otherActive, progress) => {
   });
 };
 
-export const useCombinedAnimation = ({ progress, toggle, name, id }) => {
+export const useCombinedAnimation = ({
+  top,
+  adjustViewport,
+  size,
+  scrollTop,
+  toggle,
+  name,
+  id,
+}) => {
   const Loaded = useRef(false);
+
+  const startScroll = top - adjustViewport; // Where you want progress to start
+  const endScroll = top - adjustViewport + size[0]; // Where you want progress to end
+  const progress = Math.min(
+    Math.max((scrollTop - startScroll) / (endScroll - startScroll), 0),
+    1
+  );
 
   const [otherActive, setOtherActive] = useState(false);
   useEffect(() => {
@@ -147,13 +162,3 @@ export const useCombinedAnimation = ({ progress, toggle, name, id }) => {
 
   return combinedStyleAnim;
 };
-
-// Usage Example
-/*
-import { useCombinedAnimation } from './useCombinedAnimation';
-
-function MyComponent({ progress, otherActive }) {
-  const combinedStyle = useCombinedAnimation({ progress, otherActive });
-  return <animated.div style={combinedStyle}>Hello World</animated.div>;
-}
-*/

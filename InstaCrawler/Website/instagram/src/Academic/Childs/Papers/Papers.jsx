@@ -7,7 +7,7 @@ import InteractiveDiv from "../Helper/InteractiveDiv";
 import { useSelector } from "react-redux";
 import { useSpring, easings } from "react-spring";
 import useScrollPosition from "../../General/useScrollPosition";
-import { useClickOtherFade } from "../../Styles/otherStyles";
+import { useCombinedAnimation } from "../../Styles/otherStyles";
 
 const Papers = () => {
   const componentName = "Published Papers";
@@ -15,18 +15,18 @@ const Papers = () => {
   const [adjustedTop, setAdjustedTop] = useState(0);
   const [adjustedHeight, setAdjustedHeight] = useState(0);
 
-  const { size, top, isActive, adjustViewport, adjustTop, adjustHeight, name } =
-    useUtilize(componentName);
+  const {
+    id,
+    size,
+    top,
+    isActive,
+    adjustViewport,
+    adjustTop,
+    adjustHeight,
+    name,
+  } = useUtilize(componentName);
   const { stages, scollableRef, toggle } = useSelector((state) => state.data);
   const { scrollTop } = useScrollPosition(scollableRef);
-
-  // Calculate progress between 0 and 30 for smooth transition (0 to 1)
-  const startScroll = top - adjustViewport; // Where you want progress to start
-  const endScroll = top - adjustViewport + size[0]; // Where you want progress to end
-  const progress = Math.min(
-    Math.max((scrollTop - startScroll) / (endScroll - startScroll), 0),
-    1
-  );
 
   // Determine viewport dimensions and adjust component position accordingly
   useEffect(() => {
@@ -69,24 +69,6 @@ const Papers = () => {
     overflow: adjustedHeight > window.innerHeight ? "auto" : "hidden",
   };
 
-  const StyleAnim = useSpring({
-    from: { opacity: 0, scale: 1.1, y: 20 },
-    to: {
-      opacity: stages[2] && progress ? 1 - progress : 1,
-      y: 0,
-      scale: stages[2] && progress ? 1 - (1 - 0.95) * progress : 1,
-      filter: stages[2] && `blur(${5 * progress}px)`,
-    },
-    delay: stages[2] && progress && progress !== 0 ? 0 : 1400,
-    config: {
-      duration: stages[2] && progress && progress !== 0 ? 0 : 500,
-      easing:
-        stages[2] && progress && progress !== 0
-          ? easings.steps(5)
-          : easings.easeInQuad,
-    },
-  });
-
   const styleHeight = useSpring({
     top: `${adjustedTop}px`,
     height: stages[2]
@@ -100,20 +82,19 @@ const Papers = () => {
       : `${adjustedHeight}px`,
   });
 
-  const [otherActive, setOtherActive] = useState(false);
-  useEffect(() => {
-    if (toggle[0] && toggle[1] !== name) {
-      setOtherActive(true);
-    } else {
-      setOtherActive(false);
-    }
-  }, [toggle, name]);
-  const StyleAnim2 = useClickOtherFade(otherActive, progress);
-
+  const combinedStyle = useCombinedAnimation({
+    top,
+    adjustViewport,
+    size,
+    scrollTop,
+    toggle,
+    name,
+    id,
+  });
   return (
     <InteractiveDiv
       {...utilizeProps}
-      style={{ ...Style, ...StyleAnim, ...styleHeight, ...StyleAnim2 }}
+      style={{ ...Style, ...combinedStyle, ...styleHeight }}
     >
       <RecentPaper
         isActive={utilizeProps.isActive}

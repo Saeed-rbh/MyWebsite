@@ -109,24 +109,25 @@ import { animated, useSpring, easings } from "react-spring";
 import { useUtilize } from "../../Styles/useUtilize";
 import { useSelector } from "react-redux";
 import useScrollPosition from "../../General/useScrollPosition";
-import { useClickOtherFade } from "../../Styles/otherStyles";
+import { useCombinedAnimation } from "../../Styles/otherStyles";
 
 const ResearchInterests = () => {
   const componentName = "ResearchInterests";
-  const { list, size, title, name, ParentRef, top, adjustViewport, adjustTop } =
-    useUtilize(componentName);
+  const {
+    id,
+    list,
+    size,
+    title,
+    name,
+    ParentRef,
+    top,
+    adjustViewport,
+    adjustTop,
+  } = useUtilize(componentName);
 
   const { stages, scollableRef, toggle } = useSelector((state) => state.data);
 
   const { scrollTop } = useScrollPosition(scollableRef);
-
-  // Calculate progress between 0 and 1 for smooth transition
-  const startScroll = top - adjustViewport;
-  const endScroll = top - adjustViewport + size[0];
-  const progress = Math.min(
-    Math.max((scrollTop - startScroll) / (endScroll - startScroll), 0),
-    1
-  );
 
   const [otherActive, setOtherActive] = useState(false);
   useEffect(() => {
@@ -150,26 +151,6 @@ const ResearchInterests = () => {
       : `calc(5vh + ${top + adjustTop}px)`,
   };
 
-  const Loaded = useRef(false);
-  const initialStyleAnim = useSpring({
-    from: { opacity: 0, scale: 1.1, y: 20 },
-    to: { opacity: 1, scale: 1, y: 0 },
-    delay: 1100,
-    config: { duration: 500, easing: easings.easeInQuad },
-    onRest: () => {
-      Loaded.current = true;
-    },
-  });
-  const loadedStyleAnim = useSpring({
-    opacity: 1 - progress,
-    scale: 1 - (1 - 0.95) * progress,
-  });
-  const otherFadeAnim = useClickOtherFade(otherActive, progress);
-  // Combine animations based on Loaded state
-  const combinedStyleAnim = Loaded.current
-    ? { ...loadedStyleAnim }
-    : { ...initialStyleAnim };
-
   const Main = {
     padding: stages[2] ? "17px 15px 10px 5px" : "11px 10px",
     display: "flex",
@@ -182,10 +163,20 @@ const ResearchInterests = () => {
     boxSizing: "border-box",
   };
 
+  const combinedStyle = useCombinedAnimation({
+    top,
+    adjustViewport,
+    size,
+    scrollTop,
+    toggle,
+    name,
+    id,
+  });
+
   return (
     <animated.div
       ref={ParentRef}
-      style={{ ...style, ...combinedStyleAnim, ...otherFadeAnim }}
+      style={{ ...style, ...combinedStyle }}
       className={name}
       id={name}
     >

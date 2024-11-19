@@ -1,11 +1,11 @@
-import React, { useEffect, useState, useRef } from "react";
-import { useSpring, easings } from "react-spring";
+import React, { useEffect, useState } from "react";
+import { useSpring } from "react-spring";
 import { useUtilize } from "../../Styles/useUtilize";
 import { useSelector } from "react-redux";
 import useScrollPosition from "../../General/useScrollPosition";
 import InteractiveDiv from "../Helper/InteractiveDiv";
 import QualificationMain from "./QualificationMain";
-import { useClickOtherFade } from "../../Styles/otherStyles";
+import { useCombinedAnimation } from "../../Styles/otherStyles";
 
 function Qualifications() {
   const componentName = "Qualifications";
@@ -13,18 +13,18 @@ function Qualifications() {
   const [adjustedTop, setAdjustedTop] = useState(0);
   const [adjustedHeight, setAdjustedHeight] = useState(0);
 
-  const { size, top, isActive, adjustViewport, adjustTop, adjustHeight, name } =
-    useUtilize(componentName);
+  const {
+    id,
+    size,
+    top,
+    isActive,
+    adjustViewport,
+    adjustTop,
+    adjustHeight,
+    name,
+  } = useUtilize(componentName);
   const { stages, scollableRef, toggle } = useSelector((state) => state.data);
   const { scrollTop } = useScrollPosition(scollableRef);
-
-  // Calculate progress between 0 and 30 for smooth transition (0 to 1)
-  const startScroll = top - adjustViewport; // Where you want progress to start
-  const endScroll = top - adjustViewport + size[0]; // Where you want progress to end
-  const progress = Math.min(
-    Math.max((scrollTop - startScroll) / (endScroll - startScroll), 0),
-    1
-  );
 
   // Determine viewport dimensions and adjust component position accordingly
   useEffect(() => {
@@ -67,33 +67,6 @@ function Qualifications() {
     overflow: adjustedHeight > window.innerHeight ? "auto" : "hidden",
   };
 
-  // const StyleAnim = useSpring({
-  //   from: { opacity: 0, scale: 1.1, y: 20 },
-  //   to: {
-  //     opacity: stages[2] && progress ? 1 - progress : 1,
-  //     y: 0,
-  //     scale: stages[2] && progress ? 1 - (1 - 0.95) * progress : 1,
-  //     filter: stages[2] && `blur(${5 * progress}px)`,
-  //   },
-  //   delay: stages[2] && progress && progress !== 0 ? 0 : 1400,
-  //   config: {
-  //     duration: stages[2] && progress && progress !== 0 ? 0 : 500,
-  //     easing:
-  //       stages[2] && progress && progress !== 0
-  //         ? easings.steps(5)
-  //         : easings.easeInQuad,
-  //   },
-  // });
-
-  const [otherActive, setOtherActive] = useState(false);
-  useEffect(() => {
-    if (toggle[0] && toggle[1] !== name) {
-      setOtherActive(true);
-    } else {
-      setOtherActive(false);
-    }
-  }, [toggle, name]);
-
   const styleHeight = useSpring({
     top: `${adjustedTop}px`,
     height: stages[2]
@@ -107,34 +80,22 @@ function Qualifications() {
       : `${adjustedHeight}px`,
   });
 
-  const Loaded = useRef(false);
-  const initialStyleAnim = useSpring({
-    from: { opacity: 0, scale: 1.1, y: 20 },
-    to: { opacity: 1, scale: 1, y: 0 },
-    delay: 1400,
-    config: { duration: 500, easing: easings.easeInQuad },
-    onRest: () => {
-      Loaded.current = true;
-    },
+  const combinedStyle = useCombinedAnimation({
+    top,
+    adjustViewport,
+    size,
+    scrollTop,
+    toggle,
+    name,
+    id,
   });
-  const loadedStyleAnim = useSpring({
-    opacity: 1 - progress,
-    scale: 1 - (1 - 0.95) * progress,
-  });
-  const otherFadeAnim = useClickOtherFade(otherActive, progress);
-  // Combine animations based on Loaded state
-  const combinedStyleAnim = Loaded.current
-    ? { ...loadedStyleAnim }
-    : { ...initialStyleAnim };
-
   return (
     <InteractiveDiv
       {...utilizeProps}
       style={{
         ...Style,
-        ...otherFadeAnim,
+        ...combinedStyle,
         ...styleHeight,
-        ...combinedStyleAnim,
       }}
     >
       <QualificationMain

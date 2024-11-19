@@ -175,18 +175,19 @@
 
 // export default Affiliation;
 
-import React, { useState, useMemo, useEffect, useRef } from "react";
+import React, { useState, useMemo, useEffect } from "react";
 import { animated, useSpring, easings } from "react-spring";
 import { calculateBackgroundImage, ImageDiv, ContentDiv } from "./Components";
 import { useUtilize } from "../../Styles/useUtilize";
 import myImage from "../../../../src/Image/AcademicImg.JPG";
 import { useSelector } from "react-redux";
 import useScrollPosition from "../../General/useScrollPosition";
-import { useClickOtherFade } from "../../Styles/otherStyles";
+import { useCombinedAnimation } from "../../Styles/otherStyles";
 
 export const Affiliation = () => {
   const componentName = "Affiliation";
   const {
+    id,
     name,
     size,
     title,
@@ -202,13 +203,6 @@ export const Affiliation = () => {
   const { stages, scollableRef, toggle } = useSelector((state) => state.data);
   const height = stages ? size[0] - 10 : size[0];
   const { scrollTop } = useScrollPosition(scollableRef);
-
-  const startScroll = top - adjustViewport;
-  const endScroll = top - adjustViewport + height;
-  const progress = Math.min(
-    Math.max((scrollTop - startScroll) / (endScroll - startScroll), 0),
-    1
-  );
 
   const [otherActive, setOtherActive] = useState(false);
   useEffect(() => {
@@ -242,26 +236,6 @@ export const Affiliation = () => {
       ),
     [backgroundAnim, randomStart, openClose]
   );
-
-  const Loaded = useRef(false);
-  const initialStyleAnim = useSpring({
-    from: { opacity: 0, scale: 1.1, y: 20 },
-    to: { opacity: 1, scale: 1, y: 0 },
-    delay: 800,
-    config: { duration: 500, easing: easings.easeInQuad },
-    onRest: () => {
-      Loaded.current = true;
-    },
-  });
-  const loadedStyleAnim = useSpring({
-    opacity: 1 - progress,
-    scale: 1 - (1 - 0.95) * progress,
-  });
-  const otherFadeAnim = useClickOtherFade(otherActive, progress);
-  // Combine animations based on Loaded state
-  const combinedStyleAnim = Loaded.current
-    ? { ...loadedStyleAnim }
-    : { ...initialStyleAnim };
 
   const animatedStyle = useSpring({
     backgroundColor: "rgba(0, 0, 0, 0.3)",
@@ -315,13 +289,22 @@ export const Affiliation = () => {
       : `calc(5vh + ${top + adjustTop}px)`,
   };
 
+  const combinedStyle = useCombinedAnimation({
+    top,
+    adjustViewport,
+    size,
+    scrollTop,
+    toggle,
+    name,
+    id,
+  });
+
   return (
     <animated.div
       ref={ParentRef}
       style={{
         ...Style,
-        ...combinedStyleAnim,
-        ...otherFadeAnim,
+        ...combinedStyle,
         backgroundColor: "rgba(0, 0, 0, 0)",
         backgroundImage: "none",
       }}
