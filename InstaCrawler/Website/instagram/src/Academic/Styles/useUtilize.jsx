@@ -83,12 +83,12 @@ export const useUtilize = (componentName) => {
         const scrollThreshold = 10;
 
         if (distance < scrollThreshold) {
-          setToggle([true, name, false]);
+          !toggle[0] && setToggle([true, name, false]);
         } else {
           setToggle([false, name, false]);
         }
       } else {
-        setToggle([true, name, false]);
+        !toggle[0] && setToggle([true, name, false]);
       }
     },
     [touchStartPos, toggle, setToggle, name, isClickable]
@@ -106,6 +106,8 @@ export const useUtilize = (componentName) => {
     },
     [toggle, setToggle, name, isClickable]
   );
+
+  console.log("toggle", toggle);
 
   const handleMouseEnter = useCallback(() => {
     if (!toggle[0] && isClickable) {
