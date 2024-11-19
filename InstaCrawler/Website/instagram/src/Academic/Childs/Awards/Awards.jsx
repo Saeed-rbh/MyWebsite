@@ -98,10 +98,10 @@ const Awards = () => {
     width: stages[2]
       ? isActive
         ? "calc((100% - 5px))"
-        : "calc((100% - 5px)/2)"
+        : "calc((100% - 20px)/2)"
       : isActive
       ? `calc((100% - ${(size[1] + 100) / 5}px)/2)`
-      : `calc((100% - ${size[1] + 100}px)/2)`,
+      : `calc((100% - 10px - ${size[1] + 100}px)/2)`,
     top: `${adjustedTop}px`,
     height: stages[2]
       ? isActive

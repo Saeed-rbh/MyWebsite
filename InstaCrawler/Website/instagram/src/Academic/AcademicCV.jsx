@@ -96,7 +96,7 @@ const AcademicCV = () => {
             ? 15 + scrollEffect
             : stages[3]
             ? 10 + scrollEffect
-            : 0
+            : 20
           : 0,
       [stages, conditionStage, scrollEffect]
     ),

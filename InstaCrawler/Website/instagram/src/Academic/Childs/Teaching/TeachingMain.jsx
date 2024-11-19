@@ -15,6 +15,11 @@ const TeachingMain = ({
     marginBottom: isActive ? 10 : 0,
     marginLeft: isActive ? 0 : 10,
   });
+  const Anim = useSpring({
+    marginTop: stages[2] ? (isActive ? 35 : 20) : isActive ? 40 : 25,
+    marginLeft: 30,
+    opacity: isActive ? 1 : 0,
+  });
   const Main = useMemo(
     () =>
       List.map((Teaching, index) => (
@@ -34,7 +39,7 @@ const TeachingMain = ({
   );
   return (
     <animated.div
-      style={{ ...styles.More, marginTop: 0 }}
+      style={{ ...styles.More, ...Anim }}
       className="Awards-Details"
       ref={ParentRef}
     >
