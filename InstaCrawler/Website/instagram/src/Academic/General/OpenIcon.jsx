@@ -81,12 +81,12 @@ const OpenIcon = ({
 
   const textStyle = useSpring({
     position: "absolute",
-    top: -11,
+    top: -12,
     margin: "0 auto",
     fontSize: 8,
     width: "max-content",
     left: 85,
-    color: "#fff",
+    color: "#d49d81",
     opacity: 0.5,
   });
 
@@ -99,9 +99,11 @@ const OpenIcon = ({
       bottom: widthSplit ? 0 : 10,
       right: widthSplit ? -10 : 10,
       width: widthSplit ? 500 : 60,
-      height: widthSplit ? 25 : 60,
+      height: widthSplit ? 30 : 60,
       borderRadius: widthSplit ? 0 : 35,
-      backgroundColor: backgroundColor,
+      background: widthSplit
+        ? "linear-gradient(to right, #504d4a2e 0%, #6f3c2221 100%)"
+        : backgroundColor,
       display: "flex",
       alignItems: "center",
       justifyContent: "center",

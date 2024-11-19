@@ -23,6 +23,7 @@ const InteractiveDiv = (props) => {
     seqId,
     widthSplit,
     style,
+    openType,
   } = props;
 
   const clickableContent = useClickableContent(
@@ -33,7 +34,8 @@ const InteractiveDiv = (props) => {
     background,
     stages,
     seqId,
-    widthSplit
+    widthSplit,
+    openType
   );
 
   const eventHandlers = {

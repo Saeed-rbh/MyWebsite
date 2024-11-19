@@ -49,6 +49,7 @@ export const useUtilize = (componentName) => {
     adjustTop,
     adjustHeight,
     adjustViewport,
+    openType,
   } = data;
 
   const isActive = useMemo(() => {
@@ -150,5 +151,6 @@ export const useUtilize = (componentName) => {
     titleStyle,
     MainStyle,
     adjustViewport,
+    openType,
   };
 };

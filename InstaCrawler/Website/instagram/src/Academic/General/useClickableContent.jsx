@@ -8,13 +8,14 @@ export const useClickableContent = (
   isActive,
   handleClickClose,
   isHovered,
+  background,
   stages,
   seqId,
   widthSplit
 ) => {
   const ClickableContent = useMemo(() => {
     if (!isClickable) return null;
-    const background = "rgb(212 157 129 / 10%)";
+    const background = "#6f3c2221";
 
     return (
       <>
@@ -40,11 +41,19 @@ export const useClickableContent = (
           handleClickClose={handleClickClose}
           backgroundColor={background}
           seqId={seqId}
-          widthSplit={false}
+          widthSplit={widthSplit}
         />
       </>
     );
-  }, [isClickable, isActive, handleClickClose, isHovered, stages, seqId]);
+  }, [
+    isClickable,
+    isActive,
+    handleClickClose,
+    isHovered,
+    background,
+    stages,
+    seqId,
+  ]);
 
   return ClickableContent;
 };

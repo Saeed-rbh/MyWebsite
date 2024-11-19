@@ -13,16 +13,8 @@ const Awards = () => {
   const [adjustedTop, setAdjustedTop] = useState(0);
   const [adjustedHeight, setAdjustedHeight] = useState(0);
 
-  const {
-    size,
-    top,
-    isActive,
-    adjustViewport,
-    adjustTop,
-    adjustHeight,
-    name,
-    title,
-  } = useUtilize(componentName);
+  const { size, top, isActive, adjustViewport, adjustTop, adjustHeight, name } =
+    useUtilize(componentName);
   const { stages, scollableRef, toggle } = useSelector((state) => state.data);
   const { scrollTop } = useScrollPosition(scollableRef);
 

@@ -32,6 +32,7 @@ export const sectionProperties = [
     fixed: true,
     Rand: Math.random(),
     list: [],
+    openType: 0,
   },
   {
     id: 1,
@@ -48,6 +49,7 @@ export const sectionProperties = [
     Rand: Math.random(),
     list: [],
     isCalc: false,
+    openType: 0,
   },
   {
     id: 2,
@@ -64,6 +66,7 @@ export const sectionProperties = [
     Rand: Math.random(),
     list: ResearchInterestsList,
     isCalc: false,
+    openType: 0,
   },
   {
     id: 3,
@@ -81,6 +84,7 @@ export const sectionProperties = [
     Rand: Math.random(),
     list: QualificationsList,
     isCalc: false,
+    openType: 1,
   },
   {
     id: 4,
@@ -98,6 +102,7 @@ export const sectionProperties = [
     Rand: Math.random(),
     list: PapersList,
     isCalc: false,
+    openType: 1,
   },
   {
     id: 5,
@@ -115,6 +120,7 @@ export const sectionProperties = [
     Rand: Math.random(),
     list: SkillsList,
     isCalc: false,
+    openType: 1,
   },
   {
     id: 6,
@@ -132,6 +138,7 @@ export const sectionProperties = [
     Rand: Math.random(),
     list: ConferenceList,
     isCalc: true,
+    openType: 1,
   },
   {
     id: 7,
@@ -149,6 +156,7 @@ export const sectionProperties = [
     Rand: Math.random(),
     list: AwardsList,
     isCalc: false,
+    openType: 2,
   },
 
   {
@@ -167,5 +175,6 @@ export const sectionProperties = [
     Rand: Math.random(),
     list: TeachingList,
     isCalc: true,
+    openType: 2,
   },
 ];
