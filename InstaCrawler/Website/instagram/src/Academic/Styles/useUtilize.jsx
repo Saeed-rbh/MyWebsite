@@ -107,8 +107,6 @@ export const useUtilize = (componentName) => {
     [toggle, setToggle, name, isClickable]
   );
 
-  console.log("toggle", toggle);
-
   const handleMouseEnter = useCallback(() => {
     if (!toggle[0] && isClickable) {
       setHover([true, title]);

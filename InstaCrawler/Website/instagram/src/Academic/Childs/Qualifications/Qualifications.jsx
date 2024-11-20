@@ -26,11 +26,24 @@ function Qualifications() {
   const { stages, scollableRef, toggle } = useSelector((state) => state.data);
   const { scrollTop } = useScrollPosition(scollableRef);
 
+  // const childHeight = utilizeProps.ParentRef.current.scrollHeight - 20;
+
+  const [childHeight, setChildHeight] = useState(size[0]); // Set initial height value
+  useEffect(() => {
+    if (
+      utilizeProps.ParentRef.current &&
+      utilizeProps.ParentRef.current.scrollHeight
+    ) {
+      setChildHeight(utilizeProps.ParentRef.current.scrollHeight - 20);
+    }
+  }, []);
+
   // Determine viewport dimensions and adjust component position accordingly
   useEffect(() => {
     const viewportHeight = window.innerHeight;
     let newAdjustedTop = top + adjustViewport + (!stages[2] ? adjustTop : 0);
-    let newAdjustedHeight = size[0] + (isActive ? adjustHeight : 0);
+    // let newAdjustedHeight = size[0] + (isActive ? adjustHeight : 0);
+    let newAdjustedHeight = isActive ? childHeight : size[0];
     const ModifyTop = 80;
 
     if (isActive) {
