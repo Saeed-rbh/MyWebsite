@@ -1,9 +1,9 @@
 import React from "react";
 import {
-  PersonalInfo,
-  Affiliation,
+  // PersonalInfo,
+  // Affiliation,
   Qualifications,
-  ResearchInterests,
+  // ResearchInterests,
   // Papers,
   // Awards,
   // Skills,
@@ -13,9 +13,9 @@ import {
 
 const Sections = ({ renderSection }) => {
   const components = [
-    PersonalInfo,
-    Affiliation,
-    ResearchInterests,
+    // PersonalInfo,
+    // Affiliation,
+    // ResearchInterests,
     Qualifications,
     // Papers,
     // Skills,
