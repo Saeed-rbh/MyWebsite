@@ -13,16 +13,8 @@ function Qualifications() {
   const [adjustedTop, setAdjustedTop] = useState(0);
   const [adjustedHeight, setAdjustedHeight] = useState(0);
 
-  const {
-    id,
-    size,
-    top,
-    isActive,
-    adjustViewport,
-    adjustTop,
-    adjustHeight,
-    name,
-  } = useUtilize(componentName);
+  const { id, size, top, isActive, adjustViewport, adjustTop, name } =
+    useUtilize(componentName);
   const { stages, scollableRef, toggle } = useSelector((state) => state.data);
   const { scrollTop } = useScrollPosition(scollableRef);
 
@@ -59,7 +51,7 @@ function Qualifications() {
     }
     setAdjustedTop(newAdjustedTop);
     setAdjustedHeight(newAdjustedHeight);
-  }, [isActive, size, top, scrollTop]);
+  }, [isActive]);
 
   const Style = {
     borderRadius: "40px",
