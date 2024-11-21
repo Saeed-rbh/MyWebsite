@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useRef, useState } from "react";
 import { useSpring } from "react-spring";
 import { useUtilize } from "../../Styles/useUtilize";
 import { useSelector } from "react-redux";
@@ -6,6 +6,7 @@ import useScrollPosition from "../../General/useScrollPosition";
 import InteractiveDiv from "../Helper/InteractiveDiv";
 import QualificationMain from "./QualificationMain";
 import { useCombinedAnimation } from "../../Styles/otherStyles";
+import { useInView } from "react-intersection-observer";
 
 function Qualifications() {
   const componentName = "Qualifications";
@@ -20,39 +21,9 @@ function Qualifications() {
   const { stages, scollableRef, toggle } = useSelector((state) => state.data);
   const { scrollTop } = useScrollPosition(scollableRef);
 
-  // const [childHeight, setChildHeight] = useState(size[0]);
-  // useEffect(() => {
-  //   if (
-  //     utilizeProps.ParentRef.current &&
-  //     utilizeProps.ParentRef.current.scrollHeight
-  //   ) {
-  //     setChildHeight(utilizeProps.ParentRef.current.scrollHeight - 20);
-  //   }
-  // }, []);
-
-  // useEffect(() => {
-  //   const viewportHeight = window.innerHeight;
-  //   let newAdjustedTop = top + adjustViewport + (!stages[2] ? adjustTop : 0);
-  //   let newAdjustedHeight = isActive ? childHeight : size[0];
-  //   const ModifyTop = 100;
-
-  //   if (isActive) {
-  //     // if (
-  //     //   newAdjustedTop + newAdjustedHeight >
-  //     //   viewportHeight + scrollTop - ModifyTop
-  //     // ) {
-  //     //   newAdjustedTop =
-  //     //     Math.max(viewportHeight + scrollTop - newAdjustedHeight, scrollTop) -
-  //     //     ModifyTop;
-  //     // }
-  //     // if (newAdjustedHeight > viewportHeight) {
-  //     newAdjustedTop = scrollTop + ModifyTop;
-  //     newAdjustedHeight = viewportHeight;
-  //     // }
-  //   }
-  //   setAdjustedTop(newAdjustedTop);
-  //   setAdjustedHeight(newAdjustedHeight);
-  // }, [isActive]);
+  const { ref, inView } = useInView({
+    threshold: 0.5,
+  });
 
   const Style = {
     borderRadius: "40px",
@@ -70,16 +41,6 @@ function Qualifications() {
   const styleHeight = useSpring({
     top: isActive ? `${scrollTop + ModifyTop}px` : `${top}px`,
     height: size[0],
-    // height: isActive ? `${viewportHeight}px` : `${size[0]}px`,
-    // height: stages[2]
-    //   ? isActive
-    //     ? `${adjustedHeight + 20}px`
-    //     : `${adjustedHeight + 20}px`
-    //   : toggle[2]
-    //   ? `${adjustedHeight + 20}px`
-    //   : isActive
-    //   ? `${adjustedHeight}px`
-    //   : `${adjustedHeight}px`,
   });
 
   const combinedStyle = useCombinedAnimation({
@@ -90,7 +51,9 @@ function Qualifications() {
     toggle,
     name,
     id,
+    inView,
   });
+
   return (
     <InteractiveDiv
       {...utilizeProps}
@@ -99,6 +62,7 @@ function Qualifications() {
         ...combinedStyle,
         ...styleHeight,
       }}
+      ref={ref}
     >
       <QualificationMain
         ChildRefs={utilizeProps.ChildRefs}

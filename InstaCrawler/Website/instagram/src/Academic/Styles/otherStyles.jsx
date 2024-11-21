@@ -110,18 +110,27 @@ export const useMoreStyle = (isActive, fixed, stages) => {
 //   });
 // };
 
-export const useClickOtherFade = (otherActive, progress) => {
+export const useClickOtherFade = (otherActive, progress, inView) => {
   const [blur, setBlur] = useState(0);
+  const [opacity, setOpacity] = useState(1);
+  const [scale, setScale] = useState(1);
 
   useEffect(() => {
-    // Calculate the blur value based on the conditions
-    const blurValue = otherActive && progress !== 1 ? 20 : 5 * progress;
-    setBlur(blurValue);
+    if (inView) {
+      const blurValue = otherActive && progress !== 1 ? 10 : 5 * progress;
+      const opacityValue = otherActive && progress !== 1 ? 0.5 : 1;
+      const scaleValue = otherActive && progress !== 1 ? 0.95 : 1;
+      setBlur(blurValue);
+      setOpacity(opacityValue);
+      setScale(scaleValue);
+    }
   }, [otherActive, progress]);
 
   // Return the blur value and CSS styles with smooth transition
   return {
     style: {
+      transform: `scale(${scale})`,
+      opacity: opacity,
       filter: `blur(${blur}px)`,
       transition: "filter 0.3s ease", // Smooth transition for the blur effect
     },
@@ -136,6 +145,7 @@ export const useCombinedAnimation = ({
   toggle,
   name,
   id,
+  inView,
 }) => {
   const Loaded = useRef(false);
 
@@ -166,15 +176,15 @@ export const useCombinedAnimation = ({
   });
 
   const loadedStyleAnim = useSpring({
-    opacity: 1 - progress,
-    scale: 1 - (1 - 0.95) * progress,
+    opacity: inView ? 1 - progress : 0,
+    scale: inView ? 1 - (1 - 0.95) * progress : 1,
   });
 
-  const otherFadeAnim = useClickOtherFade(otherActive, progress);
+  const otherFadeAnim = useClickOtherFade(otherActive, progress, inView);
 
   const combinedStyleAnim = Loaded.current
-    ? { ...loadedStyleAnim, ...otherFadeAnim.style }
-    : { ...initialStyleAnim, ...otherFadeAnim.style };
+    ? { ...otherFadeAnim.style }
+    : { ...initialStyleAnim };
 
   return combinedStyleAnim;
 };
@@ -221,4 +231,36 @@ export const calculateAdjustedTop = ({
   }
 
   return newAdjustedTop;
+};
+
+export const useInView = ({
+  ref,
+  root = null,
+  rootMargin = "0px",
+  threshold = 0.1,
+}) => {
+  const [isInView, setIsInView] = useState(false);
+
+  useEffect(() => {
+    if (!ref?.current) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIsInView(entry.isIntersecting); // Check if the element is in view
+      },
+      {
+        root, // Set the scrollable parent as the root
+        rootMargin, // Margin around the root
+        threshold, // Percentage of visibility required
+      }
+    );
+
+    observer.observe(ref.current);
+
+    return () => {
+      observer.disconnect(); // Clean up observer on unmount
+    };
+  }, [ref, root, rootMargin, threshold]); // Dependencies include observer options
+
+  return isInView;
 };
