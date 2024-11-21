@@ -37,8 +37,8 @@ function Qualifications() {
         childRef: utilizeProps.ParentRef,
       });
     }
-    return size[0];
-  }, [utilizeProps?.ParentRef, size]);
+    return null;
+  }, [utilizeProps?.ParentRef?.current, size]);
   useEffect(() => {
     const { activeHeight, notActiveHeight } = calculatedHeights;
     const adjustedTop = calculateAdjustedTop({
