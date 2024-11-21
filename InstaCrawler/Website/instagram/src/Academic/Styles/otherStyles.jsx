@@ -163,13 +163,11 @@ export const useCombinedAnimation = ({
 };
 
 export const calculateAdjustedHeight = ({ height, childRef }) => {
-  // Determine the child height
   let activeHeight = height;
   if (childRef?.current && childRef.current.scrollHeight) {
     activeHeight = childRef.current.scrollHeight - 20;
   }
   const notActiveHeight = height;
-  // Return both active and original heights
   return { activeHeight, notActiveHeight };
 };
 
@@ -185,7 +183,6 @@ export const calculateAdjustedTop = ({
   const viewportHeight = window.innerHeight;
   const ModifyTop = 100;
 
-  // Calculate adjustedTop based on the provided logic
   let newAdjustedTop = top + adjustViewport + (!stages[2] ? adjustTop : 0);
 
   const topCheck =

@@ -19,7 +19,7 @@ const InteractiveDiv = (props) => {
     handleMouseDown,
     handleMouseEnter,
     handleMouseLeave,
-    MainStyle,
+    // MainStyle,
     seqId,
     widthSplit,
     style,
@@ -72,7 +72,7 @@ const InteractiveDiv = (props) => {
       <animated.h1 style={h1Style} ref={TextRef}>
         {title}
       </animated.h1>
-      <animated.div style={MainStyle}>{props.children}</animated.div>
+      <animated.div>{props.children}</animated.div>
     </animated.div>
   );
 };

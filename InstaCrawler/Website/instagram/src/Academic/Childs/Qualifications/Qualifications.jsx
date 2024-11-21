@@ -15,16 +15,8 @@ function Qualifications() {
   const componentName = "Qualifications";
   const utilizeProps = useUtilize(componentName);
 
-  const {
-    id,
-    size,
-    top,
-    isActive,
-    adjustViewport,
-    adjustTop,
-    adjustHeight,
-    name,
-  } = useUtilize(componentName);
+  const { id, size, top, isActive, adjustViewport, adjustTop, name } =
+    useUtilize(componentName);
   const { stages, scollableRef, toggle } = useSelector((state) => state.data);
   const { scrollTop } = useScrollPosition(scollableRef);
 
