@@ -103,11 +103,29 @@ export const useMoreStyle = (isActive, fixed, stages) => {
   });
 };
 
+// export const useClickOtherFade = (otherActive, progress) => {
+//   return useSpring({
+//     filter:
+//       otherActive && progress !== 1 ? "blur(20px)" : `blur(${5 * progress}px)`,
+//   });
+// };
+
 export const useClickOtherFade = (otherActive, progress) => {
-  return useSpring({
-    filter:
-      otherActive && progress !== 1 ? "blur(20px)" : `blur(${5 * progress}px)`,
-  });
+  const [blur, setBlur] = useState(0);
+
+  useEffect(() => {
+    // Calculate the blur value based on the conditions
+    const blurValue = otherActive && progress !== 1 ? 20 : 5 * progress;
+    setBlur(blurValue);
+  }, [otherActive, progress]);
+
+  // Return the blur value and CSS styles with smooth transition
+  return {
+    style: {
+      filter: `blur(${blur}px)`,
+      transition: "filter 0.3s ease", // Smooth transition for the blur effect
+    },
+  };
 };
 
 export const useCombinedAnimation = ({
@@ -154,10 +172,9 @@ export const useCombinedAnimation = ({
 
   const otherFadeAnim = useClickOtherFade(otherActive, progress);
 
-  // Combine animations based on Loaded state
   const combinedStyleAnim = Loaded.current
-    ? { ...loadedStyleAnim, ...otherFadeAnim }
-    : { ...initialStyleAnim, ...otherFadeAnim };
+    ? { ...loadedStyleAnim, ...otherFadeAnim.style }
+    : { ...initialStyleAnim, ...otherFadeAnim.style };
 
   return combinedStyleAnim;
 };
