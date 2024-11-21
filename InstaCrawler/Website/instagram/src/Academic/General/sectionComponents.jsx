@@ -72,7 +72,7 @@ export const sectionProperties = [
     title: "Qualifications",
     background: "rgb(0 0 0 / 30%)",
     padding: [15, 30, 15, 20],
-    size: [180, 450],
+    size: [190, 450],
     top: 5 + 540 + 30,
     adjustTop: -540 - 30,
     adjustHeight: 250,
