@@ -175,11 +175,6 @@ export const useCombinedAnimation = ({
     },
   });
 
-  const loadedStyleAnim = useSpring({
-    opacity: inView ? 1 - progress : 0,
-    scale: inView ? 1 - (1 - 0.95) * progress : 1,
-  });
-
   const otherFadeAnim = useClickOtherFade(otherActive, progress, inView);
 
   const combinedStyleAnim = Loaded.current
@@ -192,7 +187,7 @@ export const useCombinedAnimation = ({
 export const calculateAdjustedHeight = ({ height, childRef }) => {
   let activeHeight = height;
   if (childRef?.current && childRef.current.scrollHeight) {
-    activeHeight = childRef.current.scrollHeight - 20;
+    activeHeight = childRef.current.scrollHeight;
   }
   const notActiveHeight = height;
   return { activeHeight, notActiveHeight };
