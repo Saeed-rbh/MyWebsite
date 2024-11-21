@@ -118,8 +118,8 @@ export const useClickOtherFade = (otherActive, progress, inView) => {
   useEffect(() => {
     if (inView) {
       const blurValue = otherActive && progress !== 1 ? 10 : 5 * progress;
-      const opacityValue = otherActive && progress !== 1 ? 0.5 : 1;
-      const scaleValue = otherActive && progress !== 1 ? 0.95 : 1;
+      const opacityValue = otherActive && progress !== 1 ? 0 : 1;
+      const scaleValue = otherActive && progress !== 1 ? 0.9 : 1;
       setBlur(blurValue);
       setOpacity(opacityValue);
       setScale(scaleValue);
@@ -131,8 +131,8 @@ export const useClickOtherFade = (otherActive, progress, inView) => {
     style: {
       transform: `scale(${scale})`,
       opacity: opacity,
-      filter: `blur(${blur}px)`,
-      transition: "filter 0.3s ease", // Smooth transition for the blur effect
+      // filter: `blur(${blur}px)`,
+      transition: "opacity 0.5s ease, transform 0.5s ease", // Smooth transition for the blur effect
     },
   };
 };
@@ -185,11 +185,19 @@ export const useCombinedAnimation = ({
 };
 
 export const calculateAdjustedHeight = ({ height, childRef }) => {
+  const viewportHeight = window.innerHeight;
   let activeHeight = height;
   if (childRef?.current && childRef.current.scrollHeight) {
-    activeHeight = childRef.current.scrollHeight;
+    if (viewportHeight > childRef.current.scrollHeight) {
+      activeHeight = childRef.current.scrollHeight;
+    } else {
+      activeHeight = viewportHeight - 200;
+    }
   }
+  console.log();
+
   const notActiveHeight = height;
+
   return { activeHeight, notActiveHeight };
 };
 

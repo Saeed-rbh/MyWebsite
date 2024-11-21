@@ -1,5 +1,6 @@
 import React from "react";
 import { useSpring, animated } from "react-spring";
+import { useSelector } from "react-redux";
 
 const QualificationItem = ({ qualification, refStyle, style, titleStyle }) => (
   <animated.div ref={refStyle} style={style} className="Quali">
@@ -17,13 +18,9 @@ const QualificationItem = ({ qualification, refStyle, style, titleStyle }) => (
   </animated.div>
 );
 
-const QualificationMain = ({
-  ChildRefs,
-  ParentRef,
-  List,
-  isActive,
-  toggle,
-}) => {
+const QualificationMain = ({ ChildRefs, ParentRef, List, isActive }) => {
+  const { toggle } = useSelector((state) => state.data);
+
   const style = useSpring({
     display: "flex",
     marginTop: toggle[0] ? 0 : 50,

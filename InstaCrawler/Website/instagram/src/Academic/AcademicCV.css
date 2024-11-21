@@ -551,6 +551,7 @@
   position: absolute;
   z-index: 12;
   border-radius: 40px;
+  overflow: hidden;
 }
 /* 
 .Qualifications {

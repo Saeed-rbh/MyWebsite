@@ -11,6 +11,7 @@ const MoreInfoPapers = ({
   stages,
 }) => {
   const CloseOpenStylePapers = useSpring({
+    overflow: "auto",
     top: isActive
       ? stages[2]
         ? "160px"

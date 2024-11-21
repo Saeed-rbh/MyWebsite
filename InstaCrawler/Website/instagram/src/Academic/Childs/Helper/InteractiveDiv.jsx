@@ -80,8 +80,6 @@ const InteractiveDiv = (props) => {
     });
   }, [size[0], ParentRef.current]);
 
-  console.log(notActiveHeight, activeHeight);
-
   const Style = {
     borderRadius: "40px",
     cursor: "pointer",
@@ -90,9 +88,8 @@ const InteractiveDiv = (props) => {
     backgroundColor: "rgba(0, 0, 0, 0.3)",
     width: stages[2] ? "calc(100% - 5px)" : `calc(100% - ${size[1] + 100}px)`,
     border: "2px solid rgba(212, 157, 129, 0.2)",
-    zIndex: "10",
     left: stages[2] ? "0px" : "500px",
-    overflow: activeHeight > window.innerHeight ? "auto" : "hidden",
+    overflow: "hidden",
   };
 
   useEffect(() => {
