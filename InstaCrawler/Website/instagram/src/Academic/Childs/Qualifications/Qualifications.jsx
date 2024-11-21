@@ -1,17 +1,19 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useMemo } from "react";
 import { useSpring } from "react-spring";
 import { useUtilize } from "../../Styles/useUtilize";
 import { useSelector } from "react-redux";
 import useScrollPosition from "../../General/useScrollPosition";
 import InteractiveDiv from "../Helper/InteractiveDiv";
 import QualificationMain from "./QualificationMain";
-import { useCombinedAnimation } from "../../Styles/otherStyles";
+import {
+  useCombinedAnimation,
+  calculateAdjustedHeight,
+  calculateAdjustedTop,
+} from "../../Styles/otherStyles";
 
 function Qualifications() {
   const componentName = "Qualifications";
   const utilizeProps = useUtilize(componentName);
-  const [adjustedTop, setAdjustedTop] = useState(0);
-  const [adjustedHeight, setAdjustedHeight] = useState(0);
 
   const {
     id,
@@ -26,46 +28,31 @@ function Qualifications() {
   const { stages, scollableRef, toggle } = useSelector((state) => state.data);
   const { scrollTop } = useScrollPosition(scollableRef);
 
-  // const childHeight = utilizeProps.ParentRef.current.scrollHeight - 20;
-
-  const [childHeight, setChildHeight] = useState(size[0]); // Set initial height value
-  useEffect(() => {
-    if (
-      utilizeProps.ParentRef.current &&
-      utilizeProps.ParentRef.current.scrollHeight
-    ) {
-      setChildHeight(utilizeProps.ParentRef.current.scrollHeight - 20);
+  const [adjustedTop, setAdjustedTop] = useState(0);
+  const [adjustedHeight, setAdjustedHeight] = useState(size[0]);
+  const calculatedHeights = useMemo(() => {
+    if (utilizeProps?.ParentRef) {
+      return calculateAdjustedHeight({
+        height: size[0],
+        childRef: utilizeProps.ParentRef,
+      });
     }
-  }, []);
-
-  // Determine viewport dimensions and adjust component position accordingly
+    return size[0];
+  }, [utilizeProps?.ParentRef, size]);
   useEffect(() => {
-    const viewportHeight = window.innerHeight;
-    let newAdjustedTop = top + adjustViewport + (!stages[2] ? adjustTop : 0);
-    // let newAdjustedHeight = size[0] + (isActive ? adjustHeight : 0);
-    let newAdjustedHeight = isActive ? childHeight : size[0];
-    const ModifyTop = 80;
-
-    if (isActive) {
-      if (
-        newAdjustedTop + newAdjustedHeight >
-        viewportHeight + scrollTop - ModifyTop
-      ) {
-        // If the component bottom goes out of view, adjust the top position
-        newAdjustedTop =
-          Math.max(viewportHeight + scrollTop - newAdjustedHeight, scrollTop) -
-          ModifyTop;
-      }
-      if (newAdjustedHeight > viewportHeight) {
-        // If the component is taller than the viewport, set the top to current scroll position and allow scrolling
-        newAdjustedTop = scrollTop;
-        newAdjustedHeight = viewportHeight;
-      }
-    }
-
-    setAdjustedTop(newAdjustedTop);
-    setAdjustedHeight(newAdjustedHeight);
-  }, [isActive, size, top, scrollTop]);
+    const { activeHeight, notActiveHeight } = calculatedHeights;
+    const adjustedTop = calculateAdjustedTop({
+      top: top,
+      adjustViewport: adjustViewport,
+      adjustTop: adjustTop,
+      stages: stages,
+      isActive: isActive,
+      scrollTop: scrollTop,
+      newAdjustedHeight: isActive ? activeHeight : notActiveHeight,
+    });
+    setAdjustedTop(adjustedTop);
+    setAdjustedHeight(isActive ? activeHeight : notActiveHeight);
+  }, [isActive]);
 
   const Style = {
     borderRadius: "40px",

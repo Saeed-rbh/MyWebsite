@@ -4,11 +4,11 @@ import {
   Affiliation,
   Qualifications,
   ResearchInterests,
-  Papers,
-  Awards,
-  Skills,
-  Conference,
-  Teaching,
+  // Papers,
+  // Awards,
+  // Skills,
+  // Conference,
+  // Teaching,
 } from "./sectionComponents";
 
 const Sections = ({ renderSection }) => {
@@ -17,11 +17,11 @@ const Sections = ({ renderSection }) => {
     Affiliation,
     ResearchInterests,
     Qualifications,
-    Papers,
-    Skills,
-    Awards,
-    Conference,
-    Teaching,
+    // Papers,
+    // Skills,
+    // Awards,
+    // Conference,
+    // Teaching,
   ];
 
   return (

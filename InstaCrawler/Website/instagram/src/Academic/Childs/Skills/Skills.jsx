@@ -1,112 +1,130 @@
-import React, { useEffect, useState } from "react";
-import SkillsMain from "./SkillsMain";
-import { useUtilize } from "../../Styles/useUtilize";
-import InteractiveDiv from "../Helper/InteractiveDiv";
-import { useSelector } from "react-redux";
-import { useSpring, easings } from "react-spring";
-import useScrollPosition from "../../General/useScrollPosition";
-import { useCombinedAnimation } from "../../Styles/otherStyles";
+// import React, { useEffect, useState } from "react";
+// import SkillsMain from "./SkillsMain";
+// import { useUtilize } from "../../Styles/useUtilize";
+// import InteractiveDiv from "../Helper/InteractiveDiv";
+// import { useSelector } from "react-redux";
+// import { useSpring, easings } from "react-spring";
+// import useScrollPosition from "../../General/useScrollPosition";
+// import { useCombinedAnimation } from "../../Styles/otherStyles";
 
-const Skills = () => {
-  const componentName = "Skill & Software";
-  const utilizeProps = useUtilize(componentName);
-  const [adjustedTop, setAdjustedTop] = useState(0);
-  const [adjustedHeight, setAdjustedHeight] = useState(0);
+// const Skills = () => {
+//   const componentName = "Skill & Software";
+//   const utilizeProps = useUtilize(componentName);
+//   // const [adjustedTop, setAdjustedTop] = useState(0);
+//   // const [adjustedHeight, setAdjustedHeight] = useState(0);
 
-  const {
-    size,
-    top,
-    isActive,
-    adjustViewport,
-    adjustTop,
-    adjustHeight,
-    name,
-    id,
-  } = useUtilize(componentName);
-  const { stages, scollableRef, toggle } = useSelector((state) => state.data);
-  const { scrollTop } = useScrollPosition(scollableRef);
+//   const {
+//     size,
+//     top,
+//     isActive,
+//     adjustViewport,
+//     adjustTop,
+//     adjustHeight,
+//     name,
+//     id,
+//   } = useUtilize(componentName);
+//   const { stages, scollableRef, toggle } = useSelector((state) => state.data);
+//   const { scrollTop } = useScrollPosition(scollableRef);
 
-  // Determine viewport dimensions and adjust component position accordingly
-  useEffect(() => {
-    const viewportHeight = window.innerHeight;
-    let newAdjustedTop = top + adjustViewport + (!stages[2] ? adjustTop : 0);
-    let newAdjustedHeight = size[0] + (isActive ? adjustHeight : 0);
-    const ModifyTop = 80;
+//   // // Determine viewport dimensions and adjust component position accordingly
+//   // useEffect(() => {
+//   //   const viewportHeight = window.innerHeight;
+//   //   let newAdjustedTop = top + adjustViewport + (!stages[2] ? adjustTop : 0);
+//   //   let newAdjustedHeight = size[0] + (isActive ? adjustHeight : 0);
+//   //   const ModifyTop = 80;
 
-    if (isActive) {
-      if (
-        newAdjustedTop + newAdjustedHeight >
-        viewportHeight + scrollTop - ModifyTop
-      ) {
-        // If the component bottom goes out of view, adjust the top position
-        newAdjustedTop =
-          Math.max(viewportHeight + scrollTop - newAdjustedHeight, scrollTop) -
-          ModifyTop;
-      }
-      if (newAdjustedHeight > viewportHeight) {
-        // If the component is taller than the viewport, set the top to current scroll position and allow scrolling
-        newAdjustedTop = scrollTop + ModifyTop;
-        newAdjustedHeight = viewportHeight;
-      }
-    }
+//   //   if (isActive) {
+//   //     if (
+//   //       newAdjustedTop + newAdjustedHeight >
+//   //       viewportHeight + scrollTop - ModifyTop
+//   //     ) {
+//   //       // If the component bottom goes out of view, adjust the top position
+//   //       newAdjustedTop =
+//   //         Math.max(viewportHeight + scrollTop - newAdjustedHeight, scrollTop) -
+//   //         ModifyTop;
+//   //     }
+//   //     if (newAdjustedHeight > viewportHeight) {
+//   //       // If the component is taller than the viewport, set the top to current scroll position and allow scrolling
+//   //       newAdjustedTop = scrollTop + ModifyTop;
+//   //       newAdjustedHeight = viewportHeight;
+//   //     }
+//   //   }
 
-    setAdjustedTop(newAdjustedTop);
-    setAdjustedHeight(newAdjustedHeight);
-  }, [isActive, size, top, scrollTop]);
+//   //   setAdjustedTop(newAdjustedTop);
+//   //   setAdjustedHeight(newAdjustedHeight);
+//   // }, [isActive, size, top, scrollTop]);
 
-  const Style = {
-    borderRadius: "40px",
-    cursor: "pointer",
-    filter: "blur(0px)",
-    opacity: "1",
-    backgroundColor: "rgba(0, 0, 0, 0.3)",
-    // width: stages[2] ? "calc(100% - 5px)" : `calc(100% - ${size[1] + 100}px)`,
-    width: stages[2] ? "calc(100% - 5px)" : `${size[1]}px`,
-    border: "2px solid rgba(212, 157, 129, 0.2)",
-    zIndex: "10",
-    left: stages[2] ? "0px" : "35px",
-    overflow: adjustedHeight > window.innerHeight ? "auto" : "hidden",
-  };
+//   const [adjustedTop, setAdjustedTop] = useState(0);
+//   const [adjustedHeight, setAdjustedHeight] = useState(size[0]);
+//   useEffect(() => {
+//     const { adjustedTop, adjustedHeight } = calculateAdjustedPosition({
+//       top: top,
+//       adjustViewport: adjustViewport,
+//       adjustTop: adjustTop,
+//       adjustHeight: adjustHeight,
+//       stages: stages,
+//       isActive: isActive,
+//       height: size[0],
+//       scrollTop: scrollTop,
+//       childRef: utilizeProps.ParentRef,
+//     });
+//     setAdjustedTop(adjustedTop);
+//     setAdjustedHeight(adjustedHeight);
+//   }, [isActive]);
 
-  const styleHeight = useSpring({
-    top: `${adjustedTop}px`,
-    height: stages[2]
-      ? isActive
-        ? `${adjustedHeight + 20}px`
-        : `${adjustedHeight + 20}px`
-      : toggle[2]
-      ? `${adjustedHeight + 20}px`
-      : isActive
-      ? `${adjustedHeight}px`
-      : `${adjustedHeight}px`,
-  });
+//   const Style = {
+//     borderRadius: "40px",
+//     cursor: "pointer",
+//     filter: "blur(0px)",
+//     opacity: "1",
+//     backgroundColor: "rgba(0, 0, 0, 0.3)",
+//     // width: stages[2] ? "calc(100% - 5px)" : `calc(100% - ${size[1] + 100}px)`,
+//     width: stages[2] ? "calc(100% - 5px)" : `${size[1]}px`,
+//     border: "2px solid rgba(212, 157, 129, 0.2)",
+//     zIndex: "10",
+//     left: stages[2] ? "0px" : "35px",
+//     overflow: adjustedHeight > window.innerHeight ? "auto" : "hidden",
+//   };
 
-  const combinedStyle = useCombinedAnimation({
-    top,
-    adjustViewport,
-    size,
-    scrollTop,
-    toggle,
-    name,
-    id,
-  });
+//   const styleHeight = useSpring({
+//     top: `${adjustedTop}px`,
+//     height: stages[2]
+//       ? isActive
+//         ? `${adjustedHeight + 20}px`
+//         : `${adjustedHeight + 20}px`
+//       : toggle[2]
+//       ? `${adjustedHeight + 20}px`
+//       : isActive
+//       ? `${adjustedHeight}px`
+//       : `${adjustedHeight}px`,
+//   });
 
-  return (
-    <InteractiveDiv
-      {...utilizeProps}
-      style={{ ...Style, ...combinedStyle, ...styleHeight }}
-    >
-      <SkillsMain
-        ChildRefs={utilizeProps.ChildRefs}
-        styles={utilizeProps.styles}
-        ParentRef={utilizeProps.ParentRef}
-        List={utilizeProps.list}
-        title={utilizeProps.title}
-        stages={utilizeProps.stages}
-        isActive={isActive}
-      />
-    </InteractiveDiv>
-  );
-};
+//   const combinedStyle = useCombinedAnimation({
+//     top,
+//     adjustViewport,
+//     size,
+//     scrollTop,
+//     toggle,
+//     name,
+//     id,
+//   });
 
-export default Skills;
+//   return (
+//     <InteractiveDiv
+//       {...utilizeProps}
+//       style={{ ...Style, ...combinedStyle, ...styleHeight }}
+//     >
+//       <SkillsMain
+//         ChildRefs={utilizeProps.ChildRefs}
+//         styles={utilizeProps.styles}
+//         ParentRef={utilizeProps.ParentRef}
+//         List={utilizeProps.list}
+//         title={utilizeProps.title}
+//         stages={utilizeProps.stages}
+//         isActive={isActive}
+//       />
+//     </InteractiveDiv>
+//   );
+// };
+
+// export default Skills;

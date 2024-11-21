@@ -1,7 +1,6 @@
 import { useSpring, easings } from "react-spring";
-import { useMemo, useState } from "react";
+import { useMemo, useState, useEffect, useRef } from "react";
 import { useSelector } from "react-redux";
-import { useRef, useEffect } from "react";
 
 // Hook for second text style
 export const useSecondTextStyle = (isActive, stages) => {
@@ -161,4 +160,99 @@ export const useCombinedAnimation = ({
     : { ...initialStyleAnim, ...otherFadeAnim };
 
   return combinedStyleAnim;
+};
+
+// export const calculateAdjustedPosition = ({
+//   top,
+//   adjustViewport,
+//   adjustTop,
+//   stages,
+//   isActive,
+//   height,
+//   scrollTop,
+//   childRef,
+// }) => {
+//   const viewportHeight = window.innerHeight;
+//   const ModifyTop = 100;
+
+//   // Determine the child height
+//   let childHeight = height;
+//   if (childRef.current && childRef.current.scrollHeight) {
+//     childHeight = childRef.current.scrollHeight - 20;
+//   }
+
+//   // Calculate adjustedTop and adjustedHeight based on the provided logic
+//   let newAdjustedTop = top + adjustViewport + (!stages[2] ? adjustTop : 0);
+//   let newAdjustedHeight = isActive ? childHeight : height;
+
+//   const topCheck =
+//     scrollTop -
+//     top +
+//     adjustViewport +
+//     (!stages[2] ? adjustTop : 0) +
+//     childHeight -
+//     1.5 * ModifyTop;
+
+//   if (isActive) {
+//     if (topCheck < 0) {
+//       newAdjustedTop = newAdjustedTop + topCheck;
+//     } else if (newAdjustedHeight > viewportHeight) {
+//       newAdjustedTop =
+//         Math.max(viewportHeight + scrollTop - newAdjustedHeight, scrollTop) +
+//         ModifyTop;
+//       newAdjustedHeight = viewportHeight;
+//     }
+//   }
+
+//   return {
+//     adjustedTop: newAdjustedTop,
+//     adjustedHeight: newAdjustedHeight,
+//   };
+// };
+
+export const calculateAdjustedHeight = ({ height, childRef }) => {
+  // Determine the child height
+  let activeHeight = height;
+  if (childRef?.current && childRef.current.scrollHeight) {
+    activeHeight = childRef.current.scrollHeight - 20;
+  }
+  const notActiveHeight = height;
+  // Return both active and original heights
+  return { activeHeight, notActiveHeight };
+};
+
+export const calculateAdjustedTop = ({
+  top,
+  adjustViewport,
+  adjustTop,
+  stages,
+  isActive,
+  scrollTop,
+  newAdjustedHeight,
+}) => {
+  const viewportHeight = window.innerHeight;
+  const ModifyTop = 100;
+
+  // Calculate adjustedTop based on the provided logic
+  let newAdjustedTop = top + adjustViewport + (!stages[2] ? adjustTop : 0);
+
+  const topCheck =
+    scrollTop -
+    top +
+    adjustViewport +
+    (!stages[2] ? adjustTop : 0) +
+    newAdjustedHeight -
+    1.5 * ModifyTop;
+
+  if (isActive) {
+    if (topCheck < 0) {
+      newAdjustedTop = newAdjustedTop + topCheck;
+    } else if (newAdjustedHeight > viewportHeight) {
+      newAdjustedTop =
+        Math.max(viewportHeight + scrollTop - newAdjustedHeight, scrollTop) +
+        ModifyTop;
+    }
+  }
+
+  return newAdjustedTop;
 };
