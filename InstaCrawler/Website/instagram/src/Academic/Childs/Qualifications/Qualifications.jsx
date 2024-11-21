@@ -10,6 +10,8 @@ import { useCombinedAnimation } from "../../Styles/otherStyles";
 function Qualifications() {
   const componentName = "Qualifications";
   const utilizeProps = useUtilize(componentName);
+  const ModifyTop = 100;
+  const viewportHeight = window.innerHeight;
   const [adjustedTop, setAdjustedTop] = useState(0);
   const [adjustedHeight, setAdjustedHeight] = useState(0);
 
@@ -28,29 +30,29 @@ function Qualifications() {
     }
   }, []);
 
-  useEffect(() => {
-    const viewportHeight = window.innerHeight;
-    let newAdjustedTop = top + adjustViewport + (!stages[2] ? adjustTop : 0);
-    let newAdjustedHeight = isActive ? childHeight : size[0];
-    const ModifyTop = 100;
+  // useEffect(() => {
+  //   const viewportHeight = window.innerHeight;
+  //   let newAdjustedTop = top + adjustViewport + (!stages[2] ? adjustTop : 0);
+  //   let newAdjustedHeight = isActive ? childHeight : size[0];
+  //   const ModifyTop = 100;
 
-    if (isActive) {
-      // if (
-      //   newAdjustedTop + newAdjustedHeight >
-      //   viewportHeight + scrollTop - ModifyTop
-      // ) {
-      //   newAdjustedTop =
-      //     Math.max(viewportHeight + scrollTop - newAdjustedHeight, scrollTop) -
-      //     ModifyTop;
-      // }
-      // if (newAdjustedHeight > viewportHeight) {
-      newAdjustedTop = scrollTop + ModifyTop;
-      newAdjustedHeight = viewportHeight;
-      // }
-    }
-    setAdjustedTop(newAdjustedTop);
-    setAdjustedHeight(newAdjustedHeight);
-  }, [isActive]);
+  //   if (isActive) {
+  //     // if (
+  //     //   newAdjustedTop + newAdjustedHeight >
+  //     //   viewportHeight + scrollTop - ModifyTop
+  //     // ) {
+  //     //   newAdjustedTop =
+  //     //     Math.max(viewportHeight + scrollTop - newAdjustedHeight, scrollTop) -
+  //     //     ModifyTop;
+  //     // }
+  //     // if (newAdjustedHeight > viewportHeight) {
+  //     newAdjustedTop = scrollTop + ModifyTop;
+  //     newAdjustedHeight = viewportHeight;
+  //     // }
+  //   }
+  //   setAdjustedTop(newAdjustedTop);
+  //   setAdjustedHeight(newAdjustedHeight);
+  // }, [isActive]);
 
   const Style = {
     borderRadius: "40px",
@@ -66,16 +68,17 @@ function Qualifications() {
   };
 
   const styleHeight = useSpring({
-    top: `${adjustedTop}px`,
-    height: stages[2]
-      ? isActive
-        ? `${adjustedHeight + 20}px`
-        : `${adjustedHeight + 20}px`
-      : toggle[2]
-      ? `${adjustedHeight + 20}px`
-      : isActive
-      ? `${adjustedHeight}px`
-      : `${adjustedHeight}px`,
+    top: isActive ? `${scrollTop + ModifyTop}px` : `${top}px`,
+    height: isActive ? `${viewportHeight}px` : `${size[0]}px`,
+    // height: stages[2]
+    //   ? isActive
+    //     ? `${adjustedHeight + 20}px`
+    //     : `${adjustedHeight + 20}px`
+    //   : toggle[2]
+    //   ? `${adjustedHeight + 20}px`
+    //   : isActive
+    //   ? `${adjustedHeight}px`
+    //   : `${adjustedHeight}px`,
   });
 
   const combinedStyle = useCombinedAnimation({
