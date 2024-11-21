@@ -21,8 +21,8 @@ function Qualifications() {
   const { scrollTop } = useScrollPosition(scollableRef);
 
   const [adjustedTop, setAdjustedTop] = useState(0);
-  const [adjustedHeight, setAdjustedHeight] = useState(size[0]);
-  const calculatedHeights = useMemo(() => {
+
+  const { activeHeight, notActiveHeight } = useMemo(() => {
     if (utilizeProps?.ParentRef) {
       return calculateAdjustedHeight({
         height: size[0],
@@ -32,7 +32,6 @@ function Qualifications() {
     return null;
   }, [utilizeProps?.ParentRef?.current, size]);
   useEffect(() => {
-    const { activeHeight, notActiveHeight } = calculatedHeights;
     const adjustedTop = calculateAdjustedTop({
       top: top,
       adjustViewport: adjustViewport,
@@ -43,7 +42,6 @@ function Qualifications() {
       newAdjustedHeight: isActive ? activeHeight : notActiveHeight,
     });
     setAdjustedTop(adjustedTop);
-    setAdjustedHeight(isActive ? activeHeight : notActiveHeight);
   }, [isActive]);
 
   const Style = {
@@ -56,20 +54,20 @@ function Qualifications() {
     border: "2px solid rgba(212, 157, 129, 0.2)",
     zIndex: "10",
     left: stages[2] ? "0px" : "500px",
-    overflow: adjustedHeight > window.innerHeight ? "auto" : "hidden",
+    overflow: activeHeight > window.innerHeight ? "auto" : "hidden",
   };
 
   const styleHeight = useSpring({
     top: `${adjustedTop}px`,
     height: stages[2]
       ? isActive
-        ? `${adjustedHeight + 20}px`
-        : `${adjustedHeight + 20}px`
+        ? `${activeHeight + 20}px`
+        : `${notActiveHeight + 20}px`
       : toggle[2]
-      ? `${adjustedHeight + 20}px`
+      ? `${notActiveHeight + 20}px`
       : isActive
-      ? `${adjustedHeight}px`
-      : `${adjustedHeight}px`,
+      ? `${activeHeight}px`
+      : `${notActiveHeight}px`,
   });
 
   const combinedStyle = useCombinedAnimation({
