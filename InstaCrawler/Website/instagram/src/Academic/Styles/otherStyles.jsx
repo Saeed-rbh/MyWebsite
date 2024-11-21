@@ -179,8 +179,8 @@ export const calculateAdjustedTop = ({
   isActive,
   scrollTop,
   newAdjustedHeight,
+  viewportHeight,
 }) => {
-  const viewportHeight = window.innerHeight;
   const ModifyTop = 100;
 
   let newAdjustedTop = top + adjustViewport + (!stages[2] ? adjustTop : 0);

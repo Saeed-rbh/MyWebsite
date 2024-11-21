@@ -22,6 +22,7 @@ function Qualifications() {
 
   const [adjustedTop, setAdjustedTop] = useState(0);
 
+  const viewportHeight = useMemo(() => window.innerHeight, []);
   const { activeHeight, notActiveHeight } = useMemo(() => {
     if (utilizeProps?.ParentRef) {
       return calculateAdjustedHeight({
@@ -40,6 +41,7 @@ function Qualifications() {
       isActive: isActive,
       scrollTop: scrollTop,
       newAdjustedHeight: isActive ? activeHeight : notActiveHeight,
+      viewportHeight: viewportHeight,
     });
     setAdjustedTop(adjustedTop);
   }, [isActive]);
