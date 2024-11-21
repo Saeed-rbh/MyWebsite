@@ -164,10 +164,10 @@ function Qualifications() {
                 scrollTop
               ) - ModifyTop;
           }
-          if (newAdjustedHeight > viewportHeight) {
-            newAdjustedTop = scrollTop;
-            newAdjustedHeight = viewportHeight;
-          }
+          // if (newAdjustedHeight > viewportHeight) {
+          //   newAdjustedTop = scrollTop;
+          //   newAdjustedHeight = viewportHeight;
+          // }
         }
 
         adjustedTopRef.current = newAdjustedTop;
