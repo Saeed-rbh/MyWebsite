@@ -189,7 +189,7 @@ export const calculateAdjustedHeight = ({ height, childRef }) => {
     if (viewportHeight > childRef.current.scrollHeight) {
       activeHeight = childRef.current.scrollHeight;
     } else {
-      activeHeight = viewportHeight - 180;
+      activeHeight = viewportHeight - 150;
     }
   }
 
