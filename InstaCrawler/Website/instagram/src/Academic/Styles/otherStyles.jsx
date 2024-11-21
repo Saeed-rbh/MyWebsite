@@ -183,13 +183,18 @@ export const useCombinedAnimation = ({
 };
 
 export const calculateAdjustedHeight = ({ height, childRef }) => {
-  const viewportHeight = window.innerHeight;
+  const element = document.getElementById("AcademicCV-M");
+  let viewportHeight = window.innerHeight;
+  if (element) {
+    viewportHeight = element.clientHeight;
+  }
+
   let activeHeight = height;
   if (childRef?.current && childRef.current.scrollHeight) {
     if (viewportHeight > childRef.current.scrollHeight) {
       activeHeight = childRef.current.scrollHeight;
     } else {
-      activeHeight = viewportHeight - 150;
+      activeHeight = viewportHeight - 65;
     }
   }
 
