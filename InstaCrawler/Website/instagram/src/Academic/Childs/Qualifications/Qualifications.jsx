@@ -20,15 +20,15 @@ function Qualifications() {
   const { stages, scollableRef, toggle } = useSelector((state) => state.data);
   const { scrollTop } = useScrollPosition(scollableRef);
 
-  const [childHeight, setChildHeight] = useState(size[0]);
-  useEffect(() => {
-    if (
-      utilizeProps.ParentRef.current &&
-      utilizeProps.ParentRef.current.scrollHeight
-    ) {
-      setChildHeight(utilizeProps.ParentRef.current.scrollHeight - 20);
-    }
-  }, []);
+  // const [childHeight, setChildHeight] = useState(size[0]);
+  // useEffect(() => {
+  //   if (
+  //     utilizeProps.ParentRef.current &&
+  //     utilizeProps.ParentRef.current.scrollHeight
+  //   ) {
+  //     setChildHeight(utilizeProps.ParentRef.current.scrollHeight - 20);
+  //   }
+  // }, []);
 
   // useEffect(() => {
   //   const viewportHeight = window.innerHeight;
@@ -69,7 +69,8 @@ function Qualifications() {
 
   const styleHeight = useSpring({
     top: isActive ? `${scrollTop + ModifyTop}px` : `${top}px`,
-    height: isActive ? `${viewportHeight}px` : `${size[0]}px`,
+    height: size[0],
+    // height: isActive ? `${viewportHeight}px` : `${size[0]}px`,
     // height: stages[2]
     //   ? isActive
     //     ? `${adjustedHeight + 20}px`
