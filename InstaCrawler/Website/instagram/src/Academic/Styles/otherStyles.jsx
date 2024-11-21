@@ -110,20 +110,18 @@ export const useMoreStyle = (isActive, fixed, stages) => {
 //   });
 // };
 
-export const useClickOtherFade = (otherActive, progress, inView) => {
+export const useClickOtherFade = (otherActive, progress) => {
   const [blur, setBlur] = useState(0);
   const [opacity, setOpacity] = useState(1);
   const [scale, setScale] = useState(1);
 
   useEffect(() => {
-    if (inView) {
-      const blurValue = otherActive && progress !== 1 ? 10 : 5 * progress;
-      const opacityValue = otherActive && progress !== 1 ? 0 : 1;
-      const scaleValue = otherActive && progress !== 1 ? 0.9 : 1;
-      setBlur(blurValue);
-      setOpacity(opacityValue);
-      setScale(scaleValue);
-    }
+    const blurValue = otherActive && progress !== 1 ? 10 : 5 * progress;
+    const opacityValue = otherActive && progress !== 1 ? 0 : 1;
+    const scaleValue = otherActive && progress !== 1 ? 0.9 : 1;
+    setBlur(blurValue);
+    setOpacity(opacityValue);
+    setScale(scaleValue);
   }, [otherActive, progress]);
 
   // Return the blur value and CSS styles with smooth transition

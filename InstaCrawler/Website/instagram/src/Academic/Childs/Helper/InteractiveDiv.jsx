@@ -68,9 +68,9 @@ const InteractiveDiv = (props) => {
     left: isActive ? -5 : -10,
   });
 
-  const { ref, inView } = useInView({
-    threshold: 0.5,
-  });
+  // const { ref, inView } = useInView({
+  //   threshold: 1,
+  // });
 
   const [adjustedTop, setAdjustedTop] = useState(0);
   const { activeHeight, notActiveHeight } = useMemo(() => {
@@ -127,7 +127,7 @@ const InteractiveDiv = (props) => {
     toggle,
     name,
     id,
-    inView,
+    // inView,
   });
 
   return (
@@ -140,7 +140,7 @@ const InteractiveDiv = (props) => {
         ...styleHeight,
       }}
       {...eventHandlers}
-      ref={ref}
+      // ref={ref}
     >
       {clickableContent}
       <TitleText
