@@ -67,10 +67,6 @@ const InteractiveDiv = (props) => {
     left: isActive ? -5 : -10,
   });
 
-  // const { ref, inView } = useInView({
-  //   threshold: 1,
-  // });
-
   const [adjustedTop, setAdjustedTop] = useState(0);
   const { activeHeight, notActiveHeight, fullView } = useMemo(() => {
     return usecalculateAdjustedHeight({
@@ -85,9 +81,17 @@ const InteractiveDiv = (props) => {
     filter: "blur(0px)",
     opacity: "1",
     backgroundColor: "rgba(0, 0, 0, 0.3)",
-    width: stages[2] ? "calc(100% - 5px)" : `calc(100% - ${size[1] + 100}px)`,
+    width: stages[2]
+      ? name === "Teaching" || name === "Awards"
+        ? "calc((100% - 20px)/2)"
+        : "calc(100% - 5px)"
+      : `calc(100% - ${size[1] + 100}px)`,
     border: "2px solid rgba(212, 157, 129, 0.2)",
-    left: stages[2] ? "0px" : "500px",
+    left: stages[2]
+      ? name === "Awards"
+        ? "calc((100% + 10px - 5px)/2)"
+        : "0px"
+      : "500px",
     overflow: "hidden",
   };
 
@@ -126,7 +130,6 @@ const InteractiveDiv = (props) => {
     toggle,
     name,
     id,
-    // inView,
   });
 
   return (
@@ -139,7 +142,6 @@ const InteractiveDiv = (props) => {
         ...styleHeight,
       }}
       {...eventHandlers}
-      // ref={ref}
     >
       {clickableContent}
       <TitleText

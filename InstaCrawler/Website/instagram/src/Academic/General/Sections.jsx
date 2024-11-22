@@ -5,10 +5,10 @@ import {
   Qualifications,
   ResearchInterests,
   Papers,
-  // Awards,
-  // Skills,
-  // Conference,
-  // Teaching,
+  Awards,
+  Skills,
+  Conference,
+  Teaching,
 } from "./sectionComponents";
 
 const Sections = ({ renderSection }) => {
@@ -18,10 +18,11 @@ const Sections = ({ renderSection }) => {
     ResearchInterests,
     Qualifications,
     Papers,
-    // Skills,
-    // Awards,
-    // Conference,
-    // Teaching,
+    Awards,
+    Skills,
+
+    Conference,
+    Teaching,
   ];
 
   return (
