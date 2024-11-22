@@ -33,6 +33,7 @@ const InteractiveDiv = (props) => {
     top,
     adjustViewport,
     adjustTop,
+    adjustHeight,
   } = props;
 
   const { stages, scollableRef, toggle } = useSelector((state) => state.data);
@@ -76,7 +77,6 @@ const InteractiveDiv = (props) => {
   }, [size[0], ParentRef.current]);
 
   const Style = {
-    borderRadius: Math.max(Math.ceil(size[0] / 4.75), 30),
     cursor: "pointer",
     filter: "blur(0px)",
     opacity: "1",
@@ -85,12 +85,16 @@ const InteractiveDiv = (props) => {
       ? name === "Teaching" || name === "Awards"
         ? "calc((100% - 20px)/2)"
         : "calc(100% - 5px)"
+      : name === "Skills"
+      ? `${size[1]}px`
       : `calc(100% - ${size[1] + 100}px)`,
     border: "2px solid rgba(212, 157, 129, 0.2)",
     left: stages[2]
       ? name === "Awards"
         ? "calc((100% + 10px - 5px)/2)"
         : "0px"
+      : name === "Skills"
+      ? "35px"
       : "500px",
     overflow: "hidden",
   };
@@ -117,11 +121,14 @@ const InteractiveDiv = (props) => {
     setAdjustedTop(newAdjustedTop);
   }, [isActive, size, top, scrollTop]);
 
-  console.log(id, name, adjustedTop);
-
   const styleHeight = useSpring({
+    borderRadius: isActive ? 40 : Math.max(Math.ceil(size[0] / 4.75), 35),
     top: `${adjustedTop}px`,
-    height: isActive ? `${activeHeight}px` : `${notActiveHeight}px`,
+    height: isActive
+      ? `${activeHeight}px`
+      : stages[2]
+      ? `${notActiveHeight}px`
+      : `${notActiveHeight + adjustHeight}px`,
   });
 
   const combinedStyle = useCombinedAnimation({

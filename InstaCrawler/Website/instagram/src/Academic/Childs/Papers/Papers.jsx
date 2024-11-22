@@ -20,6 +20,7 @@ const Papers = () => {
         isActive={utilizeProps.isActive}
         stages={utilizeProps.stages}
         size={utilizeProps.size}
+        adjustHeight={utilizeProps.adjustHeight}
       />
       <MoreInfoPapers
         isActive={utilizeProps.isActive}

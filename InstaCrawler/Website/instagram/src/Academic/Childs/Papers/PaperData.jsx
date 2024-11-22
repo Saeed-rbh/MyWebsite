@@ -1,7 +1,7 @@
 import React from "react";
 import { animated, useSpring, easings } from "react-spring";
 
-const PaperData = ({ isActive, stages, size }) => {
+const PaperData = ({ isActive, stages, size, adjustHeight }) => {
   const CloseOpenStyleInfo = useSpring({
     position: "absolute",
     top: isActive
@@ -9,8 +9,8 @@ const PaperData = ({ isActive, stages, size }) => {
         ? size[0] - 135
         : size[0] - 110
       : stages[2]
-      ? size[0] - 70
-      : size[0] - 70,
+      ? size[0] - 70 + adjustHeight
+      : size[0] - 70 + adjustHeight,
     width: "calc(100% - 20px)",
     height: "60px",
     // width: isActive

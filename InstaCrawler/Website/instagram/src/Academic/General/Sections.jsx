@@ -18,11 +18,10 @@ const Sections = ({ renderSection }) => {
     ResearchInterests,
     Qualifications,
     Papers,
-    Awards,
     Skills,
-
     Conference,
-    Teaching,
+    // Teaching,
+    // Awards,
   ];
 
   return (
