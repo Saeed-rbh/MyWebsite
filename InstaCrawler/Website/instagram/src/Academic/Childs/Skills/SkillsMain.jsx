@@ -22,7 +22,8 @@ const SkillsMain = ({
     }
   };
   const Anim = useSpring({
-    marginTop: stages[2] ? (isActive ? 35 : 20) : isActive ? 30 : 10,
+    marginTop: stages[2] ? (isActive ? 35 : 20) : isActive ? 70 : 55,
+    padding: "0 20px",
   });
 
   const SkillSoftwares = List.map((Skill, index) => (
@@ -34,7 +35,7 @@ const SkillsMain = ({
       <p>{Skill.Title}</p>
       <ul>
         {Skill.skill.map((s) => (
-          <li key={s[0]} style={{ height: getListItemHeight(Skill, s) }}>
+          <li key={s[0]}>
             <h2>{s[0]}</h2>
             <div className="Skill-Progress">
               <div
@@ -50,11 +51,7 @@ const SkillsMain = ({
   ));
 
   return (
-    <animated.div
-      style={{ ...styles.More, ...Anim }}
-      ref={ParentRef}
-      className="Skill"
-    >
+    <animated.div style={{ ...Anim }} ref={ParentRef} className="Skill">
       {SkillSoftwares}
     </animated.div>
   );

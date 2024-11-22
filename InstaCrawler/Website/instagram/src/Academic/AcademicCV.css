@@ -1255,12 +1255,11 @@
   height: -webkit-fill-available;
   overflow: auto;
   scroll-behavior: smooth;
-  padding-bottom: calc(100px - 7vh);
 }
 
 /* Webkit browsers like Chrome, Safari */
 .MoreInfoPapers::-webkit-scrollbar {
-  width: 1px; /* Width of the scrollbar */
+  width: 2px; /* Width of the scrollbar */
 }
 
 .MoreInfoPapers::-webkit-scrollbar-track {
@@ -1270,18 +1269,13 @@
 }
 
 .MoreInfoPapers::-webkit-scrollbar-thumb {
-  background-color: #d49d8121; /* Color of the scroll thumb */
+  background-color: #d49d819a; /* Color of the scroll thumb */
   border-radius: 6px; /* Roundness of the scroll thumb */
   height: 0px; /* Fixed height for the thumb */
   -webkit-transition: background-color 0.3s ease;
   transition: background-color 0.3s ease;
 }
 
-/* Firefox */
-.MoreInfoPapers {
-  scrollbar-width: thick;
-  scrollbar-color: #d49d81 transparent; /* Thumb and track color */
-}
 .icon-wrapper h3 {
   color: #d49d81;
   position: relative;

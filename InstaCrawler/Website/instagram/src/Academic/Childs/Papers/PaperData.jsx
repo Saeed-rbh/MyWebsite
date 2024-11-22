@@ -7,7 +7,7 @@ const PaperData = ({ isActive, stages, size, adjustHeight }) => {
     top: isActive
       ? stages[2]
         ? size[0] - 135
-        : size[0] - 110
+        : size[0] - 135
       : stages[2]
       ? size[0] - 70
       : size[0] - 70 + adjustHeight,

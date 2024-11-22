@@ -16,8 +16,8 @@ const ConferanceMain = ({
     // marginLeft: isActive ? 0 : 10,
   });
   const Anim = useSpring({
-    marginTop: stages[2] ? (isActive ? 35 : 15) : isActive ? 40 : 20,
-    marginLeft: 30,
+    marginTop: stages[2] ? (isActive ? 35 : 15) : isActive ? 70 : 55,
+    padding: "0 30px",
   });
   const Conferences = List.map((Conferences, index) => (
     <animated.div
@@ -35,7 +35,6 @@ const ConferanceMain = ({
   return (
     <animated.div
       style={{
-        ...styles.More,
         ...Anim,
       }}
       className="Awards-Details"
