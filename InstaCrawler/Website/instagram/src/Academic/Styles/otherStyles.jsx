@@ -116,7 +116,7 @@ export const useClickOtherFade = (otherActive, progress) => {
   const [scale, setScale] = useState(1);
 
   useEffect(() => {
-    const blurValue = otherActive && progress !== 1 ? 10 : 5 * progress;
+    const blurValue = 5 * progress;
     const opacityValue = otherActive && progress !== 1 ? 0 : 1;
     const scaleValue = otherActive && progress !== 1 ? 0.9 : 1;
     setBlur(blurValue);
@@ -129,8 +129,8 @@ export const useClickOtherFade = (otherActive, progress) => {
     style: {
       transform: `scale(${scale})`,
       opacity: opacity,
-      // filter: `blur(${blur}px)`,
-      transition: "opacity 0.5s ease, transform 0.5s ease", // Smooth transition for the blur effect
+      filter: `blur(${blur}px)`,
+      transition: "opacity 0.5s ease, transform 0.5s ease, filter 0.5s ease", // Smooth transition for the blur effect
     },
   };
 };
