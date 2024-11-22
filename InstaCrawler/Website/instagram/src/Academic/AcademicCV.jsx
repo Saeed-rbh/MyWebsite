@@ -103,6 +103,7 @@ const AcademicCV = () => {
     // marginTop: stages[2] ? -80 : stages[3] ? -60 : 0,
 
     top: -35,
+    height: window.innerHeight - 35,
     overflowY: useMemo(
       () =>
         toggle[0]
