@@ -195,7 +195,7 @@ export const usecalculateAdjustedHeight = ({ height, childRef }) => {
     if (viewportHeight > childRef.current.scrollHeight) {
       activeHeight = childRef.current.scrollHeight;
     } else {
-      activeHeight = viewportHeight - 100;
+      activeHeight = viewportHeight - 50;
       fullView = true;
     }
   }
