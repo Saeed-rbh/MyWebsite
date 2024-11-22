@@ -17,12 +17,8 @@ const elementHeightCalculator = ({
       mainElementSize.height - HEIGHT_OFFSETS.full;
 
     return {
-      Opened: isOpenHeightExceeding
-        ? mainElementSize.height - data.padding[0] - data.padding[2]
-        : childsHeight,
-      NoAction: data.widthSplit
-        ? 100 - data.padding[0] - data.padding[2]
-        : data.height,
+      Opened: isOpenHeightExceeding ? mainElementSize.height : childsHeight,
+      NoAction: data.widthSplit ? 100 : data.height,
       Hovered: data.height + HEIGHT_OFFSETS.Hovered,
     };
   }

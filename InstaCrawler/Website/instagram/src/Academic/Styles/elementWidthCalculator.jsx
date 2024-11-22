@@ -6,7 +6,6 @@
  */
 const elementWidthCalculator = ({
   elementSizeWidth,
-  padding,
   stages,
   widthSplit,
   iniRL,
@@ -22,8 +21,6 @@ const elementWidthCalculator = ({
       ? 160
       : 220;
 
-  const [, leftPadding, , rightPadding] = padding;
-  const widthOffset = leftPadding + rightPadding;
   const calculateOffsetWidth = () => {
     const MoreInfoAcademic = document.getElementById("MoreInfoAcademic");
     if ((MoreInfoAcademic && stages[2]) || stages[3]) {
@@ -34,8 +31,8 @@ const elementWidthCalculator = ({
       : 0.5 * elementSizeWidth;
   };
   const offsetWidth = calculateOffsetWidth();
-  const calculatedWidth = Math.max(offsetWidth - widthOffset, 0);
-  const effectiveLeft = calculatedWidth < widthOffset ? 0 : initialRelativeLeft;
+  const calculatedWidth = Math.max(offsetWidth, 0);
+  const effectiveLeft = calculatedWidth ? 0 : initialRelativeLeft;
   return {
     left: effectiveLeft,
     width: widthSplit

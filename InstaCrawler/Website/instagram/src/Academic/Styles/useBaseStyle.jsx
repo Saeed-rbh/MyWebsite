@@ -76,9 +76,6 @@ const useBaseStyle = (
       backgroundColor: "rgba(0, 0, 0, 0.3)",
       overflow: data.fixed ? "visible" : "hidden",
       width: `${isActive ? widths[1] : widths[0]}px`,
-      padding: `${data.padding[0]}px ${data.padding[1]}px ${
-        isActive ? "80px" : `${data.padding[2]}px`
-      } ${data.padding[3]}px`,
     };
   }, [
     isActive,

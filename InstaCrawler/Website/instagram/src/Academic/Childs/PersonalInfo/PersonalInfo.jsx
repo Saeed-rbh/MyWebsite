@@ -22,6 +22,7 @@ export const PersonalInfo = () => {
   const Style = {
     borderRadius: "40px",
     height: `${size[0]}px`,
+
     cursor: "pointer",
     filter: "blur(0px)",
     opacity: "1",
@@ -32,8 +33,9 @@ export const PersonalInfo = () => {
     zIndex: "10",
     left: stages[2] ? "0px" : "35px",
     top: stages[2]
-      ? `calc(5vh + ${top + 15}px)`
+      ? `calc(5vh + ${top}px)`
       : `calc(5vh + ${top + adjustTop}px)`,
+    boxSize: "border-box",
   };
 
   const Main = {

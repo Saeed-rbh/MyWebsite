@@ -33,15 +33,13 @@ const useHeightAndTop = (childRefs, data) => {
 
   const calculateWidthOffset = () => {
     const PADDING_OFFSET_FACTOR = 50;
-    const [, leftPadding, , rightPadding] = data.padding;
-    const widthOffset = leftPadding + rightPadding - PADDING_OFFSET_FACTOR;
+    const widthOffset =  PADDING_OFFSET_FACTOR;
     return widthOffset;
   };
 
   const calculatedWidths = () =>
     elementWidthCalculator({
       elementSizeWidth: mainElementSize.width,
-      padding: data.padding,
       widthSplit: data.widthSplit,
       stages: stages,
       iniRL: data.iniRL,

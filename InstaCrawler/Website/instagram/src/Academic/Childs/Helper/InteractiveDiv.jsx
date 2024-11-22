@@ -75,8 +75,6 @@ const InteractiveDiv = (props) => {
     });
   }, [size[0], ParentRef.current]);
 
-  console.log(name, Math.max(Math.ceil(size[0] / 4.75), 30));
-
   const Style = {
     borderRadius: Math.max(Math.ceil(size[0] / 4.75), 30),
     cursor: "pointer",
@@ -99,7 +97,7 @@ const InteractiveDiv = (props) => {
 
   useEffect(() => {
     const viewportHeight = window.innerHeight;
-    let newAdjustedTop = top + adjustViewport + (!stages[2] ? adjustTop : 0);
+    let newAdjustedTop = top + (!stages[2] ? adjustTop : 0);
     const ModifyTop = 120;
 
     if (isActive) {
@@ -118,6 +116,8 @@ const InteractiveDiv = (props) => {
 
     setAdjustedTop(newAdjustedTop);
   }, [isActive, size, top, scrollTop]);
+
+  console.log(id, name, adjustedTop);
 
   const styleHeight = useSpring({
     top: `${adjustedTop}px`,

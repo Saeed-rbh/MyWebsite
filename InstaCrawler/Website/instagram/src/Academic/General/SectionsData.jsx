@@ -135,8 +135,7 @@ const SectionsData = (data, MainElementSize, sequence, Stages) => {
         LeftRight = true;
       }
     } else {
-      previousTop =
-        topValue + section.size[0] + section.padding[0] + section.padding[2];
+      previousTop = topValue + section.size[0];
       if (textHeight > 0) {
         previousTop = previousTop + exception_H;
       }
