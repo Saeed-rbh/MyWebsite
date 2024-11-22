@@ -20,8 +20,8 @@ const Sections = ({ renderSection }) => {
     Papers,
     Skills,
     Conference,
-    // Teaching,
-    // Awards,
+    Teaching,
+    Awards,
   ];
 
   return (

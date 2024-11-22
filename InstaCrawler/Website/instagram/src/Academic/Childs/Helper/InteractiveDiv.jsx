@@ -87,6 +87,8 @@ const InteractiveDiv = (props) => {
         : "calc(100% - 5px)"
       : name === "Skills"
       ? `${size[1]}px`
+      : name === "Teaching" || name === "Awards"
+      ? `calc((100% - ${size[1] + 100}px) / 2 - 5px)`
       : `calc(100% - ${size[1] + 100}px)`,
     border: "2px solid rgba(212, 157, 129, 0.2)",
     left: stages[2]
@@ -95,6 +97,8 @@ const InteractiveDiv = (props) => {
         : "0px"
       : name === "Skills"
       ? "35px"
+      : name === "Awards"
+      ? `calc((100% - ${size[1] + 100}px ) / 2 + 500px + 5px)`
       : "500px",
     overflow: "hidden",
   };
