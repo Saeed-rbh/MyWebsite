@@ -94,7 +94,7 @@ const InteractiveDiv = (props) => {
   useEffect(() => {
     const viewportHeight = window.innerHeight;
     let newAdjustedTop = top + adjustViewport + (!stages[2] ? adjustTop : 0);
-    const ModifyTop = 200;
+    const ModifyTop = 220;
 
     if (isActive) {
       if (!fullView) {
@@ -106,7 +106,7 @@ const InteractiveDiv = (props) => {
           scrollTop + 60
         );
       } else {
-        newAdjustedTop = scrollTop + 60;
+        newAdjustedTop = scrollTop + 40;
       }
     }
 
