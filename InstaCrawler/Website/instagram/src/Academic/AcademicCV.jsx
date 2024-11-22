@@ -103,7 +103,7 @@ const AcademicCV = () => {
     // marginTop: stages[2] ? -80 : stages[3] ? -60 : 0,
 
     top: -35,
-    height: window.innerHeight - 35,
+
     overflowY: useMemo(
       () =>
         toggle[0]
@@ -119,7 +119,11 @@ const AcademicCV = () => {
   return (
     <ScrollProvider scrollPosition={scrollPosition}>
       {conditionData && (
-        <div id="AcademicCV-M" className="AcademicCV-M">
+        <div
+          id="AcademicCV-M"
+          className="AcademicCV-M"
+          style={{ height: `${window.innerHeight - 35}px` }}
+        >
           {conditionStage && (
             <>
               <MainTitle />
