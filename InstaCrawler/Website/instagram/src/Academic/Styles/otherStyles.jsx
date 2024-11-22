@@ -182,7 +182,8 @@ export const useCombinedAnimation = ({
   return combinedStyleAnim;
 };
 
-export const calculateAdjustedHeight = ({ height, childRef }) => {
+export const usecalculateAdjustedHeight = ({ height, childRef }) => {
+  let fullView = false;
   const element = document.getElementById("MoreInfoAcademic");
   let viewportHeight = window.innerHeight;
   if (element) {
@@ -195,12 +196,13 @@ export const calculateAdjustedHeight = ({ height, childRef }) => {
       activeHeight = childRef.current.scrollHeight;
     } else {
       activeHeight = viewportHeight - 100;
+      fullView = true;
     }
   }
 
   const notActiveHeight = height;
 
-  return { activeHeight, notActiveHeight };
+  return { activeHeight, notActiveHeight, fullView };
 };
 
 export const calculateAdjustedTop = ({

@@ -4,7 +4,7 @@
   align-items: center;
   justify-content: center; */
   width: 90vw;
-  height: 90vh;
+  height: calc(100% - 70px);
   font-family: "Roboto", sans-serif;
   font-size: 1.2rem;
   /* padding: 13vh 5vw; */
@@ -13,7 +13,7 @@
   /* padding: 70px 50px 10px 0px; */
   position: fixed;
   bottom: 15px;
-  top: 5vh;
+  top: 70px;
   display: flex;
   align-items: center;
   flex-direction: column;

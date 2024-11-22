@@ -89,19 +89,20 @@ const AcademicCV = () => {
     // transform: `scale(${stages[3] ? 1 : scale})`,
     // maxHeight: `${mainMaxHeight}px`,
     // maxWidth: `${stages[2] || stages[3] ? 620 : elementSize.width}px`,
-    top: useMemo(
-      () =>
-        conditionStage
-          ? stages[2]
-            ? 15 + scrollEffect
-            : stages[3]
-            ? 10 + scrollEffect
-            : 20
-          : 0,
-      [stages, conditionStage, scrollEffect]
-    ),
-    marginTop: stages[2] ? -80 : stages[3] ? -60 : 0,
+    // top: useMemo(
+    //   () =>
+    //     conditionStage
+    //       ? stages[2]
+    //         ? 15 + scrollEffect
+    //         : stages[3]
+    //         ? 10 + scrollEffect
+    //         : 20
+    //       : 0,
+    //   [stages, conditionStage, scrollEffect]
+    // ),
+    // marginTop: stages[2] ? -80 : stages[3] ? -60 : 0,
 
+    top: -35,
     overflowY: useMemo(
       () =>
         toggle[0]

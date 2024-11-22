@@ -6,9 +6,8 @@ import { useSelector } from "react-redux";
 import useScrollPosition from "../../General/useScrollPosition";
 import {
   useCombinedAnimation,
-  calculateAdjustedHeight,
+  usecalculateAdjustedHeight,
 } from "../../Styles/otherStyles";
-import { useInView } from "react-intersection-observer";
 
 const InteractiveDiv = (props) => {
   const {
@@ -73,8 +72,8 @@ const InteractiveDiv = (props) => {
   // });
 
   const [adjustedTop, setAdjustedTop] = useState(0);
-  const { activeHeight, notActiveHeight } = useMemo(() => {
-    return calculateAdjustedHeight({
+  const { activeHeight, notActiveHeight, fullView } = useMemo(() => {
+    return usecalculateAdjustedHeight({
       height: size[0],
       childRef: ParentRef,
     });
@@ -95,19 +94,19 @@ const InteractiveDiv = (props) => {
   useEffect(() => {
     const viewportHeight = window.innerHeight;
     let newAdjustedTop = top + adjustViewport + (!stages[2] ? adjustTop : 0);
-    const ModifyTop = 70;
+    const ModifyTop = 220;
 
     if (isActive) {
-      if (
-        newAdjustedTop + activeHeight >
-        viewportHeight + scrollTop - ModifyTop
-      ) {
-        newAdjustedTop =
-          Math.max(viewportHeight + scrollTop - activeHeight, scrollTop) -
-          ModifyTop;
-      }
-      if (activeHeight > viewportHeight) {
-        newAdjustedTop = scrollTop + ModifyTop;
+      if (!fullView) {
+        newAdjustedTop = Math.max(
+          Math.min(
+            -(activeHeight - (viewportHeight + scrollTop - ModifyTop)),
+            newAdjustedTop
+          ),
+          scrollTop + 60
+        );
+      } else {
+        newAdjustedTop = scrollTop + 60;
       }
     }
 
