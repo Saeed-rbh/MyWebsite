@@ -66,7 +66,7 @@ const MainTitle = ({ duration, initialDelay, delayIncrement }) => {
     animationFinished,
     setAnimationFinished,
     xDiff: [-35, stages[2] ? 0 : 0],
-    yDiff: [-10, stages[2] ? 25 : -45],
+    yDiff: [-10, stages[2] ? 20 : -45],
     scaleDiff: [0.9, 1],
     stages,
   });
@@ -76,7 +76,7 @@ const MainTitle = ({ duration, initialDelay, delayIncrement }) => {
     animationFinished,
     setAnimationFinished,
     xDiff: [-35, stages[2] ? 0 : 0],
-    yDiff: [-10, stages[2] ? 25 : -45],
+    yDiff: [-10, stages[2] ? 20 : -45],
     scaleDiff: [0.9, 1],
     stages,
   });
@@ -98,7 +98,7 @@ const MainTitle = ({ duration, initialDelay, delayIncrement }) => {
           duration={duration}
         />
       </animated.div>
-      <animated.p style={title2Style}>Academic CV-0</animated.p>
+      <animated.p style={title2Style}>Academic CV</animated.p>
     </animated.div>
   );
 };
