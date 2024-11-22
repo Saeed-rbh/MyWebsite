@@ -75,8 +75,10 @@ const InteractiveDiv = (props) => {
     });
   }, [size[0], ParentRef.current]);
 
+  console.log(name, Math.max(Math.ceil(size[0] / 4.75), 30));
+
   const Style = {
-    borderRadius: "40px",
+    borderRadius: Math.max(Math.ceil(size[0] / 4.75), 30),
     cursor: "pointer",
     filter: "blur(0px)",
     opacity: "1",
