@@ -33,18 +33,20 @@ const useTitleAnimation = ({
   stages,
 }) => {
   const scroll = scrollPosition / 50;
+  const updateVariables = useSelector((state) => state.data);
+  const toggle = updateVariables.toggle;
 
   return useSpring({
     from: { opacity: 0, y: yDiff[1], display: "flex" },
     to: {
-      opacity: scroll > 0 ? 0 : visibility ? 0.7 : 0,
+      opacity: scroll > 0 || toggle[0] ? 0 : visibility ? 0.7 : 0,
       // x: scroll <= 0 ? xDiff[1] : xDiff[1] - 10,
-      // y:
-      //   scroll <= 0
-      //     ? interpolateValue((scroll * 5) / 7, [yDiff[0] / 3, yDiff[1]])
-      //     : scroll > 0
-      //     ? yDiff[1] - 50
-      //     : yDiff[1],
+      y:
+        scroll <= 0 || toggle[0]
+          ? interpolateValue((scroll * 5) / 7, [yDiff[0] / 3, yDiff[1]])
+          : scroll > 0
+          ? yDiff[1] - 50
+          : yDiff[1],
       // scale: scroll > 0 ? 0.9 : 1,
     },
     delay: animationFinished ? 0 : 500,
@@ -76,7 +78,7 @@ const MainTitle = ({ duration, initialDelay, delayIncrement, size }) => {
     animationFinished,
     setAnimationFinished,
     // xDiff: [-35, stages[2] ? 0 : 0],
-    yDiff: [-10, stages[2] ? 80 : 30],
+    yDiff: [-10, stages[2] ? 75 : 30],
     scaleDiff: [0.9, 1],
     stages,
   });

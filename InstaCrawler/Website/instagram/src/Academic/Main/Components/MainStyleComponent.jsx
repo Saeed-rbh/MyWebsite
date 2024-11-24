@@ -29,7 +29,7 @@ const MainStyleComponent = () => {
 
   const mainStyle = useSpring({
     position: "fixed",
-    height: 70,
+    height: 55,
     top: 0,
     width: stages[2] ? "95%" : "100%",
     // paddingLeft: stages[2] ? "5%" : "0%",
