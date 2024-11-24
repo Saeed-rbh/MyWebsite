@@ -49,18 +49,18 @@ const useUpdateVariable = () => {
   const [stages, setStages] = useState([false, false, false, false]);
 
   const isMobile =
-    window.width < 768 || /iPhone|Android/i.test(navigator.userAgent);
+    window.innerWidth < 970 || /iPhone|Android/i.test(navigator.userAgent);
   const isTablet =
-    (window.width >= 768 && window.width <= 1024) ||
+    (window.innerWidth >= 768 && window.innerWidth <= 1024) ||
     (window.devicePixelRatio > 1 &&
-      Math.max(window.width, window.height) >= 1024) ||
+      Math.max(window.innerWidth, window.height) >= 1024) ||
     /iPad|Tablet|Kindle/i.test(navigator.userAgent);
-  const isVerticalTablet = isTablet && window.height > window.width;
+  const isVerticalTablet = isTablet && window.height > window.innerWidth;
 
   useEffect(() => {
     setStages([
       false, // Stage 1
-      false, // Stage 2
+      isMobile, // Stage 2
       isMobile && !isTablet && !isVerticalTablet, // Stage 3
       isTablet && isVerticalTablet, // Stage 4;
     ]);

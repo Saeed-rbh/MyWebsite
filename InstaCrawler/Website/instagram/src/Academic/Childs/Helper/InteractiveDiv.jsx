@@ -81,31 +81,42 @@ const InteractiveDiv = (props) => {
     filter: "blur(0px)",
     opacity: "1",
     backgroundColor: "rgba(0, 0, 0, 0.3)",
-    width: stages[2]
+    width: stages[1]
       ? name === "Teaching" || name === "Awards"
         ? "calc((100% - 20px)/2)"
         : "calc(100% - 5px)"
       : name === "Skills"
       ? `${size[1]}px`
       : name === "Teaching" || name === "Awards"
-      ? `calc((100% - ${size[1] + 100}px) / 2 - 5px)`
-      : `calc(100% - ${size[1] + 100}px)`,
+      ? `calc((100% - ${size[1] + 20}px) / 2 - 5px)`
+      : `calc(100% - ${size[1] + 20}px)`,
+    minWidth:
+      name === "Teaching" || name === "Awards"
+        ? `${size[1] / 2 - 10}px`
+        : `${size[1]}px`,
+    maxWidth: stages[1]
+      ? name === "Teaching" || name === "Awards"
+        ? `${size[1] / 2 - 10}px`
+        : `${size[1]}px`
+      : "calc(100% - 5px)",
     border: "2px solid rgba(212, 157, 129, 0.2)",
-    left: stages[2]
+    left: stages[1]
       ? name === "Awards"
         ? "calc((100% + 10px - 5px)/2)"
-        : "0px"
+        : !stages[2]
+        ? `${size[1] / 2 + 5}px`
+        : `${(window.innerWidth - size[1]) / 2 + 5}px`
       : name === "Skills"
-      ? "35px"
+      ? "0px"
       : name === "Awards"
-      ? `calc((100% - ${size[1] + 100}px ) / 2 + 500px + 5px)`
-      : "500px",
+      ? `calc((100% - ${size[1] + 20}px ) / 2 + 465px + 5px)`
+      : "465px",
     overflow: "hidden",
   };
 
   useEffect(() => {
     const viewportHeight = window.innerHeight;
-    let newAdjustedTop = top + (!stages[2] ? adjustTop : 0);
+    let newAdjustedTop = top + (!stages[1] ? adjustTop : !stages[2] ? -60 : 0);
     const ModifyTop = 120;
 
     if (isActive) {
@@ -123,14 +134,14 @@ const InteractiveDiv = (props) => {
     }
 
     setAdjustedTop(newAdjustedTop);
-  }, [isActive, size, top, scrollTop]);
+  }, [isActive, size, top, scrollTop, stages]);
 
   const styleHeight = useSpring({
     borderRadius: isActive ? 40 : Math.max(Math.ceil(size[0] / 4.75), 35),
     top: `${adjustedTop}px`,
     height: isActive
       ? `${activeHeight}px`
-      : stages[2]
+      : stages[1]
       ? `${notActiveHeight}px`
       : `${notActiveHeight + adjustHeight}px`,
   });
@@ -162,6 +173,7 @@ const InteractiveDiv = (props) => {
         title={title}
         explanation={explanation}
         widthSplit={widthSplit}
+        name={name}
       />
       <animated.h1 style={h1Style} ref={TextRef}>
         {title}

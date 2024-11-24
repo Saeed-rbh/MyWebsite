@@ -107,12 +107,18 @@ export const Affiliation = () => {
     filter: "blur(0px)",
     opacity: "1",
     backgroundColor: "rgba(0, 0, 0, 0.3)",
+    maxWidth: `${size[1]}px`,
+
     overflow: "visible",
-    width: stages[2] ? "calc(100%)" : `${size[1]}px`,
+    width: stages[1] ? "calc(100%)" : `${size[1]}px`,
     zIndex: "10",
-    left: stages[2] ? "0px" : "35px",
+    left: stages[1]
+      ? !stages[2]
+        ? `${size[1] / 2 + 5}px`
+        : `${(window.innerWidth - size[1]) / 2 + 5}px`
+      : "0px",
     boxSize: "border-box",
-    top: stages[2]
+    top: stages[1]
       ? `calc(5vh + ${top}px)`
       : `calc(5vh + ${top + adjustTop}px)`,
   };

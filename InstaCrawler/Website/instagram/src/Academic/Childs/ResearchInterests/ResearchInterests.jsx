@@ -32,13 +32,19 @@ const ResearchInterests = () => {
     opacity: "1",
     backgroundColor: "rgba(0, 0, 0, 0.3)",
     overflow: "visible",
-    width: stages[2] ? "calc(100% - 5px)" : `${size[1]}px`,
+    width: stages[1] ? "calc(100% - 5px)" : `${size[1]}px`,
+    maxWidth: `${size[1]}px`,
+
     border: "2px solid rgba(212, 157, 129, 0.2)",
     zIndex: "10",
-    left: stages[2] ? "0px" : "35px",
+    left: stages[1]
+      ? !stages[2]
+        ? `${size[1] / 2 + 5}px`
+        : `${(window.innerWidth - size[1]) / 2 + 5}px`
+      : "0px",
     boxSize: "border-box",
-    top: stages[2]
-      ? `calc(5vh + ${top }px)`
+    top: stages[1]
+      ? `calc(5vh + ${top}px)`
       : `calc(5vh + ${top + adjustTop}px)`,
   };
 
@@ -47,7 +53,7 @@ const ResearchInterests = () => {
     display: "flex",
     flexDirection: "row",
     alignItems: "center",
-    justifyContent: stages[2] ? "space-around" : "flex-start",
+    justifyContent: stages[1] ? "space-around" : "flex-start",
     width: "100%",
     height: "100%",
     margin: "7px",

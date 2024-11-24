@@ -35,10 +35,10 @@ const useTitleAnimation = ({
   const scroll = scrollPosition / 50;
 
   return useSpring({
-    from: { opacity: 0, x: xDiff[0], y: yDiff[1], display: "flex" },
+    from: { opacity: 0, y: yDiff[1], display: "flex" },
     to: {
       opacity: scroll > 0 ? 0 : visibility ? 0.7 : 0,
-      x: scroll <= 0 ? xDiff[1] : xDiff[1] - 10,
+      // x: scroll <= 0 ? xDiff[1] : xDiff[1] - 10,
       y:
         scroll <= 0
           ? interpolateValue((scroll * 5) / 7, [yDiff[0] / 3, yDiff[1]])
@@ -54,7 +54,7 @@ const useTitleAnimation = ({
 };
 
 // MainTitle component
-const MainTitle = ({ duration, initialDelay, delayIncrement }) => {
+const MainTitle = ({ duration, initialDelay, delayIncrement, size }) => {
   const { visibility } = useSelector((state) => state.visibility);
   const [animationFinished, setAnimationFinished] = useState(false);
   const { stages, scollableRef } = useSelector((state) => state.data);
@@ -65,8 +65,8 @@ const MainTitle = ({ duration, initialDelay, delayIncrement }) => {
     visibility,
     animationFinished,
     setAnimationFinished,
-    xDiff: [-35, stages[2] ? 0 : 0],
-    yDiff: [-10, stages[2] ? 20 : -70],
+    // xDiff: [-35, stages[2] ? 0 : 0],
+    yDiff: [-10, stages[2] ? 20 : -40],
     scaleDiff: [0.9, 1],
     stages,
   });
@@ -75,8 +75,8 @@ const MainTitle = ({ duration, initialDelay, delayIncrement }) => {
     visibility,
     animationFinished,
     setAnimationFinished,
-    xDiff: [-35, stages[2] ? 0 : 0],
-    yDiff: [-10, stages[2] ? 20 : -70],
+    // xDiff: [-35, stages[2] ? 0 : 0],
+    yDiff: [-10, stages[2] ? 20 : -40],
     scaleDiff: [0.9, 1],
     stages,
   });
@@ -84,6 +84,17 @@ const MainTitle = ({ duration, initialDelay, delayIncrement }) => {
   const elementSize = useElementSize("AcademicCV-M");
   const CVHeader = useSpring({
     maxWidth: `${stages[2] || stages[3] ? 620 * 0.95 : elementSize.width}px`,
+    left: stages[1]
+      ? !stages[2]
+        ? `${size / 2 + 5}px`
+        : `${(window.innerWidth - size) / 2 + 5}px`
+      : "0px",
+    width: stages[2]
+      ? "calc(100% - 5px)"
+      : `${Math.max(
+          Math.min(elementSize.width * 0.95, size * 2.3),
+          size * 2 + 10
+        )}px`,
     // left: stages[2] ? "50px" : "30px",
     // top: stages[2] ? "80px" : "50px",
   });

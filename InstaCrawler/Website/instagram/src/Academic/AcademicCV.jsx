@@ -86,6 +86,14 @@ const AcademicCV = () => {
     return 0;
   }, [scrollPosition]);
   const moreAcademicInfoStyle = useSpring({
+    width: stages[2]
+      ? "calc(100% - 5px)"
+      : `${Math.max(
+          Math.min(elementSize.width * 0.95, data[0].size[1] * 2.3),
+          data[0].size[1] * 2 + 10
+        )}px`,
+    boxSizing: "border-box",
+
     // transform: `scale(${stages[3] ? 1 : scale})`,
     // maxHeight: `${mainMaxHeight}px`,
     // maxWidth: `${stages[2] || stages[3] ? 620 : elementSize.width}px`,
@@ -124,18 +132,18 @@ const AcademicCV = () => {
           className="AcademicCV-M"
           style={{ height: `${window.innerHeight - 35}px` }}
         >
-          {conditionStage && (
-            <>
-              <MainTitle />
-              {(stages[2] || stages[3]) && <CVList isActive={toggle[0]} />}
-            </>
-          )}
           <animated.div
             style={moreAcademicInfoStyle}
             ref={scollableRef}
             id="MoreInfoAcademic"
             className="MoreInfoAcademic"
           >
+            {conditionStage && (
+              <>
+                <MainTitle size={data[0].size[1]} />
+                {(stages[2] || stages[3]) && <CVList isActive={toggle[0]} />}
+              </>
+            )}
             {conditionStage && <MoreInfoAcademic lastValue={lastValue} />}
           </animated.div>
         </div>

@@ -9,7 +9,7 @@ const calculateWidth = (titleRef, explanationRef, mainRef) => {
   return [titleWidth, explanationWidth, mainWidth];
 };
 
-const TitleText = ({ isActive, title, explanation, widthSplit }) => {
+const TitleText = ({ isActive, title, explanation, widthSplit, name }) => {
   const titleRef = useRef(null);
   const explanationRef = useRef(null);
   const mainRef = useRef(null);
@@ -25,14 +25,14 @@ const TitleText = ({ isActive, title, explanation, widthSplit }) => {
 
   const mainStyle = useSpring({
     top: isActive ? 25 : 15,
-    width: "100%",
+    width: name === "Teaching" || name === "Awards" ? "80%" : "100%",
     justifyContent: "center",
     alignItems: "baseline",
   });
 
   const otherTitleStyle1 = useSpring({
     position: "absolute",
-    width: widthSplit ? "50vw" : "max-content",
+    width: widthSplit ? "100%" : "max-content",
     // maxWidth: isActive ? "80%" : "100%",
     top: isActive ? -5 - (factor - 1) * 7 : -5,
     fontSize: isActive ? 20 * factor : 20,
