@@ -103,6 +103,7 @@ const InteractiveDiv = (props) => {
         : `${size[1]}px`
       : "calc(100% - 5px)",
     border: "2px solid rgba(212, 157, 129, 0.2)",
+    marginBottom: stages[1] ? "10px" : "0px",
     left: stages[1]
       ? name === "Awards"
         ? "calc((100% + 10px - 5px)/2)"
