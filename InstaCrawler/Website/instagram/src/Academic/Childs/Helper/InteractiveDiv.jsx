@@ -129,10 +129,10 @@ const InteractiveDiv = (props) => {
             -(activeHeight - (viewportHeight + scrollTop - ModifyTop)),
             newAdjustedTop
           ),
-          scrollTop + 45
+          scrollTop + ModifyTop
         );
       } else {
-        newAdjustedTop = scrollTop + 45;
+        newAdjustedTop = scrollTop + ModifyTop;
       }
     }
 

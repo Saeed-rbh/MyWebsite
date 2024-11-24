@@ -22,7 +22,7 @@ const SkillsMain = ({
     }
   };
   const Anim = useSpring({
-    marginTop: stages[1] ? (isActive ? 75 : 60) : isActive ? 70 : 55,
+    marginTop: stages[1] ? (isActive ? 75 : 55) : isActive ? 70 : 55,
     padding: "0 20px",
   });
 
@@ -39,7 +39,7 @@ const SkillsMain = ({
             key={s[0]}
             style={{
               marginBottom:
-                Skill.id === 1 && s === Skill.skill[1] && !toggle[0] ? 5 : 0,
+                Skill.id === 1 && s === Skill.skill[1] && !toggle[0] ? 10 : 0,
             }}
           >
             <h2>{s[0]}</h2>
