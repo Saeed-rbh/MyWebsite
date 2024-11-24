@@ -90,10 +90,13 @@ const InteractiveDiv = (props) => {
       : name === "Teaching" || name === "Awards"
       ? `calc((100% - ${size[1] + 20}px) / 2 - 5px)`
       : `calc(100% - ${size[1] + 20}px)`,
-    minWidth:
-      name === "Teaching" || name === "Awards"
-        ? `${size[1] / 2 - 10}px`
-        : `${size[1]}px`,
+    minWidth: stages[1]
+      ? name === "Teaching" || name === "Awards"
+        ? `calc((100% - ${size[1] + 20}px) / 2 - 5px)`
+        : `calc(100% - ${size[1] + 20}px)`
+      : name === "Teaching" || name === "Awards"
+      ? `${size[1] / 2 - 10}px`
+      : `${size[1]}px`,
     maxWidth: stages[1]
       ? name === "Teaching" || name === "Awards"
         ? `${size[1] / 2 - 10}px`
@@ -105,7 +108,7 @@ const InteractiveDiv = (props) => {
         ? "calc((100% + 10px - 5px)/2)"
         : !stages[2]
         ? `${size[1] / 2 + 5}px`
-        : `${(window.innerWidth - size[1]) / 2 + 5}px`
+        : `${0}px`
       : name === "Skills"
       ? "0px"
       : name === "Awards"

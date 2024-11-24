@@ -87,7 +87,7 @@ const AcademicCV = () => {
   }, [scrollPosition]);
   const moreAcademicInfoStyle = useSpring({
     width: stages[2]
-      ? "calc(100% - 5px)"
+      ? "calc(100% - 20px)"
       : `${Math.max(
           Math.min(elementSize.width * 0.95, data[0].size[1] * 2.3),
           data[0].size[1] * 2 + 10
@@ -111,6 +111,7 @@ const AcademicCV = () => {
     // marginTop: stages[2] ? -80 : stages[3] ? -60 : 0,
 
     top: -35,
+    height: "100%",
 
     overflowY: useMemo(
       () =>

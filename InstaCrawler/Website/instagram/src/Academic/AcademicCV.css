@@ -1325,9 +1325,9 @@
 }
 
 @media only screen and (max-width: 768px) {
-  .AcademicCV-M {
+  /* .AcademicCV-M {
     width: 97vw;
-  }
+  } */
   .CVHeader {
     top: 60px;
     left: 10px;

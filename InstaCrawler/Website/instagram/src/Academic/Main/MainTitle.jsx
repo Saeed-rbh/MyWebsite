@@ -39,13 +39,13 @@ const useTitleAnimation = ({
     to: {
       opacity: scroll > 0 ? 0 : visibility ? 0.7 : 0,
       // x: scroll <= 0 ? xDiff[1] : xDiff[1] - 10,
-      y:
-        scroll <= 0
-          ? interpolateValue((scroll * 5) / 7, [yDiff[0] / 3, yDiff[1]])
-          : scroll > 0
-          ? yDiff[1] - 50
-          : yDiff[1],
-      scale: scroll > 0 ? 0.9 : 1,
+      // y:
+      //   scroll <= 0
+      //     ? interpolateValue((scroll * 5) / 7, [yDiff[0] / 3, yDiff[1]])
+      //     : scroll > 0
+      //     ? yDiff[1] - 50
+      //     : yDiff[1],
+      // scale: scroll > 0 ? 0.9 : 1,
     },
     delay: animationFinished ? 0 : 500,
     config: { duration: animationFinished ? undefined : 800 },
@@ -66,7 +66,7 @@ const MainTitle = ({ duration, initialDelay, delayIncrement, size }) => {
     animationFinished,
     setAnimationFinished,
     // xDiff: [-35, stages[2] ? 0 : 0],
-    yDiff: [-10, stages[2] ? 20 : -40],
+    yDiff: [-10, stages[2] ? 80 : 30],
     scaleDiff: [0.9, 1],
     stages,
   });
@@ -76,7 +76,7 @@ const MainTitle = ({ duration, initialDelay, delayIncrement, size }) => {
     animationFinished,
     setAnimationFinished,
     // xDiff: [-35, stages[2] ? 0 : 0],
-    yDiff: [-10, stages[2] ? 20 : -40],
+    yDiff: [-10, stages[2] ? 80 : 30],
     scaleDiff: [0.9, 1],
     stages,
   });
@@ -89,6 +89,7 @@ const MainTitle = ({ duration, initialDelay, delayIncrement, size }) => {
         ? `${size / 2 + 5}px`
         : `${(window.innerWidth - size) / 2 + 5}px`
       : "0px",
+    top: 0,
     width: stages[2]
       ? "calc(100% - 5px)"
       : `${Math.max(

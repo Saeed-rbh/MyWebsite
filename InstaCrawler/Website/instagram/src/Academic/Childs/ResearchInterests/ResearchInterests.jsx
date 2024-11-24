@@ -37,11 +37,7 @@ const ResearchInterests = () => {
 
     border: "2px solid rgba(212, 157, 129, 0.2)",
     zIndex: "10",
-    left: stages[1]
-      ? !stages[2]
-        ? `${size[1] / 2 + 5}px`
-        : `${(window.innerWidth - size[1]) / 2 + 5}px`
-      : "0px",
+    left: stages[1] ? (!stages[2] ? `${size[1] / 2 + 5}px` : `${0}px`) : "0px",
     boxSize: "border-box",
     top: stages[1]
       ? `calc(5vh + ${top}px)`
