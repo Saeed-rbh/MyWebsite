@@ -133,7 +133,7 @@ const InteractiveDiv = (props) => {
           scrollTop + ModifyTop
         );
       } else {
-        newAdjustedTop = scrollTop + 1.5 * ModifyTop;
+        newAdjustedTop = scrollTop + 1.2 * ModifyTop;
       }
     }
 

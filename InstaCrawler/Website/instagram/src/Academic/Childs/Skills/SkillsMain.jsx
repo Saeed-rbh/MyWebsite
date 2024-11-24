@@ -22,7 +22,7 @@ const SkillsMain = ({
     }
   };
   const Anim = useSpring({
-    marginTop: stages[1] ? (isActive ? 75 : 55) : isActive ? 70 : 55,
+    marginTop: stages[1] ? (isActive ? 75 : 55) : isActive ? 70 : 50,
     padding: "0 20px",
   });
 

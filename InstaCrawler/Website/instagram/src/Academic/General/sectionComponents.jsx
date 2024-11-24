@@ -149,7 +149,7 @@ export const sectionProperties = [
   },
 
   {
-    id: 8,
+    id: 7,
     name: "Teaching",
     explanation: "Involvement in Teaching and Professional Work Experiences",
     title: "Teach & work experiences",

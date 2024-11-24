@@ -164,10 +164,10 @@ export const useCombinedAnimation = ({
   }, [toggle, name]);
 
   const initialStyleAnim = useSpring({
-    from: { opacity: 0, scale: 1.1, y: 20 },
+    from: { opacity: 0, scale: 1.2, y: 20 },
     to: { opacity: 1, scale: 1, y: 0 },
-    delay: 500 + id * 300,
-    config: { duration: 500, easing: easings.easeInQuad },
+    delay: 500 + id * 110,
+    config: { duration: 500 },
     onRest: () => {
       Loaded.current = true;
     },
