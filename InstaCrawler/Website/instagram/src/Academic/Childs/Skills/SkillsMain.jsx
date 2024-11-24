@@ -22,7 +22,7 @@ const SkillsMain = ({
     }
   };
   const Anim = useSpring({
-    marginTop: stages[2] ? (isActive ? 35 : 20) : isActive ? 70 : 55,
+    marginTop: stages[1] ? (isActive ? 75 : 60) : isActive ? 70 : 55,
     padding: "0 20px",
   });
 
@@ -35,7 +35,13 @@ const SkillsMain = ({
       <p>{Skill.Title}</p>
       <ul>
         {Skill.skill.map((s) => (
-          <li key={s[0]}>
+          <li
+            key={s[0]}
+            style={{
+              marginBottom:
+                Skill.id === 1 && s === Skill.skill[1] && !toggle[0] ? 5 : 0,
+            }}
+          >
             <h2>{s[0]}</h2>
             <div className="Skill-Progress">
               <div

@@ -84,11 +84,7 @@ const MainTitle = ({ duration, initialDelay, delayIncrement, size }) => {
   const elementSize = useElementSize("AcademicCV-M");
   const CVHeader = useSpring({
     maxWidth: `${stages[2] || stages[3] ? 620 * 0.95 : elementSize.width}px`,
-    left: stages[1]
-      ? !stages[2]
-        ? `${size / 2 + 5}px`
-        : `${(window.innerWidth - size) / 2 + 5}px`
-      : "0px",
+    left: stages[1] ? (!stages[2] ? `${size / 2 + 5}px` : `${10}px`) : "0px",
     top: 0,
     width: stages[2]
       ? "calc(100% - 5px)"
@@ -96,6 +92,7 @@ const MainTitle = ({ duration, initialDelay, delayIncrement, size }) => {
           Math.min(elementSize.width * 0.95, size * 2.3),
           size * 2 + 10
         )}px`,
+    // left: stages[2] ? "10px" : "0px",
     // left: stages[2] ? "50px" : "30px",
     // top: stages[2] ? "80px" : "50px",
   });
