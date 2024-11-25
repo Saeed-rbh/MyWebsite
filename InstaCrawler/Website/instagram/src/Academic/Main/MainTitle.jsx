@@ -85,9 +85,10 @@ const MainTitle = ({ duration, initialDelay, delayIncrement, size }) => {
 
   const elementSize = useElementSize("AcademicCV-M");
   const CVHeader = useSpring({
+    position: "fixed",
+    top: 30,
     maxWidth: `${stages[2] || stages[3] ? 620 * 0.95 : elementSize.width}px`,
     left: stages[1] ? (!stages[2] ? `${size / 2 + 5}px` : `${10}px`) : "0px",
-    top: 0,
     width: stages[2]
       ? "calc(100% - 5px)"
       : `${Math.max(
