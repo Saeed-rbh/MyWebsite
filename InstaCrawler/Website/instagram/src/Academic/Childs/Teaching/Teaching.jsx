@@ -135,6 +135,7 @@ const Teaching = () => {
         List={utilizeProps.list}
         isActive={utilizeProps.isActive}
         stages={utilizeProps.stages}
+        size={utilizeProps.size}
       />
     </InteractiveDiv>
   );

@@ -145,7 +145,6 @@ export const sectionProperties = [
     Rand: Math.random(),
     list: AwardsList,
     isCalc: false,
-    // 540 - 465 = 75 - 810 = -735
   },
 
   {
@@ -156,7 +155,7 @@ export const sectionProperties = [
     background: "rgb(0 0 0 / 30%)",
     size: [100, 450],
     top: 535 + 755,
-    adjustTop: -740,
+    adjustTop: -755,
     adjustHeight: -5,
     adjustViewport: -40,
     fixed: false,

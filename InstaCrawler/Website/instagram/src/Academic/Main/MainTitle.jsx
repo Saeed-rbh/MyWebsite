@@ -67,8 +67,8 @@ const MainTitle = ({ duration, initialDelay, delayIncrement, size }) => {
     visibility,
     animationFinished,
     setAnimationFinished,
-    // xDiff: [-35, stages[2] ? 0 : 0],
-    yDiff: [50, stages[2] ? 90 : 30],
+    // xDiff: [-35, stages[1] ? 0 : 0],
+    yDiff: [50, stages[1] ? 90 : 30],
     scaleDiff: [0.9, 1],
     stages,
   });
@@ -77,8 +77,8 @@ const MainTitle = ({ duration, initialDelay, delayIncrement, size }) => {
     visibility,
     animationFinished,
     setAnimationFinished,
-    // xDiff: [-35, stages[2] ? 0 : 0],
-    yDiff: [50, stages[2] ? 85 : 30],
+    // xDiff: [-35, stages[1] ? 0 : 0],
+    yDiff: [50, stages[1] ? 85 : 30],
     scaleDiff: [0.9, 1],
     stages,
   });
@@ -87,17 +87,17 @@ const MainTitle = ({ duration, initialDelay, delayIncrement, size }) => {
   const CVHeader = useSpring({
     position: "fixed",
     top: 30,
-    maxWidth: `${stages[2] || stages[3] ? 620 * 0.95 : elementSize.width}px`,
-    left: stages[1] ? (!stages[2] ? `${size / 2 + 5}px` : `${10}px`) : "0px",
-    width: stages[2]
+    maxWidth: `${stages[1] || stages[3] ? 620 * 0.95 : elementSize.width}px`,
+    left: stages[1] ? "calc((100% + 10px - 5px)/2)" : "0px",
+    width: stages[1]
       ? "calc(100% - 5px)"
       : `${Math.max(
           Math.min(elementSize.width * 0.95, size * 2.3),
           size * 2 + 10
         )}px`,
-    // left: stages[2] ? "10px" : "0px",
-    // left: stages[2] ? "50px" : "30px",
-    // top: stages[2] ? "80px" : "50px",
+    // left: stages[1] ? "10px" : "0px",
+    // left: stages[1] ? "50px" : "30px",
+    // top: stages[1] ? "80px" : "50px",
   });
 
   return (

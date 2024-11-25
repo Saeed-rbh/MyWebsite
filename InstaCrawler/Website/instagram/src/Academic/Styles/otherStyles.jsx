@@ -110,15 +110,15 @@ export const useMoreStyle = (isActive, fixed, stages) => {
 //   });
 // };
 
-export const useClickOtherFade = (otherActive, progress) => {
+export const useClickOtherFade = (otherActive, progress, name, isActive) => {
   const [blur, setBlur] = useState(0);
   const [opacity, setOpacity] = useState(1);
   const [scale, setScale] = useState(1);
 
   useEffect(() => {
     const blurValue = 5 * progress;
-    const opacityValue = otherActive && progress !== 1 ? 0 : 1;
-    const scaleValue = otherActive && progress !== 1 ? 0.9 : 1;
+    const opacityValue = otherActive ? 0 : 1;
+    const scaleValue = otherActive ? 0.9 : 1;
     setBlur(blurValue);
     setOpacity(opacityValue);
     setScale(scaleValue);
@@ -144,6 +144,7 @@ export const useCombinedAnimation = ({
   name,
   id,
   inView,
+  isActive,
 }) => {
   const Loaded = useRef(false);
 
@@ -173,7 +174,12 @@ export const useCombinedAnimation = ({
     },
   });
 
-  const otherFadeAnim = useClickOtherFade(otherActive, progress, inView);
+  const otherFadeAnim = useClickOtherFade(
+    otherActive,
+    progress,
+    name,
+    isActive
+  );
 
   const combinedStyleAnim = Loaded.current
     ? { ...otherFadeAnim.style }

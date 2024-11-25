@@ -31,13 +31,13 @@ const MainStyleComponent = () => {
     position: "fixed",
     height: 55,
     top: 0,
-    width: stages[2] ? "95%" : "100%",
-    // paddingLeft: stages[2] ? "5%" : "0%",
+    width: stages[1] ? "95%" : "100%",
+    // paddingLeft: stages[1] ? "5%" : "0%",
     display: "flex",
     y: scrollEffect[0],
     zIndex: 22,
     overflow: "hidden",
-    maxWidth: `${stages[2] || stages[3] ? 620 * 0.95 : 0}px`,
+    maxWidth: `${stages[1] || stages[3] ? 620 * 0.95 : 0}px`,
   });
   return { mainStyle, scrollEffect };
 };
