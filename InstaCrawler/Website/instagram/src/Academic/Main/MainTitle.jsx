@@ -43,7 +43,7 @@ const useTitleAnimation = ({
       // x: scroll <= 0 ? xDiff[1] : xDiff[1] - 10,
       y:
         scroll <= 0 || toggle[0]
-          ? interpolateValue(scroll / 10, [yDiff[0] / 3, yDiff[1]])
+          ? interpolateValue(scrollPosition / 150, [yDiff[0] / 3, yDiff[1]])
           : scroll > 0
           ? yDiff[1] - 50
           : yDiff[1],
@@ -107,7 +107,7 @@ const MainTitle = ({ duration, initialDelay, delayIncrement, size }) => {
           duration={duration}
         />
       </animated.div>
-      <animated.p style={title2Style}>Academic CV</animated.p>
+      <animated.p style={title2Style}>Academic CV-1</animated.p>
     </animated.div>
   );
 };
