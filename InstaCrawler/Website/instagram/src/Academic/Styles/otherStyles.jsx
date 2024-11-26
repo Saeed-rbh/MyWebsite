@@ -1,5 +1,5 @@
-import { useSpring, easings } from "react-spring";
-import { useMemo, useState, useEffect, useRef } from "react";
+import { useSpring, animated } from "react-spring";
+import { useMemo, useState, useEffect, useRef, useCallback } from "react";
 import { useSelector } from "react-redux";
 
 // Hook for second text style
@@ -277,4 +277,52 @@ export const useInView = ({
   }, [ref, root, rootMargin, threshold]); // Dependencies include observer options
 
   return isInView;
+};
+
+export const ScalableElement = ({
+  as: Component = "h1",
+  children,
+  className,
+  onClick,
+  onMouseDown,
+  key,
+  style,
+  id,
+  eventHandlers,
+}) => {
+  const [isScaled, setIsScaled] = useState(false);
+
+  const handleMouseDown = useCallback(
+    (e) => {
+      setIsScaled(true);
+      if (onMouseDown) onMouseDown();
+    },
+    [onMouseDown]
+  );
+
+  const handleMouseUp = useCallback(() => setIsScaled(false), []);
+
+  const style_2 = useSpring({
+    scale: isScaled ? 0.9 : 1,
+  });
+
+  const AnimatedComponent = animated(Component);
+
+  return (
+    <AnimatedComponent
+      id={id}
+      key={key}
+      className={className}
+      style={{ ...style, ...style_2 }}
+      onClick={onClick}
+      onMouseDown={handleMouseDown}
+      onMouseUp={handleMouseUp}
+      onMouseLeave={handleMouseUp}
+      onTouchStart={handleMouseDown}
+      onTouchEnd={handleMouseUp}
+      {...eventHandlers}
+    >
+      {children}
+    </AnimatedComponent>
+  );
 };

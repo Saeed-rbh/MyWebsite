@@ -6,7 +6,7 @@ import { useSelector } from "react-redux";
 import useScrollPosition from "../../General/useScrollPosition";
 import {
   useCombinedAnimation,
-  usecalculateAdjustedHeight,
+  ScalableElement,
 } from "../../Styles/otherStyles";
 import useElementSize from "../../Styles/useElementSize";
 
@@ -52,13 +52,31 @@ const InteractiveDiv = (props) => {
     openType
   );
 
+  const [scale, setScale] = useState(1);
+  const additionalHandleMouseDown = (event) => {
+    !isActive && setScale(0.9);
+  };
+
+  const combinedHandleMouseDown = (event) => {
+    handleMouseDown(event);
+    additionalHandleMouseDown(event);
+  };
+
+  const additionalHandleMouseUp = (event) => {
+    setScale(1);
+  };
+  const combinedHandleMouseUp = (event) => {
+    handleMouseUp(event);
+    additionalHandleMouseUp(event);
+  };
+
   const eventHandlers = {
-    onMouseUp: handleMouseUp,
-    onMouseDown: handleMouseDown,
+    onMouseUp: combinedHandleMouseUp,
+    onMouseDown: combinedHandleMouseDown,
     onMouseEnter: handleMouseEnter,
     onMouseLeave: handleMouseLeave,
-    onTouchStart: handleMouseDown,
-    onTouchEnd: handleMouseUp,
+    onTouchStart: combinedHandleMouseDown,
+    onTouchEnd: combinedHandleMouseUp,
   };
 
   const h1Style = useSpring({
@@ -98,6 +116,7 @@ const InteractiveDiv = (props) => {
     filter: "blur(0px)",
     opacity: "1",
     backgroundColor: "rgba(0, 0, 0, 0.3)",
+    scale: scale,
 
     border: "2px solid rgba(212, 157, 129, 0.2)",
     marginBottom: stages[1] ? "10px" : "0px",
@@ -189,6 +208,7 @@ const InteractiveDiv = (props) => {
         widthSplit={widthSplit}
         name={name}
         size={size}
+        stages={stages}
       />
       <animated.h1 style={h1Style} ref={TextRef}>
         {title}

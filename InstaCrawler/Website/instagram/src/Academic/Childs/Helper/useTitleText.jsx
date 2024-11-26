@@ -2,7 +2,6 @@ import React, { useRef, useEffect, useState } from "react";
 import { animated, useSpring } from "react-spring";
 import { useSelector } from "react-redux";
 import useElementSize from "../../Styles/useElementSize";
-import { Stage } from "@react-three/drei";
 
 const calculateWidth = (titleRef, explanationRef, mainRef) => {
   const titleWidth = titleRef.current?.offsetWidth || 0;
@@ -17,7 +16,7 @@ const TitleText = ({
   explanation,
   widthSplit,
   name,
-  size,
+  stages,
 }) => {
   const titleRef = useRef(null);
   const explanationRef = useRef(null);
@@ -54,30 +53,31 @@ const TitleText = ({
     };
   }, []);
 
-  const fontSize = isActive
-    ? name === "Teaching" || name === "Awards"
-      ? 13
-      : name === "Qualifications"
-      ? 30
-      : name === "Conference"
-      ? 20
-      : 25
-    : name === "Teaching" || name === "Awards"
-    ? 20
-    : 22;
-
   const mainStyle = useSpring({
     top: isActive ? 25 : 15,
-    width: name === "Teaching" || name === "Awards" ? "80%" : "100%",
+    width:
+      (name === "Teaching" || name === "Awards") && !stages[1] ? "80%" : "100%",
     justifyContent: "center",
     alignItems: "baseline",
   });
 
   const otherTitleStyle1 = useSpring({
     position: "absolute",
+    fontSize: isActive
+      ? name === "Awards"
+        ? 20
+        : name === "Qualifications"
+        ? 30
+        : name === "Conference"
+        ? 22
+        : name === "Teaching"
+        ? 5
+        : 30
+      : name === "Teaching" || name === "Awards"
+      ? 20
+      : 22,
     width: name === "Teaching" || name === "Awards" ? "80%" : "max-content",
     top: isActive ? -10 : -5,
-    fontSize: fontSize,
     opacity: !isActive || !widthSplit ? 1 : 0,
     left:
       name === "Teaching" || name === "Awards"
@@ -92,15 +92,15 @@ const TitleText = ({
     left: isActive ? 20 : (width[2] - width[0]) / 2,
     top: isActive ? -5 : 0,
     opacity: isActive ? 1 : 0,
-    fontSize: isActive ? 25 : 20,
+    // fontSize: isActive ? 25 : 20,
     textWrap: "nowrap",
   });
 
   const explanationStyle = useSpring({
     position: "absolute",
     width: "max-content",
-    fontSize: 11,
-    maxWidth: isActive && Stage[1] ? "80%" : "100%",
+    // fontSize: 11,
+    maxWidth: isActive ? "80%" : "100%",
     top: isActive ? 20 : 20,
     opacity: isActive || !widthSplit ? 1 : 0,
     left: widthSplit
