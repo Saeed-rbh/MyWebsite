@@ -88,6 +88,7 @@ const MainTitle = ({ duration, initialDelay, delayIncrement, size }) => {
   const CVHeader = useSpring({
     position: "fixed",
     top: 30,
+    zIndex: 1,
     maxWidth: `${stages[1] || stages[3] ? 620 * 0.95 : elementSize.width}px`,
     left: stages[1]
       ? (elementSizeMain - Math.min(elementSize.width * 0.95, size)) / 2 + 10
@@ -107,7 +108,7 @@ const MainTitle = ({ duration, initialDelay, delayIncrement, size }) => {
           duration={duration}
         />
       </animated.div>
-      <animated.p style={title2Style}>Academic CV-1</animated.p>
+      <animated.p style={title2Style}>Academic CV-0</animated.p>
     </animated.div>
   );
 };

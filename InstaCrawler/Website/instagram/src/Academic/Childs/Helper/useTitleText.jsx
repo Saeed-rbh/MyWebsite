@@ -48,6 +48,43 @@ const TitleText = ({
     isActive,
   ]);
 
+  const [fontSize, setFontSize] = useState(20); // Start with a default font size
+
+  useEffect(() => {
+    function fitTextToParent() {
+      const titleElement = titleRef.current;
+
+      if (!titleElement) return;
+
+      let maxFontSize = 30; // Maximum font size to test
+      let minFontSize = 20; // Minimum font size to test
+      let testFontSize = maxFontSize;
+
+      // Binary search to find the maximum fitting font size
+      while (minFontSize <= maxFontSize) {
+        titleElement.style.fontSize = `${testFontSize}px`;
+
+        // Check if the text overflows the available width
+        if (titleElement.scrollWidth > size[1]) {
+          // Text overflows, reduce font size
+          maxFontSize = testFontSize - 1;
+        } else {
+          // Text fits, increase font size
+          minFontSize = testFontSize + 1;
+        }
+
+        testFontSize = Math.floor((maxFontSize + minFontSize) / 2);
+      }
+
+      setFontSize(maxFontSize); // Set the highest fitting font size
+    }
+
+    fitTextToParent();
+    window.addEventListener("resize", fitTextToParent);
+
+    return () => window.removeEventListener("resize", fitTextToParent);
+  }, []);
+
   const factor = 1.5;
 
   const mainStyle = useSpring({
@@ -62,7 +99,7 @@ const TitleText = ({
     width: widthSplit ? "100%" : "max-content",
     // maxWidth: isActive ? "80%" : "100%",
     top: isActive ? -5 - (factor - 1) * 7 : -5,
-    fontSize: isActive ? 20 * factor : 20,
+    fontSize: isActive ? fontSize : 20,
     opacity: !isActive || !widthSplit ? 1 : 0,
     left: widthSplit
       ? 25
