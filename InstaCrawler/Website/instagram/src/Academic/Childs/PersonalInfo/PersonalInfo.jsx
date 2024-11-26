@@ -6,6 +6,7 @@ import { useSelector } from "react-redux";
 import useScrollPosition from "../../General/useScrollPosition";
 import { useCombinedAnimation } from "../../Styles/otherStyles";
 import { useInView } from "react-intersection-observer";
+import useElementSize from "../../Styles/useElementSize";
 
 export const PersonalInfo = () => {
   const componentName = "PersonalInfo";
@@ -16,6 +17,7 @@ export const PersonalInfo = () => {
     threshold: 0.5,
   });
 
+  const elementSize = useElementSize("MoreInfoAcademic").width;
   const { stages, scollableRef, toggle } = useSelector((state) => state.data);
   const { scrollTop } = useScrollPosition(scollableRef);
 
@@ -28,11 +30,12 @@ export const PersonalInfo = () => {
     opacity: "1",
     backgroundColor: "rgba(0, 0, 0, 0.3)",
     overflow: "visible",
-    width: stages[1] ? "calc(100% - 5px)" : `${size[1]}px`,
-    maxWidth: `${size[1]}px`,
+    width: stages[1] ? Math.min(elementSize * 0.95, size[1]) : size[1],
+    left: stages[1]
+      ? (elementSize - Math.min(elementSize * 0.95, size[1])) / 2
+      : 0,
     border: "2px solid rgba(212, 157, 129, 0.2)",
     zIndex: "10",
-    left: stages[1] ? (!stages[2] ? `${size[1] / 2 + 5}px` : `${0}px`) : "0px",
     top: stages[1]
       ? `calc(5vh + ${top}px)`
       : `calc(5vh + ${top + adjustTop}px)`,

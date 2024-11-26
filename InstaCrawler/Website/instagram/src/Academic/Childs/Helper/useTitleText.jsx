@@ -1,6 +1,7 @@
 import React, { useRef, useEffect, useState } from "react";
 import { animated, useSpring } from "react-spring";
 import { useSelector } from "react-redux";
+import useElementSize from "../../Styles/useElementSize";
 
 const calculateWidth = (titleRef, explanationRef, mainRef) => {
   const titleWidth = titleRef.current?.offsetWidth || 0;
@@ -9,19 +10,45 @@ const calculateWidth = (titleRef, explanationRef, mainRef) => {
   return [titleWidth, explanationWidth, mainWidth];
 };
 
-const TitleText = ({ isActive, title, explanation, widthSplit, name }) => {
+const TitleText = ({
+  isActive,
+  title,
+  explanation,
+  widthSplit,
+  name,
+  size,
+}) => {
   const titleRef = useRef(null);
   const explanationRef = useRef(null);
   const mainRef = useRef(null);
   const stages = useSelector((state) => state.data.stages);
   const [width, setWidth] = useState([0, 0, 0]);
 
-  useEffect(() => {
-    setWidth(calculateWidth(titleRef, explanationRef, mainRef));
-  }, [titleRef, explanationRef, mainRef.current?.offsetWidth, stages]);
+  const elementSize = useElementSize("MoreInfoAcademic").width;
 
-  const widthSplitFactor = widthSplit ? 1.6 : 1;
-  const factor = Math.min((width[2] / width[0]) * 0.7, 1.5) * widthSplitFactor;
+  useEffect(() => {
+    const titleWidth = titleRef.current?.offsetWidth;
+    const explanationWidth = explanationRef.current?.offsetWidth;
+    const widthMain = stages[1]
+      ? !isActive && (name === "Teaching" || name === "Awards")
+        ? Math.min(elementSize * 0.95, size[1]) / 2 - 5
+        : Math.min(elementSize * 0.95, size[1])
+      : name === "Skills"
+      ? size[1]
+      : !isActive && (name === "Teaching" || name === "Awards")
+      ? Math.min(elementSize - size[1] - 20, size[1] * 1.5) / 2 - 5
+      : Math.min(elementSize - size[1] - 20, size[1] * 1.5);
+
+    setWidth([titleWidth, explanationWidth, widthMain]);
+  }, [
+    titleRef.current?.offsetWidth,
+    explanationRef.current?.offsetWidth,
+    mainRef.current?.offsetWidth,
+    elementSize,
+    isActive,
+  ]);
+
+  const factor = 1.5;
 
   const mainStyle = useSpring({
     top: isActive ? 25 : 15,

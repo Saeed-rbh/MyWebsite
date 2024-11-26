@@ -25,13 +25,9 @@ const TeachingMain = ({
     marginTop: stages[2] ? (isActive ? 35 : 20) : isActive ? 70 : 100,
     marginLeft: 30,
     opacity: isActive ? 1 : 0,
-    width: stages[1]
-      ? `calc(${elementSize}px - 5px)`
-      : `calc(${elementSize}px - ${size[1] + 20}px)`,
-    minWidth: stages[1]
-      ? `calc(${elementSize}px - ${size[1] + 20}px)`
-      : `${size[1]}px`,
-    maxWidth: stages[1] ? `${size[1]}px` : `calc(${elementSize}px - 5px)`,
+    width: stages[1] ? elementSize - 5 : elementSize - 20 - size[1],
+    minWidth: stages[1] ? elementSize - size[1] - 20 : size[1],
+    maxWidth: stages[1] ? size[1] : elementSize - 5,
     boxSizing: "border-box",
   });
 

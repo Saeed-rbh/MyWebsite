@@ -34,11 +34,11 @@ const AcademicCV = () => {
 
   const moreAcademicInfoStyle = useSpring({
     width: stages[1]
-      ? "calc(100% - 10px)"
-      : `${Math.max(
+      ? elementSize.width - 10
+      : Math.max(
           Math.min(elementSize.width * 0.95, data[0].size[1] * 2.3),
           data[0].size[1] * 2 + 10
-        )}px`,
+        ),
     boxSizing: "border-box",
     top: -35,
     height: "100%",

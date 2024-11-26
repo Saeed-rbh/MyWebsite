@@ -84,73 +84,32 @@ const InteractiveDiv = (props) => {
     filter: "blur(0px)",
     opacity: "1",
     backgroundColor: "rgba(0, 0, 0, 0.3)",
+
+    border: "2px solid rgba(212, 157, 129, 0.2)",
+    marginBottom: stages[1] ? "10px" : "0px",
     width: stages[1]
-      ? name === "Teaching" || name === "Awards"
+      ? !isActive && (name === "Teaching" || name === "Awards")
         ? Math.min(elementSize * 0.95, size[1]) / 2 - 5
         : Math.min(elementSize * 0.95, size[1])
       : name === "Skills"
       ? size[1]
-      : name === "Teaching" || name === "Awards"
+      : !isActive && (name === "Teaching" || name === "Awards")
       ? Math.min(elementSize - size[1] - 20, size[1] * 1.5) / 2 - 5
       : Math.min(elementSize - size[1] - 20, size[1] * 1.5),
-    // width: stages[1]
-    //   ? name === "Teaching" || name === "Awards"
-    //     ? isActive
-    //       ? "calc(100% - 5px)"
-    //       : "calc((100% - 20px)/2)"
-    //     : "calc(100% - 5px)"
-    //   : name === "Skills"
-    //   ? `${size[1]}px`
-    //   : name === "Teaching" || name === "Awards"
-    //   ? isActive
-    //     ? `calc(100% - ${size[1] + 20}px)`
-    //     : `calc((100% - ${size[1] + 20}px) / 2 - 5px)`
-    //   : `calc(100% - ${size[1] + 20}px)`,
-    // minWidth: stages[1]
-    //   ? name === "Teaching" || name === "Awards"
-    //     ? isActive
-    //       ? `calc(100% - ${size[1] + 20}px)`
-    //       : `calc((100% - ${size[1] + 20}px) / 2 - 5px)`
-    //     : `calc(100% - ${size[1] + 20}px)`
-    //   : name === "Teaching" || name === "Awards"
-    //   ? `${size[1] / 2 - 10}px`
-    //   : `${size[1]}px`,
-    // maxWidth: stages[1]
-    //   ? name === "Teaching" || name === "Awards"
-    //     ? isActive
-    //       ? `${size[1]}px`
-    //       : `${size[1] / 2 - 10}px`
-    //     : `${size[1]}px`
-    //   : "calc(100% - 5px)",
-    border: "2px solid rgba(212, 157, 129, 0.2)",
-    marginBottom: stages[1] ? "10px" : "0px",
     left: stages[1]
-      ? name === "Awards"
+      ? name === "Awards" && !isActive
         ? (elementSize - Math.min(elementSize * 0.95, size[1])) / 2 +
           Math.min(elementSize * 0.95, size[1]) / 2 +
           5
         : (elementSize - Math.min(elementSize * 0.95, size[1])) / 2
       : name === "Skills"
       ? 0
-      : name === "Awards"
+      : name === "Awards" && !isActive
       ? size[1] +
         15 +
         Math.min(elementSize - size[1] - 20, size[1] * 1.5) / 2 +
         5
       : size[1] + 15,
-    // left: stages[1]
-    //   ? name === "Awards"
-    //     ? isActive
-    //       ? `${size[1] / 2 + 5}px`
-    //       : "calc((100% + 10px - 5px)/2)"
-    //     : `${size[1] / 2 + 5}px`
-    //   : name === "Skills"
-    //   ? "0px"
-    //   : name === "Awards"
-    //   ? isActive
-    //     ? "465px"
-    //     : `calc((100% - ${size[1] + 20}px ) / 2 + 465px + 5px)`
-    //   : "465px",
     overflow: "hidden",
   };
 
@@ -215,6 +174,7 @@ const InteractiveDiv = (props) => {
         explanation={explanation}
         widthSplit={widthSplit}
         name={name}
+        size={size}
       />
       <animated.h1 style={h1Style} ref={TextRef}>
         {title}

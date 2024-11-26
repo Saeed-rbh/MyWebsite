@@ -5,6 +5,7 @@ import { useSelector } from "react-redux";
 import useScrollPosition from "../../General/useScrollPosition";
 import { useCombinedAnimation } from "../../Styles/otherStyles";
 import { useInView } from "react-intersection-observer";
+import useElementSize from "../../Styles/useElementSize";
 
 const ResearchInterests = () => {
   const componentName = "ResearchInterests";
@@ -18,11 +19,7 @@ const ResearchInterests = () => {
   const { stages, scollableRef, toggle } = useSelector((state) => state.data);
 
   const { scrollTop } = useScrollPosition(scollableRef);
-
-  const [otherActive, setOtherActive] = useState(false);
-  useEffect(() => {
-    setOtherActive(toggle[0] && toggle[1] !== name);
-  }, [toggle, name]);
+  const elementSize = useElementSize("MoreInfoAcademic").width;
 
   const style = {
     borderRadius: "40px",
@@ -32,12 +29,13 @@ const ResearchInterests = () => {
     opacity: "1",
     backgroundColor: "rgba(0, 0, 0, 0.3)",
     overflow: "visible",
-    width: stages[1] ? "calc(100% - 5px)" : `${size[1]}px`,
-    maxWidth: `${size[1]}px`,
 
     border: "2px solid rgba(212, 157, 129, 0.2)",
     zIndex: "10",
-    left: stages[1] ? (!stages[2] ? `${size[1] / 2 + 5}px` : `${0}px`) : "0px",
+    width: stages[1] ? Math.min(elementSize * 0.95, size[1]) : size[1],
+    left: stages[1]
+      ? (elementSize - Math.min(elementSize * 0.95, size[1])) / 2
+      : 0,
     boxSize: "border-box",
     top: stages[1]
       ? `calc(5vh + ${top}px)`

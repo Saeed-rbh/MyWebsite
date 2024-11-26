@@ -907,7 +907,7 @@
   color: #ffffff;
   align-items: baseline;
   z-index: 21;
-  left: 50px;
+  /* left: 50px; */
   top: 80px;
   box-sizing: border-box;
 }
@@ -1330,7 +1330,7 @@
   } */
   .CVHeader {
     top: 60px;
-    left: 10px;
+    /* left: 10px; */
   }
   .CVHeader span {
     font-size: 70px;

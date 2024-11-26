@@ -68,7 +68,7 @@ const MainTitle = ({ duration, initialDelay, delayIncrement, size }) => {
     animationFinished,
     setAnimationFinished,
     // xDiff: [-35, stages[1] ? 0 : 0],
-    yDiff: [50, stages[1] ? 90 : 30],
+    yDiff: [50, stages[1] ? 90 : 40],
     scaleDiff: [0.9, 1],
     stages,
   });
@@ -78,26 +78,23 @@ const MainTitle = ({ duration, initialDelay, delayIncrement, size }) => {
     animationFinished,
     setAnimationFinished,
     // xDiff: [-35, stages[1] ? 0 : 0],
-    yDiff: [50, stages[1] ? 85 : 30],
+    yDiff: [50, stages[1] ? 85 : 40],
     scaleDiff: [0.9, 1],
     stages,
   });
 
-  const elementSize = useElementSize("AcademicCV-M");
+  const elementSizeMain = useElementSize("AcademicCV-M").width;
+  const elementSize = useElementSize("MoreInfoAcademic");
   const CVHeader = useSpring({
     position: "fixed",
     top: 30,
     maxWidth: `${stages[1] || stages[3] ? 620 * 0.95 : elementSize.width}px`,
-    left: stages[1] ? "calc((100% + 10px - 5px)/2)" : "0px",
+    left: stages[1]
+      ? (elementSizeMain - Math.min(elementSize.width * 0.95, size)) / 2 + 10
+      : (elementSizeMain - elementSize.width) / 2 + 10,
     width: stages[1]
-      ? "calc(100% - 5px)"
-      : `${Math.max(
-          Math.min(elementSize.width * 0.95, size * 2.3),
-          size * 2 + 10
-        )}px`,
-    // left: stages[1] ? "10px" : "0px",
-    // left: stages[1] ? "50px" : "30px",
-    // top: stages[1] ? "80px" : "50px",
+      ? elementSize.width - 5
+      : Math.max(Math.min(elementSize.width * 0.95, size * 2.3), size * 2 + 10),
   });
 
   return (
