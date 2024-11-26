@@ -103,8 +103,8 @@ const InteractiveDiv = (props) => {
     marginBottom: stages[1] ? "10px" : "0px",
     width: stages[1]
       ? !isActive && (name === "Teaching" || name === "Awards")
-        ? Math.min(elementSize * 0.95, size[1]) / 2 - 5
-        : Math.min(elementSize * 0.95, size[1])
+        ? Math.min(elementSize * 0.97, size[1]) / 2 - 5
+        : Math.min(elementSize * 0.97, size[1])
       : name === "Skills"
       ? size[1]
       : !isActive && (name === "Teaching" || name === "Awards")
@@ -112,10 +112,10 @@ const InteractiveDiv = (props) => {
       : Math.min(elementSize - size[1] - 20, size[1] * 1.5),
     left: stages[1]
       ? name === "Awards" && !isActive
-        ? (elementSize - Math.min(elementSize * 0.95, size[1])) / 2 +
-          Math.min(elementSize * 0.95, size[1]) / 2 +
+        ? (elementSize - Math.min(elementSize * 0.97, size[1])) / 2 +
+          Math.min(elementSize * 0.97, size[1]) / 2 +
           5
-        : (elementSize - Math.min(elementSize * 0.95, size[1])) / 2
+        : (elementSize - Math.min(elementSize * 0.97, size[1])) / 2
       : name === "Skills"
       ? 0
       : name === "Awards" && !isActive

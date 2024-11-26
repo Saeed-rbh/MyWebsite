@@ -53,6 +53,18 @@ const TitleText = ({
     };
   }, []);
 
+  const fontSize = isActive
+    ? name === "Teaching" || name === "Awards"
+      ? 15
+      : name === "Qualifications"
+      ? 30
+      : name === "Conference"
+      ? 20
+      : 25
+    : name === "Teaching" || name === "Awards"
+    ? 18
+    : 20;
+
   const mainStyle = useSpring({
     top: isActive ? 25 : 15,
     width: name === "Teaching" || name === "Awards" ? "80%" : "100%",
@@ -64,7 +76,7 @@ const TitleText = ({
     position: "absolute",
     width: name === "Teaching" || name === "Awards" ? "80%" : "max-content",
     top: isActive ? -10 : -5,
-    fontSize: isActive ? 25 : 20,
+    fontSize: fontSize,
     opacity: !isActive || !widthSplit ? 1 : 0,
     left:
       name === "Teaching" || name === "Awards"

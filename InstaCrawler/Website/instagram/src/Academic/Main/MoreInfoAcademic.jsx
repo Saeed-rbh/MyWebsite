@@ -7,7 +7,7 @@ const MoreInfoAcademic = ({ lastValue }) => {
   const { renderSection } = RenderComponent();
 
   const closeOpenStyleBlur = useSpring({
-    height: useMemo(() => `${lastValue + 20}px`, [lastValue]),
+    height: useMemo(() => `${lastValue + 30}px`, [lastValue]),
   });
 
   return (

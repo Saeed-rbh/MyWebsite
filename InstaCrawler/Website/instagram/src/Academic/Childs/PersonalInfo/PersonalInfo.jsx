@@ -30,9 +30,9 @@ export const PersonalInfo = () => {
     opacity: "1",
     backgroundColor: "rgba(0, 0, 0, 0.3)",
     overflow: "visible",
-    width: stages[1] ? Math.min(elementSize * 0.95, size[1]) : size[1],
+    width: stages[1] ? Math.min(elementSize * 0.97, size[1]) : size[1],
     left: stages[1]
-      ? (elementSize - Math.min(elementSize * 0.95, size[1])) / 2
+      ? (elementSize - Math.min(elementSize * 0.97, size[1])) / 2
       : 0,
     border: "2px solid rgba(212, 157, 129, 0.2)",
     zIndex: "10",

@@ -105,9 +105,9 @@ export const Affiliation = () => {
     filter: "blur(0px)",
     opacity: "1",
     backgroundColor: "rgba(0, 0, 0, 0.3)",
-    width: stages[1] ? Math.min(elementSize * 0.95, size[1]) : size[1],
+    width: stages[1] ? Math.min(elementSize * 0.97, size[1]) : size[1],
     left: stages[1]
-      ? (elementSize - Math.min(elementSize * 0.95, size[1])) / 2
+      ? (elementSize - Math.min(elementSize * 0.97, size[1])) / 2
       : 0,
 
     overflow: "visible",

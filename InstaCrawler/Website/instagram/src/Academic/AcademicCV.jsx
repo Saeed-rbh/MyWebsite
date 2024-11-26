@@ -36,8 +36,8 @@ const AcademicCV = () => {
     width: stages[1]
       ? elementSize.width - 10
       : Math.max(
-          Math.min(elementSize.width * 0.95, data[0].size[1] * 2.3),
-          data[0].size[1] * 2 + 10
+          Math.min(elementSize.width * 0.95, data[0]?.size[1] * 2.3),
+          data[0]?.size[1] * 2 + 10
         ),
     boxSizing: "border-box",
     top: -35,
@@ -71,7 +71,7 @@ const AcademicCV = () => {
           >
             {conditionStage && (
               <>
-                <MainTitle size={data[0].size[1]} />
+                <MainTitle size={data[0]?.size[1]} />
                 {(stages[1] || stages[3]) && <CVList isActive={toggle[0]} />}
               </>
             )}
