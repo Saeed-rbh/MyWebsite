@@ -74,9 +74,6 @@ const InteractiveDiv = (props) => {
 
   const { activeHeight, notActiveHeight, fullView } = useMemo(() => {
     let fullView = false;
-
-    // Get the viewport height, if element is available use its height
-
     const viewportHeight = element ? element.clientHeight : window.innerHeight;
 
     let activeHeight = size[0];
@@ -90,10 +87,9 @@ const InteractiveDiv = (props) => {
         fullView = true;
       }
     }
-
     const notActiveHeight = size[0];
     return { activeHeight, notActiveHeight, fullView };
-  }, [size, ParentRef?.current, element]);
+  }, [size, ParentRef?.current, element, isActive]);
 
   const elementSize = useElementSize("MoreInfoAcademic").width;
 
