@@ -2,6 +2,7 @@ import React, { useRef, useEffect, useState } from "react";
 import { animated, useSpring } from "react-spring";
 import { useSelector } from "react-redux";
 import useElementSize from "../../Styles/useElementSize";
+import { Stage } from "@react-three/drei";
 
 const calculateWidth = (titleRef, explanationRef, mainRef) => {
   const titleWidth = titleRef.current?.offsetWidth || 0;
@@ -55,15 +56,15 @@ const TitleText = ({
 
   const fontSize = isActive
     ? name === "Teaching" || name === "Awards"
-      ? 15
+      ? 13
       : name === "Qualifications"
       ? 30
       : name === "Conference"
       ? 20
       : 25
     : name === "Teaching" || name === "Awards"
-    ? 18
-    : 20;
+    ? 20
+    : 22;
 
   const mainStyle = useSpring({
     top: isActive ? 25 : 15,
@@ -99,7 +100,7 @@ const TitleText = ({
     position: "absolute",
     width: "max-content",
     fontSize: 11,
-    maxWidth: isActive ? "80%" : "100%",
+    maxWidth: isActive && Stage[1] ? "80%" : "100%",
     top: isActive ? 20 : 20,
     opacity: isActive || !widthSplit ? 1 : 0,
     left: widthSplit

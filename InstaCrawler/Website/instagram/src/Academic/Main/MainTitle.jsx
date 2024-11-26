@@ -108,7 +108,7 @@ const MainTitle = ({ duration, initialDelay, delayIncrement, size }) => {
           duration={duration}
         />
       </animated.div>
-      <animated.p style={title2Style}>Academic CV-3</animated.p>
+      <animated.p style={title2Style}>Academic CV-4</animated.p>
     </animated.div>
   );
 };
