@@ -70,12 +70,30 @@ const InteractiveDiv = (props) => {
   });
 
   const [adjustedTop, setAdjustedTop] = useState(0);
+  const element = document.getElementById("MoreInfoAcademic");
+
   const { activeHeight, notActiveHeight, fullView } = useMemo(() => {
-    return usecalculateAdjustedHeight({
-      height: size[0],
-      childRef: ParentRef,
-    });
-  }, [size[0], ParentRef.current]);
+    let fullView = false;
+
+    // Get the viewport height, if element is available use its height
+
+    const viewportHeight = element ? element.clientHeight : window.innerHeight;
+
+    let activeHeight = size[0];
+    if (ParentRef?.current?.scrollHeight) {
+      const parentScrollHeight = ParentRef.current.scrollHeight;
+
+      if (viewportHeight > parentScrollHeight) {
+        activeHeight = parentScrollHeight + ParentRef.current.offsetTop + 25;
+      } else {
+        activeHeight = viewportHeight - 50;
+        fullView = true;
+      }
+    }
+
+    const notActiveHeight = size[0];
+    return { activeHeight, notActiveHeight, fullView };
+  }, [size, ParentRef?.current, element]);
 
   const elementSize = useElementSize("MoreInfoAcademic").width;
 

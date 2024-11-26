@@ -16,7 +16,7 @@ const ConferanceMain = ({
     // marginLeft: isActive ? 0 : 10,
   });
   const Anim = useSpring({
-    marginTop: stages[2] ? (isActive ? 75 : 55) : isActive ? 70 : 55,
+    marginTop: isActive ? 60 : 45,
     padding: "0 30px",
   });
   const Conferences = List.map((Conferences, index) => (
