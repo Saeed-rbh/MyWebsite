@@ -133,7 +133,7 @@ const InteractiveDiv = (props) => {
     }
 
     setAdjustedTop(newAdjustedTop);
-  }, [isActive, size, top, scrollTop, stages]);
+  }, [isActive, size, top, scrollTop, stages, activeHeight]);
 
   const styleHeight = useSpring({
     borderRadius: isActive ? 40 : Math.max(Math.ceil(size[0] / 4.75), 35),
@@ -179,7 +179,7 @@ const InteractiveDiv = (props) => {
       <animated.h1 style={h1Style} ref={TextRef}>
         {title}
       </animated.h1>
-      <animated.div>{props.children}</animated.div>
+      {props.children}
     </animated.div>
   );
 };

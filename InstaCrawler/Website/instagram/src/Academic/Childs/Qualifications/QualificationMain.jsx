@@ -23,16 +23,20 @@ const QualificationMain = ({ ChildRefs, ParentRef, List, isActive }) => {
 
   const style = useSpring({
     display: "flex",
-    marginTop: toggle[0] ? 0 : 50,
+    marginTop: 0,
   });
   const titleStyle = useSpring({
     marginLeft: !isActive ? 0 : -5,
     width: `calc(100% + ${-30}px)`,
+
     backgroundColor: "rgba(250, 250, 250, 0.1)",
   });
 
   const main = useSpring({
-    marginTop: toggle[2] ? 55 : toggle[0] ? 70 : 50,
+    // position: "absolute",
+    marginTop: toggle[0] ? 60 : 50,
+    // width: `calc(100% + ${-30}px)`,
+    // height: "fit-content",
   });
 
   if (!List || List.length === 0) {
