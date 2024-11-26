@@ -24,7 +24,7 @@ const AwardsMain = ({
     // position: "absolute",
     // top: 0,
     marginTop: isActive ? 60 : 100,
-    width: stages[1] ? elementSize - 5 : elementSize - size[1] - 20,
+    width: stages[1] ? elementSize - 20 : elementSize - size[1] - 20,
     marginLeft: 30,
     // opacity: isActive ? 1 : 0,
     // width: stages[1] ? elementSize - 5 : elementSize - size[1] - 20,

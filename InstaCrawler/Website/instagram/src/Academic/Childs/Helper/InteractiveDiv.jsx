@@ -54,7 +54,7 @@ const InteractiveDiv = (props) => {
 
   const [scale, setScale] = useState(1);
   const additionalHandleMouseDown = (event) => {
-    !isActive && setScale(0.9);
+    !isActive && setScale(0.95);
   };
 
   const combinedHandleMouseDown = (event) => {
@@ -120,29 +120,6 @@ const InteractiveDiv = (props) => {
 
     border: "2px solid rgba(212, 157, 129, 0.2)",
     marginBottom: stages[1] ? "10px" : "0px",
-    width: stages[1]
-      ? !isActive && (name === "Teaching" || name === "Awards")
-        ? Math.min(elementSize * 0.97, size[1]) / 2 - 5
-        : Math.min(elementSize * 0.97, size[1])
-      : name === "Skills"
-      ? size[1]
-      : !isActive && (name === "Teaching" || name === "Awards")
-      ? Math.min(elementSize - size[1] - 20, size[1] * 1.5) / 2 - 5
-      : Math.min(elementSize - size[1] - 20, size[1] * 1.5),
-    left: stages[1]
-      ? name === "Awards" && !isActive
-        ? (elementSize - Math.min(elementSize * 0.97, size[1])) / 2 +
-          Math.min(elementSize * 0.97, size[1]) / 2 +
-          5
-        : (elementSize - Math.min(elementSize * 0.97, size[1])) / 2
-      : name === "Skills"
-      ? 0
-      : name === "Awards" && !isActive
-      ? size[1] +
-        15 +
-        Math.min(elementSize - size[1] - 20, size[1] * 1.5) / 2 +
-        5
-      : size[1] + 15,
     overflow: "hidden",
   };
 
@@ -169,6 +146,29 @@ const InteractiveDiv = (props) => {
   }, [isActive, size, top, scrollTop, stages, activeHeight]);
 
   const styleHeight = useSpring({
+    width: stages[1]
+      ? !isActive && (name === "Teaching" || name === "Awards")
+        ? Math.min(elementSize * 0.97, size[1]) / 2 - 5
+        : Math.min(elementSize * 0.97, size[1])
+      : name === "Skills"
+      ? size[1]
+      : !isActive && (name === "Teaching" || name === "Awards")
+      ? Math.min(elementSize - size[1] - 20, size[1] * 1.5) / 2 - 5
+      : Math.min(elementSize - size[1] - 20, size[1] * 1.5),
+    left: stages[1]
+      ? name === "Awards" && !isActive
+        ? (elementSize - Math.min(elementSize * 0.97, size[1])) / 2 +
+          Math.min(elementSize * 0.97, size[1]) / 2 +
+          5
+        : (elementSize - Math.min(elementSize * 0.97, size[1])) / 2
+      : name === "Skills"
+      ? 0
+      : name === "Awards" && !isActive
+      ? size[1] +
+        15 +
+        Math.min(elementSize - size[1] - 20, size[1] * 1.5) / 2 +
+        5
+      : size[1] + 15,
     borderRadius: isActive ? 40 : Math.max(Math.ceil(size[0] / 4.75), 35),
     top: `${adjustedTop}px`,
     height: isActive
