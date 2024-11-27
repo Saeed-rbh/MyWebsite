@@ -37,9 +37,7 @@ const ResearchInterests = () => {
       ? (elementSize - Math.min(elementSize * 0.97, size[1])) / 2
       : 0,
     boxSize: "border-box",
-    top: stages[1]
-      ? `calc(5vh + ${top}px)`
-      : `calc(5vh + ${top + adjustTop}px)`,
+    top: stages[1] ? top : top + adjustTop,
   };
 
   const Main = {

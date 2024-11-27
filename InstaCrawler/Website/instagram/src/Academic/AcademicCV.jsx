@@ -42,7 +42,14 @@ const AcademicCV = () => {
     boxSizing: "border-box",
     top: -35,
     height: "100%",
-
+    scale:
+      !stages[1] && !stages[2] && elementSize.height > 640
+        ? Math.min(elementSize.height / 640, 1.1)
+        : 1,
+    marginTop:
+      !stages[1] && !stages[2] && elementSize.height > 640
+        ? (elementSize.height - 640) / 2
+        : 0,
     overflowY: useMemo(
       () =>
         toggle[0]
@@ -64,8 +71,8 @@ const AcademicCV = () => {
           style={{ height: `${window.innerHeight - 35}px` }}
         >
           <animated.div
-            style={moreAcademicInfoStyle}
             ref={scollableRef}
+            style={moreAcademicInfoStyle}
             id="MoreInfoAcademic"
             className="MoreInfoAcademic"
           >

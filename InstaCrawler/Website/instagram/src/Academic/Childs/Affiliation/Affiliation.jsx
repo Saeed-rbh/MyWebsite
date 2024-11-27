@@ -113,9 +113,7 @@ export const Affiliation = () => {
     overflow: "visible",
     zIndex: "10",
     boxSize: "border-box",
-    top: stages[1]
-      ? `calc(5vh + ${top}px)`
-      : `calc(5vh + ${top + adjustTop}px)`,
+    top: stages[1] ? top : top + adjustTop,
   };
 
   const combinedStyle = useCombinedAnimation({

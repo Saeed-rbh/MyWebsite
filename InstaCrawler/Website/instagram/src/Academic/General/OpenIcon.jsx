@@ -109,7 +109,7 @@ const OpenIcon = ({
       justifyContent: "center",
     },
 
-    delay: animationFinished ? 0 : CONFIG[0] + CONFIG[1] * seqId,
+    // delay: animationFinished ? 0 : CONFIG[0] + CONFIG[1] * seqId,
     config: {
       duration: animationFinished ? undefined : CONFIG[2],
     },

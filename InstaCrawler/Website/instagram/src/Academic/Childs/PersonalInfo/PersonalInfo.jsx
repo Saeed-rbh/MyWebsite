@@ -36,9 +36,7 @@ export const PersonalInfo = () => {
       : 0,
     border: "2px solid rgba(212, 157, 129, 0.2)",
     zIndex: "10",
-    top: stages[1]
-      ? `calc(5vh + ${top}px)`
-      : `calc(5vh + ${top + adjustTop}px)`,
+    top: stages[1] ? top : top + adjustTop,
     boxSize: "border-box",
   };
 

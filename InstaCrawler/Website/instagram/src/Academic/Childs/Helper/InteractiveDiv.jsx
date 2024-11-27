@@ -89,6 +89,12 @@ const InteractiveDiv = (props) => {
 
   const [adjustedTop, setAdjustedTop] = useState(0);
   const element = document.getElementById("MoreInfoAcademic");
+  const elementSize = useElementSize("MoreInfoAcademic").width;
+  const windowHeight = useElementSize("AcademicCV-M").height;
+  const marginTop =
+    !stages[1] && !stages[2] && windowHeight > 640
+      ? (windowHeight - 640) / 2
+      : 0;
 
   const { activeHeight, notActiveHeight, fullView } = useMemo(() => {
     let fullView = false;
@@ -101,15 +107,13 @@ const InteractiveDiv = (props) => {
       if (viewportHeight > parentScrollHeight) {
         activeHeight = parentScrollHeight + ParentRef.current.offsetTop + 25;
       } else {
-        activeHeight = viewportHeight - 50;
+        activeHeight = viewportHeight - 50 - marginTop;
         fullView = true;
       }
     }
     const notActiveHeight = size[0];
     return { activeHeight, notActiveHeight, fullView };
   }, [size, ParentRef?.current, element, isActive]);
-
-  const elementSize = useElementSize("MoreInfoAcademic").width;
 
   const Style = {
     cursor: "pointer",
@@ -134,7 +138,8 @@ const InteractiveDiv = (props) => {
           Math.min(
             -(activeHeight - (viewportHeight + scrollTop - ModifyTop)),
             newAdjustedTop
-          ),
+          ) -
+            marginTop * 1.2,
           scrollTop + ModifyTop
         );
       } else {

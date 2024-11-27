@@ -68,7 +68,7 @@ const MainTitle = ({ duration, initialDelay, delayIncrement, size }) => {
     animationFinished,
     setAnimationFinished,
     // xDiff: [-35, stages[1] ? 0 : 0],
-    yDiff: [50, stages[1] ? 90 : 40],
+    yDiff: [50, stages[1] ? 120 : 40],
     scaleDiff: [0.9, 1],
     stages,
   });
@@ -78,7 +78,7 @@ const MainTitle = ({ duration, initialDelay, delayIncrement, size }) => {
     animationFinished,
     setAnimationFinished,
     // xDiff: [-35, stages[1] ? 0 : 0],
-    yDiff: [50, stages[1] ? 85 : 40],
+    yDiff: [50, stages[1] ? 120 : 40],
     scaleDiff: [0.9, 1],
     stages,
   });
@@ -87,12 +87,12 @@ const MainTitle = ({ duration, initialDelay, delayIncrement, size }) => {
   const elementSize = useElementSize("MoreInfoAcademic");
   const CVHeader = useSpring({
     position: "fixed",
-    top: 30,
+    top: 0,
     zIndex: 1,
     maxWidth: `${stages[1] || stages[3] ? 620 * 0.95 : elementSize.width}px`,
     left: stages[1]
       ? (elementSizeMain - Math.min(elementSize.width * 0.95, size)) / 2 + 10
-      : (elementSizeMain - elementSize.width) / 2 + 10,
+      : 20, //(elementSizeMain - elementSize.width) / 2 + 10,
     width: stages[1]
       ? elementSize.width - 5
       : Math.max(Math.min(elementSize.width * 0.95, size * 2.3), size * 2 + 10),
