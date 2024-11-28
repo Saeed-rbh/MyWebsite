@@ -69,6 +69,8 @@ const CVList = ({ isActive }) => {
     setSelected,
   });
 
+  console.log("normalizeScroll", normalizeScroll);
+
   const [cvListElement, setCvListElement] = useState(
     CVListRef ? CVListRef.current : null
   );

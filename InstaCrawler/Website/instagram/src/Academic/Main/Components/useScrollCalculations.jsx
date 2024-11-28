@@ -19,6 +19,7 @@ const useScrollCalculations = ({ data, CVListRef, setSelected }) => {
         cvList.getBoundingClientRect().left
     );
     const sectionTops = data.map((section) => section.top);
+
     const calculatedNormalizeScroll = positions.map(
       (pos, index) =>
         (sectionTops[index] - sectionTops[0]) / (pos - positions[0])

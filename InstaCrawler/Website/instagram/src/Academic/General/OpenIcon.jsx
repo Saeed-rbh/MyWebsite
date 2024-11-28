@@ -105,7 +105,9 @@ const OpenIcon = ({
         ? "linear-gradient(to right, #504d4a2e 0%, #6f3c2221 100%)"
         : backgroundColor,
       display: "flex",
+      zIndex: 10000,
       alignItems: "center",
+
       justifyContent: "center",
     },
 
@@ -122,8 +124,8 @@ const OpenIcon = ({
       onClick={() => handleClickClose()}
     >
       <animated.div
-        onMouseOver={handleMouseOver}
-        onMouseLeave={handleMouseLeave}
+        // onMouseOver={handleMouseOver}
+        // onMouseLeave={handleMouseLeave}
         style={{ ...IconProp }}
       >
         {!widthSplit && <RiArrowRightDownLine />}

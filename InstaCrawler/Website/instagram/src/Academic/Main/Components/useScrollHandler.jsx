@@ -16,7 +16,7 @@ const useScrollHandler = ({
         return;
       const scrollDownPosition = scollableRef.current.scrollTop;
       const sectionTops = data.map(
-        (section) => section.top + section.height - data[0].top
+        (section) => section.top + section.height - data[0].top + 100
       );
       const GreaterThanScroll = sectionTops.map(
         (Tops) => Tops * 0.8 <= scrollDownPosition
