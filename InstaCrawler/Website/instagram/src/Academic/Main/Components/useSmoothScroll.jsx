@@ -55,6 +55,8 @@ const useSmoothScroll = () => {
 
       const startPosition =
         direction === "Top" ? element.scrollTop : element.scrollLeft;
+      console.log(startPosition);
+
       if (direction === "Left") isLeftScrolling.current = true;
 
       if (

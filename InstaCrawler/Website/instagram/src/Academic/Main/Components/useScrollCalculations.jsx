@@ -24,6 +24,7 @@ const useScrollCalculations = ({ data, CVListRef, setSelected }) => {
       (pos, index) =>
         (sectionTops[index] - sectionTops[0]) / (pos - positions[0])
     );
+
     calculatedNormalizeScroll[0] = 0;
     return [positions, sectionTops, calculatedNormalizeScroll];
   }, [data, CVListRef]);

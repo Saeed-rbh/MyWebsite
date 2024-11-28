@@ -24,7 +24,7 @@ const useMenuClick = ({
       );
       executeSmoothScroll(
         scrollableDivElement,
-        divScroll[index] - divScroll[0],
+        divScroll[index] - divScroll[0] + 80,
         "Top",
         index,
         1000

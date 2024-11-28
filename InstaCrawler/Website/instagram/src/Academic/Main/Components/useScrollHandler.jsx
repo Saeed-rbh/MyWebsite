@@ -16,10 +16,10 @@ const useScrollHandler = ({
         return;
       const scrollDownPosition = scollableRef.current.scrollTop;
       const sectionTops = data.map(
-        (section) => section.top + section.height - data[0].top + 100
+        (section) => section.top + section.height - data[0].top
       );
       const GreaterThanScroll = sectionTops.map(
-        (Tops) => Tops * 0.8 <= scrollDownPosition
+        (Tops) => Tops * 0.8 <= scrollDownPosition - 80
       );
       const highestTrueIndex = GreaterThanScroll.reduce(
         (maxIndex, currentValue, currentIndex) =>
