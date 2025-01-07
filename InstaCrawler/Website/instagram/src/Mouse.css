@@ -6,7 +6,7 @@
   height: 30px;
   border: 2px solid #d49d81;
   border-radius: 100%;
-  transform: translate(-50%, -50%);
+  transform: translate(calc(-50% - 15px), calc(-50% - 15px));
   -webkit-transition-duration: 100ms;
   transition-duration: 100ms;
   -webkit-transition-timing-function: ease-out;
@@ -14,15 +14,15 @@
   will-change: width, height, transform, border;
   z-index: 99900;
   pointer-events: none;
-  transition: opacity 0.2s, left 100ms, top 100ms, width 0.2s, height 0.2s;
+  transition: opacity 0.2s width 0.2s, height 0.2s, top 0.2s, left 0.2s;
 }
 
 .dot {
   position: fixed;
-  top: 50%;
-  left: 50%;
-  width: 8px;
-  height: 8px;
+  top: 0;
+  left: 0;
+  width: 5px;
+  height: 5px;
   background-color: #d49d81;
   border-radius: 100%;
   transform: translate(-50%, -50%);
@@ -32,5 +32,44 @@
   transition-duration: 20ms;
   -webkit-transition-timing-function: ease-out;
   transition-timing-function: ease-out;
-  transition: width 0.2s, height 0.2s, left 20ms, top 20ms;
+  transition: opacity 0.2s width 0.2s, height 0.2s, top 0.2s, left 0.2s;
+}
+.container {
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  position: relative;
+}
+
+.follow-card {
+  width: 50px;
+  height: 50px;
+  background-color: rgba(0, 0, 0, 0.2);
+  border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  will-change: transform;
+  pointer-events: none;
+}
+
+.follower-dot {
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle, #ff007c 30%, transparent 80%);
+  border-radius: 50%;
+  position: relative;
+  animation: pulse 2s infinite ease-in-out;
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.5);
+    opacity: 0.5;
+  }
 }
