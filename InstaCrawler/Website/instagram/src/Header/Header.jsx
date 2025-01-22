@@ -83,15 +83,15 @@ const Header = () => {
     display: "flex",
     opacity: !isResumeClicked ? "0" : "1",
     transform: !isResumeClicked
-      ? "translate3d(-80px,0,0)"
-      : "translate3d(0px,0,0)",
+      ? "translate3d(-80px,45px,0)"
+      : "translate3d(0px,45px,0)",
     config: { duration: 600 },
   });
   const contactInfoAnimation3 = useSpring({
     opacity: !isResumeClicked ? "1" : "0",
     transform: !isResumeClicked
-      ? "translate3d(-110px,0,0)"
-      : "translate3d(15px,0,0)",
+      ? "translate3d(0px,10px,0)"
+      : "translate3d(55px,10px,0)",
     config: { duration: 600 },
   });
 
@@ -104,31 +104,33 @@ const Header = () => {
           transition={{ duration: 0.5, delay: 0.5 }}
           className="HomePage-M-T-H"
         >
-          <animated.div style={contactInfoAnimation1} className="MainHeader">
-            <animated.div className="HomePage-M-T-L">
-              <animated.div
-                className="HomePage-M-T-B"
-                style={contactInfoAnimation2}
-              >
-                <TbHomeMove />
-                <Link onClick={() => handleButtonClick(false)} to="/">
-                  Home Page
-                </Link>
-              </animated.div>
-              <animated.div style={contactInfoAnimation3}>
-                <Link
-                  onClick={() => handleButtonClick(false)}
-                  to="/"
-                  element={<HomePage />}
-                >
-                  <Logo className="Logo" size="20" />
-                  <p>Saeed</p>
-                  <b>Arabha</b>
-                </Link>
-              </animated.div>
-            </animated.div>
-          </animated.div>
+          <animated.div
+            style={contactInfoAnimation1}
+            className="MainHeader"
+          ></animated.div>
         </motion.div>
+        <animated.div className="HomePage-M-T-L">
+          <animated.div
+            className="HomePage-M-T-B"
+            style={contactInfoAnimation2}
+          >
+            <TbHomeMove />
+            <Link onClick={() => handleButtonClick(false)} to="/">
+              Home Page
+            </Link>
+          </animated.div>
+          <animated.div style={contactInfoAnimation3}>
+            <Link
+              onClick={() => handleButtonClick(false)}
+              to="/"
+              element={<HomePage />}
+            >
+              <Logo className="Logo" size="20" />
+              <p>Saeed</p>
+              <b>Arabha</b>
+            </Link>
+          </animated.div>
+        </animated.div>
         <MenuButton
           contactInfoAnimation={contactInfoAnimation1}
           isMenuOpen={isMenuOpen}
