@@ -40,7 +40,7 @@ const AcademicCV = () => {
           data[0]?.size[1] * 2 + 10
         ),
     boxSizing: "border-box",
-    top: -35,
+    top: -45,
     height: "100%",
     scale:
       !stages[1] && !stages[2] && elementSize.height > 640

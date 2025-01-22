@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import { useSpring, animated, to } from "@react-spring/web";
+import { useSelector } from "react-redux";
 import "./Mouse.css";
 
 const isMobile = () => /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
@@ -9,6 +10,8 @@ const Mouse = () => {
   const [hoveringClickableElement, setHoveringClickableElement] =
     useState(false);
   const domTarget = useRef(null);
+
+  const { stages } = useSelector((state) => state.data);
 
   const [{ ringX, ringY }, ringApi] = useSpring(() => ({
     ringX: 0,
@@ -74,7 +77,10 @@ const Mouse = () => {
   }, []);
 
   return (
-    <div className="container">
+    <div
+      className="container"
+      style={{ display: !stages[1] ? "flex" : "none" }}
+    >
       <animated.div
         ref={domTarget}
         className="ring"
@@ -87,6 +93,7 @@ const Mouse = () => {
           height: !mouseClicked ? "30px" : "6px",
           top: !mouseClicked ? "-17px" : "-5px",
           left: !mouseClicked ? "-17px" : "-5px",
+
           // backgroundColor: hoveringClickableElement
           //   ? "rgba(255, 0, 0, 0.5)"
           //   : "rgba(0, 0, 0, 0.2)",

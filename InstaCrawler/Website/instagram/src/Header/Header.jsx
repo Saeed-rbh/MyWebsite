@@ -44,6 +44,7 @@ const useScrollOpacity = (isResumeClicked) => {
 const Header = () => {
   const { isMenuOpen } = useSelector((state) => state.isMenuOpen);
   const { visibility } = useSelector((state) => state.visibility);
+  const { stages } = useSelector((state) => state.data);
   const dispatch = useDispatch();
 
   const handleButtonClick = useCallback(
@@ -72,7 +73,9 @@ const Header = () => {
   const scrollOpacity = useScrollOpacity(isResumeClicked);
 
   const contactInfoAnimation1 = useSpring({
-    transform: isMenuOpen ? "translate3d(0,10px,0)" : "translate3d(0,0px,0)",
+    transform: isMenuOpen
+      ? `translate3d(0px,${stages[1] ? 0 : 0}px,0)`
+      : `translate3d(0px,${stages[1] ? -10 : 0}px,0)`,
     backgroundColor:
       isResumeClicked && scrollOpacity
         ? `rgba(0, 0, 0, 1)`
@@ -83,16 +86,22 @@ const Header = () => {
     display: "flex",
     opacity: !isResumeClicked ? "0" : "1",
     transform: !isResumeClicked
-      ? "translate3d(-80px,45px,0)"
-      : "translate3d(0px,45px,0)",
-    config: { duration: 600 },
+      ? `translate3d(-80px,${stages[1] ? 25 : 45}px,0)`
+      : `translate3d(${stages[1] ? -30 : 0}px,${
+          stages[1] ? (isMenuOpen ? 35 : 25) : 45
+        }px,0)`,
+    // config: { duration: 600 },
   });
   const contactInfoAnimation3 = useSpring({
     opacity: !isResumeClicked ? "1" : "0",
     transform: !isResumeClicked
-      ? "translate3d(0px,10px,0)"
-      : "translate3d(55px,10px,0)",
-    config: { duration: 600 },
+      ? `translate3d(0px,${
+          stages[1] ? (isMenuOpen ? 0 : -10) : isMenuOpen ? 20 : 10
+        }px,0`
+      : `translate3d(55px,${
+          stages[1] ? (isMenuOpen ? 0 : -10) : isMenuOpen ? 20 : 10
+        }px,0`,
+    // config: { duration: 600 },
   });
 
   return (
