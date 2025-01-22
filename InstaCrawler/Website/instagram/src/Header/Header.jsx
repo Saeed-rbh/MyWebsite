@@ -74,7 +74,7 @@ const Header = () => {
 
   const contactInfoAnimation1 = useSpring({
     transform: isMenuOpen
-      ? `translate3d(0px,${stages[1] ? 0 : 0}px,0)`
+      ? `translate3d(0px,${stages[1] ? 0 : 10}px,0)`
       : `translate3d(0px,${stages[1] ? -10 : 0}px,0)`,
     backgroundColor:
       isResumeClicked && scrollOpacity
@@ -86,9 +86,11 @@ const Header = () => {
     display: "flex",
     opacity: !isResumeClicked ? "0" : "1",
     transform: !isResumeClicked
-      ? `translate3d(-80px,${stages[1] ? 25 : 45}px,0)`
+      ? `translate3d(-80px,${
+          stages[1] ? (isMenuOpen ? 35 : 25) : isMenuOpen ? 55 : 45
+        }px,0)`
       : `translate3d(${stages[1] ? -30 : 0}px,${
-          stages[1] ? (isMenuOpen ? 35 : 25) : 45
+          stages[1] ? (isMenuOpen ? 35 : 25) : isMenuOpen ? 55 : 45
         }px,0)`,
     // config: { duration: 600 },
   });
