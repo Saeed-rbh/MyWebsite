@@ -87,10 +87,10 @@ const Header = () => {
     opacity: !isResumeClicked ? "0" : "1",
     transform: !isResumeClicked
       ? `translate3d(-80px,${
-          stages[1] ? (isMenuOpen ? 35 : 25) : isMenuOpen ? 55 : 45
+          stages[1] ? (isMenuOpen ? 35 : 25) : isMenuOpen ? 55 : 40
         }px,0)`
       : `translate3d(${stages[1] ? -30 : 0}px,${
-          stages[1] ? (isMenuOpen ? 35 : 25) : isMenuOpen ? 55 : 45
+          stages[1] ? (isMenuOpen ? 35 : 25) : isMenuOpen ? 55 : 40
         }px,0)`,
     // config: { duration: 600 },
   });

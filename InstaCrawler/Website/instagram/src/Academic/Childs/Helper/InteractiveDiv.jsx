@@ -53,6 +53,8 @@ const InteractiveDiv = (props) => {
   );
 
   const [scale, setScale] = useState(1);
+  const [initial, setInitial] = useState(false);
+
   const additionalHandleMouseDown = (event) => {
     !isActive && setScale(0.95);
   };
@@ -87,7 +89,9 @@ const InteractiveDiv = (props) => {
     left: isActive ? -5 : -10,
   });
 
-  const [adjustedTop, setAdjustedTop] = useState(0);
+  const [adjustedTop, setAdjustedTop] = useState(
+    top + (!stages[1] ? adjustTop : !stages[2] ? -60 : 0)
+  );
   const element = document.getElementById("MoreInfoAcademic");
   const elementSize = useElementSize("MoreInfoAcademic").width;
   const windowHeight = useElementSize("AcademicCV-M").height;
@@ -118,19 +122,20 @@ const InteractiveDiv = (props) => {
   const Style = {
     cursor: "pointer",
     filter: "blur(0px)",
-    opacity: "1",
     backgroundColor: "rgba(0, 0, 0, 0.3)",
     scale: scale,
-
     border: "2px solid rgba(212, 157, 129, 0.2)",
     marginBottom: stages[1] ? "10px" : "0px",
     overflow: "hidden",
   };
 
   useEffect(() => {
+    if (!initial) return;
     const viewportHeight = window.innerHeight;
     let newAdjustedTop = top + (!stages[1] ? adjustTop : !stages[2] ? -60 : 0);
     const ModifyTop = 60;
+
+    console.log("loaded", initial);
 
     if (isActive) {
       if (!fullView) {
@@ -192,6 +197,8 @@ const InteractiveDiv = (props) => {
     name,
     id,
     isActive,
+    initial,
+    setInitial,
   });
 
   return (

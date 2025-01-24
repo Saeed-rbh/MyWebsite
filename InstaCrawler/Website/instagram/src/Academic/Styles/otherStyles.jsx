@@ -145,6 +145,8 @@ export const useCombinedAnimation = ({
   id,
   inView,
   isActive,
+  initial,
+  setInitial,
 }) => {
   const Loaded = useRef(false);
 
@@ -170,6 +172,7 @@ export const useCombinedAnimation = ({
     delay: 500 + id * 110,
     config: { duration: 500 },
     onRest: () => {
+      if (!initial) setInitial(true);
       Loaded.current = true;
     },
   });

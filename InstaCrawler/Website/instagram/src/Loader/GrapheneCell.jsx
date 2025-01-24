@@ -1,4 +1,4 @@
-import React, { memo, useEffect } from "react";
+import React, { useEffect } from "react";
 import { useSpring, animated, easings } from "react-spring";
 
 const Atom = ({ cx, cy, style }) => (
@@ -16,7 +16,11 @@ const Bond = ({ x1, y1, x2, y2, style }) => (
   />
 );
 const GrapheneSVG = ({ points }) => (
-  <svg height="200" width="200">
+  <svg
+    height="200"
+    width="200"
+    style={{ transform: "translateY(-20px) scale(0.75)" }}
+  >
     {points.map((point, i) => (
       <Atom
         key={`atom-${i}`}
@@ -65,13 +69,13 @@ const GrapheneCell = ({ text, subtext, fade }) => {
 
   useEffect(() => {
     if (!fade) {
-      setSpringProps({ opacity: 0.7, y: 0 });
+      setSpringProps({ opacity: 1, y: 0 });
     }
   }, [setSpringProps, fade]);
 
   useEffect(() => {
     if (fade) {
-      setSpringProps({ opacity: 0, y: -20, delay: 600 });
+      setSpringProps({ opacity: 0, y: -20, delay: 100 });
     }
   }, [setSpringProps, fade]);
 
@@ -87,7 +91,7 @@ const GrapheneCell = ({ text, subtext, fade }) => {
     >
       <GrapheneSVG points={points} />
       <div className="centered-text">
-        <p>{text}</p>
+        <p style={{ marginTop: "100px" }}>{text}</p>
         <b className="Intro-b">{subtext}</b>
       </div>
     </animated.div>

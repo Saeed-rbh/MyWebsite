@@ -94,11 +94,11 @@ const useBaseStyle = (
   ]);
 
   const baseStyles = useSpring({
-    ...combinedStyles,
-    from: { opacity: 0, scale: 1.5 },
-    delay: animationFinished ? 0 : 1200 + 200 * data.seqId,
-    config: { duration: animationFinished ? undefined : 800 },
-    onRest: () => setAnimationFinished(true),
+    // ...combinedStyles,
+    // from: { opacity: 0, scale: 1.5 },
+    // delay: animationFinished ? 0 : 1200 + 200 * data.seqId,
+    // config: { duration: animationFinished ? undefined : 800 },
+    // onRest: () => setAnimationFinished(true),
   });
 
   return { ...baseStyles, zIndex };
