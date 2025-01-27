@@ -98,10 +98,10 @@ const Header = () => {
     opacity: !isResumeClicked ? "1" : "0",
     transform: !isResumeClicked
       ? `translate3d(0px,${
-          stages[1] ? (isMenuOpen ? 0 : -25) : isMenuOpen ? 30 : 0
+          stages[1] ? (isMenuOpen ? -10 : -30) : isMenuOpen ? 30 : 0
         }px,0)`
       : `translate3d(55px,${
-          stages[1] ? (isMenuOpen ? 0 : -25) : isMenuOpen ? 30 : 0
+          stages[1] ? (isMenuOpen ? -10 : -30) : isMenuOpen ? 30 : 0
         }px,0)`,
     // config: { duration: 600 },
   });
@@ -137,7 +137,7 @@ const Header = () => {
               element={<HomePage />}
             >
               <Logo className="Logo" size="20" />
-              <p>Saeed</p>
+              <p>Saeed-1</p>
               <b>Arabha</b>
             </Link>
           </animated.div>
