@@ -75,7 +75,7 @@ const Header = () => {
   const contactInfoAnimation1 = useSpring({
     transform: isMenuOpen
       ? `translate3d(0px,${stages[1] ? 0 : 10}px,0)`
-      : `translate3d(0px,${stages[1] ? -10 : 0}px,0)`,
+      : `translate3d(0px,${stages[1] ? -20 : 0}px,0)`,
     backgroundColor:
       isResumeClicked && scrollOpacity
         ? `rgba(0, 0, 0, 1)`
@@ -87,10 +87,10 @@ const Header = () => {
     opacity: !isResumeClicked ? "0" : "1",
     transform: !isResumeClicked
       ? `translate3d(-80px,${
-          stages[1] ? (isMenuOpen ? 35 : 25) : isMenuOpen ? 55 : 40
+          stages[1] ? (isMenuOpen ? 35 : 15) : isMenuOpen ? 65 : 40
         }px,0)`
       : `translate3d(${stages[1] ? -30 : 0}px,${
-          stages[1] ? (isMenuOpen ? 35 : 25) : isMenuOpen ? 55 : 40
+          stages[1] ? (isMenuOpen ? 35 : 15) : isMenuOpen ? 65 : 40
         }px,0)`,
     // config: { duration: 600 },
   });
@@ -98,28 +98,28 @@ const Header = () => {
     opacity: !isResumeClicked ? "1" : "0",
     transform: !isResumeClicked
       ? `translate3d(0px,${
-          stages[1] ? (isMenuOpen ? 0 : -10) : isMenuOpen ? 20 : 10
-        }px,0`
+          stages[1] ? (isMenuOpen ? 0 : -20) : isMenuOpen ? 30 : 0
+        }px,0)`
       : `translate3d(55px,${
-          stages[1] ? (isMenuOpen ? 0 : -10) : isMenuOpen ? 20 : 10
-        }px,0`,
+          stages[1] ? (isMenuOpen ? 0 : -20) : isMenuOpen ? 30 : 0
+        }px,0)`,
     // config: { duration: 600 },
   });
 
   return (
     visibility && (
-      <>
-        <motion.div
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.5 }}
-          className="HomePage-M-T-H"
-        >
-          <animated.div
-            style={contactInfoAnimation1}
-            className="MainHeader"
-          ></animated.div>
-        </motion.div>
+      <motion.div
+        key={visibility ? "visible" : "hidden"}
+        initial={{ opacity: 0, y: 10 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5, delay: 0.5 }}
+        className="HomePage-M-T-H"
+      >
+        <animated.div
+          style={contactInfoAnimation1}
+          className="MainHeader"
+        ></animated.div>
+
         <animated.div className="HomePage-M-T-L">
           <animated.div
             className="HomePage-M-T-B"
@@ -147,7 +147,7 @@ const Header = () => {
           isMenuOpen={isMenuOpen}
           handleButtonClick={handleButtonClick}
         />
-      </>
+      </motion.div>
     )
   );
 };

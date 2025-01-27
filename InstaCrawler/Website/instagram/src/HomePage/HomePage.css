@@ -31,7 +31,7 @@
   justify-content: center;
 }
 .HomePage-M-T-H {
-  width: max-content;
+  width: -webkit-fill-available;
   height: 50px;
   position: absolute;
   display: flex;
@@ -39,11 +39,10 @@
   justify-content: space-between;
   align-items: center;
   padding: 0 calc(30px + 3vw);
-  overflow: hidden;
   opacity: 0.9;
   z-index: 100;
   top: 0;
-  left: 5vw;
+  /* left: 5vw; */
 }
 .HomePage-M-T-R {
   height: -webkit-fit-content;
