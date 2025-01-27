@@ -87,10 +87,10 @@ const Header = () => {
     opacity: !isResumeClicked ? "0" : "1",
     transform: !isResumeClicked
       ? `translate3d(-80px,${
-          stages[1] ? (isMenuOpen ? 35 : 15) : isMenuOpen ? 65 : 40
+          stages[1] ? (isMenuOpen ? 35 : 10) : isMenuOpen ? 65 : 40
         }px,0)`
       : `translate3d(${stages[1] ? -30 : 0}px,${
-          stages[1] ? (isMenuOpen ? 35 : 15) : isMenuOpen ? 65 : 40
+          stages[1] ? (isMenuOpen ? 35 : 10) : isMenuOpen ? 65 : 40
         }px,0)`,
     // config: { duration: 600 },
   });
@@ -98,10 +98,10 @@ const Header = () => {
     opacity: !isResumeClicked ? "1" : "0",
     transform: !isResumeClicked
       ? `translate3d(0px,${
-          stages[1] ? (isMenuOpen ? 0 : -20) : isMenuOpen ? 30 : 0
+          stages[1] ? (isMenuOpen ? 0 : -25) : isMenuOpen ? 30 : 0
         }px,0)`
       : `translate3d(55px,${
-          stages[1] ? (isMenuOpen ? 0 : -20) : isMenuOpen ? 30 : 0
+          stages[1] ? (isMenuOpen ? 0 : -25) : isMenuOpen ? 30 : 0
         }px,0)`,
     // config: { duration: 600 },
   });
