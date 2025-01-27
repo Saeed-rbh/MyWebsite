@@ -68,10 +68,11 @@ const Footer = () => {
         ? { width: "60px", height: "60px" }
         : step === 3
         ? {
+            opacity: resumeClicked ? 0 : 1,
             width: `${width}px`,
             height: "60px",
             // marginRight: "70px",
-            y: isMenuOpen ? -10 : 0,
+            y: isMenuOpen || !resumeClicked ? -10 : 0,
           }
         : {},
     config:
@@ -161,7 +162,6 @@ const Footer = () => {
   const maxDelay = (totalElements - 1) * 100;
   let globalIndex = 0;
   return (
-    !resumeClicked &&
     visibility && (
       <div className="HomePage-M-T-F">
         {/* <RotatingSphere isCross={isCross} /> */}
@@ -181,7 +181,7 @@ const Footer = () => {
               MenuHide={visibility}
               screenWidth={screenWidth}
             />
-            <DownloadInfo resumeClicked={resumeClicked} />
+            {/* <DownloadInfo resumeClicked={resumeClicked} /> */}
           </animated.div>
         </animated.div>
         {/* <animated.div className="FooterOptions" style={crossOpenSpring}>
