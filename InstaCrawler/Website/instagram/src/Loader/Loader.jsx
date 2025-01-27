@@ -23,8 +23,10 @@ const Loader = () => {
 
   const closeIntroAnimation = useSpring({
     opacity: fade ? 0 : 1,
-    delay: fade ? 1000 : 0,
-    duration: LOADING_TIME,
+    // delay: fade ? 1000 : 0,
+    // bottom: fade ? "-100%" : "0%",
+    borderRadius: "50px",
+    config: { duration: 500 },
     easing: easings.easeOutCubic,
     onRest: () => dispatch(updateVisibility(true)),
   });
@@ -48,11 +50,12 @@ const Loader = () => {
       window.removeEventListener("orientationchange", updateLayout);
     };
   }, []);
+
   return (
-    !fade && (
+    !visibility && (
       <animated.div style={closeIntroAnimation} className="Intro" id="Intro">
         <GrapheneCell
-          fade={visibility}
+          fade={fade}
           text="Welcome To My Personal Website"
           subtext="LOADING"
         />

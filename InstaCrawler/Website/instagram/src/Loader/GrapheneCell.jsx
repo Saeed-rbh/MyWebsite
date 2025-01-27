@@ -75,7 +75,7 @@ const GrapheneCell = ({ text, subtext, fade }) => {
 
   useEffect(() => {
     if (fade) {
-      setSpringProps({ opacity: 0, y: -20, delay: 100 });
+      setSpringProps({ opacity: 0, y: 20, delay: 100 });
     }
   }, [setSpringProps, fade]);
 
