@@ -72,7 +72,7 @@ const Footer = () => {
             width: `${width}px`,
             height: "60px",
             // marginRight: "70px",
-            y: isMenuOpen || !resumeClicked ? -10 : 0,
+            y: isMenuOpen ? -10 : 0,
           }
         : {},
     config:

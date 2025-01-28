@@ -147,7 +147,6 @@
   justify-content: center;
   z-index: 1;
   width: calc(100vw - 40px);
-  margin: 20px;
   height: calc(100vh - 40px);
   border-radius: 30px;
   border: 1px solid #00000056;

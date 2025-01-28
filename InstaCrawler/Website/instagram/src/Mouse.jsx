@@ -93,10 +93,11 @@ const Mouse = () => {
           height: !mouseClicked ? "30px" : "6px",
           top: !mouseClicked ? "-17px" : "-5px",
           left: !mouseClicked ? "-17px" : "-5px",
-
-          // backgroundColor: hoveringClickableElement
-          //   ? "rgba(255, 0, 0, 0.5)"
-          //   : "rgba(0, 0, 0, 0.2)",
+          filter: hoveringClickableElement ? "blur(2px)" : "blur(0px)",
+          mixBlendMode: hoveringClickableElement ? "darken" : "initial",
+          backgroundColor: hoveringClickableElement
+            ? "rgba(212 146 129)"
+            : "rgba(0, 0, 0, 0.2)",
         }}
       ></animated.div>
 
@@ -111,6 +112,7 @@ const Mouse = () => {
           height: !mouseClicked ? "10px" : "12px",
           top: !mouseClicked ? "-5px" : "-6px",
           left: !mouseClicked ? "-5px" : "-6px",
+          filter: hoveringClickableElement ? "blur(10px)" : "blur(0px)",
         }}
       ></animated.div>
     </div>
