@@ -116,6 +116,7 @@ export const Affiliation = () => {
     top: stages[1] ? top : top + adjustTop,
   };
 
+  const [initial, setInitial] = useState(false);
   const combinedStyle = useCombinedAnimation({
     top,
     adjustViewport,
@@ -125,6 +126,9 @@ export const Affiliation = () => {
     name,
     id,
     inView,
+    isActive,
+    initial,
+    setInitial,
   });
 
   return (

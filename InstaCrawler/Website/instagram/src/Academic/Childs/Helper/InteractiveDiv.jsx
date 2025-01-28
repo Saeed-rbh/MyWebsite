@@ -135,8 +135,6 @@ const InteractiveDiv = (props) => {
     let newAdjustedTop = top + (!stages[1] ? adjustTop : !stages[2] ? -60 : 0);
     const ModifyTop = 60;
 
-    console.log("loaded", initial);
-
     if (isActive) {
       if (!fullView) {
         newAdjustedTop = Math.max(

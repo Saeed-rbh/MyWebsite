@@ -9,8 +9,17 @@ import useElementSize from "../../Styles/useElementSize";
 
 const ResearchInterests = () => {
   const componentName = "ResearchInterests";
-  const { id, list, size, title, name, top, adjustViewport, adjustTop } =
-    useUtilize(componentName);
+  const {
+    id,
+    list,
+    size,
+    title,
+    name,
+    top,
+    adjustViewport,
+    adjustTop,
+    isActive,
+  } = useUtilize(componentName);
 
   const { ref, inView } = useInView({
     threshold: 0.5,
@@ -52,6 +61,7 @@ const ResearchInterests = () => {
     boxSizing: "border-box",
   };
 
+  const [initial, setInitial] = useState(false);
   const combinedStyle = useCombinedAnimation({
     top,
     adjustViewport,
@@ -61,6 +71,9 @@ const ResearchInterests = () => {
     name,
     id,
     inView,
+    isActive,
+    initial,
+    setInitial,
   });
 
   return (

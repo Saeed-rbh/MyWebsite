@@ -1,4 +1,4 @@
-import React, { useMemo } from "react";
+import React, { useMemo, useState } from "react";
 import { animated } from "react-spring";
 import { ContactDetails, PersonalTitle, PersonalDetails } from "./ExternalLink";
 import { useUtilize } from "../../Styles/useUtilize";
@@ -10,8 +10,17 @@ import useElementSize from "../../Styles/useElementSize";
 
 export const PersonalInfo = () => {
   const componentName = "PersonalInfo";
-  const { id, size, padding, title, name, top, adjustViewport, adjustTop } =
-    useUtilize(componentName);
+  const {
+    id,
+    size,
+    padding,
+    title,
+    name,
+    top,
+    adjustViewport,
+    adjustTop,
+    isActive,
+  } = useUtilize(componentName);
 
   const { ref, inView } = useInView({
     threshold: 0.5,
@@ -49,7 +58,7 @@ export const PersonalInfo = () => {
     width: "100%",
     margin: "7px",
   };
-
+  const [initial, setInitial] = useState(false);
   const combinedStyle = useCombinedAnimation({
     top,
     adjustViewport,
@@ -59,6 +68,9 @@ export const PersonalInfo = () => {
     name,
     id,
     inView,
+    isActive,
+    initial,
+    setInitial,
   });
 
   const memoizedTitle = useMemo(
