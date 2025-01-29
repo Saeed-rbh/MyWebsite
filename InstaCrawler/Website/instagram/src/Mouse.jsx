@@ -2,6 +2,7 @@ import React, { useState, useRef, useEffect } from "react";
 import { useSpring, animated, to } from "@react-spring/web";
 import { useSelector } from "react-redux";
 import "./Mouse.css";
+import { use } from "react";
 
 const isMobile = () => /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
 
@@ -76,6 +77,25 @@ const Mouse = () => {
     };
   }, []);
 
+  const ringStyle = useSpring({
+    opacity: hoveringClickableElement ? 0.5 : 1,
+    width: hoveringClickableElement ? "50px" : !mouseClicked ? "30px" : "6px",
+    height: hoveringClickableElement ? "50px" : !mouseClicked ? "30px" : "6px",
+    top: hoveringClickableElement ? "-27px" : !mouseClicked ? "-17px" : "-5px",
+    left: hoveringClickableElement ? "-27px" : !mouseClicked ? "-17px" : "-5px",
+    backgroundColor: hoveringClickableElement
+      ? "rgba(212, 157, 129,0.1)"
+      : "rgba(212, 157, 129,0)",
+  });
+
+  const dotStyle = useSpring({
+    width: hoveringClickableElement ? "50px" : !mouseClicked ? "10px" : "12px",
+    height: hoveringClickableElement ? "50px" : !mouseClicked ? "10px" : "12px",
+    top: hoveringClickableElement ? "-25px" : !mouseClicked ? "-5px" : "-6px",
+    left: hoveringClickableElement ? "-25px" : !mouseClicked ? "-5px" : "-6px",
+    mixBlendMode: hoveringClickableElement ? "darken" : "normal",
+  });
+
   return (
     <div
       className="container"
@@ -85,34 +105,22 @@ const Mouse = () => {
         ref={domTarget}
         className="ring"
         style={{
+          ...ringStyle,
           transform: to(
             [ringX, ringY],
             (rx, ry) => `translate(${rx}px, ${ry}px)`
           ),
-          width: !mouseClicked ? "30px" : "6px",
-          height: !mouseClicked ? "30px" : "6px",
-          top: !mouseClicked ? "-17px" : "-5px",
-          left: !mouseClicked ? "-17px" : "-5px",
-          filter: hoveringClickableElement ? "blur(2px)" : "blur(0px)",
-          mixBlendMode: hoveringClickableElement ? "darken" : "initial",
-          backgroundColor: hoveringClickableElement
-            ? "rgba(212 146 129)"
-            : "rgba(0, 0, 0, 0.2)",
         }}
       ></animated.div>
 
       <animated.div
         className="dot"
         style={{
+          ...dotStyle,
           transform: to(
             [dotX, dotY],
             (dx, dy) => `translate(${dx}px, ${dy}px)`
           ),
-          width: !mouseClicked ? "10px" : "12px",
-          height: !mouseClicked ? "10px" : "12px",
-          top: !mouseClicked ? "-5px" : "-6px",
-          left: !mouseClicked ? "-5px" : "-6px",
-          filter: hoveringClickableElement ? "blur(10px)" : "blur(0px)",
         }}
       ></animated.div>
     </div>
