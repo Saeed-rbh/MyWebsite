@@ -115,8 +115,9 @@
   position: absolute;
   /* top: 20px;
   bottom: 80px; */
-  left: 30px;
-  right: 10px;
+  /* left: 30px;
+  right: 10px; */
+  max-width: 1600px;
   width: calc(100vw - 150px);
   height: calc(100vh - 150px);
   padding-bottom: 10px;
@@ -296,7 +297,8 @@
   justify-content: center;
   align-items: center;
   z-index: 1;
-  background-color: #00000060;
+  background-color: #684b3d34;
+  border: 1px solid #684b3d7f;
   border-radius: 100px;
   flex-direction: row;
   backdrop-filter: blur(10px);

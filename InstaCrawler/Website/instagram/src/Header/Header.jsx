@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useCallback } from "react";
+import React, { useEffect, useState, useCallback, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useSpring, animated, easings } from "react-spring";
 import { Link } from "react-router-dom";
@@ -8,6 +8,7 @@ import { updateMenu } from "../actions/Actions";
 import HomePage from "../HomePage/HomePage";
 import Logo from "./Logo";
 import MenuButton from "./MenuButton";
+import useHoverMoveEffect from "../Helper/useHoverMoveEffect";
 
 const useScrollOpacity = (isResumeClicked) => {
   const [scrollOpacity, setScrollOpacity] = useState(false);
@@ -82,6 +83,7 @@ const Header = () => {
         : `rgba(0, 0, 0, 0)`,
     easing: easings.easeOutCubic,
   });
+
   const contactInfoAnimation2 = useSpring({
     display: "flex",
     opacity: !isResumeClicked ? "0" : "1",
@@ -92,8 +94,8 @@ const Header = () => {
       : `translate3d(${stages[1] ? -30 : 0}px,${
           stages[1] ? (isMenuOpen ? 35 : 10) : isMenuOpen ? 45 : 35
         }px,0)`,
-    // config: { duration: 600 },
   });
+
   const contactInfoAnimation3 = useSpring({
     opacity: !isResumeClicked ? "1" : "0",
     transform: !isResumeClicked
@@ -103,8 +105,10 @@ const Header = () => {
       : `translate3d(55px,${
           stages[1] ? (isMenuOpen ? -5 : -25) : isMenuOpen ? 15 : 0
         }px,0)`,
-    // config: { duration: 600 },
   });
+
+  const linkRef = useRef(null);
+  const linkStyle = useHoverMoveEffect(linkRef, 100, 0.2);
 
   return (
     visibility && (
@@ -131,15 +135,17 @@ const Header = () => {
             </Link>
           </animated.div>
           <animated.div style={contactInfoAnimation3}>
-            <Link
-              onClick={() => handleButtonClick(false)}
-              to="/"
-              element={<HomePage />}
-            >
-              <Logo className="Logo" size="20" />
-              <p>Saeed</p>
-              <b>Arabha</b>
-            </Link>
+            <animated.div ref={linkRef} style={linkStyle}>
+              <Link
+                onClick={() => handleButtonClick(false)}
+                to="/"
+                element={<HomePage />}
+              >
+                <Logo className="Logo" size="20" />
+                <p>Saeed</p>
+                <b>Arabha</b>
+              </Link>
+            </animated.div>
           </animated.div>
         </animated.div>
         <MenuButton
