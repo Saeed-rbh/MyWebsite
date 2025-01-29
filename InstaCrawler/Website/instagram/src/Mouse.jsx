@@ -93,7 +93,6 @@ const Mouse = () => {
     height: hoveringClickableElement ? "50px" : !mouseClicked ? "10px" : "12px",
     top: hoveringClickableElement ? "-25px" : !mouseClicked ? "-5px" : "-6px",
     left: hoveringClickableElement ? "-25px" : !mouseClicked ? "-5px" : "-6px",
-    mixBlendMode: hoveringClickableElement ? "darken" : "normal",
   });
 
   return (
@@ -121,6 +120,7 @@ const Mouse = () => {
             [dotX, dotY],
             (dx, dy) => `translate(${dx}px, ${dy}px)`
           ),
+          mixBlendMode: hoveringClickableElement ? "darken" : "normal",
         }}
       ></animated.div>
     </div>
