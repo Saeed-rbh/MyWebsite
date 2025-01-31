@@ -17,6 +17,8 @@ const useMenuAnimation = (isMenuOpen, isMenuIconHovered, TB) => {
 const MenuButton = ({
   isMenuOpen,
   handleButtonClick,
+  MenuRef,
+  MenuStyle,
   contactInfoAnimation,
 }) => {
   const [isMenuIconHovered, setIsMenuIconHovered] = useState(false);
@@ -30,7 +32,8 @@ const MenuButton = ({
 
   return (
     <animated.div
-      style={contactInfoAnimation}
+      ref={MenuRef}
+      style={{ ...MenuStyle, ...contactInfoAnimation }}
       className="HomePage-M-T-R"
       onClick={() => handleButtonClick(!isMenuOpen)}
       onMouseEnter={() => setIsMenuIconHovered(true)}
