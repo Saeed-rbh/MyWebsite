@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { Link } from "react-router-dom";
 import { useSpring, animated, easings } from "react-spring";
 import useDelayedClickEffect from "./useDelayedClickEffect"; // Import custom hook
+import useHoverMoveEffect from "../Helper/useHoverMoveEffect";
 
 const ResumeInfo = ({
   handleClickCV,
@@ -9,6 +10,9 @@ const ResumeInfo = ({
   MenuHide,
   screenWidth,
 }) => {
+  const Ref_1 = useRef(null);
+  const Style_1 = useHoverMoveEffect(Ref_1, 50, 0.2);
+
   const [delayedResumeClicked, setDelayedResumeClicked] = useState(true);
   useDelayedClickEffect(setDelayedResumeClicked, resumeClicked, 2000);
   const resumeInfoOpenSpring = useSpring({
@@ -31,7 +35,7 @@ const ResumeInfo = ({
       <p1 className="Social-Media">
         <animated.p>MY RESUME</animated.p>
       </p1>
-      <animated.div className="social">
+      <animated.div className="social" style={Style_1} ref={Ref_1}>
         {!delayedResumeClicked && (
           <Link onClick={handleClickCV} to="/AcademicCV">
             ACADEMIC BACKGROUND
