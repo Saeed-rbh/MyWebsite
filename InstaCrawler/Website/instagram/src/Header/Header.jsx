@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useCallback, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useSpring, animated, easings } from "react-spring";
-import { Link, useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { TbHomeMove } from "react-icons/tb";
 import { motion } from "framer-motion";
 import { updateMenu } from "../actions/Actions";
@@ -9,6 +9,7 @@ import HomePage from "../HomePage/HomePage";
 import Logo from "./Logo";
 import MenuButton from "./MenuButton";
 import useHoverMoveEffect from "../Helper/useHoverMoveEffect";
+import { updateCurrentPage } from "../actions/Actions";
 
 const useScrollOpacity = (isResumeClicked) => {
   const [scrollOpacity, setScrollOpacity] = useState(false);
@@ -100,6 +101,14 @@ const Header = () => {
     delay: 5,
   });
 
+  const navigate = useNavigate();
+
+  const handleHomeClcik = () => {
+    dispatch(updateCurrentPage("/"));
+    handleButtonClick(false);
+    navigate("/");
+  };
+
   return (
     visibility && (
       <motion.div
@@ -118,21 +127,15 @@ const Header = () => {
             ref={HomeRef}
           >
             <TbHomeMove />
-            <Link onClick={() => handleButtonClick(false)} to="/">
-              Home Page
-            </Link>
+            <button onClick={handleHomeClcik}>Home Page</button>
           </animated.div>
           <animated.div style={contactInfoAnimation3}>
             <animated.div ref={MainRef} style={MainStyle}>
-              <Link
-                onClick={() => handleButtonClick(false)}
-                to="/"
-                element={<HomePage />}
-              >
+              <button onClick={handleHomeClcik} element={<HomePage />}>
                 <Logo className="Logo" size="20" />
                 <p>Saeed</p>
                 <b>Arabha</b>
-              </Link>
+              </button>
             </animated.div>
           </animated.div>
         </animated.div>

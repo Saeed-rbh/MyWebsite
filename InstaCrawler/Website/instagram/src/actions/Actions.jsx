@@ -7,6 +7,7 @@ import {
   VISIBILITY,
   MENU,
   ACADEMIC_ELEMENT_SIZE,
+  CURRENT_PAGE,
 } from "../constants/actionTypes";
 
 export const updateData = (data) => ({
@@ -47,4 +48,9 @@ export const updateMenu = (ref) => ({
 export const updateAcademicElementSize = (ref) => ({
   type: ACADEMIC_ELEMENT_SIZE,
   payload: ref,
+});
+
+export const updateCurrentPage = (page) => ({
+  type: CURRENT_PAGE,
+  payload: page,
 });

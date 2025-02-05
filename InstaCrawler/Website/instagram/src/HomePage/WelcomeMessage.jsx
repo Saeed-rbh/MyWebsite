@@ -14,15 +14,16 @@ const getGradientColor = (index, length) => {
 };
 
 const AnimatedLetter = ({ char, MenuHide, delay, color }) => {
+  console.log(MenuHide);
+
   const springProps = useSpring({
-    from: {
-      transform: MenuHide ? "translateX(-20px)" : "translateX(0px)",
-      opacity: MenuHide ? 0 : 1,
-    },
-    to: {
-      transform: MenuHide ? "translateX(0px)" : "translateX(-20px)",
-      opacity: MenuHide ? 1 : 0,
-    },
+    transform:
+      MenuHide === 1
+        ? "translateX(0px)"
+        : MenuHide === 2
+        ? "translateX(20px)"
+        : "translateX(-20px)",
+    opacity: MenuHide === 1 ? 1 : 0,
     easing: easings.easeOutCubic,
     delay: delay,
     duration: 1500,

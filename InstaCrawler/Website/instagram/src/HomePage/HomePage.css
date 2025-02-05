@@ -5,7 +5,17 @@
 @import url("https://fonts.googleapis.com/css2?family=REM:wght@100;400;600;900&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=DM+Serif+Display&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Teko:wght@300..700&display=swap');
 
+button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  outline: none;
+  display: flex;
+  align-items: center;
+  color: #faf9f1;
+}
 .HomePage-M-T {
   width: -webkit-fill-available;
   height: 100px;
@@ -444,6 +454,27 @@
   overflow: hidden;
   font-size: 11px;
   font-family: "Poppins", sans-serif;
+}
+.social button {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font: inherit;
+  vertical-align: baseline;
+  width: -webkit-max-content;
+  width: -moz-max-content;
+  width: max-content;
+  margin-right: 2.5vw;
+  cursor: pointer;
+  -webkit-transition: all 0.2s linear;
+  text-decoration: none !important;
+  color: #faf9f1;
+  opacity: 0.8;
+  font-weight: 500;
+  overflow: hidden;
+  font-size: 11px;
+  font-family: "Poppins", sans-serif;
+  background: none;
 }
 .b-hr {
   background: linear-gradient(to right, #f9ebe50f 0%, #d4a58d38 100%);

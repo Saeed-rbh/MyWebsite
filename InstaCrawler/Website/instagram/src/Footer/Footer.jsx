@@ -5,12 +5,18 @@ import { useSelector } from "react-redux";
 import "../HomePage/HomePage.css";
 import ContactInfo from "./ContactInfo";
 import ResumeInfo from "./ResumeInfo";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { updateCurrentPage } from "../actions/Actions";
 
 const Footer = () => {
   const location = useLocation();
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+
   const { isMenuOpen } = useSelector((state) => state.isMenuOpen);
   const { visibility } = useSelector((state) => state.visibility);
+
   const [screenWidth, setScreenWidth] = useState(window.innerWidth);
   const [resumeClicked, setResumeClicked] = useState(
     window.location.pathname === "/AcademicCV"
@@ -25,22 +31,27 @@ const Footer = () => {
     }
   }, [location.pathname]);
 
-  useEffect(() => {
-    const handleResize = () => setScreenWidth(window.innerWidth);
-    const handleUrlChange = () =>
-      setResumeClicked(window.location.pathname === "/AcademicCV");
+  // useEffect(() => {
+  //   const handleResize = () => setScreenWidth(window.innerWidth);
+  //   const handleUrlChange = () =>
+  //     setResumeClicked(window.location.pathname === "/AcademicCV");
 
-    window.addEventListener("resize", handleResize);
-    window.addEventListener("click", handleUrlChange);
+  //   window.addEventListener("resize", handleResize);
+  //   window.addEventListener("click", handleUrlChange);
 
-    return () => {
-      window.removeEventListener("resize", handleResize);
-      window.removeEventListener("click", handleUrlChange);
-    };
-  }, []);
+  //   return () => {
+  //     window.removeEventListener("resize", handleResize);
+  //     window.removeEventListener("click", handleUrlChange);
+  //   };
+  // }, []);
   const handleButtonClick = (value) => updateMenu(value);
   const handleClickCV = () => {
+    dispatch(updateCurrentPage("/AcademicCV"));
+
     handleButtonClick(false);
+    setTimeout(() => {
+      navigate("/AcademicCV");
+    }, 1000);
     setResumeClicked(true);
   };
 

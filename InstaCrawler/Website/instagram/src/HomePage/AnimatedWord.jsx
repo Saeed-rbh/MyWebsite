@@ -1,37 +1,50 @@
 import React, { useState, useEffect } from "react";
 import { useSpring, animated, easings } from "react-spring";
 
-const AnimatedWord = ({ word, index, animateFrom, animateTo, MenuHide }) => {
+const AnimatedWord = ({
+  word,
+  index,
+  animateFrom,
+  animateTo,
+  MenuHide,
+  length,
+}) => {
   const isSpecialWord = word.startsWith("<") && word.endsWith(">");
   let displayWord = isSpecialWord ? word.slice(1, -1) : word;
   if (isSpecialWord) {
     displayWord = displayWord.replace(/-/g, " ");
   }
+
   const [bgWidth, setBgWidth] = useState("0px");
   useEffect(() => {
-    if (!MenuHide) {
+    if (MenuHide === 1) {
       const timer = setTimeout(
         () => setBgWidth(`${displayWord.length * 10}px`),
         index * 30
       );
       return () => clearTimeout(timer);
     } else {
-      setBgWidth("0px");
+      setBgWidth(`${0}px`);
     }
   }, [MenuHide, index, displayWord]);
   const wordSpring = useSpring({
     from: {
       color: animateFrom,
-      transform: "translateY(5px)",
-      opacity: 0,
+      transform: MenuHide === 1 ? "translateY(5px)" : "translateY(0px)",
+      opacity: MenuHide === 1 ? 0 : 1,
     },
     to: {
       color: animateTo,
-      transform: "translateY(0px)",
-      opacity: 1,
+      transform:
+        MenuHide === 1
+          ? "translateY(0px)"
+          : MenuHide === 2
+          ? "translateY(-5px)"
+          : "translateY(5px)",
+      opacity: MenuHide === 1 ? 1 : 0,
     },
     easing: easings.easeOutCubic,
-    delay: index * 25,
+    delay: MenuHide === 1 ? index * 25 : (length - index) * 25,
   });
   const specialBackground = {
     position: "relative",

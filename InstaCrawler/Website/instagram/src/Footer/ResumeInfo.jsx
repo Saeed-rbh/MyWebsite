@@ -37,9 +37,7 @@ const ResumeInfo = ({
       </p1>
       <animated.div className="social" style={Style_1} ref={Ref_1}>
         {!delayedResumeClicked && (
-          <Link onClick={handleClickCV} to="/AcademicCV">
-            ACADEMIC BACKGROUND
-          </Link>
+          <button onClick={handleClickCV}>ACADEMIC BACKGROUND</button>
         )}
       </animated.div>
     </animated.div>

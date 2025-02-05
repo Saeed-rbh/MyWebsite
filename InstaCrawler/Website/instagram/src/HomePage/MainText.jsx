@@ -23,8 +23,10 @@ const MainText = ({ MenuHide, delay }) => {
             key={index}
             word={word}
             index={index}
-            animateFrom={MenuHide ? "#d49d81" : "white"}
-            animateTo={MenuHide ? "white" : "#d49d81"}
+            MenuHide={MenuHide}
+            length={words.length}
+            animateFrom={MenuHide === 1 ? "#d49d81" : "white"}
+            animateTo={MenuHide === 1 ? "white" : "#d49d81"}
           />
         ))}
       </p>
