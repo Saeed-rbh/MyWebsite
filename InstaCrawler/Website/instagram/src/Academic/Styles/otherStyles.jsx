@@ -190,8 +190,6 @@ export const useCombinedAnimation = ({
     }
   }, [location.pathname, currentPage, visibility]);
 
-  console.log(resumeClicked);
-
   const initialStyleAnim = useSpring({
     // from: { opacity: 0, scale: 1.2, y: 20 },
     opacity: resumeClicked === 1 ? 1 : 0,

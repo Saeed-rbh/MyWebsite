@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from "react";
+import React, { useState, useCallback, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { useSpring, animated } from "react-spring";
 
@@ -7,20 +7,49 @@ const useAnimationState = (
   delayConfig,
   index,
   visibility,
-  state
+  state,
+  resumeClicked
 ) => {
   const [animationFinished, setAnimationFinished] = useState(false);
 
   const springProps = useSpring({
-    from: { opacity: 0, x: state ? 30 : 0, scale: state ? 1.2 : 1 },
-    to: {
-      opacity: state ? 1 : visibility ? (isSelected ? 0.9 : 0.5) : 0,
-      x: visibility ? 0 : state ? 30 : 0,
-      scale: visibility ? 1 : state ? 1.2 : 1,
-    },
-    delay: animationFinished ? 0 : delayConfig[0] + delayConfig[1] * index,
+    // from: { opacity: 0, x: state ? 30 : 0, scale: state ? 1.2 : 1 },
+    // to: {
+    opacity:
+      resumeClicked === 1
+        ? state
+          ? 1
+          : visibility
+          ? isSelected
+            ? 0.9
+            : 0.5
+          : 0
+        : 0,
+    x:
+      resumeClicked === 1
+        ? visibility
+          ? 0
+          : state
+          ? 30
+          : 0
+        : resumeClicked === 2
+        ? -10
+        : 10,
+    scale: resumeClicked === 1 ? (visibility ? 1 : state ? 1.2 : 1) : 1,
+    // },
+    delay:
+      resumeClicked === 1
+        ? animationFinished
+          ? 0
+          : delayConfig[0] + delayConfig[1] * index
+        : delayConfig[1] * index,
     config: {
-      duration: animationFinished ? undefined : delayConfig[2],
+      duration:
+        resumeClicked === 1
+          ? animationFinished
+            ? undefined
+            : delayConfig[2]
+          : 500,
     },
     onRest: () => setAnimationFinished(true),
   });
@@ -29,23 +58,43 @@ const useAnimationState = (
 };
 
 // Custom hook for SpringStyle
-const useSpringStyle = (index, isSelected) => {
+const useSpringStyle = (index, isSelected, resumeClicked) => {
   const { visibility } = useSelector((state) => state.visibility);
   const delayConfig = [1000, 200, 600];
-  return useAnimationState(isSelected, delayConfig, index, visibility, true);
+  return useAnimationState(
+    isSelected,
+    delayConfig,
+    index,
+    visibility,
+    true,
+    resumeClicked
+  );
 };
 
 // Custom hook for OpacityStyle
-const useOpacityStyle = (index, isSelected) => {
+const useOpacityStyle = (index, isSelected, resumeClicked) => {
   const { visibility } = useSelector((state) => state.visibility);
   const delayConfig = [1300, 200, 600];
-  return useAnimationState(isSelected, delayConfig, index, visibility, false);
+  return useAnimationState(
+    isSelected,
+    delayConfig,
+    index,
+    visibility,
+    false,
+    resumeClicked
+  );
 };
 
 // AnimatedButton component
-const AnimatedButton = ({ index, item, isSelected, onClick }) => {
-  const springStyle = useSpringStyle(index, isSelected);
-  const opacityStyle = useOpacityStyle(index, isSelected);
+const AnimatedButton = ({
+  index,
+  item,
+  isSelected,
+  onClick,
+  resumeClicked,
+}) => {
+  const springStyle = useSpringStyle(index, isSelected, resumeClicked);
+  const opacityStyle = useOpacityStyle(index, isSelected, resumeClicked);
 
   const handleClick = useCallback(() => {
     if (!onClick) return;

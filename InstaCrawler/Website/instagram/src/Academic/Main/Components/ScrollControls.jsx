@@ -20,7 +20,7 @@ const Arrow = ({ direction, style }) => {
   );
 };
 
-const ScrollControls = ({ scrollEffect }) => {
+const ScrollControls = ({ scrollEffect, resumeClicked }) => {
   const { visibility } = useSelector((state) => state.visibility);
   const [animationFinished, setAnimationFinished] = useState(false);
   const scrollEndRef = useRef(false);
@@ -28,24 +28,38 @@ const ScrollControls = ({ scrollEffect }) => {
   const { scrollPosition } = useScrollPosition(scollableRef);
 
   const titleStyle = useSpring({
-    from: { opacity: 0, y: 10 },
-    to: {
-      opacity: scrollPosition <= 0 ? 0.8 : 0,
-      y: scrollPosition <= 0 ? -2 : -15,
-      width: stages[2] ? "98%" : "100%",
-    },
-    delay: animationFinished ? 0 : 700,
+    // from: { opacity: 0, y: 10 },
+    // to: {
+    opacity: resumeClicked === 1 ? (scrollPosition <= 0 ? 0.8 : 0) : 0,
+    y:
+      resumeClicked === 1
+        ? scrollPosition <= 0
+          ? -2
+          : -15
+        : resumeClicked === 2
+        ? -10
+        : 10,
+    width: stages[2] ? "98%" : "100%",
+    // },
+    delay: resumeClicked === 1 ? (animationFinished ? 0 : 700) : 0,
     onRest: () => setAnimationFinished(true),
   });
 
   const textStyle = useSpring({
-    from: { opacity: 0, y: 10 },
-    to: {
-      opacity: visibility ? scrollEffect[3] : 0,
-      y: visibility ? 0 : 10,
-      margin: 0,
-    },
-    delay: animationFinished ? 0 : 500,
+    // from: { opacity: 0, y: 10 },
+    // to: {
+    opacity: resumeClicked === 1 ? (visibility ? scrollEffect[3] : 0) : 0,
+    y:
+      resumeClicked === 1
+        ? visibility
+          ? 0
+          : 10
+        : resumeClicked === 2
+        ? -10
+        : 10,
+    margin: 0,
+    // },
+    delay: resumeClicked === 1 ? (animationFinished ? 0 : 500) : 500,
     onRest: () => setAnimationFinished(true),
   });
 

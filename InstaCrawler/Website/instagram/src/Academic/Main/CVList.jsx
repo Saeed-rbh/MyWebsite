@@ -13,6 +13,7 @@ import useScrollCalculations from "./Components/useScrollCalculations";
 import useScrollHandler from "./Components/useScrollHandler";
 import useMenuClick from "./Components/useMenuClick";
 import useScrollPosition from "../General/useScrollPosition";
+import { useLocation } from "react-router-dom";
 
 const MainStyleComponent = () => {
   // Interpolates between two values based on scroll position
@@ -69,7 +70,6 @@ const CVList = ({ isActive }) => {
     setSelected,
   });
 
-
   const [cvListElement, setCvListElement] = useState(
     CVListRef ? CVListRef.current : null
   );
@@ -118,9 +118,34 @@ const CVList = ({ isActive }) => {
     executeSmoothScroll,
   });
 
+  const { currentPage } = useSelector((state) => state.currentPage);
+  const location = useLocation();
+  const { visibility } = useSelector((state) => state.visibility);
+  const [resumeClicked, setResumeClicked] = useState(0);
+  useEffect(() => {
+    if (
+      visibility &&
+      location.pathname === "/AcademicCV" &&
+      currentPage === "/AcademicCV"
+    ) {
+      setResumeClicked(1);
+    } else if (
+      visibility &&
+      location.pathname === "/AcademicCV" &&
+      currentPage === "/"
+    ) {
+      setResumeClicked(2);
+    } else {
+      setResumeClicked(3);
+    }
+  }, [location.pathname, currentPage, visibility]);
+
   return (
     <animated.div style={mainStyle}>
-      <ScrollControls scrollEffect={scrollEffect} />
+      <ScrollControls
+        scrollEffect={scrollEffect}
+        resumeClicked={resumeClicked}
+      />
       <div ref={CVListRef} className="CVList">
         {data.map((item, index) => (
           <AnimatedButton
@@ -129,6 +154,7 @@ const CVList = ({ isActive }) => {
             item={item}
             isSelected={index === selected}
             onClick={isActive ? undefined : menuClicked}
+            resumeClicked={resumeClicked}
           />
         ))}
       </div>
