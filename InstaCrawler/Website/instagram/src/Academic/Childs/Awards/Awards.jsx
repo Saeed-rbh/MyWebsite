@@ -3,7 +3,6 @@ import React from "react";
 import AwardsMain from "./AwardsMain";
 import { useUtilize } from "../../Styles/useUtilize";
 import InteractiveDiv from "../Helper/InteractiveDiv";
-import { Drawer } from "vaul";
 
 const Awards = () => {
   const componentName = "Awards";

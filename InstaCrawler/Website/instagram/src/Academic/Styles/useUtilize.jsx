@@ -35,20 +35,18 @@ export const useUtilize = (componentName) => {
     explanation,
     height,
     top,
-    rand,
     size,
     padding,
     list,
     title,
     name,
-    fixed,
     background,
     seqId,
     widthSplit,
     adjustTop,
     adjustHeight,
     adjustViewport,
-    openType,
+    // openType,
   } = data;
 
   const isActive = useMemo(() => {
@@ -144,6 +142,6 @@ export const useUtilize = (componentName) => {
     handleMouseEnter,
     handleMouseLeave,
     adjustViewport,
-    openType,
+    // openType,
   };
 };

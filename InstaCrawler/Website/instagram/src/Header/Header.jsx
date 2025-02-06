@@ -106,7 +106,9 @@ const Header = () => {
   const handleHomeClcik = () => {
     dispatch(updateCurrentPage("/"));
     handleButtonClick(false);
-    navigate("/");
+    setTimeout(() => {
+      navigate("/");
+    }, 1000);
   };
 
   return (

@@ -1,8 +1,9 @@
-import React, { useMemo, useState } from "react";
+import React, { useState, useEffect } from "react";
 import { animated, useSpring } from "react-spring";
 import { useSelector } from "react-redux";
 import useElementSize from "../Styles/useElementSize";
 import useScrollPosition from "../General/useScrollPosition";
+import { useLocation } from "react-router-dom";
 
 // AnimatedSpan component for individual letters
 const AnimatedSpan = ({ letter, delay, duration }) => {
@@ -27,30 +28,60 @@ const useTitleAnimation = ({
   visibility,
   animationFinished,
   setAnimationFinished,
-  xDiff,
   yDiff,
-  scaleDiff,
-  stages,
 }) => {
   const scroll = scrollPosition / 50;
   const updateVariables = useSelector((state) => state.data);
   const toggle = updateVariables.toggle;
 
+  const { currentPage } = useSelector((state) => state.currentPage);
+  const location = useLocation();
+  const [resumeClicked, setResumeClicked] = useState(0);
+  useEffect(() => {
+    if (
+      visibility &&
+      location.pathname === "/AcademicCV" &&
+      currentPage === "/AcademicCV"
+    ) {
+      setResumeClicked(1);
+    } else if (
+      visibility &&
+      location.pathname === "/AcademicCV" &&
+      currentPage === "/"
+    ) {
+      setResumeClicked(2);
+    } else {
+      setResumeClicked(3);
+    }
+  }, [location.pathname, currentPage, visibility]);
+
   return useSpring({
-    from: { opacity: 0, y: yDiff[1], display: "flex" },
-    to: {
-      opacity: scroll > 0 || toggle[0] ? 0 : visibility ? 0.7 : 0,
-      // x: scroll <= 0 ? xDiff[1] : xDiff[1] - 10,
-      y:
-        scroll <= 0 || toggle[0]
+    // from: { opacity: 0, y: yDiff[1], display: "flex" },
+    // to: {
+    display: "flex",
+    opacity:
+      resumeClicked === 1
+        ? scroll > 0 || toggle[0]
+          ? 0
+          : visibility
+          ? 0.7
+          : 0
+        : 0,
+    // x: scroll <= 0 ? xDiff[1] : xDiff[1] - 10,
+    y:
+      resumeClicked === 1
+        ? scroll <= 0 || toggle[0]
           ? interpolateValue(scrollPosition / 150, [yDiff[0] / 3, yDiff[1]])
           : scroll > 0
           ? yDiff[1] - 50
-          : yDiff[1],
-      // scale: scroll > 0 ? 0.9 : 1,
-    },
+          : yDiff[1]
+        : yDiff[1] - 20,
+    // scale: scroll > 0 ? 0.9 : 1,
+    // },
     delay: animationFinished ? 0 : 500,
-    config: { duration: animationFinished ? undefined : 800 },
+    config: {
+      duration: resumeClicked === 2 ? 500 : animationFinished ? undefined : 800,
+    },
     onRest: () => setAnimationFinished(true),
   });
 };

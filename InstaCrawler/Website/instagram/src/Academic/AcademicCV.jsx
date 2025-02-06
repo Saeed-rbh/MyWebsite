@@ -8,10 +8,14 @@ import MoreInfoAcademic from "./Main/MoreInfoAcademic";
 import "./AcademicCV.css";
 import { ScrollProvider } from "./General/ScrollProvider";
 import useScrollPosition from "./General/useScrollPosition";
+import { useDispatch } from "react-redux";
+import { updateCurrentPage } from "../actions/Actions";
 
 const AcademicCV = () => {
   const EXTRA_SPACE = 30;
   const elementSize = useElementSize("AcademicCV-M");
+  const dispatch = useDispatch();
+  dispatch(updateCurrentPage("/AcademicCV"));
 
   const {
     academicData: data,

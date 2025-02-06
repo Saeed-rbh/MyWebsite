@@ -1,6 +1,7 @@
 import { useSpring, animated } from "react-spring";
 import { useMemo, useState, useEffect, useRef, useCallback } from "react";
 import { useSelector } from "react-redux";
+import { useLocation } from "react-router-dom";
 
 // Hook for second text style
 export const useSecondTextStyle = (isActive, stages) => {
@@ -166,10 +167,37 @@ export const useCombinedAnimation = ({
     }
   }, [toggle, name]);
 
+  const { currentPage } = useSelector((state) => state.currentPage);
+  const { visibility } = useSelector((state) => state.visibility);
+
+  const location = useLocation();
+  const [resumeClicked, setResumeClicked] = useState(0);
+  useEffect(() => {
+    if (
+      visibility &&
+      location.pathname === "/AcademicCV" &&
+      currentPage === "/AcademicCV"
+    ) {
+      setResumeClicked(1);
+    } else if (
+      visibility &&
+      location.pathname === "/AcademicCV" &&
+      currentPage === "/"
+    ) {
+      setResumeClicked(2);
+    } else {
+      setResumeClicked(3);
+    }
+  }, [location.pathname, currentPage, visibility]);
+
+  console.log(resumeClicked);
+
   const initialStyleAnim = useSpring({
-    from: { opacity: 0, scale: 1.2, y: 20 },
-    to: { opacity: 1, scale: 1, y: 0 },
-    delay: 500 + id * 110,
+    // from: { opacity: 0, scale: 1.2, y: 20 },
+    opacity: resumeClicked === 1 ? 1 : 0,
+    scale: resumeClicked === 1 ? 1 : resumeClicked === 2 ? 0.95 : 1.2,
+    y: resumeClicked === 1 ? 0 : resumeClicked === 2 ? -20 : 20,
+    delay: resumeClicked === 2 ? id * 110 : 500 + id * 110,
     config: { duration: 500 },
     onRest: () => {
       if (!initial) setInitial(true);
@@ -184,9 +212,10 @@ export const useCombinedAnimation = ({
     isActive
   );
 
-  const combinedStyleAnim = Loaded.current
-    ? { ...otherFadeAnim.style }
-    : { ...initialStyleAnim };
+  const combinedStyleAnim =
+    Loaded.current && resumeClicked === 1
+      ? { ...otherFadeAnim.style }
+      : { ...initialStyleAnim };
 
   return combinedStyleAnim;
 };
