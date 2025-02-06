@@ -1,4 +1,4 @@
-import { useEffect, useState, useMemo, useRef } from "react";
+import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import useElementSize from "../Styles/useElementSize";
 import elementTopCalculator from "./elementTopCalculator";
@@ -7,18 +7,7 @@ import elementWidthCalculator from "./elementWidthCalculator"; // Assuming this 
 
 const useHeightAndTop = (childRefs, data) => {
   const mainElementSize = useElementSize("MoreInfoAcademic");
-  const { stages, toggle, hover, scollableRef } = useSelector(
-    (state) => state.data
-  );
-
-  const isClicked = useMemo(
-    () => toggle[0] && toggle[1] === data.title,
-    [toggle, data.title]
-  );
-  const isHovered = useMemo(
-    () => hover[0] && hover[1] === data.title,
-    [hover, data.title]
-  );
+  const { stages, toggle, scollableRef } = useSelector((state) => state.data);
 
   const calculateHeights = (childsHeight) =>
     elementHeightCalculator({
@@ -33,7 +22,7 @@ const useHeightAndTop = (childRefs, data) => {
 
   const calculateWidthOffset = () => {
     const PADDING_OFFSET_FACTOR = 50;
-    const widthOffset =  PADDING_OFFSET_FACTOR;
+    const widthOffset = PADDING_OFFSET_FACTOR;
     return widthOffset;
   };
 

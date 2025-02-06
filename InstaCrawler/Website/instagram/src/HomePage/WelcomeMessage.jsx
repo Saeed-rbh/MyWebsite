@@ -14,8 +14,6 @@ const getGradientColor = (index, length) => {
 };
 
 const AnimatedLetter = ({ char, MenuHide, delay, color }) => {
-  console.log(MenuHide);
-
   const springProps = useSpring({
     transform:
       MenuHide === 1
