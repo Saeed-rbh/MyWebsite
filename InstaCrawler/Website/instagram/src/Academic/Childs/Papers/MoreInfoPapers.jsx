@@ -51,6 +51,7 @@ const MoreInfoPapers = ({
           handleToggle={() => handleToggle(index)}
           loadPaper={NaN}
           Openclose={isActive}
+          stages={stages}
         />
       ))}
     </animated.div>

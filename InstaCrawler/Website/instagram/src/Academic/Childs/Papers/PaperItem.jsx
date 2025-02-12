@@ -4,6 +4,7 @@ import { HiArrowSmRight } from "react-icons/hi";
 import { SiGooglescholar } from "react-icons/si";
 import { useSpring, animated, easings } from "react-spring";
 import { useInView } from "react-intersection-observer";
+import { Stage } from "@react-three/drei";
 
 const openInNewTab = (url) => {
   window.open(url, "_blank", "noopener,noreferrer");
@@ -17,6 +18,7 @@ const PaperItem = ({
   handleToggle,
   loadPaper,
   Openclose,
+  stages,
 }) => {
   const openInfoMainStyle = useSpring({
     paddingBottom: Openclose ? "0px" : "100px",
@@ -89,6 +91,7 @@ const PaperItem = ({
               alignItems: "center",
               transform: "translateY(-5px)",
               opacity: "1",
+              width: "max-content",
             }}
           >
             <p
@@ -103,8 +106,11 @@ const PaperItem = ({
             </p>
             {paper.Journal}
           </p>
-          <div className="read-more">
-            <h2 style={{ transform: "translateY(15px)" }}>
+          <div
+            className="read-more"
+            style={{ position: "absolute", right: "15px", bottom: "15px" }}
+          >
+            <h2 style={{ width: "max-content" }}>
               Read more
               <animated.span style={paperSvgHoverStyle}>
                 <HiArrowSmRight />
@@ -112,7 +118,10 @@ const PaperItem = ({
             </h2>
           </div>
         </div>
-        <div className="paper-details" style={{ width: "35%" }}>
+        <div
+          className="paper-details"
+          style={{ width: stages[1] ? "50%" : "35%" }}
+        >
           <p
             style={{
               display: "flex",
