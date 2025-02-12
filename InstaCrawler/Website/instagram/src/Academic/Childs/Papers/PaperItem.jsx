@@ -21,6 +21,7 @@ const PaperItem = ({
   const openInfoMainStyle = useSpring({
     paddingBottom: Openclose ? "0px" : "100px",
     marginBottom: isOpen ? "60px" : "0px",
+    zIndex: 100,
   });
 
   const openInfoStyle = useSpring({
@@ -80,11 +81,30 @@ const PaperItem = ({
       onMouseLeave={handleMouseLeave}
     >
       <div className="PaperData">
-        <p>{paper.title}</p>
+        <p>{paper.Title}</p>
         <div className="paper-details">
-          <p>The Journal of Physical Chemistry C</p>
+          <p
+            style={{
+              display: "flex",
+              alignItems: "center",
+              transform: "translateY(-5px)",
+              opacity: "1",
+            }}
+          >
+            <p
+              style={{
+                marginRight: "5px",
+                opacity: "1",
+                fontWeight: "300",
+                color: "#fff",
+              }}
+            >
+              Journal:
+            </p>
+            {paper.Journal}
+          </p>
           <div className="read-more">
-            <h2>
+            <h2 style={{ transform: "translateY(15px)" }}>
               Read more
               <animated.span style={paperSvgHoverStyle}>
                 <HiArrowSmRight />
@@ -92,12 +112,57 @@ const PaperItem = ({
             </h2>
           </div>
         </div>
+        <div className="paper-details" style={{ width: "35%" }}>
+          <p
+            style={{
+              display: "flex",
+              alignItems: "center",
+              transform: "translateY(-15px)",
+              // color: "#fff",
+              fontWeight: "400",
+              opacity: "1",
+            }}
+          >
+            <p
+              style={{
+                marginRight: "5px",
+                opacity: "1",
+                fontWeight: "300",
+                color: "#fff",
+              }}
+            >
+              Year:
+            </p>
+            {paper.Year}
+          </p>
+          <p
+            style={{
+              display: "flex",
+              alignItems: "center",
+              transform: "translateY(-15px)",
+              fontWeight: "400",
+              opacity: "1",
+            }}
+          >
+            <p
+              style={{
+                marginRight: "5px",
+                opacity: "1",
+                fontWeight: "300",
+                color: "#fff",
+              }}
+            >
+              Citations:
+            </p>
+            {paper.Citations}
+          </p>
+        </div>
       </div>
       <div className="MoreInfo">
         <animated.p
           className="ReferMoreInfo"
           style={openInfoStyle}
-          onClick={() => openInNewTab(paper.link)}
+          onClick={() => openInNewTab(paper.Link)}
         >
           Online Version <SiGooglescholar />
         </animated.p>

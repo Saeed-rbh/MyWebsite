@@ -43,9 +43,9 @@ const RecentPaper = ({ isActive, stages, list }) => {
                     border: "none",
                   }}
                 >
-                  <p>{paper.title}</p>
+                  <p>{paper.Title}</p>
                   <div className="paper-details" style={{ marginTop: -2 }}>
-                    <p>The Journal of Physical Chemistry C</p>
+                    <p>{paper.Journal}</p>
                     <div></div>
                   </div>
                 </animated.div>

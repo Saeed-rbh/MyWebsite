@@ -72,7 +72,7 @@ function App() {
   return (
     <Router store={store}>
       <Loader />
-      <ScrollToNavigate /> {/* Scroll/Drag Detector */}
+      {/*<ScrollToNavigate /> {/* Scroll/Drag Detector */}
       <div className="App">
         <div className="MainBackground">
           <div className="BackgroundColor1"></div>

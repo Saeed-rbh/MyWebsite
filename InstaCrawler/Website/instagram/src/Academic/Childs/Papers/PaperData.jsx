@@ -1,5 +1,6 @@
 import React from "react";
 import { animated, useSpring, easings } from "react-spring";
+import { TotalCitations, HIndex, List } from "./List";
 
 const PaperData = ({ isActive, stages, size, adjustHeight }) => {
   const CloseOpenStyleInfo = useSpring({
@@ -43,17 +44,17 @@ const PaperData = ({ isActive, stages, size, adjustHeight }) => {
         <p>
           #- <span>Papers</span>
         </p>
-        <p>11</p>
+        <p>{List.length}</p>
       </animated.div>
       <animated.div style={Scale}>
         <p>Citations</p>
-        <p>207</p>
+        <p>{TotalCitations}</p>
       </animated.div>
       <animated.div style={Scale}>
         <p>
           H- <span>index</span>
         </p>
-        <p>8</p>
+        <p>{HIndex}</p>
       </animated.div>
       {/* <animated.div style={Scale}>
         <p>
