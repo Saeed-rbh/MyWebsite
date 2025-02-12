@@ -10,8 +10,6 @@ const ConferanceMain = ({
   isActive,
   stages,
 }) => {
-  console.log(List[0].Conference.length);
-
   const fontStyle = useSpring({
     // fontSize: isActive ? 12 : 11,
     marginBottom: isActive ? 10 : 0,

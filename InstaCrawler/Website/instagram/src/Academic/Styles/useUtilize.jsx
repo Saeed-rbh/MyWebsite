@@ -60,7 +60,7 @@ export const useUtilize = (componentName) => {
 
   const ParentRef = useRef(null);
   const TextRef = useRef(null);
-  const isClickable = useMemo(() => list.length > 2, [list]);
+  const isClickable = useMemo(() => list.length >= 2, [list]);
   const ChildRefs = useRef(list.map(() => React.createRef()));
 
   const handleClickClose = useCallback(() => {
