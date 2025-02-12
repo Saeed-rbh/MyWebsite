@@ -11,7 +11,7 @@ export const ExternalLink = ({ href, children }) => (
 
 const ContactInfo = ({ label, phone }) => (
   <h1>
-    <b>{label}:</b> <a href={`tel:${phone}`}>{phone}</a>
+    <b>{label}:</b> <a href={`tel:${phone.replace(/[-\s]/g, "")}`}>{phone}</a>
   </h1>
 );
 
@@ -22,8 +22,8 @@ ExternalLink.propTypes = {
 
 const ContactDetails = ({ MainStyle }) => (
   <animated.div style={{ ...MainStyle, maxWidth: "390px" }}>
-    <ContactInfo label="CA Cell" phone="+14168365851" />
-    <ContactInfo label="IR Cell" phone="+989196595351" />
+    <ContactInfo label="CA Cell" phone="+1 - 416 836 5851" />
+    <ContactInfo label="IR Cell" phone="+98 - 919 659 5351" />
   </animated.div>
 );
 

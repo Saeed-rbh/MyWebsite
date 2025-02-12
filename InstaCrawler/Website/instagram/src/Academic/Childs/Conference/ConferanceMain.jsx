@@ -10,13 +10,15 @@ const ConferanceMain = ({
   isActive,
   stages,
 }) => {
+  console.log(List[0].Conference.length);
+
   const fontStyle = useSpring({
     // fontSize: isActive ? 12 : 11,
     marginBottom: isActive ? 10 : 0,
     // marginLeft: isActive ? 0 : 10,
   });
   const Anim = useSpring({
-    marginTop: isActive ? 60 : 45,
+    marginTop: isActive ? 60 : List[0].Conference.length > 90 ? 45 : 58,
     padding: "0 30px",
   });
   const Conferences = List.map((Conferences, index) => (
