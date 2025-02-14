@@ -22,7 +22,7 @@ const Footer = () => {
     window.location.pathname === "/AcademicCV"
   );
   const [isMouseHover, setMouseHover] = useState([false, null, null]);
-  const [disapear, setDisapear] = useState(false);
+  const [disapear, setDisapear] = useState(resumeClicked ? false : true);
 
   useEffect(() => {
     if (location.pathname === "/") {
@@ -50,20 +50,22 @@ const Footer = () => {
     dispatch(updateCurrentPage("/AcademicCV"));
 
     handleButtonClick(false);
-    if (!disapear) {
-      setDisapear(true);
-    } else {
-      setTimeout(() => {
-        setDisapear(false);
-      }, 1000);
-    }
+
     setTimeout(() => {
       navigate("/AcademicCV");
     }, 1000);
     setResumeClicked(true);
   };
 
-  console.log(disapear);
+  useEffect(() => {
+    if (!disapear) {
+      setDisapear(true);
+    } else if (resumeClicked) {
+      setTimeout(() => {
+        setDisapear(false);
+      }, 1000);
+    }
+  }, [resumeClicked]);
 
   const [width, setWidth] = useState(window.innerWidth * 0.9);
   useEffect(() => {
