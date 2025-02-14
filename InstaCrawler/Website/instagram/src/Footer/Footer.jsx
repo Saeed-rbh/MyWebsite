@@ -22,6 +22,7 @@ const Footer = () => {
     window.location.pathname === "/AcademicCV"
   );
   const [isMouseHover, setMouseHover] = useState([false, null, null]);
+  const [disapear, setDisapear] = useState(false);
 
   useEffect(() => {
     if (location.pathname === "/") {
@@ -49,11 +50,20 @@ const Footer = () => {
     dispatch(updateCurrentPage("/AcademicCV"));
 
     handleButtonClick(false);
+    if (!disapear) {
+      setDisapear(true);
+    } else {
+      setTimeout(() => {
+        setDisapear(false);
+      }, 1000);
+    }
     setTimeout(() => {
       navigate("/AcademicCV");
     }, 1000);
     setResumeClicked(true);
   };
+
+  console.log(disapear);
 
   const [width, setWidth] = useState(window.innerWidth * 0.9);
   useEffect(() => {
@@ -81,7 +91,7 @@ const Footer = () => {
             opacity: resumeClicked ? 0 : 1,
             width: `${width}px`,
             height: "60px",
-            y: isMenuOpen ? -10 : 0,
+            y: isMenuOpen ? -10 : resumeClicked ? 10 : 0,
           }
         : {},
     config:
@@ -126,7 +136,8 @@ const Footer = () => {
   });
 
   return (
-    visibility && (
+    visibility &&
+    disapear && (
       <div className="HomePage-M-T-F">
         <animated.div style={contactInfoOpenSpring} className="HomeConsole">
           <animated.div style={TextOpenSpring}>
