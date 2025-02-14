@@ -192,6 +192,7 @@ export const useCombinedAnimation = ({
 
   const initialStyleAnim = useSpring({
     // from: { opacity: 0, scale: 1.2, y: 20 },
+
     opacity: resumeClicked === 1 ? 1 : 0,
     scale: resumeClicked === 1 ? 1 : resumeClicked === 2 ? 0.95 : 1.2,
     y: resumeClicked === 1 ? 0 : resumeClicked === 2 ? -20 : 20,

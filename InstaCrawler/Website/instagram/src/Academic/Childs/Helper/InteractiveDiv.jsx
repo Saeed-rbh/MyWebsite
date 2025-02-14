@@ -127,6 +127,7 @@ const InteractiveDiv = (props) => {
     border: "2px solid rgba(212, 157, 129, 0.2)",
     marginBottom: stages[1] ? "10px" : "0px",
     overflow: "hidden",
+    zIndex: isActive ? 10001 : 10000,
   };
 
   useEffect(() => {
