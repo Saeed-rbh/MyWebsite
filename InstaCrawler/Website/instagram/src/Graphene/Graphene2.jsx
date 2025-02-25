@@ -10,7 +10,9 @@ import GrapheneInfo from "./GrapheneInfo";
 import "../Graphene.css";
 
 function Graphene() {
-  const gltfUrl = "/grapheneNew2.gltf";
+  const gltfUrl = "/grapheneNew1.gltf";
+  const gltfUr2 = "/grapheneNew2.gltf";
+  const gltfUr3 = "/grapheneNew3.gltf";
   const initialPosition = new THREE.Vector3(0, 10, 0);
   const initialRotation = new THREE.Euler(0, 0, 0);
 
@@ -19,6 +21,7 @@ function Graphene() {
   const [animationCompleted, setAnimationCompleted] = useState(false);
   const [startAnimation, setStartAnimation] = useState(false);
   const [startRotationAdjustment, setStartRotationAdjustment] = useState(false);
+  const [startPositionAdjustment, setStartPositionAdjustment] = useState(false);
   const [startScaleDown, setStartScaleDown] = useState(false);
 
   const screenWidth = window.innerWidth;
@@ -26,7 +29,7 @@ function Graphene() {
 
   const moveUpStyle = useSpring({
     from: {
-      y: +screenHeight / 2 - screenWidth / 2 - 65,
+      y: +screenHeight / 2 - screenWidth / 2 - 500,
       height: "500px",
       width: "500px",
       scale: 1,
@@ -63,13 +66,13 @@ function Graphene() {
         justifyContent: "center",
       }}
     >
-      <IntroText
+      {/* <IntroText
         screenHeight={screenHeight}
         startAnimation={startAnimation}
         reverseAnimation={reverseAnimation}
         endAnimation={endAnimation}
         mouseDown={mouseDown}
-      />
+      /> */}
       <animated.div
         style={moveUpStyle}
         onTouchStart={handleMouseDown}
@@ -86,9 +89,10 @@ function Graphene() {
         >
           <Suspense fallback={null}>
             <ambientLight intensity={0.5} />
-            <spotLight position={[10, 20, 10]} angle={0.3} penumbra={1} />
+            <spotLight position={[10, 30, 10]} angle={0.3} penumbra={1} />
             <Model
               url={gltfUrl}
+              Type={"Layer1"}
               setEndAnimation={setEndAnimation}
               reverseAnimation={reverseAnimation}
               setReverseAnimation={setReverseAnimation}
@@ -101,12 +105,50 @@ function Graphene() {
               startScaleDown={startScaleDown}
               setStartScaleDown={setStartScaleDown}
               mouseDown={mouseDown}
+              startPositionAdjustment={startPositionAdjustment}
+              setStartPositionAdjustment={setStartPositionAdjustment}
+            />
+            <Model
+              url={gltfUr2}
+              Type={"Layer2"}
+              setEndAnimation={setEndAnimation}
+              reverseAnimation={reverseAnimation}
+              setReverseAnimation={setReverseAnimation}
+              animationCompleted={animationCompleted}
+              setAnimationCompleted={setAnimationCompleted}
+              startAnimation={startAnimation}
+              setStartAnimation={setStartAnimation}
+              startRotationAdjustment={startRotationAdjustment}
+              setStartRotationAdjustment={setStartRotationAdjustment}
+              startScaleDown={startScaleDown}
+              setStartScaleDown={setStartScaleDown}
+              mouseDown={mouseDown}
+              startPositionAdjustment={startPositionAdjustment}
+              setStartPositionAdjustment={setStartPositionAdjustment}
+            />
+            <Model
+              url={gltfUr3}
+              Type={"Layer3"}
+              setEndAnimation={setEndAnimation}
+              reverseAnimation={reverseAnimation}
+              setReverseAnimation={setReverseAnimation}
+              animationCompleted={animationCompleted}
+              setAnimationCompleted={setAnimationCompleted}
+              startAnimation={startAnimation}
+              setStartAnimation={setStartAnimation}
+              startRotationAdjustment={startRotationAdjustment}
+              setStartRotationAdjustment={setStartRotationAdjustment}
+              startScaleDown={startScaleDown}
+              setStartScaleDown={setStartScaleDown}
+              mouseDown={mouseDown}
+              startPositionAdjustment={startPositionAdjustment}
+              setStartPositionAdjustment={setStartPositionAdjustment}
             />
             <Controls mouseDown={mouseDown} endAnimation={endAnimation} />
           </Suspense>
         </Canvas>
       </animated.div>
-      <GrapheneInfo screenHeight={screenHeight} endAnimation={endAnimation} />
+      {/* <GrapheneInfo screenHeight={screenHeight} endAnimation={endAnimation} /> */}
     </animated.div>
   );
 }
