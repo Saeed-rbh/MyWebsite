@@ -251,7 +251,7 @@ export const useAnimation = (
           // child.material.opacity = maxOpacity;
           // child.material.transparent = true; // Ensure transparency is enabled
 
-          if (child.material.opacity < maxOpacity) {
+          if (child.material.opacity < maxOpacity && !startRotationAdjustment) {
             child.material.opacity += 0.01;
             child.material.transparent = true;
             allMeshesFullyVisible = true;
@@ -316,6 +316,7 @@ export const useAnimation = (
           0,
           0.05
         );
+
         setStartPositionAdjustment(false);
       }
     }
@@ -336,6 +337,9 @@ export const useAnimation = (
           0,
           0.05
         );
+        if (Type === "Layer2" || Type === "Layer3") {
+          modelRef.current.visible = false;
+        }
         setStartRotationAdjustment(false);
       }
     }

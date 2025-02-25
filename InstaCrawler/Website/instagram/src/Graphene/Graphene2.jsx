@@ -30,6 +30,7 @@ function Graphene() {
   const moveUpStyle = useSpring({
     from: {
       y: +screenHeight / 2 - screenWidth / 2 - 500,
+      x: -50,
       height: "500px",
       width: "500px",
       scale: 1,
@@ -38,11 +39,12 @@ function Graphene() {
     to: {
       opacity: 1,
       y: endAnimation ? -80 : +screenHeight / 2 - screenWidth / 2 - 65,
+      x: startPositionAdjustment ? 0 : -40,
       scale: endAnimation ? Math.round(screenHeight / 100) / 10 : 1,
     },
     config: {
-      tension: 70,
-      friction: 15,
+      tension: endAnimation ? 75 : 20,
+      friction: endAnimation ? 20 : 25,
     },
   });
 
