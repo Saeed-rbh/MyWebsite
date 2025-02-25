@@ -66,13 +66,13 @@ function Graphene() {
         justifyContent: "center",
       }}
     >
-      {/* <IntroText
+      <IntroText
         screenHeight={screenHeight}
         startAnimation={startAnimation}
         reverseAnimation={reverseAnimation}
         endAnimation={endAnimation}
         mouseDown={mouseDown}
-      /> */}
+      />
       <animated.div
         style={moveUpStyle}
         onTouchStart={handleMouseDown}
@@ -148,7 +148,7 @@ function Graphene() {
           </Suspense>
         </Canvas>
       </animated.div>
-      {/* <GrapheneInfo screenHeight={screenHeight} endAnimation={endAnimation} /> */}
+      <GrapheneInfo screenHeight={screenHeight} endAnimation={endAnimation} />
     </animated.div>
   );
 }

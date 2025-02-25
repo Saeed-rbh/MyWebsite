@@ -33,11 +33,11 @@ export const useInitialSetup = (
         child.material.color = new THREE.Color("#efcfbe");
 
         if (Type === "Layer1") {
-          modelRef.current.position.set(0, 1, 0);
+          modelRef.current.position.set(0, 0, 0);
         } else if (Type === "Layer2") {
-          modelRef.current.position.set(1.5, -0.5, 0.35);
+          modelRef.current.position.set(1.5, -1.25, 0.35);
         } else {
-          modelRef.current.position.set(1.5, -2, 0.5);
+          modelRef.current.position.set(1.5, -3, 0.5);
         }
 
         child.material.needsUpdate = true;
@@ -288,7 +288,7 @@ export const useAnimation = (
     if (!animationCompleted && allMeshesFullyVisible) {
       setTimeout(() => setReverseAnimation(true), 2000);
       setTimeout(() => setStartPositionAdjustment(true), 2000);
-      // setTimeout(() => setStartRotationAdjustment(true), 4000);
+      setTimeout(() => setStartRotationAdjustment(true), 4000);
       setTimeout(() => setEndAnimation(true), 6000);
     }
 
@@ -313,7 +313,7 @@ export const useAnimation = (
         );
         modelRef.current.position.y = THREE.MathUtils.lerp(
           currentPositionY,
-          1,
+          0,
           0.05
         );
         setStartPositionAdjustment(false);
