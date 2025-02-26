@@ -123,6 +123,7 @@ function Graphene() {
               mouseDown={mouseDown}
               startPositionAdjustment={startPositionAdjustment}
               setStartPositionAdjustment={setStartPositionAdjustment}
+              endAnimation={endAnimation}
             />
             <Model
               url={gltfUr2}
@@ -141,6 +142,7 @@ function Graphene() {
               mouseDown={mouseDown}
               startPositionAdjustment={startPositionAdjustment}
               setStartPositionAdjustment={setStartPositionAdjustment}
+              endAnimation={endAnimation}
             />
             <Model
               url={gltfUr3}
@@ -159,6 +161,7 @@ function Graphene() {
               mouseDown={mouseDown}
               startPositionAdjustment={startPositionAdjustment}
               setStartPositionAdjustment={setStartPositionAdjustment}
+              endAnimation={endAnimation}
             />
             <Controls mouseDown={mouseDown} endAnimation={endAnimation} />
           </Suspense>

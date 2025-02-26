@@ -6,7 +6,8 @@ export const useInitialSetup = (
   scene,
   modelRef,
   { setStartAnimation },
-  Type
+  Type,
+  endAnimation
 ) => {
   const initialScale = useMemo(() => new THREE.Vector3(0.7, 0.7, 0.7), []);
 
@@ -20,6 +21,7 @@ export const useInitialSetup = (
   );
 
   useEffect(() => {
+    if (endAnimation) return;
     scene.traverse((child) => {
       if (child.isMesh) {
         child.userData.originalPosition = child.position.clone();
@@ -53,7 +55,15 @@ export const useInitialSetup = (
     }, 1000);
 
     return () => clearTimeout(timer);
-  }, [scene, initialScale, initialPositions, setStartAnimation, modelRef]);
+  }, [
+    scene,
+    initialScale,
+    initialPositions,
+    setStartAnimation,
+    modelRef,
+    Type,
+    endAnimation,
+  ]);
 };
 
 export const useAnimation = (
@@ -69,6 +79,7 @@ export const useAnimation = (
     setStartRotationAdjustment,
     setStartScaleDown,
     setEndAnimation,
+    endAnimation,
     mouseDown,
     Type,
     startPositionAdjustment,
@@ -76,7 +87,7 @@ export const useAnimation = (
   }
 ) => {
   useFrame(() => {
-    if (!startAnimation) return;
+    if (!startAnimation || endAnimation) return;
     let allMeshesFullyVisible = true;
 
     scene.traverse((child) => {
@@ -173,10 +184,11 @@ export const useAnimation = (
       }
     });
 
-    if (!animationCompleted && allMeshesFullyVisible) {
+    if (!animationCompleted && allMeshesFullyVisible && !endAnimation) {
       setTimeout(() => setReverseAnimation(true), 2000);
       setTimeout(() => setStartPositionAdjustment(true), 2000);
       setTimeout(() => setStartRotationAdjustment(true), 4000);
+      setTimeout(() => setStartRotationAdjustment(false), 6000);
       setTimeout(() => setEndAnimation(true), 6000);
     }
 
@@ -208,6 +220,7 @@ export const useAnimation = (
         setStartPositionAdjustment(false);
       }
     }
+
     if (startRotationAdjustment) {
       const currentRotationZ = modelRef.current.rotation.z;
       const currentRotationY = modelRef.current.rotation.y;
@@ -228,8 +241,6 @@ export const useAnimation = (
         if (Type === "Layer2" || Type === "Layer3") {
           modelRef.current.visible = false;
         }
-
-        setStartRotationAdjustment(false);
       }
     }
   });
