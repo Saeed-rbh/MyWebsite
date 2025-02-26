@@ -1,9 +1,10 @@
-import React, { useState, useRef } from "react";
+import React, { useState } from "react";
 import { Canvas } from "@react-three/fiber";
 import { Suspense } from "react";
 import Model from "./Model";
 import * as THREE from "three";
 import Controls from "./Controls";
+import { useSelector } from "react-redux";
 import { useSpring, animated } from "react-spring";
 import IntroText from "./IntroText";
 import GrapheneInfo from "./GrapheneInfo";
@@ -14,7 +15,8 @@ function Graphene() {
   const gltfUr2 = "/grapheneNew2.gltf";
   const gltfUr3 = "/grapheneNew3.gltf";
   const initialPosition = new THREE.Vector3(0, 10, 0);
-  const initialRotation = new THREE.Euler(0, 0, 0);
+
+  const { stages } = useSelector((state) => state.data);
 
   const [endAnimation, setEndAnimation] = useState(false);
   const [reverseAnimation, setReverseAnimation] = useState(false);
@@ -29,18 +31,30 @@ function Graphene() {
 
   const moveUpStyle = useSpring({
     from: {
-      y: +screenHeight / 2 - screenWidth / 2 - 500,
-      x: -50,
+      y: screenHeight / 2 - 250,
+      x: screenWidth / 2 - 280,
       height: "500px",
       width: "500px",
       scale: 1,
       opacity: 0,
     },
     to: {
-      opacity: 1,
-      y: endAnimation ? -80 : +screenHeight / 2 - screenWidth / 2 - 65,
-      x: startPositionAdjustment ? 0 : -40,
-      scale: endAnimation ? Math.round(screenHeight / 100) / 10 : 1,
+      position: "absolute",
+      top: 0,
+      left: 0,
+      opacity: endAnimation ? 0.9 : 1,
+      y: endAnimation && stages[1] ? -80 : screenHeight / 2 - 250,
+      x:
+        endAnimation && !stages[1]
+          ? 0
+          : startPositionAdjustment
+          ? screenWidth / 2 - 250
+          : screenWidth / 2 - 280,
+      scale: endAnimation
+        ? stages[1]
+          ? Math.round(screenHeight / 100) / 9
+          : Math.round(screenHeight / 100) / 7
+        : 1,
     },
     config: {
       tension: endAnimation ? 75 : 20,
@@ -150,7 +164,7 @@ function Graphene() {
           </Suspense>
         </Canvas>
       </animated.div>
-      <GrapheneInfo screenHeight={screenHeight} endAnimation={endAnimation} />
+      {/* <GrapheneInfo screenHeight={screenHeight} endAnimation={endAnimation} /> */}
     </animated.div>
   );
 }
