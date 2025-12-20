@@ -2,7 +2,7 @@ import React, { useState, useMemo, useEffect } from "react";
 import { animated, useSpring, easings } from "react-spring";
 import { calculateBackgroundImage, ImageDiv, ContentDiv } from "./Components";
 import { useUtilize } from "../../Styles/useUtilize";
-import myImage from "../../../../src/Image/AcademicImg.JPG";
+import myImage from "../../../../src/Image/AcademicImg.JPG?url";
 import { useSelector } from "react-redux";
 import useScrollPosition from "../../General/useScrollPosition";
 import { useCombinedAnimation } from "../../Styles/otherStyles";
