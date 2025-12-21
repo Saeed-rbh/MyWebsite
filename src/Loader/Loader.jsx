@@ -8,11 +8,12 @@ import { updateVisibility } from "../actions/Actions";
 const LOADING_TIME = 2000;
 
 const Loader = () => {
-  const { visibility } = useSelector((state) => state.visibility);
+  const { visibility } = useSelector((state) => state.ui);
   const dispatch = useDispatch();
   const [fade, setFade] = useState(false);
 
   const academicData = useSelector((state) => state.data.academicData);
+
   useEffect(() => {
     if (academicData.length > 0) {
       setTimeout(() => {
@@ -23,12 +24,15 @@ const Loader = () => {
 
   const closeIntroAnimation = useSpring({
     opacity: fade ? 0 : 1,
-    // delay: fade ? 1000 : 0,
-    // bottom: fade ? "-100%" : "0%",
     borderRadius: "50px",
     config: { duration: 500 },
     easing: easings.easeOutCubic,
-    onRest: () => dispatch(updateVisibility(true)),
+    // Only update visibility when fade animation completes (opacity reaches 0)
+    onRest: () => {
+      if (fade) {
+        dispatch(updateVisibility(true));
+      }
+    },
   });
 
   useEffect(() => {

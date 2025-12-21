@@ -23,7 +23,7 @@ body {
 }
 
 .MainBackground {
-  background-image: url("Home.png");
+  background-image: url("./assets/Home.png");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;

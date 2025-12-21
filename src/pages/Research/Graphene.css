@@ -1,0 +1,590 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap");
+.Graphene {
+  width: 40vw;
+  height: 65vh;
+  margin: 10vh 5vw 25vh 5vw;
+  opacity: 1;
+  position: absolute;
+  top: 0;
+}
+.GrapheneText {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-direction: column;
+  width: -webkit-fill-available;
+  height: -webkit-fill-available;
+}
+.GrapheneTitle:nth-child(1) {
+  font-size: 45px;
+  z-index: 1;
+  opacity: 0.8;
+}
+.GrapheneTitle:nth-child(2) {
+  text-shadow: 0px -20px 5px #24221f;
+  margin-top: -4px;
+}
+.hr-Graphene {
+  background: linear-gradient(to right, #f9ebe528 0%, #d4a58dbe 100%);
+  padding: 0;
+  border: 0;
+  font: inherit;
+  vertical-align: baseline;
+  width: 2px;
+  position: relative;
+  height: 30px;
+  margin: 0 3% 3px 3%;
+  opacity: 0.7;
+  height: 20px;
+  width: 430px;
+  border-radius: 100px;
+  margin-top: -12px;
+  margin-left: 12px;
+  margin-bottom: 8vh;
+}
+.GrapheneTitle {
+  position: relative;
+  color: #faf9f1;
+  font-family: "DM Serif Display", serif;
+  font-size: 40px;
+  font-weight: 400;
+  white-space: nowrap;
+  margin-bottom: 0;
+  perspective: 400px;
+  text-align: initial;
+  background: linear-gradient(to right, #f9ebe5 0%, #d4a58d 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-top: 0;
+  line-height: 35px;
+}
+.GrapheneDescription {
+  display: flow-root;
+  color: #faf9f1;
+  position: relative;
+  -webkit-animation-duration: 1200ms;
+  animation-duration: 1200ms;
+  font-family: "Poppins", sans-serif;
+  font-size: 14px;
+  text-align: left;
+  line-height: 28px;
+  font-weight: 400;
+  opacity: 1;
+  transform: none;
+  margin: 0 0 4vh 0;
+}
+.GrapheneDescription li::marker {
+  color: #d49d81;
+}
+.GrapheneDescription span {
+  background: linear-gradient(to right, #f9ebe538 0%, #d4a58d54 100%);
+  padding: 1px 10px 2px;
+  border-radius: 20px;
+}
+.GrapheneDescription p1 {
+  font-weight: 900;
+  position: absolute;
+  transform: translateY(-25px);
+  font-size: 15px;
+  background: linear-gradient(to right, #ffddd0 0%, #d4a58d 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.GrapheneMore {
+  display: flex;
+  align-items: center;
+  align-self: center;
+  cursor: pointer;
+}
+.GrapheneMore p {
+  font-size: 14px;
+  text-align: left;
+  line-height: 28px;
+  font-weight: 400;
+  background: linear-gradient(to right, #f9ebe538 0%, #d4a58d54 100%);
+  padding: 1px 25px 2px 20px;
+  border-radius: 20px;
+  color: #faf9f1;
+  font-family: "Poppins", sans-serif;
+  box-shadow: rgba(0, 0, 0, 0.3) 0px 8px 24px;
+}
+.GrapheneMore svg {
+  height: 30px;
+  width: 30px;
+  color: #d49d81;
+  transform: translate(-15px, 1px);
+  opacity: 0.9;
+}
+
+.GrapheneMoreC {
+  width: 9px;
+  height: 9px;
+  border-radius: 30px;
+  background-color: #d49d81;
+  opacity: 0.9;
+  border: solid 9px #000000;
+  transform: translateX(-17px);
+  box-shadow: rgba(0, 0, 0, 0.3) 0px 8px 24px;
+  margin-left: -20px;
+}
+.GrapheneMenu {
+  width: 20px;
+  height: 85vh;
+  position: absolute;
+  right: calc(1vw + 25px);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  opacity: 0.9;
+}
+.GrapheneMenuLT {
+  width: 1px;
+  height: 30vh;
+  background: linear-gradient(to top, #f9ebe5 0%, #d4a58d00 100%);
+  border-radius: 100%;
+  opacity: 0.6;
+}
+.GrapheneMenuLB {
+  width: 1px;
+  height: 15vh;
+  background: linear-gradient(to bottom, #f9ebe5 0%, #d4a58d00 100%);
+  border-radius: 100%;
+  opacity: 0.6;
+}
+.GrapheneMenuC {
+  font-size: 14px;
+  color: #faf9f1;
+  font-family: "Poppins", sans-serif;
+}
+.GrapheneMenuC p:first-child {
+  margin: 10px 0 -10px 0;
+  transform: translateX(-10px);
+}
+.GrapheneMenuC p:last-child {
+  margin: -10px 0 10px 0;
+  transform: translateX(10px);
+}
+.GrapheneMenuC span {
+  color: #d49d81;
+}
+.PropGr {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  flex-direction: column;
+  z-index: -1;
+  background-color: #d49d81;
+  height: 100px;
+  width: 48%;
+  margin: 5px;
+  border-radius: 10px;
+}
+.PropGrMe {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  flex-direction: column;
+  background-color: #ffffff12;
+  height: auto;
+  margin: 0px;
+  border-radius: 20px;
+  border: solid 1px #ffffff6b;
+  display: flex;
+  align-items: baseline;
+  padding: 0px 20px 15px 20px;
+  justify-content: flex-start;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  margin: 10px 5px;
+  z-index: 100000;
+}
+.PropGrMe p:nth-child(1) {
+  font-size: 12px;
+  text-align: left;
+  font-weight: 700;
+  color: #faf9f1;
+  font-family: "Poppins", sans-serif;
+  margin: 0;
+  background: linear-gradient(to right, #f9ebe5 0%, #d4a58d 100%);
+  padding: 1px 18px 2px;
+  color: #000000cf;
+  border-radius: 50px 50px 10px 50px;
+  transform: translate(-10px, -10px);
+  font-weight: 700;
+  font-size: 13px;
+  opacity: 0.9;
+  text-transform: capitalize;
+}
+.PropGrMe p:nth-child(2) {
+  font-size: 12px;
+  text-align: left;
+  font-weight: 400;
+  color: #faf9f1;
+  font-family: "Poppins", sans-serif;
+  margin: 0;
+  line-height: 13px;
+  margin-bottom: 10px;
+  margin-left: 3px;
+}
+.PropGrMe p:nth-child(3) {
+  font-size: 10px;
+  text-align: left;
+  font-weight: 400;
+  color: #faf9f1;
+  font-family: "Poppins", sans-serif;
+  margin: 0;
+  line-height: 13px;
+  display: flex;
+  flex-direction: column;
+  margin-top: auto;
+  align-items: flex-start;
+  align-self: flex-end;
+  margin-right: 5px;
+}
+.PropGrMe p:nth-child(3) span {
+  font-weight: 700;
+  font-size: 13px;
+  color: #d49d81;
+  margin-bottom: 5px;
+}
+.PropGrMe p:nth-child(3) p1 {
+  display: flex;
+  align-items: flex-end;
+  margin-top: 5px;
+  flex-direction: column;
+}
+.PropGrMe p:nth-child(3) p2 {
+  font-weight: 200;
+  font-size: 35px;
+  color: #ffffff;
+  display: flex;
+  align-items: baseline;
+}
+.PropGrMe p:nth-child(3) p2 span {
+  font-size: 23px;
+  font-weight: 200;
+  color: white;
+  margin-left: 3px;
+}
+.PropGrMe p:nth-child(3) p2 sup {
+  font-size: 13px;
+  font-weight: 200;
+  color: white;
+}
+.PropGrPar {
+  display: grid;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+  width: 100%;
+  grid-template-columns: repeat(2, 1fr);
+}
+.Ticknesslayer {
+  display: flex;
+  flex-direction: column;
+  opacity: 1;
+  position: absolute;
+  z-index: 10;
+}
+.Ticknesslayer div:nth-child(1) {
+  opacity: 1;
+  width: 3px;
+  height: 70px;
+  position: absolute;
+  top: 40%;
+  border-radius: 10%;
+  background: linear-gradient(to bottom, #ffffffc7 0%, #d4a58dd2 100%);
+}
+.Ticknesslayer div:nth-child(2) {
+  opacity: 1;
+  width: 20px;
+  height: 3px;
+  position: absolute;
+  top: 40%;
+  background: linear-gradient(to right, #ffffffc7 0%, #d4a58dd2 100%);
+  border-radius: 10%;
+}
+.Ticknesslayer div:nth-child(3) {
+  opacity: 1;
+  width: 35px;
+  height: 3px;
+  position: absolute;
+  top: 40%;
+  background: linear-gradient(to right, #d4a58dd2 0%, #d4a58dd2 100%);
+  margin-top: 70px;
+  border-radius: 10%;
+}
+.Ticknesslayer div:nth-child(4) {
+  opacity: 1;
+  width: 3px;
+  height: 35px;
+  position: absolute;
+  top: 40%;
+  background: linear-gradient(to right, #d4a58dd2 0%, #d4a58dd2 100%);
+  margin-left: 20px;
+  margin-top: -15px;
+  border-radius: 10%;
+}
+.Ticknesslayer div:nth-child(6) {
+  margin-top: 45px;
+  position: absolute;
+  margin-left: 60px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  background: linear-gradient(to right, #f9ebe51f 0%, #d4a58d1c 100%);
+  padding: 10px 20px 15px 20px;
+  border-radius: 13px;
+  backdrop-filter: blur(50px);
+  -webkit-backdrop-filter: blur(50px);
+}
+.Ticknesslayer svg {
+  fill: #d4a58dd2;
+  transform: rotate(90deg);
+  margin-top: 64px;
+  position: absolute;
+  margin-left: 34px;
+}
+.Ticknesslayer p:nth-of-type(1) {
+  font-weight: 700;
+  font-size: 17px;
+  color: #d49d81;
+  font-weight: 700;
+  font-family: "Poppins", sans-serif;
+  margin: 0;
+  margin-top: -23px;
+}
+.Ticknesslayer p:nth-of-type(2) {
+  display: flex;
+  align-items: baseline;
+  font-size: 36px;
+  color: #ffffff;
+  font-weight: 300;
+  width: -webkit-max-content;
+  width: -moz-max-content;
+  width: max-content;
+  font-family: "Poppins", sans-serif;
+  margin: 0;
+  margin-top: -8px;
+  margin-left: -5px;
+}
+.Ticknesslayer p:nth-of-type(2) span {
+  font-size: 20px;
+  margin: 0 5px;
+}
+.Ticknesslayer p:nth-of-type(3) {
+  font-size: 11px;
+  color: #ffffff;
+  font-weight: 300;
+  width: -webkit-max-content;
+  width: -moz-max-content;
+  width: max-content;
+  font-family: "Poppins", sans-serif;
+  margin: 0;
+  margin-top: -10px;
+}
+.DragThickness {
+  position: absolute;
+  top: 85%;
+  left: 33%;
+  z-index: 10;
+}
+.GrapheneTextMore {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-direction: row;
+  width: -webkit-fill-available;
+  height: -webkit-fill-available;
+  margin-top: 25px;
+}
+.GrapheneTextMoreT {
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-radius: 20px;
+  border: solid 1px #ffffff6b;
+  background-color: #ffffff12;
+  display: flex;
+  flex-direction: column;
+  padding: 15px 0;
+  margin-top: -15px;
+  margin-bottom: 15px;
+  margin-right: 5px;
+}
+.GrapheneTextMoreB {
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-radius: 15px;
+  border: solid 1px #ffffff6b;
+  background-color: #ffffff12;
+  display: flex;
+  flex-direction: column;
+  padding: 15px 10px;
+  margin-top: -15px;
+  width: calc(15vw + 35px);
+  margin-left: 5px;
+}
+.RelatedLinks {
+  display: flex;
+  flex-direction: column;
+  margin-top: 5px;
+  cursor: pointer;
+}
+.RelatedLinks svg {
+  color: #d49d81;
+  position: absolute;
+  right: 15px;
+  top: 25px;
+  opacity: 0.5;
+  transition: 0.3s ease-in-out;
+}
+.RelatedLinks:hover svg {
+  opacity: 1;
+}
+.GrapheneTextMore p0 {
+  font-size: 13px;
+  text-align: left;
+  font-weight: 700;
+  color: #faf9f1;
+  font-family: "Poppins", sans-serif;
+  margin: 0;
+  margin-bottom: 3px;
+  background: linear-gradient(to right, #f9ebe5 0%, #d4a58d 100%);
+  padding: 1px 18px 2px;
+  color: #000000cf;
+  border-radius: 50px 50px 10px 50px;
+  transform: translate(20px, 15px);
+  font-weight: 700;
+  font-size: 13px;
+  opacity: 0.9;
+  text-transform: capitalize;
+  width: -webkit-fit-content;
+  width: fit-content;
+  width: -moz-fit-content;
+  z-index: 1;
+  margin-top: -25px;
+}
+.GrapheneTextPar {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-end;
+  margin: 10vh 0;
+  width: calc(40vw + 35px);
+  position: absolute;
+  right: calc(50px + 3vw);
+  overflow-y: scroll;
+  height: 83vh;
+  padding-right: calc(8vw - 60px);
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.GrapheneTextMoreB p1 {
+  font-size: 12px;
+  text-align: left;
+  font-weight: 400;
+  color: #faf9f1;
+  font-family: "Poppins", sans-serif;
+  margin: 0;
+  line-height: 13px;
+  margin-left: 3px;
+}
+.GrapheneTextMoreB p2 {
+  font-size: 10px;
+  text-align: left;
+  font-weight: 300;
+  color: #faf9f1;
+  font-family: "Poppins", sans-serif;
+  margin-left: 5px;
+  line-height: 13px;
+  opacity: 0.8;
+}
+
+.GrapheneTextPar::-webkit-scrollbar {
+  width: 2px;
+}
+.GrapheneTextPar::-webkit-scrollbar-thumb {
+  background-color: rgba(255, 255, 255, 0.2);
+  border-radius: 50px;
+  border: 3px solid rgba(0, 0, 0, 0);
+}
+.GrapheneTextPar::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0);
+}
+
+.GrapheneTextMoreS {
+  position: fixed;
+  bottom: 10vh;
+  right: calc(40px + 3vw);
+  z-index: 5;
+  display: flex;
+  align-items: flex-end;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  z-index: 10;
+  animation-name: move;
+  -webkit-animation-name: move;
+
+  animation-iteration-count: infinite;
+  -webkit-animation-iteration-count: infinite;
+  animation-duration: 5s;
+  -webkit-animation-duration: 5s;
+
+  animation-timing-function: ease-in-out;
+  -webkit-animation-timing-function: ease-in-out;
+}
+.GrapheneTextMoreS p1 {
+  opacity: 0.5;
+  color: #ffffff;
+  font-family: "Rubik", sans-serif;
+  font-size: 10px;
+  font-weight: 500;
+  -webkit-writing-mode: vertical-rl;
+  -ms-writing-mode: tb-rl;
+  writing-mode: vertical-rl;
+  height: -webkit-max-content;
+  height: -moz-max-content;
+  height: max-content;
+}
+.GrapheneTextMoreS svg {
+  flex-direction: column;
+  font-size: 22px;
+  color: #ffffff;
+  opacity: 0.5;
+}
+
+.grapheneFromStyle {
+  position: absolute;
+  color: rgb(255, 255, 255);
+  font-family: "Rubik", sans-serif;
+  font-size: 50px;
+  font-weight: 900;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  /* height: 50px; */
+  /* overflow: hidden; */
+}
+
+.grapheneFromStyle span {
+  opacity: 0.5;
+  background: linear-gradient(
+    to right,
+    rgb(185, 96, 50) 0%,
+    rgb(212, 165, 141) 50%
+  );
+  -webkit-text-fill-color: rgba(0, 0, 0, 0);
+  -webkit-background-clip: text;
+  background-clip: text;
+  margin: 0 2px;
+}

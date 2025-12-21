@@ -1,0 +1,1341 @@
+.AcademicCV-M {
+  /* display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center; */
+  width: 100vw;
+  height: calc(100% - 70px);
+  font-family: "Roboto", sans-serif;
+  font-size: 1.2rem;
+  /* padding: 13vh 5vw; */
+  /* height: calc(100vh - 85px); */
+  font-family: "Roboto", sans-serif;
+  /* padding: 70px 50px 10px 0px; */
+  position: fixed;
+  bottom: 15px;
+  top: 70px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.AcademicCV-M span {
+  font-size: 100px;
+}
+.QualiMain {
+  padding: 0 15px;
+}
+
+.AcademicCV-L {
+  background-color: rgb(108 108 108 / 15%);
+  /* border: 2px solid rgba(240, 248, 255, 0.1); */
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  height: -webkit-fill-available;
+  position: absolute;
+  left: 5vw;
+  bottom: 10vh;
+  width: 65vw;
+  margin-right: 10px;
+  border-radius: 25px;
+  /* backdrop-filter: blur(10px); */
+  scroll-behavior: smooth;
+  overflow-y: none;
+  z-index: 3;
+  padding: 10px;
+  max-width: 600px;
+  background-color: #00000060;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  cursor: pointer;
+}
+.AcademicCV-R-Par {
+  background-color: rgba(240, 248, 255, 0.05);
+  border: 2px solid rgba(240, 248, 255, 0.1);
+  flex-direction: column;
+  height: -webkit-fill-available;
+  margin-bottom: 2vh;
+  width: -webkit-fill-available;
+  border-radius: 25px;
+  /* backdrop-filter: blur(10px); */
+  position: relative;
+  display: flex;
+  padding: 25px 10px;
+  overflow: hidden;
+  z-index: 3;
+}
+
+.AcademicCV-R {
+  max-height: 100%;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  overflow-y: scroll;
+  scroll-behavior: smooth;
+}
+.AcademicCV-R::-webkit-scrollbar {
+  width: 5px; /* width of the entire scrollbar */
+}
+.AcademicCV-R::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0); /* color of the tracking area */
+}
+.AcademicCV-R::-webkit-scrollbar-thumb {
+  background-color: rgba(255, 255, 255, 0.2); /* color of the scroll thumb */
+  border-radius: 50px; /* roundness of the scroll thumb */
+  border: 3px solid rgba(0, 0, 0, 0); /* creates padding around scroll thumb */
+}
+.PaperAcademic {
+  margin: 0px 3%;
+  color: #fff;
+  position: relative;
+  opacity: 0.8;
+  height: -webkit-max-content;
+  height: -moz-max-content;
+  height: max-content;
+}
+.PaperAcademic:last-of-type {
+  margin-bottom: 30px;
+}
+.PaperData {
+  font-family: "Rubik", sans-serif;
+  font-size: 12px;
+  line-height: 18px;
+  font-weight: 700;
+  padding-top: 25px;
+  text-align: -webkit-auto;
+  transition: box-shadow 0.2s ease-in-out;
+  border-radius: 30px;
+  box-shadow: rgb(0 0 0 / 50%) 0px 20px 20px 0px;
+  padding-top: 20px;
+  /* background-image: linear-gradient(
+    to top,
+    rgb(255 255 255 / 25%),
+    rgb(255 255 255 / 0%)
+  ); */
+  font-family: "Rubik", sans-serif;
+  background: rgba(255, 255, 255, 0.07);
+  font-size: 12px;
+  line-height: 18px;
+  font-weight: 500;
+  padding: 20px 20px 0px 20px;
+  min-height: 50px;
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 10px;
+  border: 1px solid #d6ae9a83;
+}
+.PaperData p {
+  opacity: 0.8;
+  color: #ffffff;
+  font-family: "Rubik", sans-serif;
+  font-size: 11px;
+  font-weight: 500;
+  line-height: 18px;
+  margin: 0;
+}
+.paper-details p1 {
+  opacity: 1 !important;
+}
+.PaperData:hover {
+  opacity: 1;
+  box-shadow: rgb(0 0 0 / 20%) 0px 20px 20px 0px;
+}
+.paper-details {
+  direction: ltr;
+  cursor: pointer;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font: inherit;
+  vertical-align: baseline;
+  margin-top: 5px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  height: 25px;
+}
+.paper-details p {
+  color: #d49d81;
+  position: relative;
+  font-family: "Rubik", sans-serif;
+  font-size: 11px;
+  display: flex;
+  text-align: initial;
+}
+.paper-details h2 {
+  display: flex;
+  align-items: center;
+  color: white;
+  position: relative;
+  font-family: "Rubik", sans-serif;
+  font-size: 11px;
+  font-weight: 400;
+  opacity: 0.8;
+}
+.read-more span {
+  width: 25px;
+  height: 25px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 100%;
+}
+.paper-details svg {
+  font-size: 16px;
+}
+.paper-head {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-left: 10px;
+  margin-bottom: -10px;
+}
+.paper-line {
+  display: none;
+  background-color: #d49d81;
+  opacity: 0.7;
+  width: 6px;
+  margin-left: 10px;
+  height: 25px;
+}
+.paper-head p {
+  display: flex;
+  display: inline-block;
+  font-family: "Rubik", sans-serif !important;
+  font-weight: 500;
+  line-height: normal;
+  background: linear-gradient(to right, #ffb28c 0%, #ffddd0 50%);
+  background: linear-gradient(to right, #6f3c22 0%, #504d4a 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  opacity: 0.7;
+  margin: 10px 4px;
+  font-size: 20px;
+  font-size: 69px;
+  margin: 0;
+  line-height: 55px;
+  opacity: 0.5;
+  margin-top: 10px;
+}
+.Recent-Paper {
+  color: #d49d81;
+  position: relative;
+  font-family: "Rubik", sans-serif;
+  font-size: 12px;
+  display: flex;
+  text-align: initial;
+  margin: 0 17px;
+  top: 10px;
+}
+.MoreInfo {
+  overflow-y: hidden;
+  font-family: "Rubik", sans-serif !important;
+  font-size: 12px;
+  display: flex;
+  flex-direction: row;
+  position: absolute;
+  width: -webkit-fill-available;
+  margin-left: 10px;
+  height: 50px;
+  align-items: center;
+  margin-right: 10px;
+  margin-top: -5px;
+  z-index: -1;
+}
+.ReferMoreInfo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30%;
+  height: 45px;
+  margin: 2px 5px 0 5px;
+  background: rgba(255, 255, 255, 0.048);
+  border: 1px solid #d49d81;
+  /* background-image: linear-gradient(
+    to top,
+    rgb(60, 61, 63),
+    rgb(74 73 74 / 20%)
+  ); */
+  border-radius: 20px;
+  /* transition: all 0.2s ease-in-out; */
+  cursor: pointer;
+}
+.ReferMoreInfo:hover {
+  background-color: rgba(240, 248, 255, 0.15);
+}
+.ReferMoreInfo svg {
+  color: #ffffff;
+  margin-left: -20px;
+  transform: translateX(10px);
+  height: 25px;
+  width: 25px;
+  opacity: 0.1;
+}
+.paper-circle {
+  display: flex;
+  position: fixed;
+  height: 40vh;
+  width: 40vh;
+  border-radius: 100%;
+  opacity: 0.02;
+  border: solid 80px #ffffff;
+  -webkit-border-radius: 100%;
+  -moz-border-radius: 100%;
+  -ms-border-radius: 100%;
+  -o-border-radius: 100%;
+  margin-left: -20vh;
+}
+.paper-circle-2 {
+  display: flex;
+  position: relative;
+  height: 40vh;
+  width: 40vh;
+  border-radius: 100%;
+  opacity: 0.05;
+  border: solid 80px #fcfcfc;
+  -webkit-border-radius: 100%;
+  -moz-border-radius: 100%;
+  -ms-border-radius: 100%;
+  -o-border-radius: 100%;
+  margin-left: -20vh;
+  transform: translate(-10vh, -45vh);
+}
+.AcademicCV-R-op-down {
+  height: 30px;
+  background: linear-gradient(to top, rgb(29 30 34) 50%, rgba(29, 30, 34, 0));
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 7%;
+  margin-left: -10px;
+  z-index: 5;
+}
+.AcademicCV-R-op-up {
+  background: linear-gradient(to top, rgb(49 45 44) 50%, rgba(29, 30, 34, 0));
+  position: absolute;
+  width: 100%;
+  height: 10%;
+  margin-left: -10px;
+  z-index: 5;
+  transform: rotate(180deg);
+  top: 0;
+}
+@-webkit-keyframes move {
+  0%,
+  40% {
+    transform: translate(0px, 0px);
+    opacity: 0.5;
+  }
+  50% {
+    transform: translate(0px, 5px);
+    opacity: 0.8;
+  }
+  60%,
+  100% {
+    transform: translate(0px, 0px);
+    opacity: 0.5;
+  }
+}
+@keyframes move {
+  0%,
+  40% {
+    transform: translate(0px, 0px);
+    opacity: 0.5;
+  }
+  50% {
+    transform: translate(0px, 5px);
+    opacity: 0.8;
+  }
+  60%,
+  100% {
+    transform: translate(0px, 0px);
+    opacity: 0.5;
+  }
+}
+.AcademicCV-R-op-l {
+  background: linear-gradient(to top, rgb(29 30 34), rgba(29, 30, 34, 0));
+  position: absolute;
+  bottom: 0;
+  width: 20px;
+  right: 0;
+  z-index: 5;
+  display: flex;
+  align-items: flex-end;
+  padding-bottom: 40px;
+  flex-direction: column;
+  align-items: center;
+  padding-right: 3px;
+  height: 100%;
+  justify-content: flex-end;
+
+  animation-name: move;
+  -webkit-animation-name: move;
+
+  animation-iteration-count: infinite;
+  -webkit-animation-iteration-count: infinite;
+  animation-duration: 5s;
+  -webkit-animation-duration: 5s;
+
+  animation-timing-function: ease-in-out;
+  -webkit-animation-timing-function: ease-in-out;
+}
+.AcademicCV-R-op-l p {
+  opacity: 0.5;
+  color: #ffffff;
+  font-family: "Rubik", sans-serif;
+  font-size: 10px;
+  font-weight: 500;
+  -webkit-writing-mode: vertical-rl;
+  -ms-writing-mode: tb-rl;
+  writing-mode: vertical-rl;
+  height: -webkit-max-content;
+  height: -moz-max-content;
+  height: max-content;
+}
+
+.AcademicCV-R-op-l svg {
+  flex-direction: column;
+  font-size: 22px;
+  color: #ffffff;
+  opacity: 0.5;
+}
+.Affiliation,
+.PersonalInfo {
+  max-width: 800px;
+  border-radius: 40px;
+  flex-direction: row;
+  height: 85vh;
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 10;
+}
+.Affiliation div,
+.PersonalInfo div {
+  display: flex;
+  margin: 5px 0;
+  width: 90%;
+  justify-content: space-around;
+}
+
+.Affiliation div h1,
+.PersonalInfo div h1 {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  margin: 2px 8px;
+  align-items: center;
+  opacity: 0.8;
+  color: #ffffff;
+  font-family: "Rubik", sans-serif;
+  font-size: 11px;
+  font-weight: 300;
+  margin: 0;
+}
+
+.Affiliation div h1:nth-child(2) {
+  margin: 0px 8px;
+}
+.Affiliation p,
+.PersonalInfo p {
+  position: absolute;
+  display: flex;
+  font-family: "Rubik", sans-serif !important;
+  line-height: normal;
+  background: linear-gradient(to right, #b96032 0%, #d4a58d 50%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  opacity: 0.7;
+  font-size: 20px;
+  font-weight: 900;
+  margin: 0;
+  left: 40px;
+  position: absolute;
+  line-height: normal;
+}
+.Affiliation h1,
+.PersonalInfo h1 {
+  font-family: "Rubik", sans-serif;
+  font-size: 12px;
+  line-height: 18px;
+  font-weight: 400;
+  color: #fff;
+  margin: 0;
+}
+.Affiliation a,
+.PersonalInfo a,
+.PersonalInfo button {
+  border: none;
+  text-decoration: none;
+  font-family: "Rubik", sans-serif;
+  font-size: 12px;
+  line-height: 18px;
+  color: #fff;
+  margin: 5px;
+  width: 150px;
+  border-radius: 20px;
+  padding: 7px 15px;
+  background: linear-gradient(
+    to right,
+    rgba(255, 255, 255, 0.14) 0%,
+    rgba(245, 159, 115, 0.18) 100%
+  );
+  transition: width 1s ease-in-out 0s;
+  cursor: pointer;
+  z-index: 15;
+  margin: 0;
+  width: -webkit-max-content;
+  width: -moz-max-content;
+  width: max-content;
+  margin-left: 5px;
+}
+
+.Affiliation b,
+.PersonalInfo b,
+.PersonalInfo strong {
+  font-family: "Rubik", sans-serif;
+  font-size: 12px;
+  line-height: 18px;
+  font-weight: 400;
+  color: #fff;
+  width: -webkit-max-content;
+  width: -moz-max-content;
+  width: max-content;
+}
+.MyInfo {
+  display: flex;
+  flex-direction: column-reverse;
+  position: absolute;
+  right: 54%;
+  align-items: flex-end;
+  top: 0px;
+}
+.MyInfo p1 {
+  box-sizing: border-box;
+  width: 50%;
+  line-height: 30px;
+  opacity: 0.7;
+  color: #ffffff;
+}
+.MyInfo p2 {
+  box-sizing: border-box;
+  width: 50%;
+  text-align: right;
+  line-height: 30px;
+  opacity: 0.7;
+  color: #ffffff;
+}
+.ResearchInterests,
+.Conference,
+.Awards,
+.Teaching,
+.Skills,
+.Qualifications,
+.Papers {
+  background-color: rgba(0, 0, 0, 0.5);
+  font-family: "Rubik", sans-serif;
+  line-height: 18px;
+  font-weight: 500;
+  text-align: -webkit-auto;
+  transition: background-color 0.2s ease-in-out;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  position: absolute;
+  z-index: 12;
+  border-radius: 40px;
+  overflow: hidden;
+}
+/* 
+.Qualifications {
+  -webkit-backdrop-filter: blur(5px);
+  backdrop-filter: blur(5px);
+  font-family: "Rubik", sans-serif;
+  font-size: 13px;
+  line-height: 18px;
+  font-weight: 500;
+  text-align: -webkit-auto;
+  transition: background-color 0.2s ease-in-out;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  position: absolute;
+  right: 50%;
+  bottom: 300px;
+  width: 450px;
+  height: 150px;
+  z-index: 12;
+  cursor: pointer;
+  border-radius: 40px;
+  overflow: hidden;
+} */
+.ResearchInterests h1,
+.Awards h1,
+.Conference h1,
+.Papers h1,
+.Teaching h1,
+.Skills h1,
+.Qualifications h1 {
+  position: absolute;
+  display: flex;
+  font-family: "Rubik", sans-serif !important;
+  line-height: normal;
+  background: linear-gradient(to right, #b96032 0%, #d4a58d 50%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  opacity: 0.9;
+  white-space: nowrap;
+  font-weight: 500;
+  margin: 0;
+  position: absolute;
+  line-height: normal;
+  position: absolute;
+  display: flex;
+  font-family: "Rubik", sans-serif !important;
+  line-height: normal;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  opacity: 0.6;
+  margin: 10px 4px;
+  font-size: 20px;
+  font-weight: 900;
+  margin: 0;
+  line-height: 75px;
+  margin-top: 10px;
+  left: 25px;
+  position: absolute;
+  top: 0px;
+  line-height: normal;
+}
+.SecondTitle {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "Rubik", sans-serif !important;
+  line-height: normal;
+
+  opacity: 0.7 !important;
+  flex-direction: column;
+  height: 30px;
+  text-transform: capitalize;
+}
+.SecondTitle h2 {
+  font-weight: 800 !important;
+  font-size: 20px;
+  background: linear-gradient(to right, #b96032 0%, #d4a58d 50%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin: 0;
+}
+.SecondTitle span {
+  font-weight: 300;
+  font-size: 11px;
+  background: linear-gradient(to right, #ffffff 0%, #ffffff 50%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.RInterests {
+  color: #01122e;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+}
+.RInterests a {
+  opacity: 0.7;
+  color: #ffffff;
+  font-size: 13px;
+  line-height: 18px;
+  text-decoration: none;
+  font-family: "Rubik", sans-serif;
+  font-size: 12px;
+  line-height: 20px;
+  color: #fff;
+  border-radius: 20px;
+  padding: 7px 15px;
+  background: linear-gradient(
+    to right,
+    rgba(255, 255, 255, 0.14) 0%,
+    rgba(245, 159, 115, 0.18) 100%
+  );
+  transition: width 1s ease-in-out 0s;
+  cursor: pointer;
+  margin: 5px;
+  align-items: center;
+}
+.Quali {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 5px;
+}
+.Quali-Title {
+  background: linear-gradient(to right, #504d4a2e 0%, #6f3c2221 100%);
+  border: 1px solid rgba(240, 248, 255, 0.03);
+  padding: 0 15px;
+  border-radius: 40px;
+  display: flex;
+  justify-content: space-between;
+  height: 40px;
+  align-items: center;
+  margin-top: 13px;
+  margin: 10px -15px 5px;
+  width: calc(100% + 50px);
+}
+.Quali P {
+  opacity: 0.6;
+  color: #ffffff;
+  font-family: "Rubik", sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 18px;
+  margin: 0;
+}
+.Quali span {
+  color: #ffffff;
+  font-family: "Rubik", sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 18px;
+  margin-left: 15px;
+  margin-right: 5px;
+  margin-top: 5px;
+  height: 35px;
+}
+.Quali h3 {
+  opacity: 0.8;
+  color: #ffffff;
+  font-family: "Rubik", sans-serif;
+  font-size: 11px;
+  font-weight: 300;
+  line-height: 18px;
+  margin: 0;
+  margin-left: 15px;
+}
+.Quali-Title h2 {
+  opacity: 0.8;
+  color: #ffffff;
+  font-family: "Rubik", sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 18px;
+  margin: 0;
+  color: #d49d81;
+  font-weight: 400;
+}
+.Skill {
+  margin-top: 5px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  padding: 0 15px;
+  /* opacity: 0.7; */
+  color: #ffffff;
+  font-size: 11px;
+}
+.Skill-Title ul {
+  list-style: none;
+  padding: 0 10px;
+  display: flex;
+  flex-direction: column;
+  margin-top: 5px;
+}
+.Skill-Title ul li {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin: 0;
+  height: 25px;
+  transition: all 0.5s ease;
+}
+.Skill-Title ul h2 {
+  font-family: Rubik, sans-serif;
+  font-weight: 500;
+  transition: all 0.2s linear;
+  font-size: 12px;
+  opacity: 0.9;
+  margin: 2px;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  max-width: 100px;
+  text-wrap: nowrap;
+  width: -webkit-fill-available;
+  max-width: -webkit-max-content;
+  max-width: -moz-max-content;
+  max-width: max-content;
+  opacity: 0.8;
+  color: #ffffff;
+  font-family: "Rubik", sans-serif;
+  font-size: 11px;
+  font-weight: 300;
+  line-height: 18px;
+  margin: 0;
+}
+.Skill-Title ul h3 {
+  font-family: Rubik, sans-serif;
+  font-weight: 500;
+  transition: all 0.2s linear;
+  font-size: 11px;
+  opacity: 0.7;
+  margin: 0px;
+  color: #d49d81;
+}
+.Skill-Title p {
+  font: inherit;
+  color: #d49d81;
+  position: relative;
+  font-family: Rubik, sans-serif;
+  font-weight: 600;
+  transition: all 0.2s linear;
+  font-size: 15px;
+  opacity: 0.9;
+  margin: 0px;
+}
+.Skill-Progress {
+  width: 100%;
+  /* margin: 0 10px; */
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  transform: translateY(-13px);
+}
+.Skill-Progress div {
+  width: 70%;
+  height: 3px;
+  border-radius: 70px;
+  background: linear-gradient(to right, #cf8c6a 70%, #cf8c6a00 100%);
+  opacity: 0.5;
+}
+
+.CVList {
+  position: absolute;
+  width: 100px;
+  height: 50px;
+  margin: 5px 0;
+  display: flex;
+  align-items: center;
+  width: 100vw;
+  top: 5px;
+  opacity: 0.9;
+  overflow: auto;
+  z-index: 21;
+}
+.CVList::-webkit-scrollbar {
+  display: none;
+}
+.CVListP {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  top: 0px;
+  opacity: 0.9;
+  overflow: auto;
+  font-family: Rubik, sans-serif;
+  font-weight: 300;
+  transition: all 0.2s linear;
+  font-size: 11px;
+  opacity: 0.8;
+  margin: 0px;
+  color: #fff;
+  overflow: visible;
+  z-index: 21;
+  width: -webkit-max-content;
+  width: -moz-max-content;
+  width: max-content;
+  width: calc(100%);
+  margin-left: 5px;
+}
+
+.CVList button:last-child {
+  margin-right: 30px;
+}
+.CVListP span {
+  width: 18px;
+  height: 1px;
+  background: #d49d81;
+  position: absolute;
+  margin-top: 2px;
+  margin-left: -17px;
+}
+.CVListP h1 {
+  position: absolute;
+  right: 0;
+  font-size: 10px;
+  color: #d49d81e9;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.CVList button {
+  display: flex;
+  border: 2px solid #d49d81ce;
+  padding: 10px 15px;
+  border-radius: 28px;
+  font-family: Rubik, sans-serif;
+  font-weight: 500;
+  font-size: 13px;
+  opacity: 0.7;
+  margin: 0px;
+  color: #fff;
+  margin-right: 1px;
+  background-color: #000000b4;
+  z-index: 100;
+}
+.CVList button p {
+  width: -webkit-max-content;
+  width: -moz-max-content;
+  width: max-content;
+  margin: 0;
+}
+.CVHeader {
+  position: absolute;
+  flex-direction: column;
+  color: #ffffff;
+  align-items: baseline;
+  z-index: 21;
+  /* left: 50px; */
+  top: 80px;
+  box-sizing: border-box;
+}
+.Awards-Details svg {
+  font-size: 5px;
+  color: #d49d81;
+  margin-right: 10px;
+  opacity: 0.9;
+  transform: translateY(-1.5px);
+}
+.CVHeader p {
+  font-family: "Rubik", sans-serif;
+  font-size: 45px;
+  line-height: 35px;
+  font-weight: 700;
+  margin-bottom: 25px;
+  margin-top: -40px;
+  opacity: 0.6;
+}
+.CVHeader span {
+  font-family: "Rubik", sans-serif;
+  font-size: 80px;
+  line-height: 70px;
+  font-weight: 800;
+  opacity: 0.2;
+  background: linear-gradient(to right, #faf5f3a2 0%, #ff7a37e0 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.Awards-Details p,
+.Conference p,
+.Teaching p {
+  opacity: 0.8;
+  color: #ffffff;
+  font-family: "Rubik", sans-serif;
+  font-size: 11px;
+  font-weight: 400;
+  line-height: 18px;
+  margin: 0;
+  line-height: 16px;
+  margin-top: 10px;
+  opacity: 0.8;
+  color: #ffffff;
+  font-family: "Rubik", sans-serif;
+  font-size: 11px;
+  font-weight: 300;
+  line-height: 18px;
+  margin: 0;
+}
+
+/* @media only screen and (max-width: 1120px) {
+   .AcademicCV-M {
+    flex-direction: column-reverse;
+    overflow: scroll;
+    height: -webkit-fit-content;
+    height: -moz-fit-content;
+    height: fit-content;
+    padding: 8vh 2vw;
+    width: -webkit-fill-available;
+  } 
+  .AcademicCV-L {
+    width: -webkit-fill-available;
+    overflow-x: hidden;
+    margin: 0;
+    margin-top: 10px;
+  }
+  .AcademicCV-R-Par {
+    padding: 0px;
+    margin: 0;
+    height: -webkit-max-content;
+    height: -moz-max-content;
+    height: max-content;
+    overflow-x: hidden;
+    width: -webkit-fill-available;
+    background-color: rgba(240, 248, 255, 0);
+    border: none;
+  }
+
+  .HomeConsole {
+    bottom: 10px;
+    left: auto;
+    background-color: #000000d8;
+    width: calc(80vw - 15px);
+    right: calc(10vw + 40px);
+  }
+
+  .MyInfo {
+    margin: 0px 0px 15px 0px;
+    padding: 10px 30px 10px 30px;
+    font-size: 11px;
+    height: -webkit-fill-available;
+    flex-direction: column;
+    align-items: flex-start;
+    background-color: rgba(240, 248, 255, 0.05);
+    border: 3px solid rgba(240, 248, 255, 0.1);
+    margin-bottom: 10px;
+  }
+  .MyInfo p1 {
+    width: -webkit-fill-available;
+    text-align: left;
+  }
+  .MyInfo p2 {
+    width: -webkit-fill-available;
+    text-align: left;
+    line-height: inherit;
+  }
+  .ResearchInterests p,
+  .Awards p,
+  .Conference p,
+  .Teaching p,
+  .Skills p,
+  .Qualifications p {
+    font-size: 11px;
+  }
+  .ResearchInterests,
+  .Awards,
+  .Conference,
+  .Teaching,
+  .Skills,
+  .Qualifications {
+    padding: 15px 20px 15px 20px;
+    margin: 0px 0px 15px 0px;
+    background-color: rgba(240, 248, 255, 0.05);
+    border: 3px solid rgba(240, 248, 255, 0.1);
+    margin-bottom: 10px;
+  }
+  .RInterests p {
+    opacity: 0.7;
+    width: 50%;
+    margin: 2px 0 0 0;
+  }
+  .AcademicCV-R-op-l {
+    display: none;
+  }
+  .Quali-Title {
+    background-color: rgb(6 5 6 / 20%);
+  }
+  .MyInfo p1 {
+    line-height: 20px;
+  }
+} */
+
+@media only screen and (max-width: 1120px) {
+  .PaperAcademic {
+    margin: 0;
+  }
+  .AcademicCV-R::-webkit-scrollbar {
+    width: 0px;
+  }
+  .AcademicCV-R::-webkit-scrollbar-thumb {
+    display: none;
+  }
+  .AcademicCV-R-op-down {
+    display: none;
+  }
+  .AcademicCV-R-op-up {
+    display: none;
+  }
+  .paper-head {
+    margin: 0;
+  }
+  .AcademicCV-R-Par {
+    z-index: 10;
+    padding: 0 20px;
+    height: -webkit-fit-content;
+    height: -moz-fit-content;
+    height: fit-content;
+    overflow: visible;
+    margin-top: -40px;
+    width: calc(100vw - 40px);
+  }
+  /* .AcademicCV-M {
+    height: 74vh;
+    margin-top: 45px;
+    justify-content: flex-start;
+    width: -webkit-fit-content;
+    width: -moz-fit-content;
+    width: fit-content;
+    padding: 8vh 0;
+  } */
+  .AcademicCV-L {
+    background-color: rgba(240, 248, 255, 0);
+    border: none;
+    height: 70vh;
+    margin-top: 0px;
+    padding-top: 0;
+    overflow: none;
+    z-index: 10;
+    opacity: 1;
+    overflow: visible;
+    height: -webkit-fit-content;
+    height: -moz-fit-content;
+    height: fit-content;
+    transform: none;
+    padding: 0 20px;
+  }
+  .paper-circle {
+    display: none;
+  }
+  .paper-head p {
+    margin-bottom: 10px;
+    margin-top: 10px;
+    background: linear-gradient(to right, #ffb28c 0%, #ffddd0 50%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    display: inline-block;
+    opacity: 0.8;
+    font-family: "Rubik", sans-serif;
+    font-size: 16px;
+    line-height: 25px;
+    font-weight: 500;
+  }
+  .AcademicCV-R-op {
+    height: 0%;
+  }
+  .ReferMoreInfo {
+    width: 40%;
+  }
+}
+
+.AcademicCV-Text {
+  display: flex;
+  position: absolute;
+}
+
+.Paper-Data {
+  display: flex;
+  position: relative;
+  border-radius: 70px;
+  padding: 5px 30px 9px;
+  /* background: #d6ad9815; */
+  background: linear-gradient(to right, #504d4a2e 0%, #6f3c2221 100%);
+  justify-content: space-evenly;
+}
+.Paper-Data p {
+  color: #d49d81;
+  position: relative;
+  font-family: "Rubik", sans-serif;
+  font-size: 12px;
+  display: flex;
+  text-align: initial;
+  display: flex;
+  align-items: baseline;
+  margin: 0;
+  z-index: 10;
+}
+
+.Paper-Data p:last-of-type {
+  color: #ffffff;
+  position: relative;
+  font-family: "Rubik", sans-serif;
+  font-size: 25px;
+  display: flex;
+  text-align: initial;
+  display: flex;
+  align-items: baseline;
+  margin: 0;
+  opacity: 0.6;
+  z-index: 1;
+  line-height: 17px;
+  margin-bottom: 5px;
+}
+
+.Paper-Data span {
+  color: #d49d81;
+  position: relative;
+  font-family: "Rubik", sans-serif;
+  font-size: 13px;
+  display: flex;
+  text-align: initial;
+}
+
+.More-Circle {
+  width: 150px;
+  height: 40px;
+  position: absolute;
+  background: rgba(255, 255, 255, 0.04); /* Ensure some transparency */
+  border-radius: 30px;
+  right: 12px;
+  -webkit-backdrop-filter: blur(5px);
+  backdrop-filter: blur(5px);
+  display: flex;
+  direction: rtl;
+  z-index: 10;
+  color: #d49d81;
+  /* position: relative; */
+  font-family: "Rubik", sans-serif;
+  font-size: 12px;
+  display: flex;
+  text-align: initial;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50px;
+  flex-direction: row;
+  border: solid 2px #d49d8116;
+}
+.More-Circle p {
+  opacity: 0;
+}
+.MoreInfoAcademic {
+  display: flex;
+  position: absolute;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  width: -webkit-fill-available;
+  height: -webkit-fill-available;
+  font-family: "Roboto", sans-serif;
+  position: relative;
+  /* max-width: 1200px; */
+  z-index: 11;
+  border-radius: 25px;
+  display: flex;
+  flex-direction: column;
+  scroll-snap-type: mandatory;
+  -webkit-overflow-scrolling: touch;
+  overflow-x: hidden;
+}
+.MoreInfoAcademicInner {
+  position: absolute;
+  top: 0;
+  left: 0;
+  overflow-x: visible;
+  width: 100%;
+  height: -webkit-fill-available;
+}
+.MoreInfoAcademic::-webkit-scrollbar {
+  display: none;
+}
+
+.MoreInfoClose {
+  position: absolute;
+  top: 10px;
+  right: 20px;
+}
+
+.MoreInfoPapers {
+  border-radius: 25px;
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 185px;
+  width: calc(100% - 20px);
+  padding-left: 10px;
+  height: -webkit-fill-available;
+  overflow: auto;
+  scroll-behavior: smooth;
+}
+
+/* Webkit browsers like Chrome, Safari */
+.MoreInfoPapers::-webkit-scrollbar {
+  width: 2px; /* Width of the scrollbar */
+}
+
+.MoreInfoPapers::-webkit-scrollbar-track {
+  background: transparent; /* Color of the tracking area */
+  box-shadow: inset 0 0px 15px rgba(38, 38, 38, 0.2); /* Optional: adds a shadow to the track */
+  border-radius: 6px; /* Roundness of the scroll thumb */
+}
+
+.MoreInfoPapers::-webkit-scrollbar-thumb {
+  background-color: #d49d819a; /* Color of the scroll thumb */
+  border-radius: 6px; /* Roundness of the scroll thumb */
+  height: 0px; /* Fixed height for the thumb */
+  -webkit-transition: background-color 0.3s ease;
+  transition: background-color 0.3s ease;
+}
+
+.icon-wrapper h3 {
+  color: #d49d81;
+  position: relative;
+  font-family: "Rubik", sans-serif;
+  font-size: 13px;
+  display: flex;
+  text-align: initial;
+  font-weight: 500;
+}
+.icon-wrapper-in {
+  height: auto;
+  display: flex;
+  position: absolute;
+  height: 50px;
+  width: 50px;
+}
+.MoreInfoBlur {
+  position: absolute;
+  width: 100vw;
+  height: 270vh;
+  left: 0;
+  top: 0;
+  display: none;
+}
+
+.More-Paper-Info {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 130px;
+  align-items: center;
+  justify-content: flex-end;
+  left: 0;
+  background: linear-gradient(to bottom, #00000000 0%, #000000 100%);
+  z-index: 10;
+  color: #d49d81cb;
+  font-family: "Rubik", sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+}
+.More-Paper-Info svg {
+  width: 20px;
+  height: 20px;
+  /* margin-bottom: -10px; */
+}
+
+@media only screen and (max-width: 768px) {
+  /* .AcademicCV-M {
+    width: 97vw;
+  } */
+  .CVHeader {
+    top: 60px;
+    /* left: 10px; */
+  }
+  .CVHeader span {
+    font-size: 70px;
+  }
+  .CVHeader p {
+    font-size: 40px;
+  }
+}

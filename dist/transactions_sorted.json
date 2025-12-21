@@ -1,0 +1,3652 @@
+[
+    {
+        "Transaction_Id": "a7e1c29e-5105-4452-9102-014bc2043103",
+        "User_Id": 90260003,
+        "Timestamp": "2023-07-23 19:28",
+        "Category": "Income",
+        "Amount": 39.29,
+        "Reason": "Stock Market",
+        "Type": "Daily",
+        "Label": "Other"
+    },
+    {
+        "Transaction_Id": "30dbc91b-2c94-4411-9ebe-3d6ab886700d",
+        "User_Id": 90260003,
+        "Timestamp": "2023-07-24 19:28",
+        "Category": "Spending",
+        "Amount": 986.64,
+        "Reason": "Subscriptions",
+        "Type": "Monthly",
+        "Label": "Groceries & Dining"
+    },
+    {
+        "Transaction_Id": "603b46f0-970c-4107-9b53-d1db3f946523",
+        "User_Id": 90260003,
+        "Timestamp": "2023-07-24 19:28",
+        "Category": "Save&Invest",
+        "Amount": 851.73,
+        "Reason": "Cryptocurrency",
+        "Type": "Monthly",
+        "Label": "Savings Account"
+    },
+    {
+        "Transaction_Id": "38421d68-3558-4190-a87d-d15e7d84d83b",
+        "User_Id": 90260003,
+        "Timestamp": "2023-07-25 19:28",
+        "Category": "Income",
+        "Amount": 814.6,
+        "Reason": "Leisure & Recreation",
+        "Type": "Daily",
+        "Label": "Government Benefits"
+    },
+    {
+        "Transaction_Id": "b551eba9-32c7-438a-a28f-9e8c40185f30",
+        "User_Id": 90260003,
+        "Timestamp": "2023-07-25 19:28",
+        "Category": "Spending",
+        "Amount": 71.15,
+        "Reason": "Gym Membership",
+        "Type": "Daily",
+        "Label": "Education & Training"
+    },
+    {
+        "Transaction_Id": "e8284aec-6dcd-48c9-af1b-e4922cef2230",
+        "User_Id": 90260003,
+        "Timestamp": "2023-07-26 19:28",
+        "Category": "Save&Invest",
+        "Amount": 992.31,
+        "Reason": "Pet Care",
+        "Type": "Monthly",
+        "Label": "Stocks"
+    },
+    {
+        "Transaction_Id": "ad9e2897-a501-4818-a653-957db4a3599f",
+        "User_Id": 90260003,
+        "Timestamp": "2023-07-27 19:28",
+        "Category": "Save&Invest",
+        "Amount": 366.45,
+        "Reason": "Home Improvement",
+        "Type": "Daily",
+        "Label": "Other"
+    },
+    {
+        "Transaction_Id": "e9736cf3-ca6d-44f2-9917-8f028ef176f8",
+        "User_Id": 90260003,
+        "Timestamp": "2023-07-28 19:28",
+        "Category": "Income",
+        "Amount": 527.54,
+        "Reason": "Car Payment",
+        "Type": "Monthly",
+        "Label": "Government Benefits"
+    },
+    {
+        "Transaction_Id": "461bd6f9-e320-4f9e-bacc-68d9d21c0bde",
+        "User_Id": 90260003,
+        "Timestamp": "2023-07-28 19:28",
+        "Category": "Spending",
+        "Amount": 830.26,
+        "Reason": "Cryptocurrency",
+        "Type": "Daily",
+        "Label": "Other"
+    },
+    {
+        "Transaction_Id": "2662a85b-55d2-4568-9e3b-a0dc4517b3dc",
+        "User_Id": 90260003,
+        "Timestamp": "2023-07-28 19:28",
+        "Category": "Income",
+        "Amount": 580.01,
+        "Reason": "Rent",
+        "Type": "Monthly",
+        "Label": "Government Benefits"
+    },
+    {
+        "Transaction_Id": "11854d1b-8fa3-453d-ab5e-e619a35ffbe7",
+        "User_Id": 90260003,
+        "Timestamp": "2023-07-29 19:28",
+        "Category": "Spending",
+        "Amount": 870.18,
+        "Reason": "Home Improvement",
+        "Type": "Daily",
+        "Label": "Leisure & Recreation"
+    },
+    {
+        "Transaction_Id": "92c559b8-2ab8-49f1-9a1f-67cfeecaa96a",
+        "User_Id": 90260003,
+        "Timestamp": "2023-07-29 19:28",
+        "Category": "Save&Invest",
+        "Amount": 519.13,
+        "Reason": "Pet Care",
+        "Type": "Monthly",
+        "Label": "Savings Account"
+    },
+    {
+        "Transaction_Id": "d024ef0f-e928-49f1-83d4-9d0856e54ab0",
+        "User_Id": 90260003,
+        "Timestamp": "2023-07-29 19:28",
+        "Category": "Income",
+        "Amount": 590.94,
+        "Reason": "Stock Market",
+        "Type": "Monthly",
+        "Label": "Other"
+    },
+    {
+        "Transaction_Id": "5ecda3f9-3bd2-4915-9f9d-f9343b82e592",
+        "User_Id": 90260003,
+        "Timestamp": "2023-07-29 19:28",
+        "Category": "Income",
+        "Amount": 921.01,
+        "Reason": "Clothing",
+        "Type": "Daily",
+        "Label": "Government Benefits"
+    },
+    {
+        "Transaction_Id": "b2a9e04b-5cec-4adb-8a8c-a733bce28b2f",
+        "User_Id": 90260003,
+        "Timestamp": "2023-07-29 19:28",
+        "Category": "Income",
+        "Amount": 822.87,
+        "Reason": "Contribution to Savings Account",
+        "Type": "Daily",
+        "Label": "Employee Benefits"
+    },
+    {
+        "Transaction_Id": "0ca5f093-b7db-4a4e-954a-199f139e4e92",
+        "User_Id": 90260003,
+        "Timestamp": "2023-07-30 19:28",
+        "Category": "Income",
+        "Amount": 49.39,
+        "Reason": "Charity",
+        "Type": "Daily",
+        "Label": "Government Benefits"
+    },
+    {
+        "Transaction_Id": "5ae7a6c4-00a1-437e-a9e6-bddbbadc54b6",
+        "User_Id": 90260003,
+        "Timestamp": "2023-07-30 19:28",
+        "Category": "Save&Invest",
+        "Amount": 639.16,
+        "Reason": "Contribution to Savings Account",
+        "Type": "Monthly",
+        "Label": "Stocks"
+    },
+    {
+        "Transaction_Id": "2af7364d-96ec-4ec3-b0f1-3fb381530d15",
+        "User_Id": 90260003,
+        "Timestamp": "2023-08-01 19:28",
+        "Category": "Save&Invest",
+        "Amount": 586.87,
+        "Reason": "Stock Market",
+        "Type": "Monthly",
+        "Label": "Stocks"
+    },
+    {
+        "Transaction_Id": "886d161f-a0bb-45fe-9336-48a6f2e64388",
+        "User_Id": 90260003,
+        "Timestamp": "2023-08-03 19:28",
+        "Category": "Spending",
+        "Amount": 321.31,
+        "Reason": "Transportation",
+        "Type": "Daily",
+        "Label": "Education & Training"
+    },
+    {
+        "Transaction_Id": "93d5f102-0062-4cf9-80df-ef16ecfd475c",
+        "User_Id": 90260003,
+        "Timestamp": "2023-08-04 19:28",
+        "Category": "Income",
+        "Amount": 323.84,
+        "Reason": "Cryptocurrency",
+        "Type": "Daily",
+        "Label": "Other"
+    },
+    {
+        "Transaction_Id": "68600eb5-3380-477d-914a-487c8bdc8e41",
+        "User_Id": 90260003,
+        "Timestamp": "2023-08-04 19:28",
+        "Category": "Save&Invest",
+        "Amount": 816.56,
+        "Reason": "Gifts",
+        "Type": "Monthly",
+        "Label": "Stocks"
+    },
+    {
+        "Transaction_Id": "59dc36df-ee2e-4fa2-9ae3-fceeff4af2ac",
+        "User_Id": 90260003,
+        "Timestamp": "2023-08-05 19:28",
+        "Category": "Save&Invest",
+        "Amount": 290.12,
+        "Reason": "Contribution to Savings Account",
+        "Type": "Daily",
+        "Label": "Savings Account"
+    },
+    {
+        "Transaction_Id": "1e51a64c-141b-4caf-b93a-ae5acad4d6b1",
+        "User_Id": 90260003,
+        "Timestamp": "2023-08-05 19:28",
+        "Category": "Spending",
+        "Amount": 59.85,
+        "Reason": "Contribution to Savings Account",
+        "Type": "Daily",
+        "Label": "Groceries & Dining"
+    },
+    {
+        "Transaction_Id": "e598496d-01ee-4be3-bdfc-74bceca347d5",
+        "User_Id": 90260003,
+        "Timestamp": "2023-08-08 19:28",
+        "Category": "Spending",
+        "Amount": 765.97,
+        "Reason": "Investment in Retirement Fund",
+        "Type": "Daily",
+        "Label": "Other"
+    },
+    {
+        "Transaction_Id": "b89c8939-b71e-47be-a02b-01313f46fc2f",
+        "User_Id": 90260003,
+        "Timestamp": "2023-08-08 19:28",
+        "Category": "Income",
+        "Amount": 557.04,
+        "Reason": "Clothing",
+        "Type": "Daily",
+        "Label": "Employment Income"
+    },
+    {
+        "Transaction_Id": "f3d58fcd-5ed6-4055-b21b-ba1a5c2549a5",
+        "User_Id": 90260003,
+        "Timestamp": "2023-08-08 19:28",
+        "Category": "Spending",
+        "Amount": 487.78,
+        "Reason": "Transportation",
+        "Type": "Daily",
+        "Label": "Housing & Utilities"
+    },
+    {
+        "Transaction_Id": "9e48055c-4fb0-40d0-9a28-63cfc6fe358c",
+        "User_Id": 90260003,
+        "Timestamp": "2023-08-09 19:28",
+        "Category": "Save&Invest",
+        "Amount": 212.18,
+        "Reason": "Investment in Retirement Fund",
+        "Type": "Daily",
+        "Label": "Savings Account"
+    },
+    {
+        "Transaction_Id": "a1798b9a-577c-42b6-b72f-c53db07d6f2c",
+        "User_Id": 90260003,
+        "Timestamp": "2023-08-10 19:28",
+        "Category": "Spending",
+        "Amount": 104.9,
+        "Reason": "Car Payment",
+        "Type": "Daily",
+        "Label": "Other"
+    },
+    {
+        "Transaction_Id": "896a212f-2f9e-4b5e-93bd-0d4ccd080d4b",
+        "User_Id": 90260003,
+        "Timestamp": "2023-08-10 19:28",
+        "Category": "Income",
+        "Amount": 523.09,
+        "Reason": "Other",
+        "Type": "Daily",
+        "Label": "Employee Benefits"
+    },
+    {
+        "Transaction_Id": "90c08ca5-6494-4352-8e56-51e690355f8b",
+        "User_Id": 90260003,
+        "Timestamp": "2023-08-10 19:28",
+        "Category": "Income",
+        "Amount": 589.31,
+        "Reason": "Other",
+        "Type": "Monthly",
+        "Label": "Employment Income"
+    },
+    {
+        "Transaction_Id": "0ea07cd2-9ecc-4437-8306-ace243acc2e9",
+        "User_Id": 90260003,
+        "Timestamp": "2023-08-12 19:28",
+        "Category": "Save&Invest",
+        "Amount": 510.21,
+        "Reason": "Stock Market",
+        "Type": "Daily",
+        "Label": "Cryptocurrency"
+    },
+    {
+        "Transaction_Id": "323eabf1-92e5-4b5a-a8f2-da3c18900b00",
+        "User_Id": 90260003,
+        "Timestamp": "2023-08-12 19:28",
+        "Category": "Save&Invest",
+        "Amount": 332.51,
+        "Reason": "Home Improvement",
+        "Type": "Monthly",
+        "Label": "Cryptocurrency"
+    },
+    {
+        "Transaction_Id": "3101d047-af62-45ec-b9de-13e93faf290e",
+        "User_Id": 90260003,
+        "Timestamp": "2023-08-12 19:28",
+        "Category": "Save&Invest",
+        "Amount": 14.23,
+        "Reason": "Dining Out",
+        "Type": "Monthly",
+        "Label": "Cryptocurrency"
+    },
+    {
+        "Transaction_Id": "cf719873-3e6d-4fe0-bb22-33be22c818c2",
+        "User_Id": 90260003,
+        "Timestamp": "2023-08-13 19:28",
+        "Category": "Save&Invest",
+        "Amount": 720.49,
+        "Reason": "Investment in Retirement Fund",
+        "Type": "Daily",
+        "Label": "Cryptocurrency"
+    },
+    {
+        "Transaction_Id": "d63aba9e-cf96-4c07-b22c-1fa1d6b6a2c4",
+        "User_Id": 90260003,
+        "Timestamp": "2023-08-13 19:28",
+        "Category": "Income",
+        "Amount": 314.27,
+        "Reason": "Investment in Retirement Fund",
+        "Type": "Daily",
+        "Label": "Employment Income"
+    },
+    {
+        "Transaction_Id": "eaf8b69a-7c45-41f9-97f9-8eed234cefc1",
+        "User_Id": 90260003,
+        "Timestamp": "2023-08-13 19:28",
+        "Category": "Spending",
+        "Amount": 409.6,
+        "Reason": "Stock Market",
+        "Type": "Monthly",
+        "Label": "Transportation"
+    },
+    {
+        "Transaction_Id": "482cd6b0-101e-4f70-a717-6b8c24783ac6",
+        "User_Id": 90260003,
+        "Timestamp": "2023-08-15 19:28",
+        "Category": "Save&Invest",
+        "Amount": 318.21,
+        "Reason": "Maintenance",
+        "Type": "Daily",
+        "Label": "Stocks"
+    },
+    {
+        "Transaction_Id": "aa910dc2-9c6e-43b4-a59b-b241375cace6",
+        "User_Id": 90260003,
+        "Timestamp": "2023-08-15 19:28",
+        "Category": "Income",
+        "Amount": 684.63,
+        "Reason": "Car Payment",
+        "Type": "Daily",
+        "Label": "Government Benefits"
+    },
+    {
+        "Transaction_Id": "1c57a3c8-7d4b-401a-9d8e-0db51f415a24",
+        "User_Id": 90260003,
+        "Timestamp": "2023-08-15 19:28",
+        "Category": "Spending",
+        "Amount": 825.11,
+        "Reason": "Leisure & Recreation",
+        "Type": "Monthly",
+        "Label": "Education & Training"
+    },
+    {
+        "Transaction_Id": "5d0ce426-8170-4ae9-85ae-80a9f75b138f",
+        "User_Id": 90260003,
+        "Timestamp": "2023-08-15 19:28",
+        "Category": "Save&Invest",
+        "Amount": 792.41,
+        "Reason": "Leisure & Recreation",
+        "Type": "Monthly",
+        "Label": "Real Estate"
+    },
+    {
+        "Transaction_Id": "4f000597-4319-4973-8f12-63fd3ad8206d",
+        "User_Id": 90260003,
+        "Timestamp": "2023-08-16 19:28",
+        "Category": "Income",
+        "Amount": 873.79,
+        "Reason": "Groceries & Dining",
+        "Type": "Daily",
+        "Label": "Employee Benefits"
+    },
+    {
+        "Transaction_Id": "61f87ee8-3107-420a-a005-9f9597744eac",
+        "User_Id": 90260003,
+        "Timestamp": "2023-08-17 19:28",
+        "Category": "Save&Invest",
+        "Amount": 544.05,
+        "Reason": "Groceries",
+        "Type": "Daily",
+        "Label": "Real Estate"
+    },
+    {
+        "Transaction_Id": "66cfcee7-234d-4779-b3f8-070f33cef8a5",
+        "User_Id": 90260003,
+        "Timestamp": "2023-08-18 19:28",
+        "Category": "Spending",
+        "Amount": 858.7,
+        "Reason": "Travel",
+        "Type": "Monthly",
+        "Label": "Other"
+    },
+    {
+        "Transaction_Id": "9bb0b0ac-dd0f-4d5c-8935-d1701da440b9",
+        "User_Id": 90260003,
+        "Timestamp": "2023-08-19 19:28",
+        "Category": "Income",
+        "Amount": 954.59,
+        "Reason": "Contribution to Savings Account",
+        "Type": "Monthly",
+        "Label": "Government Benefits"
+    },
+    {
+        "Transaction_Id": "03988fa0-bc52-4145-819b-76ee3b88431e",
+        "User_Id": 90260003,
+        "Timestamp": "2023-08-19 19:28",
+        "Category": "Income",
+        "Amount": 225.1,
+        "Reason": "Entertainment",
+        "Type": "Daily",
+        "Label": "Employment Income"
+    },
+    {
+        "Transaction_Id": "a3a0ce72-98fb-4f74-8fd0-2f21d9c9b771",
+        "User_Id": 90260003,
+        "Timestamp": "2023-08-20 19:28",
+        "Category": "Save&Invest",
+        "Amount": 947.24,
+        "Reason": "Contribution to Savings Account",
+        "Type": "Daily",
+        "Label": "Cryptocurrency"
+    },
+    {
+        "Transaction_Id": "0e0908c6-da46-4840-9bcd-7d4d71c9058c",
+        "User_Id": 90260003,
+        "Timestamp": "2023-08-21 19:28",
+        "Category": "Income",
+        "Amount": 797.91,
+        "Reason": "Car Payment",
+        "Type": "Daily",
+        "Label": "Investment Income"
+    },
+    {
+        "Transaction_Id": "66ff1ef8-0e9d-4254-bf94-3b0372b73f9b",
+        "User_Id": 90260003,
+        "Timestamp": "2023-08-21 19:28",
+        "Category": "Save&Invest",
+        "Amount": 917.31,
+        "Reason": "Education & Training",
+        "Type": "Daily",
+        "Label": "Cryptocurrency"
+    },
+    {
+        "Transaction_Id": "60b80915-eb54-4b27-8120-273ba1784233",
+        "User_Id": 90260003,
+        "Timestamp": "2023-08-22 19:28",
+        "Category": "Spending",
+        "Amount": 766.94,
+        "Reason": "Investment in Retirement Fund",
+        "Type": "Monthly",
+        "Label": "Groceries & Dining"
+    },
+    {
+        "Transaction_Id": "08dd6ff4-3a56-4bf9-8fa8-149e1afc9242",
+        "User_Id": 90260003,
+        "Timestamp": "2023-08-22 19:28",
+        "Category": "Income",
+        "Amount": 731.24,
+        "Reason": "Stock Market",
+        "Type": "Daily",
+        "Label": "Other"
+    },
+    {
+        "Transaction_Id": "ad8a304e-e79c-491f-874a-8666a5a6d73a",
+        "User_Id": 90260003,
+        "Timestamp": "2023-08-24 19:28",
+        "Category": "Save&Invest",
+        "Amount": 590.33,
+        "Reason": "Medical & Health",
+        "Type": "Monthly",
+        "Label": "Savings Account"
+    },
+    {
+        "Transaction_Id": "162c3a52-8018-44f5-a70b-725eeef9d726",
+        "User_Id": 90260003,
+        "Timestamp": "2023-08-25 19:28",
+        "Category": "Spending",
+        "Amount": 415.55,
+        "Reason": "Leisure & Recreation",
+        "Type": "Monthly",
+        "Label": "Education & Training"
+    },
+    {
+        "Transaction_Id": "9c941244-f4c3-437c-bc2f-7745d755d88c",
+        "User_Id": 90260003,
+        "Timestamp": "2023-08-26 19:28",
+        "Category": "Spending",
+        "Amount": 463.39,
+        "Reason": "Groceries",
+        "Type": "Daily",
+        "Label": "Other"
+    },
+    {
+        "Transaction_Id": "b348c909-4678-489e-b041-2754e089b136",
+        "User_Id": 90260003,
+        "Timestamp": "2023-08-27 19:28",
+        "Category": "Save&Invest",
+        "Amount": 709.03,
+        "Reason": "Car Payment",
+        "Type": "Daily",
+        "Label": "Savings Account"
+    },
+    {
+        "Transaction_Id": "6224e063-9a9f-453b-b138-a4accdf6ce7d",
+        "User_Id": 90260003,
+        "Timestamp": "2023-08-27 19:28",
+        "Category": "Spending",
+        "Amount": 959.89,
+        "Reason": "Stock Market",
+        "Type": "Daily",
+        "Label": "Leisure & Recreation"
+    },
+    {
+        "Transaction_Id": "9961abe7-375e-409a-8a66-2f12931f563e",
+        "User_Id": 90260003,
+        "Timestamp": "2023-08-28 19:28",
+        "Category": "Income",
+        "Amount": 766.55,
+        "Reason": "Other",
+        "Type": "Monthly",
+        "Label": "Government Benefits"
+    },
+    {
+        "Transaction_Id": "ba836378-c279-4ca8-ad91-dc4d32a5228a",
+        "User_Id": 90260003,
+        "Timestamp": "2023-08-28 19:28",
+        "Category": "Spending",
+        "Amount": 110.97,
+        "Reason": "Transportation",
+        "Type": "Monthly",
+        "Label": "Groceries & Dining"
+    },
+    {
+        "Transaction_Id": "825e1f02-5017-45bf-95cc-51c36fdd4127",
+        "User_Id": 90260003,
+        "Timestamp": "2023-08-28 19:28",
+        "Category": "Income",
+        "Amount": 621.74,
+        "Reason": "Crowdfunding",
+        "Type": "Monthly",
+        "Label": "Other"
+    },
+    {
+        "Transaction_Id": "de83757e-69f7-433c-87a8-cf041392e30b",
+        "User_Id": 90260003,
+        "Timestamp": "2023-08-30 19:28",
+        "Category": "Spending",
+        "Amount": 167.15,
+        "Reason": "Medical & Health",
+        "Type": "Monthly",
+        "Label": "Leisure & Recreation"
+    },
+    {
+        "Transaction_Id": "324effb0-1bd4-4c6c-92d9-4ca73c9d1cac",
+        "User_Id": 90260003,
+        "Timestamp": "2023-08-30 19:28",
+        "Category": "Spending",
+        "Amount": 394.09,
+        "Reason": "Crowdfunding",
+        "Type": "Monthly",
+        "Label": "Housing & Utilities"
+    },
+    {
+        "Transaction_Id": "c7aab7b7-f923-4cdb-9cfe-71c79edcfda1",
+        "User_Id": 90260003,
+        "Timestamp": "2023-08-31 19:28",
+        "Category": "Spending",
+        "Amount": 879.24,
+        "Reason": "Transportation",
+        "Type": "Daily",
+        "Label": "Housing & Utilities"
+    },
+    {
+        "Transaction_Id": "b9903bcf-8c7e-461c-8794-996b212386f7",
+        "User_Id": 90260003,
+        "Timestamp": "2023-08-31 19:28",
+        "Category": "Spending",
+        "Amount": 238.68,
+        "Reason": "Crowdfunding",
+        "Type": "Daily",
+        "Label": "Leisure & Recreation"
+    },
+    {
+        "Transaction_Id": "3a0b2f2d-ed80-4046-b235-80ee075b004c",
+        "User_Id": 90260003,
+        "Timestamp": "2023-09-01 19:28",
+        "Category": "Spending",
+        "Amount": 268.29,
+        "Reason": "Cryptocurrency",
+        "Type": "Monthly",
+        "Label": "Groceries & Dining"
+    },
+    {
+        "Transaction_Id": "96db7a56-7ac1-45b4-aba7-a1d18930a476",
+        "User_Id": 90260003,
+        "Timestamp": "2023-09-01 19:28",
+        "Category": "Income",
+        "Amount": 474.78,
+        "Reason": "Cryptocurrency",
+        "Type": "Monthly",
+        "Label": "Employee Benefits"
+    },
+    {
+        "Transaction_Id": "cc72cf3c-f2b5-44e9-b65f-43acc0ca42c7",
+        "User_Id": 90260003,
+        "Timestamp": "2023-09-01 19:28",
+        "Category": "Spending",
+        "Amount": 700.5,
+        "Reason": "Stock Market",
+        "Type": "Monthly",
+        "Label": "Education & Training"
+    },
+    {
+        "Transaction_Id": "c7248525-edf7-48e0-8fe6-edd82c403070",
+        "User_Id": 90260003,
+        "Timestamp": "2023-09-01 19:28",
+        "Category": "Spending",
+        "Amount": 746.41,
+        "Reason": "Transportation",
+        "Type": "Daily",
+        "Label": "Housing & Utilities"
+    },
+    {
+        "Transaction_Id": "ab45c23d-a055-40cb-9a64-f692478f9b0f",
+        "User_Id": 90260003,
+        "Timestamp": "2023-09-01 19:28",
+        "Category": "Save&Invest",
+        "Amount": 131.49,
+        "Reason": "Medical & Health",
+        "Type": "Monthly",
+        "Label": "Cryptocurrency"
+    },
+    {
+        "Transaction_Id": "60ec7646-28f2-48e9-b766-75f5e90809fb",
+        "User_Id": 90260003,
+        "Timestamp": "2023-09-02 19:28",
+        "Category": "Income",
+        "Amount": 271.37,
+        "Reason": "Transportation",
+        "Type": "Daily",
+        "Label": "Other"
+    },
+    {
+        "Transaction_Id": "92378484-e6f0-4327-ad82-02800b420887",
+        "User_Id": 90260003,
+        "Timestamp": "2023-09-04 19:28",
+        "Category": "Save&Invest",
+        "Amount": 827.41,
+        "Reason": "Contribution to Savings Account",
+        "Type": "Monthly",
+        "Label": "Other"
+    },
+    {
+        "Transaction_Id": "69c73966-2fc1-4ffd-93db-137cff30e1d4",
+        "User_Id": 90260003,
+        "Timestamp": "2023-09-06 19:28",
+        "Category": "Save&Invest",
+        "Amount": 907.47,
+        "Reason": "Contribution to Savings Account",
+        "Type": "Daily",
+        "Label": "Savings Account"
+    },
+    {
+        "Transaction_Id": "c393584f-b67f-4b83-80f8-df710f785ee8",
+        "User_Id": 90260003,
+        "Timestamp": "2023-09-08 19:28",
+        "Category": "Spending",
+        "Amount": 464.32,
+        "Reason": "Leisure & Recreation",
+        "Type": "Daily",
+        "Label": "Leisure & Recreation"
+    },
+    {
+        "Transaction_Id": "c6260b6c-7a04-43d9-96bd-3c08e4cd9621",
+        "User_Id": 90260003,
+        "Timestamp": "2023-09-08 19:28",
+        "Category": "Income",
+        "Amount": 864.72,
+        "Reason": "Medical & Health",
+        "Type": "Daily",
+        "Label": "Employee Benefits"
+    },
+    {
+        "Transaction_Id": "21257db9-b2cf-4de9-a127-53d18b991c03",
+        "User_Id": 90260003,
+        "Timestamp": "2023-09-10 19:28",
+        "Category": "Spending",
+        "Amount": 475.41,
+        "Reason": "Contribution to Savings Account",
+        "Type": "Daily",
+        "Label": "Housing & Utilities"
+    },
+    {
+        "Transaction_Id": "08126e84-398f-4863-a795-73f9a37ff7ae",
+        "User_Id": 90260003,
+        "Timestamp": "2023-09-10 19:28",
+        "Category": "Save&Invest",
+        "Amount": 110.2,
+        "Reason": "Contribution to Savings Account",
+        "Type": "Daily",
+        "Label": "Real Estate"
+    },
+    {
+        "Transaction_Id": "dfddfc85-d5fe-47aa-9d4a-3cef6a4aa7ea",
+        "User_Id": 90260003,
+        "Timestamp": "2023-09-10 19:28",
+        "Category": "Income",
+        "Amount": 732.74,
+        "Reason": "Education & Training",
+        "Type": "Daily",
+        "Label": "Employee Benefits"
+    },
+    {
+        "Transaction_Id": "3440a43a-82e5-4d6c-9ef8-b08e2c4bf658",
+        "User_Id": 90260003,
+        "Timestamp": "2023-09-11 19:28",
+        "Category": "Spending",
+        "Amount": 830.51,
+        "Reason": "Insurance",
+        "Type": "Monthly",
+        "Label": "Leisure & Recreation"
+    },
+    {
+        "Transaction_Id": "e617fa73-1967-49d9-bada-a3b513477e54",
+        "User_Id": 90260003,
+        "Timestamp": "2023-09-13 19:28",
+        "Category": "Spending",
+        "Amount": 686.74,
+        "Reason": "Cryptocurrency",
+        "Type": "Daily",
+        "Label": "Groceries & Dining"
+    },
+    {
+        "Transaction_Id": "47e30f3d-184a-42d3-97fb-6f54237ad89d",
+        "User_Id": 90260003,
+        "Timestamp": "2023-09-15 19:28",
+        "Category": "Income",
+        "Amount": 66.53,
+        "Reason": "Contribution to Savings Account",
+        "Type": "Daily",
+        "Label": "Other"
+    },
+    {
+        "Transaction_Id": "43405392-bf08-47f4-9380-c4660713cad0",
+        "User_Id": 90260003,
+        "Timestamp": "2023-09-16 19:28",
+        "Category": "Income",
+        "Amount": 362.01,
+        "Reason": "Medical & Health",
+        "Type": "Daily",
+        "Label": "Employee Benefits"
+    },
+    {
+        "Transaction_Id": "cb484855-6ef1-4291-865e-76593ed7f67b",
+        "User_Id": 90260003,
+        "Timestamp": "2023-09-16 19:28",
+        "Category": "Save&Invest",
+        "Amount": 666.05,
+        "Reason": "Investment in Retirement Fund",
+        "Type": "Daily",
+        "Label": "Real Estate"
+    },
+    {
+        "Transaction_Id": "ab9a2c43-e9d9-46b2-bc78-d98fef8d6ef8",
+        "User_Id": 90260003,
+        "Timestamp": "2023-09-16 19:28",
+        "Category": "Income",
+        "Amount": 644.19,
+        "Reason": "Housing & Utilities",
+        "Type": "Daily",
+        "Label": "Other"
+    },
+    {
+        "Transaction_Id": "eb8ce497-a74a-46eb-a6d5-ea3dd81cdaf8",
+        "User_Id": 90260003,
+        "Timestamp": "2023-09-17 19:28",
+        "Category": "Save&Invest",
+        "Amount": 715.83,
+        "Reason": "Contribution to Savings Account",
+        "Type": "Daily",
+        "Label": "Real Estate"
+    },
+    {
+        "Transaction_Id": "1efe2025-059c-4bdf-9384-fe9c5735a3b3",
+        "User_Id": 90260003,
+        "Timestamp": "2023-09-17 19:28",
+        "Category": "Save&Invest",
+        "Amount": 789.15,
+        "Reason": "Leisure & Recreation",
+        "Type": "Monthly",
+        "Label": "Real Estate"
+    },
+    {
+        "Transaction_Id": "b638ac55-6e30-4ed0-a64b-333a7b41a7de",
+        "User_Id": 90260003,
+        "Timestamp": "2023-09-17 19:28",
+        "Category": "Save&Invest",
+        "Amount": 161.67,
+        "Reason": "Groceries & Dining",
+        "Type": "Daily",
+        "Label": "Stocks"
+    },
+    {
+        "Transaction_Id": "076bdd8c-1913-4374-babd-c723d061b1c4",
+        "User_Id": 90260003,
+        "Timestamp": "2023-09-17 19:28",
+        "Category": "Save&Invest",
+        "Amount": 461.13,
+        "Reason": "Housing & Utilities",
+        "Type": "Monthly",
+        "Label": "Other"
+    },
+    {
+        "Transaction_Id": "862c0937-4ce8-4da6-a50c-b28f5936fda8",
+        "User_Id": 90260003,
+        "Timestamp": "2023-09-18 19:28",
+        "Category": "Save&Invest",
+        "Amount": 986.22,
+        "Reason": "Education & Training",
+        "Type": "Monthly",
+        "Label": "Other"
+    },
+    {
+        "Transaction_Id": "a102f00d-4104-44c6-8543-2469e8e7a107",
+        "User_Id": 90260003,
+        "Timestamp": "2023-09-20 19:28",
+        "Category": "Spending",
+        "Amount": 976.99,
+        "Reason": "Investment in Retirement Fund",
+        "Type": "Daily",
+        "Label": "Transportation"
+    },
+    {
+        "Transaction_Id": "2c17313b-93eb-4981-b769-e90598e33903",
+        "User_Id": 90260003,
+        "Timestamp": "2023-09-21 19:28",
+        "Category": "Income",
+        "Amount": 311.69,
+        "Reason": "Investment in Retirement Fund",
+        "Type": "Monthly",
+        "Label": "Employee Benefits"
+    },
+    {
+        "Transaction_Id": "f51965c0-c78b-4789-9ed1-8094d15ae450",
+        "User_Id": 90260003,
+        "Timestamp": "2023-09-21 19:28",
+        "Category": "Save&Invest",
+        "Amount": 229.62,
+        "Reason": "Other",
+        "Type": "Monthly",
+        "Label": "Other"
+    },
+    {
+        "Transaction_Id": "15d57b32-99af-4b9c-ba3a-475bf8b2d103",
+        "User_Id": 90260003,
+        "Timestamp": "2023-09-21 19:28",
+        "Category": "Save&Invest",
+        "Amount": 533.21,
+        "Reason": "Medical & Health",
+        "Type": "Daily",
+        "Label": "Stocks"
+    },
+    {
+        "Transaction_Id": "0f11cab4-3f4f-4c0e-9698-f20f24d95b86",
+        "User_Id": 90260003,
+        "Timestamp": "2023-09-22 19:28",
+        "Category": "Income",
+        "Amount": 851.67,
+        "Reason": "Home Improvement",
+        "Type": "Monthly",
+        "Label": "Investment Income"
+    },
+    {
+        "Transaction_Id": "19576386-a5a5-4f04-a599-5098f6968eb2",
+        "User_Id": 90260003,
+        "Timestamp": "2023-09-23 19:28",
+        "Category": "Spending",
+        "Amount": 425.37,
+        "Reason": "Stock Market",
+        "Type": "Daily",
+        "Label": "Groceries & Dining"
+    },
+    {
+        "Transaction_Id": "53a74fa7-d0da-4e86-bc93-730d209b70c8",
+        "User_Id": 90260003,
+        "Timestamp": "2023-09-23 19:28",
+        "Category": "Income",
+        "Amount": 255.37,
+        "Reason": "Healthcare",
+        "Type": "Monthly",
+        "Label": "Other"
+    },
+    {
+        "Transaction_Id": "f94f582c-785e-4de9-9b52-bff8465999ae",
+        "User_Id": 90260003,
+        "Timestamp": "2023-09-25 19:28",
+        "Category": "Spending",
+        "Amount": 190.22,
+        "Reason": "Charity",
+        "Type": "Daily",
+        "Label": "Medical & Health"
+    },
+    {
+        "Transaction_Id": "f14953d2-f164-4eaf-aa41-203997632686",
+        "User_Id": 90260003,
+        "Timestamp": "2023-09-26 19:28",
+        "Category": "Income",
+        "Amount": 903.77,
+        "Reason": "Healthcare",
+        "Type": "Daily",
+        "Label": "Investment Income"
+    },
+    {
+        "Transaction_Id": "aabbda84-88cc-41fa-a5f6-239b12277d96",
+        "User_Id": 90260003,
+        "Timestamp": "2023-09-28 19:28",
+        "Category": "Income",
+        "Amount": 553.34,
+        "Reason": "Stock Market",
+        "Type": "Daily",
+        "Label": "Employee Benefits"
+    },
+    {
+        "Transaction_Id": "6e7d4710-5d72-45e1-ba19-f760afd01d57",
+        "User_Id": 90260003,
+        "Timestamp": "2023-09-28 19:28",
+        "Category": "Income",
+        "Amount": 294.49,
+        "Reason": "Contribution to Savings Account",
+        "Type": "Daily",
+        "Label": "Employment Income"
+    },
+    {
+        "Transaction_Id": "65561849-6635-4c16-b373-8cca2fa99743",
+        "User_Id": 90260003,
+        "Timestamp": "2023-09-30 19:28",
+        "Category": "Income",
+        "Amount": 476.86,
+        "Reason": "Contribution to Savings Account",
+        "Type": "Monthly",
+        "Label": "Employee Benefits"
+    },
+    {
+        "Transaction_Id": "e6018e4c-95d7-4a4d-96c9-72830ec390b4",
+        "User_Id": 90260003,
+        "Timestamp": "2023-09-30 19:28",
+        "Category": "Save&Invest",
+        "Amount": 978.16,
+        "Reason": "Transportation",
+        "Type": "Monthly",
+        "Label": "Savings Account"
+    },
+    {
+        "Transaction_Id": "d549736b-2e27-431b-adfa-b570adf3a557",
+        "User_Id": 90260003,
+        "Timestamp": "2023-09-30 19:28",
+        "Category": "Spending",
+        "Amount": 946.91,
+        "Reason": "Gifts",
+        "Type": "Daily",
+        "Label": "Other"
+    },
+    {
+        "Transaction_Id": "8cb708a4-65ba-439f-a323-4ebce1cb3f8a",
+        "User_Id": 90260003,
+        "Timestamp": "2023-10-01 19:28",
+        "Category": "Save&Invest",
+        "Amount": 597.85,
+        "Reason": "Crowdfunding",
+        "Type": "Daily",
+        "Label": "Savings Account"
+    },
+    {
+        "Transaction_Id": "2e1493fb-f83c-43b4-ac88-1742b1585f82",
+        "User_Id": 90260003,
+        "Timestamp": "2023-10-02 19:28",
+        "Category": "Save&Invest",
+        "Amount": 461.47,
+        "Reason": "Cryptocurrency",
+        "Type": "Monthly",
+        "Label": "Other"
+    },
+    {
+        "Transaction_Id": "402c3392-45dc-459b-a5f0-39c0441b763b",
+        "User_Id": 90260003,
+        "Timestamp": "2023-10-02 19:28",
+        "Category": "Spending",
+        "Amount": 263.16,
+        "Reason": "Travel",
+        "Type": "Monthly",
+        "Label": "Housing & Utilities"
+    },
+    {
+        "Transaction_Id": "93bde08f-0a52-43fe-91cc-cdd14beecacf",
+        "User_Id": 90260003,
+        "Timestamp": "2023-10-04 19:28",
+        "Category": "Spending",
+        "Amount": 486.77,
+        "Reason": "Housing & Utilities",
+        "Type": "Monthly",
+        "Label": "Other"
+    },
+    {
+        "Transaction_Id": "b073c872-cc84-4171-8e0a-7427ece95aed",
+        "User_Id": 90260003,
+        "Timestamp": "2023-10-04 19:28",
+        "Category": "Spending",
+        "Amount": 621.16,
+        "Reason": "Maintenance",
+        "Type": "Daily",
+        "Label": "Education & Training"
+    },
+    {
+        "Transaction_Id": "9c2dc183-aeab-423a-8c7f-85f96ac3df28",
+        "User_Id": 90260003,
+        "Timestamp": "2023-10-05 19:28",
+        "Category": "Spending",
+        "Amount": 395.81,
+        "Reason": "Investment in Retirement Fund",
+        "Type": "Monthly",
+        "Label": "Transportation"
+    },
+    {
+        "Transaction_Id": "b87f7eb0-8553-4fad-ad5c-f7f977c7c8db",
+        "User_Id": 90260003,
+        "Timestamp": "2023-10-05 19:28",
+        "Category": "Spending",
+        "Amount": 727.66,
+        "Reason": "Education & Training",
+        "Type": "Monthly",
+        "Label": "Leisure & Recreation"
+    },
+    {
+        "Transaction_Id": "a582ac1d-2da0-412f-b912-47d92b32ec91",
+        "User_Id": 90260003,
+        "Timestamp": "2023-10-05 19:28",
+        "Category": "Save&Invest",
+        "Amount": 958.51,
+        "Reason": "Entertainment",
+        "Type": "Monthly",
+        "Label": "Real Estate"
+    },
+    {
+        "Transaction_Id": "7f2fa519-fbde-4fba-94b4-1a2f8b644167",
+        "User_Id": 90260003,
+        "Timestamp": "2023-10-06 19:28",
+        "Category": "Income",
+        "Amount": 92.1,
+        "Reason": "Education & Training",
+        "Type": "Daily",
+        "Label": "Employment Income"
+    },
+    {
+        "Transaction_Id": "f350b3a4-fffb-49ab-acd3-aa13cb7cf3e6",
+        "User_Id": 90260003,
+        "Timestamp": "2023-10-06 19:28",
+        "Category": "Income",
+        "Amount": 326.76,
+        "Reason": "Transportation",
+        "Type": "Monthly",
+        "Label": "Investment Income"
+    },
+    {
+        "Transaction_Id": "64f6bd20-e484-4f02-988a-1dbe4cbf140e",
+        "User_Id": 90260003,
+        "Timestamp": "2023-10-08 19:28",
+        "Category": "Save&Invest",
+        "Amount": 625.02,
+        "Reason": "Stock Market",
+        "Type": "Daily",
+        "Label": "Other"
+    },
+    {
+        "Transaction_Id": "cc7c3ccd-92ea-44aa-b33d-024994f84eb0",
+        "User_Id": 90260003,
+        "Timestamp": "2023-10-09 19:28",
+        "Category": "Spending",
+        "Amount": 863.03,
+        "Reason": "Rent",
+        "Type": "Monthly",
+        "Label": "Education & Training"
+    },
+    {
+        "Transaction_Id": "65ba6354-c296-488b-b86c-cc1199a65b42",
+        "User_Id": 90260003,
+        "Timestamp": "2023-10-10 19:28",
+        "Category": "Save&Invest",
+        "Amount": 503.89,
+        "Reason": "Contribution to Savings Account",
+        "Type": "Daily",
+        "Label": "Stocks"
+    },
+    {
+        "Transaction_Id": "18d14fea-84b4-4de5-9a4a-21b4937c95c6",
+        "User_Id": 90260003,
+        "Timestamp": "2023-10-10 19:28",
+        "Category": "Income",
+        "Amount": 383.24,
+        "Reason": "Car Payment",
+        "Type": "Daily",
+        "Label": "Employment Income"
+    },
+    {
+        "Transaction_Id": "7c53722e-ee11-4deb-9496-9a4b54dfc81d",
+        "User_Id": 90260003,
+        "Timestamp": "2023-10-11 19:28",
+        "Category": "Spending",
+        "Amount": 312.29,
+        "Reason": "Transportation",
+        "Type": "Daily",
+        "Label": "Education & Training"
+    },
+    {
+        "Transaction_Id": "bc6c3e8f-d0bc-46cc-8664-a93b83d05053",
+        "User_Id": 90260003,
+        "Timestamp": "2023-10-12 19:28",
+        "Category": "Save&Invest",
+        "Amount": 163.52,
+        "Reason": "Contribution to Savings Account",
+        "Type": "Daily",
+        "Label": "Other"
+    },
+    {
+        "Transaction_Id": "25f15397-1768-48d6-baad-18395975f481",
+        "User_Id": 90260003,
+        "Timestamp": "2023-10-12 19:28",
+        "Category": "Save&Invest",
+        "Amount": 303.23,
+        "Reason": "Groceries",
+        "Type": "Monthly",
+        "Label": "Cryptocurrency"
+    },
+    {
+        "Transaction_Id": "e7bd557b-df1f-4220-9630-1464b6b86aba",
+        "User_Id": 90260003,
+        "Timestamp": "2023-10-13 19:28",
+        "Category": "Save&Invest",
+        "Amount": 231.32,
+        "Reason": "Childcare",
+        "Type": "Daily",
+        "Label": "Real Estate"
+    },
+    {
+        "Transaction_Id": "010fd3f6-158c-47be-8855-4de064a1c687",
+        "User_Id": 90260003,
+        "Timestamp": "2023-10-13 19:28",
+        "Category": "Save&Invest",
+        "Amount": 652.42,
+        "Reason": "Pet Care",
+        "Type": "Monthly",
+        "Label": "Cryptocurrency"
+    },
+    {
+        "Transaction_Id": "18c9e061-0828-40ef-8ef0-f9b6515b0c28",
+        "User_Id": 90260003,
+        "Timestamp": "2023-10-13 19:28",
+        "Category": "Income",
+        "Amount": 447.78,
+        "Reason": "Subscriptions",
+        "Type": "Daily",
+        "Label": "Employment Income"
+    },
+    {
+        "Transaction_Id": "09ce6758-612b-45bb-90dd-a9f472ae059f",
+        "User_Id": 90260003,
+        "Timestamp": "2023-10-13 19:28",
+        "Category": "Save&Invest",
+        "Amount": 66.65,
+        "Reason": "Investment in Retirement Fund",
+        "Type": "Daily",
+        "Label": "Cryptocurrency"
+    },
+    {
+        "Transaction_Id": "0c3c3f2d-edd3-4b03-bd06-a4343f80e25a",
+        "User_Id": 90260003,
+        "Timestamp": "2023-10-15 19:28",
+        "Category": "Save&Invest",
+        "Amount": 670.12,
+        "Reason": "Investment in Retirement Fund",
+        "Type": "Daily",
+        "Label": "Stocks"
+    },
+    {
+        "Transaction_Id": "8fd6d87f-8f3e-4be9-bef2-b15b3d26efc7",
+        "User_Id": 90260003,
+        "Timestamp": "2023-10-15 19:28",
+        "Category": "Income",
+        "Amount": 216.34,
+        "Reason": "Crowdfunding",
+        "Type": "Monthly",
+        "Label": "Other"
+    },
+    {
+        "Transaction_Id": "92fd62ef-a316-4454-91ce-4a381e9543f5",
+        "User_Id": 90260003,
+        "Timestamp": "2023-10-16 19:28",
+        "Category": "Income",
+        "Amount": 474.88,
+        "Reason": "Investment in Retirement Fund",
+        "Type": "Monthly",
+        "Label": "Other"
+    },
+    {
+        "Transaction_Id": "2bc79f35-bbc3-4601-9dfb-7b712a27ac88",
+        "User_Id": 90260003,
+        "Timestamp": "2023-10-17 19:28",
+        "Category": "Income",
+        "Amount": 437.33,
+        "Reason": "Contribution to Savings Account",
+        "Type": "Daily",
+        "Label": "Investment Income"
+    },
+    {
+        "Transaction_Id": "43d59bcf-5a96-41e5-8f36-8f9ef7a8c995",
+        "User_Id": 90260003,
+        "Timestamp": "2023-10-18 19:28",
+        "Category": "Income",
+        "Amount": 627.08,
+        "Reason": "Subscriptions",
+        "Type": "Daily",
+        "Label": "Employment Income"
+    },
+    {
+        "Transaction_Id": "1611f42e-929e-498b-9da4-282c0e4baaef",
+        "User_Id": 90260003,
+        "Timestamp": "2023-10-18 19:28",
+        "Category": "Income",
+        "Amount": 412.64,
+        "Reason": "Crowdfunding",
+        "Type": "Daily",
+        "Label": "Government Benefits"
+    },
+    {
+        "Transaction_Id": "4dcc8ef4-1a5c-4ae2-9591-fcb67baac77b",
+        "User_Id": 90260003,
+        "Timestamp": "2023-10-19 19:28",
+        "Category": "Spending",
+        "Amount": 128.46,
+        "Reason": "Other",
+        "Type": "Daily",
+        "Label": "Transportation"
+    },
+    {
+        "Transaction_Id": "159dc0ce-c497-44bc-9c5b-bb1ece726265",
+        "User_Id": 90260003,
+        "Timestamp": "2023-10-20 19:28",
+        "Category": "Income",
+        "Amount": 628.46,
+        "Reason": "Childcare",
+        "Type": "Monthly",
+        "Label": "Employee Benefits"
+    },
+    {
+        "Transaction_Id": "52bd387d-71a3-47e8-8daa-6a1821b98047",
+        "User_Id": 90260003,
+        "Timestamp": "2023-10-20 19:28",
+        "Category": "Save&Invest",
+        "Amount": 508.27,
+        "Reason": "Charity",
+        "Type": "Monthly",
+        "Label": "Other"
+    },
+    {
+        "Transaction_Id": "df033f55-cb45-47c5-8017-f8ffc3af4c53",
+        "User_Id": 90260003,
+        "Timestamp": "2023-10-21 19:28",
+        "Category": "Save&Invest",
+        "Amount": 731.01,
+        "Reason": "Crowdfunding",
+        "Type": "Daily",
+        "Label": "Real Estate"
+    },
+    {
+        "Transaction_Id": "40cee587-8c96-4728-a6ec-43fcfa44da56",
+        "User_Id": 90260003,
+        "Timestamp": "2023-10-21 19:28",
+        "Category": "Save&Invest",
+        "Amount": 912.3,
+        "Reason": "Groceries & Dining",
+        "Type": "Daily",
+        "Label": "Real Estate"
+    },
+    {
+        "Transaction_Id": "54dda0cd-935f-448a-b118-08375fb8800f",
+        "User_Id": 90260003,
+        "Timestamp": "2023-10-22 19:28",
+        "Category": "Income",
+        "Amount": 984.18,
+        "Reason": "Contribution to Savings Account",
+        "Type": "Daily",
+        "Label": "Employment Income"
+    },
+    {
+        "Transaction_Id": "ea1373c7-2e35-47bb-b916-586a2b0919f8",
+        "User_Id": 90260003,
+        "Timestamp": "2023-10-22 19:28",
+        "Category": "Income",
+        "Amount": 665.41,
+        "Reason": "Education & Training",
+        "Type": "Daily",
+        "Label": "Other"
+    },
+    {
+        "Transaction_Id": "75c833ca-697b-4742-a6eb-25dfc8cb1e6c",
+        "User_Id": 90260003,
+        "Timestamp": "2023-10-23 19:28",
+        "Category": "Spending",
+        "Amount": 699.22,
+        "Reason": "Cryptocurrency",
+        "Type": "Daily",
+        "Label": "Medical & Health"
+    },
+    {
+        "Transaction_Id": "c74f7f61-ec6a-42e3-b978-cec949d4a270",
+        "User_Id": 90260003,
+        "Timestamp": "2023-10-24 19:28",
+        "Category": "Save&Invest",
+        "Amount": 653.31,
+        "Reason": "Medical & Health",
+        "Type": "Monthly",
+        "Label": "Stocks"
+    },
+    {
+        "Transaction_Id": "ba8e2ac2-8998-47c2-ad7d-f287502e6e3e",
+        "User_Id": 90260003,
+        "Timestamp": "2023-10-24 19:28",
+        "Category": "Save&Invest",
+        "Amount": 365.57,
+        "Reason": "Crowdfunding",
+        "Type": "Monthly",
+        "Label": "Real Estate"
+    },
+    {
+        "Transaction_Id": "996ab96b-32a1-461f-941d-be475275e173",
+        "User_Id": 90260003,
+        "Timestamp": "2023-10-25 19:28",
+        "Category": "Save&Invest",
+        "Amount": 773.07,
+        "Reason": "Groceries",
+        "Type": "Daily",
+        "Label": "Cryptocurrency"
+    },
+    {
+        "Transaction_Id": "93a73853-b473-4017-be3c-a4d1771ce8b8",
+        "User_Id": 90260003,
+        "Timestamp": "2023-10-25 19:28",
+        "Category": "Spending",
+        "Amount": 221.33,
+        "Reason": "Insurance",
+        "Type": "Monthly",
+        "Label": "Medical & Health"
+    },
+    {
+        "Transaction_Id": "21f8b1a7-47c0-4400-80db-6d78c0fefdc7",
+        "User_Id": 90260003,
+        "Timestamp": "2023-10-26 19:28",
+        "Category": "Spending",
+        "Amount": 134.95,
+        "Reason": "Dining Out",
+        "Type": "Monthly",
+        "Label": "Medical & Health"
+    },
+    {
+        "Transaction_Id": "287e2ff5-b7cb-4c77-ac35-e104ac325da1",
+        "User_Id": 90260003,
+        "Timestamp": "2023-10-27 19:28",
+        "Category": "Income",
+        "Amount": 840.64,
+        "Reason": "Investment in Retirement Fund",
+        "Type": "Monthly",
+        "Label": "Other"
+    },
+    {
+        "Transaction_Id": "6c2308cc-8071-4703-9eb4-c802769867a6",
+        "User_Id": 90260003,
+        "Timestamp": "2023-10-27 19:28",
+        "Category": "Spending",
+        "Amount": 334.2,
+        "Reason": "Maintenance",
+        "Type": "Daily",
+        "Label": "Transportation"
+    },
+    {
+        "Transaction_Id": "b3131f6b-f80d-4a2b-a652-124731553487",
+        "User_Id": 90260003,
+        "Timestamp": "2023-10-28 19:28",
+        "Category": "Save&Invest",
+        "Amount": 269.25,
+        "Reason": "Transportation",
+        "Type": "Monthly",
+        "Label": "Real Estate"
+    },
+    {
+        "Transaction_Id": "ce4b95a1-f544-4bc6-ace3-effd6d09a7b3",
+        "User_Id": 90260003,
+        "Timestamp": "2023-10-29 19:28",
+        "Category": "Spending",
+        "Amount": 169.64,
+        "Reason": "Housing & Utilities",
+        "Type": "Daily",
+        "Label": "Leisure & Recreation"
+    },
+    {
+        "Transaction_Id": "56cf20c2-f459-4ba2-ac0b-5cb58187456c",
+        "User_Id": 90260003,
+        "Timestamp": "2023-10-30 19:28",
+        "Category": "Spending",
+        "Amount": 890.11,
+        "Reason": "Housing & Utilities",
+        "Type": "Daily",
+        "Label": "Leisure & Recreation"
+    },
+    {
+        "Transaction_Id": "6bed6c0e-cb36-4164-8061-e90d4818e00a",
+        "User_Id": 90260003,
+        "Timestamp": "2023-10-31 19:28",
+        "Category": "Income",
+        "Amount": 84.11,
+        "Reason": "Crowdfunding",
+        "Type": "Daily",
+        "Label": "Investment Income"
+    },
+    {
+        "Transaction_Id": "05c3265f-6379-4d5b-910e-cbe972775a97",
+        "User_Id": 90260003,
+        "Timestamp": "2023-10-31 19:28",
+        "Category": "Income",
+        "Amount": 726.05,
+        "Reason": "Cryptocurrency",
+        "Type": "Daily",
+        "Label": "Investment Income"
+    },
+    {
+        "Transaction_Id": "f74528ed-1e96-4544-9900-a5cb2539dcba",
+        "User_Id": 90260003,
+        "Timestamp": "2023-12-01 19:28",
+        "Category": "Income",
+        "Amount": 217.72,
+        "Reason": "Charity",
+        "Type": "Monthly",
+        "Label": "Employee Benefits"
+    },
+    {
+        "Transaction_Id": "41318c8f-1998-4786-a400-eedfac94e405",
+        "User_Id": 90260003,
+        "Timestamp": "2023-12-02 19:28",
+        "Category": "Income",
+        "Amount": 720.53,
+        "Reason": "Travel",
+        "Type": "Monthly",
+        "Label": "Employee Benefits"
+    },
+    {
+        "Transaction_Id": "a4048132-da39-42b0-b2c1-f167ce9aaff0",
+        "User_Id": 90260003,
+        "Timestamp": "2023-12-02 19:28",
+        "Category": "Spending",
+        "Amount": 494.72,
+        "Reason": "Investment in Retirement Fund",
+        "Type": "Daily",
+        "Label": "Leisure & Recreation"
+    },
+    {
+        "Transaction_Id": "3687b9ba-951f-43cc-a68b-53e05570fbd5",
+        "User_Id": 90260003,
+        "Timestamp": "2023-12-03 19:28",
+        "Category": "Spending",
+        "Amount": 779.5,
+        "Reason": "Cryptocurrency",
+        "Type": "Monthly",
+        "Label": "Transportation"
+    },
+    {
+        "Transaction_Id": "e2581253-62df-446c-8d6c-206a6ed2cedc",
+        "User_Id": 90260003,
+        "Timestamp": "2023-12-04 19:28",
+        "Category": "Income",
+        "Amount": 943.56,
+        "Reason": "Stock Market",
+        "Type": "Monthly",
+        "Label": "Employee Benefits"
+    },
+    {
+        "Transaction_Id": "b7299991-87ef-4ac0-b048-bae64c61ea39",
+        "User_Id": 90260003,
+        "Timestamp": "2023-12-05 19:28",
+        "Category": "Save&Invest",
+        "Amount": 52.36,
+        "Reason": "Transportation",
+        "Type": "Daily",
+        "Label": "Real Estate"
+    },
+    {
+        "Transaction_Id": "76832bda-71fc-47d5-8067-d0bf96f5bbab",
+        "User_Id": 90260003,
+        "Timestamp": "2023-12-06 19:28",
+        "Category": "Save&Invest",
+        "Amount": 721.03,
+        "Reason": "Education",
+        "Type": "Daily",
+        "Label": "Cryptocurrency"
+    },
+    {
+        "Transaction_Id": "85a8c258-6313-4bf1-a7b4-c3f861d019d9",
+        "User_Id": 90260003,
+        "Timestamp": "2023-12-07 19:28",
+        "Category": "Income",
+        "Amount": 391.33,
+        "Reason": "Medical & Health",
+        "Type": "Daily",
+        "Label": "Employee Benefits"
+    },
+    {
+        "Transaction_Id": "7681d16b-f0b0-4cc5-b919-e47a550b0588",
+        "User_Id": 90260003,
+        "Timestamp": "2023-12-08 19:28",
+        "Category": "Income",
+        "Amount": 924.57,
+        "Reason": "Cryptocurrency",
+        "Type": "Daily",
+        "Label": "Government Benefits"
+    },
+    {
+        "Transaction_Id": "4a25e777-7550-4548-af54-01d5c88cc72a",
+        "User_Id": 90260003,
+        "Timestamp": "2023-12-08 19:28",
+        "Category": "Income",
+        "Amount": 397.62,
+        "Reason": "Crowdfunding",
+        "Type": "Monthly",
+        "Label": "Investment Income"
+    },
+    {
+        "Transaction_Id": "8bf9d74f-ae2d-40b5-ae25-5161ed917c17",
+        "User_Id": 90260003,
+        "Timestamp": "2023-12-09 19:28",
+        "Category": "Spending",
+        "Amount": 199.21,
+        "Reason": "Entertainment",
+        "Type": "Daily",
+        "Label": "Transportation"
+    },
+    {
+        "Transaction_Id": "b53fed19-6607-4e43-be62-ce6ec42bc8db",
+        "User_Id": 90260003,
+        "Timestamp": "2023-12-11 19:28",
+        "Category": "Income",
+        "Amount": 861.62,
+        "Reason": "Leisure & Recreation",
+        "Type": "Monthly",
+        "Label": "Government Benefits"
+    },
+    {
+        "Transaction_Id": "b7bc80de-cbbe-4746-8c57-6ccff453ee4f",
+        "User_Id": 90260003,
+        "Timestamp": "2023-12-11 19:28",
+        "Category": "Income",
+        "Amount": 387.51,
+        "Reason": "Healthcare",
+        "Type": "Monthly",
+        "Label": "Employment Income"
+    },
+    {
+        "Transaction_Id": "982aabcd-44ea-4a19-b56b-1f99d3cfbe02",
+        "User_Id": 90260003,
+        "Timestamp": "2023-12-12 19:28",
+        "Category": "Spending",
+        "Amount": 760.63,
+        "Reason": "Stock Market",
+        "Type": "Monthly",
+        "Label": "Housing & Utilities"
+    },
+    {
+        "Transaction_Id": "b70a8938-ebfb-4640-8c4e-5838b367506b",
+        "User_Id": 90260003,
+        "Timestamp": "2023-12-13 19:28",
+        "Category": "Spending",
+        "Amount": 93.78,
+        "Reason": "Utilities",
+        "Type": "Daily",
+        "Label": "Groceries & Dining"
+    },
+    {
+        "Transaction_Id": "100d68c5-e59d-4546-ac2e-1ac5a89f225c",
+        "User_Id": 90260003,
+        "Timestamp": "2023-12-14 19:28",
+        "Category": "Spending",
+        "Amount": 924.16,
+        "Reason": "Crowdfunding",
+        "Type": "Daily",
+        "Label": "Education & Training"
+    },
+    {
+        "Transaction_Id": "a9d5640e-332d-4208-b9e8-8b0852316187",
+        "User_Id": 90260003,
+        "Timestamp": "2023-12-14 19:28",
+        "Category": "Spending",
+        "Amount": 199.73,
+        "Reason": "Cryptocurrency",
+        "Type": "Daily",
+        "Label": "Leisure & Recreation"
+    },
+    {
+        "Transaction_Id": "6732e100-4835-4e75-9155-77caaaeb83e8",
+        "User_Id": 90260003,
+        "Timestamp": "2023-12-16 19:28",
+        "Category": "Income",
+        "Amount": 270.95,
+        "Reason": "Cryptocurrency",
+        "Type": "Daily",
+        "Label": "Employee Benefits"
+    },
+    {
+        "Transaction_Id": "848071f7-4a0b-4acc-b9f0-06a24b47e783",
+        "User_Id": 90260003,
+        "Timestamp": "2023-12-17 19:28",
+        "Category": "Save&Invest",
+        "Amount": 783.86,
+        "Reason": "Transportation",
+        "Type": "Daily",
+        "Label": "Savings Account"
+    },
+    {
+        "Transaction_Id": "580326f4-5c72-4a4f-8034-1011856505f0",
+        "User_Id": 90260003,
+        "Timestamp": "2023-12-18 19:28",
+        "Category": "Save&Invest",
+        "Amount": 11.99,
+        "Reason": "Education & Training",
+        "Type": "Monthly",
+        "Label": "Real Estate"
+    },
+    {
+        "Transaction_Id": "6c7c14a0-af1d-4e8d-b2b6-4387b3ba41e5",
+        "User_Id": 90260003,
+        "Timestamp": "2023-12-18 19:28",
+        "Category": "Save&Invest",
+        "Amount": 919.66,
+        "Reason": "Crowdfunding",
+        "Type": "Monthly",
+        "Label": "Cryptocurrency"
+    },
+    {
+        "Transaction_Id": "3db08c86-861d-4f98-b556-6e4dd93ce214",
+        "User_Id": 90260003,
+        "Timestamp": "2023-12-19 19:28",
+        "Category": "Save&Invest",
+        "Amount": 967.2,
+        "Reason": "Leisure & Recreation",
+        "Type": "Daily",
+        "Label": "Other"
+    },
+    {
+        "Transaction_Id": "97b23f3e-d3ea-4b00-9492-4ed246898351",
+        "User_Id": 90260003,
+        "Timestamp": "2023-12-19 19:28",
+        "Category": "Income",
+        "Amount": 690.0,
+        "Reason": "Subscriptions",
+        "Type": "Daily",
+        "Label": "Government Benefits"
+    },
+    {
+        "Transaction_Id": "e8fe8606-17a8-46b4-af93-356457595910",
+        "User_Id": 90260003,
+        "Timestamp": "2023-12-19 19:28",
+        "Category": "Spending",
+        "Amount": 286.6,
+        "Reason": "Home Improvement",
+        "Type": "Daily",
+        "Label": "Leisure & Recreation"
+    },
+    {
+        "Transaction_Id": "cf38abc5-1ed6-4284-96f9-edb8af23743c",
+        "User_Id": 90260003,
+        "Timestamp": "2023-12-22 19:28",
+        "Category": "Save&Invest",
+        "Amount": 504.42,
+        "Reason": "Investment in Retirement Fund",
+        "Type": "Monthly",
+        "Label": "Savings Account"
+    },
+    {
+        "Transaction_Id": "7584e63a-6eaa-4f82-815d-0cc0f8ccb57f",
+        "User_Id": 90260003,
+        "Timestamp": "2023-12-23 19:28",
+        "Category": "Save&Invest",
+        "Amount": 250.01,
+        "Reason": "Housing & Utilities",
+        "Type": "Daily",
+        "Label": "Stocks"
+    },
+    {
+        "Transaction_Id": "c19cba5d-de8b-4328-8703-68ca2d1b0bc1",
+        "User_Id": 90260003,
+        "Timestamp": "2023-12-23 19:28",
+        "Category": "Save&Invest",
+        "Amount": 907.32,
+        "Reason": "Charity",
+        "Type": "Daily",
+        "Label": "Real Estate"
+    },
+    {
+        "Transaction_Id": "39d6e80d-e825-47d9-8417-d0271edfbbfb",
+        "User_Id": 90260003,
+        "Timestamp": "2023-12-23 19:28",
+        "Category": "Save&Invest",
+        "Amount": 933.43,
+        "Reason": "Medical & Health",
+        "Type": "Daily",
+        "Label": "Stocks"
+    },
+    {
+        "Transaction_Id": "46cb669b-f13e-4d02-968f-77f0307c3fcd",
+        "User_Id": 90260003,
+        "Timestamp": "2023-12-24 19:28",
+        "Category": "Income",
+        "Amount": 359.85,
+        "Reason": "Dining Out",
+        "Type": "Monthly",
+        "Label": "Employment Income"
+    },
+    {
+        "Transaction_Id": "d296b2bb-a1c7-4a25-8d9a-cab56462ddc7",
+        "User_Id": 90260003,
+        "Timestamp": "2023-12-26 19:28",
+        "Category": "Save&Invest",
+        "Amount": 204.06,
+        "Reason": "Stock Market",
+        "Type": "Monthly",
+        "Label": "Other"
+    },
+    {
+        "Transaction_Id": "36a3cc7b-3241-43f0-9687-7df0013829c9",
+        "User_Id": 90260003,
+        "Timestamp": "2023-12-26 19:28",
+        "Category": "Save&Invest",
+        "Amount": 316.6,
+        "Reason": "Crowdfunding",
+        "Type": "Monthly",
+        "Label": "Real Estate"
+    },
+    {
+        "Transaction_Id": "ab483138-5131-483d-b597-0ddbdb387d38",
+        "User_Id": 90260003,
+        "Timestamp": "2023-12-27 19:28",
+        "Category": "Save&Invest",
+        "Amount": 451.83,
+        "Reason": "Childcare",
+        "Type": "Monthly",
+        "Label": "Other"
+    },
+    {
+        "Transaction_Id": "bd33e2d0-dedb-431a-855c-b339e46f67ec",
+        "User_Id": 90260003,
+        "Timestamp": "2023-12-27 19:28",
+        "Category": "Save&Invest",
+        "Amount": 718.39,
+        "Reason": "Other",
+        "Type": "Daily",
+        "Label": "Cryptocurrency"
+    },
+    {
+        "Transaction_Id": "43dfbf86-55de-488c-9a92-b25c98fcecdc",
+        "User_Id": 90260003,
+        "Timestamp": "2023-12-27 19:28",
+        "Category": "Save&Invest",
+        "Amount": 509.49,
+        "Reason": "Maintenance",
+        "Type": "Monthly",
+        "Label": "Other"
+    },
+    {
+        "Transaction_Id": "91abbe5d-92b5-44f1-b42d-da79d869ccf8",
+        "User_Id": 90260003,
+        "Timestamp": "2023-12-28 19:28",
+        "Category": "Save&Invest",
+        "Amount": 193.05,
+        "Reason": "Education & Training",
+        "Type": "Daily",
+        "Label": "Stocks"
+    },
+    {
+        "Transaction_Id": "b6592176-c43c-4ef3-81e3-fb5ea069add5",
+        "User_Id": 90260003,
+        "Timestamp": "2023-12-28 19:28",
+        "Category": "Income",
+        "Amount": 257.36,
+        "Reason": "Medical & Health",
+        "Type": "Monthly",
+        "Label": "Employment Income"
+    },
+    {
+        "Transaction_Id": "b174c403-95a3-4cf5-995e-e505699893da",
+        "User_Id": 90260003,
+        "Timestamp": "2023-12-28 19:28",
+        "Category": "Spending",
+        "Amount": 949.07,
+        "Reason": "Leisure & Recreation",
+        "Type": "Monthly",
+        "Label": "Transportation"
+    },
+    {
+        "Transaction_Id": "9162f3e0-aa9d-4b1c-a1e5-13aa5501f176",
+        "User_Id": 90260003,
+        "Timestamp": "2023-12-28 19:28",
+        "Category": "Income",
+        "Amount": 98.39,
+        "Reason": "Stock Market",
+        "Type": "Monthly",
+        "Label": "Investment Income"
+    },
+    {
+        "Transaction_Id": "b5b9266d-e1ed-474d-bd4b-038b91fe13c4",
+        "User_Id": 90260003,
+        "Timestamp": "2023-12-28 19:28",
+        "Category": "Save&Invest",
+        "Amount": 724.61,
+        "Reason": "Groceries & Dining",
+        "Type": "Monthly",
+        "Label": "Other"
+    },
+    {
+        "Transaction_Id": "f7f419a6-2fb7-4b81-a291-4050b8936a7a",
+        "User_Id": 90260003,
+        "Timestamp": "2023-12-30 19:28",
+        "Category": "Income",
+        "Amount": 352.57,
+        "Reason": "Travel",
+        "Type": "Daily",
+        "Label": "Government Benefits"
+    },
+    {
+        "Transaction_Id": "43db0dbc-9c0b-47bb-a4be-1ade32cf04da",
+        "User_Id": 90260003,
+        "Timestamp": "2024-02-01 19:28",
+        "Category": "Save&Invest",
+        "Amount": 24.27,
+        "Reason": "Dining Out",
+        "Type": "Daily",
+        "Label": "Real Estate"
+    },
+    {
+        "Transaction_Id": "546a6a7a-6d0a-43a2-a914-33ef4ba54a09",
+        "User_Id": 90260003,
+        "Timestamp": "2024-02-02 19:28",
+        "Category": "Spending",
+        "Amount": 693.8,
+        "Reason": "Other",
+        "Type": "Daily",
+        "Label": "Education & Training"
+    },
+    {
+        "Transaction_Id": "26d7b9dd-35ae-425e-bf3b-c5a39aae37ac",
+        "User_Id": 90260003,
+        "Timestamp": "2024-02-02 19:28",
+        "Category": "Spending",
+        "Amount": 150.07,
+        "Reason": "Groceries & Dining",
+        "Type": "Daily",
+        "Label": "Education & Training"
+    },
+    {
+        "Transaction_Id": "a67a15ae-0e57-4596-bfdd-d0d5d35e93f9",
+        "User_Id": 90260003,
+        "Timestamp": "2024-02-02 19:28",
+        "Category": "Spending",
+        "Amount": 872.5,
+        "Reason": "Housing & Utilities",
+        "Type": "Monthly",
+        "Label": "Education & Training"
+    },
+    {
+        "Transaction_Id": "91cf796f-3dc7-4921-bb1a-c1c0be3acb5e",
+        "User_Id": 90260003,
+        "Timestamp": "2024-02-03 19:28",
+        "Category": "Spending",
+        "Amount": 478.7,
+        "Reason": "Healthcare",
+        "Type": "Daily",
+        "Label": "Medical & Health"
+    },
+    {
+        "Transaction_Id": "0e9d69b4-f918-4bec-bb09-a149e9f1945e",
+        "User_Id": 90260003,
+        "Timestamp": "2024-02-04 19:28",
+        "Category": "Spending",
+        "Amount": 543.45,
+        "Reason": "Investment in Retirement Fund",
+        "Type": "Monthly",
+        "Label": "Transportation"
+    },
+    {
+        "Transaction_Id": "d99be2ef-0945-46ba-810a-3e38781bd7df",
+        "User_Id": 90260003,
+        "Timestamp": "2024-02-04 19:28",
+        "Category": "Income",
+        "Amount": 448.27,
+        "Reason": "Housing & Utilities",
+        "Type": "Daily",
+        "Label": "Investment Income"
+    },
+    {
+        "Transaction_Id": "a581cac5-dd5e-4d4d-84d3-f0d38f42d1fb",
+        "User_Id": 90260003,
+        "Timestamp": "2024-02-06 19:28",
+        "Category": "Spending",
+        "Amount": 902.43,
+        "Reason": "Leisure & Recreation",
+        "Type": "Monthly",
+        "Label": "Leisure & Recreation"
+    },
+    {
+        "Transaction_Id": "1aaa86db-2220-4d9e-879f-4c4304ca24e5",
+        "User_Id": 90260003,
+        "Timestamp": "2024-02-08 19:28",
+        "Category": "Spending",
+        "Amount": 423.55,
+        "Reason": "Cryptocurrency",
+        "Type": "Daily",
+        "Label": "Groceries & Dining"
+    },
+    {
+        "Transaction_Id": "1dc60230-82ef-4839-b582-a1b6da628430",
+        "User_Id": 90260003,
+        "Timestamp": "2024-02-08 19:28",
+        "Category": "Save&Invest",
+        "Amount": 25.94,
+        "Reason": "Insurance",
+        "Type": "Monthly",
+        "Label": "Other"
+    },
+    {
+        "Transaction_Id": "4dfbf277-84ff-4296-86d3-67f45eaca0c7",
+        "User_Id": 90260003,
+        "Timestamp": "2024-02-08 19:28",
+        "Category": "Income",
+        "Amount": 519.17,
+        "Reason": "Investment in Retirement Fund",
+        "Type": "Daily",
+        "Label": "Employee Benefits"
+    },
+    {
+        "Transaction_Id": "28956408-9012-4b75-981d-38a30d7660be",
+        "User_Id": 90260003,
+        "Timestamp": "2024-02-10 19:28",
+        "Category": "Income",
+        "Amount": 526.44,
+        "Reason": "Leisure & Recreation",
+        "Type": "Monthly",
+        "Label": "Employment Income"
+    },
+    {
+        "Transaction_Id": "257aa486-4df7-4f24-8806-515ca008df2c",
+        "User_Id": 90260003,
+        "Timestamp": "2024-02-10 19:28",
+        "Category": "Spending",
+        "Amount": 840.59,
+        "Reason": "Rent",
+        "Type": "Daily",
+        "Label": "Education & Training"
+    },
+    {
+        "Transaction_Id": "8c405abe-69e0-4a60-aa4b-1be90a67ef14",
+        "User_Id": 90260003,
+        "Timestamp": "2024-02-10 19:28",
+        "Category": "Spending",
+        "Amount": 95.24,
+        "Reason": "Gifts",
+        "Type": "Monthly",
+        "Label": "Transportation"
+    },
+    {
+        "Transaction_Id": "a752a33b-b142-47d9-ad6b-248395fd636f",
+        "User_Id": 90260003,
+        "Timestamp": "2024-02-11 19:28",
+        "Category": "Income",
+        "Amount": 913.51,
+        "Reason": "Cryptocurrency",
+        "Type": "Daily",
+        "Label": "Government Benefits"
+    },
+    {
+        "Transaction_Id": "be7afcb8-cc84-425c-8a22-6bb9a2fb4b60",
+        "User_Id": 90260003,
+        "Timestamp": "2024-02-12 19:28",
+        "Category": "Spending",
+        "Amount": 827.66,
+        "Reason": "Utilities",
+        "Type": "Daily",
+        "Label": "Transportation"
+    },
+    {
+        "Transaction_Id": "24857dfc-f77e-4f2c-ac13-df274e3ae9a5",
+        "User_Id": 90260003,
+        "Timestamp": "2024-02-12 19:28",
+        "Category": "Save&Invest",
+        "Amount": 636.84,
+        "Reason": "Other",
+        "Type": "Daily",
+        "Label": "Stocks"
+    },
+    {
+        "Transaction_Id": "6877db03-ebc5-4a56-b5e6-99b7a2f11b59",
+        "User_Id": 90260003,
+        "Timestamp": "2024-02-12 19:28",
+        "Category": "Save&Invest",
+        "Amount": 176.6,
+        "Reason": "Entertainment",
+        "Type": "Daily",
+        "Label": "Real Estate"
+    },
+    {
+        "Transaction_Id": "2b5c3556-8cf2-4a19-81c4-60d3741aaba6",
+        "User_Id": 90260003,
+        "Timestamp": "2024-02-13 19:28",
+        "Category": "Spending",
+        "Amount": 445.81,
+        "Reason": "Charity",
+        "Type": "Daily",
+        "Label": "Education & Training"
+    },
+    {
+        "Transaction_Id": "f354c438-c91f-44c5-b715-0ad1c1128185",
+        "User_Id": 90260003,
+        "Timestamp": "2024-02-15 19:28",
+        "Category": "Spending",
+        "Amount": 176.33,
+        "Reason": "Subscriptions",
+        "Type": "Monthly",
+        "Label": "Education & Training"
+    },
+    {
+        "Transaction_Id": "bd9c92b8-c12e-4dee-9d94-f6e382495398",
+        "User_Id": 90260003,
+        "Timestamp": "2024-02-17 19:28",
+        "Category": "Save&Invest",
+        "Amount": 755.06,
+        "Reason": "Education",
+        "Type": "Daily",
+        "Label": "Stocks"
+    },
+    {
+        "Transaction_Id": "584f97f2-9459-455d-b04b-3d4aa3e63d84",
+        "User_Id": 90260003,
+        "Timestamp": "2024-02-19 19:28",
+        "Category": "Spending",
+        "Amount": 271.1,
+        "Reason": "Travel",
+        "Type": "Daily",
+        "Label": "Other"
+    },
+    {
+        "Transaction_Id": "6f384d07-ca67-4031-addf-978a8e11de0f",
+        "User_Id": 90260003,
+        "Timestamp": "2024-02-20 19:28",
+        "Category": "Save&Invest",
+        "Amount": 446.07,
+        "Reason": "Groceries & Dining",
+        "Type": "Daily",
+        "Label": "Stocks"
+    },
+    {
+        "Transaction_Id": "b0630d40-679b-4327-a19d-0ef1051c6bd1",
+        "User_Id": 90260003,
+        "Timestamp": "2024-02-20 19:28",
+        "Category": "Save&Invest",
+        "Amount": 37.62,
+        "Reason": "Home Improvement",
+        "Type": "Monthly",
+        "Label": "Real Estate"
+    },
+    {
+        "Transaction_Id": "d8e565cb-9222-44bb-8403-e8cd7d3a95d9",
+        "User_Id": 90260003,
+        "Timestamp": "2024-02-21 19:28",
+        "Category": "Spending",
+        "Amount": 351.11,
+        "Reason": "Stock Market",
+        "Type": "Daily",
+        "Label": "Housing & Utilities"
+    },
+    {
+        "Transaction_Id": "317bfcd7-ac99-400e-bfe0-256a73b21f5d",
+        "User_Id": 90260003,
+        "Timestamp": "2024-02-22 19:28",
+        "Category": "Income",
+        "Amount": 797.74,
+        "Reason": "Education & Training",
+        "Type": "Daily",
+        "Label": "Other"
+    },
+    {
+        "Transaction_Id": "404101c5-6269-4438-b566-541bbb99ea7f",
+        "User_Id": 90260003,
+        "Timestamp": "2024-02-23 19:28",
+        "Category": "Spending",
+        "Amount": 854.74,
+        "Reason": "Pet Care",
+        "Type": "Daily",
+        "Label": "Education & Training"
+    },
+    {
+        "Transaction_Id": "1b962f9d-9f66-490c-8d8d-94be215a01c5",
+        "User_Id": 90260003,
+        "Timestamp": "2024-02-23 19:28",
+        "Category": "Save&Invest",
+        "Amount": 218.13,
+        "Reason": "Crowdfunding",
+        "Type": "Monthly",
+        "Label": "Other"
+    },
+    {
+        "Transaction_Id": "5819f5ab-7c95-455c-ac27-f413a8715c8a",
+        "User_Id": 90260003,
+        "Timestamp": "2024-02-23 19:28",
+        "Category": "Income",
+        "Amount": 169.02,
+        "Reason": "Education & Training",
+        "Type": "Daily",
+        "Label": "Investment Income"
+    },
+    {
+        "Transaction_Id": "f038afbe-5c74-4951-b061-be3203becbcc",
+        "User_Id": 90260003,
+        "Timestamp": "2024-02-25 19:28",
+        "Category": "Save&Invest",
+        "Amount": 354.35,
+        "Reason": "Healthcare",
+        "Type": "Monthly",
+        "Label": "Other"
+    },
+    {
+        "Transaction_Id": "0c387d85-fd00-4ce6-973d-9b56c861b44a",
+        "User_Id": 90260003,
+        "Timestamp": "2024-02-25 19:28",
+        "Category": "Spending",
+        "Amount": 465.79,
+        "Reason": "Investment in Retirement Fund",
+        "Type": "Monthly",
+        "Label": "Transportation"
+    },
+    {
+        "Transaction_Id": "a32304fb-1cc1-4b48-a9cb-1c7e46e0ee62",
+        "User_Id": 90260003,
+        "Timestamp": "2024-02-25 19:28",
+        "Category": "Save&Invest",
+        "Amount": 880.31,
+        "Reason": "Stock Market",
+        "Type": "Daily",
+        "Label": "Cryptocurrency"
+    },
+    {
+        "Transaction_Id": "eb0493b5-f05d-431a-aca1-c692d6f78cb9",
+        "User_Id": 90260003,
+        "Timestamp": "2024-02-26 19:28",
+        "Category": "Income",
+        "Amount": 355.07,
+        "Reason": "Car Payment",
+        "Type": "Daily",
+        "Label": "Government Benefits"
+    },
+    {
+        "Transaction_Id": "1203d74c-052b-46d6-8550-6f7fa41f3ae4",
+        "User_Id": 90260003,
+        "Timestamp": "2024-02-26 19:28",
+        "Category": "Save&Invest",
+        "Amount": 69.35,
+        "Reason": "Medical & Health",
+        "Type": "Monthly",
+        "Label": "Savings Account"
+    },
+    {
+        "Transaction_Id": "b8791848-1f9d-4b8d-8e31-bca4fd510f5a",
+        "User_Id": 90260003,
+        "Timestamp": "2024-02-26 19:28",
+        "Category": "Spending",
+        "Amount": 457.67,
+        "Reason": "Other",
+        "Type": "Daily",
+        "Label": "Other"
+    },
+    {
+        "Transaction_Id": "0e34c649-2fec-4862-bb96-ad05d29d5154",
+        "User_Id": 90260003,
+        "Timestamp": "2024-02-26 19:28",
+        "Category": "Save&Invest",
+        "Amount": 442.74,
+        "Reason": "Investment in Retirement Fund",
+        "Type": "Monthly",
+        "Label": "Cryptocurrency"
+    },
+    {
+        "Transaction_Id": "e27d0c4d-2144-47dc-ba0b-66ed9620ccb6",
+        "User_Id": 90260003,
+        "Timestamp": "2024-02-27 19:28",
+        "Category": "Save&Invest",
+        "Amount": 59.88,
+        "Reason": "Investment in Retirement Fund",
+        "Type": "Monthly",
+        "Label": "Real Estate"
+    },
+    {
+        "Transaction_Id": "0c5133b4-5114-49af-8938-621ce303ca15",
+        "User_Id": 90260003,
+        "Timestamp": "2024-02-27 19:28",
+        "Category": "Spending",
+        "Amount": 693.6,
+        "Reason": "Groceries & Dining",
+        "Type": "Monthly",
+        "Label": "Transportation"
+    },
+    {
+        "Transaction_Id": "61f6800b-b9ad-4220-b260-30b0b15f452d",
+        "User_Id": 90260003,
+        "Timestamp": "2024-02-28 19:28",
+        "Category": "Income",
+        "Amount": 100.4,
+        "Reason": "Charity",
+        "Type": "Monthly",
+        "Label": "Investment Income"
+    },
+    {
+        "Transaction_Id": "b8d45a1c-247f-4440-a1c7-2881aaa8a8e6",
+        "User_Id": 90260003,
+        "Timestamp": "2024-02-29 19:28",
+        "Category": "Save&Invest",
+        "Amount": 429.86,
+        "Reason": "Pet Care",
+        "Type": "Monthly",
+        "Label": "Other"
+    },
+    {
+        "Transaction_Id": "44ea7ad3-eff4-4bfd-8c6a-01dd9f44f421",
+        "User_Id": 90260003,
+        "Timestamp": "2024-02-29 19:28",
+        "Category": "Spending",
+        "Amount": 518.44,
+        "Reason": "Maintenance",
+        "Type": "Monthly",
+        "Label": "Other"
+    },
+    {
+        "Transaction_Id": "7eef3221-3629-4fcb-9028-fb50b82cc83b",
+        "User_Id": 90260003,
+        "Timestamp": "2024-03-01 19:28",
+        "Category": "Spending",
+        "Amount": 878.65,
+        "Reason": "Medical & Health",
+        "Type": "Daily",
+        "Label": "Other"
+    },
+    {
+        "Transaction_Id": "3d4070d3-28a2-49f3-b180-1368be8459ba",
+        "User_Id": 90260003,
+        "Timestamp": "2024-03-01 19:28",
+        "Category": "Spending",
+        "Amount": 486.8,
+        "Reason": "Maintenance",
+        "Type": "Daily",
+        "Label": "Leisure & Recreation"
+    },
+    {
+        "Transaction_Id": "e8e6e130-0aad-4f71-99d5-d582bcf68e40",
+        "User_Id": 90260003,
+        "Timestamp": "2024-03-01 19:28",
+        "Category": "Income",
+        "Amount": 472.33,
+        "Reason": "Pet Care",
+        "Type": "Daily",
+        "Label": "Government Benefits"
+    },
+    {
+        "Transaction_Id": "62d3908d-f5a1-4d74-9da7-d730e230f44c",
+        "User_Id": 90260003,
+        "Timestamp": "2024-03-01 19:28",
+        "Category": "Spending",
+        "Amount": 243.48,
+        "Reason": "Dining Out",
+        "Type": "Monthly",
+        "Label": "Medical & Health"
+    },
+    {
+        "Transaction_Id": "f487497e-ec00-4929-bfcd-1251f7ac3d4b",
+        "User_Id": 90260003,
+        "Timestamp": "2024-03-04 19:28",
+        "Category": "Save&Invest",
+        "Amount": 244.06,
+        "Reason": "Investment in Retirement Fund",
+        "Type": "Monthly",
+        "Label": "Cryptocurrency"
+    },
+    {
+        "Transaction_Id": "9c35b38b-4bdb-483a-84ab-55ec8bc4f532",
+        "User_Id": 90260003,
+        "Timestamp": "2024-03-04 19:28",
+        "Category": "Save&Invest",
+        "Amount": 298.05,
+        "Reason": "Other",
+        "Type": "Monthly",
+        "Label": "Savings Account"
+    },
+    {
+        "Transaction_Id": "4a5e76bb-39f7-4bba-9fde-63307be95f8c",
+        "User_Id": 90260003,
+        "Timestamp": "2024-03-06 19:28",
+        "Category": "Save&Invest",
+        "Amount": 844.45,
+        "Reason": "Gym Membership",
+        "Type": "Daily",
+        "Label": "Other"
+    },
+    {
+        "Transaction_Id": "b360f477-2479-4766-9a0d-890d55ff26b9",
+        "User_Id": 90260003,
+        "Timestamp": "2024-03-06 19:28",
+        "Category": "Save&Invest",
+        "Amount": 500.97,
+        "Reason": "Leisure & Recreation",
+        "Type": "Monthly",
+        "Label": "Real Estate"
+    },
+    {
+        "Transaction_Id": "68fc1019-ec3e-499e-b444-14606d4d3e52",
+        "User_Id": 90260003,
+        "Timestamp": "2024-03-07 19:28",
+        "Category": "Spending",
+        "Amount": 713.75,
+        "Reason": "Utilities",
+        "Type": "Monthly",
+        "Label": "Groceries & Dining"
+    },
+    {
+        "Transaction_Id": "1ecb3b9d-ba3e-48d4-b343-c92c8ba03f64",
+        "User_Id": 90260003,
+        "Timestamp": "2024-03-07 19:28",
+        "Category": "Save&Invest",
+        "Amount": 80.24,
+        "Reason": "Charity",
+        "Type": "Monthly",
+        "Label": "Other"
+    },
+    {
+        "Transaction_Id": "c56e36a1-a084-4031-9009-9e535489e0d9",
+        "User_Id": 90260003,
+        "Timestamp": "2024-03-08 19:28",
+        "Category": "Income",
+        "Amount": 387.55,
+        "Reason": "Rent",
+        "Type": "Daily",
+        "Label": "Government Benefits"
+    },
+    {
+        "Transaction_Id": "d67a4724-737e-4b36-a97d-3207788d128e",
+        "User_Id": 90260003,
+        "Timestamp": "2024-03-08 19:28",
+        "Category": "Save&Invest",
+        "Amount": 14.23,
+        "Reason": "Cryptocurrency",
+        "Type": "Daily",
+        "Label": "Cryptocurrency"
+    },
+    {
+        "Transaction_Id": "ab963664-473c-470a-9e6e-c1196fcbab2f",
+        "User_Id": 90260003,
+        "Timestamp": "2024-03-08 19:28",
+        "Category": "Income",
+        "Amount": 276.31,
+        "Reason": "Housing & Utilities",
+        "Type": "Monthly",
+        "Label": "Employee Benefits"
+    },
+    {
+        "Transaction_Id": "77ffb43e-581a-4f5f-a0df-97c8c856dbb4",
+        "User_Id": 90260003,
+        "Timestamp": "2024-03-10 19:28",
+        "Category": "Income",
+        "Amount": 479.13,
+        "Reason": "Groceries & Dining",
+        "Type": "Monthly",
+        "Label": "Other"
+    },
+    {
+        "Transaction_Id": "4b922171-5333-4b4e-8373-80c1772d71be",
+        "User_Id": 90260003,
+        "Timestamp": "2024-03-10 19:28",
+        "Category": "Save&Invest",
+        "Amount": 533.07,
+        "Reason": "Education & Training",
+        "Type": "Daily",
+        "Label": "Stocks"
+    },
+    {
+        "Transaction_Id": "56ae3b61-22ef-4197-aa0f-97f5424a66a0",
+        "User_Id": 90260003,
+        "Timestamp": "2024-03-13 19:28",
+        "Category": "Income",
+        "Amount": 791.09,
+        "Reason": "Crowdfunding",
+        "Type": "Monthly",
+        "Label": "Employment Income"
+    },
+    {
+        "Transaction_Id": "288ac262-e26d-47e4-baae-9dbb7e24f8a7",
+        "User_Id": 90260003,
+        "Timestamp": "2024-03-14 19:28",
+        "Category": "Income",
+        "Amount": 731.8,
+        "Reason": "Groceries & Dining",
+        "Type": "Daily",
+        "Label": "Employment Income"
+    },
+    {
+        "Transaction_Id": "050933bc-9c1b-4d4c-95f2-c154e3b67db5",
+        "User_Id": 90260003,
+        "Timestamp": "2024-03-14 19:28",
+        "Category": "Income",
+        "Amount": 199.6,
+        "Reason": "Groceries & Dining",
+        "Type": "Daily",
+        "Label": "Government Benefits"
+    },
+    {
+        "Transaction_Id": "2d99bbc5-2bde-4bbf-b4ad-93343b4fac56",
+        "User_Id": 90260003,
+        "Timestamp": "2024-03-15 19:28",
+        "Category": "Save&Invest",
+        "Amount": 757.44,
+        "Reason": "Leisure & Recreation",
+        "Type": "Monthly",
+        "Label": "Real Estate"
+    },
+    {
+        "Transaction_Id": "12b31c5c-9f60-4f27-ad2a-dc91e841b7df",
+        "User_Id": 90260003,
+        "Timestamp": "2024-03-19 19:28",
+        "Category": "Spending",
+        "Amount": 482.23,
+        "Reason": "Transportation",
+        "Type": "Monthly",
+        "Label": "Medical & Health"
+    },
+    {
+        "Transaction_Id": "c7bc5671-526d-46fa-9c7a-2dbde26af0b2",
+        "User_Id": 90260003,
+        "Timestamp": "2024-03-19 19:28",
+        "Category": "Spending",
+        "Amount": 231.34,
+        "Reason": "Utilities",
+        "Type": "Daily",
+        "Label": "Transportation"
+    },
+    {
+        "Transaction_Id": "d47ca3d1-6bfc-49bf-953c-688d4cf3df8e",
+        "User_Id": 90260003,
+        "Timestamp": "2024-03-20 19:28",
+        "Category": "Income",
+        "Amount": 824.74,
+        "Reason": "Transportation",
+        "Type": "Monthly",
+        "Label": "Other"
+    },
+    {
+        "Transaction_Id": "12ada2c1-24dd-4a00-bb6e-207c8f96a7e4",
+        "User_Id": 90260003,
+        "Timestamp": "2024-03-20 19:28",
+        "Category": "Save&Invest",
+        "Amount": 961.22,
+        "Reason": "Other",
+        "Type": "Monthly",
+        "Label": "Cryptocurrency"
+    },
+    {
+        "Transaction_Id": "05da205c-0051-43ad-80c3-de030966c77b",
+        "User_Id": 90260003,
+        "Timestamp": "2024-03-20 19:28",
+        "Category": "Income",
+        "Amount": 647.78,
+        "Reason": "Crowdfunding",
+        "Type": "Daily",
+        "Label": "Investment Income"
+    },
+    {
+        "Transaction_Id": "b5030b73-f8cf-4372-8208-e81f337d45c3",
+        "User_Id": 90260003,
+        "Timestamp": "2024-03-20 19:28",
+        "Category": "Save&Invest",
+        "Amount": 47.98,
+        "Reason": "Crowdfunding",
+        "Type": "Daily",
+        "Label": "Stocks"
+    },
+    {
+        "Transaction_Id": "1d4b6f43-6f2b-43e3-8828-f3e3ef87d0e5",
+        "User_Id": 90260003,
+        "Timestamp": "2024-03-21 19:28",
+        "Category": "Save&Invest",
+        "Amount": 34.13,
+        "Reason": "Childcare",
+        "Type": "Daily",
+        "Label": "Stocks"
+    },
+    {
+        "Transaction_Id": "64b8217c-1cae-4273-b7bb-8f6051dd6547",
+        "User_Id": 90260003,
+        "Timestamp": "2024-03-22 19:28",
+        "Category": "Spending",
+        "Amount": 558.62,
+        "Reason": "Transportation",
+        "Type": "Monthly",
+        "Label": "Medical & Health"
+    },
+    {
+        "Transaction_Id": "50c0ab07-b218-4d6e-8437-a1d45590a603",
+        "User_Id": 90260003,
+        "Timestamp": "2024-03-23 19:28",
+        "Category": "Spending",
+        "Amount": 140.93,
+        "Reason": "Contribution to Savings Account",
+        "Type": "Monthly",
+        "Label": "Groceries & Dining"
+    },
+    {
+        "Transaction_Id": "057219fe-c4f1-44f4-b401-a71f052df2b9",
+        "User_Id": 90260003,
+        "Timestamp": "2024-03-23 19:28",
+        "Category": "Income",
+        "Amount": 360.94,
+        "Reason": "Cryptocurrency",
+        "Type": "Monthly",
+        "Label": "Other"
+    },
+    {
+        "Transaction_Id": "fb6a9569-dd3c-4167-9533-ebde97c04ec4",
+        "User_Id": 90260003,
+        "Timestamp": "2024-03-24 19:28",
+        "Category": "Income",
+        "Amount": 315.35,
+        "Reason": "Stock Market",
+        "Type": "Daily",
+        "Label": "Employment Income"
+    },
+    {
+        "Transaction_Id": "d49e276b-3bcb-467e-94ed-d5ee47254f37",
+        "User_Id": 90260003,
+        "Timestamp": "2024-03-25 19:28",
+        "Category": "Save&Invest",
+        "Amount": 985.49,
+        "Reason": "Clothing",
+        "Type": "Monthly",
+        "Label": "Cryptocurrency"
+    },
+    {
+        "Transaction_Id": "7a81398c-73e5-4b55-952b-ac97932d285e",
+        "User_Id": 90260003,
+        "Timestamp": "2024-03-25 19:28",
+        "Category": "Save&Invest",
+        "Amount": 660.07,
+        "Reason": "Groceries & Dining",
+        "Type": "Monthly",
+        "Label": "Cryptocurrency"
+    },
+    {
+        "Transaction_Id": "e8f9480e-406e-4a42-81a1-4ae0c34bf84e",
+        "User_Id": 90260003,
+        "Timestamp": "2024-03-27 19:28",
+        "Category": "Spending",
+        "Amount": 919.1,
+        "Reason": "Home Improvement",
+        "Type": "Daily",
+        "Label": "Other"
+    },
+    {
+        "Transaction_Id": "b68e7a40-5e6a-4824-9ec6-57750f1f3ccc",
+        "User_Id": 90260003,
+        "Timestamp": "2024-03-28 19:28",
+        "Category": "Income",
+        "Amount": 473.57,
+        "Reason": "Education",
+        "Type": "Monthly",
+        "Label": "Investment Income"
+    },
+    {
+        "Transaction_Id": "0e3109ea-6780-49b7-ac80-58a8ce056664",
+        "User_Id": 90260003,
+        "Timestamp": "2024-03-29 19:28",
+        "Category": "Save&Invest",
+        "Amount": 877.9,
+        "Reason": "Travel",
+        "Type": "Daily",
+        "Label": "Savings Account"
+    },
+    {
+        "Transaction_Id": "1bcb04aa-bb56-4700-8aa7-f63ecefa583c",
+        "User_Id": 90260003,
+        "Timestamp": "2024-03-29 19:28",
+        "Category": "Spending",
+        "Amount": 187.93,
+        "Reason": "Groceries & Dining",
+        "Type": "Monthly",
+        "Label": "Medical & Health"
+    },
+    {
+        "Transaction_Id": "70401960-b34f-4130-a5cf-f2fc2d439afa",
+        "User_Id": 90260003,
+        "Timestamp": "2024-03-30 19:28",
+        "Category": "Save&Invest",
+        "Amount": 113.95,
+        "Reason": "Medical & Health",
+        "Type": "Monthly",
+        "Label": "Cryptocurrency"
+    },
+    {
+        "Transaction_Id": "ea258cec-dc0f-4ab5-9ee3-e9809e65c67e",
+        "User_Id": 90260003,
+        "Timestamp": "2024-03-30 19:28",
+        "Category": "Save&Invest",
+        "Amount": 801.52,
+        "Reason": "Groceries & Dining",
+        "Type": "Monthly",
+        "Label": "Cryptocurrency"
+    },
+    {
+        "Transaction_Id": "9dc9f786-c65e-4b19-a54e-692d2f33147c",
+        "User_Id": 90260003,
+        "Timestamp": "2024-03-31 19:28",
+        "Category": "Save&Invest",
+        "Amount": 300.56,
+        "Reason": "Cryptocurrency",
+        "Type": "Monthly",
+        "Label": "Other"
+    },
+    {
+        "Transaction_Id": "5db91569-3b03-4239-934e-c417cba1fd85",
+        "User_Id": 90260003,
+        "Timestamp": "2024-03-31 19:28",
+        "Category": "Save&Invest",
+        "Amount": 473.93,
+        "Reason": "Clothing",
+        "Type": "Daily",
+        "Label": "Stocks"
+    },
+    {
+        "Transaction_Id": "32c6ab13-af9b-447d-beb9-4344cdb0db97",
+        "User_Id": 90260003,
+        "Timestamp": "2024-04-02 19:28",
+        "Category": "Income",
+        "Amount": 211.49,
+        "Reason": "Stock Market",
+        "Type": "Monthly",
+        "Label": "Employment Income"
+    },
+    {
+        "Transaction_Id": "403128ac-cec8-42c8-8954-8bb95a981449",
+        "User_Id": 90260003,
+        "Timestamp": "2024-04-03 19:28",
+        "Category": "Income",
+        "Amount": 44.24,
+        "Reason": "Transportation",
+        "Type": "Daily",
+        "Label": "Government Benefits"
+    },
+    {
+        "Transaction_Id": "d6e50ce2-7e6d-4f52-987b-78bb16edee01",
+        "User_Id": 90260003,
+        "Timestamp": "2024-04-06 19:28",
+        "Category": "Save&Invest",
+        "Amount": 755.3,
+        "Reason": "Education & Training",
+        "Type": "Daily",
+        "Label": "Cryptocurrency"
+    },
+    {
+        "Transaction_Id": "1c070f34-dab1-4460-ad66-0f3b3219163f",
+        "User_Id": 90260003,
+        "Timestamp": "2024-04-06 19:28",
+        "Category": "Spending",
+        "Amount": 538.29,
+        "Reason": "Crowdfunding",
+        "Type": "Monthly",
+        "Label": "Medical & Health"
+    },
+    {
+        "Transaction_Id": "b60af3fe-5253-45ab-800a-c8b684b919b8",
+        "User_Id": 90260003,
+        "Timestamp": "2024-04-06 19:28",
+        "Category": "Income",
+        "Amount": 99.73,
+        "Reason": "Transportation",
+        "Type": "Monthly",
+        "Label": "Other"
+    },
+    {
+        "Transaction_Id": "d46941e5-1857-4a16-8499-f9ec0ebd4b47",
+        "User_Id": 90260003,
+        "Timestamp": "2024-04-06 19:28",
+        "Category": "Spending",
+        "Amount": 776.18,
+        "Reason": "Travel",
+        "Type": "Monthly",
+        "Label": "Education & Training"
+    },
+    {
+        "Transaction_Id": "a6bd632e-10fc-4408-a331-39aaae310da5",
+        "User_Id": 90260003,
+        "Timestamp": "2024-04-07 19:28",
+        "Category": "Save&Invest",
+        "Amount": 689.91,
+        "Reason": "Gym Membership",
+        "Type": "Monthly",
+        "Label": "Stocks"
+    },
+    {
+        "Transaction_Id": "fd19e673-06be-43e3-a6cf-2772bd068c1b",
+        "User_Id": 90260003,
+        "Timestamp": "2024-04-07 19:28",
+        "Category": "Save&Invest",
+        "Amount": 407.74,
+        "Reason": "Groceries",
+        "Type": "Monthly",
+        "Label": "Other"
+    },
+    {
+        "Transaction_Id": "3c1d5938-bab3-493a-836d-ef8f3b1925d2",
+        "User_Id": 90260003,
+        "Timestamp": "2024-04-08 19:28",
+        "Category": "Save&Invest",
+        "Amount": 320.09,
+        "Reason": "Insurance",
+        "Type": "Monthly",
+        "Label": "Savings Account"
+    },
+    {
+        "Transaction_Id": "4ec04295-3e78-4ff8-a946-73bc0931494e",
+        "User_Id": 90260003,
+        "Timestamp": "2024-04-08 19:28",
+        "Category": "Spending",
+        "Amount": 846.25,
+        "Reason": "Stock Market",
+        "Type": "Daily",
+        "Label": "Other"
+    },
+    {
+        "Transaction_Id": "7a751e4b-d5cd-4b88-a3c2-8d811547f56b",
+        "User_Id": 90260003,
+        "Timestamp": "2024-04-09 19:28",
+        "Category": "Income",
+        "Amount": 123.1,
+        "Reason": "Medical & Health",
+        "Type": "Monthly",
+        "Label": "Other"
+    },
+    {
+        "Transaction_Id": "61e6dc4d-c58c-4b7d-93dc-bbc99b9f4975",
+        "User_Id": 90260003,
+        "Timestamp": "2024-04-10 19:28",
+        "Category": "Spending",
+        "Amount": 250.63,
+        "Reason": "Education & Training",
+        "Type": "Monthly",
+        "Label": "Other"
+    },
+    {
+        "Transaction_Id": "05e65576-f68e-43af-ba83-ec5394fc9946",
+        "User_Id": 90260003,
+        "Timestamp": "2024-04-10 19:28",
+        "Category": "Income",
+        "Amount": 655.44,
+        "Reason": "Education & Training",
+        "Type": "Daily",
+        "Label": "Investment Income"
+    },
+    {
+        "Transaction_Id": "50c8f2ed-10bd-43b0-96d9-9bf60ebd90d5",
+        "User_Id": 90260003,
+        "Timestamp": "2024-04-10 19:28",
+        "Category": "Spending",
+        "Amount": 209.52,
+        "Reason": "Contribution to Savings Account",
+        "Type": "Monthly",
+        "Label": "Groceries & Dining"
+    },
+    {
+        "Transaction_Id": "fb77175f-4d37-4c14-a1a0-aa05278bb370",
+        "User_Id": 90260003,
+        "Timestamp": "2024-04-11 19:28",
+        "Category": "Spending",
+        "Amount": 269.33,
+        "Reason": "Medical & Health",
+        "Type": "Monthly",
+        "Label": "Leisure & Recreation"
+    },
+    {
+        "Transaction_Id": "ddee6163-efe6-4cdd-857e-0e0c07b6fee3",
+        "User_Id": 90260003,
+        "Timestamp": "2024-04-12 19:28",
+        "Category": "Income",
+        "Amount": 977.63,
+        "Reason": "Crowdfunding",
+        "Type": "Monthly",
+        "Label": "Investment Income"
+    },
+    {
+        "Transaction_Id": "67da834e-beb5-428d-ba4a-a4616422e59c",
+        "User_Id": 90260003,
+        "Timestamp": "2024-04-12 19:28",
+        "Category": "Income",
+        "Amount": 227.7,
+        "Reason": "Education",
+        "Type": "Monthly",
+        "Label": "Employee Benefits"
+    },
+    {
+        "Transaction_Id": "361f5fcc-e4bc-47d5-8ada-62ec5008b1aa",
+        "User_Id": 90260003,
+        "Timestamp": "2024-04-12 19:28",
+        "Category": "Save&Invest",
+        "Amount": 234.3,
+        "Reason": "Education & Training",
+        "Type": "Monthly",
+        "Label": "Cryptocurrency"
+    },
+    {
+        "Transaction_Id": "14cf34d4-e461-4687-8cc3-c4164793a8e3",
+        "User_Id": 90260003,
+        "Timestamp": "2024-04-14 19:28",
+        "Category": "Save&Invest",
+        "Amount": 729.74,
+        "Reason": "Education & Training",
+        "Type": "Daily",
+        "Label": "Stocks"
+    },
+    {
+        "Transaction_Id": "fb218631-0ae0-4761-9b98-af610455430c",
+        "User_Id": 90260003,
+        "Timestamp": "2024-04-14 19:28",
+        "Category": "Income",
+        "Amount": 670.45,
+        "Reason": "Subscriptions",
+        "Type": "Monthly",
+        "Label": "Other"
+    },
+    {
+        "Transaction_Id": "799db0fd-1db7-47a6-91f7-adbd2b248f15",
+        "User_Id": 90260003,
+        "Timestamp": "2024-04-15 19:28",
+        "Category": "Spending",
+        "Amount": 729.21,
+        "Reason": "Cryptocurrency",
+        "Type": "Monthly",
+        "Label": "Medical & Health"
+    },
+    {
+        "Transaction_Id": "22445e4e-601d-4085-8fbc-266278536c71",
+        "User_Id": 90260003,
+        "Timestamp": "2024-04-15 19:28",
+        "Category": "Save&Invest",
+        "Amount": 263.8,
+        "Reason": "Clothing",
+        "Type": "Monthly",
+        "Label": "Savings Account"
+    },
+    {
+        "Transaction_Id": "78c610bb-1384-4b3d-86a0-2235437080c4",
+        "User_Id": 90260003,
+        "Timestamp": "2024-04-15 19:28",
+        "Category": "Income",
+        "Amount": 741.35,
+        "Reason": "Other",
+        "Type": "Monthly",
+        "Label": "Government Benefits"
+    },
+    {
+        "Transaction_Id": "6b450c9b-001f-44e3-8a67-691f423fc190",
+        "User_Id": 90260003,
+        "Timestamp": "2024-04-15 19:28",
+        "Category": "Spending",
+        "Amount": 349.84,
+        "Reason": "Education & Training",
+        "Type": "Daily",
+        "Label": "Transportation"
+    },
+    {
+        "Transaction_Id": "85b4f118-1e85-4915-9970-7bd6eb34459c",
+        "User_Id": 90260003,
+        "Timestamp": "2024-04-17 19:28",
+        "Category": "Save&Invest",
+        "Amount": 537.21,
+        "Reason": "Housing & Utilities",
+        "Type": "Monthly",
+        "Label": "Stocks"
+    },
+    {
+        "Transaction_Id": "3189ec55-8e79-4bb8-8c09-d650571a7205",
+        "User_Id": 90260003,
+        "Timestamp": "2024-04-18 19:28",
+        "Category": "Save&Invest",
+        "Amount": 292.6,
+        "Reason": "Entertainment",
+        "Type": "Monthly",
+        "Label": "Stocks"
+    },
+    {
+        "Transaction_Id": "568e9f64-faf7-4a9e-96f5-1741ff230ea2",
+        "User_Id": 90260003,
+        "Timestamp": "2024-04-18 19:28",
+        "Category": "Income",
+        "Amount": 167.77,
+        "Reason": "Investment in Retirement Fund",
+        "Type": "Monthly",
+        "Label": "Investment Income"
+    },
+    {
+        "Transaction_Id": "d6596235-f655-4aa3-9a0c-d6d678f42d09",
+        "User_Id": 90260003,
+        "Timestamp": "2024-04-18 19:28",
+        "Category": "Spending",
+        "Amount": 874.72,
+        "Reason": "Groceries & Dining",
+        "Type": "Daily",
+        "Label": "Education & Training"
+    },
+    {
+        "Transaction_Id": "a0c8b1a0-5113-40a4-8eaf-a612d5e93ed6",
+        "User_Id": 90260003,
+        "Timestamp": "2024-04-20 19:28",
+        "Category": "Spending",
+        "Amount": 436.8,
+        "Reason": "Contribution to Savings Account",
+        "Type": "Daily",
+        "Label": "Medical & Health"
+    },
+    {
+        "Transaction_Id": "7028e405-8e5b-4b1f-b767-593e9bdb1b21",
+        "User_Id": 90260003,
+        "Timestamp": "2024-04-21 19:28",
+        "Category": "Income",
+        "Amount": 195.75,
+        "Reason": "Stock Market",
+        "Type": "Daily",
+        "Label": "Employment Income"
+    },
+    {
+        "Transaction_Id": "741fdde6-73a3-4632-916e-da798c1724d8",
+        "User_Id": 90260003,
+        "Timestamp": "2024-04-21 19:28",
+        "Category": "Save&Invest",
+        "Amount": 408.15,
+        "Reason": "Crowdfunding",
+        "Type": "Monthly",
+        "Label": "Real Estate"
+    },
+    {
+        "Transaction_Id": "48946f82-1d40-48e6-99eb-66cd85868e20",
+        "User_Id": 90260003,
+        "Timestamp": "2024-04-26 19:28",
+        "Category": "Spending",
+        "Amount": 418.71,
+        "Reason": "Cryptocurrency",
+        "Type": "Monthly",
+        "Label": "Medical & Health"
+    },
+    {
+        "Transaction_Id": "64a365b7-b9cd-4833-9630-0c2c016d9119",
+        "User_Id": 90260003,
+        "Timestamp": "2024-04-27 19:28",
+        "Category": "Spending",
+        "Amount": 39.9,
+        "Reason": "Stock Market",
+        "Type": "Daily",
+        "Label": "Medical & Health"
+    },
+    {
+        "Transaction_Id": "43d3d4c7-f35f-4fee-96e4-a765391e08e1",
+        "User_Id": 90260003,
+        "Timestamp": "2024-04-28 19:28",
+        "Category": "Save&Invest",
+        "Amount": 611.98,
+        "Reason": "Gym Membership",
+        "Type": "Monthly",
+        "Label": "Other"
+    },
+    {
+        "Transaction_Id": "593532c8-9065-48d0-92b2-5690a24bdda0",
+        "User_Id": 90260003,
+        "Timestamp": "2024-04-28 19:28",
+        "Category": "Save&Invest",
+        "Amount": 747.23,
+        "Reason": "Groceries & Dining",
+        "Type": "Daily",
+        "Label": "Other"
+    },
+    {
+        "Transaction_Id": "f82c4aa4-3edd-4846-ae2e-24d2d036da7c",
+        "User_Id": 90260003,
+        "Timestamp": "2024-04-29 19:28",
+        "Category": "Spending",
+        "Amount": 562.75,
+        "Reason": "Utilities",
+        "Type": "Daily",
+        "Label": "Other"
+    },
+    {
+        "Transaction_Id": "4150e1bb-4896-461c-9e8c-bbe4ad4ed408",
+        "User_Id": 90260003,
+        "Timestamp": "2024-04-30 19:28",
+        "Category": "Spending",
+        "Amount": 263.49,
+        "Reason": "Cryptocurrency",
+        "Type": "Monthly",
+        "Label": "Housing & Utilities"
+    },
+    {
+        "Transaction_Id": "f6ce73dc-cc47-42e7-8eb3-ac17e45fdf93",
+        "User_Id": 90260003,
+        "Timestamp": "2024-05-03 19:28",
+        "Category": "Income",
+        "Amount": 422.43,
+        "Reason": "Education & Training",
+        "Type": "Monthly",
+        "Label": "Other"
+    },
+    {
+        "Transaction_Id": "cb90fc2c-47ce-485a-ac60-f7a460d7f443",
+        "User_Id": 90260003,
+        "Timestamp": "2024-05-03 19:28",
+        "Category": "Income",
+        "Amount": 10.99,
+        "Reason": "Housing & Utilities",
+        "Type": "Daily",
+        "Label": "Government Benefits"
+    },
+    {
+        "Transaction_Id": "e24a8113-bcf3-4185-94e4-5a5e9ff7721f",
+        "User_Id": 90260003,
+        "Timestamp": "2024-05-07 19:28",
+        "Category": "Income",
+        "Amount": 363.92,
+        "Reason": "Housing & Utilities",
+        "Type": "Daily",
+        "Label": "Employment Income"
+    },
+    {
+        "Transaction_Id": "3bfa665c-709c-4a8f-8aa1-58d335c4dbb9",
+        "User_Id": 90260003,
+        "Timestamp": "2024-05-08 19:28",
+        "Category": "Spending",
+        "Amount": 540.36,
+        "Reason": "Other",
+        "Type": "Monthly",
+        "Label": "Groceries & Dining"
+    },
+    {
+        "Transaction_Id": "242ca56b-26f6-4700-a919-29010495c751",
+        "User_Id": 90260003,
+        "Timestamp": "2024-05-08 19:28",
+        "Category": "Save&Invest",
+        "Amount": 201.73,
+        "Reason": "Rent",
+        "Type": "Monthly",
+        "Label": "Cryptocurrency"
+    },
+    {
+        "Transaction_Id": "04a9caae-e788-447c-9ec1-aba4b064658e",
+        "User_Id": 90260003,
+        "Timestamp": "2024-05-08 19:28",
+        "Category": "Income",
+        "Amount": 332.67,
+        "Reason": "Investment in Retirement Fund",
+        "Type": "Daily",
+        "Label": "Government Benefits"
+    },
+    {
+        "Transaction_Id": "7932a789-7722-416d-bbfc-81bf163bf4fe",
+        "User_Id": 90260003,
+        "Timestamp": "2024-05-08 19:28",
+        "Category": "Save&Invest",
+        "Amount": 975.28,
+        "Reason": "Cryptocurrency",
+        "Type": "Monthly",
+        "Label": "Stocks"
+    },
+    {
+        "Transaction_Id": "a3362c6b-3fa7-4522-aa50-8d6fde78bd68",
+        "User_Id": 90260003,
+        "Timestamp": "2024-05-08 19:28",
+        "Category": "Save&Invest",
+        "Amount": 160.67,
+        "Reason": "Investment in Retirement Fund",
+        "Type": "Daily",
+        "Label": "Real Estate"
+    },
+    {
+        "Transaction_Id": "32efb2c6-7194-42c3-890f-1dd756505996",
+        "User_Id": 90260003,
+        "Timestamp": "2024-05-10 19:28",
+        "Category": "Save&Invest",
+        "Amount": 211.0,
+        "Reason": "Dining Out",
+        "Type": "Monthly",
+        "Label": "Real Estate"
+    },
+    {
+        "Transaction_Id": "dd9f77ac-10a4-445c-b76a-d664d2fbd66c",
+        "User_Id": 90260003,
+        "Timestamp": "2024-05-11 19:28",
+        "Category": "Spending",
+        "Amount": 323.45,
+        "Reason": "Transportation",
+        "Type": "Daily",
+        "Label": "Leisure & Recreation"
+    },
+    {
+        "Transaction_Id": "6c227031-79ab-4c44-9ffb-35ba65bc7263",
+        "User_Id": 90260003,
+        "Timestamp": "2024-05-11 19:28",
+        "Category": "Save&Invest",
+        "Amount": 156.93,
+        "Reason": "Housing & Utilities",
+        "Type": "Daily",
+        "Label": "Real Estate"
+    },
+    {
+        "Transaction_Id": "426e2bcb-211c-431d-81d1-dfcdc3687546",
+        "User_Id": 90260003,
+        "Timestamp": "2024-05-11 19:28",
+        "Category": "Spending",
+        "Amount": 463.02,
+        "Reason": "Dining Out",
+        "Type": "Monthly",
+        "Label": "Housing & Utilities"
+    },
+    {
+        "Transaction_Id": "78e89116-6232-4bf1-9872-febec415c862",
+        "User_Id": 90260003,
+        "Timestamp": "2024-05-11 19:28",
+        "Category": "Save&Invest",
+        "Amount": 937.01,
+        "Reason": "Groceries & Dining",
+        "Type": "Daily",
+        "Label": "Stocks"
+    },
+    {
+        "Transaction_Id": "293643bf-bd74-4f3f-bd79-4db1fd5fab15",
+        "User_Id": 90260003,
+        "Timestamp": "2024-05-12 19:28",
+        "Category": "Spending",
+        "Amount": 776.73,
+        "Reason": "Insurance",
+        "Type": "Daily",
+        "Label": "Other"
+    },
+    {
+        "Transaction_Id": "d71f7911-8878-4c8e-a583-9311498756c9",
+        "User_Id": 90260003,
+        "Timestamp": "2024-05-12 19:28",
+        "Category": "Save&Invest",
+        "Amount": 771.66,
+        "Reason": "Crowdfunding",
+        "Type": "Monthly",
+        "Label": "Real Estate"
+    },
+    {
+        "Transaction_Id": "76df0a7c-8c94-4220-acc7-6fc441cd145c",
+        "User_Id": 90260003,
+        "Timestamp": "2024-05-15 19:28",
+        "Category": "Spending",
+        "Amount": 503.43,
+        "Reason": "Clothing",
+        "Type": "Monthly",
+        "Label": "Housing & Utilities"
+    },
+    {
+        "Transaction_Id": "44f4efd2-d156-454f-975c-20c24c3db1e4",
+        "User_Id": 90260003,
+        "Timestamp": "2024-05-15 19:28",
+        "Category": "Save&Invest",
+        "Amount": 215.6,
+        "Reason": "Housing & Utilities",
+        "Type": "Monthly",
+        "Label": "Cryptocurrency"
+    },
+    {
+        "Transaction_Id": "fed5d749-581d-4dd5-a0fe-2730925e2b73",
+        "User_Id": 90260003,
+        "Timestamp": "2024-05-16 19:28",
+        "Category": "Save&Invest",
+        "Amount": 686.53,
+        "Reason": "Contribution to Savings Account",
+        "Type": "Daily",
+        "Label": "Cryptocurrency"
+    },
+    {
+        "Transaction_Id": "4890cf32-4d3f-4ef2-b10a-3a6711479fc3",
+        "User_Id": 90260003,
+        "Timestamp": "2024-05-17 19:28",
+        "Category": "Save&Invest",
+        "Amount": 850.27,
+        "Reason": "Groceries & Dining",
+        "Type": "Daily",
+        "Label": "Real Estate"
+    },
+    {
+        "Transaction_Id": "209d7374-f46f-4812-85a6-c6b2bbd60be1",
+        "User_Id": 90260003,
+        "Timestamp": "2024-05-17 19:28",
+        "Category": "Spending",
+        "Amount": 218.01,
+        "Reason": "Crowdfunding",
+        "Type": "Monthly",
+        "Label": "Housing & Utilities"
+    },
+    {
+        "Transaction_Id": "2a79b520-3dea-4387-a397-685ad614ad58",
+        "User_Id": 90260003,
+        "Timestamp": "2024-05-18 19:28",
+        "Category": "Income",
+        "Amount": 744.86,
+        "Reason": "Maintenance",
+        "Type": "Daily",
+        "Label": "Employee Benefits"
+    },
+    {
+        "Transaction_Id": "1a560228-bbd9-4b12-9e27-419c50204523",
+        "User_Id": 90260003,
+        "Timestamp": "2024-05-18 19:28",
+        "Category": "Save&Invest",
+        "Amount": 146.57,
+        "Reason": "Other",
+        "Type": "Daily",
+        "Label": "Real Estate"
+    },
+    {
+        "Transaction_Id": "1d31fe92-3348-4eae-814e-9326d2e58b5b",
+        "User_Id": 90260003,
+        "Timestamp": "2024-05-20 19:28",
+        "Category": "Spending",
+        "Amount": 322.41,
+        "Reason": "Groceries & Dining",
+        "Type": "Monthly",
+        "Label": "Education & Training"
+    },
+    {
+        "Transaction_Id": "0230554b-ebc6-4c70-b061-e728ee3ea3a8",
+        "User_Id": 90260003,
+        "Timestamp": "2024-05-20 19:28",
+        "Category": "Spending",
+        "Amount": 453.98,
+        "Reason": "Stock Market",
+        "Type": "Monthly",
+        "Label": "Education & Training"
+    },
+    {
+        "Transaction_Id": "56cf9d5e-878d-48f1-8984-afbbebcb98ba",
+        "User_Id": 90260003,
+        "Timestamp": "2024-05-20 19:28",
+        "Category": "Spending",
+        "Amount": 469.85,
+        "Reason": "Stock Market",
+        "Type": "Monthly",
+        "Label": "Housing & Utilities"
+    },
+    {
+        "Transaction_Id": "b3c11d30-2eb0-414f-b4f5-ea991401a190",
+        "User_Id": 90260003,
+        "Timestamp": "2024-05-21 19:28",
+        "Category": "Save&Invest",
+        "Amount": 535.8,
+        "Reason": "Leisure & Recreation",
+        "Type": "Daily",
+        "Label": "Stocks"
+    },
+    {
+        "Transaction_Id": "91f3f031-2bac-4ed2-83fa-9afc081a97f4",
+        "User_Id": 90260003,
+        "Timestamp": "2024-05-21 19:28",
+        "Category": "Spending",
+        "Amount": 574.3,
+        "Reason": "Housing & Utilities",
+        "Type": "Monthly",
+        "Label": "Other"
+    },
+    {
+        "Transaction_Id": "16408d70-28b8-4c74-8af4-727e4eb9dce3",
+        "User_Id": 90260003,
+        "Timestamp": "2024-05-22 19:28",
+        "Category": "Income",
+        "Amount": 973.21,
+        "Reason": "Gym Membership",
+        "Type": "Daily",
+        "Label": "Employment Income"
+    },
+    {
+        "Transaction_Id": "39676a6f-710c-4834-aaa3-3421606dce5b",
+        "User_Id": 90260003,
+        "Timestamp": "2024-05-23 19:28",
+        "Category": "Income",
+        "Amount": 459.32,
+        "Reason": "Other",
+        "Type": "Daily",
+        "Label": "Investment Income"
+    },
+    {
+        "Transaction_Id": "7622e0d7-ca99-4cac-bf3f-d791b8b05be0",
+        "User_Id": 90260003,
+        "Timestamp": "2024-05-23 19:28",
+        "Category": "Save&Invest",
+        "Amount": 246.18,
+        "Reason": "Transportation",
+        "Type": "Monthly",
+        "Label": "Cryptocurrency"
+    },
+    {
+        "Transaction_Id": "8b1abf6b-792f-40bf-803e-34ab6ef90e34",
+        "User_Id": 90260003,
+        "Timestamp": "2024-05-23 19:28",
+        "Category": "Spending",
+        "Amount": 482.79,
+        "Reason": "Childcare",
+        "Type": "Daily",
+        "Label": "Groceries & Dining"
+    },
+    {
+        "Transaction_Id": "1e14d91f-596d-4c65-8ae4-e7c9a5a3a686",
+        "User_Id": 90260003,
+        "Timestamp": "2024-05-24 19:28",
+        "Category": "Income",
+        "Amount": 912.58,
+        "Reason": "Medical & Health",
+        "Type": "Monthly",
+        "Label": "Other"
+    },
+    {
+        "Transaction_Id": "1f3610df-9b9a-41f0-afa1-1bd317a4eaee",
+        "User_Id": 90260003,
+        "Timestamp": "2024-05-24 19:28",
+        "Category": "Spending",
+        "Amount": 40.17,
+        "Reason": "Investment in Retirement Fund",
+        "Type": "Monthly",
+        "Label": "Education & Training"
+    },
+    {
+        "Transaction_Id": "3b61eb4e-d8f7-4d99-b0f3-5133071a0b00",
+        "User_Id": 90260003,
+        "Timestamp": "2024-05-26 19:28",
+        "Category": "Income",
+        "Amount": 770.28,
+        "Reason": "Stock Market",
+        "Type": "Monthly",
+        "Label": "Investment Income"
+    },
+    {
+        "Transaction_Id": "4f8382e0-be0a-45ab-8a7f-3834d883c1ed",
+        "User_Id": 90260003,
+        "Timestamp": "2024-05-26 19:28",
+        "Category": "Income",
+        "Amount": 272.84,
+        "Reason": "Housing & Utilities",
+        "Type": "Monthly",
+        "Label": "Employment Income"
+    },
+    {
+        "Transaction_Id": "1997dbfa-4751-4245-b63a-da50b8349034",
+        "User_Id": 90260003,
+        "Timestamp": "2024-05-28 19:28",
+        "Category": "Spending",
+        "Amount": 60.24,
+        "Reason": "Transportation",
+        "Type": "Monthly",
+        "Label": "Groceries & Dining"
+    },
+    {
+        "Transaction_Id": "f15468d4-ecd5-4be3-ab13-303959cb3c20",
+        "User_Id": 90260003,
+        "Timestamp": "2024-05-28 19:28",
+        "Category": "Income",
+        "Amount": 635.11,
+        "Reason": "Cryptocurrency",
+        "Type": "Monthly",
+        "Label": "Other"
+    },
+    {
+        "Transaction_Id": "ab06b160-f015-4159-896b-a6e28937d347",
+        "User_Id": 90260003,
+        "Timestamp": "2024-05-29 19:28",
+        "Category": "Income",
+        "Amount": 160.01,
+        "Reason": "Housing & Utilities",
+        "Type": "Daily",
+        "Label": "Government Benefits"
+    },
+    {
+        "Transaction_Id": "45bebf72-2efb-4057-b1c4-2a30e2050552",
+        "User_Id": 90260003,
+        "Timestamp": "2024-05-30 19:28",
+        "Category": "Income",
+        "Amount": 977.91,
+        "Reason": "Other",
+        "Type": "Daily",
+        "Label": "Investment Income"
+    },
+    {
+        "Transaction_Id": "c4af7430-410f-42f6-bab4-807a38a53fda",
+        "User_Id": 90260003,
+        "Timestamp": "2024-05-31 19:28",
+        "Category": "Save&Invest",
+        "Amount": 12.29,
+        "Reason": "Housing & Utilities",
+        "Type": "Daily",
+        "Label": "Cryptocurrency"
+    },
+    {
+        "Transaction_Id": "a978ddfb-7de0-48ed-aa38-e403ef034461",
+        "User_Id": 90260003,
+        "Timestamp": "2024-07-01 19:28",
+        "Category": "Spending",
+        "Amount": 447.04,
+        "Reason": "Transportation",
+        "Type": "Daily",
+        "Label": "Transportation"
+    },
+    {
+        "Transaction_Id": "17b009e1-f830-4f70-a644-c258f24206c8",
+        "User_Id": 90260003,
+        "Timestamp": "2024-07-02 19:28",
+        "Category": "Income",
+        "Amount": 541.17,
+        "Reason": "Cryptocurrency",
+        "Type": "Daily",
+        "Label": "Government Benefits"
+    },
+    {
+        "Transaction_Id": "8729992a-4dc4-4473-ac7d-c922dd6f5481",
+        "User_Id": 90260003,
+        "Timestamp": "2024-07-03 19:28",
+        "Category": "Save&Invest",
+        "Amount": 344.28,
+        "Reason": "Gifts",
+        "Type": "Daily",
+        "Label": "Other"
+    },
+    {
+        "Transaction_Id": "086f3d7c-7cbc-41fe-a36c-ab66321baf67",
+        "User_Id": 90260003,
+        "Timestamp": "2024-07-05 19:28",
+        "Category": "Save&Invest",
+        "Amount": 519.43,
+        "Reason": "Medical & Health",
+        "Type": "Monthly",
+        "Label": "Savings Account"
+    },
+    {
+        "Transaction_Id": "e0d11eb9-71de-4089-b7e3-b8844d3a46f0",
+        "User_Id": 90260003,
+        "Timestamp": "2024-07-05 19:28",
+        "Category": "Income",
+        "Amount": 576.63,
+        "Reason": "Groceries & Dining",
+        "Type": "Daily",
+        "Label": "Other"
+    },
+    {
+        "Transaction_Id": "383beb53-2db1-44f0-9124-7d0100a34147",
+        "User_Id": 90260003,
+        "Timestamp": "2024-07-07 19:28",
+        "Category": "Save&Invest",
+        "Amount": 904.55,
+        "Reason": "Investment in Retirement Fund",
+        "Type": "Monthly",
+        "Label": "Real Estate"
+    },
+    {
+        "Transaction_Id": "0870b5c8-9744-400c-aac4-68090f986040",
+        "User_Id": 90260003,
+        "Timestamp": "2024-07-07 19:28",
+        "Category": "Spending",
+        "Amount": 249.43,
+        "Reason": "Other",
+        "Type": "Daily",
+        "Label": "Transportation"
+    },
+    {
+        "Transaction_Id": "2ce4bd85-2ae7-48aa-a695-35cccaf1a58b",
+        "User_Id": 90260003,
+        "Timestamp": "2024-07-08 19:28",
+        "Category": "Spending",
+        "Amount": 431.39,
+        "Reason": "Housing & Utilities",
+        "Type": "Monthly",
+        "Label": "Groceries & Dining"
+    },
+    {
+        "Transaction_Id": "f0557ae7-27ce-4a96-8553-18114fbd1496",
+        "User_Id": 90260003,
+        "Timestamp": "2024-07-10 19:28",
+        "Category": "Save&Invest",
+        "Amount": 723.49,
+        "Reason": "Groceries & Dining",
+        "Type": "Daily",
+        "Label": "Stocks"
+    },
+    {
+        "Transaction_Id": "9dea7750-4140-4ec2-bb3a-8d1425741315",
+        "User_Id": 90260003,
+        "Timestamp": "2024-07-10 19:28",
+        "Category": "Income",
+        "Amount": 801.9,
+        "Reason": "Clothing",
+        "Type": "Monthly",
+        "Label": "Other"
+    },
+    {
+        "Transaction_Id": "5077c4b7-71f1-4ea6-a04b-80ef96f668f4",
+        "User_Id": 90260003,
+        "Timestamp": "2024-07-11 19:28",
+        "Category": "Income",
+        "Amount": 173.85,
+        "Reason": "Contribution to Savings Account",
+        "Type": "Monthly",
+        "Label": "Employee Benefits"
+    },
+    {
+        "Transaction_Id": "98524eab-e474-4589-becc-73eef8d45a29",
+        "User_Id": 90260003,
+        "Timestamp": "2024-07-11 19:28",
+        "Category": "Income",
+        "Amount": 235.27,
+        "Reason": "Investment in Retirement Fund",
+        "Type": "Daily",
+        "Label": "Other"
+    },
+    {
+        "Transaction_Id": "0c5aa642-a81a-4d4d-9ba1-8725d5131051",
+        "User_Id": 90260003,
+        "Timestamp": "2024-07-11 19:28",
+        "Category": "Income",
+        "Amount": 946.62,
+        "Reason": "Insurance",
+        "Type": "Monthly",
+        "Label": "Other"
+    },
+    {
+        "Transaction_Id": "fb8f0683-4ca3-4ba6-9f34-1603710327ed",
+        "User_Id": 90260003,
+        "Timestamp": "2024-07-12 19:28",
+        "Category": "Spending",
+        "Amount": 167.51,
+        "Reason": "Crowdfunding",
+        "Type": "Monthly",
+        "Label": "Education & Training"
+    },
+    {
+        "Transaction_Id": "928a77d7-1c6d-4f3b-949b-638022ada12c",
+        "User_Id": 90260003,
+        "Timestamp": "2024-07-12 19:28",
+        "Category": "Spending",
+        "Amount": 269.5,
+        "Reason": "Utilities",
+        "Type": "Daily",
+        "Label": "Groceries & Dining"
+    },
+    {
+        "Transaction_Id": "cc6eb10f-c154-480c-940a-b7c4ec24eaf4",
+        "User_Id": 90260003,
+        "Timestamp": "2024-07-13 19:28",
+        "Category": "Save&Invest",
+        "Amount": 347.99,
+        "Reason": "Leisure & Recreation",
+        "Type": "Monthly",
+        "Label": "Other"
+    },
+    {
+        "Transaction_Id": "dafb5701-ea0f-480b-8c30-898a796bfa9c",
+        "User_Id": 90260003,
+        "Timestamp": "2024-07-14 19:28",
+        "Category": "Save&Invest",
+        "Amount": 355.13,
+        "Reason": "Maintenance",
+        "Type": "Monthly",
+        "Label": "Stocks"
+    },
+    {
+        "Transaction_Id": "0c03952e-a6bf-4708-95e2-293a8a27f9f7",
+        "User_Id": 90260003,
+        "Timestamp": "2024-07-14 19:28",
+        "Category": "Save&Invest",
+        "Amount": 358.93,
+        "Reason": "Rent",
+        "Type": "Daily",
+        "Label": "Savings Account"
+    },
+    {
+        "Transaction_Id": "038f1872-d242-4b97-aa2a-77f91b880d03",
+        "User_Id": 90260003,
+        "Timestamp": "2024-07-16 19:28",
+        "Category": "Spending",
+        "Amount": 44.63,
+        "Reason": "Contribution to Savings Account",
+        "Type": "Monthly",
+        "Label": "Education & Training"
+    },
+    {
+        "Transaction_Id": "1b73f734-3d9b-409a-ab22-a2ffb2bfc15c",
+        "User_Id": 90260003,
+        "Timestamp": "2024-07-16 19:28",
+        "Category": "Spending",
+        "Amount": 793.45,
+        "Reason": "Education",
+        "Type": "Monthly",
+        "Label": "Medical & Health"
+    }
+]
