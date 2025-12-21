@@ -5,7 +5,6 @@ const initialState = {
     stages: [],
     toggle: [false, undefined, false],
     hover: [false, undefined],
-    scollableRef: null,
     academicElementSize: [0, 0],
 };
 
@@ -25,11 +24,6 @@ const dataSlice = createSlice({
         updateHover: (state, action) => {
             state.hover = action.payload;
         },
-        updateScrollableRef: (state, action) => {
-            // Note: Storing refs in Redux is non-serializable and generally discouraged, 
-            // but keeping for compatibility with existing logic.
-            state.scollableRef = action.payload;
-        },
         updateAcademicElementSize: (state, action) => {
             state.academicElementSize = action.payload;
         },
@@ -41,7 +35,6 @@ export const {
     updateStages,
     updateToggle,
     updateHover,
-    updateScrollableRef,
     updateAcademicElementSize,
 } = dataSlice.actions;
 

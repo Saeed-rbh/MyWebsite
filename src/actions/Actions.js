@@ -10,6 +10,5 @@ export {
   updateStages,
   updateToggle,
   updateHover,
-  updateScrollableRef,
   updateAcademicElementSize,
 } from "../features/data/dataSlice";

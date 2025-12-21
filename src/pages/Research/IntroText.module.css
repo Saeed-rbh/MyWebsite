@@ -1,0 +1,24 @@
+.grapheneFromStyle {
+    position: absolute;
+    color: rgb(255, 255, 255);
+    font-family: "Rubik", sans-serif;
+    font-size: 50px;
+    font-weight: 900;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+    /* height: 50px; */
+    /* overflow: hidden; */
+}
+
+.grapheneFromStyle span {
+    opacity: 0.5;
+    background: linear-gradient(to right,
+            rgb(185, 96, 50) 0%,
+            rgb(212, 165, 141) 50%);
+    -webkit-text-fill-color: rgba(0, 0, 0, 0);
+    -webkit-background-clip: text;
+    background-clip: text;
+    margin: 0 2px;
+}

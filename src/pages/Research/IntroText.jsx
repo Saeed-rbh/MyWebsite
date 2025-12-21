@@ -2,6 +2,8 @@
 import React from "react";
 import { useSpring, animated } from "react-spring";
 
+import styles from "./IntroText.module.css";
+
 const IntroText = ({
   screenHeight,
   startAnimation,
@@ -9,6 +11,7 @@ const IntroText = ({
   endAnimation,
   mouseDown,
 }) => {
+  // ... (keep hooks the same) ...
   const screenWidth = window.innerWidth;
   const FromStyle1 = useSpring({
     from: { y: 20, opacity: 0, scale: 1.1 },
@@ -101,16 +104,16 @@ const IntroText = ({
 
   return (
     <>
-      <animated.p className="grapheneFromStyle">
+      <animated.p className={styles.grapheneFromStyle}>
         <animated.span style={FromStyle1}>From {"  "}</animated.span>
         {"  "}
         <animated.span style={FromStyle2}>Graphite</animated.span>
       </animated.p>
-      <animated.p className="grapheneFromStyle">
+      <animated.p className={styles.grapheneFromStyle}>
         <animated.span style={ToStyle1}>To</animated.span>{" "}
         <animated.span style={ToStyle2}>Graphene</animated.span>
       </animated.p>
-      <animated.p className="grapheneFromStyle">
+      <animated.p className={styles.grapheneFromStyle}>
         <animated.span style={TitleStyle}>Graphene</animated.span>{" "}
       </animated.p>
     </>

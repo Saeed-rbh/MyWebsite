@@ -1,7 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useTransition, easings } from "react-spring";
-import { connect } from "react-redux";
-import { updateMenu } from "../../actions/Actions";
 import ContactItem from "./ContactItem";
 import { useSelector } from "react-redux";
 
@@ -51,10 +49,4 @@ const Menu = () => {
   );
 };
 
-const mapStateToProps = (state) => {
-  return {
-    isMenuOpen: state.ui.isMenuOpen,
-  };
-};
-
-export default connect(mapStateToProps, { updateMenu })(Menu);
+export default Menu;

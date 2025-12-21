@@ -3,6 +3,7 @@ import { useSpring, animated } from "react-spring";
 import AnimationConstants from "./AnimationConstants";
 import SvgComponent from "./SvgComponent";
 import AnimatedWord from "./AnimatedWord";
+import styles from "./MainText.module.css";
 
 const MainText = ({ MenuHide, delay }) => {
   const [words, setWords] = useState([]);
@@ -15,9 +16,9 @@ const MainText = ({ MenuHide, delay }) => {
   }, []);
 
   return (
-    <animated.div style={springProps} className="HomePage-M-3">
+    <animated.div style={springProps} className={styles.container}>
       <SvgComponent />
-      <p>
+      <p className={styles.paragraph}>
         {words.map((word, index) => (
           <AnimatedWord
             key={index}

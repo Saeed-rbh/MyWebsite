@@ -1,0 +1,37 @@
+.welcome {
+  color: #faf9f1;
+  margin: 0;
+  margin-left: 37px;
+  padding: 0;
+  border: 0;
+  font: inherit;
+  vertical-align: baseline;
+  -webkit-transition: all 1s ease-in-out !important;
+  display: flex;
+  position: relative;
+  align-items: center;
+  -webkit-animation-duration: 1400ms;
+  animation-duration: 1400ms;
+  margin-top: -60px;
+}
+.welcome span {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font: inherit;
+  vertical-align: baseline;
+  text-decoration: none;
+  position: relative;
+  font-family: "DM Serif Display", serif;
+  font-size: 150px;
+  font-weight: 400;
+  white-space: nowrap;
+  perspective: 400px;
+}
+@media only screen and (max-width: 1120px) {
+  .welcome {
+    justify-content: center;
+    margin: 0;
+    margin-top: -50px;
+  }
+}

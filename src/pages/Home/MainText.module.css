@@ -1,0 +1,61 @@
+.container {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 5vh;
+}
+
+.paragraph {
+    display: inline-block;
+    color: #faf9f1;
+    position: relative;
+    -webkit-animation-duration: 1200ms;
+    animation-duration: 1200ms;
+    font-family: "Poppins", sans-serif;
+    font-size: 15px;
+    text-align: left;
+    font-weight: 400;
+}
+
+.paragraph span {
+    line-height: 30px;
+}
+
+.paragraph div span {
+    line-height: 15px;
+}
+
+.container svg {
+    fill: #d49d81;
+    transform: scale(0.2);
+    width: 100px;
+    overflow: initial;
+    height: 20px;
+}
+
+@media only screen and (max-width: 1120px) {
+    .container svg {
+        display: none;
+    }
+
+    .container {
+        margin-right: 0;
+        margin-bottom: 3vh;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .paragraph {
+        text-align: -webkit-match-parent;
+        text-align: match-parent;
+    }
+}
+
+@media only screen and (max-width: 640px) {
+    .paragraph {
+        font-size: 13px;
+        line-height: 25px;
+        text-align: center;
+        margin: 0 -10px;
+        width: 100%;
+    }
+}

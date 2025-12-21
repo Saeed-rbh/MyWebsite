@@ -19,8 +19,8 @@ const AnimatedLetter = ({ char, MenuHide, delay, color }) => {
       MenuHide === 1
         ? "translateX(0px)"
         : MenuHide === 2
-        ? "translateX(20px)"
-        : "translateX(-20px)",
+          ? "translateX(20px)"
+          : "translateX(-20px)",
     opacity: MenuHide === 1 ? 1 : 0,
     easing: easings.easeOutCubic,
     delay: delay,
@@ -32,12 +32,14 @@ const AnimatedLetter = ({ char, MenuHide, delay, color }) => {
   );
 };
 
+import styles from "./WelcomeMessage.module.css";
+
 const WelcomeMessage = ({ MenuHide, delay }) => {
   const message = "Hello.";
   const length = message.length;
 
   return (
-    <div className="welcome">
+    <div className={styles.welcome}>
       {message.split("").map((char, index) => (
         <AnimatedLetter
           key={index}

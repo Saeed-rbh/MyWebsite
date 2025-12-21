@@ -6,6 +6,7 @@ import {
 import useDataModify from "./DataModify";
 import { useEffect, useState, useMemo } from "react";
 import { useDispatch } from "react-redux";
+import { debounce } from "lodash";
 
 const useWindowSize = () => {
   const [size, setSize] = useState({
@@ -13,14 +14,17 @@ const useWindowSize = () => {
     height: window.innerHeight,
   });
   useEffect(() => {
-    const handleResize = () => {
+    const handleResize = debounce(() => {
       setSize({
         width: window.innerWidth,
         height: window.innerHeight,
       });
-    };
+    }, 200);
     window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
+    return () => {
+      handleResize.cancel();
+      window.removeEventListener("resize", handleResize);
+    };
   }, []);
 
   return size;

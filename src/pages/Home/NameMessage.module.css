@@ -1,0 +1,78 @@
+.nameContainer {
+    position: relative;
+    color: #faf9f1;
+    font-family: "DM Serif Display", serif;
+    font-size: 62px;
+    line-height: 50px;
+    font-weight: 400;
+    white-space: nowrap;
+    perspective: 400px;
+    text-align: initial;
+    margin-left: 40px;
+    margin-bottom: 5vh;
+    background: linear-gradient(to right, #faf5f3a2 0%, #ff5500e0 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-top: -80px;
+}
+
+.separator {
+    background: linear-gradient(to right, #f9ebe50f 0%, #d4a58d38 100%);
+    padding: 0;
+    border: 0;
+    font: inherit;
+    vertical-align: baseline;
+    width: 2px;
+    position: relative;
+    height: 30px;
+    margin: 0 3% 3px 3%;
+    -webkit-transition: opacity 0.4s ease-in-out;
+    opacity: 0.7;
+    height: 20px;
+    width: 500px;
+    border-radius: 100px;
+    margin-top: -10px;
+    margin-left: -10px;
+}
+
+@media only screen and (max-width: 1120px) {
+    .separator {
+        display: none;
+    }
+
+    .nameContainer {
+        align-self: center;
+        margin-left: 0;
+        margin-top: -122px;
+    }
+}
+
+/* Consolidating logic from Home.css for mobile */
+@media only screen and (max-width: 640px) {
+    .nameContainer {
+        font-size: 40px;
+        line-height: 30px;
+        margin-top: -85px;
+        margin-bottom: 6.5vh;
+        background: linear-gradient(to right, #faf5f3a2 0%, #ff7a37e0 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+
+    /* Based on Home.css analysis, this seems to be the intended behavior despite conflicting rules */
+    .separator {
+        display: none;
+    }
+}
+
+@media only screen and (max-height: 550px) and (max-width: 1120px) {
+    .nameContainer {
+        display: none;
+    }
+}
+
+@media only screen and (max-height: 390px) {
+    .nameContainer {
+        display: none;
+    }
+}

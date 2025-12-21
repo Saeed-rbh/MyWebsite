@@ -11,38 +11,45 @@ import Footer from "./components/Footer/Footer";
 import Graphene from "./pages/Research/Research";
 import Mouse from "./Mouse";
 import ScrollToNavigate from "./Helper/ScrollToNavigate"; // Import scroll detector
+import ErrorBoundary from "./components/ErrorBoundary/ErrorBoundary";
 
 const AcademicCV = lazy(() => import("./pages/Resume/Resume"));
 const HomePage = lazy(() => import("./pages/Home/Home"));
 const Loader = lazy(() => import("./Loader/Loader"));
+
+import { HelmetProvider } from "react-helmet-async";
 
 function App() {
   useUpdateVariable();
   const { visibility } = useSelector((state) => state.ui);
 
   return (
-    <Router store={store}>
-      <Loader />
-      {/*<ScrollToNavigate /> {/* Scroll/Drag Detector */}
-      <div className="App">
-        <div className="MainBackground">
-          <div className="BackgroundColor1"></div>
+    <HelmetProvider>
+      <Router store={store}>
+        <Loader />
+        {/*<ScrollToNavigate /> {/* Scroll/Drag Detector */}
+        <div className="App">
+          <div className="MainBackground">
+            <div className="BackgroundColor1"></div>
+          </div>
+          {visibility && <Mouse />}
+          {visibility && <Header />}
+          {visibility && <Menu />}
+          {visibility && <Footer />}
+          {visibility && (
+            <ErrorBoundary>
+              <Suspense fallback={<div>Loading...</div>}>
+                <Routes>
+                  <Route exact path="/" element={<HomePage />} />
+                  <Route exact path="/AcademicCV" element={<AcademicCV />} />
+                  <Route exact path="/Graphene" element={<Graphene />} />
+                </Routes>
+              </Suspense>
+            </ErrorBoundary>
+          )}
         </div>
-        {visibility && <Mouse />}
-        {visibility && <Header />}
-        {visibility && <Menu />}
-        {visibility && <Footer />}
-        {visibility && (
-          <Suspense fallback={<div>Loading...</div>}>
-            <Routes>
-              <Route exact path="/" element={<HomePage />} />
-              <Route exact path="/AcademicCV" element={<AcademicCV />} />
-              <Route exact path="/Graphene" element={<Graphene />} />
-            </Routes>
-          </Suspense>
-        )}
-      </div>
-    </Router>
+      </Router>
+    </HelmetProvider>
   );
 }
 

@@ -11,6 +11,7 @@ import useScrollPosition from "./General/useScrollPosition";
 import { useDispatch } from "react-redux";
 import { updateCurrentPage } from "../../actions/Actions";
 import { ScrollableRefProvider, useScrollableRef } from "./General/ScrollableRefContext";
+import SEO from "../../components/SEO/SEO";
 
 // Inner component that uses the scrollable ref
 const AcademicCVContent = () => {
@@ -103,6 +104,12 @@ const AcademicCVContent = () => {
 const AcademicCV = () => {
   return (
     <ScrollableRefProvider>
+      <SEO
+        title="Saeed Arabha | Academic CV"
+        description="Academic Curriculum Vitae of Saeed Arabha. Education, Research Interests, and Publications."
+        name="Saeed Arabha"
+        type="article"
+      />
       <AcademicCVContent />
     </ScrollableRefProvider>
   );

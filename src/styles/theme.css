@@ -1,0 +1,18 @@
+:root {
+    /* Colors */
+    --color-primary: #ffffff;
+    --color-secondary: #b96032;
+    /* From Graphene gradient */
+    --color-text-body: #011436;
+    --color-background: #000000;
+    --color-surface: #1f1f1f;
+
+    /* Fonts */
+    --font-family-main: 'Rubik', sans-serif;
+    --font-family-code: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+
+    /* Spacing */
+    --spacing-sm: 8px;
+    --spacing-md: 16px;
+    --spacing-lg: 24px;
+}

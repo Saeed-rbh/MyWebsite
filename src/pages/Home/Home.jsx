@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./Home.css";
+import styles from "./Home.module.css";
+import SEO from "../../components/SEO/SEO";
 import WelcomeMessage from "./WelcomeMessage";
 import NameMessage from "./NameMessage";
 import MainText from "./MainText";
@@ -29,7 +31,13 @@ const HomePage = () => {
 
   return (
     visibility && (
-      <div className="HomePage-M">
+      <div className={styles.container}>
+        <SEO
+          title="Saeed Arabha | Home"
+          description="Personal website of Saeed Arabha, featuring academic CV, research, and portfolio."
+          name="Saeed Arabha"
+          type="website"
+        />
         <WelcomeMessage MenuHide={resumeClicked} delay={100} />
         <NameMessage MenuHide={resumeClicked} delay={300} />
         <MainText MenuHide={resumeClicked} delay={400} />
