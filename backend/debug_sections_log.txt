@@ -1,0 +1,940 @@
+--- Personal Info ---
+Type: object
+[
+  {
+    "id": 1766442295351,
+    "title": "Thermal conductivity and viscosity of nanofluids: A review of recent molecular dynamics studies",
+    "authors": "F Jabbari, A Rajabpour, S Saedodin",
+    "journal": "Chemical Engineering Science 174, 67-81, 2017",
+    "citations": "206",
+    "year": "2017",
+    "link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=lqX8fzQAAAAJ&pagesize=100&citation_for_view=lqX8fzQAAAAJ:8xutWZnSdmoC"
+  },
+  {
+    "id": 1766442295364,
+    "title": "Interface thermal resistance and thermal rectification in hybrid graphene-graphane nanoribbons: A nonequilibrium molecular dynamics study",
+    "authors": "A Rajabpour, SMV Allaei, F Kowsary",
+    "journal": "Applied Physics Letters 99, 051917, 2011",
+    "citations": "142",
+    "year": "2011",
+    "link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=lqX8fzQAAAAJ&pagesize=100&citation_for_view=lqX8fzQAAAAJ:u5HHmVD_uO8C"
+  },
+  {
+    "id": 1766442295370,
+    "title": "Application of two-dimensional materials as anodes for rechargeable metal-ion batteries: A comprehensive perspective from density functional theory simulations",
+    "authors": "Y Bahari, B Mortazavi, A Rajabpour, X Zhuang, T Rabczuk",
+    "journal": "Energy Storage Materials 35, 203-282, 2021",
+    "citations": "137",
+    "year": "2021",
+    "link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=lqX8fzQAAAAJ&pagesize=100&citation_for_view=lqX8fzQAAAAJ:WC23djZS0W4C"
+  },
+  {
+    "id": 1766442295371,
+    "title": "Nitrogen doping and curvature effects on thermal conductivity of graphene: A non-equilibrium molecular dynamics study",
+    "authors": "B Mortazavi, A Rajabpour, S Ahzi, Y Rémond, S Mehdi Vaez Allaei",
+    "journal": "Solid State Communications, 2011",
+    "citations": "130",
+    "year": "2011",
+    "link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=lqX8fzQAAAAJ&pagesize=100&citation_for_view=lqX8fzQAAAAJ:UeHWp8X0CEIC"
+  },
+  {
+    "id": 1766442295372,
+    "title": "Experimental and multiscale modeling of thermal conductivity and elastic properties of PLA/expanded graphite polymer nanocomposites",
+    "authors": "B Mortazavi, F Hassouna, A Laachachi, A Rajabpour, S Ahzi, D Chapron, ...",
+    "journal": "Thermochimica Acta 552, 106-113, 2013",
+    "citations": "112",
+    "year": "2013",
+    "link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=lqX8fzQAAAAJ&pagesize=100&citation_for_view=lqX8fzQAAAAJ:Tyk-4Ss8FVUC"
+  },
+  {
+    "id": 1766442295373,
+    "title": "Phonon heat conduction in corrugated silicon nanowires below the Casimir limit",
+    "authors": "C Blanc, A Rajabpour, S Volz, T Fournier, O Bourgeois",
+    "journal": "Applied Physics Letters 103 (4), 2013",
+    "citations": "99",
+    "year": "2013",
+    "link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=lqX8fzQAAAAJ&pagesize=100&citation_for_view=lqX8fzQAAAAJ:W7OEmFMy1HYC"
+  },
+  {
+    "id": 1766442295374,
+    "title": "Thermal transport at a nanoparticle-water interface: A molecular dynamics and continuum modeling study",
+    "authors": "A Rajabpour, R Seif, S Arabha, MM Heyhat, S Merabia, A Hassanali",
+    "journal": "The Journal of chemical physics 150 (11), 2019",
+    "citations": "90",
+    "year": "2019",
+    "link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=lqX8fzQAAAAJ&pagesize=100&citation_for_view=lqX8fzQAAAAJ:6yz0xqPARnAC"
+  },
+  {
+    "id": 1766442295376,
+    "title": "Thermal conductivity and thermal rectification of nanoporous graphene: A molecular dynamics simulation",
+    "authors": "F Yousefi, F Khoeini, A Rajabpour",
+    "journal": "International Journal of Heat and Mass Transfer 146, 118884, 2020",
+    "citations": "89",
+    "year": "2020",
+    "link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=lqX8fzQAAAAJ&pagesize=100&citation_for_view=lqX8fzQAAAAJ:jL-93Qbq4QoC"
+  },
+  {
+    "id": 1766442295377,
+    "title": "Thermal conductivity of graphene polymorphs and compounds: From C3N to graphdiyne lattices",
+    "authors": "SM Hatam-Lee, A Rajabpour, S Volz",
+    "journal": "Carbon 161, 816-826, 2020",
+    "citations": "86",
+    "year": "2020",
+    "link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=lqX8fzQAAAAJ&pagesize=100&citation_for_view=lqX8fzQAAAAJ:7Hz3ACDFbsoC"
+  },
+  {
+    "id": 1766442295378,
+    "title": "Thermal boundary resistance from mode energy relaxation times: Case study of argon-like crystals by molecular dynamics",
+    "authors": "A Rajabpour, S Volz",
+    "journal": "Journal of Applied Physics 108 (9), 094324-094324-8, 2010",
+    "citations": "85",
+    "year": "2010",
+    "link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=lqX8fzQAAAAJ&pagesize=100&citation_for_view=lqX8fzQAAAAJ:u-x6o8ySG0sC"
+  },
+  {
+    "id": 1766442295379,
+    "title": "Enhancement of thermal conductivity of silver nanofluid synthesized by a one-step method with the effect of polyvinylpyrrolidone on thermal behavior",
+    "authors": "JM Salehi, MM Heyhat, A Rajabpour",
+    "journal": "Applied Physics Letters 102 (23), 2013",
+    "citations": "84",
+    "year": "2013",
+    "link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=lqX8fzQAAAAJ&pagesize=100&citation_for_view=lqX8fzQAAAAJ:YsMSGLbcyi4C"
+  },
+  {
+    "id": 1766442295383,
+    "title": "Molecular dynamics simulation of the specific heat capacity of water-Cu nanofluids",
+    "authors": "A Rajabpour, FY Akizi, MM Heyhat, K Gordiz",
+    "journal": "International Nano Letters 3 (1), 58, 2013",
+    "citations": "82",
+    "year": "2013",
+    "link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=lqX8fzQAAAAJ&pagesize=100&citation_for_view=lqX8fzQAAAAJ:OTTXONDVkokC"
+  },
+  {
+    "id": 1766442295384,
+    "title": "Study of the effects of particle shape and base fluid type on density of nanofluids using ternary mixture formula: A molecular dynamics simulation",
+    "authors": "M Abbasi, MM Heyhat, A Rajabpour",
+    "journal": "Journal of Molecular Liquids 305, 112831, 2020",
+    "citations": "72",
+    "year": "2020",
+    "link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=lqX8fzQAAAAJ&pagesize=100&citation_for_view=lqX8fzQAAAAJ:LdasjJ6CEcoC"
+  },
+  {
+    "id": 1766442295386,
+    "title": "Carbon-nitride 2D nanostructures: thermal conductivity and interfacial thermal conductance with the silica substrate",
+    "authors": "A Rajabpour, S Bazrafshan, S Volz",
+    "journal": "Physical Chemistry Chemical Physics 21 (5), 2507-2512, 2019",
+    "citations": "71",
+    "year": "2019",
+    "link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=lqX8fzQAAAAJ&pagesize=100&citation_for_view=lqX8fzQAAAAJ:4X0JR2_MtJMC"
+  },
+  {
+    "id": 1766442295387,
+    "title": "Tuning thermal conductivity of bilayer graphene by inter-layer sp3 bonding: A molecular dynamics study",
+    "authors": "A Rajabpour, SMV Allaei",
+    "journal": "Applied Physics Letters 101, 053115, 2012",
+    "citations": "71",
+    "year": "2012",
+    "link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=lqX8fzQAAAAJ&pagesize=100&citation_for_view=lqX8fzQAAAAJ:zYLM7Y9cAGgC"
+  },
+  {
+    "id": 1766442295389,
+    "title": "Exploring thermal expansion of carbon-based nanosheets by machine-learning interatomic potentials",
+    "authors": "B Mortazavi, A Rajabpour, X Zhuang, T Rabczuk, AV Shapeev",
+    "journal": "Carbon 186, 501-508, 2022",
+    "citations": "65",
+    "year": "2022",
+    "link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=lqX8fzQAAAAJ&pagesize=100&citation_for_view=lqX8fzQAAAAJ:Ade32sEp0pkC"
+  },
+  {
+    "id": 1766442295390,
+    "title": "Mechanical behaviors of titanium nitride and carbide MXenes: A molecular dynamics study",
+    "authors": "SM Hatam-Lee, A Esfandiar, A Rajabpour",
+    "journal": "Applied Surface Science 566, 150633, 2021",
+    "citations": "65",
+    "year": "2021",
+    "link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=lqX8fzQAAAAJ&pagesize=100&citation_for_view=lqX8fzQAAAAJ:Br1UauaknNIC"
+  },
+  {
+    "id": 1766442295391,
+    "title": "Non-linear forced vibration analysis of nanobeams subjected to moving concentrated load resting on a viscoelastic foundation considering thermal and surface effects",
+    "authors": "M Ghadiri, A Rajabpour, A Akbarshahi",
+    "journal": "Applied Mathematical Modelling 50, 676-694, 2017",
+    "citations": "63",
+    "year": "2017",
+    "link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=lqX8fzQAAAAJ&pagesize=100&citation_for_view=lqX8fzQAAAAJ:OP4eGU-M3BUC"
+  },
+  {
+    "id": 1766442295392,
+    "title": "Modulated thermal conductivity of 2D hexagonal boron arsenide: a strain engineering study",
+    "authors": "M Raeisi, S Ahmadi, A Rajabpour",
+    "journal": "Nanoscale 11 (45), 21799-21810, 2019",
+    "citations": "61",
+    "year": "2019",
+    "link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=lqX8fzQAAAAJ&pagesize=100&citation_for_view=lqX8fzQAAAAJ:48xauSegjOkC"
+  },
+  {
+    "id": 1766442295393,
+    "title": "Recent advances in lattice thermal conductivity calculation using machine-learning interatomic potentials",
+    "authors": "S Arabha, ZS Aghbolagh, K Ghorbani, SM Hatam-Lee, A Rajabpour",
+    "journal": "Journal of Applied Physics 130 (21), 2021",
+    "citations": "60",
+    "year": "2021",
+    "link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=lqX8fzQAAAAJ&pagesize=100&citation_for_view=lqX8fzQAAAAJ:AXkvAH5U_nMC"
+  },
+  {
+    "id": 1766442295396,
+    "title": "Importance of nanolayer formation in nanofluid properties: Equilibrium molecular dynamic simulations for Ag-water nanofluid",
+    "authors": "MM Heyhat, A Rajabpour, M Abbasi, S Arabha",
+    "journal": "Journal of Molecular Liquids 264, 699-705, 2018",
+    "citations": "60",
+    "year": "2018",
+    "link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=lqX8fzQAAAAJ&pagesize=100&citation_for_view=lqX8fzQAAAAJ:tH6gc1N1XXoC"
+  },
+  {
+    "id": 1766442295397,
+    "title": "Thermal transport engineering in amorphous graphene: Non-equilibrium molecular dynamics study",
+    "authors": "S Bazrafshan, A Rajabpour",
+    "journal": "International Journal of Heat and Mass Transfer 112, 379-386, 2017",
+    "citations": "58",
+    "year": "2017",
+    "link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=lqX8fzQAAAAJ&pagesize=100&citation_for_view=lqX8fzQAAAAJ:LhH-TYMQEocC"
+  },
+  {
+    "id": 1766442295399,
+    "title": "Calibration of nonlocal strain gradient shell model for vibration analysis of a CNT conveying viscous fluid using molecular dynamics simulation",
+    "authors": "K Mohammadi, A Rajabpour, M Ghadiri",
+    "journal": "Computational Materials Science 148, 104-115, 2018",
+    "citations": "56",
+    "year": "2018",
+    "link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=lqX8fzQAAAAJ&pagesize=100&citation_for_view=lqX8fzQAAAAJ:5MTHONV0fEkC"
+  },
+  {
+    "id": 1766442295401,
+    "title": "Viscosity of carbon nanotube/water nanofluid: Equilibrium molecular dynamics",
+    "authors": "F Jabbari, A Rajabpour, S Saedodin",
+    "journal": "Journal of Thermal Analysis and Calorimetry 35 (3), 1787-1796, 2019",
+    "citations": "55",
+    "year": "2019",
+    "link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=lqX8fzQAAAAJ&pagesize=100&citation_for_view=lqX8fzQAAAAJ:artPoR2Yc-kC"
+  },
+  {
+    "id": 1766442295402,
+    "title": "Size-dependent effects on critical flow velocity of a SWCNT conveying viscous fluid based on nonlocal strain gradient cylindrical shell model",
+    "authors": "M Mahinzare, K Mohammadi, M Ghadiri, A Rajabpour",
+    "journal": "Microfluidics and Nanofluidics 21 (7), 123, 2017",
+    "citations": "54",
+    "year": "2017",
+    "link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=lqX8fzQAAAAJ&pagesize=100&citation_for_view=lqX8fzQAAAAJ:nZcligLrVowC"
+  },
+  {
+    "id": 1766442295403,
+    "title": "Influence of various temperature distributions on critical speed and vibrational characteristics of rotating cylindrical microshells with modified lengthscale parameter",
+    "authors": "H SafarPour, K Mohammadi, M Ghadiri, A Rajabpour",
+    "journal": "The European Physical Journal Plus 132 (6), 281, 2017",
+    "citations": "54",
+    "year": "2017",
+    "link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=lqX8fzQAAAAJ&pagesize=100&citation_for_view=lqX8fzQAAAAJ:P7Ujq4OLJYoC"
+  },
+  {
+    "id": 1766442295404,
+    "title": "Surface and size-dependent effects on the free vibration analysis of cylindrical shell based on Gurtin-Murdoch and nonlocal strain gradient theories",
+    "authors": "K Ghorbani, K Mohammadi, A Rajabpour, M Ghadiri",
+    "journal": "Journal of Physics and Chemistry of Solids 129, 140-150, 2019",
+    "citations": "50",
+    "year": "2019",
+    "link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=lqX8fzQAAAAJ&pagesize=100&citation_for_view=lqX8fzQAAAAJ:F1b5ZUV5XREC"
+  },
+  {
+    "id": 1766442295405,
+    "title": "Mechanical properties of hydrogen functionalized graphene under shear deformation: A molecular dynamics study",
+    "authors": "AH Kheirkhah, ES Iranizad, M Raeisi, A Rajabpour",
+    "journal": "Solid state communications 177, 98-102, 2014",
+    "citations": "50",
+    "year": "2014",
+    "link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=lqX8fzQAAAAJ&pagesize=100&citation_for_view=lqX8fzQAAAAJ:eQOLeE2rZwMC"
+  },
+  {
+    "id": 1766442295408,
+    "title": "Effect of water/carbon interaction strength on interfacial thermal resistance and the surrounding molecular nanolayer of CNT and graphene flake",
+    "authors": "F Jabbari, A Rajabpour, S Saedodin, S Wongwises",
+    "journal": "Journal of Molecular Liquids 282, 197-204, 2019",
+    "citations": "49",
+    "year": "2019",
+    "link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=lqX8fzQAAAAJ&pagesize=100&citation_for_view=lqX8fzQAAAAJ:0CzhzZyukY4C"
+  },
+  {
+    "id": 1766442295409,
+    "title": "Comparison of modeling a conical nanotube resting on the Winkler elastic foundation based on the modified couple stress theory and molecular dynamics simulation",
+    "authors": "K Mohammadi, M Mahinzare, A Rajabpour, M Ghadiri",
+    "journal": "The European Physical Journal Plus 132 (3), 115, 2017",
+    "citations": "48",
+    "year": "2017",
+    "link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=lqX8fzQAAAAJ&pagesize=100&citation_for_view=lqX8fzQAAAAJ:yqoGN6RLRZoC"
+  },
+  {
+    "id": 1766442295410,
+    "title": "Interfacial thermal resistance between few-layer MoS2 and silica substrates: A molecular dynamics study",
+    "authors": "H Farahani, A Rajabpour, M Khanaki, A Reyhani",
+    "journal": "Computational Materials Science 142, 1-6, 2018",
+    "citations": "47",
+    "year": "2018",
+    "link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=lqX8fzQAAAAJ&pagesize=100&citation_for_view=lqX8fzQAAAAJ:u-coK7KVo8oC"
+  },
+  {
+    "id": 1766442295411,
+    "title": "Determination of carbon nanotubes size-dependent parameters: molecular dynamics simulation and nonlocal strain gradient continuum shell model",
+    "authors": "K Ghorbani, A Rajabpour, M Ghadiri",
+    "journal": "Mechanics Based Design of Structures and Machines 49 (1), 103-120, 2021",
+    "citations": "46",
+    "year": "2021",
+    "link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=lqX8fzQAAAAJ&pagesize=100&citation_for_view=lqX8fzQAAAAJ:CaZNVDsoPx4C"
+  },
+  {
+    "id": 1766442295412,
+    "title": "Thermal transport in silicene nanotubes: Effects of length, grain boundary and strain",
+    "authors": "M Khalkhali, F Khoeini, A Rajabpour",
+    "journal": "International Journal of Heat and Mass Transfer 134, 503-510, 2019",
+    "citations": "45",
+    "year": "2019",
+    "link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=lqX8fzQAAAAJ&pagesize=100&citation_for_view=lqX8fzQAAAAJ:AHdEip9mkN0C"
+  },
+  {
+    "id": 1766442295413,
+    "title": "Tuning thermal conductivity of porous graphene by pore topology engineering: Comparison of non-equilibrium molecular dynamics and finite element study",
+    "authors": "H Ghasemi, A Rajabpour, AH Akbarzadeh",
+    "journal": "International Journal of Heat and Mass Transfer 123, 261-271, 2018",
+    "citations": "44",
+    "year": "2018",
+    "link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=lqX8fzQAAAAJ&pagesize=100&citation_for_view=lqX8fzQAAAAJ:lvd772isFD0C"
+  },
+  {
+    "id": 1766442295415,
+    "title": "Thermal transport across grain boundaries in polycrystalline silicene: A multiscale modeling",
+    "authors": "M Khalkhali, A Rajabpour, F Khoeini",
+    "journal": "Scientific reports 9 (1), 5684, 2019",
+    "citations": "41",
+    "year": "2019",
+    "link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=lqX8fzQAAAAJ&pagesize=100&citation_for_view=lqX8fzQAAAAJ:sJsF-0ZLhtgC"
+  },
+  {
+    "id": 1766442295416,
+    "title": "Engineering of thermal transport in graphene using grain size, strain, nitrogen and boron doping; a multiscale modeling",
+    "authors": "S Bazrafshan, A Rajabpour",
+    "journal": "International Journal of Heat and Mass Transfer 123, 534-543, 2018",
+    "citations": "40",
+    "year": "2018",
+    "link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=lqX8fzQAAAAJ&pagesize=100&citation_for_view=lqX8fzQAAAAJ:nVrZBo8bIpAC"
+  },
+  {
+    "id": 1766442295417,
+    "title": "Thermo-mechanical properties of nitrogenated holey graphene (C2N): A comparison of machine-learning-based and classical interatomic potentials",
+    "authors": "S Arabha, A Rajabpour",
+    "journal": "International Journal of Heat and Mass Transfer 178, 121589, 2021",
+    "citations": "39",
+    "year": "2021",
+    "link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=lqX8fzQAAAAJ&pagesize=100&citation_for_view=lqX8fzQAAAAJ:jU7OWUQzBzMC"
+  },
+  {
+    "id": 1766442295418,
+    "title": "Interfacial thermal conductance between TiO2 nanoparticle and water: A molecular dynamics study",
+    "authors": "M Roodbari, M Abbasi, S Arabha, A Gharedaghi, A Rajabpour",
+    "journal": "Journal of Molecular Liquids, 118053, 2021",
+    "citations": "38",
+    "year": "2021",
+    "link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=lqX8fzQAAAAJ&pagesize=100&citation_for_view=lqX8fzQAAAAJ:q-HalDI95KYC"
+  },
+  {
+    "id": 1766442295419,
+    "title": "Towards single cell heat shock response by accurate control on thermal confinement with an on-chip microwire electrode",
+    "authors": "P Ginet, K Montagne, S Akiyama, A Rajabpour, A Taniguchi, T Fujii, ...",
+    "journal": "Lab on a Chip 11 (8), 1513-1520, 2011",
+    "citations": "37",
+    "year": "2011",
+    "link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=lqX8fzQAAAAJ&pagesize=100&citation_for_view=lqX8fzQAAAAJ:d1gkVwhDpl0C"
+  },
+  {
+    "id": 1766442295423,
+    "title": "Experimental investigation and molecular dynamics simulations of viscosity of CNT-water nanofluid at different temperatures and volume fractions of nanoparticles",
+    "authors": "F Jabbari, S Saedodin, A Rajabpour",
+    "journal": "Journal of Chemical & Engineering Data 64 (1), 262-272, 2018",
+    "citations": "36",
+    "year": "2018",
+    "link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=lqX8fzQAAAAJ&pagesize=100&citation_for_view=lqX8fzQAAAAJ:LgRImbQfgY4C"
+  },
+  {
+    "id": 1766442295424,
+    "title": "Engineered porous borophene with tunable anisotropic properties",
+    "authors": "S Arabha, AH Akbarzadeh, A Rajabpour",
+    "journal": "Composites Part B: Engineering 200, 108260, 2020",
+    "citations": "35",
+    "year": "2020",
+    "link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=lqX8fzQAAAAJ&pagesize=100&citation_for_view=lqX8fzQAAAAJ:FiytvqdAVhgC"
+  },
+  {
+    "id": 1766442295425,
+    "title": "Equilibrium molecular dynamics simulations on interfacial phonon transport",
+    "authors": "Y Chalopin, A Rajabpour, H Han, Y Ni, S Volz",
+    "journal": "Annual Review of Heat Transfer 17, 2014",
+    "citations": "34",
+    "year": "2014",
+    "link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=lqX8fzQAAAAJ&pagesize=100&citation_for_view=lqX8fzQAAAAJ:IUKN3-7HHlwC"
+  },
+  {
+    "id": 1766442295426,
+    "title": "Tuning shear mechanical properties and tensile strength anisotropy of monolayer black phosphorene: A molecular dynamics study",
+    "authors": "SM Hatam-Lee, H Peer-Mohammadi, A Rajabpour",
+    "journal": "Materials Today Communications 26, 101796, 2021",
+    "citations": "28",
+    "year": "2021",
+    "link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=lqX8fzQAAAAJ&pagesize=100&citation_for_view=lqX8fzQAAAAJ:7wO8s98CvbsC"
+  },
+  {
+    "id": 1766442295428,
+    "title": "Molecular dynamic simulation on the density of titanium dioxide and silver water-based nanofluids using ternary mixture model",
+    "authors": "MM Heyhat, M Abbasi, A Rajabpour",
+    "journal": "Journal of Molecular Liquids 333, 115966, 2021",
+    "citations": "27",
+    "year": "2021",
+    "link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=lqX8fzQAAAAJ&pagesize=100&citation_for_view=lqX8fzQAAAAJ:PYBJJbyH-FwC"
+  },
+  {
+    "id": 1766442295429,
+    "title": "Thermal expansion coefficient of graphene using molecular dynamics simulation: A comparative study on potential functions",
+    "authors": "H Ghasemi, A Rajabpour",
+    "journal": "Journal of Physics: Conference Series 785 (1), 012006, 2017",
+    "citations": "27",
+    "year": "2017",
+    "link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=lqX8fzQAAAAJ&pagesize=100&citation_for_view=lqX8fzQAAAAJ:r_AWSJRzSzQC"
+  },
+  {
+    "id": 1766442295430,
+    "title": "Calculating the bulk modulus of iron and steel using equilibrium molecular dynamics simulation",
+    "authors": "A Rajabpour, L Seidabadi, M Soltanpour",
+    "journal": "Procedia Materials Science 11, 391-396, 2015",
+    "citations": "26",
+    "year": "2015",
+    "link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=lqX8fzQAAAAJ&pagesize=100&citation_for_view=lqX8fzQAAAAJ:3htObqc8RwsC"
+  },
+  {
+    "id": 1766442295431,
+    "title": "Effect of graphene and carbon-nitride nanofillers on the thermal transport properties of polymer nanocomposites: A combined molecular dynamics and finite element study",
+    "authors": "L Razzaghi, M Khalkhali, A Rajabpour, F Khoeini",
+    "journal": "Physical Review E 103 (1), 013310, 2021",
+    "citations": "24",
+    "year": "2021",
+    "link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=lqX8fzQAAAAJ&pagesize=100&citation_for_view=lqX8fzQAAAAJ:wKETBy42zhYC"
+  },
+  {
+    "id": 1766442295434,
+    "title": "Inter-layer and intra-layer heat transfer in bilayer/monolayer graphene van der Waals heterostructure: Is there a Kapitza resistance analogous?",
+    "authors": "A Rajabpour, Z Fan, SM Vaez Allaei",
+    "journal": "Applied Physics Letters 112 (23), 2018",
+    "citations": "24",
+    "year": "2018",
+    "link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=lqX8fzQAAAAJ&pagesize=100&citation_for_view=lqX8fzQAAAAJ:fbc8zXXH2BUC"
+  },
+  {
+    "id": 1766442295435,
+    "title": "Investigation of surface effects on the natural frequency of a functionally graded cylindrical nanoshell based on nonlocal strain gradient theory",
+    "authors": "K Ghorbani, A Rajabpour, M Ghadiri, Z Keshtkar",
+    "journal": "The European Physical Journal Plus 135 (9), 701, 2020",
+    "citations": "23",
+    "year": "2020",
+    "link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=lqX8fzQAAAAJ&pagesize=100&citation_for_view=lqX8fzQAAAAJ:1taIhTC69MYC"
+  },
+  {
+    "id": 1766442295436,
+    "title": "Non-linear vibration and resonance analysis of graphene sheet subjected to moving load on a visco-Pasternak foundation under thermo-magnetic-mechanical loads: An analytical and …",
+    "authors": "M Ghadiri, A Rajabpour, A Akbarshahi",
+    "journal": "Measurement 124, 103-119, 2018",
+    "citations": "23",
+    "year": "2018",
+    "link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=lqX8fzQAAAAJ&pagesize=100&citation_for_view=lqX8fzQAAAAJ:5icHVeHT4IsC"
+  },
+  {
+    "id": 1766442295438,
+    "title": "Universal interfacial thermal resistance at high frequencies",
+    "authors": "A Rajabpour, S Volz",
+    "journal": "Physical Review B 90 (19), 195444, 2014",
+    "citations": "23",
+    "year": "2014",
+    "link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=lqX8fzQAAAAJ&pagesize=100&citation_for_view=lqX8fzQAAAAJ:9c2xU6iGI7YC"
+  },
+  {
+    "id": 1766442295439,
+    "title": "Thermal transport in two-dimensional C3N/C2N superlattices: a molecular dynamics approach",
+    "authors": "L Razzaghi, F Khoeini, A Rajabpour, M Khalkhali",
+    "journal": "International Journal of Heat and Mass Transfer 177, 121561, 2021",
+    "citations": "22",
+    "year": "2021",
+    "link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=lqX8fzQAAAAJ&pagesize=100&citation_for_view=lqX8fzQAAAAJ:XUvXOeBm_78C"
+  },
+  {
+    "id": 1766442295440,
+    "title": "Thermal rectification and interfacial thermal resistance in hybrid pillared-graphene and graphene: a molecular dynamics and continuum approach",
+    "authors": "F Yousefi, F Khoeini, A Rajabpour",
+    "journal": "Nanotechnology 31 (28), 285707, 2020",
+    "citations": "21",
+    "year": "2020",
+    "link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=lqX8fzQAAAAJ&pagesize=100&citation_for_view=lqX8fzQAAAAJ:buQ7SEKw-1sC"
+  },
+  {
+    "id": 1766442295445,
+    "title": "MD-based design of bilayer graphene-hBN heterostructures: An insight into enhanced thermal transport",
+    "authors": "F Momeni, B Mehrafrooz, A Montazeri, A Rajabpour",
+    "journal": "International Journal of Heat and Mass Transfer 150, 119282, 2020",
+    "citations": "21",
+    "year": "2020",
+    "link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=lqX8fzQAAAAJ&pagesize=100&citation_for_view=lqX8fzQAAAAJ:v1_lew4L6wgC"
+  },
+  {
+    "id": 1766442295446,
+    "title": "Grain size facilitating the heat transfer between graphene and silica substrate",
+    "authors": "H Peer-Mohammadi, A Rajabpour, M Khanaki",
+    "journal": "Computational Materials Science 149, 348-353, 2018",
+    "citations": "21",
+    "year": "2018",
+    "link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=lqX8fzQAAAAJ&pagesize=100&citation_for_view=lqX8fzQAAAAJ:gVv57TyPmFsC"
+  },
+  {
+    "id": 1766442295448,
+    "title": "Tunable superlattice in-plane thermal conductivity based on asperity sharpness at interfaces: Beyond Ziman’s model of specularity",
+    "authors": "A Rajabpour, SM Vaez Allaei, Y Chalopin, F Kowsary, S Volz",
+    "journal": "Journal of Applied Physics 110 (11), 113529-113529-6, 2011",
+    "citations": "21",
+    "year": "2011",
+    "link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=lqX8fzQAAAAJ&pagesize=100&citation_for_view=lqX8fzQAAAAJ:2osOgNQ5qMEC"
+  },
+  {
+    "id": 1766442295449,
+    "title": "Thermoelectric characteristics of two-dimensional structures for three different lattice compounds of B–C–N and graphene counterpart BX (X= P, As, and Sb) systems",
+    "authors": "S Ahmadi, M Raeisi, L Eslami, A Rajabpour",
+    "journal": "The Journal of Physical Chemistry C 125 (27), 14525-14537, 2021",
+    "citations": "20",
+    "year": "2021",
+    "link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=lqX8fzQAAAAJ&pagesize=100&citation_for_view=lqX8fzQAAAAJ:yxmsSjX2EkcC"
+  },
+  {
+    "id": 1766442295450,
+    "title": "Elucidation of thermo-mechanical properties of silicon nanowires from a molecular dynamics perspective",
+    "authors": "F Hasheminia, Y Bahari, A Rajabpour, S Arabha",
+    "journal": "Computational Materials Science 200, 110821, 2021",
+    "citations": "19",
+    "year": "2021",
+    "link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=lqX8fzQAAAAJ&pagesize=100&citation_for_view=lqX8fzQAAAAJ:3NQIlFlcGxIC"
+  },
+  {
+    "id": 1766442295452,
+    "title": "Nonreciprocal forces enable cold-to-hot heat transfer between nanoparticles",
+    "authors": "SAM Loos, S Arabha, A Rajabpour, A Hassanali, É Roldán",
+    "journal": "Scientific Reports 13 (1), 4517, 2023",
+    "citations": "18",
+    "year": "2023",
+    "link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=lqX8fzQAAAAJ&pagesize=100&citation_for_view=lqX8fzQAAAAJ:PyEswDtIyv0C"
+  },
+  {
+    "id": 1766442295453,
+    "title": "Thermal conductivity of CNT–water nanofluid at different temperatures, volume fractions, and diameters: Experimental investigation and molecular dynamics simulations",
+    "authors": "F Jabbari, A Rajabpour, S Saedodin",
+    "journal": "Microfluidics and Nanofluidics 25 (12), 102, 2021",
+    "citations": "17",
+    "year": "2021",
+    "link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=lqX8fzQAAAAJ&pagesize=100&citation_for_view=lqX8fzQAAAAJ:DBa1UEJaJKAC"
+  },
+  {
+    "id": 1766442295454,
+    "title": "Effect of planar torsional deformation on the thermal conductivity of 2D nanomaterials: A molecular dynamics study",
+    "authors": "S Arabha, A Rajabpour",
+    "journal": "Materials Today Communications 22, 100706, 2020",
+    "citations": "17",
+    "year": "2020",
+    "link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=lqX8fzQAAAAJ&pagesize=100&citation_for_view=lqX8fzQAAAAJ:ALROH1vI_8AC"
+  },
+  {
+    "id": 1766442295455,
+    "title": "A novel approach to calculate thermal expansion of graphene: Molecular dynamics study",
+    "authors": "H Ghasemi, A Rajabpour",
+    "journal": "The European Physical Journal Plus 132 (5), 221, 2017",
+    "citations": "17",
+    "year": "2017",
+    "link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=lqX8fzQAAAAJ&pagesize=100&citation_for_view=lqX8fzQAAAAJ:a3BOlSfXSfwC"
+  },
+  {
+    "id": 1766442295456,
+    "title": "Enhanced interfacial thermal conductance in functionalized boron nitride/polylactic acid nanocomposites: A molecular dynamics study",
+    "authors": "G Jamirad, A Montazeri, A Rajabpour",
+    "journal": "Progress in Organic Coatings 186, 108037, 2024",
+    "citations": "16",
+    "year": "2024",
+    "link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=lqX8fzQAAAAJ&pagesize=100&citation_for_view=lqX8fzQAAAAJ:HhcuHIWmDEUC"
+  },
+  {
+    "id": 1766442295458,
+    "title": "Numerical modeling of a body vessel for dynamic study of a nano cylindrical shell carrying fluid and a moving nanoparticle",
+    "authors": "ZK Mizuji, M Ghadiri, A Rajabpour, MF Ahari, A Zajkani, S Yazdinia",
+    "journal": "Engineering Analysis with Boundary Elements 152, 362-382, 2023",
+    "citations": "16",
+    "year": "2023",
+    "link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=lqX8fzQAAAAJ&pagesize=100&citation_for_view=lqX8fzQAAAAJ:U_HPUtbDl20C"
+  },
+  {
+    "id": 1766442295459,
+    "title": "Enhanced local viscosity around colloidal nanoparticles probed by equilibrium molecular dynamics simulations",
+    "authors": "R Rabani, MH Saidi, L Joly, S Merabia, A Rajabpour",
+    "journal": "The Journal of Chemical Physics 155 (17), 2021",
+    "citations": "15",
+    "year": "2021",
+    "link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=lqX8fzQAAAAJ&pagesize=100&citation_for_view=lqX8fzQAAAAJ:hsZV8lGYWTMC"
+  },
+  {
+    "id": 1766442295460,
+    "title": "Temperature gradient-induced fluid pumping inside a single-wall carbon nanotube: A non-equilibrium molecular dynamics study",
+    "authors": "F Faraji, A Rajabpour",
+    "journal": "Physics of Fluids 28 (9), 2016",
+    "citations": "15",
+    "year": "2016",
+    "link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=lqX8fzQAAAAJ&pagesize=100&citation_for_view=lqX8fzQAAAAJ:HeT0ZceujKMC"
+  },
+  {
+    "id": 1766442295461,
+    "title": "Temperature profile for nanoscale Poiseuille flow: A multiscale study",
+    "authors": "F Faraji, A Rajabpour, F Kowsary",
+    "journal": "Journal of Mechanical Science and Technology 30 (2), 803-807, 2016",
+    "citations": "15",
+    "year": "2016",
+    "link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=lqX8fzQAAAAJ&pagesize=100&citation_for_view=lqX8fzQAAAAJ:fFSKOagxvKUC"
+  },
+  {
+    "id": 1766442295462,
+    "title": "Nanobubble collapse induced erosion near flexible and rigid boundaries: A molecular dynamics study",
+    "authors": "E Kadivar, A Rajabpour, O El Moctar",
+    "journal": "Fluids 8 (5), 154, 2023",
+    "citations": "14",
+    "year": "2023",
+    "link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=lqX8fzQAAAAJ&pagesize=100&citation_for_view=lqX8fzQAAAAJ:mKu_rENv82IC"
+  },
+  {
+    "id": 1766442295463,
+    "title": "Heat transport in 2D van der Waals heterostructures: an analytical modeling approach",
+    "authors": "MS Alborzi, A Rajabpour, A Montazeri",
+    "journal": "International Journal of Thermal Sciences 150, 106237, 2020",
+    "citations": "14",
+    "year": "2020",
+    "link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=lqX8fzQAAAAJ&pagesize=100&citation_for_view=lqX8fzQAAAAJ:U4n9YNQMCAIC"
+  },
+  {
+    "id": 1766442295464,
+    "title": "Thermal transport engineering in single layered graphene sheets via MD simulations: on the effect of nickel coating",
+    "authors": "M Azizinia, B Mehrafrooz, A Montazeri, A Rajabpour",
+    "journal": "International Journal of Thermal Sciences 138, 416-424, 2019",
+    "citations": "14",
+    "year": "2019",
+    "link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=lqX8fzQAAAAJ&pagesize=100&citation_for_view=lqX8fzQAAAAJ:2tRrZ1ZAMYUC"
+  },
+  {
+    "id": 1766442295465,
+    "title": "Enhanced heat flow between charged nanoparticles and an aqueous electrolyte",
+    "authors": "R Rabani, MH Saidi, A Rajabpour, L Joly, S Merabia",
+    "journal": "Langmuir 39 (43), 15222-15230, 2023",
+    "citations": "13",
+    "year": "2023",
+    "link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=lqX8fzQAAAAJ&pagesize=100&citation_for_view=lqX8fzQAAAAJ:FiDNX6EVdGUC"
+  },
+  {
+    "id": 1766442295467,
+    "title": "Accurate estimation of interfacial thermal conductance between silicon and diamond enabled by a machine learning interatomic potential",
+    "authors": "A Rajabpour, B Mortazavi, P Mirchi, J El Hajj, Y Guo, X Zhuang, ...",
+    "journal": "International Journal of Thermal Sciences 214, 109876, 2025",
+    "citations": "12",
+    "year": "2025",
+    "link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=lqX8fzQAAAAJ&pagesize=100&citation_for_view=lqX8fzQAAAAJ:oi2SiIJ9l4AC"
+  },
+  {
+    "id": 1766442295468,
+    "title": "Temperature-dependent vibrational behavior of bilayer doubly curved micro-nano liposome shell: simulation of drug delivery mechanism",
+    "authors": "Y Rahimi, M Ghadiri, A Rajabpour, M Farajzadeh Ahari",
+    "journal": "Journal of Thermal Stresses 46 (11), 1199-1226, 2023",
+    "citations": "12",
+    "year": "2023",
+    "link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=lqX8fzQAAAAJ&pagesize=100&citation_for_view=lqX8fzQAAAAJ:KNjnJ3z-R6IC"
+  },
+  {
+    "id": 1766442295469,
+    "title": "Optimization of interfacial mixing for thermal transport along Si/Ge heterostructures: A molecular dynamics study",
+    "authors": "RK Kelayeh, A Rajabpour, E Taheran, Y Bahari",
+    "journal": "Applied Surface Science 626, 157236, 2023",
+    "citations": "12",
+    "year": "2023",
+    "link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=lqX8fzQAAAAJ&pagesize=100&citation_for_view=lqX8fzQAAAAJ:NDuN12AVoxsC"
+  },
+  {
+    "id": 1766442295470,
+    "title": "Lattice thermal conductivity and Young's modulus of XN 4 (X= Be, Mg and Pt) 2D materials using machine learning interatomic potentials",
+    "authors": "K Ghorbani, P Mirchi, S Arabha, A Rajabpour, S Volz",
+    "journal": "Physical Chemistry Chemical Physics 25 (18), 12923-12933, 2023",
+    "citations": "12",
+    "year": "2023",
+    "link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=lqX8fzQAAAAJ&pagesize=100&citation_for_view=lqX8fzQAAAAJ:OBSaB-F7qqsC"
+  },
+  {
+    "id": 1766442295472,
+    "title": "Insights into thermal characteristics of spiral carbon-based nanomaterials: From heat transport mechanisms to tunable thermal diode behavior",
+    "authors": "A Sharifian, T Karbaschi, A Rajabpour, M Baghani, J Wu, M Baniassadi",
+    "journal": "International Journal of Heat and Mass Transfer 189, 122719, 2022",
+    "citations": "12",
+    "year": "2022",
+    "link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=lqX8fzQAAAAJ&pagesize=100&citation_for_view=lqX8fzQAAAAJ:KaMxkj08jr0C"
+  },
+  {
+    "id": 1766442295473,
+    "title": "UV-blue spectral down-shifting of titanium dioxide nano-structures doped with nitrogen on the glass substrate to study its anti-bacterial properties on the E. coli bacteria",
+    "authors": "S Yousefali, A Reyhani, SZ Mortazavi, N Yousefali, A Rajabpour",
+    "journal": "Surfaces and interfaces 13, 11-21, 2018",
+    "citations": "12",
+    "year": "2018",
+    "link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=lqX8fzQAAAAJ&pagesize=100&citation_for_view=lqX8fzQAAAAJ:vDZJ-YLwNdEC"
+  },
+  {
+    "id": 1766442295474,
+    "title": "Reduction of the computational time and noise filtration in the IHCP by using the proper orthogonal decomposition (POD) method",
+    "authors": "A Rajabpour, F Kowsary, V Esfahanian",
+    "journal": "International communications in heat and mass transfer 35 (8), 1024-1031, 2008",
+    "citations": "12",
+    "year": "2008",
+    "link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=lqX8fzQAAAAJ&pagesize=100&citation_for_view=lqX8fzQAAAAJ:9yKSN-GCB0IC"
+  },
+  {
+    "id": 1766442295475,
+    "title": "Learning the hydrophobic, hydrophilic, and aromatic character of amino acids from thermal relaxation and interfacial thermal conductance",
+    "authors": "H Hamzi, A Rajabpour, É Roldán, A Hassanali",
+    "journal": "The Journal of Physical Chemistry B 126 (3), 670-678, 2022",
+    "citations": "11",
+    "year": "2022",
+    "link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=lqX8fzQAAAAJ&pagesize=100&citation_for_view=lqX8fzQAAAAJ:6bLC7aUMtPcC"
+  },
+  {
+    "id": 1766442295476,
+    "title": "Interfacial thermal conductance between gold and SiO2: A molecular dynamics study",
+    "authors": "SM Hatam-Lee, F Jabbari, A Rajabpour",
+    "journal": "Nanoscale and Microscale Thermophysical Engineering 26 (1), 40-51, 2022",
+    "citations": "10",
+    "year": "2022",
+    "link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=lqX8fzQAAAAJ&pagesize=100&citation_for_view=lqX8fzQAAAAJ:-7ulzOJl1JYC"
+  },
+  {
+    "id": 1766442295478,
+    "title": "Lattice-dynamics-based descriptors for interfacial heat transfer across two-dimensional carbon-based nanostructures",
+    "authors": "SM Hatam-Lee, K Gordiz, A Rajabpour",
+    "journal": "Journal of Applied Physics 130 (13), 2021",
+    "citations": "9",
+    "year": "2021",
+    "link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=lqX8fzQAAAAJ&pagesize=100&citation_for_view=lqX8fzQAAAAJ:WC9gN4BGCRcC"
+  },
+  {
+    "id": 1766442295479,
+    "title": "Fluid heating in a nano-scale Poiseuille flow: A non-equilibrium molecular dynamics study",
+    "authors": "F Faraji, A Rajabpour",
+    "journal": "Current Applied Physics 17 (12), 1646-1654, 2017",
+    "citations": "8",
+    "year": "2017",
+    "link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=lqX8fzQAAAAJ&pagesize=100&citation_for_view=lqX8fzQAAAAJ:_OXeSy2IsFwC"
+  },
+  {
+    "id": 1766442295480,
+    "title": "Molecular dynamics modeling of buckling behavior of hydrogenated graphyne",
+    "authors": "A Montazeri, S Ebrahimi, A Rajabpour, H Rafii-Tabar",
+    "journal": "Nano 10 (07), 1550105, 2015",
+    "citations": "8",
+    "year": "2015",
+    "link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=lqX8fzQAAAAJ&pagesize=100&citation_for_view=lqX8fzQAAAAJ:OcBU2YAGkTUC"
+  },
+  {
+    "id": 1766442295482,
+    "title": "Lattice thermal conductivity and mechanical properties of the single-layer penta-NiN 2 explored by a deep-learning interatomic potential",
+    "authors": "P Mirchi, C Adessi, S Merabia, A Rajabpour",
+    "journal": "Physical Chemistry Chemical Physics 26 (19), 14216-14227, 2024",
+    "citations": "7",
+    "year": "2024",
+    "link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=lqX8fzQAAAAJ&pagesize=100&citation_for_view=lqX8fzQAAAAJ:-nhnvRiOwuoC"
+  },
+  {
+    "id": 1766442295483,
+    "title": "A novel approach for reducing feature space dimensionality and developing a universal machine learning model for coated tubes in cross-flow heat exchangers",
+    "authors": "M Jahaninasab, E Taheran, SA Zarabadi, M Aghaei, A Rajabpour",
+    "journal": "Energies 16 (13), 5185, 2023",
+    "citations": "7",
+    "year": "2023",
+    "link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=lqX8fzQAAAAJ&pagesize=100&citation_for_view=lqX8fzQAAAAJ:1DsIQWDZLl8C"
+  },
+  {
+    "id": 1766442295484,
+    "title": "Influence of various setting angles on vibration behavior of rotating graphene sheet: continuum modeling and molecular dynamics simulation",
+    "authors": "A Akbarshahi, A Rajabpour, M Ghadiri, MM Barooti",
+    "journal": "Journal of Molecular Modeling 25 (5), 141, 2019",
+    "citations": "7",
+    "year": "2019",
+    "link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=lqX8fzQAAAAJ&pagesize=100&citation_for_view=lqX8fzQAAAAJ:4xDN1ZYqzskC"
+  },
+  {
+    "id": 1766442295485,
+    "title": "Unveiling novel structural complexity of spiral carbon nanomaterials: Review on mechanical, thermal, and interfacial behaviors via molecular dynamics",
+    "authors": "A Sharifian, P Fareghi, M Baghani, GM Odegard, ACT van Duin, ...",
+    "journal": "Journal of Molecular Structure 1321, 139837, 2025",
+    "citations": "6",
+    "year": "2025",
+    "link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=lqX8fzQAAAAJ&pagesize=100&citation_for_view=lqX8fzQAAAAJ:YsrPvlHIBpEC"
+  },
+  {
+    "id": 1766442295487,
+    "title": "Extreme near-field heat transfer between silica surfaces",
+    "authors": "A Rajabpour, J El Hajj, M Gómez Viloria, R Messina, P Ben-Abdallah, ...",
+    "journal": "Applied Physics Letters 124 (19), 2024",
+    "citations": "6",
+    "year": "2024",
+    "link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=lqX8fzQAAAAJ&pagesize=100&citation_for_view=lqX8fzQAAAAJ:F2UWTTQJPOcC"
+  },
+  {
+    "id": 1766442295488,
+    "title": "Substrate Effect on the Thermal Expansion of 2D Materials: An Investigation by Machine Learning Interatomic Potentials",
+    "authors": "A Rajabpour, B Mortazavi",
+    "journal": "Condensed Matter 7 (4), 67, 2022",
+    "citations": "6",
+    "year": "2022",
+    "link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=lqX8fzQAAAAJ&pagesize=100&citation_for_view=lqX8fzQAAAAJ:HGTzPopzzJcC"
+  },
+  {
+    "id": 1766442295489,
+    "title": "Effect of defects on mechanical properties of graphene under shear loading using molecular dynamic simulation",
+    "authors": "S Kimiagar, A Rajabpour, F Tavazoee",
+    "journal": "Physical Chemistry Research 3 (4), 299-304, 2015",
+    "citations": "6",
+    "year": "2015",
+    "link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=lqX8fzQAAAAJ&pagesize=100&citation_for_view=lqX8fzQAAAAJ:OR75R8vi5nAC"
+  },
+  {
+    "id": 1766442295490,
+    "title": "Unraveling the effect of hydrogenation on the mechanical properties of coiled carbon nanotubes: a molecular dynamics study",
+    "authors": "MA Saray, M Baghani, A Rajabpour, A Sharifian, M Baniassadi",
+    "journal": "Physical Chemistry Chemical Physics 25 (23), 15988-16000, 2023",
+    "citations": "5",
+    "year": "2023",
+    "link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=lqX8fzQAAAAJ&pagesize=100&citation_for_view=lqX8fzQAAAAJ:RoXSNcbkSzsC"
+  },
+  {
+    "id": 1766442295491,
+    "title": "Inertial microfluidics: Determining the effect of geometric key parameters on capture efficiency along with a feasibility evaluation for bone marrow cells sorting",
+    "authors": "MM Ghadiri, SA Hosseini, S Sadatsakkak, A Rajabpour",
+    "journal": "Biomedical Microdevices 23 (3), 41, 2021",
+    "citations": "5",
+    "year": "2021",
+    "link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=lqX8fzQAAAAJ&pagesize=100&citation_for_view=lqX8fzQAAAAJ:1yWc8FF-_SYC"
+  },
+  {
+    "id": 1766442295493,
+    "title": "Effect of overlapping junctions on the heat transfer between 2D layered composite materials",
+    "authors": "MS Alborzi, A Rajabpour",
+    "journal": "International Communications in Heat and Mass Transfer 109, 104348, 2019",
+    "citations": "5",
+    "year": "2019",
+    "link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=lqX8fzQAAAAJ&pagesize=100&citation_for_view=lqX8fzQAAAAJ:lgwcVrK6X84C"
+  },
+  {
+    "id": 1766442295494,
+    "title": "Thermodynamic properties of monatomic, diatomic, and polyatomic gaseous natural refrigerants: a molecular dynamics simulation",
+    "authors": "A Rajabpour, M Abbasi",
+    "journal": "Journal of Heat and Mass Transfer Research 8 (1), 61-69, 2021",
+    "citations": "4",
+    "year": "2021",
+    "link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=lqX8fzQAAAAJ&pagesize=100&citation_for_view=lqX8fzQAAAAJ:7H_MAutzIkAC"
+  },
+  {
+    "id": 1766442295495,
+    "title": "Thermal conductivity of boronated-holey graphene under mechanical strain: Insights from molecular dynamics",
+    "authors": "M Rezaeian, Y Bahari, D Bandi, A Montazeri, M Jahaninasab, ...",
+    "journal": "Physica B: Condensed Matter 693, 416400, 2024",
+    "citations": "3",
+    "year": "2024",
+    "link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=lqX8fzQAAAAJ&pagesize=100&citation_for_view=lqX8fzQAAAAJ:ziOE8S1-AIUC"
+  },
+  {
+    "id": 1766442295496,
+    "title": "Heat transfer analysis of nanofluid flow on elliptical tube bundle with different attack angles",
+    "authors": "A Hosseini, SA Sadatsakkak, A Rajabpour",
+    "journal": "Journal of Heat and Mass Transfer Research 10 (1), 51-66, 2023",
+    "citations": "3",
+    "year": "2023",
+    "link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=lqX8fzQAAAAJ&pagesize=100&citation_for_view=lqX8fzQAAAAJ:uVUOdF_882EC"
+  },
+  {
+    "id": 1766442295498,
+    "title": "Thermal Conductivity of hydrogen functionalized Graphyne and Graphdiyne: A Nonequilibrium Molecular Dynamics Study",
+    "authors": "A Rajabpour, SM Vaez, M Jalalvand",
+    "journal": "no. March, 5-6, 2014",
+    "citations": "3",
+    "year": "2014",
+    "link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=lqX8fzQAAAAJ&pagesize=100&citation_for_view=lqX8fzQAAAAJ:QYdC8u9Cj1oC"
+  },
+  {
+    "id": 1766442295499,
+    "title": "Non-Equilibrium Molecular Dynamics Study on the Thermal and Mechanical Properties of Graphene",
+    "authors": "B Mortazavi, A Rajabpour, S Ahzi, A Hadizadeh",
+    "journal": "IR Iran, 12-14, 2012",
+    "citations": "3",
+    "year": "2012",
+    "link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=lqX8fzQAAAAJ&pagesize=100&citation_for_view=lqX8fzQAAAAJ:Y0pCki6q_DkC"
+  },
+  {
+    "id": 1766442295500,
+    "title": "Thermal Transport in Polyethylene Reinforced with H/CH3/C2H5 Functionalized Graphene: A Molecular Dynamics Study",
+    "authors": "N Zarkhah, M Baghani, D George, A Rajabpour, M Baniassadi, M Aghaei",
+    "journal": "Energies 18 (7), 1647, 2025",
+    "citations": "2",
+    "year": "2025",
+    "link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=lqX8fzQAAAAJ&pagesize=100&citation_for_view=lqX8fzQAAAAJ:w1MjKQ0l0TYC"
+  },
+  {
+    "id": 1766442295501,
+    "title": "A molecular dynamics study on the thermal properties of lithiated silicon nanowires",
+    "authors": "F Hasheminia, Y Bahari, A Rajabpour",
+    "journal": "Applied Physics A 129 (8), 546, 2023",
+    "citations": "2",
+    "year": "2023",
+    "link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=lqX8fzQAAAAJ&pagesize=100&citation_for_view=lqX8fzQAAAAJ:O0nohqN1r9EC"
+  }
+]
+
+--- Awards ---
+[
+  {
+    "id": 1,
+    "Award": "Ranked 1st Among the BS Mechanical Engineering Alumni”, IK International University."
+  },
+  {
+    "id": 2,
+    "Award": "Visiting the 'Condensed Matter and Statistical Physics of the Abdus Salam International Centre for Theoretical Physics (ICTP)' and collaboration with E. Roldan and A. Hassanali on a research project on 'inverse heat flux between nanoparticles', from 21 October to 18 November 2019, Trieste, Italy."
+  }
+]
+
+--- Teaching ---
+[
+  {
+    "id": 1,
+    "Teaching": "Teacher Assistant in Dynamics, Simulation Tools for Design & Analysis, and Machine Elements Design, Mechanical Engineering Department, York University, 2021–Now, Toronto, ON, Canada."
+  },
+  {
+    "id": 2,
+    "Teaching": "Researcher in Advanced Simulation and Computing Lab, Mechanical Engineering Department, IK International University, September 2015 – 2021."
+  },
+  {
+    "id": 3,
+    "Teaching": "Teacher Assistant in Fluid Mechanics І, Mechanical Engineering Department, IK International University, Autumn 2017, Qazvin, Iran."
+  },
+  {
+    "id": 4,
+    "Teaching": "Teacher Assistant in Heat Transfer, CFD, Thermodynamics, Mechanical and Electrical Engineering Department, IK International University, Spring 2017 – 2018, Qazvin, Iran."
+  },
+  {
+    "id": 5,
+    "Teaching": "Internship in TAHVIE Co, Air Conditioning Systems, Technical Office, Summer 2015, Qazvin, Iran."
+  }
+]

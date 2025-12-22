@@ -30,7 +30,9 @@ class AddToCalendar extends React.Component {
     return (
       <h1>
         <strong>Date of birth:</strong>{" "}
-        <button onClick={this.createICSFile}>15.02.1995</button>
+        <button onClick={this.createICSFile}>
+          {this.props.date || "15.02.1995"}
+        </button>
       </h1>
     );
   }

@@ -21,6 +21,7 @@ const Papers = () => {
         stages={utilizeProps.stages}
         size={utilizeProps.size}
         adjustHeight={utilizeProps.adjustHeight}
+        list={utilizeProps.list}
       />
       <MoreInfoPapers
         isActive={utilizeProps.isActive}
@@ -28,6 +29,7 @@ const Papers = () => {
         ParentRef={utilizeProps.ParentRef}
         ChildRefs={utilizeProps.ChildRefs}
         stages={utilizeProps.stages}
+        list={utilizeProps.list}
       />
     </InteractiveDiv>
   );

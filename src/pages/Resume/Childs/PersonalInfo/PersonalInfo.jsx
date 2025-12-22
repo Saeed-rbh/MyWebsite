@@ -21,6 +21,7 @@ export const PersonalInfo = () => {
     adjustViewport,
     adjustTop,
     isActive,
+    list
   } = useUtilize(componentName);
 
   const { ref, inView } = useInView({
@@ -88,8 +89,8 @@ export const PersonalInfo = () => {
       id={name}
     >
       {memoizedTitle}
-      <PersonalDetails MainStyle={{ ...Main }} />
-      <ContactDetails MainStyle={{ ...Main }} />
+      <PersonalDetails MainStyle={{ ...Main }} info={list ? list[0] : null} />
+      <ContactDetails MainStyle={{ ...Main }} info={list ? list[0] : null} />
     </animated.div>
   );
 };

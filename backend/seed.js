@@ -1,0 +1,352 @@
+const sequelize = require('./database');
+const CVSection = require('./models/CVSection');
+const User = require('./models/User');
+const bcrypt = require('bcryptjs');
+
+const sectionsData = [
+    {
+        id: 0,
+        name: "PersonalInfo",
+        title: "Personal Info",
+        background: "rgb(0 0 0 / 50%)",
+        size: [130, 450],
+        top: 180,
+        fixed: true,
+        list: [{
+            name: "Saeed Arabha",
+            dateOfBirth: "15.02.1995",
+            caPhone: "+1 - 416 836 5851",
+            irPhone: "+98 - 919 659 5351"
+        }],
+    },
+    {
+        id: 1,
+        name: "Affiliation",
+        title: "Affiliation",
+        background: "rgb(0 0 0 / 40%)",
+        size: [130, 450],
+        top: 330,
+        fixed: true,
+        list: []
+    },
+    {
+        id: 2,
+        name: "ResearchInterests",
+        title: "Research Interests",
+        background: "rgb(0 0 0 / 40%)",
+        size: [75, 450],
+        top: 460,
+        fixed: true,
+        list: [
+            { label: "2D Nanomaterials", href: "#2DMaterials" },
+            { label: "Multiscale Modeling", href: "#MultiscaleModeling" },
+            { label: "Heat Transfer", href: "#HeatTransfer" },
+            { label: "Statistical Mechanics", href: "#StatisticalMechanics" },
+        ]
+    },
+    {
+        id: 3,
+        name: "Skills",
+        title: "Skill & Software",
+        explanation: "Achieved proficiency in various technical skills",
+        background: "rgb(0 0 0 / 20%)",
+        size: [140, 450],
+        top: 1025,
+        fixed: false,
+        list: [
+            {
+                id: 1,
+                Title: "Coding",
+                skill: [
+                    ["Python", "Expert"],
+                    ["C++", "Beginner"],
+                    ["Java Script (JS)", "Intermediate"],
+                    ["MATLAB", "Expert"],
+                ],
+            },
+            {
+                id: 2,
+                Title: "Atomestic Modeling",
+                skill: [
+                    ["LAMMPS Molecular Dynamics Simulator", "Expert"],
+                    ["VMD", "Expert"],
+                    ["VASP", "Beginner"],
+                    ["Ovito", "Expert"],
+                ],
+            },
+            {
+                id: 3,
+                Title: "Continuum Modeling & Design",
+                skill: [
+                    ["COMSOL Multiphysics", "Intermediate"],
+                    ["CATIA", "Beginner"],
+                    ["Solid Works", "Expert"],
+                    ["AutoCAD", "Beginner"],
+                ],
+            },
+        ]
+    },
+    {
+        id: 4,
+        name: "Qualifications",
+        title: "Qualifications",
+        explanation: "Achieved educational credentials",
+        background: "rgb(0 0 0 / 30%)",
+        size: [190, 450],
+        top: 605,
+        fixed: false,
+        list: [
+            {
+                id: 1,
+                title: "PhD in Mechanical Engineering",
+                Date: "2021 – NOW",
+                Location: "York University, Toronto ON, Canada",
+                Thesis: "Compressible Flow Exfoliation of 2D Nanomaterials: Optimization and applications",
+                Supervisor: "R. Rizvi , C. Jian",
+            },
+            {
+                id: 2,
+                title: "Master of Science in mechanical Engineering",
+                Date: "2017 – 2019",
+                Location: "IK International University, Qazvin, Iran",
+                Thesis: "Defect engineering on Thermo-Mechanical Properties of single-layer Borophene: Comparison of Molecular Dynamics and Finite Element Method",
+                Supervisor: "A. Rajabpour, AH. Akbarzadeh",
+            },
+            {
+                id: 3,
+                title: "Bachelor of Science in Mechanical Engineering",
+                Date: "2013 - 2017",
+                Location: "IK International University, Qazvin, Iran",
+                Thesis: "Importance of nanolayer formation in nanofluid properties: Equilibrium molecular dynamic simulations",
+                Supervisor: "A. Rajabpour",
+            },
+        ]
+    },
+    {
+        id: 5,
+        name: "Published Papers",
+        title: "Published Papers",
+        explanation: "Peer-reviewed research contributions",
+        background: "rgb(0 0 0 / 30%)",
+        size: [210, 450],
+        top: 805,
+        fixed: false,
+        list: [
+            {
+                id: "b1e644fe-23e3-48ef-914d-58e71da761c7",
+                Title: "Nonreciprocal forces enable cold-to-hot heat transfer between nanoparticles",
+                Citations: 15,
+                Link: "https://scholar.google.ca/citations?view_op=view_citation&hl=en&user=mroBfIwAAAAJ&citation_for_view=mroBfIwAAAAJ:TFP_iSt0sucC",
+                Authors: "SAM Loos, S Arabha, A Rajabpour, A Hassanali, É Roldán",
+                Journal: "Scientific Reports",
+                Year: 2023
+            },
+            {
+                id: "0f60e716-a361-4229-8fce-ce55d5f08c9f",
+                Title: "Lattice thermal conductivity and Young's modulus of XN 4 (X= Be, Mg and Pt) 2D materials using machine learning interatomic potentials",
+                Citations: 5,
+                Link: "https://scholar.google.ca/citations?view_op=view_citation&hl=en&user=mroBfIwAAAAJ&citation_for_view=mroBfIwAAAAJ:isC4tDSrTZIC",
+                Authors: "K Ghorbani, P Mirchi, S Arabha, A Rajabpour, S Volz",
+                Journal: "Physical Chemistry Chemical Physics",
+                Year: 2023
+            },
+            {
+                id: "995df32a-ffa0-431e-b0f4-417db2e6dcc1",
+                Title: "Interfacial thermal conductance between TiO2 nanoparticle and water: A molecular dynamics study",
+                Citations: 24,
+                Link: "https://scholar.google.ca/citations?view_op=view_citation&hl=en&user=mroBfIwAAAAJ&citation_for_view=mroBfIwAAAAJ:TQgYirikUcIC",
+                Authors: "M Roodbari, M Abbasi, S Arabha, A Gharedaghi, A Rajabpour",
+                Journal: "Journal of Molecular Liquids",
+                Year: 2022
+            },
+            {
+                id: "e70c06c3-6a59-40ac-be47-933a71ba9062",
+                Title: "Interactions of Gas Particles with Graphene during High-Throughput Compressible Flow Exfoliation: A Molecular Dynamics Simulations Study",
+                Citations: 1,
+                Link: "https://scholar.google.ca/citations?view_op=view_citation&hl=en&user=mroBfIwAAAAJ&citation_for_view=mroBfIwAAAAJ:e5wmG9Sq2KIC",
+                Authors: "S Ahmed, S Arabha, RI Gonzalez, R Rizvi",
+                Journal: "The Journal of Physical Chemistry C",
+                Year: 2022
+            },
+            {
+                id: "8d1928a8-747e-4bf1-807e-124067e02940",
+                Title: "Recent advances in lattice thermal conductivity calculation using machine-learning interatomic potentials",
+                Citations: 48,
+                Link: "https://scholar.google.ca/citations?view_op=view_citation&hl=en&user=mroBfIwAAAAJ&citation_for_view=mroBfIwAAAAJ:R3hNpaxXUhUC",
+                Authors: "S Arabha, ZS Aghbolagh, K Ghorbani, SM Hatam-Lee, A Rajabpour",
+                Journal: "Journal of Applied Physics",
+                Year: 2021
+            },
+            {
+                id: "f1fd380c-52ed-44b6-a4db-0795f44fe918",
+                Title: "Thermo-mechanical properties of nitrogenated holey graphene (C2N): A comparison of machine-learning-based and classical interatomic potentials",
+                Citations: 36,
+                Link: "https://scholar.google.ca/citations?view_op=view_citation&hl=en&user=mroBfIwAAAAJ&citation_for_view=mroBfIwAAAAJ:mB3voiENLucC",
+                Authors: "S Arabha, A Rajabpour",
+                Journal: "International Journal of Heat and Mass Transfer",
+                Year: 2021
+            },
+            {
+                id: "1c748616-81df-4edd-b0ca-403d94c8af49",
+                Title: "Elucidation of thermo-mechanical properties of silicon nanowires from a molecular dynamics perspective",
+                Citations: 17,
+                Link: "https://scholar.google.ca/citations?view_op=view_citation&hl=en&user=mroBfIwAAAAJ&citation_for_view=mroBfIwAAAAJ:HDshCWvjkbEC",
+                Authors: "F Hasheminia, Y Bahari, A Rajabpour, S Arabha",
+                Journal: "Computational Materials Science",
+                Year: 2021
+            },
+            {
+                id: "cebbca99-f9fb-400e-91dd-508998b9672c",
+                Title: "Engineered porous borophene with tunable anisotropic properties",
+                Citations: 29,
+                Link: "https://scholar.google.ca/citations?view_op=view_citation&hl=en&user=mroBfIwAAAAJ&citation_for_view=mroBfIwAAAAJ:hFOr9nPyWt4C",
+                Authors: "S Arabha, AH Akbarzadeh, A Rajabpour",
+                Journal: "Composites Part B: Engineering",
+                Year: 2020
+            },
+            {
+                id: "0797bebc-fb7e-42d4-8598-60ae385d1670",
+                Title: "Effect of planar torsional deformation on the thermal conductivity of 2D nanomaterials: a molecular dynamics study",
+                Citations: 13,
+                Link: "https://scholar.google.ca/citations?view_op=view_citation&hl=en&user=mroBfIwAAAAJ&citation_for_view=mroBfIwAAAAJ:qUcmZB5y_30C",
+                Authors: "S Arabha, A Rajabpour",
+                Journal: "Materials Today Communications",
+                Year: 2020
+            },
+            {
+                id: "b1c5c36f-6fc2-4e3d-88d4-b82ec3707920",
+                Title: "Thermal transport at a nanoparticle-water interface: A molecular dynamics and continuum modeling study",
+                Citations: 76,
+                Link: "https://scholar.google.ca/citations?view_op=view_citation&hl=en&user=mroBfIwAAAAJ&citation_for_view=mroBfIwAAAAJ:_FxGoFyzp5QC",
+                Authors: "A Rajabpour, R Seif, S Arabha, MM Heyhat, S Merabia, A Hassanali",
+                Journal: "The Journal of chemical physics",
+                Year: 2019
+            },
+            {
+                id: "95ea8d02-4dba-4493-a319-1f538fb198af",
+                Title: "Importance of nanolayer formation in nanofluid properties: Equilibrium molecular dynamic simulations for Ag-water nanofluid",
+                Citations: 53,
+                Link: "https://scholar.google.ca/citations?view_op=view_citation&hl=en&user=mroBfIwAAAAJ&citation_for_view=mroBfIwAAAAJ:M3ejUd6NZC8C",
+                Authors: "MM Heyhat, A Rajabpour, M Abbasi, S Arabha",
+                Journal: "Journal of Molecular Liquids",
+                Year: 2018
+            },
+        ]
+    },
+    {
+        id: 6,
+        name: "Conference",
+        title: "Workshops & Conferences",
+        explanation: "Participation in Scholarly Conferences and Workshops",
+        background: "rgb(0 0 0 / 30%)",
+        size: [120, 450],
+        top: 1175,
+        fixed: false,
+        isCalc: true,
+        list: [
+            {
+                id: 1,
+                Conference: 'Attending "North American Cold Spray Conference", September 2024, Boucherville, Canada.',
+            },
+            {
+                id: 2,
+                Conference: 'Presentation at "Canadian Society for Mechanical Engineering Conference", May 2023, Université de Sherbrooke, Sherbrooke, Québec, Canada.',
+            },
+            {
+                id: 3,
+                Conference: 'Invited to "QLS/CMSP Huddle on Water, Heat and Stochastic Theory", April 2022, ICTP, Trieste, Italy.',
+            },
+            {
+                id: 4,
+                Conference: '"Workshop on Molecular Dynamics and its Applications to Biological Systems", online workshop, September 2020, ICTP, Trieste, Italy.',
+            },
+            {
+                id: 5,
+                Conference: '"Joint QLS-CMSP Virtual Summer Retreat on Heat, Water, Noise, and Life", online conference, July 2020, ICTP, Trieste, Italy.',
+            },
+            {
+                id: 6,
+                Conference: '"A Not-so-brief Introduction to Molecular Biophysics", crash course, April 2019, Institute for Research in Fundamental Sciences (IPM), Tehran, Iran.',
+            },
+            {
+                id: 7,
+                Conference: 'Presentation at "26th IPM Physics Spring Conference", June 2019, Institute for Research in Fundamental Sciences (IPM), Tehran, Iran.',
+            },
+            {
+                id: 8,
+                Conference: 'Presentation at "7th National Conference on Nanotechnology from Theory to Application", June 2019, Jami Institute of Technology, Tehran, Iran.',
+            },
+        ]
+    },
+    {
+        id: 7,
+        name: "Awards",
+        title: "Awards & Certifications",
+        explanation: "Acknowledgement of  Professional Achievement",
+        background: "rgb(0 0 0 / 30%)",
+        size: [100, 450],
+        top: 1305,
+        fixed: false,
+        list: [
+            {
+                id: 1,
+                Award: "Ranked 1st Among the BS Mechanical Engineering Alumni”, IK International University.",
+            },
+            {
+                id: 2,
+                Award: "Visiting the 'Condensed Matter and Statistical Physics of the Abdus Salam International Centre for Theoretical Physics (ICTP)' and collaboration with E. Roldan and A. Hassanali on a research project on 'inverse heat flux between nanoparticles', from 21 October to 18 November 2019, Trieste, Italy.",
+            },
+        ]
+    },
+    {
+        id: 8,
+        name: "Teaching",
+        title: "Teach & work experiences",
+        explanation: "Involvement in Teaching and Professional Work Experiences",
+        background: "rgb(0 0 0 / 30%)",
+        size: [100, 450],
+        top: 1405, // Just an estimate, sequential
+        fixed: false,
+        isCalc: true,
+        list: [
+            {
+                id: 1,
+                Teaching: "Teacher Assistant in Dynamics, Simulation Tools for Design & Analysis, and Machine Elements Design, Mechanical Engineering Department, York University, 2021–Now, Toronto, ON, Canada.",
+            },
+            {
+                id: 2,
+                Teaching: "Researcher in Advanced Simulation and Computing Lab, Mechanical Engineering Department, IK International University, September 2015 – 2021.",
+            },
+            {
+                id: 3,
+                Teaching: "Teacher Assistant in Fluid Mechanics І, Mechanical Engineering Department, IK International University, Autumn 2017, Qazvin, Iran.",
+            },
+            {
+                id: 4,
+                Teaching: "Teacher Assistant in Heat Transfer, CFD, Thermodynamics, Mechanical and Electrical Engineering Department, IK International University, Spring 2017 – 2018, Qazvin, Iran.",
+            },
+            {
+                id: 5,
+                Teaching: "Internship in TAHVIE Co, Air Conditioning Systems, Technical Office, Summer 2015, Qazvin, Iran.",
+            },
+        ]
+    }
+];
+
+const seedDB = async () => {
+    try {
+        await sequelize.sync({ force: true }); // Reset DB
+        await CVSection.bulkCreate(sectionsData);
+        console.log("Seeded CV data");
+
+        const salt = await bcrypt.genSalt(10);
+        const hashedPassword = await bcrypt.hash('admin123', salt);
+        await User.create({ username: 'admin', password: hashedPassword });
+        console.log("Seeded Admin");
+
+    } catch (error) {
+        console.log(error);
+    }
+};
+
+seedDB();

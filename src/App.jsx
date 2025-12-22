@@ -16,6 +16,8 @@ import ErrorBoundary from "./components/ErrorBoundary/ErrorBoundary";
 const AcademicCV = lazy(() => import("./pages/Resume/Resume"));
 const HomePage = lazy(() => import("./pages/Home/Home"));
 const Loader = lazy(() => import("./Loader/Loader"));
+const AdminDashboard = lazy(() => import("./pages/Admin/AdminDashboard"));
+const Login = lazy(() => import("./pages/Admin/Login"));
 
 import { HelmetProvider } from "react-helmet-async";
 
@@ -43,6 +45,8 @@ function App() {
                   <Route exact path="/" element={<HomePage />} />
                   <Route exact path="/AcademicCV" element={<AcademicCV />} />
                   <Route exact path="/Graphene" element={<Graphene />} />
+                  <Route exact path="/admin" element={<AdminDashboard />} />
+                  <Route exact path="/login" element={<Login />} />
                 </Routes>
               </Suspense>
             </ErrorBoundary>

@@ -1,8 +1,29 @@
 import React from "react";
 import { animated, useSpring, easings } from "react-spring";
-import { TotalCitations, HIndex, List } from "./List";
+const PaperData = ({ isActive, stages, size, adjustHeight, list = [] }) => {
+  // Calculate Stats
+  const TotalCitations = list.reduce((sum, paper) => {
+    let rawCite = paper.citations !== undefined ? paper.citations : paper.Citations;
+    if (rawCite === undefined || rawCite === null) rawCite = '0';
+    return sum + parseInt(rawCite.toString().replace(/\D/g, '') || '0', 10);
+  }, 0);
 
-const PaperData = ({ isActive, stages, size, adjustHeight }) => {
+  const citationsArray = list.map(p => {
+    let rawCite = p.citations !== undefined ? p.citations : p.Citations;
+    if (rawCite === undefined || rawCite === null) rawCite = '0';
+    return parseInt(rawCite.toString().replace(/\D/g, '') || '0', 10);
+  });
+  citationsArray.sort((a, b) => b - a);
+
+  let HIndex = 0;
+  for (let i = 0; i < citationsArray.length; i++) {
+    if (citationsArray[i] >= i + 1) {
+      HIndex = i + 1;
+    } else {
+      break;
+    }
+  }
+
   const CloseOpenStyleInfo = useSpring({
     position: "absolute",
     top: isActive
@@ -10,15 +31,10 @@ const PaperData = ({ isActive, stages, size, adjustHeight }) => {
         ? size[0] - 135
         : size[0] - 135
       : stages[2]
-      ? size[0] - 70
-      : size[0] - 70 + adjustHeight,
+        ? size[0] - 70
+        : size[0] - 70 + adjustHeight,
     width: "calc(100% - 20px)",
     height: "60px",
-    // width: isActive
-    //   ? "calc(100% - 95px)"
-    //   : stages[2] || stages[3]
-    //   ? "calc(100% - 45px)"
-    //   : "100%",
     marginLeft: isActive ? "10px" : stages[2] ? "10px" : "10px",
     marginRight: isActive ? "10px" : stages[2] ? "10px" : "10px",
     paddingLeft: isActive ? "30px" : stages[2] ? "20px" : "20px",
@@ -38,13 +54,13 @@ const PaperData = ({ isActive, stages, size, adjustHeight }) => {
     <animated.div
       className="Paper-Data"
       style={CloseOpenStyleInfo}
-      // ref={skillElementRef}
+    // ref={skillElementRef}
     >
       <animated.div style={Scale}>
         <p>
           #- <span>Papers</span>
         </p>
-        <p>{List.length}</p>
+        <p>{list.length}</p>
       </animated.div>
       <animated.div style={Scale}>
         <p>Citations</p>

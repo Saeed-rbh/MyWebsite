@@ -51,8 +51,23 @@ const useUpdateVariable = () => {
     isTablet && isVerticalTablet, // Stage 4
   ], [isMobile, isTablet, isVerticalTablet]);
 
+  // Fetch DB Data
+  const [dbData, setDbData] = useState([]);
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const { getCVData } = await import("../../../services/api");
+        const { data } = await getCVData();
+        setDbData(data);
+      } catch (err) {
+        console.error("Failed to fetch CV data", err);
+      }
+    };
+    fetchData();
+  }, []);
+
   // Call useDataModify early with consistent hook order
-  const UpdatedData = useDataModify({ stages });
+  const UpdatedData = useDataModify({ stages, dbData });
 
   const academicElementSize = useMemo(
     () => ({

@@ -1,0 +1,25 @@
+Connection has been established successfully.
+Found "Published Papers" section.
+ID: 5
+List Type: object
+List Length: 9
+First Item: {
+  "id": "995df32a-ffa0-431e-b0f4-417db2e6dcc1",
+  "Title": "Interfacial thermal conductance between TiO2 nanoparticle and water: A molecular dynamics study",
+  "Citations": 24,
+  "Link": "https://scholar.google.ca/citations?view_op=view_citation&hl=en&user=mroBfIwAAAAJ&citation_for_view=mroBfIwAAAAJ:TQgYirikUcIC",
+  "Authors": "M Roodbari, M Abbasi, S Arabha, A Gharedaghi, A Rajabpour",
+  "Journal": "Journal of Molecular Liquids",
+  "Year": 2022
+}
+All Sections: [
+  '0: PersonalInfo',
+  '1: Affiliation',
+  '2: ResearchInterests',
+  '3: Skills',
+  '4: Qualifications',
+  '5: Published Papers',
+  '6: Conference',
+  '7: Awards',
+  '8: Teaching'
+]

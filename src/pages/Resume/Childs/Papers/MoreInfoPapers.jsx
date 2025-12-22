@@ -1,6 +1,5 @@
 import React, { useState, useCallback } from "react";
 import PaperItem from "./PaperItem";
-import { List } from "./List";
 import { animated, useSpring, easings } from "react-spring";
 
 const MoreInfoPapers = ({
@@ -9,6 +8,7 @@ const MoreInfoPapers = ({
   ChildRefs,
   ParentRef,
   stages,
+  list = []
 }) => {
   const CloseOpenStylePapers = useSpring({
     overflow: "auto",
@@ -18,15 +18,20 @@ const MoreInfoPapers = ({
         ? "160px"
         : "160px"
       : isHovered
-      ? "220px"
-      : "300px",
+        ? "220px"
+        : "300px",
     opacity: isActive ? "1" : isHovered ? "0.5" : "0",
     easing: easings.easeOutCubic,
   });
 
   const [infoClicked, setInfoClicked] = useState(
-    Array(List.length).fill(false)
+    Array(list.length).fill(false)
   );
+
+  React.useEffect(() => {
+    setInfoClicked(Array(list.length).fill(false));
+  }, [list.length]);
+
   const handleToggle = useCallback(
     (index) => {
       const newInfoClicked = [...infoClicked];
@@ -42,11 +47,11 @@ const MoreInfoPapers = ({
       className="MoreInfoPapers"
       style={CloseOpenStylePapers}
     >
-      {List.map((paper, index) => (
+      {list.map((paper, index) => (
         <PaperItem
-          key={paper.id}
+          key={paper.id || index}
           paper={paper}
-          ChildRefs={ChildRefs.current[index]}
+          ChildRefs={ChildRefs && ChildRefs.current ? ChildRefs.current[index] : null}
           isOpen={infoClicked[index]}
           handleToggle={() => handleToggle(index)}
           loadPaper={NaN}

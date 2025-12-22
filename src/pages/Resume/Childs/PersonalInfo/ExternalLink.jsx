@@ -20,20 +20,20 @@ ExternalLink.propTypes = {
   children: PropTypes.node.isRequired,
 };
 
-const ContactDetails = ({ MainStyle }) => (
+const ContactDetails = ({ MainStyle, info }) => (
   <animated.div style={{ ...MainStyle, maxWidth: "390px" }}>
-    <ContactInfo label="CA Cell" phone="+1 - 416 836 5851" />
-    <ContactInfo label="IR Cell" phone="+98 - 919 659 5351" />
+    <ContactInfo label="CA Cell" phone={info?.caPhone || "+1 - 416 836 5851"} />
+    <ContactInfo label="IR Cell" phone={info?.irPhone || "+98 - 919 659 5351"} />
   </animated.div>
 );
 
-const PersonalDetails = ({ MainStyle }) => (
+const PersonalDetails = ({ MainStyle, info }) => (
   <animated.div style={{ ...MainStyle, maxWidth: "390px" }}>
     <h1>
       <strong>Name:</strong>
-      <ExternalLink href="https://www.example.com/">Saeed Arabha</ExternalLink>
+      <ExternalLink href="https://www.example.com/">{info?.name || "Saeed Arabha"}</ExternalLink>
     </h1>
-    <BirthdayLink />
+    <BirthdayLink date={info?.dateOfBirth} />
   </animated.div>
 );
 
