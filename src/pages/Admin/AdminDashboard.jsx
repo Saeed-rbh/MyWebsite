@@ -1,27 +1,77 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 
 import { getCVData, updateCVSection, syncScholarData, uploadFile } from '../../services/api';
 import { useNavigate } from 'react-router-dom';
 import styles from './AdminDashboard.module.css';
-import { FaUserShield, FaChartBar, FaFileAlt, FaSignOutAlt, FaSave, FaLayerGroup, FaTrash, FaPlus, FaSpinner, FaCloudUploadAlt } from 'react-icons/fa';
+import {
+    FaUserShield, FaChartBar, FaFileAlt, FaSignOutAlt, FaSave, FaLayerGroup,
+    FaTrash, FaPlus, FaSpinner, FaCloudUploadAlt, FaCheck, FaTimes,
+    FaChevronDown, FaChevronUp, FaGraduationCap, FaAward, FaBriefcase,
+    FaFlask, FaCog, FaUser, FaBook, FaCalendarAlt, FaSyncAlt, FaExternalLinkAlt
+} from 'react-icons/fa';
 import { MdDashboard } from 'react-icons/md';
 
-// Helper to format field labels, especially for PersonalInfo section
+// Helper to format field labels
 const formatLabel = (key) => {
-    switch (key) {
-        case 'name':
-            return 'Name';
-        case 'dateOfBirth':
-            return 'Date of Birth';
-        case 'caPhone':
-            return 'CA Phone';
-        case 'irPhone':
-            return 'IR Phone';
-        case 'pdf':
-            return 'PDF File';
-        default:
-            return key;
-    }
+    const labels = {
+        name: 'Full Name',
+        Name: 'Full Name',
+        dateOfBirth: 'Date of Birth',
+        caPhone: 'Canada Phone',
+        irPhone: 'Iran Phone',
+        pdf: 'PDF File',
+        Title: 'Title',
+        title: 'Title',
+        Date: 'Date Range',
+        Location: 'Location',
+        Thesis: 'Thesis/Project',
+        Supervisor: 'Supervisor(s)',
+        Citations: 'Citations',
+        citations: 'Citations',
+        Authors: 'Authors',
+        Journal: 'Journal',
+        Year: 'Year',
+        Link: 'Link URL',
+        Award: 'Award Description',
+        Conference: 'Conference Details',
+        Teaching: 'Experience Details',
+        skill: 'Skills',
+        label: 'Label',
+        href: 'Link (Auto)',
+    };
+    return labels[key] || key.charAt(0).toUpperCase() + key.slice(1);
+};
+
+// Get icon for section
+const getSectionIcon = (name) => {
+    const icons = {
+        PersonalInfo: FaUser,
+        Affiliation: FaBriefcase,
+        ResearchInterests: FaFlask,
+        Skills: FaCog,
+        Qualifications: FaGraduationCap,
+        'Published Papers': FaBook,
+        Papers: FaBook,
+        Conference: FaCalendarAlt,
+        Awards: FaAward,
+        Teaching: FaBriefcase,
+    };
+    return icons[name] || FaLayerGroup;
+};
+
+// Toast notification component
+const Toast = ({ message, type, onClose }) => {
+    useEffect(() => {
+        const timer = setTimeout(onClose, 3000);
+        return () => clearTimeout(timer);
+    }, [onClose]);
+
+    return (
+        <div className={`${styles.toast} ${styles[`toast${type.charAt(0).toUpperCase() + type.slice(1)}`]}`}>
+            {type === 'success' ? <FaCheck /> : <FaTimes />}
+            <span>{message}</span>
+        </div>
+    );
 };
 
 const AdminDashboard = () => {
@@ -30,13 +80,24 @@ const AdminDashboard = () => {
     const [sectionItems, setSectionItems] = useState([]);
     const [view, setView] = useState('dashboard');
     const [isSyncing, setIsSyncing] = useState(false);
-    const [scholarUrl, setScholarUrl] = useState(''); // State for custom scholar URL
-    const [uploadingIndex, setUploadingIndex] = useState(null); // Track which item is uploading
+    const [isSaving, setIsSaving] = useState(false);
+    const [isLoading, setIsLoading] = useState(true);
+    const [scholarUrl, setScholarUrl] = useState('');
+    const [uploadingIndex, setUploadingIndex] = useState(null);
+    const [expandedItems, setExpandedItems] = useState({});
+    const [hasUnsavedChanges, setHasUnsavedChanges] = useState(false);
+
+    // Toast state
+    const [toast, setToast] = useState(null);
 
     // Delete Confirmation State
-    const [deleteConfirmation, setDeleteConfirmation] = useState(null); // { show: true, index: 1 }
+    const [deleteConfirmation, setDeleteConfirmation] = useState(null);
 
     const navigate = useNavigate();
+
+    const showToast = useCallback((message, type = 'success') => {
+        setToast({ message, type });
+    }, []);
 
     useEffect(() => {
         const token = localStorage.getItem('token');
@@ -44,12 +105,28 @@ const AdminDashboard = () => {
         fetchData();
     }, [navigate]);
 
+    // Keyboard shortcut for save (Ctrl+S)
+    useEffect(() => {
+        const handleKeyDown = (e) => {
+            if ((e.ctrlKey || e.metaKey) && e.key === 's' && view === 'editor') {
+                e.preventDefault();
+                handleSave();
+            }
+        };
+        window.addEventListener('keydown', handleKeyDown);
+        return () => window.removeEventListener('keydown', handleKeyDown);
+    }, [view, selectedSection, sectionItems]);
+
     const fetchData = async () => {
+        setIsLoading(true);
         try {
             const { data } = await getCVData();
             setSections(data.sort((a, b) => a.id - b.id));
         } catch (err) {
             console.error(err);
+            showToast('Failed to load data', 'error');
+        } finally {
+            setIsLoading(false);
         }
     };
 
@@ -58,7 +135,6 @@ const AdminDashboard = () => {
         if (typeof items === 'string') {
             try { items = JSON.parse(items); } catch (e) { items = []; }
         }
-        // Ensure every item has a unique ID for React keys
         items = items.map((item, idx) => ({
             ...item,
             id: item.id || (Date.now() + idx)
@@ -67,17 +143,22 @@ const AdminDashboard = () => {
         setSelectedSection(section);
         setSectionItems(items);
         setView('editor');
+        setHasUnsavedChanges(false);
+        // Expand first item by default
+        if (items.length > 0) {
+            setExpandedItems({ 0: true });
+        }
     };
 
     const handleItemChange = (index, field, value) => {
         const newItems = [...sectionItems];
         newItems[index] = { ...newItems[index], [field]: value };
-        // Auto‑generate href for ResearchInterests when label changes
         if (field === 'label' && selectedSection?.name === 'ResearchInterests') {
             const autoHref = '#' + value.replace(/\s+/g, '');
             newItems[index] = { ...newItems[index], href: autoHref };
         }
         setSectionItems(newItems);
+        setHasUnsavedChanges(true);
     };
 
     const handleFileUpload = async (e, index) => {
@@ -89,22 +170,21 @@ const AdminDashboard = () => {
 
         setUploadingIndex(index);
         try {
-            const { data } = await uploadFile(formData); // Expect { filePath: '...', fileName: '...' }
-            // Update items: set 'pdf' field AND 'link' field (as paper link)
+            const { data } = await uploadFile(formData);
             const newItems = [...sectionItems];
             newItems[index] = {
                 ...newItems[index],
                 pdf: data.filePath,
-                link: data.filePath // Auto-set link to the uploaded PDF
+                link: data.filePath
             };
             setSectionItems(newItems);
-            alert('PDF Uploaded Successfully!');
+            setHasUnsavedChanges(true);
+            showToast('PDF uploaded successfully!', 'success');
         } catch (err) {
             console.error(err);
-            alert('Upload failed: ' + err.message);
+            showToast('Upload failed: ' + err.message, 'error');
         } finally {
             setUploadingIndex(null);
-            // Reset input
             e.target.value = null;
         }
     };
@@ -117,11 +197,14 @@ const AdminDashboard = () => {
         } else {
             template = { id: Date.now(), title: 'New Item', Date: '', Location: '' };
         }
-        setSectionItems([...sectionItems, template]);
+        const newItems = [...sectionItems, template];
+        setSectionItems(newItems);
+        setHasUnsavedChanges(true);
+        // Expand the new item
+        setExpandedItems({ ...expandedItems, [newItems.length - 1]: true });
     };
 
     const handleDeleteItem = (index) => {
-        // Show custom modal
         setDeleteConfirmation({ show: true, index });
     };
 
@@ -131,6 +214,8 @@ const AdminDashboard = () => {
             const newItems = sectionItems.filter((_, i) => i !== index);
             setSectionItems(newItems);
             setDeleteConfirmation(null);
+            setHasUnsavedChanges(true);
+            showToast('Item removed', 'success');
         }
     };
 
@@ -139,28 +224,26 @@ const AdminDashboard = () => {
     };
 
     const handleSave = async () => {
+        if (!selectedSection) return;
+        setIsSaving(true);
         try {
             const updatedData = { ...selectedSection, list: sectionItems };
             await updateCVSection(selectedSection.id, updatedData);
-            alert('Saved successfully!');
+            showToast('Changes saved successfully!', 'success');
+            setHasUnsavedChanges(false);
             fetchData();
         } catch (err) {
-            alert('Error saving: ' + err.message);
+            showToast('Error saving: ' + err.message, 'error');
+        } finally {
+            setIsSaving(false);
         }
     };
 
     const handleSyncScholar = async () => {
-        // Use default if empty
         const urlToSync = scholarUrl;
-
-        console.log('Starting sync...');
-        // Removed window.confirm as it might be blocked
         setIsSyncing(true);
         try {
-            console.log('Sending sync request');
             const res = await syncScholarData(urlToSync);
-
-            // Refresh data AND update current view
             const { data } = await getCVData();
             setSections(data.sort((a, b) => a.id - b.id));
 
@@ -176,17 +259,33 @@ const AdminDashboard = () => {
                     setSectionItems(items);
                 }
             }
-            alert(res.data.message);
+            showToast(res.data.message, 'success');
         } catch (err) {
-            alert('Sync failed: ' + (err.response?.data?.message || err.message));
+            showToast('Sync failed: ' + (err.response?.data?.message || err.message), 'error');
         } finally {
             setIsSyncing(false);
         }
     };
 
     const handleLogout = () => {
+        if (hasUnsavedChanges && !window.confirm('You have unsaved changes. Are you sure you want to logout?')) {
+            return;
+        }
         localStorage.removeItem('token');
         navigate('/login');
+    };
+
+    const toggleItemExpand = (index) => {
+        setExpandedItems(prev => ({
+            ...prev,
+            [index]: !prev[index]
+        }));
+    };
+
+    const getItemPreview = (item) => {
+        // Get a preview text for collapsed items
+        const title = item.Title || item.title || item.name || item.Name || item.Award || item.Conference || item.Teaching || item.label || '';
+        return title.length > 60 ? title.substring(0, 60) + '...' : title || 'Untitled Item';
     };
 
     const totalSections = sections.length;
@@ -205,33 +304,19 @@ const AdminDashboard = () => {
         const papers = sectionItems;
         const totalPapers = papers.length;
 
-        // Debugging logs
-        console.log('Calculating stats for:', papers.length, 'papers');
-
-        // Calculate Total Citations
         const totalCitations = papers.reduce((sum, paper) => {
-            // citations might be "5", "Cited by 5", or just 5 (number)
-            // Handle both lowercase and capitalized keys
             let rawCite = paper.citations !== undefined ? paper.citations : paper.Citations;
             if (rawCite === undefined || rawCite === null) rawCite = '0';
-
-            const citeString = rawCite.toString().replace(/\D/g, ''); // Remove non-digits
-            const citeCount = parseInt(citeString || '0', 10);
-
-            // Limited logging to avoid flooding
-            if (sum < 5) console.log(`Paper: ${paper.title || paper.Title || 'Untitled'} | Raw Cite: ${rawCite} | Parsed: ${citeCount}`);
-            return sum + citeCount;
+            const citeString = rawCite.toString().replace(/\D/g, '');
+            return sum + parseInt(citeString || '0', 10);
         }, 0);
 
-        // Calculate H-index
         const citationsArray = papers.map(p => {
             let rawCite = p.citations !== undefined ? p.citations : p.Citations;
             if (rawCite === undefined || rawCite === null) rawCite = '0';
             return parseInt(rawCite.toString().replace(/\D/g, '') || '0', 10);
         });
-
-        citationsArray.sort((a, b) => b - a); // Descending sort
-        console.log('Citations Array (Desc):', citationsArray);
+        citationsArray.sort((a, b) => b - a);
 
         let hIndex = 0;
         for (let i = 0; i < citationsArray.length; i++) {
@@ -247,11 +332,29 @@ const AdminDashboard = () => {
 
     const stats = getResearchStats();
 
+    // Get item count for each section
+    const getItemCount = (section) => {
+        let list = section.list;
+        if (typeof list === 'string') {
+            try { list = JSON.parse(list); } catch (e) { list = []; }
+        }
+        return Array.isArray(list) ? list.length : 0;
+    };
+
     return (
         <div className={styles.dashboardContainer}>
             <div className={styles.backgroundImage} />
 
-            {/* Custom Delete Confirmation Modal */}
+            {/* Toast Notification */}
+            {toast && (
+                <Toast
+                    message={toast.message}
+                    type={toast.type}
+                    onClose={() => setToast(null)}
+                />
+            )}
+
+            {/* Delete Confirmation Modal */}
             {deleteConfirmation && deleteConfirmation.show && (
                 <div className={styles.modalOverlay}>
                     <div className={styles.modalContent}>
@@ -273,10 +376,10 @@ const AdminDashboard = () => {
             <div className={styles.sidebar}>
                 <div className={styles.sidebarHeader}>
                     <FaUserShield className={styles.logoIcon} />
-                    <div className={styles.headerTitle}>AdminSuite</div>
+                    <div className={styles.headerTitle}>CV Manager</div>
                 </div>
                 <ul className={styles.navMenu}>
-                    <div className={styles.menuLabel}>Main</div>
+                    <div className={styles.menuLabel}>Overview</div>
                     <li
                         className={`${styles.navItem} ${view === 'dashboard' ? styles.active : ''}`}
                         onClick={() => { setView('dashboard'); setSelectedSection(null); }}
@@ -284,15 +387,29 @@ const AdminDashboard = () => {
                         <MdDashboard /> Dashboard
                     </li>
                     <div className={styles.menuLabel}>Content Sections</div>
-                    {sections.map(sec => (
-                        <li
-                            key={sec.id}
-                            className={`${styles.navItem} ${selectedSection?.id === sec.id ? styles.active : ''}`}
-                            onClick={() => handleEdit(sec)}
-                        >
-                            <FaLayerGroup /> {sec.title}
-                        </li>
-                    ))}
+                    {isLoading ? (
+                        <div className={styles.loadingNav}>
+                            <FaSpinner className={styles.spin} /> Loading...
+                        </div>
+                    ) : (
+                        sections.map(sec => {
+                            const IconComponent = getSectionIcon(sec.name);
+                            const itemCount = getItemCount(sec);
+                            return (
+                                <li
+                                    key={sec.id}
+                                    className={`${styles.navItem} ${selectedSection?.id === sec.id ? styles.active : ''}`}
+                                    onClick={() => handleEdit(sec)}
+                                >
+                                    <IconComponent />
+                                    <span className={styles.navText}>{sec.title}</span>
+                                    {itemCount > 0 && (
+                                        <span className={styles.itemBadge}>{itemCount}</span>
+                                    )}
+                                </li>
+                            );
+                        })
+                    )}
                 </ul>
                 <div className={styles.logoutSection}>
                     <button onClick={handleLogout} className={styles.logoutBtn}>
@@ -300,20 +417,31 @@ const AdminDashboard = () => {
                     </button>
                 </div>
             </div>
+
             {/* Main Content */}
             <div className={styles.mainContent}>
                 <div className={styles.topBar}>
-                    <div className={styles.pageTitle}>
-                        {view === 'dashboard' ? 'Overview' : 'Content Editor'}
+                    <div className={styles.pageTitleArea}>
+                        <div className={styles.pageTitle}>
+                            {view === 'dashboard' ? 'Dashboard' : selectedSection?.title || 'Editor'}
+                        </div>
+                        {hasUnsavedChanges && (
+                            <span className={styles.unsavedBadge}>Unsaved Changes</span>
+                        )}
                     </div>
                     <div className={styles.userInfo}>
-                        <span>Admin User</span>
+                        <span className={styles.userName}>Admin</span>
                         <div className={styles.avatar}>A</div>
                     </div>
                 </div>
+
                 <div className={styles.contentScrollArea}>
                     {view === 'dashboard' ? (
-                        <>
+                        <div className={styles.dashboardContent}>
+                            <div className={styles.welcomeCard}>
+                                <h2>Welcome to CV Manager</h2>
+                                <p>Select a section from the sidebar to edit your CV content.</p>
+                            </div>
                             <div className={styles.statsGrid}>
                                 <div className={styles.statCard}>
                                     <div className={styles.statIcon}><FaFileAlt /></div>
@@ -330,15 +458,30 @@ const AdminDashboard = () => {
                                     </div>
                                 </div>
                             </div>
-                            <div style={{ textAlign: 'center', marginTop: '50px', color: '#ccc' }}>
-                                <h3>Select a section to begin editing</h3>
+                            <div className={styles.quickLinks}>
+                                <h3>Quick Access</h3>
+                                <div className={styles.quickLinksGrid}>
+                                    {sections.slice(0, 6).map(sec => {
+                                        const IconComponent = getSectionIcon(sec.name);
+                                        return (
+                                            <div
+                                                key={sec.id}
+                                                className={styles.quickLinkCard}
+                                                onClick={() => handleEdit(sec)}
+                                            >
+                                                <IconComponent className={styles.quickLinkIcon} />
+                                                <span>{sec.title}</span>
+                                            </div>
+                                        );
+                                    })}
+                                </div>
                             </div>
-                        </>
+                        </div>
                     ) : (
                         selectedSection && (
                             <div className={styles.editorWrapper}>
                                 {stats && (
-                                    <div className={styles.statsGrid} style={{ marginBottom: '20px' }}>
+                                    <div className={styles.statsGrid}>
                                         <div className={styles.statCard}>
                                             <div className={styles.statIcon} style={{ background: 'rgba(0, 210, 255, 0.15)', color: '#00d2ff' }}>
                                                 <FaFileAlt />
@@ -359,7 +502,7 @@ const AdminDashboard = () => {
                                         </div>
                                         <div className={styles.statCard}>
                                             <div className={styles.statIcon} style={{ background: 'rgba(241, 196, 15, 0.15)', color: '#f1c40f' }}>
-                                                <FaUserShield />
+                                                <FaAward />
                                             </div>
                                             <div className={styles.statInfo}>
                                                 <h4>H-index</h4>
@@ -368,199 +511,239 @@ const AdminDashboard = () => {
                                         </div>
                                     </div>
                                 )}
+
                                 <div className={styles.sectionHeader}>
-                                    <input
-                                        className={styles.sectionTitleInput}
-                                        value={selectedSection.title}
-                                        onChange={e => setSelectedSection({ ...selectedSection, title: e.target.value })}
-                                    />
-                                    <div style={{ display: 'flex', gap: '10px' }}>
-                                        <button onClick={handleSave} className={styles.saveBtn}>
-                                            <FaSave /> Save Changes
+                                    <div className={styles.sectionTitleArea}>
+                                        <input
+                                            className={styles.sectionTitleInput}
+                                            value={selectedSection.title}
+                                            onChange={e => {
+                                                setSelectedSection({ ...selectedSection, title: e.target.value });
+                                                setHasUnsavedChanges(true);
+                                            }}
+                                            placeholder="Section Title"
+                                        />
+                                        <span className={styles.itemCount}>{sectionItems.length} items</span>
+                                    </div>
+                                    <div className={styles.headerActions}>
+                                        <button
+                                            onClick={handleSave}
+                                            className={styles.saveBtn}
+                                            disabled={isSaving}
+                                        >
+                                            {isSaving ? <FaSpinner className={styles.spin} /> : <FaSave />}
+                                            {isSaving ? 'Saving...' : 'Save'}
                                         </button>
                                         {(selectedSection.name === 'Papers' || selectedSection.name === 'Published Papers') && (
                                             <>
                                                 <input
                                                     type="text"
-                                                    placeholder="Google Scholar URL (Optional)"
+                                                    placeholder="Google Scholar URL"
                                                     value={scholarUrl}
                                                     onChange={(e) => setScholarUrl(e.target.value)}
-                                                    style={{ padding: '10px', borderRadius: '8px', border: '1px solid #ccc', marginRight: '10px', width: '250px' }}
+                                                    className={styles.scholarInput}
                                                 />
                                                 <button
                                                     onClick={handleSyncScholar}
                                                     disabled={isSyncing}
-                                                    style={{ padding: '10px 20px', background: 'rgba(255, 165, 0, 0.2)', color: 'orange', border: '1px solid orange', borderRadius: '8px', cursor: isSyncing ? 'not-allowed' : 'pointer', opacity: isSyncing ? 0.6 : 1, display: 'flex', alignItems: 'center', gap: '8px' }}
+                                                    className={styles.syncBtn}
                                                 >
-                                                    {isSyncing ? <><FaSpinner className="spin" /> Syncing...</> : <><FaPlus /> Sync G-Scholar</>}
+                                                    {isSyncing ? <FaSpinner className={styles.spin} /> : <FaSyncAlt />}
+                                                    {isSyncing ? 'Syncing...' : 'Sync Scholar'}
                                                 </button>
                                             </>
                                         )}
                                     </div>
                                 </div>
+
                                 <div className={styles.itemsList}>
                                     {sectionItems.map((item, index) => (
-                                        <div key={item.id || index} className={styles.itemCard}>
-                                            <button
-                                                type="button"
-                                                className={styles.deleteBtn}
-                                                onClick={() => handleDeleteItem(index)}
+                                        <div key={item.id || index} className={`${styles.itemCard} ${expandedItems[index] ? styles.expanded : ''}`}>
+                                            <div
+                                                className={styles.itemHeader}
+                                                onClick={() => toggleItemExpand(index)}
                                             >
-                                                <FaTrash />
-                                            </button>
-
-                                            {/* Upload Button for Papers */}
-                                            {(selectedSection.name === 'Papers' || selectedSection.name === 'Published Papers') && (
-                                                <div style={{ position: 'absolute', top: '10px', right: '50px' }}>
-                                                    <input
-                                                        type="file"
-                                                        id={`upload-${index}`}
-                                                        style={{ display: 'none' }}
-                                                        accept="application/pdf"
-                                                        onChange={(e) => handleFileUpload(e, index)}
-                                                    />
-                                                    <label
-                                                        htmlFor={`upload-${index}`}
-                                                        style={{
-                                                            display: 'flex', alignItems: 'center', gap: '5px',
-                                                            background: '#2c3e50', color: '#fff',
-                                                            padding: '5px 10px', borderRadius: '4px',
-                                                            cursor: 'pointer', fontSize: '0.8rem'
-                                                        }}
-                                                    >
-                                                        {uploadingIndex === index ? <FaSpinner className="spin" /> : <FaCloudUploadAlt />}
-                                                        {item.pdf ? 'Replace PDF' : 'Upload PDF'}
-                                                    </label>
-                                                    {item.pdf && (
-                                                        <a href={`http://localhost:5000${item.pdf}`} target="_blank" rel="noopener noreferrer" style={{ display: 'block', textAlign: 'right', fontSize: '0.7rem', color: '#3498db', marginTop: '2px' }}>
-                                                            View PDF
-                                                        </a>
-                                                    )}
+                                                <div className={styles.itemHeaderLeft}>
+                                                    <span className={styles.itemIndex}>#{index + 1}</span>
+                                                    <span className={styles.itemPreview}>{getItemPreview(item)}</span>
                                                 </div>
-                                            )}
-
-                                            <div className={styles.fieldGrid}>
-                                                {Object.entries(item).map(([key, value]) => {
-                                                    if (key === 'id') return null;
-                                                    const isArray = Array.isArray(value);
-                                                    const isAutoGenerated = (selectedSection.name === 'ResearchInterests' && key === 'href');
-                                                    const displayValue = isArray ? JSON.stringify(value) : value;
-                                                    return (
-                                                        <div key={key} className={styles.fieldGroup}>
-                                                            <label className={styles.fieldLabel}>{formatLabel(key)}</label>
-                                                            {key === 'skill' && Array.isArray(value) ? (
-                                                                <div className={styles.skillEditor}>
-                                                                    {value.map((skillPair, sIndex) => (
-                                                                        <div key={sIndex} className={styles.skillRow}>
-                                                                            <input
-                                                                                className={styles.skillNameInput}
-                                                                                value={skillPair[0]}
-                                                                                onChange={(e) => {
-                                                                                    const newSkills = [...value];
-                                                                                    newSkills[sIndex] = [e.target.value, skillPair[1]];
-                                                                                    handleItemChange(index, key, newSkills);
-                                                                                }}
-                                                                                placeholder="Skill Name"
-                                                                            />
-                                                                            <select
-                                                                                className={styles.skillLevelSelect}
-                                                                                value={skillPair[1]}
-                                                                                onChange={(e) => {
-                                                                                    const newSkills = [...value];
-                                                                                    newSkills[sIndex] = [skillPair[0], e.target.value];
-                                                                                    handleItemChange(index, key, newSkills);
-                                                                                }}
-                                                                            >
-                                                                                <option value="Beginner">Beginner</option>
-                                                                                <option value="Intermediate">Intermediate</option>
-                                                                                <option value="Advanced">Advanced</option>
-                                                                                <option value="Expert">Expert</option>
-                                                                            </select>
-                                                                            <button
-                                                                                className={styles.removeSkillBtn}
-                                                                                onClick={() => {
-                                                                                    const newSkills = value.filter((_, i) => i !== sIndex);
-                                                                                    handleItemChange(index, key, newSkills);
-                                                                                }}
-                                                                            >
-                                                                                <FaTrash />
-                                                                            </button>
-                                                                        </div>
-                                                                    ))}
-                                                                    <button
-                                                                        className={styles.addSkillBtn}
-                                                                        onClick={() => {
-                                                                            const newSkills = [...value, ["New Skill", "Beginner"]];
-                                                                            handleItemChange(index, key, newSkills);
-                                                                        }}
-                                                                    >
-                                                                        <FaPlus /> Add Skill
-                                                                    </button>
-                                                                </div>
-                                                            ) : (selectedSection.name === 'Qualifications' && (key === 'Date' || key === 'Supervisor')) ? (
-                                                                <div className={styles.splitFieldContainer}>
-                                                                    <input
-                                                                        className={styles.fieldInput}
-                                                                        placeholder={key === 'Date' ? 'Start Date' : 'Supervisor 1'}
-                                                                        value={key === 'Date' ? (value.split(/ – | - /)[0] || '') : (value.split(', ')[0] || '')}
-                                                                        onChange={e => {
-                                                                            const parts = key === 'Date' ? value.split(/ – | - /) : value.split(', ');
-                                                                            const newPart1 = e.target.value;
-                                                                            const newPart2 = parts[1] || '';
-                                                                            const separator = key === 'Date' ? ' – ' : ', ';
-                                                                            handleItemChange(index, key, `${newPart1}${separator}${newPart2}`);
-                                                                        }}
-                                                                    />
-                                                                    <input
-                                                                        className={styles.fieldInput}
-                                                                        placeholder={key === 'Date' ? 'End Date' : 'Supervisor 2'}
-                                                                        value={key === 'Date' ? (value.split(/ – | - /)[1] || '') : (value.split(', ')[1] || '')}
-                                                                        onChange={e => {
-                                                                            const parts = key === 'Date' ? value.split(/ – | - /) : value.split(', ');
-                                                                            const newPart1 = parts[0] || '';
-                                                                            const newPart2 = e.target.value;
-                                                                            const separator = key === 'Date' ? ' – ' : ', ';
-                                                                            handleItemChange(index, key, `${newPart1}${separator}${newPart2}`);
-                                                                        }}
-                                                                    />
-                                                                </div>
-                                                            ) : isArray ? (
-                                                                <input
-                                                                    className={styles.fieldInput}
-                                                                    value={displayValue}
-                                                                    onChange={e => {
-                                                                        try {
-                                                                            const parsed = JSON.parse(e.target.value);
-                                                                            handleItemChange(index, key, parsed);
-                                                                        } catch (_) { }
-                                                                    }}
-                                                                    placeholder="Complex Array Data"
-                                                                />
-                                                            ) : (
-                                                                <input
-                                                                    className={styles.fieldInput}
-                                                                    value={displayValue !== undefined && displayValue !== null ? displayValue : ''}
-                                                                    onChange={e => handleItemChange(index, key, e.target.value)}
-                                                                    readOnly={isAutoGenerated}
-                                                                    style={isAutoGenerated ? { opacity: 0.6, cursor: 'not-allowed' } : {}}
-                                                                />
+                                                <div className={styles.itemHeaderRight}>
+                                                    {(selectedSection.name === 'Papers' || selectedSection.name === 'Published Papers') && (
+                                                        <div className={styles.uploadArea}>
+                                                            <input
+                                                                type="file"
+                                                                id={`upload-${index}`}
+                                                                style={{ display: 'none' }}
+                                                                accept="application/pdf"
+                                                                onChange={(e) => handleFileUpload(e, index)}
+                                                            />
+                                                            <label
+                                                                htmlFor={`upload-${index}`}
+                                                                className={styles.uploadBtn}
+                                                                onClick={(e) => e.stopPropagation()}
+                                                            >
+                                                                {uploadingIndex === index ? <FaSpinner className={styles.spin} /> : <FaCloudUploadAlt />}
+                                                                {item.pdf ? 'PDF ✓' : 'Upload'}
+                                                            </label>
+                                                            {item.pdf && (
+                                                                <a
+                                                                    href={`http://localhost:5000${item.pdf}`}
+                                                                    target="_blank"
+                                                                    rel="noopener noreferrer"
+                                                                    className={styles.viewPdfLink}
+                                                                    onClick={(e) => e.stopPropagation()}
+                                                                >
+                                                                    <FaExternalLinkAlt />
+                                                                </a>
                                                             )}
                                                         </div>
-                                                    );
-                                                })}
+                                                    )}
+                                                    <button
+                                                        type="button"
+                                                        className={styles.deleteBtn}
+                                                        onClick={(e) => { e.stopPropagation(); handleDeleteItem(index); }}
+                                                    >
+                                                        <FaTrash />
+                                                    </button>
+                                                    <button className={styles.expandBtn}>
+                                                        {expandedItems[index] ? <FaChevronUp /> : <FaChevronDown />}
+                                                    </button>
+                                                </div>
                                             </div>
+
+                                            {expandedItems[index] && (
+                                                <div className={styles.itemContent}>
+                                                    <div className={styles.fieldGrid}>
+                                                        {Object.entries(item).map(([key, value]) => {
+                                                            if (key === 'id') return null;
+                                                            const isArray = Array.isArray(value);
+                                                            const isAutoGenerated = (selectedSection.name === 'ResearchInterests' && key === 'href');
+                                                            const displayValue = isArray ? JSON.stringify(value) : value;
+
+                                                            return (
+                                                                <div key={key} className={styles.fieldGroup}>
+                                                                    <label className={styles.fieldLabel}>{formatLabel(key)}</label>
+                                                                    {key === 'skill' && Array.isArray(value) ? (
+                                                                        <div className={styles.skillEditor}>
+                                                                            {value.map((skillPair, sIndex) => (
+                                                                                <div key={sIndex} className={styles.skillRow}>
+                                                                                    <input
+                                                                                        className={styles.skillNameInput}
+                                                                                        value={skillPair[0]}
+                                                                                        onChange={(e) => {
+                                                                                            const newSkills = [...value];
+                                                                                            newSkills[sIndex] = [e.target.value, skillPair[1]];
+                                                                                            handleItemChange(index, key, newSkills);
+                                                                                        }}
+                                                                                        placeholder="Skill Name"
+                                                                                    />
+                                                                                    <select
+                                                                                        className={styles.skillLevelSelect}
+                                                                                        value={skillPair[1]}
+                                                                                        onChange={(e) => {
+                                                                                            const newSkills = [...value];
+                                                                                            newSkills[sIndex] = [skillPair[0], e.target.value];
+                                                                                            handleItemChange(index, key, newSkills);
+                                                                                        }}
+                                                                                    >
+                                                                                        <option value="Beginner">Beginner</option>
+                                                                                        <option value="Intermediate">Intermediate</option>
+                                                                                        <option value="Advanced">Advanced</option>
+                                                                                        <option value="Expert">Expert</option>
+                                                                                    </select>
+                                                                                    <button
+                                                                                        className={styles.removeSkillBtn}
+                                                                                        onClick={() => {
+                                                                                            const newSkills = value.filter((_, i) => i !== sIndex);
+                                                                                            handleItemChange(index, key, newSkills);
+                                                                                        }}
+                                                                                    >
+                                                                                        <FaTrash />
+                                                                                    </button>
+                                                                                </div>
+                                                                            ))}
+                                                                            <button
+                                                                                className={styles.addSkillBtn}
+                                                                                onClick={() => {
+                                                                                    const newSkills = [...value, ["New Skill", "Beginner"]];
+                                                                                    handleItemChange(index, key, newSkills);
+                                                                                }}
+                                                                            >
+                                                                                <FaPlus /> Add Skill
+                                                                            </button>
+                                                                        </div>
+                                                                    ) : (selectedSection.name === 'Qualifications' && (key === 'Date' || key === 'Supervisor')) ? (
+                                                                        <div className={styles.splitFieldContainer}>
+                                                                            <input
+                                                                                className={styles.fieldInput}
+                                                                                placeholder={key === 'Date' ? 'Start Date' : 'Supervisor 1'}
+                                                                                value={key === 'Date' ? (value.split(/ – | - /)[0] || '') : (value.split(', ')[0] || '')}
+                                                                                onChange={e => {
+                                                                                    const parts = key === 'Date' ? value.split(/ – | - /) : value.split(', ');
+                                                                                    const newPart1 = e.target.value;
+                                                                                    const newPart2 = parts[1] || '';
+                                                                                    const separator = key === 'Date' ? ' – ' : ', ';
+                                                                                    handleItemChange(index, key, `${newPart1}${separator}${newPart2}`);
+                                                                                }}
+                                                                            />
+                                                                            <input
+                                                                                className={styles.fieldInput}
+                                                                                placeholder={key === 'Date' ? 'End Date' : 'Supervisor 2'}
+                                                                                value={key === 'Date' ? (value.split(/ – | - /)[1] || '') : (value.split(', ')[1] || '')}
+                                                                                onChange={e => {
+                                                                                    const parts = key === 'Date' ? value.split(/ – | - /) : value.split(', ');
+                                                                                    const newPart1 = parts[0] || '';
+                                                                                    const newPart2 = e.target.value;
+                                                                                    const separator = key === 'Date' ? ' – ' : ', ';
+                                                                                    handleItemChange(index, key, `${newPart1}${separator}${newPart2}`);
+                                                                                }}
+                                                                            />
+                                                                        </div>
+                                                                    ) : isArray ? (
+                                                                        <input
+                                                                            className={styles.fieldInput}
+                                                                            value={displayValue}
+                                                                            onChange={e => {
+                                                                                try {
+                                                                                    const parsed = JSON.parse(e.target.value);
+                                                                                    handleItemChange(index, key, parsed);
+                                                                                } catch (_) { }
+                                                                            }}
+                                                                            placeholder="Complex Array Data"
+                                                                        />
+                                                                    ) : (
+                                                                        <input
+                                                                            className={styles.fieldInput}
+                                                                            value={displayValue !== undefined && displayValue !== null ? displayValue : ''}
+                                                                            onChange={e => handleItemChange(index, key, e.target.value)}
+                                                                            readOnly={isAutoGenerated}
+                                                                            style={isAutoGenerated ? { opacity: 0.6, cursor: 'not-allowed' } : {}}
+                                                                        />
+                                                                    )}
+                                                                </div>
+                                                            );
+                                                        })}
+                                                    </div>
+                                                </div>
+                                            )}
                                         </div>
                                     ))}
                                 </div>
+
                                 <button className={styles.addBtn} onClick={handleAddItem}>
                                     <FaPlus /> Add New Item
                                 </button>
+
+                                {/* Keyboard shortcut hint */}
+                                <div className={styles.keyboardHint}>
+                                    Press <kbd>Ctrl</kbd> + <kbd>S</kbd> to save
+                                </div>
                             </div>
                         )
                     )}
-                </div >
-            </div >
-        </div >
+                </div>
+            </div>
+        </div>
     );
 };
 
