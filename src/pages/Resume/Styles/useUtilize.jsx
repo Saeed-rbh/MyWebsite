@@ -48,6 +48,7 @@ export const useUtilize = (componentName) => {
     adjustTop,
     adjustHeight,
     adjustViewport,
+    column, // New property for layout
     // openType,
   } = data;
 
@@ -143,7 +144,9 @@ export const useUtilize = (componentName) => {
     handleMouseDown,
     handleMouseEnter,
     handleMouseLeave,
+    handleMouseLeave,
     adjustViewport,
+    column,
     // openType,
   };
 };

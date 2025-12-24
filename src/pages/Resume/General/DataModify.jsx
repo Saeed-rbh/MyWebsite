@@ -43,7 +43,8 @@ const useDataModify = ({ stages, dbData = [] }) => {
           return {
             ...staticSection,
             title: dbSection.title,
-            list: parsedList
+            list: parsedList,
+            column: dbSection.column ?? staticSection.column ?? 0,
           };
         }
         return staticSection;

@@ -6,10 +6,10 @@ import { useSelector } from "react-redux";
 import useScrollPosition from "../../General/useScrollPosition";
 import {
   useCombinedAnimation,
-  ScalableElement,
 } from "../../Styles/otherStyles";
 import useElementSize from "../../Styles/useElementSize";
 import { useScrollableRef } from "../../General/ScrollableRefContext";
+import { useBentoLayout } from "../../Styles/useBentoLayout";
 
 const InteractiveDiv = (props) => {
   const {
@@ -36,7 +36,11 @@ const InteractiveDiv = (props) => {
     adjustViewport,
     adjustTop,
     adjustHeight,
+    // column prop is passed via props (from useUtilize -> Sections -> RenderComponent)
   } = props;
+
+  // DEBUG: Check values
+  // console.log(`[InteractiveDiv] ${name}: col=${props.column}, stages=${JSON.stringify(stages)}`);
 
   const { stages, toggle } = useSelector((state) => state.data);
   const scollableRef = useScrollableRef();
@@ -85,7 +89,7 @@ const InteractiveDiv = (props) => {
 
   const h1Style = useSpring({
     position: "absolute",
-    opacity: 0.15,
+    opacity: 0.1,
     fontSize: 100,
     top: isActive ? -50 : -55,
     left: isActive ? -5 : -10,
@@ -102,6 +106,8 @@ const InteractiveDiv = (props) => {
       ? (windowHeight - 640) / 2
       : 0;
 
+  const ModifyTop = 60; // Define locally or import constant
+
   const { activeHeight, notActiveHeight, fullView } = useMemo(() => {
     let fullView = false;
     const viewportHeight = element ? element.clientHeight : window.innerHeight;
@@ -113,13 +119,14 @@ const InteractiveDiv = (props) => {
       if (viewportHeight > parentScrollHeight) {
         activeHeight = parentScrollHeight + ParentRef.current.offsetTop + 25;
       } else {
-        activeHeight = viewportHeight - 50 - marginTop;
+        // Enforce 10px from bottom rule: Total Height = Viewport - HeaderSpace - BottomMargin
+        activeHeight = viewportHeight - ModifyTop - 10 - marginTop;
         fullView = true;
       }
     }
     const notActiveHeight = size[0];
     return { activeHeight, notActiveHeight, fullView };
-  }, [size, ParentRef?.current, element, isActive]);
+  }, [size, ParentRef?.current, element, isActive, marginTop]); // Added marginTop
 
   const Style = {
     cursor: "pointer",
@@ -136,7 +143,6 @@ const InteractiveDiv = (props) => {
     if (!initial) return;
     const viewportHeight = window.innerHeight;
     let newAdjustedTop = top + (!stages[1] ? adjustTop : !stages[2] ? -60 : 0);
-    const ModifyTop = 60;
 
     if (isActive) {
       if (!fullView) {
@@ -149,44 +155,33 @@ const InteractiveDiv = (props) => {
           scrollTop + ModifyTop
         );
       } else {
-        newAdjustedTop = scrollTop + 1.2 * ModifyTop;
+        // Align to header bottom (ModifyTop)
+        newAdjustedTop = scrollTop + ModifyTop;
       }
     }
 
     setAdjustedTop(newAdjustedTop);
-  }, [isActive, size, top, scrollTop, stages, activeHeight]);
+  }, [isActive, size, top, scrollTop, stages, activeHeight, fullView]); // Added fullView
 
-  const styleHeight = useSpring({
-    width: stages[1]
-      ? !isActive && (name === "Teaching" || name === "Awards")
-        ? Math.min(elementSize * 0.97, size[1]) / 2 - 5
-        : Math.min(elementSize * 0.97, size[1])
-      : name === "Skills"
-        ? size[1]
-        : !isActive && (name === "Teaching" || name === "Awards")
-          ? Math.min(elementSize - size[1] - 20, size[1] * 1.5) / 2 - 5
-          : Math.min(elementSize - size[1] - 20, size[1] * 1.5),
-    left: stages[1]
-      ? name === "Awards" && !isActive
-        ? (elementSize - Math.min(elementSize * 0.97, size[1])) / 2 +
-        Math.min(elementSize * 0.97, size[1]) / 2 +
-        5
-        : (elementSize - Math.min(elementSize * 0.97, size[1])) / 2
-      : name === "Skills"
-        ? 0
-        : name === "Awards" && !isActive
-          ? size[1] +
-          15 +
-          Math.min(elementSize - size[1] - 20, size[1] * 1.5) / 2 +
-          5
-          : size[1] + 15,
-    borderRadius: isActive ? 40 : Math.max(Math.ceil(size[0] / 4.75), 35),
-    top: `${adjustedTop}px`,
-    height: isActive
-      ? `${activeHeight}px`
-      : stages[1]
-        ? `${notActiveHeight}px`
-        : `${notActiveHeight + adjustHeight}px`,
+  // NEW: Calculate dynamic top/height strings
+  const dynamicHeight = isActive
+    ? `${activeHeight}px`
+    : stages[1]
+      ? `${notActiveHeight}px`
+      : `${notActiveHeight + adjustHeight}px`;
+
+  const dynamicTop = `${adjustedTop}px`;
+
+  // NEW: Use useBentoLayout for positioning (x, y, w, h)
+  const styleHeight = useBentoLayout({
+    isActive,
+    stages,
+    column: props.column,
+    size,
+    elementSize,
+    name,
+    top: dynamicTop,
+    height: dynamicHeight,
   });
 
   const combinedStyle = useCombinedAnimation({

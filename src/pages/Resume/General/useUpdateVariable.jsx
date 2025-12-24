@@ -61,7 +61,15 @@ const useUpdateVariable = () => {
         const { getCVData } = await import("../../../services/api");
         const { data } = await getCVData();
         if (data && data.length > 0) {
-          setDbData(data);
+          // Merge local layout config (column) into server data
+          const mergedData = data.map((serverItem) => {
+            const localItem = localData.find((l) => l.name === serverItem.name);
+            return {
+              ...serverItem,
+              column: localItem?.column ?? 0,
+            };
+          });
+          setDbData(mergedData);
         }
       } catch (err) {
         console.log("Using local JSON data (API unavailable)", err);

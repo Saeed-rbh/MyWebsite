@@ -58,14 +58,14 @@ const Footer = () => {
   };
 
   useEffect(() => {
-    if (!disapear) {
+    if (!disapear && !resumeClicked) {
       setDisapear(true);
-    } else if (resumeClicked) {
+    } else if (resumeClicked && disapear) {
       setTimeout(() => {
         setDisapear(false);
       }, 1000);
     }
-  }, [resumeClicked]);
+  }, [resumeClicked, disapear]);
 
   const [width, setWidth] = useState(window.innerWidth * 0.9);
   useEffect(() => {

@@ -101,7 +101,7 @@ const MainTitle = ({ duration, initialDelay, delayIncrement, size }) => {
     animationFinished,
     setAnimationFinished,
     // xDiff: [-35, stages[1] ? 0 : 0],
-    yDiff: [50, stages[1] ? 120 : 40],
+    yDiff: [50, stages[1] ? 150 : 55],
     scaleDiff: [0.9, 1],
     stages,
   });
@@ -111,7 +111,7 @@ const MainTitle = ({ duration, initialDelay, delayIncrement, size }) => {
     animationFinished,
     setAnimationFinished,
     // xDiff: [-35, stages[1] ? 0 : 0],
-    yDiff: [50, stages[1] ? 120 : 40],
+    yDiff: [50, stages[1] ? 150 : 55],
     scaleDiff: [0.9, 1],
     stages,
   });

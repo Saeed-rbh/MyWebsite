@@ -3,6 +3,7 @@
         "id": 0,
         "name": "PersonalInfo",
         "title": "Personal Info",
+        "column": 0,
         "background": "rgb(0 0 0 / 50%)",
         "size": [
             130,
@@ -23,6 +24,7 @@
         "id": 1,
         "name": "Affiliation",
         "title": "Affiliation",
+        "column": 0,
         "background": "rgb(0 0 0 / 40%)",
         "size": [
             130,
@@ -36,6 +38,7 @@
         "id": 2,
         "name": "ResearchInterests",
         "title": "Research Interests",
+        "column": 0,
         "background": "rgb(0 0 0 / 40%)",
         "size": [
             75,
@@ -66,6 +69,7 @@
         "id": 3,
         "name": "Skills",
         "title": "Skill & Software",
+        "column": 0,
         "explanation": "Achieved proficiency in various technical skills",
         "background": "rgb(0 0 0 / 20%)",
         "size": [
@@ -99,45 +103,59 @@
             },
             {
                 "id": 2,
-                "Title": "Atomestic Modeling",
+                "Title": "Simulation",
                 "skill": [
                     [
-                        "LAMMPS Molecular Dynamics Simulator",
+                        "LAMMPS",
                         "Expert"
                     ],
                     [
-                        "VMD",
-                        "Expert"
+                        "GROMACS",
+                        "Advanced"
                     ],
                     [
-                        "VASP",
-                        "Beginner"
+                        "COMSOL",
+                        "Intermediate"
                     ],
                     [
-                        "Ovito",
-                        "Expert"
+                        "Ansys Fluent",
+                        "Intermediate"
                     ]
                 ]
             },
             {
                 "id": 3,
-                "Title": "Continuum Modeling & Design",
+                "Title": "Design",
                 "skill": [
                     [
-                        "COMSOL Multiphysics",
+                        "SolidWorks",
+                        "Advanced"
+                    ],
+                    [
+                        "Catia",
                         "Intermediate"
-                    ],
+                    ]
+                ]
+            },
+            {
+                "id": 4,
+                "Title": "General",
+                "skill": [
                     [
-                        "CATIA",
-                        "Beginner"
-                    ],
-                    [
-                        "Solid Works",
+                        "LaTeX",
                         "Expert"
                     ],
                     [
-                        "AutoCAD",
-                        "Beginner"
+                        "Linux",
+                        "Advanced"
+                    ],
+                    [
+                        "Microsoft-Office",
+                        "Expert"
+                    ],
+                    [
+                        "Adobe Photoshop",
+                        "Intermediate"
                     ]
                 ]
             }
@@ -147,26 +165,27 @@
         "id": 4,
         "name": "Qualifications",
         "title": "Qualifications",
-        "explanation": "Achieved educational credentials",
-        "background": "rgb(0 0 0 / 30%)",
+        "column": 1,
+        "explanation": "Academic degrees and achievements",
+        "background": "rgb(0 0 0 / 20%)",
         "size": [
-            190,
+            200,
             450
         ],
-        "top": 605,
+        "top": 180,
         "fixed": false,
         "list": [
             {
                 "id": 1,
-                "title": "PhD in Mechanical Engineering",
-                "Date": "2021 – NOW",
-                "Location": "York University, Toronto ON, Canada",
-                "Thesis": "Compressible Flow Exfoliation of 2D Nanomaterials: Optimization and applications",
-                "Supervisor": "R. Rizvi , C. Jian"
+                "title": "Doctor of Philosophy",
+                "Date": "2021 – Present",
+                "Location": "York University, Toronto, Ontario, Canada",
+                "Thesis": "Multiscale Modeling of Graphene-Polymer Composites: From molecular dynamics to Micromechanics",
+                "Supervisor": "R. Rizvi"
             },
             {
                 "id": 2,
-                "title": "Master of Science in mechanical Engineering",
+                "title": "Master of Science in Mechanical Engineering",
                 "Date": "2017 – 2019",
                 "Location": "IK International University, Qazvin, Iran",
                 "Thesis": "Defect engineering on Thermo-Mechanical Properties of single-layer Borophene: Comparison of Molecular Dynamics and Finite Element Method",
@@ -186,6 +205,7 @@
         "id": 5,
         "name": "Published Papers",
         "title": "Published Papers",
+        "column": 1,
         "explanation": "Peer-reviewed research contributions",
         "background": "rgb(0 0 0 / 30%)",
         "size": [
@@ -369,6 +389,7 @@
         "id": 6,
         "name": "Conference",
         "title": "Workshops & Conferences",
+        "column": 1,
         "explanation": "Participation in Scholarly Conferences and Workshops",
         "background": "rgb(0 0 0 / 30%)",
         "size": [
@@ -389,55 +410,16 @@
             },
             {
                 "id": 3,
-                "Conference": "Invited to \"QLS/CMSP Huddle on Water, Heat and Stochastic Theory\", April 2022, ICTP, Trieste, Italy."
+                "Conference": "Attending \"International Conference on Statistical Physics\", July 2019, Institute for Advanced Studies in Basic Sciences, Zanjan, Iran."
             },
             {
                 "id": 4,
-                "Conference": "\"Workshop on Molecular Dynamics and its Applications to Biological Systems\", online workshop, September 2020, ICTP, Trieste, Italy."
-            },
-            {
-                "id": 5,
-                "Conference": "\"Joint QLS-CMSP Virtual Summer Retreat on Heat, Water, Noise, and Life\", online conference, July 2020, ICTP, Trieste, Italy."
-            },
-            {
-                "id": 6,
-                "Conference": "\"A Not-so-brief Introduction to Molecular Biophysics\", crash course, April 2019, Institute for Research in Fundamental Sciences (IPM), Tehran, Iran."
-            },
-            {
-                "id": 7,
-                "Conference": "Presentation at \"26th IPM Physics Spring Conference\", June 2019, Institute for Research in Fundamental Sciences (IPM), Tehran, Iran."
-            },
-            {
-                "id": 8,
-                "Conference": "Presentation at \"7th National Conference on Nanotechnology from Theory to Application\", June 2019, Jami Institute of Technology, Tehran, Iran."
+                "Conference": "Executive member of 3rd International Conference on Mechanical & Aerospace Engineering, May 2018, IK International University, Qazvin, Iran."
             }
         ]
     },
     {
         "id": 7,
-        "name": "Awards",
-        "title": "Awards & Certifications",
-        "explanation": "Acknowledgement of  Professional Achievement",
-        "background": "rgb(0 0 0 / 30%)",
-        "size": [
-            100,
-            450
-        ],
-        "top": 1305,
-        "fixed": false,
-        "list": [
-            {
-                "id": 1,
-                "Award": "Ranked 1st Among the BS Mechanical Engineering Alumni”, IK International University."
-            },
-            {
-                "id": 2,
-                "Award": "Visiting the 'Condensed Matter and Statistical Physics of the Abdus Salam International Centre for Theoretical Physics (ICTP)' and collaboration with E. Roldan and A. Hassanali on a research project on 'inverse heat flux between nanoparticles', from 21 October to 18 November 2019, Trieste, Italy."
-            }
-        ]
-    },
-    {
-        "id": 8,
         "name": "Teaching",
         "title": "Teach & work experiences",
         "explanation": "Involvement in Teaching and Professional Work Experiences",
@@ -469,6 +451,30 @@
             {
                 "id": 5,
                 "Teaching": "Internship in TAHVIE Co, Air Conditioning Systems, Technical Office, Summer 2015, Qazvin, Iran."
+            }
+        ]
+    },
+    {
+        "id": 8,
+        "name": "Awards",
+        "title": "Honors & Awards",
+        "column": 1,
+        "explanation": "Recognition and scholarships received",
+        "background": "rgb(0 0 0 / 20%)",
+        "size": [
+            100,
+            450
+        ],
+        "top": 1405,
+        "fixed": false,
+        "list": [
+            {
+                "id": 1,
+                "Award": "Ranked 1st Among the BS Mechanical Engineering Alumni”, IK International University."
+            },
+            {
+                "id": 2,
+                "Award": "Visiting the 'Condensed Matter and Statistical Physics of the Abdus Salam International Centre for Theoretical Physics (ICTP)' and collaboration with E. Roldan and A. Hassanali on a research project on 'inverse heat flux between nanoparticles', from 21 October to 18 November 2019, Trieste, Italy."
             }
         ]
     }
