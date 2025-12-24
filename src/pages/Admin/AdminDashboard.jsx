@@ -28,7 +28,8 @@ const formatLabel = (key) => {
         Supervisor: 'Supervisor(s)',
         Citations: 'Citations',
         citations: 'Citations',
-        Authors: 'Authors',
+        Authors: 'Authors (Text)',
+        AuthorsList: 'Authors',
         Journal: 'Journal',
         Year: 'Year',
         Link: 'Link URL',
@@ -534,27 +535,27 @@ const AdminDashboard = () => {
                                             {isSaving ? <FaSpinner className={styles.spin} /> : <FaSave />}
                                             {isSaving ? 'Saving...' : 'Save'}
                                         </button>
-                                        {(selectedSection.name === 'Papers' || selectedSection.name === 'Published Papers') && (
-                                            <>
-                                                <input
-                                                    type="text"
-                                                    placeholder="Google Scholar URL"
-                                                    value={scholarUrl}
-                                                    onChange={(e) => setScholarUrl(e.target.value)}
-                                                    className={styles.scholarInput}
-                                                />
-                                                <button
-                                                    onClick={handleSyncScholar}
-                                                    disabled={isSyncing}
-                                                    className={styles.syncBtn}
-                                                >
-                                                    {isSyncing ? <FaSpinner className={styles.spin} /> : <FaSyncAlt />}
-                                                    {isSyncing ? 'Syncing...' : 'Sync Scholar'}
-                                                </button>
-                                            </>
-                                        )}
                                     </div>
                                 </div>
+                                {(selectedSection.name === 'Papers' || selectedSection.name === 'Published Papers') && (
+                                    <div className={styles.scholarRow}>
+                                        <input
+                                            type="text"
+                                            placeholder="Google Scholar URL"
+                                            value={scholarUrl}
+                                            onChange={(e) => setScholarUrl(e.target.value)}
+                                            className={styles.scholarInput}
+                                        />
+                                        <button
+                                            onClick={handleSyncScholar}
+                                            disabled={isSyncing}
+                                            className={styles.syncBtn}
+                                        >
+                                            {isSyncing ? <FaSpinner className={styles.spin} /> : <FaSyncAlt />}
+                                            {isSyncing ? 'Syncing...' : 'Sync Scholar'}
+                                        </button>
+                                    </div>
+                                )}
 
                                 <div className={styles.itemsList}>
                                     {sectionItems.map((item, index) => (
@@ -698,6 +699,45 @@ const AdminDashboard = () => {
                                                                                     handleItemChange(index, key, `${newPart1}${separator}${newPart2}`);
                                                                                 }}
                                                                             />
+                                                                        </div>
+                                                                    ) : key === 'AuthorsList' && Array.isArray(value) ? (
+                                                                        <div className={styles.authorsEditor}>
+                                                                            {value.map((author, aIndex) => (
+                                                                                <div key={aIndex} className={styles.authorRow}>
+                                                                                    <input
+                                                                                        className={styles.authorInput}
+                                                                                        value={author}
+                                                                                        onChange={(e) => {
+                                                                                            const newAuthors = [...value];
+                                                                                            newAuthors[aIndex] = e.target.value;
+                                                                                            handleItemChange(index, key, newAuthors);
+                                                                                            // Also update Authors string for AcademicCV compatibility
+                                                                                            handleItemChange(index, 'Authors', newAuthors.join(', '));
+                                                                                        }}
+                                                                                        placeholder={`Author ${aIndex + 1}`}
+                                                                                    />
+                                                                                    <button
+                                                                                        className={styles.removeAuthorBtn}
+                                                                                        onClick={() => {
+                                                                                            const newAuthors = value.filter((_, i) => i !== aIndex);
+                                                                                            handleItemChange(index, key, newAuthors);
+                                                                                            handleItemChange(index, 'Authors', newAuthors.join(', '));
+                                                                                        }}
+                                                                                    >
+                                                                                        <FaTrash />
+                                                                                    </button>
+                                                                                </div>
+                                                                            ))}
+                                                                            <button
+                                                                                className={styles.addAuthorBtn}
+                                                                                onClick={() => {
+                                                                                    const newAuthors = [...value, 'New Author'];
+                                                                                    handleItemChange(index, key, newAuthors);
+                                                                                    handleItemChange(index, 'Authors', newAuthors.join(', '));
+                                                                                }}
+                                                                            >
+                                                                                <FaPlus /> Add Author
+                                                                            </button>
                                                                         </div>
                                                                     ) : isArray ? (
                                                                         <input

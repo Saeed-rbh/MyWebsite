@@ -136,8 +136,12 @@ app.post('/api/scholar/sync', async (req, res) => {
             const link = 'https://scholar.google.com' + titleElement.attr('href');
 
             const metaDivs = $(el).find('.gsc_a_t .gs_gray');
-            const authors = $(metaDivs[0]).text();
-            const journal = $(metaDivs[1]).text();
+            const authorsString = $(metaDivs[0]).text();
+            // Split authors into array (separated by comma)
+            const authorsArray = authorsString.split(',').map(a => a.trim()).filter(a => a);
+            let journal = $(metaDivs[1]).text();
+            // Clean up journal name - remove volume, issue, pages, year (e.g., "Scientific Reports 13 (1), 4517, 2023" -> "Scientific Reports")
+            journal = journal.replace(/\s*\d+\s*\(.*$/, '').replace(/,.*$/, '').trim();
 
             let citations = $(el).find('.gsc_a_ac').text();
             if (!citations) citations = $(el).find('.gsc_a_c').text();
@@ -152,7 +156,8 @@ app.post('/api/scholar/sync', async (req, res) => {
                 papers.push({
                     id: crypto.randomUUID(), // Use built-in crypto or math.random
                     Title: title,
-                    Authors: authors,
+                    Authors: authorsString, // Keep original string for AcademicCV
+                    AuthorsList: authorsArray, // Array for admin dashboard
                     Journal: journal,
                     Citations: citationsNum,
                     Year: parseInt(year) || year,

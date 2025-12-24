@@ -196,103 +196,172 @@
         "fixed": false,
         "list": [
             {
-                "id": "ef999a0e-4819-4e74-af85-a33d56b87777",
+                "id": "e18ec8f2-380b-41a3-aa62-24cd76b6732f",
                 "Title": "Nonreciprocal forces enable cold-to-hot heat transfer between nanoparticles",
                 "Authors": "SAM Loos, S Arabha, A Rajabpour, A Hassanali, É Roldán",
-                "Journal": "Scientific Reports 13 (1), 4517, 2023",
+                "AuthorsList": [
+                    "SAM Loos",
+                    "S Arabha",
+                    "A Rajabpour",
+                    "A Hassanali",
+                    "É Roldán"
+                ],
+                "Journal": "Scientific Reports",
                 "Citations": 18,
                 "Year": 2023,
-                "Link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=mroBfIwAAAAJ&pagesize=100&citation_for_view=mroBfIwAAAAJ:TFP_iSt0sucC"
+                "Link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=mroBfIwAAAAJ&pagesize=100&sortby=pubdate&citation_for_view=mroBfIwAAAAJ:TFP_iSt0sucC",
+                "pdf": "/uploads/1766600420095-370715160.pdf",
+                "link": "/uploads/1766600420095-370715160.pdf"
             },
             {
-                "id": "3898d321-edda-40b3-a6d5-7117fc67aece",
+                "id": "4cfecdf2-4f94-4005-9497-77e6eab464be",
                 "Title": "Lattice thermal conductivity and Young's modulus of XN 4 (X= Be, Mg and Pt) 2D materials using machine learning interatomic potentials",
                 "Authors": "K Ghorbani, P Mirchi, S Arabha, A Rajabpour, S Volz",
-                "Journal": "Physical Chemistry Chemical Physics 25 (18), 12923-12933, 2023",
+                "AuthorsList": [
+                    "K Ghorbani",
+                    "P Mirchi",
+                    "S Arabha",
+                    "A Rajabpour",
+                    "S Volz"
+                ],
+                "Journal": "Physical Chemistry Chemical Physics",
                 "Citations": 12,
                 "Year": 2023,
-                "Link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=mroBfIwAAAAJ&pagesize=100&citation_for_view=mroBfIwAAAAJ:isC4tDSrTZIC"
+                "Link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=mroBfIwAAAAJ&pagesize=100&sortby=pubdate&citation_for_view=mroBfIwAAAAJ:isC4tDSrTZIC"
             },
             {
-                "id": "0bb877de-baab-446e-b393-a97cd704a988",
-                "Title": "Interfacial thermal conductance between TiO2 nanoparticle and water: A molecular dynamics study",
-                "Authors": "M Roodbari, M Abbasi, S Arabha, A Gharedaghi, A Rajabpour",
-                "Journal": "Journal of Molecular Liquids 348, 118053, 2022",
-                "Citations": 38,
-                "Year": 2022,
-                "Link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=mroBfIwAAAAJ&pagesize=100&citation_for_view=mroBfIwAAAAJ:TQgYirikUcIC"
-            },
-            {
-                "id": "33254dc9-c4a6-44e6-8c9e-d66b7b737e1e",
+                "id": "22cd4b83-f89f-40de-9fe5-aefa2925769a",
                 "Title": "Interactions of gas particles with graphene during high-throughput compressible flow exfoliation: A Molecular Dynamics simulations study",
                 "Authors": "S Ahmed, S Arabha, RI Gonzalez, R Rizvi",
-                "Journal": "The Journal of Physical Chemistry C 126 (22), 9378-9385, 2022",
+                "AuthorsList": [
+                    "S Ahmed",
+                    "S Arabha",
+                    "RI Gonzalez",
+                    "R Rizvi"
+                ],
+                "Journal": "The Journal of Physical Chemistry C",
                 "Citations": 1,
                 "Year": 2022,
-                "Link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=mroBfIwAAAAJ&pagesize=100&citation_for_view=mroBfIwAAAAJ:e5wmG9Sq2KIC"
+                "Link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=mroBfIwAAAAJ&pagesize=100&sortby=pubdate&citation_for_view=mroBfIwAAAAJ:e5wmG9Sq2KIC"
             },
             {
-                "id": "2e0973e1-28e1-4996-9628-e7eb64c4cebc",
+                "id": "20508ab9-63ae-425d-a466-46412e62f6de",
+                "Title": "Interfacial thermal conductance between TiO2 nanoparticle and water: A molecular dynamics study",
+                "Authors": "M Roodbari, M Abbasi, S Arabha, A Gharedaghi, A Rajabpour",
+                "AuthorsList": [
+                    "M Roodbari",
+                    "M Abbasi",
+                    "S Arabha",
+                    "A Gharedaghi",
+                    "A Rajabpour"
+                ],
+                "Journal": "Journal of Molecular Liquids 348",
+                "Citations": 38,
+                "Year": 2022,
+                "Link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=mroBfIwAAAAJ&pagesize=100&sortby=pubdate&citation_for_view=mroBfIwAAAAJ:TQgYirikUcIC"
+            },
+            {
+                "id": "547ad8ec-d55b-4d95-ab47-b1997b462ffa",
                 "Title": "Recent advances in lattice thermal conductivity calculation using machine-learning interatomic potentials",
                 "Authors": "S Arabha, ZS Aghbolagh, K Ghorbani, SM Hatam-Lee, A Rajabpour",
-                "Journal": "Journal of Applied Physics 130 (21), 2021",
+                "AuthorsList": [
+                    "S Arabha",
+                    "ZS Aghbolagh",
+                    "K Ghorbani",
+                    "SM Hatam-Lee",
+                    "A Rajabpour"
+                ],
+                "Journal": "Journal of Applied Physics",
                 "Citations": 60,
                 "Year": 2021,
-                "Link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=mroBfIwAAAAJ&pagesize=100&citation_for_view=mroBfIwAAAAJ:R3hNpaxXUhUC"
+                "Link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=mroBfIwAAAAJ&pagesize=100&sortby=pubdate&citation_for_view=mroBfIwAAAAJ:R3hNpaxXUhUC"
             },
             {
-                "id": "bf609f0e-9c35-4f1c-9116-42b4f4c5070c",
-                "Title": "Thermo-mechanical properties of nitrogenated holey graphene (C2N): A comparison of machine-learning-based and classical interatomic potentials",
-                "Authors": "S Arabha, A Rajabpour",
-                "Journal": "International Journal of Heat and Mass Transfer 178, 121589, 2021",
-                "Citations": 39,
-                "Year": 2021,
-                "Link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=mroBfIwAAAAJ&pagesize=100&citation_for_view=mroBfIwAAAAJ:mB3voiENLucC"
-            },
-            {
-                "id": "69ec774e-3fa2-47bc-9627-8d9920f5fc48",
+                "id": "1d2717ad-e9c2-4280-8fa6-6293f768fff4",
                 "Title": "Elucidation of thermo-mechanical properties of silicon nanowires from a molecular dynamics perspective",
                 "Authors": "F Hasheminia, Y Bahari, A Rajabpour, S Arabha",
-                "Journal": "Computational Materials Science 200, 110821, 2021",
+                "AuthorsList": [
+                    "F Hasheminia",
+                    "Y Bahari",
+                    "A Rajabpour",
+                    "S Arabha"
+                ],
+                "Journal": "Computational Materials Science 200",
                 "Citations": 19,
                 "Year": 2021,
-                "Link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=mroBfIwAAAAJ&pagesize=100&citation_for_view=mroBfIwAAAAJ:HDshCWvjkbEC"
+                "Link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=mroBfIwAAAAJ&pagesize=100&sortby=pubdate&citation_for_view=mroBfIwAAAAJ:HDshCWvjkbEC"
             },
             {
-                "id": "59278594-64cc-4d28-acc3-4589ba1a9560",
+                "id": "2f0e8ca6-dbd8-45f6-8d8c-2874c38ef63e",
+                "Title": "Thermo-mechanical properties of nitrogenated holey graphene (C2N): A comparison of machine-learning-based and classical interatomic potentials",
+                "Authors": "S Arabha, A Rajabpour",
+                "AuthorsList": [
+                    "S Arabha",
+                    "A Rajabpour"
+                ],
+                "Journal": "International Journal of Heat and Mass Transfer 178",
+                "Citations": 39,
+                "Year": 2021,
+                "Link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=mroBfIwAAAAJ&pagesize=100&sortby=pubdate&citation_for_view=mroBfIwAAAAJ:mB3voiENLucC"
+            },
+            {
+                "id": "748e2f9b-aea5-4d23-8e99-d2588ad3249d",
                 "Title": "Engineered porous borophene with tunable anisotropic properties",
                 "Authors": "S Arabha, AH Akbarzadeh, A Rajabpour",
-                "Journal": "Composites Part B: Engineering 200, 108260, 2020",
+                "AuthorsList": [
+                    "S Arabha",
+                    "AH Akbarzadeh",
+                    "A Rajabpour"
+                ],
+                "Journal": "Composites Part B: Engineering 200",
                 "Citations": 35,
                 "Year": 2020,
-                "Link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=mroBfIwAAAAJ&pagesize=100&citation_for_view=mroBfIwAAAAJ:hFOr9nPyWt4C"
+                "Link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=mroBfIwAAAAJ&pagesize=100&sortby=pubdate&citation_for_view=mroBfIwAAAAJ:hFOr9nPyWt4C"
             },
             {
-                "id": "a5b63839-02ad-4dbf-9083-b4b4934b4d8a",
+                "id": "3801aac0-40ae-40ca-96dd-5e2a9f2a2de4",
                 "Title": "Effect of planar torsional deformation on the thermal conductivity of 2D nanomaterials: A molecular dynamics study",
                 "Authors": "S Arabha, A Rajabpour",
-                "Journal": "Materials Today Communications 22, 100706, 2020",
+                "AuthorsList": [
+                    "S Arabha",
+                    "A Rajabpour"
+                ],
+                "Journal": "Materials Today Communications 22",
                 "Citations": 17,
                 "Year": 2020,
-                "Link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=mroBfIwAAAAJ&pagesize=100&citation_for_view=mroBfIwAAAAJ:qUcmZB5y_30C"
+                "Link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=mroBfIwAAAAJ&pagesize=100&sortby=pubdate&citation_for_view=mroBfIwAAAAJ:qUcmZB5y_30C"
             },
             {
-                "id": "78a37115-3866-4621-a8ed-0ad21517b1c9",
+                "id": "cec02b83-7ea2-4990-9cd5-1000af1d1c3f",
                 "Title": "Thermal transport at a nanoparticle-water interface: A molecular dynamics and continuum modeling study",
                 "Authors": "A Rajabpour, R Seif, S Arabha, MM Heyhat, S Merabia, A Hassanali",
-                "Journal": "The Journal of chemical physics 150 (11), 2019",
+                "AuthorsList": [
+                    "A Rajabpour",
+                    "R Seif",
+                    "S Arabha",
+                    "MM Heyhat",
+                    "S Merabia",
+                    "A Hassanali"
+                ],
+                "Journal": "The Journal of chemical physics",
                 "Citations": 90,
                 "Year": 2019,
-                "Link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=mroBfIwAAAAJ&pagesize=100&citation_for_view=mroBfIwAAAAJ:_FxGoFyzp5QC"
+                "Link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=mroBfIwAAAAJ&pagesize=100&sortby=pubdate&citation_for_view=mroBfIwAAAAJ:_FxGoFyzp5QC"
             },
             {
-                "id": "6556ffbf-59d1-4839-ad88-6e00d1a34053",
+                "id": "d1e32c2b-bed6-4342-939b-940e189ffa6f",
                 "Title": "Importance of nanolayer formation in nanofluid properties: Equilibrium molecular dynamic simulations for Ag-water nanofluid",
                 "Authors": "MM Heyhat, A Rajabpour, M Abbasi, S Arabha",
-                "Journal": "Journal of Molecular Liquids 264, 699-705, 2018",
+                "AuthorsList": [
+                    "MM Heyhat",
+                    "A Rajabpour",
+                    "M Abbasi",
+                    "S Arabha"
+                ],
+                "Journal": "Journal of Molecular Liquids 264",
                 "Citations": 60,
                 "Year": 2018,
-                "Link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=mroBfIwAAAAJ&pagesize=100&citation_for_view=mroBfIwAAAAJ:M3ejUd6NZC8C"
+                "Link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=mroBfIwAAAAJ&pagesize=100&sortby=pubdate&citation_for_view=mroBfIwAAAAJ:M3ejUd6NZC8C"
             }
         ]
     },
