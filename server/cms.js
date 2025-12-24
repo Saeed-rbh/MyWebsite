@@ -163,13 +163,16 @@ app.post('/api/scholar/sync', async (req, res) => {
 
         console.log(`Found ${papers.length} papers.`);
 
+        // Sort papers by Year (most recent first)
+        papers.sort((a, b) => (b.Year || 0) - (a.Year || 0));
+
         const cvData = readData();
         const sectionIndex = cvData.findIndex(s => s.name === 'Published Papers' || s.id === 5); // 5 is usually papers based on seed
 
         if (sectionIndex !== -1) {
             cvData[sectionIndex].list = papers;
             writeData(cvData);
-            res.json({ message: `Successfully synced ${papers.length} papers.`, count: papers.length });
+            res.json({ message: `Successfully synced ${papers.length} papers (sorted by date).`, count: papers.length });
         } else {
             res.status(404).json({ message: "Published Papers section not found in JSON." });
         }
