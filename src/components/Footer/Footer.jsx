@@ -19,7 +19,7 @@ const Footer = () => {
 
   const [screenWidth, setScreenWidth] = useState(window.innerWidth);
   const [resumeClicked, setResumeClicked] = useState(
-    window.location.pathname === "/AcademicCV"
+    window.location.pathname.toLowerCase() === "/academiccv"
   );
   const [isMouseHover, setMouseHover] = useState([false, null, null]);
   const [disapear, setDisapear] = useState(resumeClicked ? false : true);

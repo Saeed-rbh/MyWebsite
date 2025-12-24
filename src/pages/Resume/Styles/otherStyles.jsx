@@ -175,13 +175,13 @@ export const useCombinedAnimation = ({
   useEffect(() => {
     if (
       visibility &&
-      location.pathname === "/AcademicCV" &&
+      location.pathname.toLowerCase() === "/academiccv" &&
       currentPage === "/AcademicCV"
     ) {
       setResumeClicked(1);
     } else if (
       visibility &&
-      location.pathname === "/AcademicCV" &&
+      location.pathname.toLowerCase() === "/academiccv" &&
       currentPage === "/"
     ) {
       setResumeClicked(2);

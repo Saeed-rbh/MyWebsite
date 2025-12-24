@@ -41,13 +41,13 @@ const useTitleAnimation = ({
   useEffect(() => {
     if (
       visibility &&
-      location.pathname === "/AcademicCV" &&
+      location.pathname.toLowerCase() === "/academiccv" &&
       currentPage === "/AcademicCV"
     ) {
       setResumeClicked(1);
     } else if (
       visibility &&
-      location.pathname === "/AcademicCV" &&
+      location.pathname.toLowerCase() === "/academiccv" &&
       currentPage === "/"
     ) {
       setResumeClicked(2);
@@ -141,7 +141,7 @@ const MainTitle = ({ duration, initialDelay, delayIncrement, size }) => {
           duration={duration}
         />
       </animated.div>
-      <animated.p style={title2Style}>Academic CV-4</animated.p>
+      <animated.p style={title2Style}>Academic CV</animated.p>
     </animated.div>
   );
 };

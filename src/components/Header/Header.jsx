@@ -15,7 +15,7 @@ const useScrollOpacity = (isResumeClicked) => {
   const [scrollOpacity, setScrollOpacity] = useState(false);
 
   useEffect(() => {
-    if (isResumeClicked && window.location.pathname === "/AcademicCV") {
+    if (isResumeClicked && window.location.pathname.toLowerCase() === "/academiccv") {
       const scrollableDiv = document.getElementById("AcademicCV-M");
       if (!scrollableDiv) return;
 

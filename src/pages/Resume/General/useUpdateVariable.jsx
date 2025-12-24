@@ -7,6 +7,7 @@ import useDataModify from "./DataModify";
 import { useEffect, useState, useMemo } from "react";
 import { useDispatch } from "react-redux";
 import { debounce } from "lodash";
+import localData from '../../../data/cvData.json';
 
 const useWindowSize = () => {
   const [size, setSize] = useState({
@@ -52,15 +53,19 @@ const useUpdateVariable = () => {
   ], [isMobile, isTablet, isVerticalTablet]);
 
   // Fetch DB Data
-  const [dbData, setDbData] = useState([]);
+  const [dbData, setDbData] = useState(localData);
+
   useEffect(() => {
     const fetchData = async () => {
       try {
         const { getCVData } = await import("../../../services/api");
         const { data } = await getCVData();
-        setDbData(data);
+        if (data && data.length > 0) {
+          setDbData(data);
+        }
       } catch (err) {
-        console.error("Failed to fetch CV data", err);
+        console.log("Using local JSON data (API unavailable)", err);
+        // No need to setDbData(localData) as it is the initial state
       }
     };
     fetchData();

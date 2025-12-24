@@ -17,7 +17,9 @@
     "@tweenjs/tween.js": "^21.0.0",
     "@use-gesture/react": "^10.3.1",
     "@vercel/speed-insights": "^1.0.9",
-    "axios": "^1.7.2",
+    "axios": "^1.13.2",
+    "cheerio": "^1.1.2",
+    "cors": "^2.8.5",
     "d3-ease": "^3.0.1",
     "date-fns": "^3.6.0",
     "express": "^4.19.2",
@@ -26,6 +28,7 @@
     "gsap": "^3.12.7",
     "lodash": "^4.17.21",
     "morgan": "^1.10.0",
+    "multer": "^2.0.2",
     "prop-types": "^15.8.1",
     "react": "^18.2.0",
     "react-circular-progressbar": "^2.1.0",
@@ -52,6 +55,7 @@
   },
   "scripts": {
     "dev": "vite",
+    "cms": "node server/cms.js",
     "start": "vite",
     "build": "vite build",
     "preview": "vite preview"

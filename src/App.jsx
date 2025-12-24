@@ -43,7 +43,8 @@ function App() {
               <Suspense fallback={<div>Loading...</div>}>
                 <Routes>
                   <Route exact path="/" element={<HomePage />} />
-                  <Route exact path="/AcademicCV" element={<AcademicCV />} />
+                  <Route path="/AcademicCV" element={<AcademicCV />} />
+                  <Route path="/academiccv" element={<AcademicCV />} />
                   <Route exact path="/Graphene" element={<Graphene />} />
                   <Route exact path="/admin" element={<AdminDashboard />} />
                   <Route exact path="/login" element={<Login />} />
