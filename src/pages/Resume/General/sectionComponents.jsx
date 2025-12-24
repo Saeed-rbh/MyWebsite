@@ -69,7 +69,7 @@ export const sectionProperties = [
     title: "Skill & Software",
     background: "rgb(0 0 0 / 20%)",
     size: [140, 450],
-    top: 1035, // Was 1025 (shifted +10)
+    top: 500 + 510 + 15,
     adjustTop: -510,
     adjustHeight: -10,
     adjustViewport: -40,
@@ -85,7 +85,7 @@ export const sectionProperties = [
     explanation: "Achieved educational credentials",
     title: "Qualifications",
     background: "rgb(0 0 0 / 30%)",
-    size: [200, 450], // Was 190 (Height +10)
+    size: [190, 450],
     top: 45 + 545 + 15,
     adjustTop: -545,
     adjustHeight: -20,
@@ -103,7 +103,7 @@ export const sectionProperties = [
     title: "Published Papers",
     background: "rgb(0 0 0 / 30%)",
     size: [210, 450],
-    top: 815, // Was 805 (shifted +10)
+    top: 225 + 565 + 15,
     adjustTop: -565,
     adjustHeight: -20,
     adjustViewport: -40,
@@ -121,7 +121,7 @@ export const sectionProperties = [
     title: "Workshops & Conferences",
     background: "rgb(0 0 0 / 30%)",
     size: [120, 450],
-    top: 1185, // Was 1175 (shifted +10)
+    top: 425 + 735 + 15,
     adjustTop: -735,
     adjustHeight: -20,
     adjustViewport: -40,
@@ -137,7 +137,7 @@ export const sectionProperties = [
     title: "Teach & work experiences",
     background: "rgb(0 0 0 / 30%)",
     size: [100, 450],
-    top: 1315, // Was 1305 (shifted +10)
+    top: 535 + 755 + 15,
     adjustTop: -755,
     adjustHeight: -5,
     adjustViewport: -40,
@@ -153,7 +153,7 @@ export const sectionProperties = [
     title: "Awards & Certifications",
     background: "rgb(0 0 0 / 30%)",
     size: [100, 450],
-    top: 1315, // Was 1305 (shifted +10)
+    top: 535 + 755 + 15,
     adjustTop: -755,
     adjustHeight: -5,
     adjustViewport: -40,
