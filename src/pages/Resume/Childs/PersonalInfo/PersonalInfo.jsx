@@ -37,7 +37,7 @@ export const PersonalInfo = () => {
     borderRadius: "40px",
     height: `${size[0]}px`,
 
-    cursor: "pointer",
+    cursor: "default",
     filter: "blur(0px)",
     opacity: "1",
     // backgroundColor removed

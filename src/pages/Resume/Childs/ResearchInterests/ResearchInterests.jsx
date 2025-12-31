@@ -34,7 +34,7 @@ const ResearchInterests = () => {
   const style = {
     borderRadius: "40px",
     height: stages[2] ? `${size[0] * 2 - 20}px` : `${size[0]}px`,
-    cursor: "pointer",
+    cursor: "default",
     filter: "blur(0px)",
     opacity: "1",
     // backgroundColor removed

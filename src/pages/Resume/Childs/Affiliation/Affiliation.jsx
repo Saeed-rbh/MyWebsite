@@ -103,7 +103,7 @@ export const Affiliation = () => {
   const Style = {
     borderRadius: "35px",
     height: height,
-    cursor: "pointer",
+    cursor: "default",
     filter: "blur(0px)",
     opacity: "1",
     // backgroundColor removed
