@@ -15,8 +15,10 @@
             {
                 "name": "Saeed Arabha",
                 "dateOfBirth": "15.02.1995",
-                "caPhone": "+1 - 416 836 5851",
-                "irPhone": "+98 - 919 659 5351"
+                "caPhone": "+1 (416) 836-5851",
+                "email": "sarabha@yorku.ca",
+                "linkedin": "linkedin.com/in/saeed-arabha",
+                "scholar": "scholar.google.com/citations?user=mroBfIwAAAAJ"
             }
         ]
     },
@@ -92,7 +94,7 @@
                         "Beginner"
                     ],
                     [
-                        "Java Script (JS)",
+                        "JavaScript",
                         "Intermediate"
                     ],
                     [
@@ -194,7 +196,7 @@
             {
                 "id": 3,
                 "title": "Bachelor of Science in Mechanical Engineering",
-                "Date": "2013 - 2017",
+                "Date": "2013 – 2017",
                 "Location": "IK International University, Qazvin, Iran",
                 "Thesis": "Importance of nanolayer formation in nanofluid properties: Equilibrium molecular dynamic simulations",
                 "Supervisor": "A. Rajabpour"
@@ -434,7 +436,7 @@
         "list": [
             {
                 "id": 1,
-                "Teaching": "Teacher Assistant in Dynamics, Simulation Tools for Design & Analysis, and Machine Elements Design, Mechanical Engineering Department, York University, 2021–Now, Toronto, ON, Canada."
+                "Teaching": "Teaching Assistant in Dynamics, Simulation Tools for Design & Analysis, and Machine Elements Design, Mechanical Engineering Department, York University, 2021 – Present, Toronto, ON, Canada."
             },
             {
                 "id": 2,
@@ -442,11 +444,11 @@
             },
             {
                 "id": 3,
-                "Teaching": "Teacher Assistant in Fluid Mechanics І, Mechanical Engineering Department, IK International University, Autumn 2017, Qazvin, Iran."
+                "Teaching": "Teaching Assistant in Fluid Mechanics І, Mechanical Engineering Department, IK International University, Autumn 2017, Qazvin, Iran."
             },
             {
                 "id": 4,
-                "Teaching": "Teacher Assistant in Heat Transfer, CFD, Thermodynamics, Mechanical and Electrical Engineering Department, IK International University, Spring 2017 – 2018, Qazvin, Iran."
+                "Teaching": "Teaching Assistant in Heat Transfer, CFD, Thermodynamics, Mechanical and Electrical Engineering Department, IK International University, Spring 2017 – 2018, Qazvin, Iran."
             },
             {
                 "id": 5,

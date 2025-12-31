@@ -40,7 +40,7 @@ export const PersonalInfo = () => {
     cursor: "pointer",
     filter: "blur(0px)",
     opacity: "1",
-    backgroundColor: "rgba(0, 0, 0, 0.3)",
+    // backgroundColor removed
     overflow: "visible",
     width: stages[1] ? Math.min(elementSize * 0.97, size[1]) : size[1],
     left: stages[1]

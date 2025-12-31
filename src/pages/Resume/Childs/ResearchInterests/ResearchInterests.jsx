@@ -37,7 +37,7 @@ const ResearchInterests = () => {
     cursor: "pointer",
     filter: "blur(0px)",
     opacity: "1",
-    backgroundColor: "rgba(0, 0, 0, 0.3)",
+    // backgroundColor removed
     overflow: "visible",
 
     border: "2px solid rgba(212, 157, 129, 0.2)",

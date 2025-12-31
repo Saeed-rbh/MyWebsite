@@ -2,7 +2,7 @@ import React, { useState, useMemo, useEffect } from "react";
 import { animated, useSpring, easings } from "react-spring";
 import { calculateBackgroundImage, ImageDiv, ContentDiv } from "./Components";
 import { useUtilize } from "../../Styles/useUtilize";
-import myImage from "../../../../assets/AcademicImg.png?url";
+import myImage from "../../../../assets/AcademicImg.jpg?url";
 import { useSelector } from "react-redux";
 import useScrollPosition from "../../General/useScrollPosition";
 import { useCombinedAnimation } from "../../Styles/otherStyles";
@@ -65,7 +65,7 @@ export const Affiliation = () => {
   );
 
   const animatedStyle = useSpring({
-    backgroundColor: "rgba(0, 0, 0, 0.3)",
+    // backgroundColor removed
     backgroundImage,
     border: "2px solid rgba(212, 157, 129, 0.2)",
     top: "-5px",
@@ -81,7 +81,7 @@ export const Affiliation = () => {
   });
 
   const animatedImgDiv = useSpring({
-    backgroundColor: "rgba(0, 0, 0, 0.3)",
+    // backgroundColor removed
     border: "2px solid rgba(212, 157, 129, 0.2)",
     position: "absolute",
     display: "flex",
@@ -106,7 +106,7 @@ export const Affiliation = () => {
     cursor: "pointer",
     filter: "blur(0px)",
     opacity: "1",
-    backgroundColor: "rgba(0, 0, 0, 0.3)",
+    // backgroundColor removed
     width: stages[1] ? Math.min(elementSize * 0.97, size[1]) : size[1],
     left: stages[1]
       ? (elementSize - Math.min(elementSize * 0.97, size[1])) / 2

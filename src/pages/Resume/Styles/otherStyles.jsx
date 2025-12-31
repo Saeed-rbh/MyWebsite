@@ -116,14 +116,17 @@ export const useClickOtherFade = (otherActive, progress, name, isActive) => {
   const [opacity, setOpacity] = useState(1);
   const [scale, setScale] = useState(1);
 
+  // Disable blur for profile-related components to keep image sharp
+  const disableBlur = name === "Affiliation" || name === "PersonalInfo";
+
   useEffect(() => {
-    const blurValue = 5 * progress;
+    const blurValue = disableBlur ? 0 : 5 * progress;
     const opacityValue = otherActive ? 0 : 1;
     const scaleValue = otherActive ? 0.9 : 1;
     setBlur(blurValue);
     setOpacity(opacityValue);
     setScale(scaleValue);
-  }, [otherActive, progress]);
+  }, [otherActive, progress, disableBlur]);
 
   // Return the blur value and CSS styles with smooth transition
   return {

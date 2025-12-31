@@ -185,7 +185,11 @@ const ResumePDF = ({ cvData }) => {
                     <Text style={styles.name}>{personalInfo.name || "Saeed Arabha"}</Text>
                     <View style={styles.contactRow}>
                         {personalInfo.caPhone && <Text>{personalInfo.caPhone}</Text>}
-                        {personalInfo.irPhone && <Text>{personalInfo.irPhone}</Text>}
+                        {personalInfo.email && <Text>{personalInfo.email}</Text>}
+                    </View>
+                    <View style={styles.contactRow}>
+                        {personalInfo.linkedin && <Text>{personalInfo.linkedin}</Text>}
+                        {personalInfo.scholar && <Text>{personalInfo.scholar}</Text>}
                     </View>
                     <View style={styles.divider} />
                 </View>
@@ -195,7 +199,7 @@ const ResumePDF = ({ cvData }) => {
                     <View style={styles.section}>
                         <SectionHeader title="Research Interests" />
                         <Text style={styles.interestsText}>
-                            {researchInterests.map(i => i.label).join('  •  ')}
+                            {researchInterests.map(i => i.label).join('  |  ')}
                         </Text>
                     </View>
                 )}
@@ -234,7 +238,11 @@ const ResumePDF = ({ cvData }) => {
                             <View key={index} style={styles.publication}>
                                 <Text style={styles.publicationText}>
                                     <Text style={styles.pubAuthors}>
-                                        {paper.AuthorsList ? paper.AuthorsList.join(', ') : paper.Authors}
+                                        {(paper.AuthorsList || paper.Authors.split(', ')).map((author, i, arr) => (
+                                            <Text key={i} style={author.includes('S Arabha') || author.includes('S. Arabha') ? { fontFamily: 'Helvetica-Bold' } : {}}>
+                                                {author}{i < arr.length - 1 ? ', ' : ''}
+                                            </Text>
+                                        ))}
                                     </Text>
                                     {'. '}
                                     <Text style={styles.pubTitle}>"{paper.Title}"</Text>

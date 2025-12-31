@@ -131,7 +131,7 @@ const InteractiveDiv = (props) => {
   const Style = {
     cursor: "pointer",
     filter: "blur(0px)",
-    backgroundColor: "rgba(0, 0, 0, 0.3)",
+    // backgroundColor removed
     scale: scale,
     border: "2px solid rgba(212, 157, 129, 0.2)",
     marginBottom: stages[1] ? "10px" : "0px",
