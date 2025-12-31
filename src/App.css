@@ -37,6 +37,7 @@ body {
   height: 100vh;
   position: fixed;
   z-index: -100;
+  filter: brightness(0.6);
 }
 
 .App-logo {

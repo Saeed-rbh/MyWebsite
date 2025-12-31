@@ -63,28 +63,29 @@ const TitleText = ({
 
   const otherTitleStyle1 = useSpring({
     position: "absolute",
+    whiteSpace: "pre-line", // Allow \n to create line breaks
     fontSize: isActive
       ? name === "Awards"
         ? 20
         : name === "Qualifications"
-        ? 30
-        : name === "Conference"
-        ? 22
-        : name === "Teaching"
-        ? 5
-        : 30
+          ? 30
+          : name === "Conference"
+            ? 22
+            : name === "Teaching"
+              ? 5
+              : 30
       : name === "Teaching" || name === "Awards"
-      ? 20
-      : 22,
-    width: name === "Teaching" || name === "Awards" ? "80%" : "max-content",
+        ? 20
+        : 22,
+    width: "max-content", // Allow full title width
     top: isActive ? -10 : -5,
     opacity: !isActive || !widthSplit ? 1 : 0,
     left:
       name === "Teaching" || name === "Awards"
         ? 20
         : isActive
-        ? 20
-        : (width[2] - width[0]) / 2,
+          ? 20
+          : (width[2] - width[0]) / 2,
   });
   const otherTitleStyle2 = useSpring({
     position: "absolute",
@@ -106,10 +107,10 @@ const TitleText = ({
     left: widthSplit
       ? 25
       : width[2] - width[1]
-      ? isActive
-        ? 20
-        : (width[2] - width[1]) / 2
-      : 0,
+        ? isActive
+          ? 20
+          : (width[2] - width[1]) / 2
+        : 0,
   });
   return (
     <animated.div ref={mainRef} style={mainStyle} className="SecondTitle">

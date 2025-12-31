@@ -4,7 +4,7 @@
         "name": "PersonalInfo",
         "title": "Personal Info",
         "column": 0,
-        "background": "rgb(0 0 0 / 50%)",
+        "background": "rgb(140 122 115 / 5%)",
         "size": [
             130,
             450
@@ -25,7 +25,7 @@
         "name": "Affiliation",
         "title": "Affiliation",
         "column": 0,
-        "background": "rgb(0 0 0 / 40%)",
+        "background": "rgb(140 122 115 / 5%)",
         "size": [
             130,
             450
@@ -39,7 +39,7 @@
         "name": "ResearchInterests",
         "title": "Research Interests",
         "column": 0,
-        "background": "rgb(0 0 0 / 40%)",
+        "background": "rgb(140 122 115 / 5%)",
         "size": [
             75,
             450
@@ -71,7 +71,7 @@
         "title": "Skill & Software",
         "column": 0,
         "explanation": "Achieved proficiency in various technical skills",
-        "background": "rgb(0 0 0 / 20%)",
+        "background": "rgb(140 122 115 / 5%)",
         "size": [
             140,
             450
@@ -167,7 +167,7 @@
         "title": "Qualifications",
         "column": 1,
         "explanation": "Academic degrees and achievements",
-        "background": "rgb(0 0 0 / 20%)",
+        "background": "rgb(140 122 115 / 5%)",
         "size": [
             200,
             450
@@ -207,7 +207,7 @@
         "title": "Published Papers",
         "column": 1,
         "explanation": "Peer-reviewed research contributions",
-        "background": "rgb(0 0 0 / 30%)",
+        "background": "rgb(140 122 115 / 5%)",
         "size": [
             210,
             450
@@ -391,7 +391,7 @@
         "title": "Workshops & Conferences",
         "column": 1,
         "explanation": "Participation in Scholarly Conferences and Workshops",
-        "background": "rgb(0 0 0 / 30%)",
+        "background": "rgb(140 122 115 / 5%)",
         "size": [
             120,
             450
@@ -421,9 +421,9 @@
     {
         "id": 7,
         "name": "Teaching",
-        "title": "Teach & work experiences",
+        "title": "Teach &\nwork experiences",
         "explanation": "Involvement in Teaching and Professional Work Experiences",
-        "background": "rgb(0 0 0 / 30%)",
+        "background": "rgb(140 122 115 / 5%)",
         "size": [
             100,
             450
@@ -457,10 +457,10 @@
     {
         "id": 8,
         "name": "Awards",
-        "title": "Honors & Awards",
+        "title": "Honors &\nAwards",
         "column": 1,
         "explanation": "Recognition and scholarships received",
-        "background": "rgb(0 0 0 / 20%)",
+        "background": "rgb(140 122 115 / 5%)",
         "size": [
             100,
             450
