@@ -87,6 +87,9 @@ const useTitleAnimation = ({
   });
 };
 
+import cvData from "../../../data/cvData.json";
+import DownloadButton from "./DownloadButton";
+
 // MainTitle component
 const MainTitle = ({ duration, initialDelay, delayIncrement, size }) => {
   const { visibility } = useSelector((state) => state.ui);
@@ -141,7 +144,10 @@ const MainTitle = ({ duration, initialDelay, delayIncrement, size }) => {
           duration={duration}
         />
       </animated.div>
-      <animated.p style={title2Style}>Academic CV</animated.p>
+      <animated.p style={title2Style}>
+        Academic CV
+        <DownloadButton cvData={cvData} />
+      </animated.p>
     </animated.div>
   );
 };

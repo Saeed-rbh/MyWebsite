@@ -144,7 +144,7 @@ export const useUtilize = (componentName) => {
     handleMouseDown,
     handleMouseEnter,
     handleMouseLeave,
-    handleMouseLeave,
+
     adjustViewport,
     column,
     // openType,
