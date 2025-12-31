@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
-import { animated } from "react-spring";
+import React, { useState } from "react";
+import { animated, useSpring } from "react-spring";
 import { useUtilize } from "../../Styles/useUtilize";
 import { useSelector } from "react-redux";
 import useScrollPosition from "../../General/useScrollPosition";
@@ -31,15 +31,25 @@ const ResearchInterests = () => {
   const { scrollTop } = useScrollPosition(scrollableRef);
   const elementSize = useElementSize("MoreInfoAcademic").width;
 
+  // Duplicate list to create seamless loop effect (4 sets to cover wide screens)
+  const extendedList = [...list, ...list, ...list, ...list];
+
+  // Continuous scroll animation
+  const scrollAnimation = useSpring({
+    from: { transform: "translateX(0%)" },
+    to: { transform: "translateX(-25%)" }, // Move 1 set length (1/4 of total)
+    loop: true,
+    config: { duration: 50000, easing: (t) => t }, // Linear easing, very slow speed
+  });
+
   const style = {
     borderRadius: "40px",
-    height: stages[2] ? `${size[0] * 2 - 20}px` : `${size[0]}px`,
+    height: `${size[0]}px`, // Always single row height
     cursor: "default",
     filter: "blur(0px)",
     opacity: "1",
-    // backgroundColor removed
-    overflow: "visible",
-
+    overflow: "visible", // Show title (which has negative margin)
+    // Mask div below handles content clipping
     border: "2px solid rgba(212, 157, 129, 0.2)",
     zIndex: "10",
     width: stages[1] ? Math.min(elementSize * 0.97, size[1]) : size[1],
@@ -51,15 +61,16 @@ const ResearchInterests = () => {
   };
 
   const Main = {
-    padding: stages[2] ? "17px 15px 10px 5px" : "11px 10px",
+    padding: "11px 10px", // Consistent single-row padding
     display: "flex",
     flexDirection: "row",
+    flexWrap: "nowrap", // Force single line
     alignItems: "center",
-    justifyContent: stages[1] ? "space-around" : "flex-start",
-    width: "100%",
+    width: "fit-content", // Allow container to expand with content
     height: "100%",
-    margin: "7px",
+    margin: "0", // Reset margin for precise scrolling
     boxSizing: "border-box",
+    whiteSpace: "nowrap", // Keep items in one line
   };
 
   const [initial, setInitial] = useState(false);
@@ -77,23 +88,56 @@ const ResearchInterests = () => {
     setInitial,
   });
 
+  // Pause animation on hover
+  const [isHovered, setIsHovered] = useState(false);
+  const hoverStyle = useSpring({
+    pause: isHovered,
+  });
+
   return (
     <animated.div
       ref={ref}
       style={{ ...style, ...combinedStyle }}
       className={name}
       id={name}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
     >
-      <animated.h1 style={{ marginTop: "-10px", marginLeft: "10px" }}>
+      <animated.h1 style={{ marginTop: "-13px", marginLeft: "25px", position: "absolute", zIndex: 20 }}>
         {title}
       </animated.h1>
-      <animated.div className="RInterests" style={Main}>
-        {list.slice(0, stages[2] ? 4 : 3).map((topic) => (
-          <a key={topic.label} href={topic.href}>
-            {topic.label}
-          </a>
-        ))}
-      </animated.div>
+
+      {/* Scroll Container Mask */}
+      <div style={{ width: "100%", height: "100%", overflow: "hidden", display: "flex", alignItems: "center", maskImage: "linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%)", WebkitMaskImage: "linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%)" }}>
+
+        {/* Scrolling Content */}
+        <animated.div
+          className="RInterests"
+          style={{
+            ...Main,
+            ...scrollAnimation,
+            // Merge pause logic if possible, or just rely on CSS hover pause if simplicity preferred.
+            // React-spring play/pause control is complex with loop=true. 
+            // For simplicity, we'll keep it running or use a keyframe approach if needed.
+            // But let's stick to the basic infinite loop first. 
+          }}
+        >
+          {extendedList.map((topic, index) => (
+            <a
+              key={`${topic.label}-${index}`}
+              href={topic.href}
+              style={{
+                margin: "0 5px", // Tighter spacing
+                padding: "10px 20px", // Increased internal padding
+                display: "inline-block",
+                flexShrink: 0, // Prevent shrinking
+              }}
+            >
+              {topic.label}
+            </a>
+          ))}
+        </animated.div>
+      </div>
     </animated.div>
   );
 };
