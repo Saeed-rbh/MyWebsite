@@ -36,7 +36,9 @@ exports.syncScholarData = async (req, res) => {
             // Authors and Journal are usually in two divs under .gsc_a_t
             const metaDivs = $(el).find('.gsc_a_t .gs_gray');
             const authors = $(metaDivs[0]).text();
-            const journal = $(metaDivs[1]).text();
+            let journal = $(metaDivs[1]).text();
+            // Remove trailing numbers (volume/issue) from journal name
+            journal = journal.replace(/\s+\d+$/, '').trim();
 
             // Citations: Try the specific anchor class .gsc_a_ac first, then the column .gsc_a_c
             let citations = $(el).find('.gsc_a_ac').text();

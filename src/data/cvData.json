@@ -171,7 +171,7 @@
         "explanation": "Academic degrees and achievements",
         "background": "rgb(140 122 115 / 5%)",
         "size": [
-            200,
+            180,
             450
         ],
         "top": 180,
@@ -277,7 +277,7 @@
                     "A Gharedaghi",
                     "A Rajabpour"
                 ],
-                "Journal": "Journal of Molecular Liquids 348",
+                "Journal": "Journal of Molecular Liquids",
                 "Citations": 38,
                 "Year": 2022,
                 "Link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=mroBfIwAAAAJ&pagesize=100&sortby=pubdate&citation_for_view=mroBfIwAAAAJ:TQgYirikUcIC"
@@ -308,7 +308,7 @@
                     "A Rajabpour",
                     "S Arabha"
                 ],
-                "Journal": "Computational Materials Science 200",
+                "Journal": "Computational Materials Science",
                 "Citations": 19,
                 "Year": 2021,
                 "Link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=mroBfIwAAAAJ&pagesize=100&sortby=pubdate&citation_for_view=mroBfIwAAAAJ:HDshCWvjkbEC"
@@ -321,7 +321,7 @@
                     "S Arabha",
                     "A Rajabpour"
                 ],
-                "Journal": "International Journal of Heat and Mass Transfer 178",
+                "Journal": "International Journal of Heat and Mass Transfer",
                 "Citations": 39,
                 "Year": 2021,
                 "Link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=mroBfIwAAAAJ&pagesize=100&sortby=pubdate&citation_for_view=mroBfIwAAAAJ:mB3voiENLucC"
@@ -335,7 +335,7 @@
                     "AH Akbarzadeh",
                     "A Rajabpour"
                 ],
-                "Journal": "Composites Part B: Engineering 200",
+                "Journal": "Composites Part B: Engineering",
                 "Citations": 35,
                 "Year": 2020,
                 "Link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=mroBfIwAAAAJ&pagesize=100&sortby=pubdate&citation_for_view=mroBfIwAAAAJ:hFOr9nPyWt4C"
@@ -348,7 +348,7 @@
                     "S Arabha",
                     "A Rajabpour"
                 ],
-                "Journal": "Materials Today Communications 22",
+                "Journal": "Materials Today Communications",
                 "Citations": 17,
                 "Year": 2020,
                 "Link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=mroBfIwAAAAJ&pagesize=100&sortby=pubdate&citation_for_view=mroBfIwAAAAJ:qUcmZB5y_30C"
@@ -380,7 +380,7 @@
                     "M Abbasi",
                     "S Arabha"
                 ],
-                "Journal": "Journal of Molecular Liquids 264",
+                "Journal": "Journal of Molecular Liquids",
                 "Citations": 60,
                 "Year": 2018,
                 "Link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=mroBfIwAAAAJ&pagesize=100&sortby=pubdate&citation_for_view=mroBfIwAAAAJ:M3ejUd6NZC8C"
