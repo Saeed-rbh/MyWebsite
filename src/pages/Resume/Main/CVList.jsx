@@ -42,10 +42,10 @@ const MainStyleComponent = () => {
   }, [scrollPosition, interpolateValue]);
 
   const mainStyle = useSpring({
-    position: "fixed",
+    position: stages[1] ? "sticky" : "fixed",
     height: 55,
-    top: 0,
-    width: stages[1] ? "95%" : "100%",
+    top: stages[1] ? 0 : 0,
+    width: stages[1] ? "100%" : "100%",
     // paddingLeft: stages[1] ? "5%" : "0%",
     display: "flex",
     y: scrollEffect[0],

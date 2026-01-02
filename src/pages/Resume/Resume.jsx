@@ -15,7 +15,7 @@ import SEO from "../../components/SEO/SEO";
 
 // Inner component that uses the scrollable ref
 const AcademicCVContent = () => {
-  const EXTRA_SPACE = 30;
+  const EXTRA_SPACE = 60;
   const elementSize = useElementSize("AcademicCV-M");
   const dispatch = useDispatch();
   const scrollableRef = useScrollableRef();
@@ -78,7 +78,12 @@ const AcademicCVContent = () => {
         <div
           id="AcademicCV-M"
           className="AcademicCV-M"
-          style={{ height: `${window.innerHeight - 35}px` }}
+          style={{
+            height:
+              stages[1] || stages[3]
+                ? "100%"
+                : `${window.innerHeight - 35}px`,
+          }}
         >
           <animated.div
             ref={scrollableRef}
@@ -88,8 +93,8 @@ const AcademicCVContent = () => {
           >
             {conditionStage && (
               <>
-                <MainTitle size={data[0]?.size[1]} />
                 {(stages[1] || stages[3]) && <CVList isActive={toggle[0]} />}
+                <MainTitle size={data[0]?.size[1]} />
               </>
             )}
             {conditionStage && <MoreInfoAcademic lastValue={lastValue} />}

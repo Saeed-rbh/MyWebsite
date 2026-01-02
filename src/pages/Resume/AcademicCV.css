@@ -1320,6 +1320,24 @@
   overflow-x: hidden;
 }
 
+@media only screen and (max-width: 1120px) {
+  .MoreInfoAcademic {
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    width: -webkit-fill-available;
+    height: -webkit-fill-available;
+    font-family: "Roboto", sans-serif;
+    z-index: 11;
+    border-radius: 25px;
+    scroll-snap-type: mandatory;
+    -webkit-overflow-scrolling: touch;
+    overflow-x: hidden;
+  }
+}
+
 .MoreInfoAcademicInner {
   position: absolute;
   top: 0;

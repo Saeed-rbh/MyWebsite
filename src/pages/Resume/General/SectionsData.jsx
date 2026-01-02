@@ -14,7 +14,7 @@ function calculateLines(fontSize, text) {
 const SectionsData = (data, MainElementSize, sequence, Stages) => {
   const MARGIN_TOP = 10;
 
-  let previousTop = 0;
+  let previousTop = Stages[1] || Stages[3] ? 180 : 0;
   let resetTop = 0;
   let previousIniRL = 0;
   let LeftRight = true;
@@ -23,8 +23,8 @@ const SectionsData = (data, MainElementSize, sequence, Stages) => {
     return Stages[2] || Stages[3]
       ? previousIniRL
       : top + height > MainElementSize.height
-      ? previousIniRL + 1
-      : previousIniRL;
+        ? previousIniRL + 1
+        : previousIniRL;
   };
 
   const sortedSectionProperties = [...data].sort(
@@ -58,9 +58,10 @@ const SectionsData = (data, MainElementSize, sequence, Stages) => {
         { h: 2, t: 3, v: 20 },
       ],
       exception_3T: [
-        { h: 2, t: 2, v: 45 },
-        { h: 2, t: 3, v: 25 },
-        { h: 2, t: 8, v: 20 },
+        { h: 2, t: 2, v: -15 },
+        { h: 2, t: 3, v: 0 },
+        { h: 2, t: 8, v: -40 },
+        { h: 2, t: 7, v: -40 },
       ],
       exception_4H: [
         { h: 3, t: 5, v: 25 },
@@ -145,7 +146,7 @@ const SectionsData = (data, MainElementSize, sequence, Stages) => {
       ...section,
       height: section.size[0] + exception_H,
       width: section.size[1],
-      top: section.top,
+      top: Stages[1] || Stages[3] ? topValue : section.top,
       iniRL: currentIniRL,
       seqId: sequenceId,
       widthSplit: widthSplit,
