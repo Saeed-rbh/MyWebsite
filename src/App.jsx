@@ -13,9 +13,10 @@ import Mouse from "./Mouse";
 import ScrollToNavigate from "./Helper/ScrollToNavigate"; // Import scroll detector
 import ErrorBoundary from "./components/ErrorBoundary/ErrorBoundary";
 
+import FallbackLoader from "./Loader/FallbackLoader";
 const AcademicCV = lazy(() => import("./pages/Resume/Resume"));
 const HomePage = lazy(() => import("./pages/Home/Home"));
-const Loader = lazy(() => import("./Loader/Loader"));
+import Loader from "./Loader/Loader";
 const AdminDashboard = lazy(() => import("./pages/Admin/AdminDashboard"));
 const Login = lazy(() => import("./pages/Admin/Login"));
 
@@ -40,7 +41,7 @@ function App() {
           {visibility && <Footer />}
           {visibility && (
             <ErrorBoundary>
-              <Suspense fallback={<div>Loading...</div>}>
+              <Suspense fallback={null}>
                 <Routes>
                   <Route exact path="/" element={<HomePage />} />
                   <Route path="/AcademicCV" element={<AcademicCV />} />
