@@ -106,7 +106,7 @@ const InteractiveDiv = (props) => {
       ? (windowHeight - 640) / 2
       : 0;
 
-  const ModifyTop = 60; // Define locally or import constant
+  const ModifyTop = 90; // Define locally or import constant
 
   const { activeHeight, notActiveHeight, fullView } = useMemo(() => {
     let fullView = false;
