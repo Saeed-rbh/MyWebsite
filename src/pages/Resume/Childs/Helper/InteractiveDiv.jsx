@@ -59,7 +59,7 @@ const InteractiveDiv = (props) => {
   );
 
   const [scale, setScale] = useState(1);
-  const [initial, setInitial] = useState(false);
+
 
   const additionalHandleMouseDown = (event) => {
     !isActive && setScale(0.95);
@@ -128,16 +128,42 @@ const InteractiveDiv = (props) => {
     return { activeHeight, notActiveHeight, fullView };
   }, [size, ParentRef?.current, element, isActive, marginTop]); // Added marginTop
 
+  // Calculate dynamic blur
+  // Starts blurring when component is 50px from the top (offset by menu height approx)
+  const blurThreshold = top - 50;
+  const scrollDiff = scrollTop - blurThreshold;
+  const blurValue = Math.min(5, Math.max(0, scrollDiff / 5));
+
+  // Calculate dynamic opacity (fades out as blur increases)
+  // Reaches 0.5 opacity at 25px scroll (synced with max blur)
+  const opacityValue = Math.max(0.5, Math.min(1, 1 - scrollDiff / 50));
+
   const Style = {
     cursor: "pointer",
-    filter: "blur(0px)",
+    // filter removed - handled by combinedStyle
     // backgroundColor removed
     scale: scale,
     border: "2px solid rgba(212, 157, 129, 0.2)",
     marginBottom: stages[1] ? "10px" : "0px",
     overflow: "hidden",
-    zIndex: isActive ? 10001 : 10000,
+    zIndex: isActive ? 11 : 10,
   };
+
+  const [initial, setInitial] = useState(false);
+  const combinedStyle = useCombinedAnimation({
+    top,
+    adjustViewport,
+    size,
+    scrollTop,
+    toggle,
+    name,
+    id,
+    isActive,
+    initial,
+    setInitial,
+    scrollBlur: blurValue,
+    scrollOpacity: opacityValue,
+  });
 
   useEffect(() => {
     if (!initial) return;
@@ -184,18 +210,7 @@ const InteractiveDiv = (props) => {
     height: dynamicHeight,
   });
 
-  const combinedStyle = useCombinedAnimation({
-    top,
-    adjustViewport,
-    size,
-    scrollTop,
-    toggle,
-    name,
-    id,
-    isActive,
-    initial,
-    setInitial,
-  });
+
 
   return (
     <animated.div

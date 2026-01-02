@@ -49,7 +49,7 @@ const MainStyleComponent = () => {
     // paddingLeft: stages[1] ? "5%" : "0%",
     display: "flex",
     y: scrollEffect[0],
-    zIndex: 22,
+    zIndex: 100,
     overflow: "hidden",
     maxWidth: `${stages[1] || stages[3] ? 620 * 0.95 : 0}px`,
   });

@@ -111,7 +111,14 @@ export const useMoreStyle = (isActive, fixed, stages) => {
 //   });
 // };
 
-export const useClickOtherFade = (otherActive, progress, name, isActive) => {
+export const useClickOtherFade = (
+  otherActive,
+  progress,
+  name,
+  isActive,
+  scrollBlur = 0,
+  scrollOpacity = 1
+) => {
   const [blur, setBlur] = useState(0);
   const [opacity, setOpacity] = useState(1);
   const [scale, setScale] = useState(1);
@@ -121,12 +128,32 @@ export const useClickOtherFade = (otherActive, progress, name, isActive) => {
 
   useEffect(() => {
     const blurValue = disableBlur ? 0 : 5 * progress;
+    // Combine existing blur with the new scrollBlur (taking the max)
+    const finalBlur = Math.max(blurValue, scrollBlur);
+
     const opacityValue = otherActive ? 0 : 1;
+    // Combine opacity (take the minimum so it fades out if either condition is met)
+    const finalOpacity = Math.min(opacityValue, scrollOpacity);
+
     const scaleValue = otherActive ? 0.9 : 1;
-    setBlur(blurValue);
-    setOpacity(opacityValue);
+    setBlur(finalBlur);
+    setOpacity(finalOpacity);
     setScale(scaleValue);
-  }, [otherActive, progress, disableBlur]);
+  }, [otherActive, progress, disableBlur, scrollBlur, scrollOpacity]);
+
+  // Determine transition speeds independently to prevent blinking/lag
+  // Filter (Blur): Always fast/near-instant because it's driven by scroll.
+  const filterTime = "0.05s";
+
+  // Opacity: Instant (0s) during scroll updates to prevent lag. Smooth (0.5s) for click/hover interactions.
+  // We use 0s instead of 0.1s to prevent "blinking" at the 0/1 boundary.
+  const isScrolling = !otherActive && (scrollBlur > 0 || scrollOpacity < 1);
+  const opacityTime = isScrolling ? "0s" : "0.5s";
+
+  // Transform (Scale): Always smooth because it's only used for click interactions.
+  const transformTime = "0.5s";
+
+  const pointerEvents = scrollBlur > 0 || otherActive ? "none" : "auto";
 
   // Return the blur value and CSS styles with smooth transition
   return {
@@ -134,7 +161,8 @@ export const useClickOtherFade = (otherActive, progress, name, isActive) => {
       transform: `scale(${scale})`,
       opacity: opacity,
       filter: `blur(${blur}px)`,
-      transition: "opacity 0.5s ease, transform 0.5s ease, filter 0.5s ease", // Smooth transition for the blur effect
+      pointerEvents: pointerEvents,
+      transition: `opacity ${opacityTime} ease, transform ${transformTime} ease, filter ${filterTime} linear`,
     },
   };
 };
@@ -151,6 +179,8 @@ export const useCombinedAnimation = ({
   isActive,
   initial,
   setInitial,
+  scrollBlur,
+  scrollOpacity,
 }) => {
   const Loaded = useRef(false);
 
@@ -211,7 +241,9 @@ export const useCombinedAnimation = ({
     otherActive,
     progress,
     name,
-    isActive
+    isActive,
+    scrollBlur,
+    scrollOpacity
   );
 
   const combinedStyleAnim =

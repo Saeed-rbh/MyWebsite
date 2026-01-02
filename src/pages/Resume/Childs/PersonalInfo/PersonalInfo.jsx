@@ -38,17 +38,18 @@ export const PersonalInfo = () => {
     height: `${size[0]}px`,
 
     cursor: "default",
-    filter: "blur(0px)",
+    // filter removed - controlled by hook
     opacity: "1",
     // backgroundColor removed
     overflow: "visible",
-    width: stages[1] ? Math.min(elementSize * 0.97, size[1]) : size[1],
-    left: stages[1]
-      ? (elementSize - Math.min(elementSize * 0.97, size[1])) / 2
-      : 0,
+    width: stages && stages[1] ? Math.min(elementSize * 0.97, size[1]) : size[1],
+    left:
+      stages && stages[1]
+        ? (elementSize - Math.min(elementSize * 0.97, size[1])) / 2
+        : 0,
     border: "2px solid rgba(212, 157, 129, 0.2)",
     zIndex: "10",
-    top: stages[1] ? top : top + adjustTop,
+    top: stages && stages[1] ? top : top + adjustTop,
     boxSize: "border-box",
   };
 
@@ -62,6 +63,18 @@ export const PersonalInfo = () => {
     margin: "7px",
   };
   const [initial, setInitial] = useState(false);
+  // Calculate dynamic blur
+  // Starts blurring when component is 50px from the top (offset by menu height approx)
+  // Calculate dynamic blur
+  // Starts blurring when component is 50px from the top (offset by menu height approx)
+  const blurThreshold = (stages && stages[1]) ? top - 50 : top + adjustTop - 50;
+  const currentScroll = scrollTop || 0;
+  const scrollDiff = currentScroll - blurThreshold;
+  const blurValue = Math.min(5, Math.max(0, scrollDiff / 5));
+
+  // Calculate dynamic opacity
+  const opacityValue = Math.max(0.5, Math.min(1, 1 - scrollDiff / 50));
+
   const combinedStyle = useCombinedAnimation({
     top,
     adjustViewport,
@@ -74,6 +87,8 @@ export const PersonalInfo = () => {
     isActive,
     initial,
     setInitial,
+    scrollBlur: blurValue,
+    scrollOpacity: opacityValue,
   });
 
   const memoizedTitle = useMemo(

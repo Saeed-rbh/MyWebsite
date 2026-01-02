@@ -15,7 +15,7 @@ import SEO from "../../components/SEO/SEO";
 
 // Inner component that uses the scrollable ref
 const AcademicCVContent = () => {
-  const EXTRA_SPACE = 60;
+  const EXTRA_SPACE = 120;
   const elementSize = useElementSize("AcademicCV-M");
   const dispatch = useDispatch();
   const scrollableRef = useScrollableRef();

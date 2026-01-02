@@ -100,22 +100,33 @@ export const Affiliation = () => {
     },
   });
 
+  // Calculate dynamic blur
+  // Calculate dynamic blur
+  const blurThreshold = (stages && stages[1]) ? top - 50 : top + adjustTop - 50;
+  const currentScroll = scrollTop || 0;
+  const scrollDiff = currentScroll - blurThreshold;
+  const blurValue = Math.min(5, Math.max(0, scrollDiff / 5));
+
+  // Calculate dynamic opacity
+  const opacityValue = Math.max(0.5, Math.min(1, 1 - scrollDiff / 50));
+
   const Style = {
     borderRadius: "35px",
     height: height,
     cursor: "default",
-    filter: "blur(0px)",
+    // filter removed - controlled by hook
     opacity: "1",
     // backgroundColor removed
-    width: stages[1] ? Math.min(elementSize * 0.97, size[1]) : size[1],
-    left: stages[1]
-      ? (elementSize - Math.min(elementSize * 0.97, size[1])) / 2
-      : 0,
+    width: stages && stages[1] ? Math.min(elementSize * 0.97, size[1]) : size[1],
+    left:
+      stages && stages[1]
+        ? (elementSize - Math.min(elementSize * 0.97, size[1])) / 2
+        : 0,
 
     overflow: "visible",
     zIndex: "10",
     boxSize: "border-box",
-    top: stages[1] ? top : top + adjustTop,
+    top: stages && stages[1] ? top : top + adjustTop,
   };
 
   const [initial, setInitial] = useState(false);
@@ -131,6 +142,8 @@ export const Affiliation = () => {
     isActive,
     initial,
     setInitial,
+    scrollBlur: blurValue,
+    scrollOpacity: opacityValue,
   });
 
   return (

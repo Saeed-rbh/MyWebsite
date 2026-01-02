@@ -42,22 +42,33 @@ const ResearchInterests = () => {
     config: { duration: 50000, easing: (t) => t }, // Linear easing, very slow speed
   });
 
+  // Calculate dynamic blur
+  // Calculate dynamic blur
+  const blurThreshold = (stages && stages[1]) ? top - 50 : top + adjustTop - 50;
+  const currentScroll = scrollTop || 0;
+  const scrollDiff = currentScroll - blurThreshold;
+  const blurValue = Math.min(5, Math.max(0, scrollDiff / 5));
+
+  // Calculate dynamic opacity
+  const opacityValue = Math.max(0.5, Math.min(1, 1 - scrollDiff / 50));
+
   const style = {
     borderRadius: "40px",
     height: `${size[0]}px`, // Always single row height
     cursor: "default",
-    filter: "blur(0px)",
+    // filter removed - controlled by hook
     opacity: "1",
     overflow: "visible", // Show title (which has negative margin)
     // Mask div below handles content clipping
     border: "2px solid rgba(212, 157, 129, 0.2)",
     zIndex: "10",
-    width: stages[1] ? Math.min(elementSize * 0.97, size[1]) : size[1],
-    left: stages[1]
-      ? (elementSize - Math.min(elementSize * 0.97, size[1])) / 2
-      : 0,
+    width: stages && stages[1] ? Math.min(elementSize * 0.97, size[1]) : size[1],
+    left:
+      stages && stages[1]
+        ? (elementSize - Math.min(elementSize * 0.97, size[1])) / 2
+        : 0,
     boxSize: "border-box",
-    top: stages[1] ? top : top + adjustTop,
+    top: stages && stages[1] ? top : top + adjustTop,
   };
 
   const Main = {
@@ -86,6 +97,8 @@ const ResearchInterests = () => {
     isActive,
     initial,
     setInitial,
+    scrollBlur: blurValue,
+    scrollOpacity: opacityValue,
   });
 
   // Pause animation on hover
