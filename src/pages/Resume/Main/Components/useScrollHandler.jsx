@@ -42,7 +42,7 @@ const useScrollHandler = ({
             cvListScroll[newIndex] - cvListScroll[0],
             "Left",
             newIndex,
-            500
+            300 // Faster duration (was 500)
           );
       }
     },
@@ -58,7 +58,7 @@ const useScrollHandler = ({
       }
       scrollTimeoutRef.current = setTimeout(() => {
         calculateScroll({ normalizeScroll, cvListElement });
-      }, 150);
+      }, 50); // Faster check (was 150)
     };
     div.addEventListener("scroll", handleScroll);
     return () => {

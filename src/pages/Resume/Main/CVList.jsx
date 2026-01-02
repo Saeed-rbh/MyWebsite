@@ -83,22 +83,40 @@ const CVList = ({ isActive }) => {
 
   useEffect(() => {
     if (!normalizeScroll) return;
-    const [cvListScroll, divScroll] = normalizeScroll;
+    // const [cvListScroll, divScroll, _, widths] = normalizeScroll; // We don't need these for the target calculation anymore if we use DOM directly
 
     if (isActive) {
       const matchingElement = data.find(
-        (element) => element.title === toggle[1]
+        (element) => element.name === toggle[1]
       );
       const newIndex = matchingElement ? matchingElement.seqId : undefined;
+      const cvList = CVListRef.current;
 
-      executeSmoothScroll(
-        cvListElement,
-        cvListScroll[newIndex] - cvListScroll[0],
-        "Left",
-        newIndex,
-        900,
-        false
-      );
+      if (newIndex !== undefined && cvList && cvList.children[newIndex]) {
+        // Direct DOM measurement for absolute accuracy
+        const targetElement = cvList.children[newIndex];
+        const containerWidth = cvList.clientWidth;
+        const itemWidth = targetElement.offsetWidth;
+        const itemLeft = targetElement.offsetLeft;
+
+        // Calculate center position:
+        // We want the center of the item (itemLeft + itemWidth/2) 
+        // to be at the center of the container (containerWidth/2).
+        // Required ScrollLeft = (ItemCenter) - (ContainerCenter)
+        // = (itemLeft + itemWidth/2) - (containerWidth/2)
+
+        const centerOffset = (containerWidth / 2) - (itemWidth / 2);
+        const targetScroll = itemLeft - centerOffset;
+
+        executeSmoothScroll(
+          cvListElement,
+          targetScroll,
+          "Left",
+          newIndex,
+          300,
+          false
+        );
+      }
     }
   }, [data, isActive]);
 

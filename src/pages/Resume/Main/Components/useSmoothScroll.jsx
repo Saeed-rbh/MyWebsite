@@ -50,13 +50,10 @@ const useSmoothScroll = () => {
 
   const smoothScroll = useCallback(
     (element, targetPosition, duration, direction, setSelected, index) => {
-      if (!element || duration <= 0) return;
-      if (direction === "Left" && isLeftScrolling.current) return;
-
       const startPosition =
         direction === "Top" ? element.scrollTop : element.scrollLeft;
 
-      if (direction === "Left") isLeftScrolling.current = true;
+      // if (direction === "Left") isLeftScrolling.current = true; // Removed lock
 
       if (
         direction === "Left" &&

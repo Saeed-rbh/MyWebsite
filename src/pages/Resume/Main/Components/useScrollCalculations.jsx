@@ -25,8 +25,10 @@ const useScrollCalculations = ({ data, CVListRef, setSelected }) => {
         (sectionTops[index] - sectionTops[0]) / (pos - positions[0])
     );
 
+    const widths = children.map((child) => child.offsetWidth);
+
     calculatedNormalizeScroll[0] = 0;
-    return [positions, sectionTops, calculatedNormalizeScroll];
+    return [positions, sectionTops, calculatedNormalizeScroll, widths];
   }, [data, CVListRef]);
 
   useEffect(() => {
