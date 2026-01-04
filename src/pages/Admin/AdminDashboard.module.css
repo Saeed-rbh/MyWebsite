@@ -1122,3 +1122,62 @@
         width: 100%;
     }
 }
+
+.textAreaWrapper {
+    position: relative;
+    width: 100%;
+}
+
+.fieldTextArea {
+    width: 100%;
+    min-height: 150px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    padding: 12px;
+    color: #e0e0e0;
+    font-size: 0.95rem;
+    outline: none;
+    transition: all 0.2s;
+    font-family: inherit;
+    resize: vertical;
+}
+
+.fieldTextArea:focus {
+    border-color: #3498db;
+    background: rgba(255, 255, 255, 0.08);
+    box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.2);
+}
+
+.charCount {
+    position: absolute;
+    bottom: 8px;
+    right: 12px;
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.4);
+    pointer-events: none;
+}
+
+.websiteBtn {
+    width: 100%;
+    padding: 14px;
+    background-color: rgba(52, 152, 219, 0.1);
+    color: #3498db;
+    border: 1px solid rgba(52, 152, 219, 0.2);
+    border-radius: 12px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    font-weight: 500;
+    transition: all 0.2s ease;
+    font-family: inherit;
+    font-size: 0.95rem;
+    margin-bottom: 12px;
+}
+
+.websiteBtn:hover {
+    background-color: rgba(52, 152, 219, 0.2);
+    border-color: rgba(52, 152, 219, 0.4);
+}

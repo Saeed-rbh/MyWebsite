@@ -530,5 +530,28 @@
                 "info": "Saeed Arabha"
             }
         ]
+    },
+    {
+        "id": 10,
+        "name": "Home",
+        "title": "Home Page",
+        "column": 0,
+        "background": "rgb(140 122 115 / 5%)",
+        "size": [
+            300,
+            450
+        ],
+        "top": 200,
+        "fixed": false,
+        "list": [
+            {
+                "id": 1,
+                "text": "Situated at the $(PICSSL Lab) at $(York University), I apply my $(mechanical engineering) prowess to delve into the complexities of nanomaterials and molecular phenomena. My professional focus lies in $(2D Nanomaterials), $(Molecular Dynamics), and $(Heat Transfer). The success of my research approach significantly stems from interdisciplinary $(collaborations) that amplify the potential of my innovative explorations.",
+                "degreeLabel": "MASTER IN",
+                "degree": "Mechanical Engineering",
+                "hobbyLabel": "HOBBY",
+                "hobby": "Coding - Watching Movies"
+            }
+        ]
     }
 ]

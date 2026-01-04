@@ -2,7 +2,7 @@
 import "./App.css";
 import React, { lazy, Suspense } from "react";
 import { useSelector } from "react-redux";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes, useLocation } from "react-router-dom";
 import store from "./store/configureStore";
 import useUpdateVariable from "./pages/Resume/General/useUpdateVariable";
 import Header from "./components/Header/Header";
@@ -22,38 +22,50 @@ const Login = lazy(() => import("./pages/Admin/Login"));
 
 import { HelmetProvider } from "react-helmet-async";
 
-function App() {
+function AppContent() {
   useUpdateVariable();
   const { visibility } = useSelector((state) => state.ui);
+  const location = useLocation();
 
+  // Hide global elements on Admin Dashboard and Login page
+  const isDashboard = location.pathname.startsWith('/admin') || location.pathname === '/login';
+
+  return (
+    <div className="App">
+      <div className="MainBackground">
+        <div className="BackgroundColor1"></div>
+      </div>
+      {/* Show Mouse, Header, Menu, Footer ONLY if NOT in dashboard */}
+      {visibility && !isDashboard && <Mouse />}
+      {visibility && !isDashboard && <Header />}
+      {visibility && !isDashboard && <Menu />}
+      {visibility && !isDashboard && <Footer />}
+
+      {visibility && (
+        <ErrorBoundary>
+          <Suspense fallback={null}>
+            <Routes>
+              <Route exact path="/" element={<HomePage />} />
+              <Route path="/AcademicCV" element={<AcademicCV />} />
+              <Route path="/academiccv" element={<AcademicCV />} />
+              <Route exact path="/Graphene" element={<Graphene />} />
+              <Route exact path="/admin" element={<AdminDashboard />} />
+              <Route exact path="/login" element={<Login />} />
+            </Routes>
+          </Suspense>
+        </ErrorBoundary>
+      )}
+    </div>
+  );
+}
+
+function App() {
   return (
     <HelmetProvider>
       <Router store={store}>
         <Loader />
         {/*<ScrollToNavigate /> {/* Scroll/Drag Detector */}
-        <div className="App">
-          <div className="MainBackground">
-            <div className="BackgroundColor1"></div>
-          </div>
-          {visibility && <Mouse />}
-          {visibility && <Header />}
-          {visibility && <Menu />}
-          {visibility && <Footer />}
-          {visibility && (
-            <ErrorBoundary>
-              <Suspense fallback={null}>
-                <Routes>
-                  <Route exact path="/" element={<HomePage />} />
-                  <Route path="/AcademicCV" element={<AcademicCV />} />
-                  <Route path="/academiccv" element={<AcademicCV />} />
-                  <Route exact path="/Graphene" element={<Graphene />} />
-                  <Route exact path="/admin" element={<AdminDashboard />} />
-                  <Route exact path="/login" element={<Login />} />
-                </Routes>
-              </Suspense>
-            </ErrorBoundary>
-          )}
-        </div>
+        <AppContent />
       </Router>
     </HelmetProvider>
   );

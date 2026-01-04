@@ -8,7 +8,7 @@ import {
     FaTrash, FaPlus, FaSpinner, FaCloudUploadAlt, FaCheck, FaTimes,
     FaChevronDown, FaChevronUp, FaGraduationCap, FaAward, FaBriefcase,
     FaFlask, FaCog, FaUser, FaBook, FaCalendarAlt, FaSyncAlt, FaExternalLinkAlt,
-    FaAddressBook
+    FaAddressBook, FaHome
 } from 'react-icons/fa';
 import { MdDashboard } from 'react-icons/md';
 
@@ -41,8 +41,12 @@ const formatLabel = (key) => {
         label: 'Label',
         href: 'Link (Auto)',
         category: 'Category',
-        text: 'Display Label',
+        text: 'Main Text',
         info: 'Content/Value',
+        degreeLabel: 'Degree Label',
+        degree: 'Degree',
+        hobbyLabel: 'Hobby Label',
+        hobby: 'Hobby',
     };
     return labels[key] || key.charAt(0).toUpperCase() + key.slice(1);
 };
@@ -61,6 +65,7 @@ const getSectionIcon = (name) => {
         Awards: FaAward,
         Teaching: FaBriefcase,
         ContactInfo: FaAddressBook,
+        Home: FaHome,
     };
     return icons[name] || FaLayerGroup;
 };
@@ -382,7 +387,7 @@ const AdminDashboard = () => {
             <div className={styles.sidebar}>
                 <div className={styles.sidebarHeader}>
                     <FaUserShield className={styles.logoIcon} />
-                    <div className={styles.headerTitle}>CV Manager</div>
+                    <div className={styles.headerTitle}>Website Manager</div>
                 </div>
                 <ul className={styles.navMenu}>
                     <div className={styles.menuLabel}>Overview</div>
@@ -418,6 +423,9 @@ const AdminDashboard = () => {
                     )}
                 </ul>
                 <div className={styles.logoutSection}>
+                    <button onClick={() => navigate('/')} className={styles.websiteBtn}>
+                        <FaExternalLinkAlt /> Go to Website
+                    </button>
                     <button onClick={handleLogout} className={styles.logoutBtn}>
                         <FaSignOutAlt /> Logout
                     </button>
@@ -445,8 +453,8 @@ const AdminDashboard = () => {
                     {view === 'dashboard' ? (
                         <div className={styles.dashboardContent}>
                             <div className={styles.welcomeCard}>
-                                <h2>Welcome to CV Manager</h2>
-                                <p>Select a section from the sidebar to edit your CV content.</p>
+                                <h2>Welcome to Website Manager</h2>
+                                <p>Select a section from the sidebar to edit your website content.</p>
                             </div>
                             <div className={styles.statsGrid}>
                                 <div className={styles.statCard}>
@@ -467,7 +475,7 @@ const AdminDashboard = () => {
                             <div className={styles.quickLinks}>
                                 <h3>Quick Access</h3>
                                 <div className={styles.quickLinksGrid}>
-                                    {sections.slice(0, 6).map(sec => {
+                                    {sections.map(sec => {
                                         const IconComponent = getSectionIcon(sec.name);
                                         return (
                                             <div
@@ -756,6 +764,32 @@ const AdminDashboard = () => {
                                                                             }}
                                                                             placeholder="Complex Array Data"
                                                                         />
+                                                                    ) : (key === 'degreeLabel' || key === 'degree' || key === 'hobbyLabel' || key === 'hobby') && selectedSection.name === 'Home' ? (
+                                                                        <div className={styles.fieldGroup}>
+                                                                            <input
+                                                                                className={styles.fieldInput}
+                                                                                value={displayValue !== undefined && displayValue !== null ? displayValue : ''}
+                                                                                onChange={e => handleItemChange(index, key, e.target.value)}
+                                                                                placeholder={formatLabel(key)}
+                                                                            />
+                                                                        </div>
+                                                                    ) : key === 'text' && selectedSection.name === 'Home' ? (
+                                                                        <div className={styles.textAreaWrapper}>
+                                                                            <textarea
+                                                                                className={styles.fieldTextArea}
+                                                                                value={displayValue !== undefined && displayValue !== null ? displayValue : ''}
+                                                                                onChange={e => {
+                                                                                    if (e.target.value.length <= 500) {
+                                                                                        handleItemChange(index, key, e.target.value);
+                                                                                    }
+                                                                                }}
+                                                                                placeholder="Enter main text here. Use $(Text to Highlight) for gradient effect."
+                                                                                rows={6}
+                                                                            />
+                                                                            <span className={styles.charCount}>
+                                                                                {(displayValue || '').length}/500
+                                                                            </span>
+                                                                        </div>
                                                                     ) : (
                                                                         <input
                                                                             className={styles.fieldInput}
