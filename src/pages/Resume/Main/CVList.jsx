@@ -193,6 +193,7 @@ const CVList = ({ isActive }) => {
             key={item.id}
             index={index}
             item={item}
+            isMobile={isMobile}
             isSelected={index === selected}
             onClick={isActive ? undefined : menuClicked}
             resumeClicked={resumeClicked}

@@ -92,6 +92,7 @@ const AnimatedButton = ({
   isSelected,
   onClick,
   resumeClicked,
+  isMobile,
 }) => {
   const springStyle = useSpringStyle(index, isSelected, resumeClicked);
   const opacityStyle = useOpacityStyle(index, isSelected, resumeClicked);
@@ -103,7 +104,11 @@ const AnimatedButton = ({
 
   return (
     <animated.button style={springStyle} onClick={handleClick}>
-      <animated.p style={opacityStyle}>{item.title}</animated.p>
+      <animated.p style={opacityStyle}>
+        {isMobile && item.id === 7
+          ? "Teach & Work Experience"
+          : item.title}
+      </animated.p>
     </animated.button>
   );
 };

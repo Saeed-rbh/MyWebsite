@@ -15,9 +15,9 @@ const AwardsMain = ({
   const elementSize = useElementSize("MoreInfoAcademic").width - 50;
 
   const fontStyle = useSpring({
-    fontSize: isActive ? 12 : 11,
+    fontSize: 12,
     marginTop: isActive ? 10 : 0,
-    marginLeft: isActive ? 0 : 10,
+    marginLeft: 0,
   });
 
   const Anim = useSpring({
