@@ -8,6 +8,7 @@ export {
 export {
   updateData,
   updateHomeData,
+  updateContactData,
   updateStages,
   updateToggle,
   updateHover,

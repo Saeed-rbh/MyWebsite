@@ -34,6 +34,7 @@ const formatLabel = (key) => {
         Journal: 'Journal',
         Year: 'Year',
         Link: 'Link URL',
+        link: 'Link URL',
         Award: 'Award Description',
         Conference: 'Conference Details',
         Teaching: 'Experience Details',

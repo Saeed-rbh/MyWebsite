@@ -1,6 +1,7 @@
 import {
   updateData,
   updateHomeData,
+  updateContactData,
   updateStages,
   updateAcademicElementSize,
 } from "../../../actions/Actions";
@@ -80,11 +81,16 @@ const useUpdateVariable = () => {
     fetchData();
   }, []);
 
-  // Dispatch Home data separately
+  // Dispatch Home and Contact data separately
   useEffect(() => {
     const homeSection = dbData.find(s => s.name === 'Home');
     if (homeSection) {
       dispatch(updateHomeData(homeSection));
+    }
+
+    const contactSection = dbData.find(s => s.name === 'ContactInfo');
+    if (contactSection) {
+      dispatch(updateContactData(contactSection));
     }
   }, [dbData, dispatch]);
 

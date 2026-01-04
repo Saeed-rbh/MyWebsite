@@ -3,6 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
     academicData: [],
     homeData: {},
+    contactData: {},
     stages: [],
     toggle: [false, undefined, false],
     hover: [false, undefined],
@@ -18,6 +19,9 @@ const dataSlice = createSlice({
         },
         updateHomeData: (state, action) => {
             state.homeData = action.payload;
+        },
+        updateContactData: (state, action) => {
+            state.contactData = action.payload;
         },
         updateStages: (state, action) => {
             state.stages = action.payload;
@@ -37,6 +41,7 @@ const dataSlice = createSlice({
 export const {
     updateData,
     updateHomeData,
+    updateContactData,
     updateStages,
     updateToggle,
     updateHover,

@@ -3,10 +3,11 @@ import { useSelector } from "react-redux";
 import { animated, easings, useTrail, useSpring } from "react-spring";
 
 const ContactItem = ({ isMenuOpen, props }) => {
-  const { academicData } = useSelector((state) => state.data);
+  const { contactData } = useSelector((state) => state.data);
 
-  const contactSection = academicData.find((s) => s.name === "ContactInfo");
-  const contactItems = contactSection?.list || [];
+  // Parse contactSection similar to how it was before but from dedicated state
+  // contactData is the section object itself
+  const contactItems = contactData?.list || [];
 
   // Derive unique categories from items
   const uniqueCategories = [
@@ -54,16 +55,31 @@ const ContactItem = ({ isMenuOpen, props }) => {
                   const itemIndex = contactItems.findIndex(
                     (item) => item.id === contactItem.id
                   );
+                  let href = contactItem.link || "";
+                  let target = "_blank";
+                  let rel = "noopener noreferrer";
+
+                  if (contactItem.category === "Phone Numbers") {
+                    // Strip non-digits for tel link if using info, but we expect link to be clean or use logic
+                    // If link is provided, use it directly with prefix if missing
+                    const number = contactItem.link || contactItem.info || "";
+                    href = `tel:${number.replace(/\s+/g, '')}`;
+                    target = "_self";
+                    rel = undefined;
+                  } else if (contactItem.category === "Emails") {
+                    href = `mailto:${contactItem.link || contactItem.info}`;
+                    target = "_self";
+                    rel = undefined;
+                  }
+
                   return (
                     <animated.a
                       key={contactItem.id}
                       style={ContactInfoTrail[itemIndex]}
                       className="ContactInfo-In"
-                      href={
-                        contactItem.category === "Phone Numbers"
-                          ? "tel:+14168365851"
-                          : ""
-                      }
+                      href={href}
+                      target={target}
+                      rel={rel}
                     >
                       <animated.b>{contactItem.info}</animated.b>
                     </animated.a>

@@ -497,37 +497,43 @@
                 "id": 1,
                 "category": "Phone Numbers",
                 "text": "CA Cell:",
-                "info": "+1 (416) 836 5851"
+                "info": "+1 (416) 836 5851",
+                "link": "+14168365851"
             },
             {
                 "id": 2,
                 "category": "Phone Numbers",
                 "text": "IR Cell:",
-                "info": "+98 (919) 659 5351"
+                "info": "+98 (919) 659 5351",
+                "link": "+989196595351"
             },
             {
                 "id": 3,
                 "category": "Emails",
                 "text": "Email:",
-                "info": "Saeedarabha@outlook.com"
+                "info": "Saeedarabha@outlook.com",
+                "link": "Saeedarabha@outlook.com"
             },
             {
                 "id": 4,
                 "category": "Emails",
                 "text": "Email:",
-                "info": "Arabha@Yorku.ca"
+                "info": "Arabha@Yorku.ca",
+                "link": "Arabha@Yorku.ca"
             },
             {
                 "id": 5,
                 "category": "Social Media",
                 "text": "Social Media:",
-                "info": "@saeed_rbh"
+                "info": "@saeed_rbh",
+                "link": "https://www.instagram.com/saeed_rbh/"
             },
             {
                 "id": 6,
                 "category": "Research Gate",
                 "text": "Research Gate:",
-                "info": "Saeed Arabha"
+                "info": "Saeed Arabha",
+                "link": "https://www.researchgate.net/profile/Saeed-Arabha"
             }
         ]
     },
