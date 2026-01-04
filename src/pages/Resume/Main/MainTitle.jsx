@@ -147,7 +147,7 @@ const MainTitle = ({ duration, initialDelay, delayIncrement, size }) => {
       </animated.div>
       <animated.p style={title2Style}>
         Academic CV
-        <DownloadButton cvData={cvData} />
+        {elementSizeMain > 768 && <DownloadButton cvData={cvData} />}
       </animated.p>
     </animated.div>
   );

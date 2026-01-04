@@ -15,6 +15,9 @@ import useMenuClick from "./Components/useMenuClick";
 import useScrollPosition from "../General/useScrollPosition";
 import { useLocation } from "react-router-dom";
 import { useScrollableRef } from "../General/ScrollableRefContext";
+import useElementSize from "../Styles/useElementSize";
+import cvData from "../../../data/cvData.json";
+import DownloadButton from "./DownloadButton";
 
 const MainStyleComponent = () => {
   // Interpolates between two values based on scroll position
@@ -62,6 +65,8 @@ const CVList = ({ isActive }) => {
     toggle,
   } = useSelector((state) => state.data);
   const scrollableRef = useScrollableRef();
+  const elementSize = useElementSize("AcademicCV-M");
+  const isMobile = elementSize.width <= 768;
 
   const CVListRef = useRef(null);
   const [selected, setSelected] = useState(0);
@@ -90,32 +95,36 @@ const CVList = ({ isActive }) => {
         (element) => element.name === toggle[1]
       );
       const newIndex = matchingElement ? matchingElement.seqId : undefined;
-      const cvList = CVListRef.current;
 
-      if (newIndex !== undefined && cvList && cvList.children[newIndex]) {
+      if (newIndex !== undefined) {
         // Direct DOM measurement for absolute accuracy
-        const targetElement = cvList.children[newIndex];
-        const containerWidth = cvList.clientWidth;
-        const itemWidth = targetElement.offsetWidth;
-        const itemLeft = targetElement.offsetLeft;
+        const targetIndex = isMobile ? newIndex + 1 : newIndex;
+        const cvList = CVListRef.current;
 
-        // Calculate center position:
-        // We want the center of the item (itemLeft + itemWidth/2) 
-        // to be at the center of the container (containerWidth/2).
-        // Required ScrollLeft = (ItemCenter) - (ContainerCenter)
-        // = (itemLeft + itemWidth/2) - (containerWidth/2)
+        if (cvList && cvList.children[targetIndex]) {
+          const targetElement = cvList.children[targetIndex];
+          const containerWidth = cvList.clientWidth;
+          const itemWidth = targetElement.offsetWidth;
+          const itemLeft = targetElement.offsetLeft;
 
-        const centerOffset = (containerWidth / 2) - (itemWidth / 2);
-        const targetScroll = itemLeft - centerOffset;
+          // Calculate center position:
+          // We want the center of the item (itemLeft + itemWidth/2) 
+          // to be at the center of the container (containerWidth/2).
+          // Required ScrollLeft = (ItemCenter) - (ContainerCenter)
+          // = (itemLeft + itemWidth/2) - (containerWidth/2)
 
-        executeSmoothScroll(
-          cvListElement,
-          targetScroll,
-          "Left",
-          newIndex,
-          300,
-          false
-        );
+          const centerOffset = (containerWidth / 2) - (itemWidth / 2);
+          const targetScroll = itemLeft - centerOffset;
+
+          executeSmoothScroll(
+            cvListElement,
+            targetScroll,
+            "Left",
+            newIndex,
+            300,
+            false
+          );
+        }
       }
     }
   }, [data, isActive]);
@@ -167,6 +176,18 @@ const CVList = ({ isActive }) => {
         resumeClicked={resumeClicked}
       />
       <div ref={CVListRef} className="CVList">
+        {isMobile && (
+          <animated.div
+            style={useSpring({
+              opacity: resumeClicked === 1 ? (visibility ? 1 : 0) : 0,
+              x: resumeClicked === 1 ? (visibility ? 0 : 30) : 10,
+              config: { duration: 500 },
+              delay: resumeClicked === 1 ? 1000 : 0,
+            })}
+          >
+            <DownloadButton cvData={cvData} isMobile={true} />
+          </animated.div>
+        )}
         {data.map((item, index) => (
           <AnimatedButton
             key={item.id}
