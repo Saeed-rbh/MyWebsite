@@ -1,5 +1,6 @@
 import {
   updateData,
+  updateHomeData,
   updateStages,
   updateAcademicElementSize,
 } from "../../../actions/Actions";
@@ -78,6 +79,14 @@ const useUpdateVariable = () => {
     };
     fetchData();
   }, []);
+
+  // Dispatch Home data separately
+  useEffect(() => {
+    const homeSection = dbData.find(s => s.name === 'Home');
+    if (homeSection) {
+      dispatch(updateHomeData(homeSection));
+    }
+  }, [dbData, dispatch]);
 
   // Call useDataModify early with consistent hook order
   const UpdatedData = useDataModify({ stages, dbData });

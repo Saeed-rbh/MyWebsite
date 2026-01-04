@@ -9,11 +9,10 @@ import styles from "./MainText.module.css";
 const MainText = ({ MenuHide, delay }) => {
   const [words, setWords] = useState([]);
   const springProps = useSpring(AnimationConstants(MenuHide, delay));
-  const { academicData } = useSelector((state) => state.data);
+  const { homeData } = useSelector((state) => state.data);
 
   useEffect(() => {
-    const homeSection = academicData.find(s => s.name === 'Home');
-    const rawText = homeSection?.list?.[0]?.text ||
+    const rawText = homeData?.list?.[0]?.text ||
       "Situated at the <PICSSL-Lab> at <York-University>, I apply my <mechanical-engineering> prowess to delve into the complexities of nanomaterials and molecular phenomena. My professional focus lies in <2D-Nanomaterials>, <Molecular-Dynamics>, and <Heat-Transfer>. The success of my research approach significantly stems from interdisciplinary <collaborations> that amplify the potential of my innovative explorations.";
 
     // Parse logic:
@@ -62,7 +61,7 @@ const MainText = ({ MenuHide, delay }) => {
     });
 
     setWords(processedWords);
-  }, [academicData]);
+  }, [homeData]);
 
   return (
     <animated.div style={springProps} className={styles.container}>

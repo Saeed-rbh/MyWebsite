@@ -7,9 +7,8 @@ import styles from "./HobbyProfession.module.css";
 
 const HobbyProfession = ({ MenuHide, delay }) => {
   const springProps = useSpring(AnimationConstants(MenuHide, delay));
-  const { academicData } = useSelector((state) => state.data);
+  const { homeData: homeSection } = useSelector((state) => state.data);
 
-  const homeSection = academicData.find(s => s.name === 'Home');
   const homeData = homeSection?.list?.[0] || {};
 
   return (

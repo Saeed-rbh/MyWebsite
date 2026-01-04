@@ -2,6 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
     academicData: [],
+    homeData: {},
     stages: [],
     toggle: [false, undefined, false],
     hover: [false, undefined],
@@ -14,6 +15,9 @@ const dataSlice = createSlice({
     reducers: {
         updateData: (state, action) => {
             state.academicData = action.payload;
+        },
+        updateHomeData: (state, action) => {
+            state.homeData = action.payload;
         },
         updateStages: (state, action) => {
             state.stages = action.payload;
@@ -32,6 +36,7 @@ const dataSlice = createSlice({
 
 export const {
     updateData,
+    updateHomeData,
     updateStages,
     updateToggle,
     updateHover,
