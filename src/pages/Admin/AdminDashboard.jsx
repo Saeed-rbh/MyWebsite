@@ -7,7 +7,8 @@ import {
     FaUserShield, FaChartBar, FaFileAlt, FaSignOutAlt, FaSave, FaLayerGroup,
     FaTrash, FaPlus, FaSpinner, FaCloudUploadAlt, FaCheck, FaTimes,
     FaChevronDown, FaChevronUp, FaGraduationCap, FaAward, FaBriefcase,
-    FaFlask, FaCog, FaUser, FaBook, FaCalendarAlt, FaSyncAlt, FaExternalLinkAlt
+    FaFlask, FaCog, FaUser, FaBook, FaCalendarAlt, FaSyncAlt, FaExternalLinkAlt,
+    FaAddressBook
 } from 'react-icons/fa';
 import { MdDashboard } from 'react-icons/md';
 
@@ -39,6 +40,9 @@ const formatLabel = (key) => {
         skill: 'Skills',
         label: 'Label',
         href: 'Link (Auto)',
+        category: 'Category',
+        text: 'Display Label',
+        info: 'Content/Value',
     };
     return labels[key] || key.charAt(0).toUpperCase() + key.slice(1);
 };
@@ -56,6 +60,7 @@ const getSectionIcon = (name) => {
         Conference: FaCalendarAlt,
         Awards: FaAward,
         Teaching: FaBriefcase,
+        ContactInfo: FaAddressBook,
     };
     return icons[name] || FaLayerGroup;
 };
@@ -285,7 +290,7 @@ const AdminDashboard = () => {
 
     const getItemPreview = (item) => {
         // Get a preview text for collapsed items
-        const title = item.Title || item.title || item.name || item.Name || item.Award || item.Conference || item.Teaching || item.label || '';
+        const title = item.Title || item.title || item.name || item.Name || item.Award || item.Conference || item.Teaching || item.label || item.category || item.info || '';
         return title.length > 60 ? title.substring(0, 60) + '...' : title || 'Untitled Item';
     };
 

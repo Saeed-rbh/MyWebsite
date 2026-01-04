@@ -1,47 +1,21 @@
 import React from "react";
+import { useSelector } from "react-redux";
 import { animated, easings, useTrail, useSpring } from "react-spring";
 
 const ContactItem = ({ isMenuOpen, props }) => {
-  const contactItems = [
-    {
-      id: 1,
-      category: "Phone Numbers",
-      text: "CA Cell:",
-      info: "+1 (416) 836 5851",
-    },
-    {
-      id: 2,
-      category: "Phone Numbers",
-      text: "IR Cell:",
-      info: "+98 (919) 659 5351",
-    },
-    {
-      id: 3,
-      category: "Emails",
-      text: "Email:",
-      info: "Saeedarabha@outlook.com",
-    },
-    { id: 4, category: "Emails", text: "Email:", info: "Arabha@Yorku.ca" },
-    {
-      id: 5,
-      category: "Social Media",
-      text: "Social Media:",
-      info: "@saeed_rbh",
-    },
-    {
-      id: 6,
-      category: "Research Gate",
-      text: "Research Gate:",
-      info: "Saeed Arabha",
-    },
-  ];
+  const { academicData } = useSelector((state) => state.data);
 
-  const contactCategories = [
-    { id: 1, category: "Phone Numbers" },
-    { id: 2, category: "Emails" },
-    { id: 3, category: "Social Media" },
-    { id: 4, category: "Research Gate" },
+  const contactSection = academicData.find((s) => s.name === "ContactInfo");
+  const contactItems = contactSection?.list || [];
+
+  // Derive unique categories from items
+  const uniqueCategories = [
+    ...new Set(contactItems.map((item) => item.category)),
   ];
+  const contactCategories = uniqueCategories.map((cat, index) => ({
+    id: index + 1,
+    category: cat,
+  }));
 
   const ContactInfoTrail = useTrail(contactItems.length, {
     from: { opacity: 0, transform: "translate3d(0,0,0)" },

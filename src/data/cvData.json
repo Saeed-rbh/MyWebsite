@@ -479,5 +479,56 @@
                 "Award": "Visiting the 'Condensed Matter and Statistical Physics of the Abdus Salam International Centre for Theoretical Physics (ICTP)' and collaboration with E. Roldan and A. Hassanali on a research project on 'inverse heat flux between nanoparticles', from 21 October to 18 November 2019, Trieste, Italy."
             }
         ]
+    },
+    {
+        "id": 9,
+        "name": "ContactInfo",
+        "title": "Contact Information",
+        "column": 0,
+        "background": "rgb(140 122 115 / 5%)",
+        "size": [
+            300,
+            450
+        ],
+        "top": 200,
+        "fixed": false,
+        "list": [
+            {
+                "id": 1,
+                "category": "Phone Numbers",
+                "text": "CA Cell:",
+                "info": "+1 (416) 836 5851"
+            },
+            {
+                "id": 2,
+                "category": "Phone Numbers",
+                "text": "IR Cell:",
+                "info": "+98 (919) 659 5351"
+            },
+            {
+                "id": 3,
+                "category": "Emails",
+                "text": "Email:",
+                "info": "Saeedarabha@outlook.com"
+            },
+            {
+                "id": 4,
+                "category": "Emails",
+                "text": "Email:",
+                "info": "Arabha@Yorku.ca"
+            },
+            {
+                "id": 5,
+                "category": "Social Media",
+                "text": "Social Media:",
+                "info": "@saeed_rbh"
+            },
+            {
+                "id": 6,
+                "category": "Research Gate",
+                "text": "Research Gate:",
+                "info": "Saeed Arabha"
+            }
+        ]
     }
 ]
