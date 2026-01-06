@@ -8,6 +8,7 @@ const AnimatedWord = ({
   animateTo,
   MenuHide,
   length,
+  onClick,
 }) => {
   const isSpecialWord = word.startsWith("<") && word.endsWith(">");
   let displayWord = isSpecialWord ? word.slice(1, -1) : word;
@@ -39,8 +40,8 @@ const AnimatedWord = ({
         MenuHide === 1
           ? "translateY(0px)"
           : MenuHide === 2
-          ? "translateY(-5px)"
-          : "translateY(5px)",
+            ? "translateY(-5px)"
+            : "translateY(5px)",
       opacity: MenuHide === 1 ? 1 : 0,
     },
     easing: easings.easeOutCubic,
@@ -72,7 +73,10 @@ const AnimatedWord = ({
   return (
     <>
       {isSpecialWord ? (
-        <div style={specialBackground}>
+        <div
+          style={{ ...specialBackground, cursor: "pointer" }}
+          onClick={() => onClick && onClick(displayWord)}
+        >
           <div style={innerBackground}></div>
           <animated.span style={{ ...wordSpring, ...textStyle }}>
             {displayWord}

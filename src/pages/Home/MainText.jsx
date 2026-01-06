@@ -6,7 +6,7 @@ import SvgComponent from "./SvgComponent";
 import AnimatedWord from "./AnimatedWord";
 import styles from "./MainText.module.css";
 
-const MainText = ({ MenuHide, delay }) => {
+const MainText = ({ MenuHide, delay, onWordClick }) => {
   const [words, setWords] = useState([]);
   const springProps = useSpring(AnimationConstants(MenuHide, delay));
   const { homeData } = useSelector((state) => state.data);
@@ -76,6 +76,7 @@ const MainText = ({ MenuHide, delay }) => {
             length={words.length}
             animateFrom={MenuHide === 1 ? "#d49d81" : "white"}
             animateTo={MenuHide === 1 ? "white" : "#d49d81"}
+            onClick={onWordClick}
           />
         ))}
       </p>
