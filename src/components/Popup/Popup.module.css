@@ -93,22 +93,16 @@
 }
 
 /* Custom Scrollbar */
+/* Custom Scrollbar - Hidden to replace with 0-100 indicator */
 .content::-webkit-scrollbar {
-  width: 8px;
+  display: none;
 }
 
-.content::-webkit-scrollbar-track {
-  background: rgba(255, 255, 255, 0.05);
-  border-radius: 4px;
-}
-
-.content::-webkit-scrollbar-thumb {
-  background: rgba(212, 157, 129, 0.5);
-  border-radius: 4px;
-}
-
-.content::-webkit-scrollbar-thumb:hover {
-  background: rgba(212, 157, 129, 0.8);
+.content {
+  -ms-overflow-style: none;
+  /* IE and Edge */
+  scrollbar-width: none;
+  /* Firefox */
 }
 
 @keyframes fadeIn {
@@ -131,4 +125,48 @@
     transform: translateY(0);
     opacity: 1;
   }
+}
+
+/* Scroll Indicator Styles */
+.scrollIndicatorContainer {
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  height: 50%;
+  /* Reduced height (approx 70% of previous available space) */
+  bottom: auto;
+  width: 2px;
+  background: rgba(212, 157, 129, 0.2);
+  border-radius: 4px;
+  z-index: 20;
+  /* overflow: hidden; Removed to allow number to show */
+}
+
+.scrollProgressBar {
+  width: 100%;
+  background: #d49d81;
+  border-radius: 4px;
+  transition: height 0.05s linear;
+  box-shadow: 0 0 10px rgba(212, 157, 129, 0.5);
+  opacity: 0.75;
+  min-height: 2px;
+}
+
+.scrollNumber {
+  position: absolute;
+  left: -14px;
+  /* Relative to the 2px container */
+  margin-top: 20px;
+  font-family: "Rubik", sans-serif;
+  font-weight: 700;
+  font-size: 14px;
+  color: #6b4f41;
+  opacity: 1;
+  pointer-events: none;
+  transform: translateY(-50%) rotate(90deg);
+  transform-origin: center;
+  width: 30px;
+  text-align: center;
+  transition: top 0.05s linear;
 }

@@ -39,7 +39,7 @@ const HomePage = () => {
               </p>
             </div>
 
-            <div className={`${styles.sectionBox} ${styles.animateEnter} ${styles.delay2}`}>
+            <div className={`${styles.animateEnter} ${styles.delay2}`}>
               <h3 className={styles.miniTitle}>The "Deck of Cards" Analogy</h3>
               <p className={styles.text}>
                 Think of a normal block of material—like the graphite lead in a pencil—as a full deck of playing cards bonded together. A 2D material is what you get if you manage to peel off just a single card from that deck. It is the same basic stuff, but now in an ultra-thin form.
@@ -68,7 +68,7 @@ const HomePage = () => {
               </div>
             </div>
 
-            <div className={`${styles.sectionBox} ${styles.animateEnter} ${styles.delay4}`}>
+            <div className={`${styles.animateEnter} ${styles.delay4}`}>
               <h3 className={styles.miniTitle}>How Will They Change the Future?</h3>
               <p className={styles.text}>Because of these unique "superpowers," scientists are using 2D materials to develop new technologies, including:</p>
               <ul style={{ listStyleType: 'disc', paddingLeft: '20px', marginBottom: 0 }}>
