@@ -118,6 +118,7 @@ const HomePage = () => {
         )
       });
       setPopupOpen(true);
+      window.location.hash = "2DNanomaterials";
     }
   };
 
@@ -153,7 +154,10 @@ const HomePage = () => {
         />
         <Popup
           isOpen={popupOpen}
-          onClose={() => setPopupOpen(false)}
+          onClose={() => {
+            setPopupOpen(false);
+            window.history.pushState("", document.title, window.location.pathname + window.location.search);
+          }}
           title={popupContent.title}
           content={popupContent.content}
         />
