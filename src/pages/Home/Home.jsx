@@ -27,93 +27,84 @@ const HomePage = () => {
         title: "What Are 2D Materials?",
         content: (
           <div style={{ textAlign: 'left' }}>
-            <p style={{ marginBottom: '1rem' }}><strong>Imagine a material so thin, it is practically invisible.</strong></p>
-            <p style={{ marginBottom: '1rem' }}>
-              Almost everything in our world is three-dimensional (3D): it has length, width, and height. Even a thin sheet of paper is thousands of atoms thick.
-            </p>
-            <p style={{ marginBottom: '2rem' }}>
-              2D materials are different. They consist of just a single layer of atoms arranged in a flat sheet. This makes them the thinnest possible materials in the universe.
-            </p>
+            <div className={`${styles.animateEnter} ${styles.delay1}`}>
+              <p className={styles.text} style={{ fontSize: '1.2rem', marginBottom: '1rem' }}>
+                <strong>Imagine a material so thin, it is practically invisible.</strong>
+              </p>
+              <p className={styles.text}>
+                Almost everything in our world is three-dimensional (3D): it has length, width, and height. Even a thin sheet of paper is thousands of atoms thick.
+              </p>
+              <p className={styles.text} style={{ marginBottom: '1.5rem' }}>
+                2D materials are different. They consist of just a single layer of atoms arranged in a flat sheet. This makes them the thinnest possible materials in the universe.
+              </p>
+            </div>
 
-            <h3 style={{
-              color: 'transparent',
-              marginBottom: '0',
-              fontFamily: 'DM Serif Display, serif',
-              fontSize: '2rem',
-              textAlign: 'left',
-              background: 'linear-gradient(to right, #b9603275 0%, #d4a58dad 50%)',
-              WebkitBackgroundClip: 'text',
-              WebkitTextFillColor: 'transparent',
-              backgroundClip: 'text'
-            }}>The "Deck of Cards" Analogy</h3>
-            <p style={{ marginBottom: '2rem', marginTop: '0' }}>
-              Think of a normal block of material—like the graphite lead in a pencil—as a full deck of playing cards bonded together. A 2D material is what you get if you manage to peel off just a single card from that deck. It is the same basic stuff, but now in an ultra-thin form.
-            </p>
+            <div className={`${styles.sectionBox} ${styles.animateEnter} ${styles.delay2}`}>
+              <h3 className={styles.miniTitle}>The "Deck of Cards" Analogy</h3>
+              <p className={styles.text}>
+                Think of a normal block of material—like the graphite lead in a pencil—as a full deck of playing cards bonded together. A 2D material is what you get if you manage to peel off just a single card from that deck. It is the same basic stuff, but now in an ultra-thin form.
+              </p>
+            </div>
 
-            <h3 style={{
-              color: 'transparent',
-              marginBottom: '0',
-              fontFamily: 'DM Serif Display, serif',
-              fontSize: '2rem',
-              textAlign: 'left',
-              background: 'linear-gradient(to right, #b9603275 0%, #d4a58dad 50%)',
-              WebkitBackgroundClip: 'text',
-              WebkitTextFillColor: 'transparent',
-              backgroundClip: 'text'
-            }}>Why Are They Special?</h3>
-            <p style={{ marginBottom: '1rem', marginTop: '0' }}>When materials get this thin, they stop acting like "normal" matter and develop amazing new properties:</p>
-            <ul style={{ listStyleType: 'disc', paddingLeft: '20px', marginBottom: '2rem' }}>
-              <li style={{ marginBottom: '0.5rem' }}><strong style={{ color: '#fff' }}>Super Strength:</strong> Despite being thin, the atomic bonds are incredibly tight. Some are hundreds of times stronger than steel.</li>
-              <li style={{ marginBottom: '0.5rem' }}><strong style={{ color: '#fff' }}>Extreme Flexibility:</strong> They can be bent, twisted, or folded like fabric without breaking.</li>
-              <li style={{ marginBottom: '0.5rem' }}><strong style={{ color: '#fff' }}>Super Conductivity:</strong> Electricity and heat can zip through some of them faster than almost any other material.</li>
-              <li style={{ marginBottom: '0.5rem' }}><strong style={{ color: '#fff' }}>Transparency:</strong> They are so thin that light passes right through them.</li>
-            </ul>
+            <h3 className={`${styles.miniTitle} ${styles.animateEnter} ${styles.delay3}`}>Why Are They Special?</h3>
+            <p className={`${styles.text} ${styles.animateEnter} ${styles.delay3}`}>When materials get this thin, they stop acting like "normal" matter and develop amazing new properties:</p>
 
-            <h3 style={{
-              color: 'transparent',
-              marginBottom: '0',
-              fontFamily: 'DM Serif Display, serif',
-              fontSize: '2rem',
-              textAlign: 'left',
-              background: 'linear-gradient(to right, #b9603275 0%, #d4a58dad 50%)',
-              WebkitBackgroundClip: 'text',
-              WebkitTextFillColor: 'transparent',
-              backgroundClip: 'text'
-            }}>How Will They Change the Future?</h3>
-            <p style={{ marginBottom: '1rem', marginTop: '0' }}>Because of these unique "superpowers," scientists are using 2D materials to develop new technologies, including:</p>
-            <ul style={{ listStyleType: 'disc', paddingLeft: '20px', marginBottom: '2rem' }}>
-              <li style={{ marginBottom: '0.5rem' }}>Bendable electronics (like roll-up electronic newspapers or flexible phones).</li>
-              <li style={{ marginBottom: '0.5rem' }}>Ultra-fast charging batteries for electric cars and devices.</li>
-              <li style={{ marginBottom: '0.5rem' }}>Advanced water filters that can easily remove salt from seawater.</li>
-              <li style={{ marginBottom: '0.5rem' }}>Tiny medical sensors wearable on the skin to track health.</li>
-            </ul>
+            <div className={`${styles.glassGrid} ${styles.animateEnter} ${styles.delay3}`}>
+              <div className={styles.glassCard}>
+                <span className={styles.cardTitle}>Super Strength</span>
+                <p className={styles.cardText}>Despite being thin, the atomic bonds are incredibly tight. Some are hundreds of times stronger than steel.</p>
+              </div>
+              <div className={styles.glassCard}>
+                <span className={styles.cardTitle}>Extreme Flexibility</span>
+                <p className={styles.cardText}>They can be bent, twisted, or folded like fabric without breaking.</p>
+              </div>
+              <div className={styles.glassCard}>
+                <span className={styles.cardTitle}>Super Conductivity</span>
+                <p className={styles.cardText}>Electricity and heat can zip through some of them faster than almost any other material.</p>
+              </div>
+              <div className={styles.glassCard}>
+                <span className={styles.cardTitle}>Transparency</span>
+                <p className={styles.cardText}>They are so thin that light passes right through them.</p>
+              </div>
+            </div>
 
-            <h3 style={{
-              color: 'transparent',
-              marginBottom: '0',
-              fontFamily: 'DM Serif Display, serif',
-              fontSize: '2rem',
-              textAlign: 'left',
-              background: 'linear-gradient(to right, #b9603275 0%, #d4a58dad 50%)',
-              WebkitBackgroundClip: 'text',
-              WebkitTextFillColor: 'transparent',
-              backgroundClip: 'text'
-            }}>Famous 2D Materials</h3>
-            <p style={{ marginBottom: '1rem', marginTop: '0' }}>While there are hundreds of different 2D materials being studied today, here are a few of the most famous ones:</p>
-            <ol style={{ listStyleType: 'decimal', paddingLeft: '20px', marginBottom: '1rem' }}>
-              <li style={{ marginBottom: '1rem' }}>
-                <strong style={{ color: '#fff' }}>Graphene (The Superstar)</strong><br />
-                This is the original and most famous 2D material. It is made of carbon atoms arranged in a honeycomb pattern. It was discovered when scientists used sticky tape to peel layers off a block of graphite pencil lead until only one layer remained. It is incredibly strong and the best conductor of electricity and heat known to man.
-              </li>
-              <li style={{ marginBottom: '1rem' }}>
-                <strong style={{ color: '#fff' }}>Hexagonal Boron Nitride ("White Graphene")</strong><br />
-                Structurally, this looks very similar to graphene, but it is made of boron and nitrogen atoms instead of carbon. Unlike conductive graphene, "white graphene" is an excellent electrical insulator. It is often used alongside graphene to build tiny electronic layers.
-              </li>
-              <li style={{ marginBottom: '1rem' }}>
-                <strong style={{ color: '#fff' }}>Molybdenum Disulfide (MoS2)</strong><br />
-                While graphene is a great conductor, MoS2 is a "semiconductor"—the same type of material used to make computer chips. Because it is flexible and thin, it could be used to make the ultra-thin, bendable computer processors of the future.
-              </li>
-            </ol>
+            <div className={`${styles.sectionBox} ${styles.animateEnter} ${styles.delay4}`}>
+              <h3 className={styles.miniTitle}>How Will They Change the Future?</h3>
+              <p className={styles.text}>Because of these unique "superpowers," scientists are using 2D materials to develop new technologies, including:</p>
+              <ul style={{ listStyleType: 'disc', paddingLeft: '20px', marginBottom: 0 }}>
+                <li style={{ marginBottom: '0.5rem' }}>Bendable electronics (like roll-up electronic newspapers or flexible phones).</li>
+                <li style={{ marginBottom: '0.5rem' }}>Ultra-fast charging batteries for electric cars and devices.</li>
+                <li style={{ marginBottom: '0.5rem' }}>Advanced water filters that can easily remove salt from seawater.</li>
+                <li style={{ marginBottom: '0.5rem' }}>Tiny medical sensors wearable on the skin to track health.</li>
+              </ul>
+            </div>
+
+            <h3 className={`${styles.miniTitle} ${styles.animateEnter} ${styles.delay4}`}>Famous 2D Materials</h3>
+            <div className={`${styles.timelineList} ${styles.animateEnter} ${styles.delay4}`}>
+              <div className={`${styles.timelineItem} ${styles.highlightItem}`}>
+                <strong style={{ color: '#fff', fontSize: '1.1rem' }}>Graphene (The Superstar)</strong>
+                <span style={{ color: '#d49d81', fontSize: '0.9rem', marginBottom: '0.5rem', display: 'block' }}>The Original</span>
+                <p className={styles.text} style={{ fontSize: '0.95rem' }}>
+                  This is the original and most famous 2D material. It is made of carbon atoms arranged in a honeycomb pattern. It was discovered when scientists used sticky tape to peel layers off a block of graphite pencil lead until only one layer remained. It is incredibly strong and the best conductor of electricity and heat known to man.
+                </p>
+              </div>
+
+              <div className={styles.timelineItem}>
+                <strong style={{ color: '#fff', fontSize: '1.1rem' }}>Hexagonal Boron Nitride</strong>
+                <span style={{ color: '#d49d81', fontSize: '0.9rem', marginBottom: '0.5rem', display: 'block' }}>"White Graphene"</span>
+                <p className={styles.text} style={{ fontSize: '0.95rem' }}>
+                  Structurally, this looks very similar to graphene, but it is made of boron and nitrogen atoms instead of carbon. Unlike conductive graphene, "white graphene" is an excellent electrical insulator. It is often used alongside graphene to build tiny electronic layers.
+                </p>
+              </div>
+
+              <div className={styles.timelineItem}>
+                <strong style={{ color: '#fff', fontSize: '1.1rem' }}>Molybdenum Disulfide (MoS2)</strong>
+                <span style={{ color: '#d49d81', fontSize: '0.9rem', marginBottom: '0.5rem', display: 'block' }}>The Semiconductor</span>
+                <p className={styles.text} style={{ fontSize: '0.95rem' }}>
+                  While graphene is a great conductor, MoS2 is a "semiconductor"—the same type of material used to make computer chips. Because it is flexible and thin, it could be used to make the ultra-thin, bendable computer processors of the future.
+                </p>
+              </div>
+            </div>
           </div>
         )
       });

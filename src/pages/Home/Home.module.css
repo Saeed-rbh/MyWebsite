@@ -10,12 +10,182 @@
     margin: auto 0;
 }
 
+/* Popup Content Styles */
+
+/* Animations */
+@keyframes staggerFadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.animateEnter {
+    animation: staggerFadeUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    opacity: 0;
+    /* Starts invisible */
+}
+
+/* Stagger Delays */
+.delay1 {
+    animation-delay: 0.1s;
+}
+
+.delay2 {
+    animation-delay: 0.2s;
+}
+
+.delay3 {
+    animation-delay: 0.3s;
+}
+
+.delay4 {
+    animation-delay: 0.4s;
+}
+
+/* Sections */
+.sectionBox {
+    margin-bottom: 1.5rem;
+    padding: 0;
+    margin: 0;
+    background: rgba(255, 255, 255, 0.02);
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.highlightBorder {
+    border: 2px solid rgba(212, 157, 129, 0.2) !important;
+}
+
+.miniTitle {
+    color: transparent;
+    margin: 0;
+    font-family: 'DM Serif Display', serif;
+    font-size: 2rem;
+    text-align: left;
+    background: linear-gradient(to right, #b9603275 0%, #d4a58dad 50%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.text {
+    margin-top: 0;
+    margin-bottom: 0.8rem;
+    color: #faf9f1;
+    font-family: "Poppins", sans-serif;
+    font-weight: 400;
+    line-height: 1.6;
+}
+
+/* Glass Grid for Special Properties */
+.glassGrid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.glassCard {
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+    padding: 1.5rem;
+    transition: transform 0.3s ease, background 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+.glassCard:hover {
+    transform: translateY(-5px);
+    background: rgba(255, 255, 255, 0.06);
+    border-color: rgba(212, 157, 129, 0.3);
+}
+
+.cardTitle {
+    color: #fff;
+    font-weight: 600;
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+    display: block;
+}
+
+.cardText {
+    color: #ddd;
+    font-size: 0.95rem;
+    line-height: 1.5;
+    margin: 0;
+}
+
+/* Timeline List for Famous Materials */
+.timelineList {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    position: relative;
+    padding-left: 1rem;
+    margin-bottom: 1rem;
+}
+
+.timelineItem {
+    position: relative;
+    padding-left: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    border-left: 2px solid rgba(212, 157, 129, 0.3);
+    margin-left: -0.5rem;
+}
+
+.timelineItem::before {
+    content: '';
+    position: absolute;
+    left: -6px;
+    /* Center dot on line (2px width) */
+    top: 5px;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #d49d81;
+    box-shadow: 0 0 10px rgba(212, 157, 129, 0.5);
+}
+
+.highlightItem {
+    background: linear-gradient(90deg, rgba(212, 157, 129, 0.1) 0%, transparent 100%);
+    border-radius: 0 10px 10px 0;
+    padding: 1rem;
+    padding-left: 1.5rem;
+    /* Compensate for timeline padding */
+    margin-left: -0.5rem;
+    /* Pull back to align with line */
+    border-left: 4px solid #b96032;
+    /* Thicker accent line */
+}
+
+.highlightItem::before {
+    background: #b96032;
+    box-shadow: 0 0 15px rgba(185, 96, 50, 0.8);
+    left: -7px;
+    /* Adjust for thicker border? No, border is inside padding/margin box usually? Check alignment */
+}
+
 @media only screen and (max-width: 640px) {
     .container {
         width: calc(100vw - 60px);
         height: calc(100vh - 60px);
         margin: 0;
         margin-bottom: 70px;
+    }
+
+    .glassGrid {
+        grid-template-columns: 1fr;
     }
 }
 
