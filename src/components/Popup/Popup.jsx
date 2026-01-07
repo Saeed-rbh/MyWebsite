@@ -2,7 +2,7 @@ import React, { useEffect, useState, useRef } from 'react';
 import { useTransition, animated } from 'react-spring';
 import styles from './Popup.module.css';
 
-const Popup = ({ isOpen, onClose, title, content }) => {
+const Popup = ({ isOpen, onClose, title, content, originRect }) => {
     const [scrollProgress, setScrollProgress] = useState(0);
     const contentRef = useRef(null);
 
@@ -33,11 +33,51 @@ const Popup = ({ isOpen, onClose, title, content }) => {
         }
     };
 
+    const getAnimationProps = () => {
+        if (!originRect) {
+            return {
+                from: { opacity: 0, transform: 'translate(-50%, -50%) scale(0.5)' },
+                enter: { opacity: 1, transform: 'translate(-50%, -50%) scale(1)' },
+                leave: { opacity: 0, transform: 'translate(-50%, -50%) scale(0.5)' }
+            };
+        }
+
+        const windowWidth = window.innerWidth;
+        const windowHeight = window.innerHeight;
+
+        // Modal center (screen center)
+        const centerX = windowWidth / 2;
+        const centerY = windowHeight / 2;
+
+        // Origin center
+        const originX = originRect.left + originRect.width / 2;
+        const originY = originRect.top + originRect.height / 2;
+
+        const deltaX = originX - centerX;
+        const deltaY = originY - centerY;
+
+        // Approximate final dimensions
+        const finalWidth = Math.min(800, windowWidth * 0.9);
+        const finalHeight = Math.min(windowHeight * 0.75, windowHeight * 0.9); // CSS max-height: 75vh
+
+        const scaleX = originRect.width / finalWidth;
+        const scaleY = originRect.height / finalHeight;
+        const startScale = Math.min(scaleX, scaleY); // Keep aspect ratio roughly or just use average
+
+        return {
+            from: { opacity: 0, transform: `translate(${deltaX}px, ${deltaY}px) scale(${startScale})` },
+            enter: { opacity: 1, transform: 'translate(0px, 0px) scale(1)' },
+            leave: { opacity: 0, transform: `translate(${deltaX}px, ${deltaY}px) scale(${startScale})` }
+        };
+    };
+
+    const animationProps = getAnimationProps();
+
     const transitions = useTransition(isOpen, {
-        from: { opacity: 0, transform: 'scale(0.5) translateY(50px)' },
-        enter: { opacity: 1, transform: 'scale(1) translateY(0px)' },
-        leave: { opacity: 0, transform: 'scale(0.5) translateY(50px)' },
-        config: { tension: 200, friction: 15, clamp: true }
+        from: animationProps.from,
+        enter: animationProps.enter,
+        leave: animationProps.leave,
+        config: { mass: 1, tension: 280, friction: 30, clamp: false } // Bouncy
     });
 
     return transitions(

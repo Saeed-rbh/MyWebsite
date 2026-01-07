@@ -7,6 +7,7 @@ import NameMessage from "./NameMessage";
 import MainText from "./MainText";
 import HobbyProfession from "./HobbyProfession";
 import Popup from "../../components/Popup/Popup";
+
 import { useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
 
@@ -18,11 +19,15 @@ const HomePage = () => {
   const [resumeClicked, setResumeClicked] = useState(0);
   const [popupOpen, setPopupOpen] = useState(false);
   const [popupContent, setPopupContent] = useState({ title: "", content: "" });
+  const [originRect, setOriginRect] = useState(null);
 
-  const handleWordClick = (word) => {
+  const handleWordClick = (word, e) => {
     const normalizedWord = word.replace(/-/g, " ").toLowerCase();
 
     if (normalizedWord.includes("2d nanomaterials") || normalizedWord.includes("2d materials")) {
+      if (e && e.currentTarget) {
+        setOriginRect(e.currentTarget.getBoundingClientRect());
+      }
       setPopupContent({
         title: "What Are 2D Materials?",
         content: (
@@ -44,6 +49,7 @@ const HomePage = () => {
               <p className={styles.text}>
                 Think of a normal block of material—like the graphite lead in a pencil—as a full deck of playing cards bonded together. A 2D material is what you get if you manage to peel off just a single card from that deck. It is the same basic stuff, but now in an ultra-thin form.
               </p>
+
             </div>
 
             <h3 className={`${styles.miniTitle} ${styles.animateEnter} ${styles.delay3}`}>Why Are They Special?</h3>
@@ -151,6 +157,7 @@ const HomePage = () => {
           }}
           title={popupContent.title}
           content={popupContent.content}
+          originRect={originRect}
         />
       </div>
     )

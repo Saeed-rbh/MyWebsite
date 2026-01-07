@@ -75,7 +75,7 @@ const AnimatedWord = ({
       {isSpecialWord ? (
         <div
           style={{ ...specialBackground, cursor: "pointer" }}
-          onClick={() => onClick && onClick(displayWord)}
+          onClick={(e) => onClick && onClick(displayWord, e)}
         >
           <div style={innerBackground}></div>
           <animated.span style={{ ...wordSpring, ...textStyle }}>
