@@ -82,24 +82,24 @@ const HomePage = () => {
             <h3 className={`${styles.miniTitle} ${styles.animateEnter} ${styles.delay4}`}>Famous 2D Materials</h3>
             <div className={`${styles.timelineList} ${styles.animateEnter} ${styles.delay4}`}>
               <div className={`${styles.timelineItem} ${styles.highlightItem}`}>
-                <strong style={{ color: '#fff', fontSize: '1.1rem' }}>Graphene (The Superstar)</strong>
-                <span style={{ color: '#d49d81', fontSize: '0.9rem', marginBottom: '0.5rem', display: 'block' }}>The Original</span>
+                <strong style={{ color: '#fff', fontSize: '1.1rem', display: 'block', marginBottom: '-5px' }}>Graphene (The Superstar)</strong>
+                <span style={{ color: '#d49d81', fontSize: '0.9rem', marginBottom: '0.2rem', display: 'block' }}>The Original</span>
                 <p className={styles.text} style={{ fontSize: '0.95rem' }}>
                   This is the original and most famous 2D material. It is made of carbon atoms arranged in a honeycomb pattern. It was discovered when scientists used sticky tape to peel layers off a block of graphite pencil lead until only one layer remained. It is incredibly strong and the best conductor of electricity and heat known to man.
                 </p>
               </div>
 
               <div className={styles.timelineItem}>
-                <strong style={{ color: '#fff', fontSize: '1.1rem' }}>Hexagonal Boron Nitride</strong>
-                <span style={{ color: '#d49d81', fontSize: '0.9rem', marginBottom: '0.5rem', display: 'block' }}>"White Graphene"</span>
+                <strong style={{ color: '#fff', fontSize: '1.1rem', display: 'block', marginBottom: '-5px' }}>Hexagonal Boron Nitride</strong>
+                <span style={{ color: '#d49d81', fontSize: '0.9rem', marginBottom: '0.2rem', display: 'block' }}>"White Graphene"</span>
                 <p className={styles.text} style={{ fontSize: '0.95rem' }}>
                   Structurally, this looks very similar to graphene, but it is made of boron and nitrogen atoms instead of carbon. Unlike conductive graphene, "white graphene" is an excellent electrical insulator. It is often used alongside graphene to build tiny electronic layers.
                 </p>
               </div>
 
               <div className={styles.timelineItem}>
-                <strong style={{ color: '#fff', fontSize: '1.1rem' }}>Molybdenum Disulfide (MoS2)</strong>
-                <span style={{ color: '#d49d81', fontSize: '0.9rem', marginBottom: '0.5rem', display: 'block' }}>The Semiconductor</span>
+                <strong style={{ color: '#fff', fontSize: '1.1rem', display: 'block', marginBottom: '-5px' }}>Molybdenum Disulfide (MoS2)</strong>
+                <span style={{ color: '#d49d81', fontSize: '0.9rem', marginBottom: '0.2rem', display: 'block' }}>The Semiconductor</span>
                 <p className={styles.text} style={{ fontSize: '0.95rem' }}>
                   While graphene is a great conductor, MoS2 is a "semiconductor"—the same type of material used to make computer chips. Because it is flexible and thin, it could be used to make the ultra-thin, bendable computer processors of the future.
                 </p>

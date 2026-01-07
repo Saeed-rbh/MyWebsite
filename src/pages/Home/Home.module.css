@@ -65,6 +65,7 @@
 .miniTitle {
     color: transparent;
     margin: 0;
+    margin-bottom: -5px;
     font-family: 'DM Serif Display', serif;
     font-size: 2rem;
     text-align: left;
