@@ -77,7 +77,7 @@ const Popup = ({ isOpen, onClose, title, content, originRect }) => {
         from: animationProps.from,
         enter: animationProps.enter,
         leave: animationProps.leave,
-        config: { mass: 1, tension: 280, friction: 30, clamp: false } // Bouncy
+        config: { mass: 1, tension: 220, friction: 26, clamp: false } // Gentler bounce
     });
 
     return transitions(

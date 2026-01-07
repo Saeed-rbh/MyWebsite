@@ -75,7 +75,7 @@ const HomePage = () => {
             </div>
 
             <div className={`${styles.animateEnter} ${styles.delay4}`}>
-              <h3 className={styles.miniTitle}>How Will They Change the Future?</h3>
+              <h3 className={styles.miniTitle}>Will They Change the Future?</h3>
               <p className={styles.text}>Because of these unique "superpowers," scientists are using 2D materials to develop new technologies, including:</p>
               <ul style={{ listStyleType: 'disc', paddingLeft: '20px', marginBottom: 0 }}>
                 <li style={{ marginBottom: '0.5rem' }}>Bendable electronics (like roll-up electronic newspapers or flexible phones).</li>

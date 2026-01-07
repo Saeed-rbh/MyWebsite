@@ -187,6 +187,29 @@
 
     .glassGrid {
         grid-template-columns: 1fr;
+        gap: 0.5rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .glassCard {
+        padding: 1rem;
+    }
+
+    .miniTitle {
+        font-size: 23px;
+    }
+
+    .text {
+        font-size: 13px !important;
+        margin-bottom: 0.5rem !important;
+    }
+
+    .cardTitle {
+        font-size: 15px;
+    }
+
+    .cardText {
+        font-size: 13px;
     }
 }
 

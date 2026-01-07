@@ -170,3 +170,22 @@
   text-align: center;
   transition: top 0.05s linear;
 }
+
+@media (max-width: 768px) {
+  .modal {
+    margin: 0 0.5rem;
+    padding: 1.5rem;
+  }
+
+  .title {
+    font-size: 21px;
+  }
+
+  .content {
+    font-size: 14px;
+  }
+
+  .scrollIndicatorContainer {
+    right: 10px;
+  }
+}
