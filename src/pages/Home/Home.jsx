@@ -286,6 +286,193 @@ const HomePage = () => {
       setPopupOpen(true);
       window.location.hash = "YorkUniversity";
     }
+
+    if (normalizedWord.includes("mechanical engineering")) {
+      if (e && e.currentTarget) {
+        setOriginRect(e.currentTarget.getBoundingClientRect());
+      }
+      setPopupContent({
+        title: "What Is Mechanical Engineering?",
+        content: (
+          <div style={{ textAlign: 'left' }}>
+            <div className={`${styles.animateEnter} ${styles.delay1}`}>
+              <p className={styles.text} style={{ fontSize: '1.2rem', marginBottom: '1rem' }}>
+                <strong>If it moves, it’s mechanical engineering.</strong>
+              </p>
+              <p className={styles.text}>
+                Mechanical Engineering is one of the oldest and broadest engineering disciplines. While many people hear "mechanical" and think of car engines or gears, it is actually much more than that. It is the science of motion, energy, and force.
+              </p>
+              <p className={styles.text} style={{ marginBottom: '1.5rem' }}>
+                Mechanical engineers figure out how to take an idea and turn it into a physical machine that works safely and efficiently.
+              </p>
+            </div>
+
+            <div className={`${styles.animateEnter} ${styles.delay2}`}>
+              <h3 className={styles.miniTitle}>The "Skeleton and Muscle" Analogy</h3>
+              <p className={styles.text}>
+                Think of a robot (or a human body).
+              </p>
+              <ul style={{ listStyleType: 'none', paddingLeft: 0, marginBottom: '1.5rem' }}>
+                <li style={{ marginBottom: '0.8rem', paddingLeft: '1rem', borderLeft: '2px solid rgba(212, 157, 129, 0.3)' }}>
+                  <strong style={{ color: '#fff' }}>Computer Engineering</strong> is the brain (the code and logic).
+                </li>
+                <li style={{ marginBottom: '0.8rem', paddingLeft: '1rem', borderLeft: '2px solid rgba(212, 157, 129, 0.3)' }}>
+                  <strong style={{ color: '#fff' }}>Electrical Engineering</strong> is the nervous system (the wires and signals).
+                </li>
+                <li style={{ marginBottom: '0.8rem', paddingLeft: '1rem', borderLeft: '3px solid #d49d81', backgroundColor: 'rgba(212, 157, 129, 0.05)', borderRadius: '0 5px 5px 0', padding: '0.5rem 0.5rem 0.5rem 1rem' }}>
+                  <strong style={{ color: '#d49d81' }}>Mechanical Engineering</strong> is the skeleton and the muscles. We design the physical structure that holds everything together and the systems that allow it to move, lift, and interact with the world.
+                </li>
+              </ul>
+            </div>
+
+            <h3 className={`${styles.miniTitle} ${styles.animateEnter} ${styles.delay3}`}>It's Not Just Gears and Grease</h3>
+            <p className={`${styles.text} ${styles.animateEnter} ${styles.delay3}`}>
+              Modern mechanical engineering is high-tech. Today, mechanical engineers work on:
+            </p>
+
+            <div className={`${styles.timelineList} ${styles.animateEnter} ${styles.delay3}`}>
+              <div className={styles.timelineItem}>
+                <strong style={{ color: '#fff', fontSize: '1.1rem', display: 'block', marginBottom: '-5px' }}>Robotics & Automation</strong>
+                <p className={styles.text} style={{ fontSize: '0.95rem', marginTop: '0.2rem' }}>
+                  Building machines that build other machines.
+                </p>
+              </div>
+              <div className={styles.timelineItem}>
+                <strong style={{ color: '#fff', fontSize: '1.1rem', display: 'block', marginBottom: '-5px' }}>Aerospace</strong>
+                <p className={styles.text} style={{ fontSize: '0.95rem', marginTop: '0.2rem' }}>
+                  Designing spacecraft and drones.
+                </p>
+              </div>
+              <div className={styles.timelineItem}>
+                <strong style={{ color: '#fff', fontSize: '1.1rem', display: 'block', marginBottom: '-5px' }}>Biomedical Devices</strong>
+                <p className={styles.text} style={{ fontSize: '0.95rem', marginTop: '0.2rem' }}>
+                  Creating artificial limbs or heart valves.
+                </p>
+              </div>
+              <div className={styles.timelineItem}>
+                <strong style={{ color: '#fff', fontSize: '1.1rem', display: 'block', marginBottom: '-5px' }}>Energy Systems</strong>
+                <p className={styles.text} style={{ fontSize: '0.95rem', marginTop: '0.2rem' }}>
+                  Designing wind turbines and batteries.
+                </p>
+              </div>
+            </div>
+
+            <div className={`${styles.animateEnter} ${styles.delay4}`}>
+              <h3 className={styles.miniTitle}>The Connection: Why Materials Matter</h3>
+              <p className={styles.text}>
+                Why is a Mechanical Engineering lab studying atoms? You might wonder why the PICSSL Lab (a mechanical engineering group) is messing around with chemistry and 2D materials.
+              </p>
+              <p className={styles.text} style={{ fontStyle: 'italic', marginBottom: '1rem' }}>
+                Here is the secret: A machine is only as good as the material it is made of.
+              </p>
+
+              <div className={styles.glassGrid}>
+                <div className={styles.glassCard}>
+                  <span className={styles.cardTitle}>Process Materials</span>
+                  <p className={styles.cardText}>We use fluid mechanics (like wind tunnels) to make nanomaterials.</p>
+                </div>
+                <div className={styles.glassCard}>
+                  <span className={styles.cardTitle}>Test Materials</span>
+                  <p className={styles.cardText}>We use mechanical stress tests to see how strong these new materials are.</p>
+                </div>
+                <div className={styles.glassCard} style={{ gridColumn: '1 / -1' }}>
+                  <span className={styles.cardTitle}>Build the Future</span>
+                  <p className={styles.cardText}>We create the "super-materials" that other mechanical engineers will use to build the cars, robots, and structures of tomorrow.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        )
+      });
+      setPopupOpen(true);
+      window.location.hash = "MechanicalEngineering";
+    }
+
+    if (normalizedWord.includes("molecular dynamics")) {
+      if (e && e.currentTarget) {
+        setOriginRect(e.currentTarget.getBoundingClientRect());
+      }
+      setPopupContent({
+        title: "What Is Molecular Dynamics (MD)?",
+        content: (
+          <div style={{ textAlign: 'left' }}>
+            <div className={`${styles.animateEnter} ${styles.delay1}`}>
+              <p className={styles.text} style={{ fontSize: '1.2rem', marginBottom: '1rem' }}>
+                <strong>Think of it as a flight simulator for atoms.</strong>
+              </p>
+              <p className={styles.text}>
+                In the real world, we use microscopes to look at small things. But sometimes, things are too small or happen too fast for even the most powerful microscope to see.
+              </p>
+              <p className={styles.text} style={{ marginBottom: '1.5rem' }}>
+                Molecular Dynamics (MD) is a computer simulation method. We create a "virtual universe" inside a powerful computer, define the laws of physics, and then watch how individual atoms and molecules move, crash, and interact with each other over time.
+              </p>
+            </div>
+
+            <div className={`${styles.animateEnter} ${styles.delay2}`}>
+              <h3 className={styles.miniTitle}>The "Billiards" Analogy</h3>
+              <p className={styles.text}>
+                Imagine a pool table with balls scattered across it. If you hit one ball, you can use physics to predict exactly where it will go and how it will bounce off the others.
+              </p>
+              <p className={styles.text} style={{ fontStyle: 'italic', borderLeft: '3px solid #d49d81', paddingLeft: '1rem', marginLeft: '0.5rem' }}>
+                Molecular Dynamics is exactly like that, but instead of 15 pool balls, we are tracking thousands or millions of atoms simultaneously. The computer calculates the force on every single atom to predict exactly how a material will behave.
+              </p>
+            </div>
+
+            <h3 className={`${styles.miniTitle} ${styles.animateEnter} ${styles.delay3}`}>Why Do We Use It?</h3>
+            <p className={`${styles.text} ${styles.animateEnter} ${styles.delay3}`}>
+              Simulation is the "secret weapon" of modern materials science because it lets us:
+            </p>
+
+            <div className={`${styles.timelineList} ${styles.animateEnter} ${styles.delay3}`}>
+              <div className={`${styles.timelineItem} ${styles.highlightItem}`}>
+                <strong style={{ color: '#fff', fontSize: '1.1rem', display: 'block', marginBottom: '-5px' }}>See the Unseeable</strong>
+                <p className={styles.text} style={{ fontSize: '0.95rem', marginTop: '0.2rem' }}>
+                  We can watch how a crack forms in a material at the atomic level, something impossible to capture on camera.
+                </p>
+              </div>
+
+              <div className={styles.timelineItem}>
+                <strong style={{ color: '#fff', fontSize: '1.1rem', display: 'block', marginBottom: '-5px' }}>Predict the Future</strong>
+                <p className={styles.text} style={{ fontSize: '0.95rem', marginTop: '0.2rem' }}>
+                  We can test if a new composite material will be strong or weak before we spend the money to build it in the lab.
+                </p>
+              </div>
+
+              <div className={styles.timelineItem}>
+                <strong style={{ color: '#fff', fontSize: '1.1rem', display: 'block', marginBottom: '-5px' }}>Safety</strong>
+                <p className={styles.text} style={{ fontSize: '0.95rem', marginTop: '0.2rem' }}>
+                  We can simulate extreme conditions—like super-high heat or pressure—without risking safety in the lab.
+                </p>
+              </div>
+            </div>
+
+            <div className={`${styles.animateEnter} ${styles.delay4}`}>
+              <h3 className={styles.miniTitle}>How PICSSL Uses MD</h3>
+              <p className={styles.text} style={{ marginBottom: '1rem' }}>
+                <strong>Testing our "Super-Materials" virtually.</strong> At the PICSSL Lab, we don't just mix chemicals and hope for the best; we use Molecular Dynamics to design our materials intelligently. Since we work with 2D materials (like Graphene) and nanocomposites, the arrangement of every single atom matters. Use MD to:
+              </p>
+
+              <div className={styles.glassGrid}>
+                <div className={styles.glassCard}>
+                  <span className={styles.cardTitle}>Simulate Exfoliation</span>
+                  <p className={styles.cardText}>We model how our CFE technology (the supersonic blasts) peels layers of atoms apart.</p>
+                </div>
+                <div className={styles.glassCard}>
+                  <span className={styles.cardTitle}>Design Interfaces</span>
+                  <p className={styles.cardText}>We check how well our "hard" fillers will stick to our "soft" polymers to ensure the final product is strong.</p>
+                </div>
+              </div>
+
+              <p className={styles.text} style={{ marginTop: '1rem', fontSize: '0.95rem', opacity: 0.9 }}>
+                By combining these virtual experiments with our real-world experiments, we can discover new materials faster than ever before.
+              </p>
+            </div>
+          </div>
+        )
+      });
+      setPopupOpen(true);
+      window.location.hash = "MolecularDynamics";
+    }
   };
 
   useEffect(() => {
