@@ -19,6 +19,7 @@ const HomePage = lazy(() => import("./pages/Home/Home"));
 import Loader from "./Loader/Loader";
 const AdminDashboard = lazy(() => import("./pages/Admin/AdminDashboard"));
 const Login = lazy(() => import("./pages/Admin/Login"));
+const ResearchProgress = lazy(() => import("./pages/Research/ResearchProgress"));
 
 import { HelmetProvider } from "react-helmet-async";
 
@@ -27,8 +28,8 @@ function AppContent() {
   const { visibility } = useSelector((state) => state.ui);
   const location = useLocation();
 
-  // Hide global elements on Admin Dashboard and Login page
-  const isDashboard = location.pathname.startsWith('/admin') || location.pathname === '/login';
+  // Hide global elements on Admin Dashboard, Login page, AND Research Progress page
+  const isDashboard = location.pathname.startsWith('/admin') || location.pathname === '/login' || location.pathname === '/research-progress';
 
   return (
     <div className="App">
@@ -49,6 +50,7 @@ function AppContent() {
               <Route path="/AcademicCV" element={<AcademicCV />} />
               <Route path="/academiccv" element={<AcademicCV />} />
               <Route exact path="/Graphene" element={<Graphene />} />
+              <Route path="/research-progress" element={<ResearchProgress />} />
               <Route exact path="/admin" element={<AdminDashboard />} />
               <Route exact path="/login" element={<Login />} />
             </Routes>
