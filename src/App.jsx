@@ -1,6 +1,7 @@
 
 import "./App.css";
 import React, { lazy, Suspense } from "react";
+import { AnimatePresence } from "framer-motion";
 import { useSelector } from "react-redux";
 import { BrowserRouter as Router, Route, Routes, useLocation } from "react-router-dom";
 import store from "./store/configureStore";
@@ -28,32 +29,37 @@ function AppContent() {
   const { visibility } = useSelector((state) => state.ui);
   const location = useLocation();
 
-  // Hide global elements on Admin Dashboard, Login page, AND Research Progress page
-  const isDashboard = location.pathname.startsWith('/admin') || location.pathname === '/login' || location.pathname === '/research-progress';
+  // Hide global elements on Admin Dashboard, Login page
+  const isDashboard = location.pathname.startsWith('/admin') || location.pathname === '/login';
+  const isResearchProgress = location.pathname === '/research-progress';
 
   return (
     <div className="App">
       <div className="MainBackground">
         <div className="BackgroundColor1"></div>
       </div>
-      {/* Show Mouse, Header, Menu, Footer ONLY if NOT in dashboard */}
+      {/* Show Mouse everywhere except Admin/Login */}
       {visibility && !isDashboard && <Mouse />}
-      {visibility && !isDashboard && <Header />}
-      {visibility && !isDashboard && <Menu />}
-      {visibility && !isDashboard && <Footer />}
+
+      {/* Show Header, Menu, Footer ONLY if NOT in dashboard AND NOT in Research Progress */}
+      {visibility && !isDashboard && !isResearchProgress && <Header />}
+      {visibility && !isDashboard && !isResearchProgress && <Menu />}
+      {visibility && !isDashboard && !isResearchProgress && <Footer />}
 
       {visibility && (
         <ErrorBoundary>
           <Suspense fallback={null}>
-            <Routes>
-              <Route exact path="/" element={<HomePage />} />
-              <Route path="/AcademicCV" element={<AcademicCV />} />
-              <Route path="/academiccv" element={<AcademicCV />} />
-              <Route exact path="/Graphene" element={<Graphene />} />
-              <Route path="/research-progress" element={<ResearchProgress />} />
-              <Route exact path="/admin" element={<AdminDashboard />} />
-              <Route exact path="/login" element={<Login />} />
-            </Routes>
+            <AnimatePresence mode="wait">
+              <Routes location={location} key={location.pathname}>
+                <Route exact path="/" element={<HomePage />} />
+                <Route path="/AcademicCV" element={<AcademicCV />} />
+                <Route path="/academiccv" element={<AcademicCV />} />
+                <Route exact path="/Graphene" element={<Graphene />} />
+                <Route path="/research-progress" element={<ResearchProgress />} />
+                <Route exact path="/admin" element={<AdminDashboard />} />
+                <Route exact path="/login" element={<Login />} />
+              </Routes>
+            </AnimatePresence>
           </Suspense>
         </ErrorBoundary>
       )}

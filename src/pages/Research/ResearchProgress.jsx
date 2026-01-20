@@ -88,14 +88,16 @@ const timelineData = [
 
 // --- Styled Components ---
 
-const PageContainer = styled.div`
+const PageContainer = styled(motion.div)`
   background-color: transparent;
   height: 100vh;
   width: 100vw;
   color: #fff;
   font-family: "Inter", sans-serif;
   overflow: hidden; /* NO SCROLL BAR */
-  position: relative;
+  position: absolute;
+  top: 0;
+  left: 0;
   touch-action: none; /* Prevent default touch scrolling */
 `;
 
@@ -784,7 +786,12 @@ export default function ResearchProgress() {
   }, { target: window });
 
   return (
-    <PageContainer>
+    <PageContainer
+      initial={{ opacity: 0, y: 100, scale: 0.9, filter: "blur(10px)" }}
+      animate={{ opacity: 1, y: 0, scale: 1, filter: "blur(0px)" }}
+      exit={{ opacity: 0, y: -100, scale: 0.9, filter: "blur(10px)", transition: { duration: 0.5 } }}
+      transition={{ type: "spring", stiffness: 50, damping: 15, mass: 1 }}
+    >
       <Header />
       <AnimatePresence>
         {activeSection === 0 && (
