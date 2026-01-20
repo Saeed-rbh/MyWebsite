@@ -690,11 +690,22 @@ button {
   }
   .resumee {
     justify-content: space-around;
-    width: -webkit-max-content !important;
-    width: -moz-max-content !important;
-    width: max-content !important;
-    flex: none;
-    position: absolute;
+    width: 100% !important;
+    position: relative;
+    margin-bottom: 30px;
+    flex: 1;
+  }
+  .HomePage-M-T-F {
+      flex-direction: column-reverse;
+      height: auto;
+      padding-bottom: 20px;
+  }
+  .HomeConsole {
+    position: relative; 
+    height: auto;
+    flex-direction: column;
+    padding: 20px 0;
+    margin-bottom: 0;
   }
   .social a {
     margin-right: 0;

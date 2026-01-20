@@ -21,6 +21,9 @@ const Footer = () => {
   const [resumeClicked, setResumeClicked] = useState(
     window.location.pathname.toLowerCase() === "/academiccv"
   );
+  const [researchClicked, setResearchClicked] = useState(
+    window.location.pathname.toLowerCase() === "/research-progress"
+  );
   const [isMouseHover, setMouseHover] = useState([false, null, null]);
   const [disapear, setDisapear] = useState(resumeClicked ? false : true);
 
@@ -29,6 +32,7 @@ const Footer = () => {
       setResumeClicked(false);
     } else {
       setResumeClicked(true);
+      setResearchClicked(true);
     }
   }, [location.pathname]);
 
@@ -55,6 +59,16 @@ const Footer = () => {
       navigate("/AcademicCV");
     }, 1000);
     setResumeClicked(true);
+  };
+  const handleClickResearch = () => {
+    dispatch(updateCurrentPage("/research-progress"));
+
+    handleButtonClick(false);
+
+    setTimeout(() => {
+      navigate("/research-progress");
+    }, 1000);
+    setResearchClicked(true);
   };
 
   useEffect(() => {
@@ -153,10 +167,12 @@ const Footer = () => {
             ></div>
             <ResumeInfo
               handleClickCV={handleClickCV}
+              handleClickResearch={handleClickResearch}
               resumeClicked={resumeClicked}
               MenuHide={visibility}
               screenWidth={screenWidth}
             />
+
           </animated.div>
         </animated.div>
       </div>
