@@ -139,10 +139,11 @@ const Title = styled(motion.h1)`
 `;
 
 const Subtitle = styled(motion.div)`
-  font-size: 1.3rem;
+  font-family: "Poppins", sans-serif;
+  font-size: 1.1rem;
   color: #a0a0a0;
   max-width: 900px;
-  line-height: 1.8;
+  line-height: 1;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -174,8 +175,13 @@ const HighlightBg = styled(motion.span)`
 const HighlightText = styled.span`
   position: relative;
   z-index: 1;
-  color: #fff;
-  font-weight: 600;
+  color: #ffffffbd;
+  font-weight: 200;
+  background: linear-gradient(to right, rgb(203 117 72 / 82%) 0%, rgb(221 181 160 / 80%) 50%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-decoration: none;
 `;
 
 // -- Chapter Styles --
@@ -334,6 +340,9 @@ const IndicatorContainer = styled.div`
   flex-direction: column;
   gap: 15px;
   z-index: 100;
+  padding: 25px 10px;
+  background: #d49d811c;
+  border-radius: 20px;
 
   @media (max-width: 768px) {
     right: 10px;
@@ -341,16 +350,30 @@ const IndicatorContainer = styled.div`
 `;
 
 const IndicatorDot = styled.div`
-  width: ${props => props.isActive ? "10px" : "6px"};
-  height: ${props => props.isActive ? "10px" : "6px"};
-  background-color: ${props => props.isActive ? "#d49d81" : "rgba(255,255,255,0.3)"};
-  border-radius: 50%;
-  transition: all 0.4s ease;
+  width: 6px;
+  height: ${props => props.isActive ? "40px" : "6px"}; /* Elongate active dot */
+  background-color: rgba(255, 255, 255, 0.3); /* Base track color */
+  border-radius: 10px; /* Pill shape */
+  transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1); /* Smoother transition */
   cursor: pointer;
+  position: relative;
+  overflow: hidden;
+
+  /* Fill indicator */
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: ${props => props.progress || 0}%;
+    background-color: #d49d81;
+    transition: height 0.4s ease;
+  }
   
   &:hover {
-    transform: scale(1.5);
-    background-color: #fff;
+    transform: scale(1.1); /* Subtle hover effect */
+    background-color: rgba(255, 255, 255, 0.5);
   }
 `;
 
@@ -698,7 +721,6 @@ const IntroSlide = () => {
           <React.Fragment key={i}>
             {word.type === "highlight" ? (
               <HighlightWrapper variants={fadeInUp}>
-                <HighlightBg layoutId="highlight" />
                 <HighlightText>{word.text}</HighlightText>
               </HighlightWrapper>
             ) : (
@@ -886,18 +908,33 @@ export default function ResearchProgress() {
       </AnimatePresence>
       {/* Navigation Indicators */}
       <IndicatorContainer>
-        {Array.from({ length: totalSections }).map((_, i) => (
-          <IndicatorDot
-            key={i}
-            isActive={i === activeSection}
-            onClick={() => {
-              if (isAnimating.current || i === activeSection) return;
-              const dir = i > activeSection ? 1 : -1;
-              setDirection(dir);
-              setActiveSection(i);
-            }}
-          />
-        ))}
+        {Array.from({ length: totalSections }).map((_, i) => {
+          let progress = 0;
+          if (i === activeSection) {
+            if (i === 0) {
+              progress = 100; // Intro is always "full" when active
+            } else {
+              const chapter = timelineData[i - 1];
+              const totalSteps = (chapter.links?.length || 0) + 1; // +1 for Intro
+              const currentStep = subStep + 2; // -1 -> 1, 0 -> 2...
+              progress = (currentStep / totalSteps) * 100;
+            }
+          }
+
+          return (
+            <IndicatorDot
+              key={i}
+              isActive={i === activeSection}
+              progress={progress}
+              onClick={() => {
+                if (isAnimating.current || i === activeSection) return;
+                const dir = i > activeSection ? 1 : -1;
+                setDirection(dir);
+                setActiveSection(i);
+              }}
+            />
+          );
+        })}
       </IndicatorContainer>
 
       <AnimatePresence initial={false} custom={direction}>
