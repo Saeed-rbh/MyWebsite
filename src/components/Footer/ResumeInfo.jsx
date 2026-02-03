@@ -43,7 +43,7 @@ const ResumeInfo = ({
         {!delayedResumeClicked && (
           <>
             <button onClick={handleClickCV}>RESUME</button>
-            <button onClick={handleClickResearch} style={Style_2} ref={Ref_2}>RESEARCH STORY</button>
+            <button onClick={handleClickResearch} style={Style_2} ref={Ref_2}><span>RESEARCH STORY</span></button>
           </>
         )}
       </animated.div>

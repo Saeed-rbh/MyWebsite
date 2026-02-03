@@ -756,6 +756,8 @@ button {
     flex: 1;
   }
 
+
+
   .HomePage-M-T-F {
     flex-direction: column-reverse;
     height: auto;
@@ -778,13 +780,27 @@ button {
     margin: 5px;
     padding: 20px 45px;
     border-radius: 32px;
-    background: black;
+    background: #030202;
     align-items: center;
     justify-content: center;
+    position: relative;
+    z-index: 1;
+    overflow: visible;
   }
+
+
 
   .social button:nth-of-type(2) {
     width: -webkit-fill-available;
+  }
+
+  .social button:nth-of-type(2) span {
+    background: linear-gradient(to right, rgb(203 117 72 / 82%) 0%, rgb(221 181 160 / 80%) 50%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-decoration: none;
+    font-weight: 700;
   }
 
   .social a {
