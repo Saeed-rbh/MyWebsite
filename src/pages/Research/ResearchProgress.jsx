@@ -201,8 +201,8 @@ const TextColumn = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: flex-start;
-  text-align: left;
+  align-items: center; /* Center content horizontally */
+  text-align: center; /* Center text */
 `;
 
 const VisualColumn = styled.div`
@@ -232,8 +232,8 @@ const CategoryLabel = styled(motion.h4)`
 
 const ChapterTitle = styled(motion.h2)`
   font-family: "Poppins", sans-serif;
-  font-size: 2.8rem;
-  font-weight: 200;
+  font-size: 1.5rem;
+  font-weight: 500;
   color: #fff;
   margin-bottom: 20px;
   z-index: 1;
@@ -268,26 +268,47 @@ const PaperItem = styled(motion.div)`
   }
 `;
 
-const PaperHeader = styled.div`
-  font-size: 0.95rem;
-  color: #fff;
-  margin-bottom: 6px;
+const FocusedPaperContainer = styled(motion.div)`
+  background: transparent;
+  padding: 0; /* Removed padding to fix alignment */
+  backdrop-filter: blur(8px); 
+  width: 100%;
+  max-width: 800px; /* Increased max-width for better desktop reading */
   display: flex;
-  align-items: baseline;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin: 0 auto;
+  box-sizing: border-box; /* Ensure padding doesn't affect width */
+`;
+
+const PaperHeader = styled.div`
+  font-family: "Poppins", sans-serif; /* Matched main app font */
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: #fff;
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;
 
 const PaperYear = styled.span`
-  font-weight: 800;
+  font-family: "Teko", sans-serif; /* Distinctive font for numbers if used in main app, or keep bold */
+  font-size: 1.4rem;
+  font-weight: 600;
   color: #d49d81;
   margin-right: 10px;
   flex-shrink: 0;
 `;
 
 const PaperFinding = styled.div`
-  font-size: 0.9rem;
-  color: #888;
+  font-family: "Inter", sans-serif; /* Clean body text */
+  font-size: 1rem;
+  color: #e0e0e0;
   font-weight: 300;
-  line-height: 1.4;
+  line-height: 1.6;
+  max-width: 700px; /* Limit line length for readability */
 `;
 
 // -- Visual Elements --
@@ -711,22 +732,42 @@ const ChapterSlide = ({ data }) => {
           {data.category}
         </CategoryLabel>
 
-        <motion.div variants={textStagger} initial="hidden" animate="visible">
-          <ChapterTitle variants={fadeInUp}>{data.title}</ChapterTitle>
-          <ChapterIntro variants={fadeInUp}>{data.intro}</ChapterIntro>
-
-          <PapersList>
-            {data.links?.map((link, i) => (
-              <PaperItem key={i} variants={fadeInUp}>
-                <PaperHeader>
-                  <PaperYear>{link.year}</PaperYear>
-                  {link.paperTitle}
-                </PaperHeader>
-                <PaperFinding>{link.finding}</PaperFinding>
-              </PaperItem>
-            ))}
-          </PapersList>
-        </motion.div>
+        <AnimatePresence mode="wait">
+          {data.subStep === -1 ? (
+            <motion.div
+              key="intro"
+              variants={textStagger}
+              initial="hidden"
+              animate="visible"
+              exit={{ opacity: 0, x: -50, transition: { duration: 0.3 } }}
+              style={{ width: "100%" }}
+            >
+              <ChapterTitle variants={fadeInUp}>{data.title}</ChapterTitle>
+              <ChapterIntro variants={fadeInUp}>{data.intro}</ChapterIntro>
+            </motion.div>
+          ) : (
+            <motion.div
+              key={`paper-${data.subStep}`}
+              initial={{ opacity: 0, x: 50 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: -50, transition: { duration: 0.3 } }}
+              transition={{ duration: 0.5 }}
+              style={{ width: "100%" }}
+            >
+              {data.links[data.subStep] && (
+                <FocusedPaperContainer>
+                  <PaperHeader style={{ fontSize: '1.6rem', marginBottom: '20px', flexDirection: 'column', alignItems: 'center' }}>
+                    <PaperYear style={{ fontSize: '2rem', marginRight: '0', marginBottom: '10px' }}>{data.links[data.subStep].year}</PaperYear>
+                    {data.links[data.subStep].paperTitle}
+                  </PaperHeader>
+                  <PaperFinding style={{ fontSize: '1.2rem', lineHeight: '1.6', color: '#ddd' }}>
+                    {data.links[data.subStep].finding}
+                  </PaperFinding>
+                </FocusedPaperContainer>
+              )}
+            </motion.div>
+          )}
+        </AnimatePresence>
       </TextColumn>
 
       <VisualColumn>
@@ -751,6 +792,7 @@ const ChapterSlide = ({ data }) => {
 export default function ResearchProgress() {
   const [activeSection, setActiveSection] = useState(0);
   const [direction, setDirection] = useState(0);
+  const [subStep, setSubStep] = useState(-1); // New state for sequential reveal
   const isAnimating = useRef(false);
   const totalSections = timelineData.length + 1; // 1 Intro + Chapters
 
@@ -758,19 +800,55 @@ export default function ResearchProgress() {
   const changeSection = useCallback((newDir) => {
     if (isAnimating.current) return;
 
-    const nextSection = activeSection + newDir;
+    if (newDir > 0) {
+      // Scroll Down
+      if (activeSection > 0) {
+        const currentChapterItems = timelineData[activeSection - 1].links.length;
+        if (subStep < currentChapterItems - 1) {
+          setSubStep(prev => prev + 1);
+          return;
+        }
+      }
 
-    if (nextSection >= 0 && nextSection < totalSections) {
-      isAnimating.current = true;
-      setDirection(newDir);
-      setActiveSection(nextSection);
+      const nextSection = activeSection + 1;
+      if (nextSection < totalSections) {
+        isAnimating.current = true;
+        setDirection(newDir);
+        setActiveSection(nextSection);
+        setSubStep(-1); // Reset for new section
 
-      // Unlock animation after delay matching the transition duration
-      setTimeout(() => {
-        isAnimating.current = false;
-      }, 1000);
+        setTimeout(() => {
+          isAnimating.current = false;
+        }, 1000);
+      }
+
+    } else {
+      // Scroll Up
+      if (activeSection > 0 && subStep > -1) {
+        setSubStep(prev => prev - 1);
+        return;
+      }
+
+      const prevSection = activeSection - 1;
+      if (prevSection >= 0) {
+        isAnimating.current = true;
+        setDirection(newDir);
+        setActiveSection(prevSection);
+
+        // When going back to a previous chapter, show all items immediately
+        if (prevSection > 0) {
+          const prevChapterItems = timelineData[prevSection - 1].links.length;
+          setSubStep(prevChapterItems - 1);
+        } else {
+          setSubStep(-1);
+        }
+
+        setTimeout(() => {
+          isAnimating.current = false;
+        }, 1000);
+      }
     }
-  }, [activeSection, totalSections]);
+  }, [activeSection, totalSections, subStep]);
 
   // Gestures
   useWheel(({ delta: [, dy] }) => {
@@ -834,7 +912,7 @@ export default function ResearchProgress() {
           {activeSection === 0 ? (
             <IntroSlide />
           ) : (
-            <ChapterSlide data={timelineData[activeSection - 1]} />
+            <ChapterSlide data={{ ...timelineData[activeSection - 1], subStep }} />
           )}
         </SlideContainer>
       </AnimatePresence>
