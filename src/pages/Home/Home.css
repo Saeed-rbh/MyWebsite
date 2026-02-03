@@ -786,6 +786,11 @@ button {
     position: relative;
     z-index: 1;
     overflow: visible;
+    transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  }
+
+  .social button:active {
+    transform: scale(0.95);
   }
 
 
