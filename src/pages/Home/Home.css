@@ -778,7 +778,7 @@ button {
 
   .social button {
     margin: 5px;
-    padding: 20px 45px;
+    padding: 18px 45px;
     border-radius: 32px;
     background: #030202;
     align-items: center;
@@ -909,6 +909,10 @@ button {
   } */
   .resumee {
     width: 80% !important;
+  }
+
+  .HomeConsole {
+    bottom: 20px;
   }
 
   .HomePage-M-T-R {
