@@ -39,22 +39,61 @@
     overflow: hidden;
 }
 
+/* Container - Default (Desktop "Phone Frame") */
 .mafia-container {
     width: 100%;
     max-width: 400px;
     height: 90vh;
+    /* Fixed height for frame */
+    max-height: 850px;
     display: flex;
     flex-direction: column;
     position: relative;
+    overflow: hidden;
 
-    /* Glassmorphism Container */
+    /* Glassmorphism + Phone Frame */
     background: var(--mafia-glass);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border: 1px solid var(--mafia-glass-border);
-    border-radius: var(--radius-lg);
-    box-shadow: var(--mafia-glass-shadow);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+
+    /* Phone Frame Style */
+    border: 8px solid rgba(255, 255, 255, 0.1);
+    border-radius: 40px;
+    /* Rounder corners */
+    box-shadow:
+        0 0 0 2px rgba(0, 0, 0, 0.5),
+        /* Inner bezel alignment */
+        0 25px 50px -12px rgba(0, 0, 0, 0.5),
+        /* Deep shadow */
+        0 0 0 1px rgba(255, 255, 255, 0.1) inset;
+    /* Inner light */
+
     padding: 20px;
+    padding-bottom: 30px;
+    /* Safe area */
+    transition: all 0.3s ease;
+}
+
+/* Mobile - Remove Frame, Full Screen */
+@media (max-width: 450px) {
+    .mafia-container {
+        width: 100%;
+        max-width: 100%;
+        height: 100vh;
+        max-height: none;
+        border: none;
+        border-radius: 0;
+        box-shadow: none;
+        background: rgba(0, 0, 0, 0.2);
+        /* Slightly darker on mobile */
+        padding-top: 40px;
+        /* Status bar space */
+    }
+
+    .mafia-wrapper {
+        align-items: flex-start;
+        /* Align to top on mobile */
+    }
 }
 
 .fade-in {
@@ -293,6 +332,7 @@
     position: relative;
     overflow: hidden;
     margin-top: 15px;
+    justify-content: center;
 }
 
 .start-button::after {
@@ -523,8 +563,9 @@
 }
 
 /* --- DASHBOARD --- */
+/* --- DASHBOARD POLISH --- */
 .dashboard-mode {
-    padding: 20px;
+    padding: 10px;
 }
 
 .dashboard-header {
@@ -536,70 +577,173 @@
     margin-bottom: 20px;
 }
 
+.dashboard-logo {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+}
+
 .header-text h2 {
     font-family: 'Cinzel', serif;
-    font-size: 1.3rem;
+    font-size: 1.5rem;
     margin: 0;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+    letter-spacing: 1px;
+}
+
+.header-text p {
+    font-size: 0.8rem;
+    color: var(--mafia-text-muted);
+    margin: 2px 0 0 0;
+}
+
+.reset-button {
+    margin-left: auto;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: var(--mafia-white);
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.reset-button:hover {
+    background: var(--mafia-red);
+    border-color: var(--mafia-red);
 }
 
 .players-list {
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 12px;
+    padding-bottom: 80px;
+    /* Space for scrolling */
 }
 
 .player-row {
     display: flex;
     align-items: center;
-    background: rgba(255, 255, 255, 0.05);
+    background: linear-gradient(90deg, rgba(255, 255, 255, 0.03) 0%, rgba(255, 255, 255, 0.01) 100%);
     backdrop-filter: blur(5px);
-    padding: 12px 18px;
-    border-radius: var(--radius-md);
+    padding: 12px;
+    border-radius: 16px;
+    /* Pill shape */
     border: 1px solid rgba(255, 255, 255, 0.05);
-    transition: all 0.2s;
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    position: relative;
+    overflow: hidden;
 }
 
-.player-row.team-mafia {
-    border-left: 4px solid var(--mafia-red);
+/* Status Indicators */
+.player-row.dead {
+    opacity: 0.6;
+    filter: grayscale(0.8);
 }
 
-.player-row.team-town {
-    border-left: 4px solid var(--mafia-green);
+.player-row.dead::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(45deg,
+            rgba(0, 0, 0, 0.2),
+            rgba(0, 0, 0, 0.2) 10px,
+            rgba(0, 0, 0, 0.3) 10px,
+            rgba(0, 0, 0, 0.3) 20px);
+    pointer-events: none;
 }
 
 .player-row:hover {
-    transform: translateX(2px);
+    transform: translateY(-2px);
     background: rgba(255, 255, 255, 0.08);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.player-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.1);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 12px;
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: rgba(255, 255, 255, 0.8);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    flex-shrink: 0;
+}
+
+.team-mafia .player-avatar {
+    background: linear-gradient(135deg, #331111, #111);
+    border-color: rgba(255, 75, 75, 0.3);
+    color: var(--mafia-red);
+}
+
+.team-town .player-avatar {
+    background: linear-gradient(135deg, #0a2210, #111);
+    border-color: rgba(0, 230, 118, 0.3);
+    color: var(--mafia-green);
+}
+
+.player-details {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
 }
 
 .p-role-main {
-    font-weight: 600;
-    font-size: 1.05rem;
+    font-weight: 700;
+    font-size: 1rem;
     color: var(--mafia-white);
+    letter-spacing: 0.5px;
+}
+
+.p-role-sub {
+    font-size: 0.75rem;
+    color: var(--mafia-text-muted);
+    margin-top: 2px;
+}
+
+/* Action Toggles */
+.player-actions {
+    display: flex;
+    gap: 8px;
 }
 
 .action-btn {
     width: 36px;
     height: 36px;
-    background: rgba(255, 255, 255, 0.05);
+    border-radius: 12px;
     border: none;
-    border-radius: 50%;
-    color: #aaa;
+    background: rgba(255, 255, 255, 0.05);
+    color: rgba(255, 255, 255, 0.4);
+    cursor: pointer;
     display: flex;
     justify-content: center;
     align-items: center;
-    cursor: pointer;
+    font-size: 1.1rem;
     transition: all 0.2s;
 }
 
 .action-btn:hover {
-    background: rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.1);
     color: #fff;
-    transform: scale(1.1);
 }
 
 .dead-btn.active {
-    background: var(--mafia-red);
+    background: rgba(255, 75, 75, 0.2);
+    color: var(--mafia-red);
+    border: 1px solid rgba(255, 75, 75, 0.3);
+    box-shadow: 0 0 10px rgba(255, 75, 75, 0.1);
+}
+
+.elim-btn.active {
+    background: rgba(255, 255, 255, 0.2);
     color: #fff;
-    box-shadow: 0 0 10px rgba(255, 75, 75, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.3);
 }

@@ -158,11 +158,7 @@ const Mafia = () => {
         setCurrentPlayerIndex(0);
     };
 
-    const togglePlayerStatus = (id, field) => {
-        setPlayers(players.map(p =>
-            p.id === id ? { ...p, [field]: !p[field] } : p
-        ));
-    };
+    // togglePlayerStatus removed as it's no longer needed for the new flow
 
     // --- RENDERERS ---
 
@@ -286,53 +282,61 @@ const Mafia = () => {
         );
     };
 
-    const renderDashboard = () => (
-        <div className="mafia-container dashboard-mode fade-in">
-            <div className="dashboard-header">
-                <img src={mafiaLogo} alt="Mafia" className="dashboard-logo" />
-                <div className="header-text">
-                    <h2>GOD'S EYES</h2>
-                    <p>Game Status Overview</p>
-                </div>
-                <button className="reset-button" onClick={resetGame}>RESTART</button>
-            </div>
+    const renderStatistics = () => {
+        const mafiaCount = players.filter(p => p.team === 'mafia').length;
+        const townCount = players.filter(p => p.team === 'town').length;
 
-            <div className="players-list">
-                {players.map(player => (
-                    <div key={player.id} className={`player-row ${player.isDead ? 'dead' : ''} ${player.isEliminated ? 'eliminated' : ''} team-${player.team}`}>
-                        <div className="player-id">#{player.id}</div>
-                        <div className="player-details">
-                            <span className="p-role-main">{player.role}</span>
-                            <span className="p-role-sub">{player.label}</span>
+        return (
+            <div className="mafia-container statistics-mode fade-in">
+                <div className="stats-header">
+                    <img src={mafiaLogo} alt="Mafia" className="stats-logo" />
+                    <div className="stats-title-group">
+                        <h2>GAME READY</h2>
+                        <p>Roles Assigned Successfully</p>
+                    </div>
+                </div>
+
+                <div className="stats-content">
+                    <div className="stat-card total-card">
+                        <span className="sc-label">TOTAL PLAYERS</span>
+                        <span className="sc-value">{players.length}</span>
+                    </div>
+
+                    <div className="stat-row">
+                        <div className="stat-card team-mafia">
+                            <span className="sc-value">{mafiaCount}</span>
+                            <span className="sc-label">MAFIA</span>
                         </div>
-                        <div className="player-actions">
-                            <button
-                                className={`action-btn dead-btn ${player.isDead ? 'active' : ''}`}
-                                onClick={() => togglePlayerStatus(player.id, 'isDead')}
-                                title="Kill/Revive"
-                            >
-                                ☠
-                            </button>
-                            <button
-                                className={`action-btn elim-btn ${player.isEliminated ? 'active' : ''}`}
-                                onClick={() => togglePlayerStatus(player.id, 'isEliminated')}
-                                title="Eliminate/Return"
-                            >
-                                ✕
-                            </button>
+                        <div className="stat-card team-town">
+                            <span className="sc-value">{townCount}</span>
+                            <span className="sc-label">TOWN</span>
                         </div>
                     </div>
-                ))}
+
+                    <div className="enjoy-message">
+                        <p>
+                            All identities are hidden.<br />
+                            The City is now in your hands.
+                        </p>
+                        <h3>HAVE FUN!</h3>
+                    </div>
+                </div>
+
+                <div className="action-area">
+                    <button className="start-button new-game-btn" onClick={resetGame}>
+                        START NEW GAME
+                    </button>
+                </div>
             </div>
-        </div>
-    );
+        );
+    };
 
     return (
         <div className="mafia-wrapper">
             {gameState === "setup" && renderSetup()}
             {gameState === "playing" && !isRoleRevealed && renderPassToPlayer()}
             {gameState === "playing" && isRoleRevealed && renderRoleReveal()}
-            {gameState === "dashboard" && renderDashboard()}
+            {gameState === "dashboard" && renderStatistics()}
         </div>
     );
 };
