@@ -21,6 +21,7 @@ import Loader from "./Loader/Loader";
 const AdminDashboard = lazy(() => import("./pages/Admin/AdminDashboard"));
 const Login = lazy(() => import("./pages/Admin/Login"));
 const ResearchProgress = lazy(() => import("./pages/Research/ResearchProgress"));
+const Mafia = lazy(() => import("./pages/Mafia/Mafia"));
 
 import { HelmetProvider } from "react-helmet-async";
 
@@ -32,6 +33,7 @@ function AppContent() {
   // Hide global elements on Admin Dashboard, Login page
   const isDashboard = location.pathname.startsWith('/admin') || location.pathname === '/login';
   const isResearchProgress = location.pathname === '/research-progress';
+  const isMafia = location.pathname === '/Mafia';
 
   return (
     <div className="App">
@@ -41,10 +43,10 @@ function AppContent() {
       {/* Show Mouse everywhere except Admin/Login */}
       {visibility && !isDashboard && <Mouse />}
 
-      {/* Show Header, Menu, Footer ONLY if NOT in dashboard AND NOT in Research Progress */}
-      {visibility && !isDashboard && !isResearchProgress && <Header />}
-      {visibility && !isDashboard && !isResearchProgress && <Menu />}
-      {visibility && !isDashboard && !isResearchProgress && <Footer />}
+      {/* Show Header, Menu, Footer ONLY if NOT in dashboard AND NOT in Research Progress AND NOT Mafia */}
+      {visibility && !isDashboard && !isResearchProgress && !isMafia && <Header />}
+      {visibility && !isDashboard && !isResearchProgress && !isMafia && <Menu />}
+      {visibility && !isDashboard && !isResearchProgress && !isMafia && <Footer />}
 
       {visibility && (
         <ErrorBoundary>
@@ -56,6 +58,7 @@ function AppContent() {
                 <Route path="/academiccv" element={<AcademicCV />} />
                 <Route exact path="/Graphene" element={<Graphene />} />
                 <Route path="/research-progress" element={<ResearchProgress />} />
+                <Route path="/Mafia" element={<Mafia />} />
                 <Route exact path="/admin" element={<AdminDashboard />} />
                 <Route exact path="/login" element={<Login />} />
               </Routes>

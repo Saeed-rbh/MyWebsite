@@ -1,0 +1,605 @@
+/* Mafia.css */
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Inter:wght@300;400;500;600;800&display=swap');
+
+:root {
+    --mafia-glass: rgba(255, 255, 255, 0.08);
+    --mafia-glass-border: rgba(255, 255, 255, 0.15);
+    --mafia-glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5);
+
+    --mafia-red: #ff4b4b;
+    --mafia-green: #00e676;
+    --mafia-gold: #ffd700;
+    --mafia-white: #ffffff;
+    --mafia-text-muted: rgba(255, 255, 255, 0.6);
+
+    --radius-lg: 24px;
+    --radius-md: 16px;
+    --radius-sm: 12px;
+}
+
+.mafia-wrapper {
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 0;
+    margin: 0;
+    background-color: #050505;
+    /* Deep, rich gradient background to make glass pop */
+    background-image:
+        radial-gradient(circle at 20% 30%, #4a0000 0%, transparent 40%),
+        radial-gradient(circle at 80% 70%, #1a1a1a 0%, transparent 40%),
+        linear-gradient(135deg, #0f0f0f 0%, #000 100%);
+    min-height: 100vh;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Inter', sans-serif;
+    color: var(--mafia-white);
+    overflow: hidden;
+}
+
+.mafia-container {
+    width: 100%;
+    max-width: 400px;
+    height: 90vh;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+
+    /* Glassmorphism Container */
+    background: var(--mafia-glass);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid var(--mafia-glass-border);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--mafia-glass-shadow);
+    padding: 20px;
+}
+
+.fade-in {
+    animation: fadeIn 0.5s ease-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.98);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* --- LOGO --- */
+.setup-top-section {
+    display: flex;
+    /* Keep original flex */
+    align-items: center;
+    justify-content: flex-start;
+    /* Added flex-start */
+    gap: 20px;
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.logo-container {
+    /* flex: 1; */
+    display: flex;
+    /* justify-content: flex-end; */
+    align-items: center;
+    margin-bottom: 0;
+}
+
+.mafia-logo {
+    width: 80px;
+    /* Slightly smaller to fit */
+    height: 80px;
+    border-radius: 50%;
+    border: 3px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    object-fit: cover;
+}
+
+/* --- SETUP MODE --- */
+.setup-mode {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.setup-header {
+    /* flex: 1; */
+    text-align: left;
+    margin-bottom: 0;
+    border-bottom: none;
+    padding-bottom: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-left: 20px;
+}
+
+.setup-header h1 {
+    font-family: 'Cinzel', serif;
+    font-weight: 700;
+    font-size: 1.4rem;
+    /* Adjusted size */
+    letter-spacing: 1.5px;
+    margin: 0 0 5px 0;
+    color: var(--mafia-white);
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+    line-height: 1.1;
+}
+
+.total-players-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: rgba(0, 0, 0, 0.3);
+    padding: 4px 12px;
+    border-radius: 50px;
+    margin-top: 5px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    align-self: flex-start;
+    /* Align to left */
+    margin-left: -8px;
+}
+
+.total-players-badge .label {
+    font-size: 0.7rem;
+    font-weight: 700;
+    color: var(--mafia-text-muted);
+    letter-spacing: 1px;
+}
+
+.total-players-badge .value {
+    font-size: 1.1rem;
+    font-weight: 800;
+    color: var(--mafia-green);
+}
+
+.roles-grid {
+    flex: 1;
+    overflow-y: auto;
+    padding-right: 8px;
+    padding-left: 4px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.roles-grid::-webkit-scrollbar {
+    width: 5px;
+}
+
+.roles-grid::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 10px;
+}
+
+.group-header {
+    font-size: 0.75rem;
+    font-weight: 800;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+    padding-left: 10px;
+    border-left: 3px solid transparent;
+}
+
+.mafia-group .group-header {
+    color: var(--mafia-red);
+    border-left-color: var(--mafia-red);
+}
+
+.town-group .group-header {
+    color: var(--mafia-green);
+    border-left-color: var(--mafia-green);
+}
+
+.config-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 15px;
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: var(--radius-md);
+    margin-bottom: 8px;
+    transition: all 0.2s;
+}
+
+.config-item:hover {
+    background: rgba(255, 255, 255, 0.06);
+}
+
+.config-item label {
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.counter-control {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 50px;
+    padding: 3px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.counter-control button {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    border: none;
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--mafia-white);
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.2s;
+}
+
+.counter-control button:hover:not(:disabled) {
+    background: var(--mafia-white);
+    color: #000;
+    transform: scale(1.1);
+}
+
+.counter-control button:disabled {
+    opacity: 0.2;
+    cursor: default;
+}
+
+.counter-control span {
+    width: 20px;
+    text-align: center;
+    font-weight: 700;
+    color: var(--mafia-white);
+}
+
+.counter-control span.active-count {
+    color: var(--mafia-gold);
+}
+
+.action-area {
+    /* margin-top: 20px; */
+    flex-shrink: 0;
+}
+
+.start-button {
+    width: 100%;
+    padding: 20px;
+    background: linear-gradient(135deg, #ffd700 0%, #b8860b 100%);
+    color: #1a1a1a;
+    border: none;
+    border-radius: 50px;
+    font-family: 'Cinzel', serif;
+    font-size: 1.3rem;
+    font-weight: 900;
+    letter-spacing: 3px;
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+    box-shadow: 0 10px 30px rgba(255, 215, 0, 0.3);
+    text-transform: uppercase;
+    position: relative;
+    overflow: hidden;
+    margin-top: 15px;
+}
+
+.start-button::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.6), transparent);
+    transition: 0.6s;
+}
+
+.start-button:hover:not(:disabled)::after {
+    left: 100%;
+}
+
+.start-button:hover:not(:disabled) {
+    transform: translateY(-4px) scale(1.02);
+    box-shadow: 0 15px 40px rgba(255, 215, 0, 0.5);
+    filter: brightness(1.1);
+}
+
+.start-button:active:not(:disabled) {
+    transform: translateY(-2px) scale(0.98);
+    box-shadow: 0 5px 15px rgba(255, 215, 0, 0.3);
+}
+
+.start-button:disabled {
+    background: #2a2a2a;
+    color: #555;
+    cursor: not-allowed;
+    box-shadow: none;
+    border: 1px solid #333;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* --- CARD FLIP --- */
+.play-mode {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    perspective: 3000px;
+    /* Reduced perspective intensity */
+    flex: 1;
+}
+
+.card-perspective {
+    display: contents;
+}
+
+.game-card {
+    width: 90%;
+    max-width: 600px;
+    height: 500px;
+    position: relative;
+    transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    transform-style: preserve-3d;
+}
+
+.game-card.flipped {
+    transform: rotateY(180deg);
+}
+
+.card-front,
+.card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    /* Glass Card */
+    background: rgba(20, 20, 20, 0.8);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: var(--radius-lg);
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    /* Better vertical distribution */
+    align-items: center;
+    padding: 30px;
+    /* Reduced vertical padding might help, or space-between does the work */
+    box-sizing: border-box;
+}
+
+.card-front {
+    background: linear-gradient(135deg, rgba(30, 30, 30, 0.95), rgba(0, 0, 0, 0.95));
+}
+
+.card-logo-sm img {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    border: 3px solid rgba(255, 255, 255, 0.1);
+    margin-bottom: 30px;
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.05);
+}
+
+.card-front h2 {
+    font-family: 'Cinzel', serif;
+    font-size: 2.2rem;
+    color: var(--mafia-white);
+    margin: 0 0 10px 0;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+}
+
+.instruction {
+    font-family: 'Inter', sans-serif;
+    color: var(--mafia-text-muted);
+    font-weight: 300;
+    margin-bottom: 40px;
+}
+
+.reveal-trigger {
+    padding: 16px 32px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 50px;
+    color: var(--mafia-white);
+    font-weight: 600;
+    letter-spacing: 2px;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.reveal-trigger:hover {
+    background: rgba(255, 255, 255, 0.15);
+    border-color: rgba(255, 255, 255, 0.4);
+    transform: scale(1.05);
+}
+
+/* BACK DESIGN */
+.card-back {
+    background: #0f0f0f;
+    /* Black background */
+    background-image: linear-gradient(135deg, #151515 0%, #0a0a0a 100%);
+    /* Subtle texture */
+    color: var(--mafia-white);
+    /* White text */
+    transform: rotateY(180deg);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Team specific styles removed for uniform look */
+.card-back.team-mafia,
+.card-back.team-town {
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    /* Standard border */
+}
+
+.role-header {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 30px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    /* Lighter border */
+    padding-bottom: 15px;
+    font-weight: 700;
+    color: #888;
+}
+
+.team-mafia .team-badge,
+.team-town .team-badge {
+    color: var(--mafia-white);
+    /* Uniform white color */
+}
+
+.role-title {
+    font-family: 'Cinzel', serif;
+    font-size: 2.8rem;
+    color: var(--mafia-white);
+    /* White title */
+    margin: 0;
+    line-height: 1;
+}
+
+.role-label {
+    font-size: 1.6rem;
+    color: #aaa;
+    /* Lighter label */
+    margin: 5px 0 20px 0;
+    font-weight: 500;
+}
+
+.role-description {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 25px;
+    border-radius: var(--radius-md);
+    color: #ddd;
+    line-height: 1.7;
+    text-align: center;
+    font-size: 1.1rem;
+    margin: 20px auto;
+    /* width: 100%; */
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.confirm-button {
+    width: 100%;
+    margin-top: auto;
+    padding: 16px;
+    background: #000;
+    color: #fff;
+    border: none;
+    border-radius: var(--radius-lg);
+    font-weight: 700;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: transform 0.2s;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.confirm-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* --- DASHBOARD --- */
+.dashboard-mode {
+    padding: 20px;
+}
+
+.dashboard-header {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    margin-bottom: 20px;
+}
+
+.header-text h2 {
+    font-family: 'Cinzel', serif;
+    font-size: 1.3rem;
+    margin: 0;
+}
+
+.players-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.player-row {
+    display: flex;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(5px);
+    padding: 12px 18px;
+    border-radius: var(--radius-md);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    transition: all 0.2s;
+}
+
+.player-row.team-mafia {
+    border-left: 4px solid var(--mafia-red);
+}
+
+.player-row.team-town {
+    border-left: 4px solid var(--mafia-green);
+}
+
+.player-row:hover {
+    transform: translateX(2px);
+    background: rgba(255, 255, 255, 0.08);
+}
+
+.p-role-main {
+    font-weight: 600;
+    font-size: 1.05rem;
+    color: var(--mafia-white);
+}
+
+.action-btn {
+    width: 36px;
+    height: 36px;
+    background: rgba(255, 255, 255, 0.05);
+    border: none;
+    border-radius: 50%;
+    color: #aaa;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.action-btn:hover {
+    background: rgba(255, 255, 255, 0.2);
+    color: #fff;
+    transform: scale(1.1);
+}
+
+.dead-btn.active {
+    background: var(--mafia-red);
+    color: #fff;
+    box-shadow: 0 0 10px rgba(255, 75, 75, 0.4);
+}
