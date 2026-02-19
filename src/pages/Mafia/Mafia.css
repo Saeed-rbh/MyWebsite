@@ -83,19 +83,18 @@
     /* Increased breakpoint for better coverage */
     .mafia-wrapper {
         align-items: flex-start;
-        /* Align to top on mobile */
         padding: 0;
         height: 100vh;
-        /* Dynamic Viewport Height */
-        overflow-y: auto;
-        -webkit-overflow-scrolling: touch;
-        /* Prevent body scroll */
+        height: 90vh;
+        overflow: hidden;
+        padding-top: 5vh;
+        overflow: scroll;
     }
 
     .mafia-container {
         width: 100%;
         max-width: 100%;
-        height: 60%;
+        height: 90%;
         max-height: none;
         border: none;
         border-radius: 0;
@@ -106,7 +105,7 @@
         padding-bottom: max(20px, env(safe-area-inset-bottom));
         display: flex;
         flex-direction: column;
-        min-height: 90vh;
+        overflow-y: auto;
     }
 
 }
