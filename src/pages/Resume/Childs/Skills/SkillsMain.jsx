@@ -23,7 +23,10 @@ const SkillsMain = ({
   };
   const Anim = useSpring({
     marginTop: isActive ? 70 : 55,
-    padding: "0px 50px 0px 20px",
+    padding: "0px 50px 60px 20px",
+    overflow: isActive ? "auto" : "hidden",
+    height: isActive ? "calc(100% - 85px)" : "100%",
+    flexWrap: "nowrap",
   });
 
   const SkillSoftwares = List.map((Skill, index) => (

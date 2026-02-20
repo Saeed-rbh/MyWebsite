@@ -22,7 +22,9 @@ const ConferanceMain = ({
 
   const Anim = useSpring({
     marginTop: isActive ? 60 : (List[0] && getLength(List[0]) > 90) ? 45 : 58,
-    padding: "0 30px",
+    padding: "0 30px 60px",
+    overflow: isActive ? "auto" : "hidden",
+    height: isActive ? "calc(100% - 75px)" : "100%",
   });
   const Conferences = List.map((Conferences, index) => (
     <animated.div
