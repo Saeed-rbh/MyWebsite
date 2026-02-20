@@ -114,10 +114,21 @@ const InteractiveDiv = (props) => {
 
     let activeHeight = size[0];
     if (ParentRef?.current?.scrollHeight) {
-      // Enforce 10px from bottom rule: Total Height = Viewport - (ModifyTop + 10) (top) - 10px (bottom)
-      const calculatedHeight = viewportHeight - (ModifyTop + 10) - 10;
-      activeHeight = calculatedHeight > 150 ? calculatedHeight : Math.max(150, viewportHeight - ModifyTop - 10);
-      fullView = true;
+      const parentScrollHeight = ParentRef.current.scrollHeight;
+      const marginOffset = ParentRef.current.offsetTop + 25;
+      const totalContentHeight = parentScrollHeight + marginOffset;
+
+      const maxAvailableSpace = viewportHeight - (ModifyTop + 10) - 10;
+
+      if (maxAvailableSpace > totalContentHeight) {
+        // Fits entirely within the screen without scrolling
+        activeHeight = totalContentHeight;
+        fullView = false;
+      } else {
+        // Doesn't fit, clamp to maximum available space
+        activeHeight = maxAvailableSpace > 150 ? maxAvailableSpace : Math.max(150, viewportHeight - ModifyTop - 10);
+        fullView = true;
+      }
     }
     const notActiveHeight = size[0];
     return { activeHeight, notActiveHeight, fullView };
@@ -166,8 +177,26 @@ const InteractiveDiv = (props) => {
     let newAdjustedTop = top + (!stages[1] ? adjustTop : !stages[2] ? -60 : 0);
 
     if (isActive) {
-      // Align to just below the header (ModifyTop) + 10px padding
-      newAdjustedTop = scrollTop + ModifyTop + 10;
+      if (!fullView) {
+        // Component is short enough to fit on screen.
+        // It wants to be at `newAdjustedTop`.
+        // However, if `newAdjustedTop + activeHeight` > `scrollTop + viewportHeight - 10px`, it should slide UP to fit.
+        // Also, it should NEVER slide higher than just below the menu (`scrollTop + ModifyTop + 10`).
+
+        const idealBottom = newAdjustedTop + activeHeight;
+        const maxBottom = scrollTop + viewportHeight - 10;
+
+        if (idealBottom > maxBottom) {
+          // Slide it up so its bottom matches the viewport bottom margin
+          newAdjustedTop -= (idealBottom - maxBottom);
+        }
+
+        // Clamp top to never overlap the menu
+        newAdjustedTop = Math.max(newAdjustedTop, scrollTop + ModifyTop + 10);
+      } else {
+        // Align to just below the header (ModifyTop) + 10px padding
+        newAdjustedTop = scrollTop + ModifyTop + 10;
+      }
     }
 
     console.log("InteractiveDiv Debug:", { name, isActive, fullView, activeHeight, newAdjustedTop });
