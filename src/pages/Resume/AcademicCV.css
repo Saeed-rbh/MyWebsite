@@ -1474,3 +1474,10 @@
     font-size: 40px;
   }
 }
+@media (max-width: 768px) {
+  .CVHeader p {
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+}
+
