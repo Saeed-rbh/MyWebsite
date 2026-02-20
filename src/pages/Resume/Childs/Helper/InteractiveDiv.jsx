@@ -114,8 +114,8 @@ const InteractiveDiv = (props) => {
 
     let activeHeight = size[0];
     if (ParentRef?.current?.scrollHeight) {
-      // Unconditionally Enforce 10px from bottom rule: Total Height = Viewport - 500px (top) - 10px (bottom)
-      const calculatedHeight = viewportHeight - 500 - 10;
+      // Enforce 10px from bottom rule: Total Height = Viewport - (ModifyTop + 10) (top) - 10px (bottom)
+      const calculatedHeight = viewportHeight - (ModifyTop + 10) - 10;
       activeHeight = calculatedHeight > 150 ? calculatedHeight : Math.max(150, viewportHeight - ModifyTop - 10);
       fullView = true;
     }
@@ -166,9 +166,8 @@ const InteractiveDiv = (props) => {
     let newAdjustedTop = top + (!stages[1] ? adjustTop : !stages[2] ? -60 : 0);
 
     if (isActive) {
-      // Always align to exactly 500px from the top when active
-      // Fallback to ModifyTop on very small screens where activeHeight is explicitly constrained to 150px
-      newAdjustedTop = scrollTop + (activeHeight === 150 ? ModifyTop : 500);
+      // Align to just below the header (ModifyTop) + 10px padding
+      newAdjustedTop = scrollTop + ModifyTop + 10;
     }
 
     console.log("InteractiveDiv Debug:", { name, isActive, fullView, activeHeight, newAdjustedTop });
