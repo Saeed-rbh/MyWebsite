@@ -788,6 +788,36 @@
     flex: 1;
 }
 
+.textAreaWrapper {
+    width: 100%;
+}
+
+.fieldTextArea {
+    width: -webkit-fill-available;
+    width: 100%;
+    min-height: 100px;
+    padding: 14px 16px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 10px;
+    font-size: 0.95rem;
+    transition: all 0.2s ease;
+    box-sizing: border-box;
+    background: rgba(0, 0, 0, 0.25);
+    color: #ffffff;
+    font-family: inherit;
+    resize: vertical;
+}
+
+.fieldTextArea:focus {
+    border-color: #b96032;
+    outline: none;
+    background: rgba(0, 0, 0, 0.35);
+}
+
+.fieldTextArea::placeholder {
+    color: rgba(255, 255, 255, 0.25);
+}
+
 /* Add Button */
 .addBtn {
     margin-top: 24px;

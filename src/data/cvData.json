@@ -17,8 +17,9 @@
                 "dateOfBirth": "15.02.1995",
                 "caPhone": "+1 (416) 836-5851",
                 "email": "sarabha@yorku.ca",
-                "linkedin": "linkedin.com/in/saeed-arabha",
-                "scholar": "scholar.google.com/citations?user=mroBfIwAAAAJ"
+                "linkedin": "Linkedin.com/in/saeedarabha/",
+                "scholar": "scholar.google.com/citations?user=mroBfIwAAAAJ",
+                "id": 1771545478576
             }
         ]
     },
@@ -423,20 +424,74 @@
         "isCalc": true,
         "list": [
             {
+                "id": 1771541573287,
+                "Type": "Oral Presentation",
+                "Title": "\"Optimizing Hexagonal Boron Nitride (h-BN) Production via Compressible Flow Exfoliation (CFE)\"",
+                "Location": "the E-MRS 2025 Spring Meeting, Strasbourg, France",
+                "Year": "May 2025"
+            },
+            {
+                "id": 1771541572259,
+                "Type": "Oral Presentation",
+                "Title": "\"Compressible Flow Exfoliation of Graphene: A Multiscale Study\"",
+                "Location": "(CSME) Congress, Université de Sherbrooke, Canada",
+                "Year": "2023"
+            },
+            {
+                "id": 1771542390793,
+                "Type": "Workshop Attendee",
+                "Title": "\"Operation of Conventional Treatment Processes\"",
+                "Location": "Walkerton Clean Water Centre, ON, Canada",
+                "Year": "July 2023"
+            },
+            {
+                "id": 1771541098761,
+                "Type": "Workshop Attendee",
+                "Title": "\"Molecular Dynamics and its Applications to Biological Systems\"",
+                "Location": "ICTP, Trieste, Italy",
+                "Year": "September 2020"
+            },
+            {
+                "id": 1771541074829,
+                "Type": "Virtual Seminar",
+                "Title": "\"Joint QLS-CMSP Virtual Summer Retreat on Heat, Water, Noise, and Life\"",
+                "Location": "ICTP, Trieste, Italy",
+                "Year": "Jul 2020"
+            },
+            {
                 "id": 1,
-                "Conference": "Attending \"North American Cold Spray Conference\", September 2024, Boucherville, Canada."
+                "Type": "Oral Presentation",
+                "Title": "\"1st conference on computation of nanostructures\" and \"Quantum calculation using Quantum Espresso”",
+                "Location": "Sharif university of Technology, Tehran, Iran",
+                "Year": "July 2018"
             },
             {
                 "id": 2,
-                "Conference": "Presentation at \"Canadian Society for Mechanical Engineering Conference\", May 2023, Université de Sherbrooke, Sherbrooke, Québec, Canada."
+                "Type": "Crash Course",
+                "Title": "\"A Not-so-brief Introduction to Molecular Biophysics\"",
+                "Location": " Institute for Research in Fundamental Sciences (IPM), Tehran, Iran",
+                "Year": "April 2019"
             },
             {
                 "id": 3,
-                "Conference": "Attending \"International Conference on Statistical Physics\", July 2019, Institute for Advanced Studies in Basic Sciences, Zanjan, Iran."
+                "Type": "Oral Presentation",
+                "Title": "\"26th IPM Physics Spring Conference\"",
+                "Location": "Institute for Research in Fundamental Sciences (IPM), Tehran, Iran",
+                "Year": "June 2019"
             },
             {
                 "id": 4,
-                "Conference": "Executive member of 3rd International Conference on Mechanical & Aerospace Engineering, May 2018, IK International University, Qazvin, Iran."
+                "Type": "Oral Presentation",
+                "Title": "7th National Conference on Nano technology from theory to application ",
+                "Location": "Jami Institute of Technology, Tehran, Iran",
+                "Year": "June 2019"
+            },
+            {
+                "id": 1771541031974,
+                "Type": "Oral Presentation",
+                "Title": "\"1st national conference on Micro/Nano scale technologies\"",
+                "Location": "IK International University, Qazvin, Iran",
+                "Year": "May 2018"
             }
         ]
     },
@@ -490,6 +545,14 @@
         "top": 1405,
         "fixed": false,
         "list": [
+            {
+                "Award": "Lab2Market Validate (Mitacs Award, $1,000), \"Scalable and Green Nano-manufacturing of Graphene and 2D Nanomaterials for Energy and Consumer Technologies,\" 2025.",
+                "id": 1771545239543
+            },
+            {
+                "Award": "Mitacs Globalink Research Award ($6,000), Visiting Researcher, Universität Kassel, Germany, 2025.",
+                "id": 1771545079014
+            },
             {
                 "id": 1,
                 "Award": "Ranked 1st Among the BS Mechanical Engineering Alumni”, IK International University."

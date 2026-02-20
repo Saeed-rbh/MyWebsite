@@ -11,7 +11,6 @@ const openInNewTab = (url) => {
 };
 
 const PaperItem = ({
-  key,
   paper,
   ChildRefs,
   isOpen,
@@ -94,7 +93,7 @@ const PaperItem = ({
               width: "max-content",
             }}
           >
-            <p
+            <span
               style={{
                 marginRight: "5px",
                 opacity: "1",
@@ -103,7 +102,7 @@ const PaperItem = ({
               }}
             >
               Journal:
-            </p>
+            </span>
             {paper.Journal}
           </p>
           <div
@@ -132,7 +131,7 @@ const PaperItem = ({
               opacity: "1",
             }}
           >
-            <p
+            <span
               style={{
                 marginRight: "5px",
                 opacity: "1",
@@ -141,7 +140,7 @@ const PaperItem = ({
               }}
             >
               Year:
-            </p>
+            </span>
             {paper.Year}
           </p>
           <p
@@ -153,7 +152,7 @@ const PaperItem = ({
               opacity: "1",
             }}
           >
-            <p
+            <span
               style={{
                 marginRight: "5px",
                 opacity: "1",
@@ -162,7 +161,7 @@ const PaperItem = ({
               }}
             >
               Citations:
-            </p>
+            </span>
             {paper.Citations}
           </p>
         </div>

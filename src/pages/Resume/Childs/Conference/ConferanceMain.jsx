@@ -15,8 +15,13 @@ const ConferanceMain = ({
     marginBottom: isActive ? 10 : 0,
     // marginLeft: isActive ? 0 : 10,
   });
+  const getLength = (cnf) => {
+    if (cnf.Type) return `${cnf.Type}: "${cnf.Title}" at ${cnf.Location}, ${cnf.Year}.`.length;
+    return cnf.Conference ? cnf.Conference.length : 0;
+  };
+
   const Anim = useSpring({
-    marginTop: isActive ? 60 : List[0].Conference.length > 90 ? 45 : 58,
+    marginTop: isActive ? 60 : (List[0] && getLength(List[0]) > 90) ? 45 : 58,
     padding: "0 30px",
   });
   const Conferences = List.map((Conferences, index) => (
@@ -27,8 +32,16 @@ const ConferanceMain = ({
       key={index}
     >
       <animated.p style={fontStyle}>
-        <TbCircleFilled />
-        {Conferences.Conference}
+        <TbCircleFilled style={{ flexShrink: 0, marginRight: 8, marginTop: 4 }} />
+        <>
+          {Conferences.Type ? (
+            <>
+              {Conferences.Type}: "{Conferences.Title}" at {Conferences.Location}, {Conferences.Year}.
+            </>
+          ) : (
+            Conferences.Conference
+          )}
+        </>
       </animated.p>
     </animated.div>
   ));

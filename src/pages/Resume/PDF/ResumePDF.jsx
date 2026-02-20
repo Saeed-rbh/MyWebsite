@@ -238,6 +238,7 @@ const ResumePDF = ({ cvData }) => {
                             <View key={index} style={styles.publication}>
                                 <Text style={styles.publicationText}>
                                     <Text style={styles.pubAuthors}>
+                                        {`${index + 1}. `}
                                         {(paper.AuthorsList || paper.Authors.split(', ')).map((author, i, arr) => (
                                             <Text key={i} style={author.includes('S Arabha') || author.includes('S. Arabha') ? { fontFamily: 'Helvetica-Bold' } : {}}>
                                                 {author}{i < arr.length - 1 ? ', ' : ''}
@@ -296,14 +297,15 @@ const ResumePDF = ({ cvData }) => {
                     </View>
                 )}
 
-                {/* Conferences */}
                 {conferences.length > 0 && (
                     <View style={styles.section}>
                         <SectionHeader title="Conferences" />
                         {conferences.map((conf, index) => (
                             <View key={index} style={styles.bulletItem}>
                                 <Text style={styles.bullet}>•</Text>
-                                <Text style={styles.bulletText}>{conf.Conference || conf.Explanation}</Text>
+                                <Text style={styles.bulletText}>
+                                    {conf.Type ? `${conf.Type}: "${conf.Title}" at ${conf.Location}, ${conf.Year}.` : (conf.Conference || conf.Explanation)}
+                                </Text>
                             </View>
                         ))}
                     </View>

@@ -466,7 +466,7 @@
   display: flex;
   margin: 5px 0;
   width: 90%;
-  justify-content: space-around;
+  justify-content: center;
 }
 
 .Affiliation div h1,

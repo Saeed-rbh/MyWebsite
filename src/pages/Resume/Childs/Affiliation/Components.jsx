@@ -31,10 +31,12 @@ const ContentDiv = ({ animatedStyle, name, size, title, height }) => (
       PhD, <ExternalLink href="https://www.picssl.ca/">PICSSL Lab</ExternalLink>
     </animated.h1>
     <animated.h1>Lassonde School of Engineering</animated.h1>
-    <animated.h1 style={{ marginTop: "2px" }}>
-      <ExternalLink href="https://www.yorku.ca/">York University</ExternalLink>{" "}
-      <animated.h1>Toronto, CA</animated.h1>
-    </animated.h1>
+    <div style={{ display: 'flex', alignItems: 'center', marginTop: "2px" }}>
+      <animated.h1 style={{ margin: 0, marginRight: "5px" }}>
+        <ExternalLink href="https://www.yorku.ca/">York University</ExternalLink>
+      </animated.h1>
+      <animated.h1 style={{ margin: 0 }}>Toronto, CA</animated.h1>
+    </div>
   </animated.div>
 );
 

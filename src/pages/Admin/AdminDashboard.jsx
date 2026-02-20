@@ -594,6 +594,20 @@ const AdminDashboard = () => {
             );
         }
 
+        if (key === 'Award' || key === 'Teaching' || (typeof displayValue === 'string' && displayValue.length > 80 && key !== 'href' && key !== 'pdf' && key !== 'link')) {
+            return (
+                <div className={styles.textAreaWrapper}>
+                    <textarea
+                        className={styles.fieldTextArea}
+                        value={displayValue !== undefined && displayValue !== null ? displayValue : ''}
+                        onChange={e => handleItemChange(index, key, e.target.value)}
+                        placeholder={`Enter ${formatLabel(key)} here`}
+                        rows={4}
+                    />
+                </div>
+            );
+        }
+
         return (
             <input
                 className={styles.fieldInput}

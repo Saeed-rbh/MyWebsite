@@ -175,9 +175,22 @@ app.post('/api/scholar/sync', async (req, res) => {
         const sectionIndex = cvData.findIndex(s => s.name === 'Published Papers' || s.id === 5); // 5 is usually papers based on seed
 
         if (sectionIndex !== -1) {
-            cvData[sectionIndex].list = papers;
+            const existingPapers = cvData[sectionIndex].list || [];
+
+            // Merge old PDFs into new papers based on Title matching
+            const mergedPapers = papers.map(newPaper => {
+                const existing = existingPapers.find(p => p.Title && p.Title.toLowerCase() === newPaper.Title.toLowerCase());
+                if (existing) {
+                    if (existing.pdf) newPaper.pdf = existing.pdf;
+                    if (existing.pdfUrl) newPaper.pdfUrl = existing.pdfUrl;
+                    if (existing.link && !newPaper.Link) newPaper.Link = existing.link;
+                }
+                return newPaper;
+            });
+
+            cvData[sectionIndex].list = mergedPapers;
             writeData(cvData);
-            res.json({ message: `Successfully synced ${papers.length} papers (sorted by date).`, count: papers.length });
+            res.json({ message: `Successfully synced ${mergedPapers.length} papers (sorted by date). Existing PDFs preserved.`, count: mergedPapers.length });
         } else {
             res.status(404).json({ message: "Published Papers section not found in JSON." });
         }
