@@ -36,7 +36,7 @@ const QualificationMain = ({ ChildRefs, ParentRef, List, isActive }) => {
     // position: "absolute",
     marginTop: toggle[0] ? 60 : 50,
     overflow: isActive ? "auto" : "hidden",
-    height: isActive ? "calc(100% - 75px)" : "100%",
+    height: isActive ? "max-content" : "100%",
     paddingBottom: 60,
     // width: `calc(100% + ${-30}px)`,
     // height: "fit-content",

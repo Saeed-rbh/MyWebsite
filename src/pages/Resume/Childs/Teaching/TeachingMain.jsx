@@ -28,7 +28,7 @@ const TeachingMain = ({
     width: stages[1] ? elementSize - 20 : elementSize - 20 - size[1],
     paddingBottom: 60,
     overflow: isActive ? "auto" : "hidden",
-    height: isActive ? "calc(100% - 85px)" : "100%",
+    height: isActive ? "max-content" : "100%",
     // minWidth: stages[1] ? elementSize - size[1] - 20 : size[1],
     // maxWidth: stages[1] ? size[1] : elementSize - 5,
     // boxSizing: "border-box",
