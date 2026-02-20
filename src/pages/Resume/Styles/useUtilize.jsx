@@ -122,7 +122,7 @@ export const useUtilize = (componentName) => {
     seqId,
     explanation,
     height,
-    top,
+    top: stages && stages[1] ? top + 20 : top,
     size,
     adjustTop,
     adjustHeight,

@@ -122,7 +122,7 @@ const MainTitle = ({ duration, initialDelay, delayIncrement, size }) => {
   const elementSizeMain = useElementSize("AcademicCV-M").width;
   const elementSize = useElementSize("MoreInfoAcademic");
   const CVHeader = useSpring({
-    marginTop: stages[1] ? 60 : 0,
+    marginTop: stages[1] ? 70 : 0,
     position: stages[1] ? "relative" : "fixed",
     top: 0,
     zIndex: 1,
