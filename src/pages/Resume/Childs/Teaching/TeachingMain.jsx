@@ -26,7 +26,7 @@ const TeachingMain = ({
     marginLeft: 30,
     opacity: isActive ? 1 : 0,
     width: stages[1] ? elementSize - 20 : elementSize - 20 - size[1],
-    paddingBottom: 60,
+    paddingBottom: isActive ? 10 : 0,
     overflow: isActive ? "auto" : "hidden",
     height: isActive ? "max-content" : "100%",
     // minWidth: stages[1] ? elementSize - size[1] - 20 : size[1],

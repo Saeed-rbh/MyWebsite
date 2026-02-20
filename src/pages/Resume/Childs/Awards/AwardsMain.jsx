@@ -26,7 +26,7 @@ const AwardsMain = ({
     marginTop: isActive ? 60 : 100,
     width: stages[1] ? elementSize - 20 : elementSize - size[1] - 20,
     marginLeft: 30,
-    paddingBottom: 60,
+    paddingBottom: isActive ? 10 : 0,
     height: isActive ? "max-content" : "100%",
     // width: stages[1] ? elementSize - 5 : elementSize - size[1] - 20,
     // minWidth: stages[1] ? elementSize - size[1] - 20 : size[1],

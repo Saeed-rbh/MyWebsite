@@ -22,7 +22,7 @@ const ConferanceMain = ({
 
   const Anim = useSpring({
     marginTop: isActive ? 60 : (List[0] && getLength(List[0]) > 90) ? 45 : 58,
-    padding: "0 30px 60px",
+    padding: isActive ? "0 30px 10px" : "0 30px 0px",
     overflow: isActive ? "auto" : "hidden",
     height: isActive ? "max-content" : "100%",
   });

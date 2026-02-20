@@ -21,7 +21,7 @@ const PaperItem = ({
 }) => {
   const openInfoMainStyle = useSpring({
     paddingBottom: Openclose ? "0px" : "100px",
-    marginBottom: isOpen ? "60px" : "0px",
+    marginBottom: isOpen ? "10px" : "0px",
     zIndex: 100,
   });
 

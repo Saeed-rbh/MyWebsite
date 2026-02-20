@@ -23,7 +23,7 @@ const SkillsMain = ({
   };
   const Anim = useSpring({
     marginTop: isActive ? 70 : 55,
-    padding: "0px 50px 60px 20px",
+    padding: isActive ? "0px 50px 10px 20px" : "0px 50px 0px 20px",
     overflow: isActive ? "auto" : "hidden",
     height: isActive ? "max-content" : "100%",
     flexWrap: "nowrap",
