@@ -116,11 +116,12 @@ const InteractiveDiv = (props) => {
     if (ParentRef?.current?.scrollHeight) {
       const parentScrollHeight = ParentRef.current.scrollHeight;
 
-      if (viewportHeight > parentScrollHeight) {
+      if (viewportHeight > parentScrollHeight + 510) {
         activeHeight = parentScrollHeight + ParentRef.current.offsetTop + 25;
       } else {
-        // Enforce 10px from bottom rule: Total Height = Viewport - HeaderSpace - BottomMargin
-        activeHeight = viewportHeight - ModifyTop - 10 - marginTop;
+        // Enforce 10px from bottom rule: Total Height = Viewport - 500px (top) - 10px (bottom)
+        const calculatedHeight = viewportHeight - 500 - 10;
+        activeHeight = calculatedHeight > 150 ? calculatedHeight : Math.max(150, viewportHeight - ModifyTop - 10);
         fullView = true;
       }
     }
@@ -181,8 +182,8 @@ const InteractiveDiv = (props) => {
           scrollTop + ModifyTop
         );
       } else {
-        // Align to header bottom (ModifyTop)
-        newAdjustedTop = scrollTop + ModifyTop;
+        // Align to exactly 500px from the top, fallback to ModifyTop on very small screens
+        newAdjustedTop = scrollTop + (activeHeight === 150 ? ModifyTop : 500) + marginTop;
       }
     }
 
