@@ -108,12 +108,15 @@ const InteractiveDiv = (props) => {
 
   const ModifyTop = 90; // Define locally or import constant
 
-  const { activeHeight, notActiveHeight, fullView } = useMemo(() => {
-    let fullView = false;
-    const viewportHeight = element ? element.clientHeight : window.innerHeight;
+  const [activeHeight, setActiveHeight] = useState(size[0]);
+  const [fullView, setFullView] = useState(false);
+  const notActiveHeight = size[0];
 
-    let activeHeight = size[0];
-    if (ParentRef?.current?.scrollHeight) {
+  useEffect(() => {
+    if (!ParentRef?.current) return;
+
+    const calculateHeight = () => {
+      const viewportHeight = element ? element.clientHeight : window.innerHeight;
       const parentScrollHeight = ParentRef.current.scrollHeight;
       const marginOffset = ParentRef.current.offsetTop + 25;
       const totalContentHeight = parentScrollHeight + marginOffset;
@@ -122,17 +125,33 @@ const InteractiveDiv = (props) => {
 
       if (maxAvailableSpace > totalContentHeight) {
         // Fits entirely within the screen without scrolling
-        activeHeight = totalContentHeight;
-        fullView = false;
+        setActiveHeight(totalContentHeight);
+        setFullView(false);
       } else {
         // Doesn't fit, clamp to maximum available space
-        activeHeight = maxAvailableSpace > 150 ? maxAvailableSpace : Math.max(150, viewportHeight - ModifyTop - 10);
-        fullView = true;
+        setActiveHeight(maxAvailableSpace > 150 ? maxAvailableSpace : Math.max(150, viewportHeight - ModifyTop - 10));
+        setFullView(true);
       }
-    }
-    const notActiveHeight = size[0];
-    return { activeHeight, notActiveHeight, fullView };
-  }, [size, ParentRef?.current, element, isActive, marginTop]); // Added marginTop
+    };
+
+    // Calculate immediately
+    calculateHeight();
+
+    // And watch for changes (like react-spring animations expanding the content)
+    const resizeObserver = new ResizeObserver(() => {
+      calculateHeight();
+    });
+
+    // Also observe the element's children if possible, as spring might animate them
+    resizeObserver.observe(ParentRef.current);
+    Array.from(ParentRef.current.children).forEach(child => {
+      resizeObserver.observe(child);
+    });
+
+    return () => {
+      resizeObserver.disconnect();
+    };
+  }, [size, ParentRef, element, isActive, marginTop, ModifyTop]);
 
   // Calculate dynamic blur
   // Starts blurring when component is 50px from the top (offset by menu height approx)
