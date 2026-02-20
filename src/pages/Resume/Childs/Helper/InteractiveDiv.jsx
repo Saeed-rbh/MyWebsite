@@ -168,7 +168,7 @@ const InteractiveDiv = (props) => {
     if (isActive) {
       // Always align to exactly 500px from the top when active
       // Fallback to ModifyTop on very small screens where activeHeight is explicitly constrained to 150px
-      newAdjustedTop = scrollTop + (activeHeight === 150 ? ModifyTop : 500) + marginTop;
+      newAdjustedTop = scrollTop + (activeHeight === 150 ? ModifyTop : 500);
     }
 
     console.log("InteractiveDiv Debug:", { name, isActive, fullView, activeHeight, newAdjustedTop });
