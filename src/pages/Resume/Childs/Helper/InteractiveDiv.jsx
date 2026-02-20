@@ -114,16 +114,10 @@ const InteractiveDiv = (props) => {
 
     let activeHeight = size[0];
     if (ParentRef?.current?.scrollHeight) {
-      const parentScrollHeight = ParentRef.current.scrollHeight;
-
-      if (viewportHeight > parentScrollHeight + 510) {
-        activeHeight = parentScrollHeight + ParentRef.current.offsetTop + 25;
-      } else {
-        // Enforce 10px from bottom rule: Total Height = Viewport - 500px (top) - 10px (bottom)
-        const calculatedHeight = viewportHeight - 500 - 10;
-        activeHeight = calculatedHeight > 150 ? calculatedHeight : Math.max(150, viewportHeight - ModifyTop - 10);
-        fullView = true;
-      }
+      // Unconditionally Enforce 10px from bottom rule: Total Height = Viewport - 500px (top) - 10px (bottom)
+      const calculatedHeight = viewportHeight - 500 - 10;
+      activeHeight = calculatedHeight > 150 ? calculatedHeight : Math.max(150, viewportHeight - ModifyTop - 10);
+      fullView = true;
     }
     const notActiveHeight = size[0];
     return { activeHeight, notActiveHeight, fullView };
@@ -172,23 +166,14 @@ const InteractiveDiv = (props) => {
     let newAdjustedTop = top + (!stages[1] ? adjustTop : !stages[2] ? -60 : 0);
 
     if (isActive) {
-      if (!fullView) {
-        newAdjustedTop = Math.max(
-          Math.min(
-            -(activeHeight - (viewportHeight + scrollTop - ModifyTop)),
-            newAdjustedTop
-          ) -
-          marginTop * 1.2,
-          scrollTop + ModifyTop
-        );
-      } else {
-        // Align to exactly 500px from the top, fallback to ModifyTop on very small screens
-        newAdjustedTop = scrollTop + (activeHeight === 150 ? ModifyTop : 500) + marginTop;
-      }
+      // Always align to exactly 500px from the top when active
+      // Fallback to ModifyTop on very small screens where activeHeight is explicitly constrained to 150px
+      newAdjustedTop = scrollTop + (activeHeight === 150 ? ModifyTop : 500) + marginTop;
     }
 
+    console.log("InteractiveDiv Debug:", { name, isActive, fullView, activeHeight, newAdjustedTop });
     setAdjustedTop(newAdjustedTop);
-  }, [isActive, size, top, scrollTop, stages, activeHeight, fullView]); // Added fullView
+  }, [isActive, size, top, scrollTop, stages, activeHeight, fullView, name]); // Added fullView
 
   // NEW: Calculate dynamic top/height strings
   const dynamicHeight = isActive
