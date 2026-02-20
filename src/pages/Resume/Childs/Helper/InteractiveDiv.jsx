@@ -121,7 +121,7 @@ const InteractiveDiv = (props) => {
       const marginOffset = ParentRef.current.offsetTop + 25;
       const totalContentHeight = parentScrollHeight + marginOffset;
 
-      const maxAvailableSpace = viewportHeight - (ModifyTop + 10) - 10;
+      const maxAvailableSpace = viewportHeight - (ModifyTop + 10) - 15;
 
       if (maxAvailableSpace > totalContentHeight) {
         // Fits entirely within the screen without scrolling
@@ -129,7 +129,7 @@ const InteractiveDiv = (props) => {
         setFullView(false);
       } else {
         // Doesn't fit, clamp to maximum available space
-        setActiveHeight(maxAvailableSpace > 150 ? maxAvailableSpace : Math.max(150, viewportHeight - ModifyTop - 10));
+        setActiveHeight(maxAvailableSpace > 150 ? maxAvailableSpace : Math.max(150, viewportHeight - ModifyTop - 15));
         setFullView(true);
       }
     };
@@ -199,11 +199,11 @@ const InteractiveDiv = (props) => {
       if (!fullView) {
         // Component is short enough to fit on screen.
         // It wants to be at `newAdjustedTop`.
-        // However, if `newAdjustedTop + activeHeight` > `scrollTop + viewportHeight - 10px`, it should slide UP to fit.
+        // However, if `newAdjustedTop + activeHeight` > `scrollTop + viewportHeight - 15px`, it should slide UP to fit.
         // Also, it should NEVER slide higher than just below the menu (`scrollTop + ModifyTop + 10`).
 
         const idealBottom = newAdjustedTop + activeHeight;
-        const maxBottom = scrollTop + viewportHeight - 10;
+        const maxBottom = scrollTop + viewportHeight - 15;
 
         if (idealBottom > maxBottom) {
           // Slide it up so its bottom matches the viewport bottom margin
