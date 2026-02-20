@@ -467,6 +467,7 @@ button {
   vertical-align: baseline;
   display: flex;
   margin-left: 4vw;
+  gap: 2vw;
   transition: all 0.2s linear;
 }
 

@@ -577,7 +577,7 @@
     border: 1px solid rgba(255, 255, 255, 0.06);
     border-radius: 14px;
     background: rgba(30, 30, 30, 0.6);
-    transition: all 0.2s ease;
+    transition: border-color 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease;
     overflow: hidden;
 }
 
@@ -601,6 +601,27 @@
 
 .itemHeader:hover {
     background: rgba(255, 255, 255, 0.02);
+}
+
+.dragHandle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px;
+    color: rgba(255, 255, 255, 0.4);
+    cursor: grab;
+    transition: all 0.2s ease;
+    border-radius: 6px;
+}
+
+.dragHandle:hover {
+    color: #b96032;
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.dragHandle:active {
+    cursor: grabbing;
+    color: #b96032;
 }
 
 .itemHeaderLeft {
@@ -712,19 +733,6 @@
 .itemContent {
     padding: 0 20px 24px;
     border-top: 1px solid rgba(255, 255, 255, 0.06);
-    animation: slideDown 0.2s ease;
-}
-
-@keyframes slideDown {
-    from {
-        opacity: 0;
-        transform: translateY(-10px);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
 }
 
 /* Field Grid */
@@ -1177,7 +1185,84 @@
     margin-bottom: 12px;
 }
 
+
 .websiteBtn:hover {
     background-color: rgba(52, 152, 219, 0.2);
     border-color: rgba(52, 152, 219, 0.4);
+}
+
+/* Skill Reordering */
+.skillReorder {
+    display: flex;
+    flex-direction: column;
+    margin-right: 4px;
+    gap: 2px;
+}
+
+.reorderBtn {
+    background: none;
+    border: none;
+    color: rgba(255, 255, 255, 0.4);
+    cursor: pointer;
+    padding: 2px;
+    font-size: 0.8rem;
+    transition: color 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.reorderBtn:hover:not(:disabled) {
+    color: #00d2ff;
+}
+
+
+/* Header Reordering */
+.itemReorder {
+    display: flex;
+    gap: 4px;
+    margin-right: 8px;
+    background: rgba(0, 0, 0, 0.2);
+    padding: 4px;
+    border-radius: 8px;
+}
+
+.headerReorderBtn {
+    background: none;
+    border: none;
+    color: rgba(255, 255, 255, 0.4);
+    cursor: pointer;
+    padding: 6px;
+    font-size: 0.9rem;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 6px;
+}
+
+.headerReorderBtn:hover:not(:disabled) {
+    color: #ffffff;
+    background: rgba(255, 255, 255, 0.1);
+}
+
+
+/* Drag Handle */
+.dragHandle {
+    color: rgba(255, 255, 255, 0.2);
+    cursor: grab;
+    padding: 8px 12px 8px 0;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    transition: color 0.2s;
+}
+
+.dragHandle:hover {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.dragHandle:active {
+    cursor: grabbing;
+    color: #b96032;
 }

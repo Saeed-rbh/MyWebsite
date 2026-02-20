@@ -39,14 +39,14 @@ const ResumeInfo = ({
       <div className="Social-Media">
         <animated.p>ACADEMIC</animated.p>
       </div>
-      <animated.div className="social" style={Style_1} ref={Ref_1}>
+      <div className="social">
         {!delayedResumeClicked && (
           <>
-            <button onClick={handleClickCV}>RESUME</button>
-            <button onClick={handleClickResearch} style={Style_2} ref={Ref_2}><span>RESEARCH STORY</span></button>
+            <animated.button onClick={handleClickCV} style={Style_1} ref={Ref_1}>RESUME</animated.button>
+            <animated.button onClick={handleClickResearch} style={Style_2} ref={Ref_2}><span>RESEARCH STORY</span></animated.button>
           </>
         )}
-      </animated.div>
+      </div>
     </animated.div>
   );
 };
