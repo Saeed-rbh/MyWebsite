@@ -78,16 +78,19 @@ const AnimatedWord = ({
   return (
     <>
       {isSpecialWord ? (
-        <animated.div
-          ref={hoverRef}
-          style={{ ...specialBackground, cursor: "pointer", ...hoverStyle }}
-          onClick={(e) => onClick && onClick(displayWord, e)}
-        >
-          <div style={innerBackground}></div>
-          <animated.span style={{ ...wordSpring, ...textStyle }}>
-            {displayWord}
-          </animated.span>
-        </animated.div>
+        <span className={styles.wordWrapper}>
+          <animated.div
+            ref={hoverRef}
+            style={{ ...specialBackground, cursor: "pointer", ...hoverStyle }}
+            onClick={(e) => onClick && onClick(displayWord, e)}
+          >
+            <div style={innerBackground}></div>
+            <animated.span style={{ ...wordSpring, ...textStyle }}>
+              {displayWord}
+            </animated.span>
+          </animated.div>
+          <span className={styles.tooltip}>Explore!</span>
+        </span>
       ) : (
         <animated.span style={{ ...wordSpring, ...textStyle }}>
           {displayWord}
