@@ -1,4 +1,4 @@
-@tailwind base;
+﻿@tailwind base;
 @tailwind components;
 @tailwind utilities;
 
@@ -15,3 +15,23 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+
+/* Calendly Customizations */
+.calendly-overlay {
+  background-color: rgba(0, 0, 0, 0.7) !important;
+  backdrop-filter: blur(10px) !important;
+  -webkit-backdrop-filter: blur(10px) !important;
+}
+
+/* Custom Scrollbar for Calendly Overlay to hide it but keep functionality */
+.calendly-overlay::-webkit-scrollbar {
+  width: 0px;
+  background: transparent;
+}
+
+.calendly-inline-widget iframe,
+.calendly-popup-content iframe {
+  filter: invert(1) hue-rotate(180deg) !important;
+  border-radius: 12px !important;
+}
+
