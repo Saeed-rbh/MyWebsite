@@ -98,12 +98,14 @@ const HomePage = () => {
             window.history.pushState("", document.title, window.location.pathname + window.location.search);
           }}
           title={currentPopup.title}
-          content={currentPopup.content}
+          content={<div key={`${currentPopupIndex}-${popupOpen}`}>{currentPopup.content}</div>}
           originRect={originRect}
           onNext={handleNextPopup}
           onPrev={handlePrevPopup}
           hasNext={currentPopupIndex < popupsData.length - 1}
           hasPrev={currentPopupIndex > 0}
+          nextTitle={currentPopupIndex < popupsData.length - 1 ? popupsData[currentPopupIndex + 1].shortTitle : null}
+          prevTitle={currentPopupIndex > 0 ? popupsData[currentPopupIndex - 1].shortTitle : null}
         />
       </div>
     )

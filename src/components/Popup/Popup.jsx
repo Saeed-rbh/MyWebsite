@@ -2,7 +2,7 @@ import React, { useEffect, useState, useRef } from 'react';
 import { useTransition, animated } from 'react-spring';
 import styles from './Popup.module.css';
 
-const Popup = ({ isOpen, onClose, title, content, originRect, onNext, onPrev, hasNext, hasPrev }) => {
+const Popup = ({ isOpen, onClose, title, content, originRect, onNext, onPrev, hasNext, hasPrev, nextTitle, prevTitle }) => {
     const [scrollProgress, setScrollProgress] = useState(0);
     const contentRef = useRef(null);
 
@@ -121,15 +121,15 @@ const Popup = ({ isOpen, onClose, title, content, originRect, onNext, onPrev, ha
                         onScroll={handleScroll}
                     >
                         {content}
-                        <div className={styles.navigationButtons} style={{ display: "flex", justifyContent: "space-between", marginTop: "2rem", paddingTop: "1rem", borderTop: "1px solid rgba(255,255,255,0.1)" }}>
-                            {hasPrev ? (
-                                <button onClick={onPrev} style={{ background: "transparent", border: "1px solid #d49d81", color: "#d49d81", padding: "0.5rem 1rem", borderRadius: "4px", cursor: "pointer", transition: "all 0.2s" }} onMouseOver={e => e.currentTarget.style.background="rgba(212,157,129,0.1)"} onMouseOut={e => e.currentTarget.style.background="transparent"}>
-                                    &larr; Previous Concept
+                                                <div className={styles.navigationButtons} style={{ display: "flex", justifyContent: "space-between", marginTop: "2rem", paddingTop: "1rem", borderTop: "1px solid rgba(255,255,255,0.1)" }}>
+                            {hasPrev && prevTitle ? (
+                                <button onClick={onPrev} style={{ background: "rgba(255, 255, 255, 0.05)", backdropFilter: "blur(10px)", border: "1px solid rgba(255, 255, 255, 0.1)", color: "#d49d81", padding: "0.6rem 1.2rem", borderRadius: "30px", cursor: "pointer", transition: "all 0.3s ease", display: "flex", alignItems: "center", gap: "8px", fontSize: "0.9rem" }} onMouseOver={e => e.currentTarget.style.background="rgba(255, 255, 255, 0.1)"} onMouseOut={e => e.currentTarget.style.background="rgba(255, 255, 255, 0.05)"}>
+                                    <span>&larr;</span> {prevTitle}
                                 </button>
                             ) : <div></div>}
-                            {hasNext ? (
-                                <button onClick={onNext} style={{ background: "#d49d81", border: "1px solid #d49d81", color: "#1a1a1a", padding: "0.5rem 1rem", borderRadius: "4px", cursor: "pointer", transition: "all 0.2s" }} onMouseOver={e => e.currentTarget.style.background="#e0ad94"} onMouseOut={e => e.currentTarget.style.background="#d49d81"}>
-                                    Next Concept &rarr;
+                            {hasNext && nextTitle ? (
+                                <button onClick={onNext} style={{ background: "rgba(212, 157, 129, 0.15)", backdropFilter: "blur(10px)", border: "1px solid rgba(212, 157, 129, 0.3)", color: "#fff", padding: "0.6rem 1.2rem", borderRadius: "30px", cursor: "pointer", transition: "all 0.3s ease", display: "flex", alignItems: "center", gap: "8px", fontSize: "0.9rem" }} onMouseOver={e => { e.currentTarget.style.background="rgba(212, 157, 129, 0.25)"; e.currentTarget.style.boxShadow="0 4px 12px rgba(212,157,129,0.2)"; }} onMouseOut={e => { e.currentTarget.style.background="rgba(212, 157, 129, 0.15)"; e.currentTarget.style.boxShadow="none"; }}>
+                                    {nextTitle} <span>&rarr;</span>
                                 </button>
                             ) : <div></div>}
                         </div>

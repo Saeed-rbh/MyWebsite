@@ -51,16 +51,16 @@ const AnimatedWord = ({
     easing: easings.easeOutCubic,
     delay: MenuHide === 1 ? index * 25 : (length - index) * 25,
   });
-    const specialBackground = {
+      const specialBackground = {
     position: "relative",
-    padding: "0 10px 2px",
+    padding: "0px 10px 2px",
     borderRadius: "20px",
     overflow: "hidden",
     display: "inline-block",
     whiteSpace: "nowrap",
     verticalAlign: "middle",
-    borderBottom: "2px solid rgba(212, 157, 129, 0.6)",
-    boxShadow: "0 4px 6px -4px rgba(212, 157, 129, 0.4)",
+    borderBottom: "2px solid rgba(212, 157, 129, 0.31)",
+    boxShadow: "rgba(212, 157, 129, 0) 0px 4px 6px -4px",
     transition: "all 0.3s ease-in-out"
   };
   const innerBackground = {
