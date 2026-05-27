@@ -8,6 +8,7 @@ import ResumeInfo from "./ResumeInfo";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { updateMenu, updateCurrentPage } from "../../actions/Actions";
+import FooterLattice from "./FooterLattice";
 
 const Footer = () => {
   const location = useLocation();
@@ -157,6 +158,7 @@ const Footer = () => {
     disapear && (
       <div className="HomePage-M-T-F">
         <animated.div style={contactInfoOpenSpring} className="HomeConsole">
+          <FooterLattice />
           <animated.div style={TextOpenSpring}>
             <ResumeInfo
               handleClickCV={handleClickCV}

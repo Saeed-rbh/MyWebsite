@@ -337,6 +337,7 @@ button {
   box-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.5), inset 0 1px 0 0 rgba(255, 255, 255, 0.05);
   padding: 0 1.5rem;
   transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+  overflow: hidden;
 }
 
 .HomeConsole:hover {
