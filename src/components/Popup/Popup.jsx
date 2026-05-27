@@ -27,7 +27,7 @@ const Popup = ({ isOpen, onClose, title, content, originRect, onNext, onPrev, ha
                     if (contentRef.current) {
                         contentRef.current.scrollTop = 0;
                     }
-                }, 250);
+                }, 350);
                 return () => clearTimeout(timer);
             } else {
                 setActiveData({ title, content, prevTitle, nextTitle, hasPrev, hasNext });

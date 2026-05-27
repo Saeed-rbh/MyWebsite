@@ -123,7 +123,7 @@
 @keyframes titleSlideIn {
   from {
     opacity: 0;
-    transform: translateX(-15px);
+    transform: translateX(-8px);
   }
   to {
     opacity: 1;
@@ -134,7 +134,7 @@
 @keyframes bodySlideUp {
   from {
     opacity: 0;
-    transform: translateY(15px);
+    transform: translateY(8px);
   }
   to {
     opacity: 1;
@@ -145,7 +145,7 @@
 @keyframes highlightSlideIn {
   from {
     opacity: 0;
-    transform: translateX(15px);
+    transform: translateX(8px);
   }
   to {
     opacity: 1;
@@ -161,7 +161,7 @@
   }
   to {
     opacity: 0;
-    transform: translateX(15px);
+    transform: translateX(8px);
   }
 }
 
@@ -172,7 +172,7 @@
   }
   to {
     opacity: 0;
-    transform: translateY(15px);
+    transform: translateY(8px);
   }
 }
 
@@ -183,41 +183,41 @@
   }
   to {
     opacity: 0;
-    transform: translateX(-15px);
+    transform: translateX(-8px);
   }
 }
 
 .titleAnimate {
-  animation: titleSlideIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  animation: titleSlideIn 1.0s cubic-bezier(0.25, 1, 0.5, 1) forwards;
   animation-delay: 0.15s;
   opacity: 0;
   will-change: transform, opacity;
 }
 
 .titleExit {
-  animation: titleSlideOut 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards !important;
+  animation: titleSlideOut 0.35s cubic-bezier(0.25, 1, 0.5, 1) forwards !important;
 }
 
 :global(.popup-animate-enter) {
-  animation: bodySlideUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  animation: bodySlideUp 1.0s cubic-bezier(0.25, 1, 0.5, 1) forwards;
   animation-delay: 0.20s;
   opacity: 0;
   will-change: transform, opacity;
 }
 
 :global(.popup-animate-slide-in-right) {
-  animation: highlightSlideIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  animation: highlightSlideIn 1.0s cubic-bezier(0.25, 1, 0.5, 1) forwards;
   animation-delay: 0.40s;
   opacity: 0;
   will-change: transform, opacity;
 }
 
 :global(.popup-content-exiting) :global(.popup-animate-enter) {
-  animation: bodySlideDown 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards !important;
+  animation: bodySlideDown 0.35s cubic-bezier(0.25, 1, 0.5, 1) forwards !important;
 }
 
 :global(.popup-content-exiting) :global(.popup-animate-slide-in-right) {
-  animation: highlightSlideOut 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards !important;
+  animation: highlightSlideOut 0.35s cubic-bezier(0.25, 1, 0.5, 1) forwards !important;
 }
 
 :global(.popup-text) {
