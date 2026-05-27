@@ -16,7 +16,16 @@ code {
     monospace;
 }
 
-/* Calendly Customizations - Max Specificity */
+#root {
+  transition: transform 0.4s ease, filter 0.4s ease;
+}
+
+body.calendly-open-bg #root {
+  transform: scale(0.95);
+  filter: blur(8px);
+}
+
+/* Calendly Customizations */
 body .calendly-overlay {
   background-color: rgba(0, 0, 0, 0.7) !important;
   backdrop-filter: blur(10px) !important;
@@ -31,7 +40,6 @@ body .calendly-overlay::-webkit-scrollbar {
 body .calendly-inline-widget iframe,
 body .calendly-popup-content iframe,
 body iframe[src*="calendly"] {
-  filter: invert(1) hue-rotate(180deg) !important;
   border-radius: 12px !important;
 }
 

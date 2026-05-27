@@ -21,6 +21,17 @@ const ContactInfo = ({
   const [hoverE, setHoverE] = useState(false);
   const [isCalendlyOpen, setIsCalendlyOpen] = useState(false);
 
+  useEffect(() => {
+    if (isCalendlyOpen) {
+      document.body.classList.add('calendly-open-bg');
+    } else {
+      document.body.classList.remove('calendly-open-bg');
+    }
+    return () => {
+      document.body.classList.remove('calendly-open-bg');
+    };
+  }, [isCalendlyOpen]);
+
   return (
     <div className="contact-1">
       <PopupModal
