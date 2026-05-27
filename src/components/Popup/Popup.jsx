@@ -96,7 +96,7 @@ const Popup = ({ isOpen, onClose, title, content, originRect, onNext, onPrev, ha
                             <path d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z" />
                         </svg>
                     </button>
-                    {title && <h2 className={styles.title}>{title}</h2>}
+                    {title && <h2 className={`${styles.title} ${styles.titleAnimate}`}>{title}</h2>}
 
                     {/* Scroll Indicator */}
                     <div className={styles.scrollIndicatorContainer}>
@@ -121,7 +121,7 @@ const Popup = ({ isOpen, onClose, title, content, originRect, onNext, onPrev, ha
                         onScroll={handleScroll}
                     >
                         {content}
-                                                <div className={styles.navigationButtons} style={{ display: "flex", justifyContent: "space-between", marginTop: "2rem", paddingTop: "1rem", borderTop: "1px solid rgba(255,255,255,0.1)" }}>
+                                                <div className={styles.navigationButtons} style={{ display: "flex", justifyContent: "space-between", marginTop: "1rem", paddingTop: "1rem", borderTop: "1px solid rgba(255,255,255,0.1)" }}>
                             {hasPrev && prevTitle ? (
                                 <button onClick={onPrev} style={{ background: "rgba(255, 255, 255, 0.05)", backdropFilter: "blur(10px)", border: "1px solid rgba(255, 255, 255, 0.1)", color: "#d49d81", padding: "0.6rem 1.2rem", borderRadius: "30px", cursor: "pointer", transition: "all 0.3s ease", display: "flex", alignItems: "center", gap: "8px", fontSize: "0.9rem" }} onMouseOver={e => e.currentTarget.style.background="rgba(255, 255, 255, 0.1)"} onMouseOut={e => e.currentTarget.style.background="rgba(255, 255, 255, 0.05)"}>
                                     <span>&larr;</span> {prevTitle}

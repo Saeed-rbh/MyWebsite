@@ -119,6 +119,70 @@
   /* Firefox */
 }
 
+/* Choreographed Entrance Animations */
+@keyframes titleSlideIn {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes bodySlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes highlightSlideIn {
+  from {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.titleAnimate {
+  animation: titleSlideIn 0.6s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+  animation-delay: 0.15s;
+  opacity: 0;
+  will-change: transform, opacity;
+}
+
+:global(.popup-animate-enter) {
+  animation: bodySlideUp 0.6s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+  animation-delay: 0.20s;
+  opacity: 0;
+  will-change: transform, opacity;
+}
+
+:global(.popup-animate-slide-in-right) {
+  animation: highlightSlideIn 0.6s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+  animation-delay: 0.40s;
+  opacity: 0;
+  will-change: transform, opacity;
+}
+
+:global(.popup-text) {
+  margin-top: 0;
+  margin-bottom: 0.8rem;
+  color: #faf9f1;
+  font-family: "Poppins", sans-serif;
+  font-weight: 400;
+  line-height: 1.6;
+}
+
 @keyframes fadeIn {
   from {
     opacity: 0;
