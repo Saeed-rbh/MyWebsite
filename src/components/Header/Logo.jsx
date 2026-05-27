@@ -19,14 +19,14 @@ function Logo(props) {
               fill: transparent;
               stroke: #d49d81;
               stroke-width: 4px;
-              stroke-dasharray: 1;
-              stroke-dashoffset: 1;
+              stroke-dasharray: 2500;
+              stroke-dashoffset: 2500;
               animation: drawLogo 4s cubic-bezier(0.4, 0, 0.2, 1) infinite alternate;
               transform-origin: center;
             }
             @keyframes drawLogo {
               0%, 10% {
-                stroke-dashoffset: 1;
+                stroke-dashoffset: 2500;
                 fill: transparent;
                 stroke: #d49d81;
               }
@@ -47,7 +47,7 @@ function Logo(props) {
       <g opacity="0.9">
         <path
           className="animated-logo-path"
-          pathLength="1"
+          
           d="M642.19,627.62c10.34,17.36-.17,35.54-21,35.54-29.19.56-63.58-22.25-63.58-62.68H551l-18.64,52.9a31.81,31.81,0,0,1-30,21.23H494.2a1.2,1.2,0,0,0-1.2,1.2v3.91a1.19,1.19,0,0,0,1.2,1.2h76.06a1.2,1.2,0,0,0,1.21-1.2v-3.91a1.21,1.21,0,0,0-1.21-1.2h-6a6.68,6.68,0,0,1-6.68-6.68v-22S580.57,686,625,686c29.36,0,46.72-23.74,46.72-46.47,0-22.06-13.07-37.77-29.12-51.12l.06.05h25.8l30.84,79.61a5.34,5.34,0,0,1-5,7.27h-.48a1,1,0,0,0-1,1v3.6a1,1,0,0,0,1,1h73.22a1,1,0,0,0,1-1v-3.6a1,1,0,0,0-1-1h-3.78A41.36,41.36,0,0,1,724.75,649L635.57,424.07a3.5,3.5,0,0,0-6.5,0l-11.86,29.51a3.51,3.51,0,0,0,0,2.57l13,33.52c-39-6.87-68,12.53-68,43.93,0,46.09,61.75,63.13,80,94m-19.27-54.08c-20.21-14.52-39-27.89-39-47,0-33.18,47.92-26.55,50.44-26.18l28.34,73.14"
           transform="translate(-493 -421.86)"
         />
