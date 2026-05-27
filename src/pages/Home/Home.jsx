@@ -90,7 +90,7 @@ const HomePage = () => {
               </p>
             </div>
             
-            <div className={`${styles.animateEnter} ${styles.delay3}`} style={{ marginTop: "1.5rem", padding: "1rem", borderLeft: "4px solid #d49d81", backgroundColor: "rgba(212, 157, 129, 0.1)", borderRadius: "0 8px 8px 0" }}>
+            <div className={`${styles.animateSlideInRight} ${styles.delay3}`} style={{ marginTop: "1.5rem", padding: "1rem", borderLeft: "4px solid #d49d81", backgroundColor: "rgba(212, 157, 129, 0.1)", borderRadius: "0 8px 8px 0" }}>
               <p style={{ margin: 0, fontSize: "0.95rem", color: "#fff" }}><strong>The Goal 💡</strong></p>
               <p style={{ margin: 0, fontSize: "0.9rem", color: "#ccc", marginTop: "0.5rem" }}>The story of my work always leads back to a simple, driving goal: to develop better materials, understand them deeply, and help move them toward practical use.</p>
             </div>
@@ -115,7 +115,7 @@ const HomePage = () => {
               </p>
             </div>
 
-            <div className={`${styles.animateEnter} ${styles.delay3}`} style={{ marginTop: "1.5rem", padding: "1rem", borderLeft: "4px solid #d49d81", backgroundColor: "rgba(212, 157, 129, 0.1)", borderRadius: "0 8px 8px 0" }}>
+            <div className={`${styles.animateSlideInRight} ${styles.delay3}`} style={{ marginTop: "1.5rem", padding: "1rem", borderLeft: "4px solid #d49d81", backgroundColor: "rgba(212, 157, 129, 0.1)", borderRadius: "0 8px 8px 0" }}>
               <p style={{ margin: 0, fontSize: "0.95rem", color: "#fff" }}><strong>Global Research 🌍</strong></p>
               <p style={{ margin: 0, fontSize: "0.9rem", color: "#ccc", marginTop: "0.5rem" }}>This passion took me to the University of Kassel in Germany as a Mitacs Globalink Research Award Fellow. There, I studied CFE-produced graphene to better understand its morphology, structure, and material quality. It is a journey of uncovering massive technological potential within the smallest imaginable spaces.</p>
             </div>
@@ -143,7 +143,7 @@ const HomePage = () => {
               </p>
             </div>
 
-            <div className={`${styles.animateEnter} ${styles.delay3}`} style={{ marginTop: "1.5rem", padding: "1rem", borderLeft: "4px solid #d49d81", backgroundColor: "rgba(212, 157, 129, 0.1)", borderRadius: "0 8px 8px 0" }}>
+            <div className={`${styles.animateSlideInRight} ${styles.delay3}`} style={{ marginTop: "1.5rem", padding: "1rem", borderLeft: "4px solid #d49d81", backgroundColor: "rgba(212, 157, 129, 0.1)", borderRadius: "0 8px 8px 0" }}>
               <p style={{ margin: 0, fontSize: "0.95rem", color: "#fff" }}><strong>The Journey 💡</strong></p>
               <p style={{ margin: 0, fontSize: "0.9rem", color: "#ccc", marginTop: "0.5rem" }}>It is a compelling narrative of starting with massive commercial cooling systems and scaling all the way down to understanding how heat moves at the nanoscale.</p>
             </div>
@@ -168,7 +168,7 @@ const HomePage = () => {
               </p>
             </div>
 
-            <div className={`${styles.animateEnter} ${styles.delay3}`} style={{ marginTop: "1.5rem", padding: "1rem", borderLeft: "4px solid #d49d81", backgroundColor: "rgba(212, 157, 129, 0.1)", borderRadius: "0 8px 8px 0" }}>
+            <div className={`${styles.animateSlideInRight} ${styles.delay3}`} style={{ marginTop: "1.5rem", padding: "1rem", borderLeft: "4px solid #d49d81", backgroundColor: "rgba(212, 157, 129, 0.1)", borderRadius: "0 8px 8px 0" }}>
               <p style={{ margin: 0, fontSize: "0.95rem", color: "#fff" }}><strong>The Reality 💡</strong></p>
               <p style={{ margin: 0, fontSize: "0.9rem", color: "#ccc", marginTop: "0.5rem" }}>For me, the story of a material is never just about what it is, but how we can build it reliably and efficiently for the real world to transition promising lab results into real technologies.</p>
             </div>
@@ -196,7 +196,7 @@ const HomePage = () => {
               </p>
             </div>
 
-            <div className={`${styles.animateEnter} ${styles.delay3}`} style={{ marginTop: "1.5rem", padding: "1rem", borderLeft: "4px solid #d49d81", backgroundColor: "rgba(212, 157, 129, 0.1)", borderRadius: "0 8px 8px 0" }}>
+            <div className={`${styles.animateSlideInRight} ${styles.delay3}`} style={{ marginTop: "1.5rem", padding: "1rem", borderLeft: "4px solid #d49d81", backgroundColor: "rgba(212, 157, 129, 0.1)", borderRadius: "0 8px 8px 0" }}>
               <p style={{ margin: 0, fontSize: "0.95rem", color: "#fff" }}><strong>The Impact 💡</strong></p>
               <p style={{ margin: 0, fontSize: "0.9rem", color: "#ccc", marginTop: "0.5rem" }}>I have evaluated the commercialization pathways for CFE as a scalable industrial production method. It is a story of pushing the boundaries of manufacturing technology to prove that high-quality nanomaterials can be produced on an industrial scale.</p>
             </div>
@@ -224,7 +224,7 @@ const HomePage = () => {
               </p>
             </div>
 
-            <div className={`${styles.animateEnter} ${styles.delay3}`} style={{ marginTop: "1.5rem", padding: "1rem", borderLeft: "4px solid #d49d81", backgroundColor: "rgba(212, 157, 129, 0.1)", borderRadius: "0 8px 8px 0" }}>
+            <div className={`${styles.animateSlideInRight} ${styles.delay3}`} style={{ marginTop: "1.5rem", padding: "1rem", borderLeft: "4px solid #d49d81", backgroundColor: "rgba(212, 157, 129, 0.1)", borderRadius: "0 8px 8px 0" }}>
               <p style={{ margin: 0, fontSize: "0.95rem", color: "#fff" }}><strong>The Final Chapter 📖</strong></p>
               <p style={{ margin: 0, fontSize: "0.9rem", color: "#ccc", marginTop: "0.5rem" }}>By translating technical research into clearer industry-facing language, I am helping write the final chapter of the scientific process: getting innovations out of the laboratory and into the hands of the industries that need them most.</p>
             </div>
@@ -252,7 +252,7 @@ const HomePage = () => {
               </p>
             </div>
 
-            <div className={`${styles.animateEnter} ${styles.delay3}`} style={{ marginTop: "1.5rem", padding: "1rem", borderLeft: "4px solid #d49d81", backgroundColor: "rgba(212, 157, 129, 0.1)", borderRadius: "0 8px 8px 0" }}>
+            <div className={`${styles.animateSlideInRight} ${styles.delay3}`} style={{ marginTop: "1.5rem", padding: "1rem", borderLeft: "4px solid #d49d81", backgroundColor: "rgba(212, 157, 129, 0.1)", borderRadius: "0 8px 8px 0" }}>
               <p style={{ margin: 0, fontSize: "0.95rem", color: "#fff" }}><strong>Advanced Spectroscopy 💡</strong></p>
               <p style={{ margin: 0, fontSize: "0.9rem", color: "#ccc", marginTop: "0.5rem" }}>I am an officially certified Main Operator for the state-of-the-art mIRage-Raman system (Photothermal Spectroscopy Corp) at York University, enabling me to conduct highly advanced sub-micron IR and Raman spectroscopy.</p>
             </div>
@@ -277,7 +277,7 @@ const HomePage = () => {
               </p>
             </div>
 
-            <div className={`${styles.animateEnter} ${styles.delay3}`} style={{ marginTop: "1.5rem", padding: "1rem", borderLeft: "4px solid #d49d81", backgroundColor: "rgba(212, 157, 129, 0.1)", borderRadius: "0 8px 8px 0" }}>
+            <div className={`${styles.animateSlideInRight} ${styles.delay3}`} style={{ marginTop: "1.5rem", padding: "1rem", borderLeft: "4px solid #d49d81", backgroundColor: "rgba(212, 157, 129, 0.1)", borderRadius: "0 8px 8px 0" }}>
               <p style={{ margin: 0, fontSize: "0.95rem", color: "#fff" }}><strong>Digital Lens 🔍</strong></p>
               <p style={{ margin: 0, fontSize: "0.9rem", color: "#ccc", marginTop: "0.5rem" }}>I have applied multiscale modeling, COMSOL simulations, and Python-based analysis to improve nanomaterial production yield and process understanding. It is like having a digital lens that guides our physical experiments, saving time and unlocking entirely new possibilities in science.</p>
             </div>
