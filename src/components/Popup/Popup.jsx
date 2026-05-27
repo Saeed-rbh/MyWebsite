@@ -2,7 +2,7 @@ import React, { useEffect, useState, useRef } from 'react';
 import { useTransition, animated } from 'react-spring';
 import styles from './Popup.module.css';
 
-const Popup = ({ isOpen, onClose, title, content, originRect }) => {
+const Popup = ({ isOpen, onClose, title, content, originRect, onNext, onPrev, hasNext, hasPrev }) => {
     const [scrollProgress, setScrollProgress] = useState(0);
     const contentRef = useRef(null);
 
@@ -121,6 +121,18 @@ const Popup = ({ isOpen, onClose, title, content, originRect }) => {
                         onScroll={handleScroll}
                     >
                         {content}
+                        <div className={styles.navigationButtons} style={{ display: "flex", justifyContent: "space-between", marginTop: "2rem", paddingTop: "1rem", borderTop: "1px solid rgba(255,255,255,0.1)" }}>
+                            {hasPrev ? (
+                                <button onClick={onPrev} style={{ background: "transparent", border: "1px solid #d49d81", color: "#d49d81", padding: "0.5rem 1rem", borderRadius: "4px", cursor: "pointer", transition: "all 0.2s" }} onMouseOver={e => e.currentTarget.style.background="rgba(212,157,129,0.1)"} onMouseOut={e => e.currentTarget.style.background="transparent"}>
+                                    &larr; Previous Concept
+                                </button>
+                            ) : <div></div>}
+                            {hasNext ? (
+                                <button onClick={onNext} style={{ background: "#d49d81", border: "1px solid #d49d81", color: "#1a1a1a", padding: "0.5rem 1rem", borderRadius: "4px", cursor: "pointer", transition: "all 0.2s" }} onMouseOver={e => e.currentTarget.style.background="#e0ad94"} onMouseOut={e => e.currentTarget.style.background="#d49d81"}>
+                                    Next Concept &rarr;
+                                </button>
+                            ) : <div></div>}
+                        </div>
                     </div>
                 </animated.div>
             </animated.div>
