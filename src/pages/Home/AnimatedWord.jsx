@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useSpring, animated, easings } from "react-spring";
 import useHoverMoveEffect from "../../Helper/useHoverMoveEffect";
+import styles from "./AnimatedWord.module.css";
 
 const AnimatedWord = ({
   word,
