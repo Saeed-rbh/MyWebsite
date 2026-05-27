@@ -7,8 +7,6 @@ import NameMessage from "./NameMessage";
 import MainText from "./MainText";
 import HobbyProfession from "./HobbyProfession";
 import Popup from "../../components/Popup/Popup";
-import NetworkingWidgets from "./NetworkingWidgets";
-import { PopupWidget } from "react-calendly";
 
 import { useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
@@ -507,10 +505,6 @@ const HomePage = () => {
           MenuHide={resumeClicked}
           delay={resumeClicked === 1 ? 1400 : 200}
         />
-        <NetworkingWidgets
-          MenuHide={resumeClicked}
-          delay={resumeClicked === 1 ? 1600 : 300}
-        />
         <Popup
           isOpen={popupOpen}
           onClose={() => {
@@ -520,13 +514,6 @@ const HomePage = () => {
           title={popupContent.title}
           content={popupContent.content}
           originRect={originRect}
-        />
-        <PopupWidget
-          url="https://calendly.com/arabha-yorku/30min"
-          rootElement={document.getElementById("root")}
-          text="Book a Call"
-          textColor="#020201"
-          color="#d49d81"
         />
       </div>
     )

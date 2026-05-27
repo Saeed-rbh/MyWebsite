@@ -1,9 +1,9 @@
 import React, { useRef, useState } from "react";
 import { animated } from "react-spring";
 import useHoverMoveEffect from "../../Helper/useHoverMoveEffect";
-import WhatsAppIcon from "./WhatsAppIcon";
-import EmailIcon from "./EmailIcon";
 import ResearchGateIcon from "./ResearchGateIcon";
+import { FiLinkedin, FiCalendar } from "react-icons/fi";
+import { PopupModal } from "react-calendly";
 
 const ContactInfo = ({
   isMouseHover,
@@ -22,9 +22,16 @@ const ContactInfo = ({
   const [hoverWA, setHoverWA] = useState(false);
   const [hoverE, setHoverE] = useState(false);
   const [hoverRG, setHoverRG] = useState(false);
+  const [isCalendlyOpen, setIsCalendlyOpen] = useState(false);
 
   return (
     <div className="contact-1">
+      <PopupModal
+        url="https://calendly.com/arabha-yorku/30min"
+        onModalClose={() => setIsCalendlyOpen(false)}
+        open={isCalendlyOpen}
+        rootElement={document.getElementById("root")}
+      />
       <animated.p
         className="Social-Media"
         style={isMouseHover[1] === "CONTACT" ? contactInfoOpenSpring : {}}
@@ -33,7 +40,9 @@ const ContactInfo = ({
       </animated.p>
       <div className="social">
         <animated.a
-          href="https://wa.me/14168365851"
+          href="https://www.linkedin.com/in/saeedarabha/"
+          target="_blank"
+          rel="noreferrer"
           ref={Ref_1}
           style={{ ...Style_1, display: 'flex', alignItems: 'center', gap: '8px' }}
           onMouseEnter={() => {
@@ -45,7 +54,7 @@ const ContactInfo = ({
             setMouseHover([!isMouseHover[0], "CONTACT", "WA"]);
           }}
         >
-          <WhatsAppIcon isHovered={hoverWA} />
+          <FiLinkedin size={22} color={hoverWA ? "#d49d81" : "#ffffff"} style={{ transition: "all 0.3s ease" }} />
           <animated.p
             style={
               isMouseHover[1] === "CONTACT" && isMouseHover[2] === "WA"
@@ -53,13 +62,13 @@ const ContactInfo = ({
                 : {}
             }
           >
-            WHATSAPP
+            LINKEDIN
           </animated.p>
         </animated.a>
-        <animated.a
-          href="mailto:SaeedArabha@outlook.com"
+        <animated.button
+          onClick={(e) => { e.preventDefault(); setIsCalendlyOpen(true); }}
           ref={Ref_2}
-          style={{ ...Style_2, display: 'flex', alignItems: 'center', gap: '8px' }}
+          style={{ ...Style_2, display: 'flex', alignItems: 'center', gap: '8px', background: 'none', border: 'none', cursor: 'pointer' }}
           onMouseEnter={() => {
             setHoverE(true);
             setMouseHover([!isMouseHover[0], "CONTACT", "E"]);
@@ -69,7 +78,7 @@ const ContactInfo = ({
             setMouseHover([!isMouseHover[0], "CONTACT", "E"]);
           }}
         >
-          <EmailIcon isHovered={hoverE} />
+          <FiCalendar size={22} color={hoverE ? "#d49d81" : "#ffffff"} style={{ transition: "all 0.3s ease" }} />
           <animated.p
             style={
               isMouseHover[1] === "CONTACT" && isMouseHover[2] === "E"
@@ -77,9 +86,9 @@ const ContactInfo = ({
                 : {}
             }
           >
-            E-MAIL
+            BOOK A CALL
           </animated.p>
-        </animated.a>
+        </animated.button>
         <animated.a
           href="https://www.researchgate.net/profile/Saeed-Arabha"
           ref={Ref_3}

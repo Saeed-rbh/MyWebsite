@@ -1043,9 +1043,3 @@ button {
     flex-direction: row;
   }
 }
-
-/* Fix Calendly Badge Position */
-.calendly-badge-widget {
-  bottom: 90px !important;
-  z-index: 100 !important;
-}
