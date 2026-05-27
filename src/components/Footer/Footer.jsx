@@ -157,20 +157,20 @@ const Footer = () => {
       <div className="HomePage-M-T-F">
         <animated.div style={contactInfoOpenSpring} className="HomeConsole">
           <animated.div style={TextOpenSpring}>
-            <ContactInfo
-              isMouseHover={isMouseHover}
-              setMouseHover={setMouseHover}
-            />
-            <div
-              className="b-hr-2"
-              style={{ display: screenWidth < 1120 ? "none" : "flex" }}
-            ></div>
             <ResumeInfo
               handleClickCV={handleClickCV}
               handleClickResearch={handleClickResearch}
               resumeClicked={resumeClicked}
               MenuHide={visibility}
               screenWidth={screenWidth}
+            />
+            <div
+              className="b-hr-2"
+              style={{ display: screenWidth < 1120 ? "none" : "flex" }}
+            ></div>
+            <ContactInfo
+              isMouseHover={isMouseHover}
+              setMouseHover={setMouseHover}
             />
 
           </animated.div>
