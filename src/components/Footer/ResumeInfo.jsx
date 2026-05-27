@@ -24,7 +24,6 @@ const ResumeInfo = ({
   useDelayedClickEffect(setDelayedResumeClicked, resumeClicked, 2000);
   const resumeInfoOpenSpring = useSpring({
     opacity: resumeClicked && MenuHide ? "0" : "1",
-    width: "50px",
     transform: !resumeClicked
       ? screenWidth < 1120
         ? "translate3d(0, 0, 0)"
