@@ -30,7 +30,7 @@ const HomePage = () => {
 
     if (normalizedWord.includes("materials scientist")) {
       setPopupContent({
-        title: "🧪 Materials Scientist",
+        title: <span style={{ display: "flex", alignItems: "center" }}><AnimatedPopupIcon d="M10 2v5l-6 11c-.5.9.1 2 1 2h14c.9 0 1.5-1.1 1-2l-6-11V2H10z" /> Materials Scientist</span>,
         content: (
           <div style={{ textAlign: "left" }}>
             <div className={`${styles.animateEnter} ${styles.delay1}`}>
@@ -58,7 +58,7 @@ const HomePage = () => {
 
     if (normalizedWord.includes("2d nanomaterials")) {
       setPopupContent({
-        title: "⚡ 2D Nanomaterials",
+        title: <span style={{ display: "flex", alignItems: "center" }}><AnimatedPopupIcon d="M12 2L2 7l10 5 10-5-10-5zM2 12l10 5 10-5M2 17l10 5 10-5" /> 2D Nanomaterials</span>,
         content: (
           <div style={{ textAlign: "left" }}>
             <div className={`${styles.animateEnter} ${styles.delay1}`}>
@@ -83,7 +83,7 @@ const HomePage = () => {
 
     if (normalizedWord.includes("heat transfer")) {
       setPopupContent({
-        title: "🔥 Heat Transfer",
+        title: <span style={{ display: "flex", alignItems: "center" }}><AnimatedPopupIcon d="M12 2c0 0-6 7.5-6 12a6 6 0 1 0 12 0c0-4.5-6-12-6-12z" /> Heat Transfer</span>,
         content: (
           <div style={{ textAlign: "left" }}>
             <div className={`${styles.animateEnter} ${styles.delay1}`}>
@@ -111,7 +111,7 @@ const HomePage = () => {
 
     if (normalizedWord.includes("materials processing")) {
       setPopupContent({
-        title: "⚙️ Materials Processing",
+        title: <span style={{ display: "flex", alignItems: "center" }}><AnimatedPopupIcon d="M12 8a4 4 0 1 0 0 8 4 4 0 0 0 0-8zm0-6c-1.1 0-2 .9-2 2v1.1c-.6.2-1.2.6-1.8 1l-.8-.8c-.8-.8-2-.8-2.8 0l-1.4 1.4c-.8.8-.8 2 0 2.8l.8.8c-.4.6-.8 1.2-1 1.8H2c-1.1 0-2 .9-2 2v2c0 1.1.9 2 2 2h1.1c.2.6.6 1.2 1 1.8l-.8.8c-.8.8-.8 2 0-2.8l1.4 1.4c.8.8 2 .8 2.8 0l.8-.8c.6.4 1.2.8 1.8 1V20c0 1.1.9 2 2 2h2c1.1 0 2-.9 2-2v-1.1c.6-.2 1.2-.6 1.8-1l.8.8c.8.8 2 .8 2.8 0l1.4-1.4c.8-.8.8-2 0-2.8l-.8-.8c.4-.6.8-1.2 1-1.8H20c1.1 0 2-.9 2-2v-2c0-1.1-.9-2-2-2h-1.1c-.2-.6-.6-1.2-1-1.8l.8-.8c.8-.8.8-2 0-2.8l-1.4-1.4c-.8-.8-2-.8-2.8 0l-.8.8c-.6-.4-1.2-.8-1.8-1V4c0-1.1-.9-2-2-2h-2z" /> Materials Processing</span>,
         content: (
           <div style={{ textAlign: "left" }}>
             <div className={`${styles.animateEnter} ${styles.delay1}`}>
@@ -164,7 +164,7 @@ const HomePage = () => {
 
     if (normalizedWord.includes("commercialization")) {
       setPopupContent({
-        title: "💼 Commercialization",
+        title: <span style={{ display: "flex", alignItems: "center" }}><AnimatedPopupIcon d="M20 7h-4V5c0-1.1-.9-2-2-2h-4c-1.1 0-2 .9-2 2v2H4c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V9c0-1.1-.9-2-2-2zM10 5h4v2h-4V5z" /> Commercialization</span>,
         content: (
           <div style={{ textAlign: "left" }}>
             <div className={`${styles.animateEnter} ${styles.delay1}`}>
@@ -192,7 +192,7 @@ const HomePage = () => {
 
     if (normalizedWord.includes("experimental characterization")) {
       setPopupContent({
-        title: "🔬 Experimental Characterization",
+        title: <span style={{ display: "flex", alignItems: "center" }}><AnimatedPopupIcon d="M15.5 14h-.8l-.3-.3a6.5 6.5 0 1 0-1.1 1.1l.3.3v.8l5 5 1.5-1.5-5-5zm-6 0C7 14 5 12 5 9.5S7 5 9.5 5 14 7 14 9.5 12 14 9.5 14z" /> Experimental Characterization</span>,
         content: (
           <div style={{ textAlign: "left" }}>
             <div className={`${styles.animateEnter} ${styles.delay1}`}>
@@ -220,7 +220,7 @@ const HomePage = () => {
 
     if (normalizedWord.includes("computational modeling")) {
       setPopupContent({
-        title: "💻 Computational Modeling",
+        title: <span style={{ display: "flex", alignItems: "center" }}><AnimatedPopupIcon d="M20 16V6c0-1.1-.9-2-2-2H6c-1.1 0-2 .9-2 2v10H2v2h20v-2h-2z" /> Computational Modeling</span>,
         content: (
           <div style={{ textAlign: "left" }}>
             <div className={`${styles.animateEnter} ${styles.delay1}`}>
