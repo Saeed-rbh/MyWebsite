@@ -1,10 +1,8 @@
 import React, { useState, useRef } from "react";
 import { Link } from "react-router-dom";
 import { useSpring, animated, easings } from "react-spring";
-import useDelayedClickEffect from "./useDelayedClickEffect"; // Import custom hook
+import useDelayedClickEffect from "./useDelayedClickEffect";
 import useHoverMoveEffect from "../../Helper/useHoverMoveEffect";
-import ResearchStoryIcon from "./ResearchStoryIcon";
-import ResumeIcon from "./ResumeIcon";
 
 const ResumeInfo = ({
   handleClickCV,
@@ -48,22 +46,20 @@ const ResumeInfo = ({
           <>
             <animated.button
               onClick={handleClickCV}
-              style={{ ...Style_1, display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px' }}
+              style={{ ...Style_1, display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px', background: 'none', border: 'none', cursor: 'pointer', padding: 0 }}
               ref={Ref_1}
               onMouseEnter={() => setIsHoveredResume(true)}
               onMouseLeave={() => setIsHoveredResume(false)}
             >
-              <ResumeIcon isHovered={isHoveredResume} />
               <span>RESUME</span>
             </animated.button>
             <animated.button
               onClick={handleClickResearch}
-              style={{ ...Style_2, display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px' }}
+              style={{ ...Style_2, display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px', background: 'none', border: 'none', cursor: 'pointer', padding: 0 }}
               ref={Ref_2}
               onMouseEnter={() => setIsHoveredResearch(true)}
               onMouseLeave={() => setIsHoveredResearch(false)}
             >
-              <ResearchStoryIcon isHovered={isHoveredResearch} />
               <span>RESEARCH STORY</span>
             </animated.button>
           </>

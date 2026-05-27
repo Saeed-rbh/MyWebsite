@@ -317,7 +317,7 @@ button {
 .resumee {
   display: flex;
   align-items: center;
-  flex: 20%;
+  flex: 1;
   justify-content: center;
 }
 
@@ -436,7 +436,7 @@ button {
   vertical-align: baseline;
   display: flex;
   align-items: center;
-  flex: 50%;
+  flex: 1;
   justify-content: center;
 }
 

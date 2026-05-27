@@ -69,7 +69,16 @@ const ContactInfo = ({
         <animated.button
           onClick={(e) => { e.preventDefault(); setIsCalendlyOpen(true); }}
           ref={Ref_2}
-          style={{ ...Style_2, display: 'flex', alignItems: 'center', background: 'none', border: 'none', cursor: 'pointer', padding: 0 }}
+          style={{
+            ...Style_2,
+            display: 'flex',
+            alignItems: 'center',
+            background: 'rgba(212, 157, 129, 0.15)',
+            border: '1px solid rgba(212, 157, 129, 0.3)',
+            borderRadius: '20px',
+            padding: '4px 12px',
+            cursor: 'pointer'
+          }}
           onMouseEnter={() => {
             setHoverE(true);
             setMouseHover([!isMouseHover[0], "CONTACT", "E"]);
