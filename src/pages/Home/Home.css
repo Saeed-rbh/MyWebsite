@@ -339,6 +339,13 @@ button {
   transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
+.HomeConsole:hover {
+  border: 1.5px solid rgba(212, 157, 129, 0.28);
+  box-shadow: 0 14px 40px -10px rgba(0, 0, 0, 0.65), 
+              0 0 25px rgba(212, 157, 129, 0.08), 
+              inset 0 1px 0 0 rgba(255, 255, 255, 0.08);
+}
+
 .FooterOptions {
   position: absolute;
   bottom: 80px;
@@ -583,25 +590,33 @@ button {
 }
 
 .bookCallBtn {
-  background: rgba(212, 157, 129, 0.15) !important;
-  border: 1px solid rgba(212, 157, 129, 0.35) !important;
-  border-radius: 30px !important;
-  padding: 6px 22px !important;
+  background: rgba(212, 157, 129, 0.1) !important;
+  border: 1px solid rgba(212, 157, 129, 0.25) !important;
+  border-radius: 100px !important;
+  padding: 3px 14px 4px 14px !important;
   cursor: pointer;
   transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1) !important;
-  box-shadow: 0 4px 15px rgba(212, 157, 129, 0.08);
-  font-weight: 600 !important;
-  color: #ffffff !important;
+  box-shadow: 0 2px 10px rgba(212, 157, 129, 0.04);
+  font-family: "Poppins", sans-serif !important;
+  font-size: 9px !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.14em !important;
+  color: #d49d81 !important;
   margin-right: 0 !important;
+  text-transform: uppercase;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  white-space: nowrap;
 }
 
 .bookCallBtn:hover {
   background: rgba(212, 157, 129, 0.25) !important;
   border: 1px solid rgba(212, 157, 129, 0.6) !important;
-  box-shadow: 0 6px 20px rgba(212, 157, 129, 0.25) !important;
+  box-shadow: 0 4px 15px rgba(212, 157, 129, 0.2) !important;
   transform: translateY(-1px) scale(1.02) !important;
   color: #ffffff !important;
-  text-shadow: none !important;
+  text-shadow: 0 0 8px rgba(255, 255, 255, 0.3) !important;
 }
 
 .bookCallBtn::after {
