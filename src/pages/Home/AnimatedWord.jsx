@@ -18,7 +18,7 @@ const AnimatedWord = ({
   }
 
   const hoverRef = useRef(null);
-  const hoverStyle = useHoverMoveEffect(hoverRef, 25, 0.25);
+  const hoverStyle = useHoverMoveEffect(hoverRef, 15, 0.25);
 
   const [bgWidth, setBgWidth] = useState("0px");
   useEffect(() => {
