@@ -73,11 +73,12 @@ const ContactInfo = ({
             ...Style_2,
             display: 'flex',
             alignItems: 'center',
-            background: 'rgba(212, 157, 129, 0.15)',
-            border: '1px solid rgba(212, 157, 129, 0.3)',
+            background: 'rgb(255 255 255 / 15%)',
+            border: '2px solid rgb(212 180 168 / 15%)',
             borderRadius: '50px',
             padding: '2px 25px',
-            cursor: 'pointer'
+            cursor: 'pointer',
+            transform: 'none'
           }}
           onMouseEnter={() => {
             setHoverE(true);
