@@ -13,40 +13,48 @@
 /* Popup Content Styles */
 
 /* Animations */
-@keyframes staggerFadeUp {
-    from {
+@keyframes popupContentEnter {
+    0% {
         opacity: 0;
         transform: translateY(20px);
     }
-
-    to {
+    100% {
         opacity: 1;
         transform: translateY(0);
     }
 }
 
+@keyframes popupSlideInRight {
+    0% {
+        opacity: 0;
+        transform: translateX(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
 .animateEnter {
-    animation: staggerFadeUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    animation: popupContentEnter 0.8s cubic-bezier(0.25, 1, 0.5, 1) forwards;
     opacity: 0;
-    /* Starts invisible */
+    will-change: transform, opacity;
+}
+
+.animateSlideInRight {
+    animation: popupSlideInRight 0.8s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+    opacity: 0;
+    will-change: transform, opacity;
 }
 
 /* Stagger Delays */
-.delay1 {
-    animation-delay: 0.1s;
-}
+.delay1 { animation-delay: 0.2s; }
 
-.delay2 {
-    animation-delay: 0.2s;
-}
+.delay2 { animation-delay: 0.3s; }
 
-.delay3 {
-    animation-delay: 0.3s;
-}
+.delay3 { animation-delay: 0.4s; }
 
-.delay4 {
-    animation-delay: 0.4s;
-}
+.delay4 { animation-delay: 0.5s; }
 
 /* Sections */
 .sectionBox {
