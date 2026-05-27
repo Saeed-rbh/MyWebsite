@@ -1,10 +1,10 @@
 import React, { useEffect, useRef } from "react";
 
 /**
- * FooterLattice — a small animated hexagonal graphene lattice
- * rendered on a canvas, decorating the left end of the footer pill.
- * Absolutely positioned so it clips naturally inside the pill's
- * border-radius via overflow: hidden on .HomeConsole.
+ * FooterLattice — uses the exact same graphene benzene-ring style
+ * from the Research Story page (Flake class): a hexagonal ring with
+ * 6 carbon atoms at vertices + bond lines, slowly rotating.
+ * Rendered on a canvas clipped into the left end of the footer pill.
  */
 const FooterLattice = () => {
   const canvasRef = useRef(null);
@@ -17,93 +17,58 @@ const FooterLattice = () => {
 
     let animId;
 
-    // Canvas physical size (CSS size set via style)
-    const W = 120;
+    const W = 110;
     const H = 60;
     const dpr = window.devicePixelRatio || 1;
     canvas.width = W * dpr;
     canvas.height = H * dpr;
     ctx.scale(dpr, dpr);
 
-    // Build a flat honeycomb grid of hex centers
-    const hexR = 10; // hex circumradius
-    const points = [];
-    const connections = [];
+    // Single large ring centered in canvas, plus two small ghost rings
+    const rings = [
+      // Main ring — centered, full opacity
+      { x: W * 0.42, y: H * 0.5, radius: 18, opacity: 0.55, angle: 0, vAngle: 0.004 },
+      // Small ghost ring — upper right
+      { x: W * 0.82, y: H * 0.22, radius: 9, opacity: 0.2, angle: 1.0, vAngle: 0.006 },
+      // Small ghost ring — lower left, partially off-screen
+      { x: W * 0.08, y: H * 0.78, radius: 8, opacity: 0.15, angle: 2.5, vAngle: 0.005 },
+    ];
 
-    const rows = 4;
-    const cols = 8;
+    const drawRing = (r) => {
+      const sides = 6;
+      const color = `rgba(212, 157, 129, ${r.opacity})`;
 
-    for (let r = 0; r < rows; r++) {
-      for (let c = 0; c < cols; c++) {
-        const px = c * hexR * 1.5;
-        const py = r * hexR * Math.sqrt(3) + (c % 2 === 1 ? (hexR * Math.sqrt(3)) / 2 : 0);
-        // small z-wave for 3D feel
-        const pz = Math.sin(c * 0.7) * Math.cos(r * 0.7) * 6;
-        points.push({ x: px - (cols * hexR * 1.5) / 2 + hexR, y: py - (rows * hexR * Math.sqrt(3)) / 2, z: pz });
+      // Bond hexagon outline
+      ctx.beginPath();
+      for (let i = 0; i <= sides; i++) {
+        const theta = r.angle + (i * 2 * Math.PI) / sides;
+        const px = r.x + r.radius * Math.cos(theta);
+        const py = r.y + r.radius * Math.sin(theta);
+        if (i === 0) ctx.moveTo(px, py);
+        else ctx.lineTo(px, py);
       }
-    }
+      ctx.strokeStyle = color;
+      ctx.lineWidth = 1.5;
+      ctx.stroke();
 
-    // Connect nearest neighbours (bond length ≈ hexR)
-    for (let i = 0; i < points.length; i++) {
-      for (let j = i + 1; j < points.length; j++) {
-        const dx = points[i].x - points[j].x;
-        const dy = points[i].y - points[j].y;
-        const d = Math.sqrt(dx * dx + dy * dy);
-        if (d > hexR - 1 && d < hexR + 1) {
-          connections.push([i, j]);
-        }
+      // Carbon atoms at each vertex
+      for (let i = 0; i < sides; i++) {
+        const theta = r.angle + (i * 2 * Math.PI) / sides;
+        const px = r.x + r.radius * Math.cos(theta);
+        const py = r.y + r.radius * Math.sin(theta);
+        ctx.beginPath();
+        ctx.arc(px, py, r.radius * 0.13, 0, Math.PI * 2);
+        ctx.fillStyle = color;
+        ctx.fill();
       }
-    }
-
-    let angleX = 0.15;
-    let angleY = 0.3;
+    };
 
     const render = () => {
       ctx.clearRect(0, 0, W, H);
 
-      // Slow rotation
-      angleX += 0.0003;
-      angleY += 0.0002;
-
-      const cx = W * 0.5;
-      const cy = H * 0.5;
-      const fov = 300;
-
-      // Project 3D → 2D
-      const proj = points.map((p) => {
-        // Rotate Y
-        const x1 = p.x * Math.cos(angleY) - p.z * Math.sin(angleY);
-        const z1 = p.x * Math.sin(angleY) + p.z * Math.cos(angleY);
-        // Rotate X
-        const y2 = p.y * Math.cos(angleX) - z1 * Math.sin(angleX);
-        const z2 = p.y * Math.sin(angleX) + z1 * Math.cos(angleX);
-
-        const scale = fov / (fov + z2);
-        return { x: cx + x1 * scale, y: cy + y2 * scale, scale };
-      });
-
-      // Draw bonds
-      connections.forEach(([i, j]) => {
-        const p1 = proj[i];
-        const p2 = proj[j];
-        const meanScale = (p1.scale + p2.scale) / 2;
-        const alpha = Math.max(0.06, (meanScale - 0.85) * 0.55);
-
-        ctx.beginPath();
-        ctx.moveTo(p1.x, p1.y);
-        ctx.lineTo(p2.x, p2.y);
-        ctx.strokeStyle = `rgba(212, 157, 129, ${alpha})`;
-        ctx.lineWidth = 0.8;
-        ctx.stroke();
-      });
-
-      // Draw nodes
-      proj.forEach((p) => {
-        const alpha = Math.max(0.08, (p.scale - 0.85) * 0.7);
-        ctx.beginPath();
-        ctx.arc(p.x, p.y, p.scale * 1.6, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(212, 157, 129, ${alpha})`;
-        ctx.fill();
+      rings.forEach((r) => {
+        r.angle += r.vAngle;
+        drawRing(r);
       });
 
       animId = requestAnimationFrame(render);
@@ -120,11 +85,10 @@ const FooterLattice = () => {
         position: "absolute",
         left: 0,
         top: 0,
-        width: "120px",
+        width: "110px",
         height: "60px",
         pointerEvents: "none",
-        opacity: 1,
-        borderRadius: "100px 0 0 100px", // clip left pill end
+        borderRadius: "100px 0 0 100px",
       }}
     />
   );
