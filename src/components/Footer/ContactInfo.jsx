@@ -75,8 +75,8 @@ const ContactInfo = ({
             alignItems: 'center',
             background: 'rgba(212, 157, 129, 0.15)',
             border: '1px solid rgba(212, 157, 129, 0.3)',
-            borderRadius: '20px',
-            padding: '4px 12px',
+            borderRadius: '50px',
+            padding: '2px 25px',
             cursor: 'pointer'
           }}
           onMouseEnter={() => {

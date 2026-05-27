@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { useSpring, animated, easings } from "react-spring";
 import useDelayedClickEffect from "./useDelayedClickEffect";
 import useHoverMoveEffect from "../../Helper/useHoverMoveEffect";
+import ResearchStoryIcon from "./ResearchStoryIcon";
 
 const ResumeInfo = ({
   handleClickCV,
@@ -60,6 +61,7 @@ const ResumeInfo = ({
               onMouseEnter={() => setIsHoveredResearch(true)}
               onMouseLeave={() => setIsHoveredResearch(false)}
             >
+              <ResearchStoryIcon isHovered={isHoveredResearch} />
               <span>RESEARCH STORY</span>
             </animated.button>
           </>
