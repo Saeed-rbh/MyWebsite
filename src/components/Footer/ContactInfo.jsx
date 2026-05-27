@@ -31,6 +31,11 @@ const ContactInfo = ({
         onModalClose={() => setIsCalendlyOpen(false)}
         open={isCalendlyOpen}
         rootElement={document.getElementById("root")}
+        pageSettings={{
+          backgroundColor: '020201',
+          textColor: 'faf9f1',
+          primaryColor: 'd49d81'
+        }}
       />
       <animated.p
         className="Social-Media"
