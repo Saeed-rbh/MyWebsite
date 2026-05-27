@@ -42,15 +42,15 @@ const BackgroundLattice = () => {
     window.addEventListener("mouseleave", handleMouseLeave);
 
     // 1. Drifting Backdrop Nodes configuration
-    const particleCount = width < 768 ? 15 : 32;
+    const particleCount = width < 768 ? 20 : 40;
     const particles = [];
     for (let i = 0; i < particleCount; i++) {
       particles.push({
         x: Math.random() * width,
         y: Math.random() * height,
-        vx: (Math.random() - 0.5) * 0.05, // extremely slow velocity
-        vy: (Math.random() - 0.5) * 0.05,
-        radius: 1.2,
+        vx: (Math.random() - 0.5) * 0.06,
+        vy: (Math.random() - 0.5) * 0.06,
+        radius: 1.8,
       });
     }
 
@@ -116,7 +116,7 @@ const BackgroundLattice = () => {
         // Draw node points
         ctx.beginPath();
         ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
-        ctx.fillStyle = "rgba(212, 157, 129, 0.16)"; // very soft copper
+        ctx.fillStyle = "rgba(212, 157, 129, 0.45)";
         ctx.fill();
       });
 
@@ -127,13 +127,13 @@ const BackgroundLattice = () => {
           const dy = particles[i].y - particles[j].y;
           const dist = Math.sqrt(dx * dx + dy * dy);
 
-          if (dist < 180) {
-            const alpha = (1 - dist / 180) * 0.04; // extremely low opacity
+          if (dist < 200) {
+            const alpha = (1 - dist / 200) * 0.12;
             ctx.beginPath();
             ctx.moveTo(particles[i].x, particles[i].y);
             ctx.lineTo(particles[j].x, particles[j].y);
             ctx.strokeStyle = `rgba(212, 157, 129, ${alpha})`;
-            ctx.lineWidth = 0.6;
+            ctx.lineWidth = 0.7;
             ctx.stroke();
           }
         }
@@ -146,13 +146,13 @@ const BackgroundLattice = () => {
           const dy = p.y - mouse.y;
           const dist = Math.sqrt(dx * dx + dy * dy);
 
-          if (dist < 220) {
-            const alpha = (1 - dist / 220) * 0.035;
+          if (dist < 240) {
+            const alpha = (1 - dist / 240) * 0.09;
             ctx.beginPath();
             ctx.moveTo(p.x, p.y);
             ctx.lineTo(mouse.x, mouse.y);
             ctx.strokeStyle = `rgba(212, 157, 129, ${alpha})`;
-            ctx.lineWidth = 0.5;
+            ctx.lineWidth = 0.6;
             ctx.stroke();
           }
         });
@@ -195,20 +195,20 @@ const BackgroundLattice = () => {
 
           // Fade bonds based on depth (Z scale)
           const meanScale = (p1.scale + p2.scale) / 2;
-          const alpha = Math.max(0.01, (meanScale - 0.8) * 0.06); // very subtle
+          const alpha = Math.max(0.04, (meanScale - 0.8) * 0.18);
 
           ctx.beginPath();
           ctx.moveTo(p1.x, p1.y);
           ctx.lineTo(p2.x, p2.y);
           ctx.strokeStyle = `rgba(212, 157, 129, ${alpha * 1.5})`;
-          ctx.lineWidth = 0.7;
+          ctx.lineWidth = 0.9;
           ctx.stroke();
         });
 
         // Draw lattice carbon node points
         projected.forEach((p) => {
-          const size = p.scale * 1.8;
-          const alpha = Math.max(0.01, (p.scale - 0.8) * 0.1);
+          const size = p.scale * 2.5;
+          const alpha = Math.max(0.06, (p.scale - 0.8) * 0.28);
 
           ctx.beginPath();
           ctx.arc(p.x, p.y, size, 0, Math.PI * 2);

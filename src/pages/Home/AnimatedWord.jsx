@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef, useCallback } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useSpring, animated, easings } from "react-spring";
 import useHoverMoveEffect from "../../Helper/useHoverMoveEffect";
 
@@ -19,7 +19,6 @@ const AnimatedWord = ({
 
   const hoverRef = useRef(null);
   const hoverStyle = useHoverMoveEffect(hoverRef, 15, 0.25);
-  const [isHovered, setIsHovered] = useState(false);
 
   const [bgWidth, setBgWidth] = useState("0px");
   useEffect(() => {
@@ -60,14 +59,9 @@ const AnimatedWord = ({
     display: "inline-block",
     whiteSpace: "nowrap",
     verticalAlign: "middle",
-    borderBottom: isHovered
-      ? "2px solid rgba(212, 157, 129, 0.65)"
-      : "2px solid rgba(212, 157, 129, 0.31)",
-    boxShadow: isHovered
-      ? "0 0 18px rgba(212, 157, 129, 0.32), 0 4px 12px rgba(212, 157, 129, 0.18)"
-      : "rgba(212, 157, 129, 0) 0px 4px 6px -4px",
-    transform: isHovered ? "scale(1.035)" : "scale(1)",
-    transition: "all 0.25s cubic-bezier(0.34, 1.56, 0.64, 1)"
+    borderBottom: "2px solid rgba(212, 157, 129, 0.31)",
+    boxShadow: "rgba(212, 157, 129, 0) 0px 4px 6px -4px",
+    transition: "all 0.3s ease-in-out"
   };
   const innerBackground = {
     width: bgWidth,
@@ -90,8 +84,6 @@ const AnimatedWord = ({
           ref={hoverRef}
           style={{ ...specialBackground, cursor: "pointer", ...hoverStyle }}
           onClick={(e) => onClick && onClick(displayWord, e)}
-          onMouseEnter={() => setIsHovered(true)}
-          onMouseLeave={() => setIsHovered(false)}
         >
           <div style={innerBackground}></div>
           <animated.span style={{ ...wordSpring, ...textStyle }}>

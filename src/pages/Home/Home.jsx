@@ -8,7 +8,6 @@ import MainText from "./MainText";
 import HobbyProfession from "./HobbyProfession";
 import Popup from "../../components/Popup/Popup";
 import { popupsData } from "../../data/homePopupsData";
-import BackgroundLattice from "../../components/BackgroundLattice/BackgroundLattice";
 
 import { useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
@@ -79,7 +78,6 @@ const HomePage = () => {
   return (
     visibility && (
       <>
-        <BackgroundLattice />
         <div className={styles.container}>
           <SEO
             title="Saeed Arabha | Home"

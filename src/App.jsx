@@ -13,6 +13,7 @@ import Graphene from "./pages/Research/Research";
 import Mouse from "./Mouse";
 import ScrollToNavigate from "./Helper/ScrollToNavigate"; // Import scroll detector
 import ErrorBoundary from "./components/ErrorBoundary/ErrorBoundary";
+import BackgroundLattice from "./components/BackgroundLattice/BackgroundLattice";
 
 import FallbackLoader from "./Loader/FallbackLoader";
 const AcademicCV = lazy(() => import("./pages/Resume/Resume"));
@@ -40,6 +41,8 @@ function AppContent() {
       <div className="MainBackground">
         <div className="BackgroundColor1"></div>
       </div>
+      {/* Floating carbon lattice — root-level so z-index works correctly */}
+      {visibility && !isDashboard && !isResearchProgress && !isMafia && <BackgroundLattice />}
       {/* Show Mouse everywhere except Admin/Login */}
       {visibility && !isDashboard && <Mouse />}
 
