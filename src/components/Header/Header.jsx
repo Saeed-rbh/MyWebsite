@@ -112,9 +112,9 @@ const Header = () => {
     visibility && (
       <motion.div
         key={visibility ? "visible" : "hidden"}
-        initial={{ opacity: 0, y: 10 }}
+        initial={{ opacity: 0, y: -30 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5, delay: 0.5 }}
+        transition={{ type: "spring", stiffness: 280, damping: 24, delay: 0.3 }}
         className="HomePage-M-T-H"
       >
         <animated.div style={contactInfoAnimation1} className="MainHeader" />
