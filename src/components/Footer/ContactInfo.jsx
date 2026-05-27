@@ -1,6 +1,9 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import { animated } from "react-spring";
 import useHoverMoveEffect from "../../Helper/useHoverMoveEffect";
+import WhatsAppIcon from "./WhatsAppIcon";
+import EmailIcon from "./EmailIcon";
+import ResearchGateIcon from "./ResearchGateIcon";
 
 const ContactInfo = ({
   isMouseHover,
@@ -16,8 +19,9 @@ const ContactInfo = ({
   const Ref_3 = useRef(null);
   const Style_3 = useHoverMoveEffect(Ref_3, 50, 0.2);
 
-  const Ref_4 = useRef(null);
-  const Style_4 = useHoverMoveEffect(Ref_4, 50, 0.2);
+  const [hoverWA, setHoverWA] = useState(false);
+  const [hoverE, setHoverE] = useState(false);
+  const [hoverRG, setHoverRG] = useState(false);
 
   return (
     <div className="contact-1">
@@ -31,19 +35,22 @@ const ContactInfo = ({
         <animated.a
           href="https://wa.me/14168365851"
           ref={Ref_1}
-          style={Style_1}
+          style={{ ...Style_1, display: 'flex', alignItems: 'center', gap: '8px' }}
+          onMouseEnter={() => {
+            setHoverWA(true);
+            setMouseHover([!isMouseHover[0], "CONTACT", "WA"]);
+          }}
+          onMouseLeave={() => {
+            setHoverWA(false);
+            setMouseHover([!isMouseHover[0], "CONTACT", "WA"]);
+          }}
         >
+          <WhatsAppIcon isHovered={hoverWA} />
           <animated.p
             style={
               isMouseHover[1] === "CONTACT" && isMouseHover[2] === "WA"
                 ? contactInfoOpenSpring
                 : {}
-            }
-            onMouseEnter={() =>
-              setMouseHover([!isMouseHover[0], "CONTACT", "WA"])
-            }
-            onMouseLeave={() =>
-              setMouseHover([!isMouseHover[0], "CONTACT", "WA"])
             }
           >
             WHATSAPP
@@ -52,19 +59,22 @@ const ContactInfo = ({
         <animated.a
           href="mailto:SaeedArabha@outlook.com"
           ref={Ref_2}
-          style={Style_2}
+          style={{ ...Style_2, display: 'flex', alignItems: 'center', gap: '8px' }}
+          onMouseEnter={() => {
+            setHoverE(true);
+            setMouseHover([!isMouseHover[0], "CONTACT", "E"]);
+          }}
+          onMouseLeave={() => {
+            setHoverE(false);
+            setMouseHover([!isMouseHover[0], "CONTACT", "E"]);
+          }}
         >
+          <EmailIcon isHovered={hoverE} />
           <animated.p
             style={
               isMouseHover[1] === "CONTACT" && isMouseHover[2] === "E"
                 ? contactInfoOpenSpring
                 : {}
-            }
-            onMouseEnter={() =>
-              setMouseHover([!isMouseHover[0], "CONTACT", "E"])
-            }
-            onMouseLeave={() =>
-              setMouseHover([!isMouseHover[0], "CONTACT", "E"])
             }
           >
             E-MAIL
@@ -73,43 +83,25 @@ const ContactInfo = ({
         <animated.a
           href="https://www.researchgate.net/profile/Saeed-Arabha"
           ref={Ref_3}
-          style={Style_3}
+          style={{ ...Style_3, display: 'flex', alignItems: 'center', gap: '8px' }}
+          onMouseEnter={() => {
+            setHoverRG(true);
+            setMouseHover([!isMouseHover[0], "CONTACT", "RG"]);
+          }}
+          onMouseLeave={() => {
+            setHoverRG(false);
+            setMouseHover([!isMouseHover[0], "CONTACT", "RG"]);
+          }}
         >
+          <ResearchGateIcon isHovered={hoverRG} />
           <animated.p
             style={
               isMouseHover[1] === "CONTACT" && isMouseHover[2] === "RG"
                 ? contactInfoOpenSpring
                 : {}
             }
-            onMouseEnter={() =>
-              setMouseHover([!isMouseHover[0], "CONTACT", "RG"])
-            }
-            onMouseLeave={() =>
-              setMouseHover([!isMouseHover[0], "CONTACT", "RG"])
-            }
           >
             ResearchGate
-          </animated.p>
-        </animated.a>
-        <animated.a
-          href="https://www.instagram.com/saeed_rbh"
-          ref={Ref_4}
-          style={Style_4}
-        >
-          <animated.p
-            style={
-              isMouseHover[1] === "CONTACT" && isMouseHover[2] === "I"
-                ? contactInfoOpenSpring
-                : {}
-            }
-            onMouseEnter={() =>
-              setMouseHover([!isMouseHover[0], "CONTACT", "I"])
-            }
-            onMouseLeave={() =>
-              setMouseHover([!isMouseHover[0], "CONTACT", "I"])
-            }
-          >
-            INSTAGRAM
           </animated.p>
         </animated.a>
       </div>

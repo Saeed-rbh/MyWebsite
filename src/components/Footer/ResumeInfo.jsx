@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 import { useSpring, animated, easings } from "react-spring";
 import useDelayedClickEffect from "./useDelayedClickEffect"; // Import custom hook
 import useHoverMoveEffect from "../../Helper/useHoverMoveEffect";
+import ResearchStoryIcon from "./ResearchStoryIcon";
+import ResumeIcon from "./ResumeIcon";
 
 const ResumeInfo = ({
   handleClickCV,
@@ -18,6 +20,8 @@ const ResumeInfo = ({
   const Style_2 = useHoverMoveEffect(Ref_2, 50, 0.2);
 
   const [delayedResumeClicked, setDelayedResumeClicked] = useState(true);
+  const [isHoveredResearch, setIsHoveredResearch] = useState(false);
+  const [isHoveredResume, setIsHoveredResume] = useState(false);
   useDelayedClickEffect(setDelayedResumeClicked, resumeClicked, 2000);
   const resumeInfoOpenSpring = useSpring({
     opacity: resumeClicked && MenuHide ? "0" : "1",
@@ -42,8 +46,26 @@ const ResumeInfo = ({
       <div className="social">
         {!delayedResumeClicked && (
           <>
-            <animated.button onClick={handleClickCV} style={Style_1} ref={Ref_1}>RESUME</animated.button>
-            <animated.button onClick={handleClickResearch} style={Style_2} ref={Ref_2}><span>RESEARCH STORY</span></animated.button>
+            <animated.button
+              onClick={handleClickCV}
+              style={{ ...Style_1, display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px' }}
+              ref={Ref_1}
+              onMouseEnter={() => setIsHoveredResume(true)}
+              onMouseLeave={() => setIsHoveredResume(false)}
+            >
+              <ResumeIcon isHovered={isHoveredResume} />
+              <span>RESUME</span>
+            </animated.button>
+            <animated.button
+              onClick={handleClickResearch}
+              style={{ ...Style_2, display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px' }}
+              ref={Ref_2}
+              onMouseEnter={() => setIsHoveredResearch(true)}
+              onMouseLeave={() => setIsHoveredResearch(false)}
+            >
+              <ResearchStoryIcon isHovered={isHoveredResearch} />
+              <span>RESEARCH STORY</span>
+            </animated.button>
           </>
         )}
       </div>

@@ -25,7 +25,7 @@ const DownloadInfo = ({ resumeClicked }) => {
       <animated.div className="social">
         <RiDownloadCloud2Line className="DownloadSvg" />
         {!delayedResumeClicked && (
-          <a href="https://www.instagram.com/saeed_rbh">Download PDF Version</a>
+          <a href="/resume.pdf" target="_blank" rel="noopener noreferrer">Download PDF Version</a>
         )}
       </animated.div>
     </animated.div>
