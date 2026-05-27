@@ -1,10 +1,10 @@
-﻿import React from "react";
+import React from "react";
 
 const MySvgComponent = () => (
   <svg viewBox="0 0 179 84" style={{ overflow: "visible" }}>
     <defs>
       <style>
-        {\`
+        {`
           .animated-quote-path {
             fill: transparent;
             stroke: #d49d81;
@@ -30,7 +30,7 @@ const MySvgComponent = () => (
               stroke: #fff;
             }
           }
-        \`}
+        `}
       </style>
     </defs>
     <g>
