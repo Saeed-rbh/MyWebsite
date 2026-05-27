@@ -8,6 +8,7 @@ import MainText from "./MainText";
 import HobbyProfession from "./HobbyProfession";
 import Popup from "../../components/Popup/Popup";
 import { popupsData } from "../../data/homePopupsData";
+import BackgroundLattice from "../../components/BackgroundLattice/BackgroundLattice";
 
 import { useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
@@ -77,37 +78,40 @@ const HomePage = () => {
 
   return (
     visibility && (
-      <div className={styles.container}>
-        <SEO
-          title="Saeed Arabha | Home"
-          description="Personal website of Saeed Arabha, featuring academic CV, research, and portfolio."
-          name="Saeed Arabha"
-          type="website"
-        />
-        <WelcomeMessage MenuHide={resumeClicked} delay={100} />
-        <NameMessage MenuHide={resumeClicked} delay={300} />
-        <MainText MenuHide={resumeClicked} delay={400} onWordClick={handleWordClick} />
-        <HobbyProfession
-          MenuHide={resumeClicked}
-          delay={resumeClicked === 1 ? 1400 : 200}
-        />
-        <Popup
-          isOpen={popupOpen}
-          onClose={() => {
-            setPopupOpen(false);
-            window.history.pushState("", document.title, window.location.pathname + window.location.search);
-          }}
-          title={currentPopup.title}
-          content={<div key={`${currentPopupIndex}-${popupOpen}`}>{currentPopup.content}</div>}
-          originRect={originRect}
-          onNext={handleNextPopup}
-          onPrev={handlePrevPopup}
-          hasNext={currentPopupIndex < popupsData.length - 1}
-          hasPrev={currentPopupIndex > 0}
-          nextTitle={currentPopupIndex < popupsData.length - 1 ? popupsData[currentPopupIndex + 1].shortTitle : null}
-          prevTitle={currentPopupIndex > 0 ? popupsData[currentPopupIndex - 1].shortTitle : null}
-        />
-      </div>
+      <>
+        <BackgroundLattice />
+        <div className={styles.container}>
+          <SEO
+            title="Saeed Arabha | Home"
+            description="Personal website of Saeed Arabha, featuring academic CV, research, and portfolio."
+            name="Saeed Arabha"
+            type="website"
+          />
+          <WelcomeMessage MenuHide={resumeClicked} delay={100} />
+          <NameMessage MenuHide={resumeClicked} delay={300} />
+          <MainText MenuHide={resumeClicked} delay={400} onWordClick={handleWordClick} />
+          <HobbyProfession
+            MenuHide={resumeClicked}
+            delay={resumeClicked === 1 ? 1400 : 200}
+          />
+          <Popup
+            isOpen={popupOpen}
+            onClose={() => {
+              setPopupOpen(false);
+              window.history.pushState("", document.title, window.location.pathname + window.location.search);
+            }}
+            title={currentPopup.title}
+            content={<div key={`${currentPopupIndex}-${popupOpen}`}>{currentPopup.content}</div>}
+            originRect={originRect}
+            onNext={handleNextPopup}
+            onPrev={handlePrevPopup}
+            hasNext={currentPopupIndex < popupsData.length - 1}
+            hasPrev={currentPopupIndex > 0}
+            nextTitle={currentPopupIndex < popupsData.length - 1 ? popupsData[currentPopupIndex + 1].shortTitle : null}
+            prevTitle={currentPopupIndex > 0 ? popupsData[currentPopupIndex - 1].shortTitle : null}
+          />
+        </div>
+      </>
     )
   );
 };
