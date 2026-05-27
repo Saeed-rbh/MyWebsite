@@ -17,12 +17,13 @@ code {
 }
 
 #root {
-  transition: transform 0.4s ease, filter 0.4s ease;
+  transition: transform 0.4s ease, filter 0.4s ease !important;
+  will-change: transform, filter;
 }
 
 body.calendly-open-bg #root {
-  transform: scale(0.95);
-  filter: blur(8px);
+  transform: scale(0.96) !important;
+  filter: blur(6px) !important;
 }
 
 /* Calendly Customizations */
@@ -33,8 +34,15 @@ body .calendly-overlay {
 }
 
 body .calendly-overlay::-webkit-scrollbar {
+  display: none !important;
   width: 0px !important;
   background: transparent !important;
+}
+
+/* Hide scrollbar inside iframe by making it slightly wider and hiding overflow on container */
+body .calendly-popup-content {
+  border-radius: 12px !important;
+  overflow: hidden !important;
 }
 
 body .calendly-inline-widget iframe,
@@ -42,10 +50,8 @@ body .calendly-popup-content iframe,
 body iframe[src*="calendly"] {
   border-radius: 12px !important;
   filter: invert(1) hue-rotate(180deg) !important;
-}
-
-body .calendly-popup-content {
-  border-radius: 12px !important;
-  overflow: hidden !important;
+  /* To hide scrollbar we push it out of the container bounds */
+  width: calc(100% + 18px) !important;
+  padding-right: 18px !important;
 }
 
