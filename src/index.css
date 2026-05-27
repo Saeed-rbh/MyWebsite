@@ -41,5 +41,11 @@ body .calendly-inline-widget iframe,
 body .calendly-popup-content iframe,
 body iframe[src*="calendly"] {
   border-radius: 12px !important;
+  filter: invert(1) hue-rotate(180deg) !important;
+}
+
+body .calendly-popup-content {
+  border-radius: 12px !important;
+  overflow: hidden !important;
 }
 
