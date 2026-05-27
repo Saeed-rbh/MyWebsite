@@ -80,16 +80,11 @@ const ContactInfo = ({
         <animated.button
           onClick={(e) => { e.preventDefault(); setIsCalendlyOpen(true); }}
           ref={Ref_2}
+          className="bookCallBtn"
           style={{
             ...Style_2,
             display: 'flex',
-            alignItems: 'center',
-            background: 'rgb(255 255 255 / 15%)',
-            border: '2px solid rgb(212 180 168 / 15%)',
-            borderRadius: '50px',
-            padding: '2px 25px',
-            cursor: 'pointer',
-            transform: 'none'
+            alignItems: 'center'
           }}
           onMouseEnter={() => {
             setHoverE(true);
