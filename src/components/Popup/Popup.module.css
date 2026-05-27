@@ -119,11 +119,11 @@
   /* Firefox */
 }
 
-/* Choreographed Entrance Animations */
+/* Choreographed Softer Entrance Animations */
 @keyframes titleSlideIn {
   from {
     opacity: 0;
-    transform: translateX(-30px);
+    transform: translateX(-15px);
   }
   to {
     opacity: 1;
@@ -134,7 +134,7 @@
 @keyframes bodySlideUp {
   from {
     opacity: 0;
-    transform: translateY(20px);
+    transform: translateY(15px);
   }
   to {
     opacity: 1;
@@ -145,7 +145,7 @@
 @keyframes highlightSlideIn {
   from {
     opacity: 0;
-    transform: translateX(30px);
+    transform: translateX(15px);
   }
   to {
     opacity: 1;
@@ -153,25 +153,71 @@
   }
 }
 
+/* Softer Exit Animations */
+@keyframes titleSlideOut {
+  from {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateX(15px);
+  }
+}
+
+@keyframes bodySlideDown {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+}
+
+@keyframes highlightSlideOut {
+  from {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateX(-15px);
+  }
+}
+
 .titleAnimate {
-  animation: titleSlideIn 0.6s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+  animation: titleSlideIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
   animation-delay: 0.15s;
   opacity: 0;
   will-change: transform, opacity;
 }
 
+.titleExit {
+  animation: titleSlideOut 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards !important;
+}
+
 :global(.popup-animate-enter) {
-  animation: bodySlideUp 0.6s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+  animation: bodySlideUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
   animation-delay: 0.20s;
   opacity: 0;
   will-change: transform, opacity;
 }
 
 :global(.popup-animate-slide-in-right) {
-  animation: highlightSlideIn 0.6s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+  animation: highlightSlideIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
   animation-delay: 0.40s;
   opacity: 0;
   will-change: transform, opacity;
+}
+
+:global(.popup-content-exiting) :global(.popup-animate-enter) {
+  animation: bodySlideDown 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards !important;
+}
+
+:global(.popup-content-exiting) :global(.popup-animate-slide-in-right) {
+  animation: highlightSlideOut 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards !important;
 }
 
 :global(.popup-text) {

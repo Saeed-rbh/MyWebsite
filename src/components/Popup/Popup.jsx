@@ -6,6 +6,44 @@ const Popup = ({ isOpen, onClose, title, content, originRect, onNext, onPrev, ha
     const [scrollProgress, setScrollProgress] = useState(0);
     const contentRef = useRef(null);
 
+    const [isExiting, setIsExiting] = useState(false);
+    const [activeData, setActiveData] = useState({
+        title: null,
+        content: null,
+        prevTitle: null,
+        nextTitle: null,
+        hasPrev: false,
+        hasNext: false
+    });
+
+    useEffect(() => {
+        if (isOpen) {
+            if (activeData.title && (title !== activeData.title || content !== activeData.content)) {
+                setIsExiting(true);
+                const timer = setTimeout(() => {
+                    setActiveData({ title, content, prevTitle, nextTitle, hasPrev, hasNext });
+                    setIsExiting(false);
+                    setScrollProgress(0);
+                    if (contentRef.current) {
+                        contentRef.current.scrollTop = 0;
+                    }
+                }, 250);
+                return () => clearTimeout(timer);
+            } else {
+                setActiveData({ title, content, prevTitle, nextTitle, hasPrev, hasNext });
+            }
+        } else {
+            setActiveData({
+                title: null,
+                content: null,
+                prevTitle: null,
+                nextTitle: null,
+                hasPrev: false,
+                hasNext: false
+            });
+        }
+    }, [isOpen, title, content, prevTitle, nextTitle, hasPrev, hasNext]);
+
     useEffect(() => {
         const handleEsc = (e) => {
             if (e.key === 'Escape') onClose();
@@ -96,44 +134,44 @@ const Popup = ({ isOpen, onClose, title, content, originRect, onNext, onPrev, ha
                             <path d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z" />
                         </svg>
                     </button>
-                    {title && <h2 className={`${styles.title} ${styles.titleAnimate}`}>{title}</h2>}
-
-                    {/* Scroll Indicator */}
-                    <div className={styles.scrollIndicatorContainer}>
-                        <div
-                            className={styles.scrollProgressBar}
-                            style={{ height: `${scrollProgress}%` }}
-                        />
-                        {/* Floating Number Indicator */}
-                        <div
-                            className={styles.scrollNumber}
-                            style={{
-                                top: `${scrollProgress}%`
-                            }}
-                        >
-                            {scrollProgress}%
-                        </div>
-                    </div>
-
-                    <div
-                        className={styles.content}
-                        ref={contentRef}
-                        onScroll={handleScroll}
-                    >
-                        {content}
-                                                <div className={styles.navigationButtons} style={{ display: "flex", justifyContent: "space-between", marginTop: "1rem", paddingTop: "1rem", borderTop: "1px solid rgba(255,255,255,0.1)" }}>
-                            {hasPrev && prevTitle ? (
-                                <button onClick={onPrev} style={{ background: "rgba(255, 255, 255, 0.05)", backdropFilter: "blur(10px)", border: "1px solid rgba(255, 255, 255, 0.1)", color: "#d49d81", padding: "0.6rem 1.2rem", borderRadius: "30px", cursor: "pointer", transition: "all 0.3s ease", display: "flex", alignItems: "center", gap: "8px", fontSize: "0.9rem" }} onMouseOver={e => e.currentTarget.style.background="rgba(255, 255, 255, 0.1)"} onMouseOut={e => e.currentTarget.style.background="rgba(255, 255, 255, 0.05)"}>
-                                    <span>&larr;</span> {prevTitle}
-                                </button>
-                            ) : <div></div>}
-                            {hasNext && nextTitle ? (
-                                <button onClick={onNext} style={{ background: "rgba(212, 157, 129, 0.15)", backdropFilter: "blur(10px)", border: "1px solid rgba(212, 157, 129, 0.3)", color: "#fff", padding: "0.6rem 1.2rem", borderRadius: "30px", cursor: "pointer", transition: "all 0.3s ease", display: "flex", alignItems: "center", gap: "8px", fontSize: "0.9rem" }} onMouseOver={e => { e.currentTarget.style.background="rgba(212, 157, 129, 0.25)"; e.currentTarget.style.boxShadow="0 4px 12px rgba(212,157,129,0.2)"; }} onMouseOut={e => { e.currentTarget.style.background="rgba(212, 157, 129, 0.15)"; e.currentTarget.style.boxShadow="none"; }}>
-                                    {nextTitle} <span>&rarr;</span>
-                                </button>
-                            ) : <div></div>}
-                        </div>
-                    </div>
+                    {activeData.title && <h2 className={`${styles.title} ${isExiting ? styles.titleExit : styles.titleAnimate}`}>{activeData.title}</h2>}
+ 
+                     {/* Scroll Indicator */}
+                     <div className={styles.scrollIndicatorContainer}>
+                         <div
+                             className={styles.scrollProgressBar}
+                             style={{ height: `${scrollProgress}%` }}
+                         />
+                         {/* Floating Number Indicator */}
+                         <div
+                             className={styles.scrollNumber}
+                             style={{
+                                 top: `${scrollProgress}%`
+                             }}
+                         >
+                             {scrollProgress}%
+                         </div>
+                     </div>
+ 
+                     <div
+                         className={`${styles.content} ${isExiting ? "popup-content-exiting" : ""}`}
+                         ref={contentRef}
+                         onScroll={handleScroll}
+                     >
+                         {activeData.content}
+                                                 <div className={styles.navigationButtons} style={{ display: "flex", justifyContent: "space-between", marginTop: "1rem", paddingTop: "1rem", borderTop: "1px solid rgba(255,255,255,0.1)" }}>
+                             {activeData.hasPrev && activeData.prevTitle ? (
+                                 <button onClick={onPrev} style={{ background: "rgba(255, 255, 255, 0.05)", backdropFilter: "blur(10px)", border: "1px solid rgba(255, 255, 255, 0.1)", color: "#d49d81", padding: "0.6rem 1.2rem", borderRadius: "30px", cursor: "pointer", transition: "all 0.3s ease", display: "flex", alignItems: "center", gap: "8px", fontSize: "0.9rem" }} onMouseOver={e => e.currentTarget.style.background="rgba(255, 255, 255, 0.1)"} onMouseOut={e => e.currentTarget.style.background="rgba(255, 255, 255, 0.05)"}>
+                                     <span>&larr;</span> {activeData.prevTitle}
+                                 </button>
+                             ) : <div></div>}
+                             {activeData.hasNext && activeData.nextTitle ? (
+                                 <button onClick={onNext} style={{ background: "rgba(212, 157, 129, 0.15)", backdropFilter: "blur(10px)", border: "1px solid rgba(212, 157, 129, 0.3)", color: "#fff", padding: "0.6rem 1.2rem", borderRadius: "30px", cursor: "pointer", transition: "all 0.3s ease", display: "flex", alignItems: "center", gap: "8px", fontSize: "0.9rem" }} onMouseOver={e => { e.currentTarget.style.background="rgba(212, 157, 129, 0.25)"; e.currentTarget.style.boxShadow="0 4px 12px rgba(212,157,129,0.2)"; }} onMouseOut={e => { e.currentTarget.style.background="rgba(212, 157, 129, 0.15)"; e.currentTarget.style.boxShadow="none"; }}>
+                                     {activeData.nextTitle} <span>&rarr;</span>
+                                 </button>
+                             ) : <div></div>}
+                         </div>
+                     </div>
                 </animated.div>
             </animated.div>
         )
