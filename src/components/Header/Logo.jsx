@@ -37,7 +37,7 @@ function Logo(props) {
               }
               100% {
                 stroke-dashoffset: 0;
-                fill: rgba(212, 157, 129, 0.15);
+                fill: #d49d81;
                 stroke: #fff;
               }
             }
