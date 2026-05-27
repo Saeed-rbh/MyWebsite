@@ -39,9 +39,7 @@ const ResumeInfo = ({
   });
   return (
     <animated.div className="resumee" style={resumeInfoOpenSpring}>
-      <div className="Social-Media">
-        <animated.p>PORTFOLIO</animated.p>
-      </div>
+      <animated.p className="Social-Media">PORTFOLIO</animated.p>
       <div className="social">
         {!delayedResumeClicked && (
           <>

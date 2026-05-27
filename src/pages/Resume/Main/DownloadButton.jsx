@@ -17,8 +17,6 @@ const DownloadButton = ({ cvData, isMobile }) => {
         background: 'linear-gradient(to left, #faf5f312 0%, #ff7a3717 100%)',
         fontSize: '11px',
         fontWeight: '700', // Bold
-        display: 'flex',
-        alignItems: 'center',
         justifyContent: 'center',
         border: '2px solid rgb(153 153 153 / 40%)',
         padding: '5px 15px',

@@ -81,11 +81,12 @@ const Footer = () => {
     }
   }, [resumeClicked, disapear]);
 
-  const [width, setWidth] = useState(window.innerWidth * 0.9);
+  const [width, setWidth] = useState(window.innerWidth < 1120 ? window.innerWidth * 0.9 : 760);
   useEffect(() => {
     const updateWidth = () => {
-      const calculatedWidth = window.innerWidth * 0.9;
+      const calculatedWidth = window.innerWidth < 1120 ? window.innerWidth * 0.9 : 760;
       setWidth(calculatedWidth);
+      setScreenWidth(window.innerWidth);
     };
     updateWidth();
     window.addEventListener("resize", updateWidth);
