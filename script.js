@@ -1,27 +1,14 @@
-import React, { useEffect, useState } from "react";
-import "./Home.css";
-import styles from "./Home.module.css";
-import SEO from "../../components/SEO/SEO";
-import WelcomeMessage from "./WelcomeMessage";
-import NameMessage from "./NameMessage";
-import MainText from "./MainText";
-import HobbyProfession from "./HobbyProfession";
-import Popup from "../../components/Popup/Popup";
+﻿const fs = require("fs");
+const path = "src/pages/Home/Home.jsx";
+let content = fs.readFileSync(path, "utf8");
 
-import { useSelector } from "react-redux";
-import { useLocation } from "react-router-dom";
+const startStr = "  const handleWordClick = (word, e) => {";
+const endStr = "  useEffect(() => {";
 
-const HomePage = () => {
-  const { visibility } = useSelector((state) => state.ui);
-  const { currentPage } = useSelector((state) => state.ui);
+const startIndex = content.indexOf(startStr);
+const endIndex = content.lastIndexOf("  };", content.indexOf(endStr)) + 4; // match the closing brace of handleWordClick
 
-  const location = useLocation();
-  const [resumeClicked, setResumeClicked] = useState(0);
-  const [popupOpen, setPopupOpen] = useState(false);
-  const [popupContent, setPopupContent] = useState({ title: "", content: "" });
-  const [originRect, setOriginRect] = useState(null);
-
-  const handleWordClick = (word, e) => {
+const newHandleWordClick = `  const handleWordClick = (word, e) => {
     const normalizedWord = word.replace(/-/g, " ").toLowerCase();
 
     if (e && e.currentTarget) {
@@ -33,7 +20,7 @@ const HomePage = () => {
         title: "Materials Scientist & Researcher",
         content: (
           <div style={{ textAlign: "left" }}>
-            <div className={`${styles.animateEnter} ${styles.delay1}`}>
+            <div className={\`\${styles.animateEnter} \${styles.delay1}\`}>
               <p className={styles.text} style={{ fontSize: "1.2rem", marginBottom: "1rem" }}>
                 <strong>Bridging the gap between processing, structure, and performance.</strong>
               </p>
@@ -41,8 +28,8 @@ const HomePage = () => {
                 My research connects experimental process development with deep materials characterization and computational modeling. I investigate how processing conditions dictate material quality, thermal transport, and mechanical behavior.
               </p>
             </div>
-            <h3 className={`${styles.miniTitle} ${styles.animateEnter} ${styles.delay2}`}>Core Capabilities</h3>
-            <div className={`${styles.glassGrid} ${styles.animateEnter} ${styles.delay2}`}>
+            <h3 className={\`\${styles.miniTitle} \${styles.animateEnter} \${styles.delay2}\`}>Core Capabilities</h3>
+            <div className={\`\${styles.glassGrid} \${styles.animateEnter} \${styles.delay2}\`}>
               <div className={styles.glassCard}>
                 <span className={styles.cardTitle}>Advanced Characterization</span>
                 <p className={styles.cardText}>Certified operator for mIRage-Raman. Extensive expertise in XPS, TEM/STEM, SEM, AFM, and UV-Vis spectroscopy.</p>
@@ -64,7 +51,7 @@ const HomePage = () => {
         title: "2D Nanomaterials (Graphene, h-BN, MoS₂)",
         content: (
           <div style={{ textAlign: "left" }}>
-            <div className={`${styles.animateEnter} ${styles.delay1}`}>
+            <div className={\`\${styles.animateEnter} \${styles.delay1}\`}>
               <p className={styles.text} style={{ fontSize: "1.2rem", marginBottom: "1rem" }}>
                 <strong>The foundation of next-generation technology.</strong>
               </p>
@@ -72,9 +59,9 @@ const HomePage = () => {
                 Two-dimensional nanomaterials exhibit extraordinary thermal, electrical, and mechanical properties. My work focuses on scalable production and integration of Graphene, hexagonal Boron Nitride (h-BN), and Molybdenum Disulfide (MoS₂).
               </p>
             </div>
-            <h3 className={`${styles.miniTitle} ${styles.animateEnter} ${styles.delay2}`}>Industrial Applications</h3>
-            <div className={`${styles.timelineList} ${styles.animateEnter} ${styles.delay2}`}>
-              <div className={`${styles.timelineItem} ${styles.highlightItem}`}>
+            <h3 className={\`\${styles.miniTitle} \${styles.animateEnter} \${styles.delay2}\`}>Industrial Applications</h3>
+            <div className={\`\${styles.timelineList} \${styles.animateEnter} \${styles.delay2}\`}>
+              <div className={\`\${styles.timelineItem} \${styles.highlightItem}\`}>
                 <strong style={{ color: "#fff", fontSize: "1.1rem", display: "block", marginBottom: "-5px" }}>Nano-Enhanced Composites</strong>
                 <p className={styles.text} style={{ fontSize: "0.95rem", marginTop: "0.2rem" }}>
                   Improving the thermal and mechanical resilience of industrial polymers and coatings.
@@ -99,7 +86,7 @@ const HomePage = () => {
         title: "Nano-Enhanced Heat Transfer",
         content: (
           <div style={{ textAlign: "left" }}>
-            <div className={`${styles.animateEnter} ${styles.delay1}`}>
+            <div className={\`\${styles.animateEnter} \${styles.delay1}\`}>
               <p className={styles.text} style={{ fontSize: "1.2rem", marginBottom: "1rem" }}>
                 <strong>Optimizing thermal pathways at the nanoscale.</strong>
               </p>
@@ -107,8 +94,8 @@ const HomePage = () => {
                 Effective thermal management is a critical bottleneck in modern electronics and energy systems. My research addresses this by engineering nanoscale interfaces to enhance thermal conductance.
               </p>
             </div>
-            <h3 className={`${styles.miniTitle} ${styles.animateEnter} ${styles.delay2}`}>Key Contributions</h3>
-            <div className={`${styles.glassGrid} ${styles.animateEnter} ${styles.delay2}`}>
+            <h3 className={\`\${styles.miniTitle} \${styles.animateEnter} \${styles.delay2}\`}>Key Contributions</h3>
+            <div className={\`\${styles.glassGrid} \${styles.animateEnter} \${styles.delay2}\`}>
               <div className={styles.glassCard}>
                 <span className={styles.cardTitle}>Nanofluid Optimization</span>
                 <p className={styles.cardText}>Investigating interfacial thermal conductance between nanoparticles (like TiO₂) and base fluids.</p>
@@ -130,7 +117,7 @@ const HomePage = () => {
         title: "Scalable Materials Processing",
         content: (
           <div style={{ textAlign: "left" }}>
-            <div className={`${styles.animateEnter} ${styles.delay1}`}>
+            <div className={\`\${styles.animateEnter} \${styles.delay1}\`}>
               <p className={styles.text} style={{ fontSize: "1.2rem", marginBottom: "1rem" }}>
                 <strong>From laboratory synthesis to industrial nanomanufacturing.</strong>
               </p>
@@ -138,9 +125,9 @@ const HomePage = () => {
                 A major hurdle in advanced materials is transitioning from small-batch lab synthesis to high-throughput manufacturing. I specialize in designing and optimizing scalable processes.
               </p>
             </div>
-            <h3 className={`${styles.miniTitle} ${styles.animateEnter} ${styles.delay2}`}>Process Optimization</h3>
-            <div className={`${styles.timelineList} ${styles.animateEnter} ${styles.delay2}`}>
-              <div className={`${styles.timelineItem} ${styles.highlightItem}`}>
+            <h3 className={\`\${styles.miniTitle} \${styles.animateEnter} \${styles.delay2}\`}>Process Optimization</h3>
+            <div className={\`\${styles.timelineList} \${styles.animateEnter} \${styles.delay2}\`}>
+              <div className={\`\${styles.timelineItem} \${styles.highlightItem}\`}>
                 <strong style={{ color: "#fff", fontSize: "1.1rem", display: "block", marginBottom: "-5px" }}>Variable Engineering</strong>
                 <p className={styles.text} style={{ fontSize: "0.95rem", marginTop: "0.2rem" }}>
                   Scaling up production by optimizing gas flow, pressure, temperature, and carrier gas selection.
@@ -165,7 +152,7 @@ const HomePage = () => {
         title: "Compressible Flow Exfoliation (CFE)",
         content: (
           <div style={{ textAlign: "left" }}>
-            <div className={`${styles.animateEnter} ${styles.delay1}`}>
+            <div className={\`\${styles.animateEnter} \${styles.delay1}\`}>
               <p className={styles.text} style={{ fontSize: "1.2rem", marginBottom: "1rem" }}>
                 <strong>A paradigm shift in 2D material production.</strong>
               </p>
@@ -173,8 +160,8 @@ const HomePage = () => {
                 Compressible Flow Exfoliation (CFE) is a novel, gas-driven approach designed to mass-produce 2D nanomaterials in a cleaner, faster, and more scalable way than traditional liquid-phase or chemical methods.
               </p>
             </div>
-            <h3 className={`${styles.miniTitle} ${styles.animateEnter} ${styles.delay2}`}>How It Works</h3>
-            <div className={`${styles.glassGrid} ${styles.animateEnter} ${styles.delay2}`}>
+            <h3 className={\`\${styles.miniTitle} \${styles.animateEnter} \${styles.delay2}\`}>How It Works</h3>
+            <div className={\`\${styles.glassGrid} \${styles.animateEnter} \${styles.delay2}\`}>
               <div className={styles.glassCard} style={{ gridColumn: "1 / -1" }}>
                 <span className={styles.cardTitle}>Supersonic Fluid Dynamics</span>
                 <p className={styles.cardText}>By utilizing high-pressure gas flow and shockwaves, CFE physically shears bulk materials (like graphite) into atomically thin sheets (graphene) instantly, without the need for toxic solvents.</p>
@@ -192,7 +179,7 @@ const HomePage = () => {
         title: "Research Commercialization",
         content: (
           <div style={{ textAlign: "left" }}>
-            <div className={`${styles.animateEnter} ${styles.delay1}`}>
+            <div className={\`\${styles.animateEnter} \${styles.delay1}\`}>
               <p className={styles.text} style={{ fontSize: "1.2rem", marginBottom: "1rem" }}>
                 <strong>Translating technical research into market value.</strong>
               </p>
@@ -200,9 +187,9 @@ const HomePage = () => {
                 Scientific breakthroughs only matter if they can reach the market. As a Lab2Market Validate & Launch Fellow, I actively explore the commercial potential of advanced materials.
               </p>
             </div>
-            <h3 className={`${styles.miniTitle} ${styles.animateEnter} ${styles.delay2}`}>Industry Engagement</h3>
-            <div className={`${styles.timelineList} ${styles.animateEnter} ${styles.delay2}`}>
-              <div className={`${styles.timelineItem} ${styles.highlightItem}`}>
+            <h3 className={\`\${styles.miniTitle} \${styles.animateEnter} \${styles.delay2}\`}>Industry Engagement</h3>
+            <div className={\`\${styles.timelineList} \${styles.animateEnter} \${styles.delay2}\`}>
+              <div className={\`\${styles.timelineItem} \${styles.highlightItem}\`}>
                 <strong style={{ color: "#fff", fontSize: "1.1rem", display: "block", marginBottom: "-5px" }}>Customer Discovery</strong>
                 <p className={styles.text} style={{ fontSize: "0.95rem", marginTop: "0.2rem" }}>
                   Conducted 50+ interviews with stakeholders in manufacturing, composites, and clean tech to understand adoption barriers.
@@ -221,50 +208,9 @@ const HomePage = () => {
       setPopupOpen(true);
       window.location.hash = "Commercialization";
     }
-  };
+  };`;
 
-useEffect(() => {
-    if (visibility && location.pathname === "/" && currentPage === "/") {
-      setResumeClicked(1);
-    } else if (
-      visibility &&
-      location.pathname === "/" &&
-      currentPage === "/AcademicCV"
-    ) {
-      setResumeClicked(2);
-    } else {
-      setResumeClicked(3);
-    }
-  }, [location.pathname, currentPage, visibility]);
+content = content.slice(0, startIndex) + newHandleWordClick + "\n\n" + content.slice(endIndex + 1).trim();
+fs.writeFileSync(path, content);
+console.log("Replaced successfully!");
 
-  return (
-    visibility && (
-      <div className={styles.container}>
-        <SEO
-          title="Saeed Arabha | Home"
-          description="Personal website of Saeed Arabha, featuring academic CV, research, and portfolio."
-          name="Saeed Arabha"
-          type="website"
-        />
-        <WelcomeMessage MenuHide={resumeClicked} delay={100} />
-        <NameMessage MenuHide={resumeClicked} delay={300} />
-        <MainText MenuHide={resumeClicked} delay={400} onWordClick={handleWordClick} />
-        <HobbyProfession
-          MenuHide={resumeClicked}
-          delay={resumeClicked === 1 ? 1400 : 200}
-        />
-        <Popup
-          isOpen={popupOpen}
-          onClose={() => {
-            setPopupOpen(false);
-            window.history.pushState("", document.title, window.location.pathname + window.location.search);
-          }}
-          title={popupContent.title}
-          content={popupContent.content}
-          originRect={originRect}
-        />
-      </div>
-    )
-  );
-};
-export default HomePage;

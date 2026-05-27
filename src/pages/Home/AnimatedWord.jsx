@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useSpring, animated, easings } from "react-spring";
+import useHoverMoveEffect from "../../Helper/useHoverMoveEffect";
 
 const AnimatedWord = ({
   word,
@@ -15,6 +16,9 @@ const AnimatedWord = ({
   if (isSpecialWord) {
     displayWord = displayWord.replace(/-/g, " ");
   }
+
+  const hoverRef = useRef(null);
+  const hoverStyle = useHoverMoveEffect(hoverRef, 60, 0.25);
 
   const [bgWidth, setBgWidth] = useState("0px");
   useEffect(() => {
@@ -73,15 +77,16 @@ const AnimatedWord = ({
   return (
     <>
       {isSpecialWord ? (
-        <div
-          style={{ ...specialBackground, cursor: "pointer" }}
+        <animated.div
+          ref={hoverRef}
+          style={{ ...specialBackground, cursor: "pointer", ...hoverStyle }}
           onClick={(e) => onClick && onClick(displayWord, e)}
         >
           <div style={innerBackground}></div>
           <animated.span style={{ ...wordSpring, ...textStyle }}>
             {displayWord}
           </animated.span>
-        </div>
+        </animated.div>
       ) : (
         <animated.span style={{ ...wordSpring, ...textStyle }}>
           {displayWord}

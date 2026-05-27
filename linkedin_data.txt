@@ -1,0 +1,91 @@
+SAEED ARABHA
+He/Him
+Materials Scientist | 2D Nanomaterials, Graphene & Advanced Materials | Characterization | Process Development | Thermal Management
+
+I am interested in one question: how can advanced materials move from promising lab results to real technologies?
+
+I am a Materials Scientist and researcher working on 2D nanomaterials, nano-enhanced heat transfer, nanofluids, and scalable materials processing for R&D and nanomanufacturing applications. My work focuses on graphene, h-BN, MoS₂, and other nanomaterials, with an interest in how structure, interfaces, and processing conditions affect performance.
+
+A major part of my research is Compressible Flow Exfoliation, a gas-driven approach designed to produce 2D materials in a cleaner, faster, and more scalable way.
+
+My background combines materials characterization, computational modeling, and experimental process development. I use Raman, XPS, TEM/STEM, SEM, AFM, UV-Vis, CFD, molecular dynamics, and machine-learning interatomic potentials to connect processing with material quality, thermal transport, mechanical behavior, and surface chemistry.
+
+Beyond the lab, I have explored research commercialization through Lab2Market Validate, Lab2Market Launch, and Inventor to Founder, focusing on customer discovery, industry needs, and science-based venture development.
+
+My goal is simple: develop better materials, understand them deeply, and help move them toward practical use.
+
+Top skills
+Materials Science • Nanomaterials • Materials Characterization • Process Optimization (Manufacturing) • Computational Modeling
+
+Experience
+
+Lab2Market Validate & Launch Fellow | Advanced Materials Commercialization
+Lab2Market
+2025 - 2026 · 1 yr
+Toronto, Ontario, Canada · Hybrid
+Participated in Lab2Market Validate and Launch to explore the commercial potential of advanced materials research focused on scalable 2D nanomaterial production.
+• Conducted 50+ customer discovery to understand industry needs, adoption barriers, and market opportunities for graphene and other 2D materials.
+• Engaged with stakeholders across advanced materials, nanomaterials, manufacturing, composites, coatings, clean technology, and related sectors.
+• Evaluated commercialization pathways for Compressible Flow Exfoliation, a gas-driven process for scalable 2D-material production.
+• Refined customer segments, value propositions, market positioning, and business model assumptions.
+• Translated technical research into clearer industry-facing language for potential partners, customers, and stakeholders.
+
+PhD Researcher, Materials Science & Nanomaterials
+York University · Full-time
+2021 - 2026 · 5 yrs
+Toronto, Ontario, Canada · On-site
+Conducting doctoral research on scalable 2D nanomaterial production, with a focus on Compressible Flow Exfoliation (CFE), advanced materials characterization, and process development for graphene, h-BN, MoS₂, and membrane-related applications.
+• Developed a high-pressure gas-driven exfoliation setup for producing 2D nanomaterials through Compressible Flow Exfoliation.
+• Investigated process scale-up variables including gas flow, pressure, temperature, carrier gas selection, and material quality for high-throughput nanomaterial production.
+• Produced and studied nanosheets from graphite, h-BN, and MoS₂ to evaluate the scalability and material compatibility of the process.
+• Applied multiscale modeling, COMSOL simulations, molecular dynamics, and Python-based analysis to improve nanomaterial production yield, process understanding, and material quality.
+• Certified main operator for the mIRage-Raman system, supporting advanced spectroscopy and materials characterization for 2D nanomaterials and polymer composites.
+• Characterized surface chemistry and bonding states using XPS to understand process-induced chemical changes and material preservation.
+• Evaluated material quality, layer reduction, and structural defects using Raman spectroscopy, UV-Vis analysis, SEM, TEM/STEM, and AFM.
+
+Mitacs Globalink Research Award Fellow | Visiting Researcher
+Mitacs
+2025 - 2025 · Less than a year
+Kassel, Hesse, Germany · On-site
+Completed a 3-month Mitacs Globalink Research Award at the University of Kassel, Germany, funded by Mitacs Canada.
+Research project: “Characterization of 2D Nanomaterials Synthesized via Compressible Flow Exfoliation (CFE).”
+• Conducted research on 2D nanomaterials produced through Compressible Flow Exfoliation, with a focus on material characterization and potential applications.
+• Studied CFE-produced graphene and related 2D materials to better understand morphology, structure, and material quality.
+• Collaborated with researchers at the University of Kassel under the supervision of Prof. Claudia Backes.
+
+HVAC Apprentice | Thermal Systems & Mechanical Engineering
+Tahvieh Group
+2016 - 2016 · Less than a year
+Iran · On-site
+Completed an apprenticeship with Tahvieh Group, gaining hands-on exposure to residential and commercial HVAC systems, thermal systems, ventilation, air conditioning, product selection, and customer-focused technical support. 
+• Gained hands-on exposure to HVAC systems, thermal systems, ventilation, air conditioning, and product-based engineering support.
+• Assisted with residential and commercial HVAC solutions focused on comfort, system performance, and cost-effective service delivery.
+
+Education
+
+York University
+Doctor of Philosophy - PhD, Mechanical Engineering
+2021 – 2026
+
+Imam Khomeini International University
+Master's degree, Mechanical Engineering
+2018 – 2020
+
+Imam Khomeini International University
+Bachelor's degree, Mechanical Engineering
+2013 – 2017
+
+Licenses & certifications
+mIRage-Raman Main Operator Certification
+Photothermal Spectroscopy Corp
+Issued Jan 2026
+
+Publications
+Free-Energy Mapping of Gas-Assisted Exfoliation Pathways for Graphene under Compressible Flow... (ACS Applied Nano Materials, 2026)
+Compressible Flow Exfoliation of Two-Dimensional Nanomaterials... (Advanced Engineering Materials, 2026)
+Nonreciprocal forces enable cold-to-hot heat transfer between nanoparticles (Scientific Reports, 2023)
+Lattice thermal conductivity and Young's modulus of XN4... (PCCP, 2023)
+Interactions of gas particles with graphene during high-throughput compressible flow exfoliation... (JPCC, 2022)
+Interfacial thermal conductance between TiO2 nanoparticle and water... (Journal of Molecular Liquids, 2022)
+Recent advances in lattice thermal conductivity calculation using machine-learning interatomic potentials (Journal of Applied Physics, 2021)
+Elucidation of thermo-mechanical properties of silicon nanowires... (Computational Materials Science, 2021)
