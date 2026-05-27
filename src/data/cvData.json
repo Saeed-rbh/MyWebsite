@@ -635,11 +635,11 @@
         "list": [
             {
                 "id": 1,
-                "text": "Situated at the $(PICSSL Lab) at $(York University), I apply my $(mechanical engineering) prowess to delve into the complexities of nanomaterials and molecular phenomena. My professional focus lies in $(2D Nanomaterials), $(Molecular Dynamics), and $(Heat Transfer). The success of my research approach significantly stems from interdisciplinary $(collaborations) that amplify the potential of my innovative explorations.",
-                "degreeLabel": "MASTER IN",
-                "degree": "Mechanical Engineering",
-                "hobbyLabel": "HOBBY",
-                "hobby": "Vibe Coding"
+                "text": "I am a $(Materials Scientist) specializing in $(2D Nanomaterials), nano-enhanced $(heat transfer), and scalable $(materials processing). My research combines $(computational modeling) and $(experimental characterization) to bridge the gap between promising lab results and real-world technologies. Through innovations like $(Compressible Flow Exfoliation), I aim to develop better materials, understand them deeply, and drive them toward practical $(commercialization).",
+                "degreeLabel": "EXPERTISE IN",
+                "degree": "2D Nanomaterials",
+                "hobbyLabel": "FOCUS",
+                "hobby": "R&D & Commercialization"
             }
         ]
     }
