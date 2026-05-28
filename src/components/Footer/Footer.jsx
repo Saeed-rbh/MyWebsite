@@ -101,14 +101,14 @@ const Footer = () => {
       step === 0
         ? { y: 0, opacity: 1 }
         : step === 1
-          ? { width: "70px", height: "80px" }
+          ? { width: "70px", height: screenWidth < 640 ? "60px" : "80px" }
           : step === 2
-            ? { width: "60px", height: "60px" }
+            ? { width: screenWidth < 640 ? "48px" : "60px", height: screenWidth < 640 ? "48px" : "60px" }
             : step === 3
               ? {
                 opacity: resumeClicked ? 0 : 1,
                 width: `${width}px`,
-                height: "60px",
+                height: screenWidth < 640 ? "48px" : "60px",
                 y: isMenuOpen ? -10 : resumeClicked ? 10 : 0,
               }
               : {},

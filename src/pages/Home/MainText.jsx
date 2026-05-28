@@ -31,13 +31,13 @@ const MainText = ({ MenuHide, delay, onWordClick }) => {
         processedTokens.push({ type: "tag", content: part });
       } else {
         let text = part;
-        // If the preceding token was a tag, check if this text segment starts with non-whitespace characters (like punctuation)
+        // If the preceding token was a tag, check if this text segment starts with optional whitespace followed by punctuation
         if (processedTokens.length > 0 && processedTokens[processedTokens.length - 1].type === "tag") {
-          const match = text.match(/^([^\s]+)/);
+          const match = text.match(/^(\s*)([.,;:!?]+)/);
           if (match) {
-            const punctuation = match[1];
+            const punctuation = match[2];
             processedTokens[processedTokens.length - 1].content += punctuation;
-            text = text.slice(punctuation.length);
+            text = text.slice(match[0].length);
           }
         }
 

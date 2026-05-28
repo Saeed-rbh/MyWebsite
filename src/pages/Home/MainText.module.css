@@ -11,17 +11,18 @@
     -webkit-animation-duration: 1200ms;
     animation-duration: 1200ms;
     font-family: "Poppins", sans-serif;
-    font-size: 15px;
+    font-size: 1.4rem;
+    line-height: 1.8;
     text-align: left;
     font-weight: 400;
 }
 
 .paragraph span {
-    line-height: 32px;
+    line-height: inherit;
 }
 
 .paragraph div span {
-    line-height: 15px;
+    line-height: inherit;
 }
 
 .container svg {
@@ -53,8 +54,8 @@
 
 @media only screen and (max-width: 640px) {
     .paragraph {
-        font-size: 13px;
-        line-height: 25px;
+        font-size: 1.4rem;
+        line-height: 1.8;
         text-align: center;
         margin: 0 -10px;
         width: 100%;
