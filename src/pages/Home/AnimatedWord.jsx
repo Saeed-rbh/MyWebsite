@@ -11,10 +11,23 @@ const AnimatedWord = ({
   length,
   onClick,
 }) => {
-  const isSpecialWord = word.startsWith("<") && word.endsWith(">");
-  let displayWord = isSpecialWord ? word.slice(1, -1) : word;
-  if (isSpecialWord) {
-    displayWord = displayWord.replace(/-/g, " ");
+  let isSpecialWord = false;
+  let displayWord = word;
+  let punctuation = "";
+
+  if (word.startsWith("<") || word.startsWith("$(")) {
+    const match = word.match(/^([<$].*?>|\$\([^)]+\))(.*)$/);
+    if (match) {
+      isSpecialWord = true;
+      const tagContent = match[1];
+      punctuation = match[2];
+
+      if (tagContent.startsWith("<") && tagContent.endsWith(">")) {
+        displayWord = tagContent.slice(1, -1).replace(/-/g, " ");
+      } else if (tagContent.startsWith("$(") && tagContent.endsWith(")")) {
+        displayWord = tagContent.slice(2, -1);
+      }
+    }
   }
 
   const hoverRef = useRef(null);
@@ -80,16 +93,23 @@ const AnimatedWord = ({
   return (
     <>
       {isSpecialWord ? (
-        <animated.div
-          ref={hoverRef}
-          style={{ ...specialBackground, cursor: "pointer", ...hoverStyle }}
-          onClick={(e) => onClick && onClick(displayWord, e)}
-        >
-          <div style={innerBackground}></div>
-          <animated.span style={{ ...wordSpring, ...textStyle }}>
-            {displayWord}
-          </animated.span>
-        </animated.div>
+        <span style={{ display: "inline-block", whiteSpace: "nowrap" }}>
+          <animated.div
+            ref={hoverRef}
+            style={{ ...specialBackground, cursor: "pointer", ...hoverStyle }}
+            onClick={(e) => onClick && onClick(displayWord, e)}
+          >
+            <div style={innerBackground}></div>
+            <animated.span style={{ ...wordSpring, ...textStyle }}>
+              {displayWord}
+            </animated.span>
+          </animated.div>
+          {punctuation && (
+            <animated.span style={{ ...wordSpring, ...textStyle, verticalAlign: "middle" }}>
+              {punctuation}
+            </animated.span>
+          )}
+        </span>
       ) : (
         <animated.span style={{ ...wordSpring, ...textStyle }}>
           {displayWord}

@@ -16,46 +16,47 @@ const MainText = ({ MenuHide, delay, onWordClick }) => {
       "Situated at the <PICSSL-Lab> at <York-University>, I apply my <mechanical-engineering> prowess to delve into the complexities of nanomaterials and molecular phenomena. My professional focus lies in <2D-Nanomaterials>, <Molecular-Dynamics>, and <Heat-Transfer>. The success of my research approach significantly stems from interdisciplinary <collaborations> that amplify the potential of my innovative explorations.";
 
     // Parse logic:
-    // Support both <Word-With-Dash> and $(Word With Space)
-    // We want to transform the text into an array of words/tokens.
-    // Regex explanation:
-    // 1. \$\(([^)]+)\): Matches $(...) capturing the content inside.
-    // 2. <([^>]+)>: Matches <...> capturing content inside.
-    // 3. \s+: Matches whitespace (splitter).
-    // We split by standard delimiters but keep the special tokens intact first?
-    // Actually, splitting by regex with capturing groups includes the separators in the result.
+    // Split the text alternating between special tags and standard text segments
+    const parts = rawText.split(/(\$\([^)]+\)|<[^>]+>)/g);
+    const processedTokens = [];
 
-    // Strategy:
-    // Replace all $(...) with a unified marker that won't be split by space easily yet, OR just split carefully.
-    // Better: Split by `( \$\([^)]+\) | <[^>]+> | \s+ )` ?
-    // The previous implementation used: `text.split(/( |<[^>]+>)/g).filter((w) => w.trim());`
-    // This splits by space or <...>, keeping them because of capturing group.
+    for (let i = 0; i < parts.length; i++) {
+      const part = parts[i];
+      if (!part) continue;
 
-    // Let's extend the splitting regex:
-    const regex = /(\$\([^)]+\)|<[^>]+>|\s+)/g;
-    const tokens = rawText.split(regex).filter(w => w && w.trim());
+      const isTag = (part.startsWith("<") && part.includes(">")) || (part.startsWith("$(") && part.includes(")"));
 
-    // Normalize tokens for AnimatedWord
-    // AnimatedWord expects:
-    // - Plain word: just string
-    // - Special word: Starts with < and ends with >, dashes as spaces.
-    // We can stick to passing strings to AnimatedWord, but if we use $(...), we should convert it to <...> format 
-    // OR update AnimatedWord.
-    // Let's convert $(Word With Space) -> <Word-With-Dash> (hacky but keeps AnimatedWord compatible if we strictly replace spaces with dashes)
-    // OR better: Update AnimatedWord (Refactor).
-    // Let's update MainText to purely parse and let AnimatedWord handle it? 
-    // No, AnimatedWord logic is: `isSpecialWord = word.startsWith("<")`.
-    // Let's transform $(...) to <...> style for compatibility, BUT we need dashes for spaces in the <...> convention?
-    // Wait, the previous code: `displayWord = displayWord.replace(/-/g, " ");`
-    // So <York-University> becomes "York University".
-    // If we have $(York University), we can convert it to <York-University> to reuse AnimatedWord as is.
+      if (isTag) {
+        // Tag found, add as tag token
+        processedTokens.push({ type: "tag", content: part });
+      } else {
+        let text = part;
+        // If the preceding token was a tag, check if this text segment starts with non-whitespace characters (like punctuation)
+        if (processedTokens.length > 0 && processedTokens[processedTokens.length - 1].type === "tag") {
+          const match = text.match(/^([^\s]+)/);
+          if (match) {
+            const punctuation = match[1];
+            processedTokens[processedTokens.length - 1].content += punctuation;
+            text = text.slice(punctuation.length);
+          }
+        }
 
-    const processedWords = tokens.map(token => {
-      if (token.startsWith("$(") && token.endsWith(")")) {
-        const content = token.slice(2, -1);
-        // Replace spaces with dashes to match <...> style for AnimatedWord compatibility, 
-        // verifying AnimatedWord reverses this.
-        return `<${content.replace(/\s+/g, '-')}>`;
+        // Now split the remaining text by whitespace
+        const words = text.split(/\s+/).filter(w => w);
+        for (const word of words) {
+          processedTokens.push({ type: "text", content: word });
+        }
+      }
+    }
+
+    // Normalize tokens for AnimatedWord (convert $(...) tags to <...> tags for compatibility)
+    const processedWords = processedTokens.map(t => {
+      let token = t.content;
+      if (token.startsWith("$(") && token.includes(")")) {
+        const endIdx = token.indexOf(")");
+        const content = token.slice(2, endIdx);
+        const punctuation = token.slice(endIdx + 1);
+        return `<${content.replace(/\s+/g, "-")}>${punctuation}`;
       }
       return token;
     });

@@ -1,13 +1,25 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 
 /**
  * FooterLattice — uses the exact same graphene benzene-ring style
  * from the Research Story page (Flake class): a hexagonal ring with
  * 6 carbon atoms at vertices + bond lines, slowly rotating.
  * Rendered on a canvas clipped into the left end of the footer pill.
+ * Fully responsive: scales down on mobile to prevent overlapping with text.
  */
 const FooterLattice = () => {
   const canvasRef = useRef(null);
+  const [isMobile, setIsMobile] = useState(
+    typeof window !== "undefined" ? window.innerWidth < 640 : false
+  );
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 640);
+    };
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -17,7 +29,7 @@ const FooterLattice = () => {
 
     let animId;
 
-    const W = 110;
+    const W = isMobile ? 60 : 110;
     const H = 60;
     const dpr = window.devicePixelRatio || 1;
     canvas.width = W * dpr;
@@ -25,14 +37,19 @@ const FooterLattice = () => {
     ctx.scale(dpr, dpr);
 
     // Single large ring centered in canvas, plus two small ghost rings
-    const rings = [
-      // Main ring — centered, full opacity
-      { x: W * 0.42, y: H * 0.5, radius: 18, opacity: 0.55, angle: 0, vAngle: 0.004 },
-      // Small ghost ring — upper right
-      { x: W * 0.82, y: H * 0.22, radius: 9, opacity: 0.2, angle: 1.0, vAngle: 0.006 },
-      // Small ghost ring — lower left, partially off-screen
-      { x: W * 0.08, y: H * 0.78, radius: 8, opacity: 0.15, angle: 2.5, vAngle: 0.005 },
-    ];
+    const rings = isMobile
+      ? [
+          // Single smaller ring centered on mobile, lower opacity for premium look
+          { x: W * 0.45, y: H * 0.5, radius: 11, opacity: 0.35, angle: 0, vAngle: 0.004 },
+        ]
+      : [
+          // Main ring — centered, full opacity
+          { x: W * 0.42, y: H * 0.5, radius: 18, opacity: 0.55, angle: 0, vAngle: 0.004 },
+          // Small ghost ring — upper right
+          { x: W * 0.82, y: H * 0.22, radius: 9, opacity: 0.2, angle: 1.0, vAngle: 0.006 },
+          // Small ghost ring — lower left, partially off-screen
+          { x: W * 0.08, y: H * 0.78, radius: 8, opacity: 0.15, angle: 2.5, vAngle: 0.005 },
+        ];
 
     const drawRing = (r) => {
       const sides = 6;
@@ -76,7 +93,7 @@ const FooterLattice = () => {
 
     render();
     return () => cancelAnimationFrame(animId);
-  }, []);
+  }, [isMobile]);
 
   return (
     <canvas
@@ -85,7 +102,7 @@ const FooterLattice = () => {
         position: "absolute",
         left: 0,
         top: 0,
-        width: "110px",
+        width: isMobile ? "60px" : "110px",
         height: "60px",
         pointerEvents: "none",
         borderRadius: "100px 0 0 100px",

@@ -1019,11 +1019,18 @@ button {
     height: 70px;
   } */
   .resumee {
-    width: 80% !important;
+    width: 100% !important;
+  }
+
+  .social {
+    justify-content: center;
+    gap: 25px;
+    width: 100%;
+    margin-left: 0;
   }
 
   .HomeConsole {
-    bottom: 45px;
+    bottom: 25px;
   }
 
   .HomePage-M-T-R {
@@ -1034,6 +1041,19 @@ button {
     position: relative;
     border-radius: 100px;
     margin-left: 10px;
+  }
+
+  .fav {
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+  }
+
+  .pro {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0;
   }
 
   .pro p:nth-child(1) {
@@ -1057,8 +1077,8 @@ button {
   }
 
   .welcome span {
-    font-size: 100px;
-    line-height: 150px;
+    font-size: min(80px, 18vw);
+    line-height: 1.2;
   }
 
   .b-hr {
@@ -1076,8 +1096,8 @@ button {
   }
 
   .HomePage-M b {
-    font-size: 40px;
-    line-height: 30px;
+    font-size: min(40px, 9vw);
+    line-height: 1.2;
     margin-top: -85px;
     margin-bottom: 6.5vh;
     background: linear-gradient(to right, #faf5f3a2 0%, #ff7a37e0 100%);

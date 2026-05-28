@@ -49,6 +49,17 @@
 }
 
 @media only screen and (max-width: 640px) {
+    .fav {
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+    }
+
+    .pro {
+        align-items: center;
+        margin: 0;
+    }
+
     .pro p:nth-child(1) {
         margin-bottom: 0;
     }

@@ -50,8 +50,8 @@
 /* Consolidating logic from Home.css for mobile */
 @media only screen and (max-width: 640px) {
     .nameContainer {
-        font-size: 40px;
-        line-height: 30px;
+        font-size: min(40px, 9vw);
+        line-height: 1.2;
         margin-top: -85px;
         margin-bottom: 6.5vh;
         background: linear-gradient(to right, #faf5f3a2 0%, #ff7a37e0 100%);
