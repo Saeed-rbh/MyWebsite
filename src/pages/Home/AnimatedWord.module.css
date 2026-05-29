@@ -1,4 +1,4 @@
-﻿.wordWrapper {
+.wordWrapper {
   position: relative;
   display: inline-block;
   vertical-align: middle;
@@ -43,4 +43,62 @@
   opacity: 1;
   visibility: visible;
   transform: translateX(-50%) translateY(0) scale(1);
+}
+
+/* Container for special highlighted words */
+.specialBackground {
+  position: relative;
+  padding: 0px 10px 2px;
+  border-radius: 20px;
+  overflow: hidden;
+  display: inline-block;
+  white-space: nowrap;
+  vertical-align: middle;
+  border-bottom: 2px solid rgba(212, 157, 129, 0.31);
+  box-shadow: rgba(212, 157, 129, 0) 0px 4px 6px -4px;
+  transition: all 0.3s ease-in-out;
+  cursor: pointer;
+}
+
+/* Slide-in progress background */
+.innerBackground {
+  height: 100%;
+  position: absolute;
+  left: 0;
+  border-radius: 20px;
+  background: linear-gradient(to right, rgb(255 255 255 / 14%) 0%, rgb(245 159 115 / 18%) 100%);
+  transition: width 1s ease-in-out;
+}
+
+/* Text style for special word */
+.specialWordText {
+  vertical-align: middle;
+  display: inline-block;
+}
+
+/* Mobile view only styles */
+@media only screen and (max-width: 640px) {
+  .specialBackground {
+    padding: 0px !important;
+    border-radius: 0px !important;
+    overflow: visible !important;
+    border-bottom: none !important;
+    box-shadow: none !important;
+    background: none !important;
+  }
+
+  .innerBackground {
+    display: none !important;
+  }
+
+  .specialWordText {
+    color: rgba(255, 255, 255, 0.74) !important;
+    font-weight: 200 !important;
+    background: linear-gradient(to right, rgba(203, 117, 72, 0.82) 0%, rgba(221, 181, 160, 0.8) 50%) text !important;
+    -webkit-background-clip: text !important;
+    background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
+    font-family: Poppins, sans-serif !important;
+    font-size: 1.1rem !important;
+  }
 }

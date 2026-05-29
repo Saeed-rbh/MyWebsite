@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useSpring, animated, easings } from "react-spring";
 import useHoverMoveEffect from "../../Helper/useHoverMoveEffect";
+import styles from "./AnimatedWord.module.css";
 
 const AnimatedWord = ({
   word,
@@ -64,28 +65,6 @@ const AnimatedWord = ({
     easing: easings.easeOutCubic,
     delay: MenuHide === 1 ? index * 25 : (length - index) * 25,
   });
-  const specialBackground = {
-    position: "relative",
-    padding: "0px 10px 2px",
-    borderRadius: "20px",
-    overflow: "hidden",
-    display: "inline-block",
-    whiteSpace: "nowrap",
-    verticalAlign: "middle",
-    borderBottom: "2px solid rgba(212, 157, 129, 0.31)",
-    boxShadow: "rgba(212, 157, 129, 0) 0px 4px 6px -4px",
-    transition: "all 0.3s ease-in-out"
-  };
-  const innerBackground = {
-    width: bgWidth,
-    height: "100%",
-    position: "absolute",
-    left: "0",
-    borderRadius: "20px",
-    background:
-      "linear-gradient(to right, rgb(255 255 255 / 14%) 0%, rgb(245 159 115 / 18%) 100%)",
-    transition: "width 1s ease-in-out",
-  };
   const textStyle = {
     verticalAlign: "middle",
     display: "inline-block",
@@ -96,11 +75,15 @@ const AnimatedWord = ({
         <span style={{ display: "inline-block", whiteSpace: "nowrap" }}>
           <animated.div
             ref={hoverRef}
-            style={{ ...specialBackground, cursor: "pointer", ...hoverStyle }}
+            className={styles.specialBackground}
+            style={{ ...hoverStyle }}
             onClick={(e) => onClick && onClick(displayWord, e)}
           >
-            <div style={innerBackground}></div>
-            <animated.span style={{ ...wordSpring, ...textStyle }}>
+            <div className={styles.innerBackground} style={{ width: bgWidth }}></div>
+            <animated.span
+              className={styles.specialWordText}
+              style={{ ...wordSpring, ...textStyle }}
+            >
               {displayWord}
             </animated.span>
           </animated.div>
