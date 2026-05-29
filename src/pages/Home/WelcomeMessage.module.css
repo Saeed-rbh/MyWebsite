@@ -46,6 +46,6 @@
   }
 
   .welcome span {
-    font-size: min(80px, 18vw);
+    font-size: min(80px, 22vw);
   }
 }

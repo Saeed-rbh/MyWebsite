@@ -187,10 +187,9 @@
 
 @media only screen and (max-width: 640px) {
     .container {
-        width: calc(100vw - 60px);
+        width: calc(100vw - 25px);
         height: calc(100vh - 60px);
-        margin: 0;
-        margin-bottom: 70px;
+        margin: 0 0 70px;
     }
 
     .glassGrid {

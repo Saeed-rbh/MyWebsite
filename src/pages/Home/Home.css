@@ -1032,6 +1032,7 @@ button {
   .HomeConsole {
     bottom: 25px;
     height: 48px;
+    max-width: 82vw;
   }
 
   .HomePage-M-T-R {

@@ -52,9 +52,9 @@
     .nameContainer {
         font-size: min(40px, 9vw);
         line-height: 1.2;
-        margin-top: -85px;
+        margin-top: -50px;
         margin-bottom: 6.5vh;
-        background: linear-gradient(to right, #faf5f3a2 0%, #ff7a37e0 100%);
+        background: linear-gradient(to right, #faf5f3a2, #ff7a37e0);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
     }

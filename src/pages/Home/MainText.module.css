@@ -18,11 +18,11 @@
 }
 
 .paragraph span {
-    line-height: inherit;
+    line-height: 0.8rem;
 }
 
 .paragraph div span {
-    line-height: inherit;
+    line-height: 0.8rem;
 }
 
 .container svg {
