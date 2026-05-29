@@ -11,7 +11,7 @@
     -webkit-animation-duration: 1200ms;
     animation-duration: 1200ms;
     font-family: "Poppins", sans-serif;
-    font-size: 1.4rem;
+    font-size: 15px;
     line-height: 1.8;
     text-align: left;
     font-weight: 400;
@@ -54,7 +54,7 @@
 
 @media only screen and (max-width: 640px) {
     .paragraph {
-        font-size: 1.4rem;
+        font-size: 13px;
         line-height: 1.8;
         text-align: center;
         margin: 0 -10px;
