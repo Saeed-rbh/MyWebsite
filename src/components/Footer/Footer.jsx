@@ -146,7 +146,7 @@ const Footer = () => {
       y: isDone ? 0 : 5,
       width: width,
       display: "flex",
-      height: "-webkit-fill-available",
+      height: "100%",
       alignItems: "center",
       justifyContent: "center",
     },
