@@ -4,37 +4,38 @@
   left: 0;
   width: 100%;
   height: 100vh;
-  position: absolute;
-  background-color: #020201;
+  background:
+    radial-gradient(circle at 50% 44%, rgba(212, 157, 129, 0.12), transparent 34%),
+    radial-gradient(circle at 20% 80%, rgba(185, 96, 50, 0.08), transparent 28%),
+    #020201;
   z-index: 100;
   display: flex;
   align-items: center;
-  justify-content: flex-end;
+  justify-content: center;
   flex-direction: column;
   z-index: 99999;
+  overflow: hidden;
 }
 
 .Intro p {
-  font-size: 0.95em;
+  font-size: clamp(15px, 2.8vw, 19px);
   text-align: center;
   margin: 0;
   color: #d49d81;
   font-weight: 700;
-  opacity: 0.7;
+  opacity: 0.9;
   z-index: 100;
   font-family: "DM Serif Display", serif;
-  margin-bottom: -3px;
-  margin-top: 5px;
+  letter-spacing: 0.02em;
 }
 
 .Intro-b {
   font-family: "Poppins", sans-serif;
   color: rgb(245, 244, 244);
-  font-size: 0.75em;
+  font-size: 0.72rem;
   text-align: center;
-  margin: 0;
-  /* margin-bottom: 7vh; */
-  opacity: 0;
+  margin: 8px 0 0;
+  opacity: 0.36;
   font-weight: 800;
   animation-name: Intro;
   -webkit-animation-name: Intro;
@@ -45,6 +46,7 @@
   animation-timing-function: ease-in-out;
   -webkit-animation-timing-function: ease-in-out;
   z-index: 100;
+  letter-spacing: 0.42em;
 }
 
 @keyframes Intro {
@@ -63,37 +65,181 @@
 
 @keyframes fadeIn {
   0% {
-    opacity: 0;
+    opacity: 0.12;
   }
 
   50% {
-    opacity: 0.3;
+    opacity: 0.75;
   }
 
   100% {
-    opacity: 0;
+    opacity: 0.12;
   }
 }
 
 .GrapheneIntro {
   position: relative;
-  /* Make it a positioned ancestor */
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 200px;
-  width: 200px;
+  min-height: min(520px, 82vh);
+  width: min(520px, calc(100vw - 40px));
 }
 
 .centered-text {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  position: relative;
   text-align: center;
   color: white;
-  width: 100%;
-  /* Changed from max-content */
-  width: max-content;
+  width: min(420px, 100%);
+  margin-top: 28px;
+  z-index: 2;
+}
+
+.loader-grapheneCluster {
+  position: relative;
+  width: min(320px, 78vw);
+  aspect-ratio: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  isolation: isolate;
+}
+
+.loader-orbitGlow {
+  position: absolute;
+  inset: 14%;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle, rgba(212, 157, 129, 0.18), rgba(212, 157, 129, 0.03) 54%, transparent 70%);
+  border: 1px solid rgba(212, 157, 129, 0.14);
+  box-shadow:
+    0 0 55px rgba(212, 157, 129, 0.15),
+    inset 0 0 40px rgba(212, 157, 129, 0.05);
+  animation: loaderBreath 2.6s ease-in-out infinite;
+}
+
+.loader-grapheneCell {
+  position: absolute;
+  width: 200px;
+  height: 200px;
+  overflow: visible;
+  filter: drop-shadow(0 0 18px rgba(212, 157, 129, 0.18));
+  transform: var(--cell-transform);
+  transform-origin: center;
+}
+
+.loader-grapheneCellMain {
+  --cell-transform: scale(0.9);
+  animation: loaderRotate 6.5s linear infinite;
+}
+
+.loader-grapheneCellTop {
+  --cell-transform: translate(82px, -62px) scale(0.42);
+  opacity: 0.55;
+  animation: loaderRotateReverse 8s linear infinite;
+}
+
+.loader-grapheneCellBottom {
+  --cell-transform: translate(-82px, 58px) scale(0.38);
+  opacity: 0.42;
+  animation: loaderRotate 7.5s linear infinite;
+}
+
+.loader-atom {
+  fill: rgba(250, 249, 241, 0.92);
+  animation: fadeIn 1.9s ease-in-out var(--delay) infinite;
+}
+
+.loader-bond {
+  stroke: rgba(212, 157, 129, 0.9);
+  stroke-linecap: round;
+  animation: fadeIn 1.9s ease-in-out var(--delay) infinite;
+}
+
+.loader-progress {
+  width: min(220px, 54vw);
+  height: 3px;
+  margin: 18px auto 0;
+  overflow: hidden;
+  border-radius: 100px;
+  background: rgba(250, 249, 241, 0.08);
+}
+
+.loader-progress span {
+  display: block;
+  width: 42%;
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, transparent, #d49d81, transparent);
+  animation: loaderProgress 1.4s ease-in-out infinite;
+}
+
+@keyframes loaderRotate {
+  from {
+    transform: var(--cell-transform) rotate(0deg);
+  }
+
+  to {
+    transform: var(--cell-transform) rotate(360deg);
+  }
+}
+
+@keyframes loaderRotateReverse {
+  from {
+    transform: var(--cell-transform) rotate(360deg);
+  }
+
+  to {
+    transform: var(--cell-transform) rotate(0deg);
+  }
+}
+
+@keyframes loaderBreath {
+  0%, 100% {
+    transform: scale(0.94);
+    opacity: 0.72;
+  }
+
+  50% {
+    transform: scale(1.02);
+    opacity: 1;
+  }
+}
+
+@keyframes loaderProgress {
+  0% {
+    transform: translateX(-110%);
+  }
+
+  100% {
+    transform: translateX(250%);
+  }
+}
+
+@media only screen and (max-width: 640px) {
+  .GrapheneIntro {
+    min-height: min(460px, 76vh);
+    width: calc(100vw - 32px);
+  }
+
+  .loader-grapheneCluster {
+    width: min(280px, 82vw);
+  }
+
+  .loader-grapheneCellMain {
+    --cell-transform: scale(0.78);
+  }
+
+  .loader-grapheneCellTop {
+    --cell-transform: translate(70px, -54px) scale(0.36);
+  }
+
+  .loader-grapheneCellBottom {
+    --cell-transform: translate(-70px, 50px) scale(0.34);
+  }
+
+  .centered-text {
+    margin-top: 18px;
+  }
 }

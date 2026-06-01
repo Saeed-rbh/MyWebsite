@@ -1,35 +1,32 @@
 import React, { useEffect } from "react";
 import { useSpring, animated, easings } from "react-spring";
 
-const Atom = ({ cx, cy, style }) => (
-  <circle cx={cx} cy={cy} r="8" fill="white" style={style} />
+const Atom = ({ cx, cy, index }) => (
+  <circle className="loader-atom" cx={cx} cy={cy} r="8" style={{ "--delay": `${index * 0.12}s` }} />
 );
-const Bond = ({ x1, y1, x2, y2, style }) => (
+const Bond = ({ x1, y1, x2, y2, index }) => (
   <line
+    className="loader-bond"
     x1={x1}
     y1={y1}
     x2={x2}
     y2={y2}
-    stroke="white"
     strokeWidth="2"
-    style={style}
+    style={{ "--delay": `${index * 0.12}s` }}
   />
 );
-const GrapheneSVG = ({ points }) => (
+const GrapheneSVG = ({ points, className }) => (
   <svg
-    height="200"
-    width="200"
-    style={{ transform: "translateY(-20px) scale(0.75)" }}
+    className={className}
+    viewBox="0 0 200 200"
+    aria-hidden="true"
   >
     {points.map((point, i) => (
       <Atom
         key={`atom-${i}`}
         cx={point.x}
         cy={point.y}
-        style={{
-          animation: `fadeIn 2s ease-in-out ${i * 0.3}s infinite`,
-          opacity: 0.2,
-        }}
+        index={i}
       />
     ))}
     {points.map((point, i) => (
@@ -39,10 +36,7 @@ const GrapheneSVG = ({ points }) => (
         y1={point.y}
         x2={points[(i + 1) % points.length].x}
         y2={points[(i + 1) % points.length].y}
-        style={{
-          animation: `fadeIn 2s ease-in-out ${i * 0.3}s infinite`,
-          opacity: 0.2,
-        }}
+        index={i}
       />
     ))}
   </svg>
@@ -89,10 +83,18 @@ const GrapheneCell = ({ text, subtext, fade }) => {
         ),
       }}
     >
-      <GrapheneSVG points={points} />
+      <div className="loader-grapheneCluster">
+        <div className="loader-orbitGlow" />
+        <GrapheneSVG points={points} className="loader-grapheneCell loader-grapheneCellMain" />
+        <GrapheneSVG points={points} className="loader-grapheneCell loader-grapheneCellTop" />
+        <GrapheneSVG points={points} className="loader-grapheneCell loader-grapheneCellBottom" />
+      </div>
       <div className="centered-text">
-        <p style={{ marginTop: "100px" }}>{text}</p>
+        <p>{text}</p>
         <b className="Intro-b">{subtext}</b>
+        <div className="loader-progress" aria-hidden="true">
+          <span />
+        </div>
       </div>
     </animated.div>
   );

@@ -27,13 +27,11 @@ const FallbackLoader = () => {
 
     return (
         <div className="Intro" id="IntroFallback">
-            <div className="GrapheneIntro">
-                <GrapheneCell
-                    fade={false}
-                    text="Welcome To My Personal Website"
-                    subtext="LOADING"
-                />
-            </div>
+            <GrapheneCell
+                fade={false}
+                text="Welcome To My Personal Website"
+                subtext="LOADING"
+            />
         </div>
     );
 };
