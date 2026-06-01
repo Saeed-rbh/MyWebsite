@@ -1027,6 +1027,10 @@ button {
     gap: 18px;
     width: 100%;
     margin-left: 0;
+    background: #00000078;
+    width: 43vw;
+    border-radius: 100px;
+    padding: 5px;
   }
 
   .HomeConsole {
@@ -1072,9 +1076,9 @@ button {
   }
 
   .social button svg {
+    display: none;
     width: 18px;
     height: 18px;
-    display: none;
   }
 
   .HomePage-M-T-R {
