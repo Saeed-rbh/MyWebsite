@@ -1025,12 +1025,15 @@ button {
   .social {
     justify-content: center;
     gap: 18px;
-    width: 100%;
     margin-left: 0;
     background: #00000078;
-    width: 43vw;
     border-radius: 100px;
     padding: 5px;
+  }
+
+  .resumee .social,
+  .contact-1 .social {
+    width: 43vw !important;
   }
 
   .HomeConsole {
@@ -1076,7 +1079,7 @@ button {
   }
 
   .social button svg {
-    display: none;
+    display: none !important;
     width: 18px;
     height: 18px;
   }
