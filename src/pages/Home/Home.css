@@ -1024,15 +1024,52 @@ button {
 
   .social {
     justify-content: center;
-    gap: 25px;
+    gap: 18px;
     width: 100%;
     margin-left: 0;
   }
 
   .HomeConsole {
-    bottom: 25px;
+    bottom: max(14px, env(safe-area-inset-bottom));
     height: 48px;
-    max-width: 82vw;
+    max-width: calc(100vw - 24px);
+    padding: 0 14px;
+  }
+
+  .HomeConsole > div {
+    justify-content: space-around !important;
+    gap: 0;
+  }
+
+  .resumee {
+    flex: 0 1 auto;
+    width: auto !important;
+  }
+
+  .contact-1 {
+    display: flex;
+    flex: 0 0 auto;
+  }
+
+  .resumee .social button:first-child,
+  .contact-1 .bookCallBtn {
+    display: none !important;
+  }
+
+  .contact-1 .social {
+    width: auto;
+  }
+
+  .social button,
+  .social a {
+    font-size: 9px;
+    letter-spacing: 0.08em;
+    white-space: nowrap;
+  }
+
+  .social button svg {
+    width: 18px;
+    height: 18px;
   }
 
   .HomePage-M-T-R {
