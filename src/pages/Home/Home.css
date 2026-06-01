@@ -1039,16 +1039,18 @@ button {
 
   .social {
     justify-content: center;
-    gap: 18px;
+    gap: 0;
     margin-left: 0;
     background: #00000078;
     border-radius: 100px;
-    padding: 5px;
+    padding: 0;
+    height: 100%;
+    box-sizing: border-box;
   }
 
   .resumee .social,
   .contact-1 .social {
-    width: 43vw !important;
+    width: 100% !important;
   }
 
   .HomeConsole {
@@ -1058,7 +1060,7 @@ button {
     height: 56px !important;
     min-height: 56px;
     max-width: calc(100vw - 24px);
-    padding: 0 14px;
+    padding: 3px;
     z-index: 1001;
     pointer-events: auto;
     box-sizing: border-box;
@@ -1066,22 +1068,25 @@ button {
   }
 
   .HomeConsole > div {
-    justify-content: space-around !important;
-    gap: 0;
+    justify-content: center !important;
+    gap: 3px;
     width: 100% !important;
     height: 100% !important;
-    min-height: 56px;
+    min-height: 50px;
     align-items: center !important;
   }
 
   .resumee {
     flex: 0 1 auto;
-    width: auto !important;
+    width: calc((100% - 3px) / 2) !important;
+    height: 100%;
   }
 
   .contact-1 {
     display: flex;
-    flex: 0 0 auto;
+    flex: 0 1 auto;
+    width: calc((100% - 3px) / 2) !important;
+    height: 100%;
   }
 
   .resumee .social button:first-child,
@@ -1090,11 +1095,17 @@ button {
   }
 
   .contact-1 .social {
-    width: auto;
+    width: 100% !important;
   }
 
   .social button,
   .social a {
+    align-items: center !important;
+    justify-content: center !important;
+    width: 100% !important;
+    height: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
     font-size: 9px;
     letter-spacing: 0.08em;
     white-space: nowrap;
