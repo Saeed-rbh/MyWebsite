@@ -49,8 +49,7 @@ body {
   background-position: center;
   background-repeat: no-repeat;
   background-size: min(64vw, 820px) auto;
-  filter: sepia(1) saturate(1.35) hue-rotate(332deg) brightness(1.08);
-  opacity: 0.12;
+  opacity: 0.16;
   mix-blend-mode: lighten;
   pointer-events: none;
 }
@@ -93,7 +92,7 @@ body {
   .MainBackground::after {
     background-position: center;
     background-size: 128vw auto;
-    opacity: 0.09;
+    opacity: 0.12;
   }
 
   .MainBackground::before {
