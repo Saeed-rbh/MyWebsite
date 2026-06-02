@@ -1,0 +1,707 @@
+@import url("https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap");
+
+.page {
+  --story-bg: #030711;
+  --story-panel: rgba(8, 17, 31, 0.72);
+  --story-panel-strong: rgba(11, 24, 42, 0.9);
+  --story-line: rgba(130, 198, 255, 0.16);
+  --story-text: #f6f8fb;
+  --story-muted: #a5b2c3;
+  --story-soft: #64748b;
+  --story-accent: #56d7ff;
+  --story-accent-2: #89a7ff;
+  --story-warm: #d49d81;
+  position: relative;
+  z-index: 1;
+  width: 100vw;
+  height: 100vh;
+  overflow-x: hidden;
+  overflow-y: auto;
+  scroll-behavior: smooth;
+  color: var(--story-text);
+  background:
+    radial-gradient(circle at 76% 12%, rgba(86, 215, 255, 0.16), transparent 28%),
+    radial-gradient(circle at 18% 30%, rgba(137, 167, 255, 0.12), transparent 30%),
+    linear-gradient(135deg, rgba(3, 7, 17, 0.94), rgba(2, 6, 14, 0.98));
+  font-family: "Manrope", sans-serif;
+  padding: 0 0 120px;
+}
+
+.page::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(rgba(86, 215, 255, 0.055) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(86, 215, 255, 0.045) 1px, transparent 1px);
+  background-size: 72px 72px;
+  mask-image: linear-gradient(to bottom, transparent, black 12%, black 72%, transparent);
+}
+
+.progressTrack {
+  display: none;
+}
+
+.hero,
+.storyGrid {
+  width: min(1080px, calc(100vw - 56px));
+  margin: 0 auto;
+}
+
+.hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  padding: 120px 0 80px;
+}
+
+.heroFrame {
+  width: 100%;
+  min-height: 620px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  border: 1px solid var(--story-line);
+  border-radius: 28px;
+  padding: clamp(34px, 7vw, 88px);
+  background:
+    linear-gradient(145deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.018)),
+    rgba(4, 10, 20, 0.66);
+  box-shadow:
+    0 32px 120px rgba(0, 0, 0, 0.36),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(18px);
+}
+
+.heroFrame::after {
+  content: "";
+  position: absolute;
+  width: 480px;
+  height: 480px;
+  right: -160px;
+  top: -120px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(86, 215, 255, 0.16), transparent 64%);
+  opacity: 0.9;
+}
+
+.eyebrow,
+.kicker,
+.navTitle {
+  color: var(--story-accent);
+  font-size: 0.72rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  font-weight: 800;
+}
+
+.hero h1 {
+  max-width: 840px;
+  margin: 18px 0 0;
+  font-family: "Space Grotesk", sans-serif;
+  font-size: clamp(42px, 7.5vw, 92px);
+  line-height: 0.94;
+  letter-spacing: -0.055em;
+}
+
+.hero p {
+  max-width: 720px;
+  margin: 28px 0 0;
+  color: var(--story-muted);
+  font-size: clamp(17px, 2vw, 22px);
+  line-height: 1.7;
+}
+
+.chain,
+.finalChain {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 34px;
+}
+
+.chain span,
+.finalChain span {
+  border: 1px solid rgba(86, 215, 255, 0.2);
+  border-radius: 999px;
+  padding: 10px 15px;
+  color: #dff8ff;
+  background: rgba(86, 215, 255, 0.065);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.07);
+  animation: pillIn 650ms ease both;
+  animation-delay: var(--delay, 0ms);
+}
+
+.heroActions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 34px;
+}
+
+.heroActions a {
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  padding: 0 18px;
+  text-decoration: none;
+  font-weight: 800;
+  color: #021018;
+  background: linear-gradient(135deg, var(--story-accent), #b8f0ff);
+  transition: transform 220ms ease, box-shadow 220ms ease, background 220ms ease;
+}
+
+.heroActions a:nth-child(2),
+.heroActions a:nth-child(3) {
+  color: var(--story-text);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.heroActions a:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 14px 40px rgba(86, 215, 255, 0.18);
+}
+
+.sideNav {
+  position: fixed;
+  top: 50%;
+  left: 28px;
+  transform: translateY(-50%);
+  z-index: 4;
+  width: 185px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 18px;
+  background: rgba(2, 8, 17, 0.62);
+  backdrop-filter: blur(18px);
+}
+
+.sideNav a {
+  display: flex;
+  gap: 9px;
+  align-items: center;
+  color: var(--story-muted);
+  text-decoration: none;
+  font-size: 0.78rem;
+  font-weight: 800;
+  border-radius: 12px;
+  padding: 9px 10px;
+  transition: color 180ms ease, background 180ms ease;
+}
+
+.sideNav a span {
+  color: var(--story-soft);
+  font-size: 0.68rem;
+}
+
+.sideNav .activeNavItem {
+  color: #fff;
+  background: rgba(86, 215, 255, 0.1);
+}
+
+.mobileSectionLabel {
+  display: none;
+}
+
+.storyGrid {
+  display: grid;
+  gap: 28px;
+}
+
+.section {
+  position: relative;
+  border: 1px solid var(--story-line);
+  border-radius: 24px;
+  padding: clamp(28px, 5vw, 58px);
+  background:
+    linear-gradient(145deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.015)),
+    var(--story-panel);
+  box-shadow: 0 22px 80px rgba(0, 0, 0, 0.26);
+  opacity: 0;
+  transform: translateY(34px);
+  transition: opacity 700ms ease, transform 700ms ease;
+}
+
+.section.visible,
+.hero.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.section::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 30px;
+  bottom: 30px;
+  width: 2px;
+  border-radius: 999px;
+  background: linear-gradient(var(--story-accent), transparent);
+}
+
+.section h2 {
+  max-width: 760px;
+  margin: 12px 0 20px;
+  font-family: "Space Grotesk", sans-serif;
+  font-size: clamp(30px, 4vw, 54px);
+  line-height: 1.02;
+  letter-spacing: -0.04em;
+}
+
+.section p {
+  color: var(--story-muted);
+  font-size: 1rem;
+  line-height: 1.8;
+}
+
+.lead {
+  max-width: 840px;
+  font-size: 1.12rem !important;
+  color: #d5dfeb !important;
+}
+
+.textBlock {
+  max-width: 880px;
+}
+
+blockquote {
+  max-width: 940px;
+  margin: 28px 0 0;
+  border-left: 3px solid var(--story-accent);
+  padding: 22px 0 22px 26px;
+  color: #fff;
+  font-family: "Space Grotesk", sans-serif;
+  font-size: clamp(25px, 4.6vw, 48px);
+  line-height: 1.12;
+  letter-spacing: -0.035em;
+  background: linear-gradient(90deg, rgba(86, 215, 255, 0.1), transparent 62%);
+}
+
+.processMap {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  gap: 8px;
+  margin-top: 34px;
+  position: relative;
+}
+
+.processMap::before {
+  content: "";
+  position: absolute;
+  left: 5%;
+  right: 5%;
+  top: 23px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--story-accent), transparent);
+  transform-origin: left;
+  animation: lineDraw 1.6s ease both;
+}
+
+.processStep {
+  position: relative;
+  z-index: 1;
+  min-height: 115px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  opacity: 0;
+  animation: cardIn 650ms ease both;
+  animation-delay: var(--delay);
+}
+
+.processStep span {
+  width: 46px;
+  height: 46px;
+  border: 1px solid rgba(86, 215, 255, 0.36);
+  border-radius: 14px;
+  background:
+    linear-gradient(135deg, rgba(86, 215, 255, 0.16), rgba(255, 255, 255, 0.04)),
+    #07111f;
+  transform: rotate(45deg);
+}
+
+.processStep p {
+  margin: 0;
+  text-align: center;
+  color: #d8e5f2;
+  font-size: 0.78rem;
+  font-weight: 800;
+  line-height: 1.45;
+}
+
+.splitSection {
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(320px, 0.95fr);
+  gap: 28px;
+  align-items: center;
+}
+
+.variablePanel,
+.modelPanel,
+.closeCard {
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 20px;
+  padding: 24px;
+  background: var(--story-panel-strong);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06);
+}
+
+.variablePanel h3 {
+  margin: 0 0 18px;
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 1.35rem;
+}
+
+.variablePanel div {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.variablePanel span {
+  padding: 10px 12px;
+  border-radius: 12px;
+  color: #e8f8ff;
+  background: rgba(86, 215, 255, 0.085);
+  border: 1px solid rgba(86, 215, 255, 0.16);
+  font-size: 0.84rem;
+  font-weight: 800;
+  transition: transform 180ms ease, box-shadow 180ms ease;
+  animation: cardIn 600ms ease both;
+  animation-delay: var(--delay);
+}
+
+.variablePanel span:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 28px rgba(86, 215, 255, 0.11);
+}
+
+.characterGrid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+  margin-top: 28px;
+}
+
+.characterGrid article {
+  min-height: 190px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 18px;
+  padding: 18px;
+  background: rgba(255, 255, 255, 0.04);
+  opacity: 0;
+  transform: translateY(16px);
+  animation: cardIn 650ms ease both;
+  animation-delay: var(--delay);
+  transition: transform 220ms ease, background 220ms ease, border-color 220ms ease;
+}
+
+.characterGrid article:hover {
+  transform: translateY(-4px);
+  border-color: rgba(86, 215, 255, 0.28);
+  background: rgba(86, 215, 255, 0.075);
+}
+
+.characterGrid span {
+  color: #fff;
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 1.05rem;
+  font-weight: 700;
+}
+
+.characterGrid p,
+.characterGrid em {
+  margin: 0;
+  color: var(--story-muted);
+  font-size: 0.86rem;
+  line-height: 1.55;
+}
+
+.characterGrid strong {
+  margin-top: auto;
+  color: var(--story-accent);
+  font-size: 0.72rem;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+}
+
+.modelPanel {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+  margin-top: 30px;
+}
+
+.modelPanel span {
+  min-height: 48px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  padding: 0 18px;
+  color: #fff;
+  background: rgba(255, 255, 255, 0.055);
+  border: 1px solid rgba(86, 215, 255, 0.18);
+  font-weight: 800;
+  animation: cardIn 600ms ease both;
+  animation-delay: var(--delay);
+}
+
+.modelPanel i {
+  width: 42px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--story-accent));
+}
+
+.beforeAfter {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+  margin-top: 28px;
+}
+
+.beforeAfter article {
+  border-radius: 20px;
+  padding: 24px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.beforeAfter article:last-child {
+  border-color: rgba(86, 215, 255, 0.34);
+  background: linear-gradient(145deg, rgba(86, 215, 255, 0.14), rgba(255, 255, 255, 0.05));
+  box-shadow: 0 22px 70px rgba(86, 215, 255, 0.08);
+}
+
+.beforeAfter span {
+  color: var(--story-accent);
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-size: 0.74rem;
+}
+
+.beforeAfter h3 {
+  margin: 12px 0;
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 1.35rem;
+}
+
+.finalChain {
+  margin-top: 0;
+  margin-bottom: 28px;
+}
+
+.closeCard {
+  margin-top: 28px;
+}
+
+.closeCard p {
+  max-width: 800px;
+  color: #e4edf5;
+}
+
+@keyframes cardIn {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pillIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes lineDraw {
+  from {
+    transform: scaleX(0);
+  }
+
+  to {
+    transform: scaleX(1);
+  }
+}
+
+@media only screen and (max-width: 1280px) {
+  .sideNav {
+    display: none;
+  }
+}
+
+@media only screen and (max-width: 840px) {
+  .page {
+    padding-bottom: 96px;
+  }
+
+  .hero,
+  .storyGrid {
+    width: min(100vw - 28px, 720px);
+  }
+
+  .hero {
+    min-height: auto;
+    padding: 96px 0 28px;
+  }
+
+  .heroFrame {
+    min-height: auto;
+    border-radius: 20px;
+    padding: 28px;
+  }
+
+  .progressTrack {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 20;
+    display: block;
+    width: 100vw;
+    height: 3px;
+    background: rgba(255, 255, 255, 0.08);
+  }
+
+  .progressTrack span {
+    display: block;
+    height: 100%;
+    background: linear-gradient(90deg, var(--story-accent), var(--story-warm));
+    transition: width 120ms linear;
+  }
+
+  .mobileSectionLabel {
+    position: sticky;
+    top: 8px;
+    z-index: 10;
+    display: flex;
+    width: fit-content;
+    margin: 12px auto 0;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 999px;
+    padding: 7px 12px;
+    color: #eaf9ff;
+    background: rgba(3, 7, 17, 0.72);
+    backdrop-filter: blur(16px);
+    font-size: 0.74rem;
+    font-weight: 900;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .processMap,
+  .characterGrid,
+  .beforeAfter,
+  .splitSection {
+    grid-template-columns: 1fr;
+  }
+
+  .processMap::before {
+    left: 23px;
+    right: auto;
+    top: 24px;
+    bottom: 24px;
+    width: 1px;
+    height: auto;
+    transform-origin: top;
+    background: linear-gradient(transparent, var(--story-accent), transparent);
+  }
+
+  .processStep {
+    min-height: 0;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+  }
+
+  .processStep span {
+    width: 46px;
+    height: 46px;
+    flex: 0 0 auto;
+  }
+
+  .processStep p {
+    text-align: left;
+    font-size: 0.9rem;
+  }
+
+  .modelPanel {
+    align-items: stretch;
+  }
+
+  .modelPanel i {
+    display: none;
+  }
+}
+
+@media only screen and (max-width: 520px) {
+  .hero h1 {
+    font-size: clamp(38px, 12vw, 54px);
+  }
+
+  .section {
+    border-radius: 18px;
+    padding: 24px 20px;
+  }
+
+  .heroActions {
+    flex-direction: column;
+  }
+
+  .heroActions a {
+    width: 100%;
+  }
+
+  .chain span,
+  .finalChain span {
+    font-size: 0.82rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .page,
+  .progressTrack span,
+  .heroActions a,
+  .variablePanel span,
+  .characterGrid article {
+    scroll-behavior: auto;
+    transition: none;
+  }
+
+  .section,
+  .hero,
+  .chain span,
+  .processStep,
+  .variablePanel span,
+  .characterGrid article,
+  .modelPanel span,
+  .processMap::before {
+    opacity: 1;
+    transform: none;
+    animation: none;
+  }
+}

@@ -18,6 +18,7 @@ import BackgroundLattice from "./components/BackgroundLattice/BackgroundLattice"
 import FallbackLoader from "./Loader/FallbackLoader";
 const AcademicCV = lazy(() => import("./pages/Resume/Resume"));
 const HomePage = lazy(() => import("./pages/Home/Home"));
+const WorkStory = lazy(() => import("./pages/WorkStory/WorkStory"));
 import Loader from "./Loader/Loader";
 const AdminDashboard = lazy(() => import("./pages/Admin/AdminDashboard"));
 const Login = lazy(() => import("./pages/Admin/Login"));
@@ -57,6 +58,7 @@ function AppContent() {
             <AnimatePresence mode="wait">
               <Routes location={location} key={location.pathname}>
                 <Route exact path="/" element={<HomePage />} />
+                <Route path="/work-story" element={<WorkStory />} />
                 <Route path="/AcademicCV" element={<AcademicCV />} />
                 <Route path="/academiccv" element={<AcademicCV />} />
                 <Route exact path="/Graphene" element={<Graphene />} />
