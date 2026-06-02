@@ -92,7 +92,7 @@
   text-align: center;
   color: white;
   width: min(420px, 100%);
-  margin-top: 28px;
+  margin-top: 10px;
   z-index: 2;
 }
 
@@ -187,6 +187,6 @@
   }
 
   .centered-text {
-    margin-top: 18px;
+    margin-top: 8px;
   }
 }
