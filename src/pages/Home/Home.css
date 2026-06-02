@@ -1109,6 +1109,9 @@ button {
     font-size: 9px;
     letter-spacing: 0.08em;
     white-space: nowrap;
+    color: #fff7f1 !important;
+    opacity: 1 !important;
+    text-shadow: 0 0 8px rgba(212, 157, 129, 0.28);
   }
 
   .social button svg {

@@ -84,7 +84,6 @@ const GrapheneCell = ({ text, subtext, fade }) => {
       }}
     >
       <div className="loader-grapheneCluster">
-        <div className="loader-orbitGlow" />
         <GrapheneSVG points={points} className="loader-grapheneCell loader-grapheneCellMain" />
         <GrapheneSVG points={points} className="loader-grapheneCell loader-grapheneCellTop" />
         <GrapheneSVG points={points} className="loader-grapheneCell loader-grapheneCellBottom" />

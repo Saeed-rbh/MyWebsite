@@ -106,19 +106,6 @@
   isolation: isolate;
 }
 
-.loader-orbitGlow {
-  position: absolute;
-  inset: 14%;
-  border-radius: 50%;
-  background:
-    radial-gradient(circle, rgba(212, 157, 129, 0.18), rgba(212, 157, 129, 0.03) 54%, transparent 70%);
-  border: 1px solid rgba(212, 157, 129, 0.14);
-  box-shadow:
-    0 0 55px rgba(212, 157, 129, 0.15),
-    inset 0 0 40px rgba(212, 157, 129, 0.05);
-  animation: loaderBreath 2.6s ease-in-out infinite;
-}
-
 .loader-grapheneCell {
   position: absolute;
   width: 200px;
@@ -192,18 +179,6 @@
 
   to {
     transform: var(--cell-transform) rotate(0deg);
-  }
-}
-
-@keyframes loaderBreath {
-  0%, 100% {
-    transform: scale(0.94);
-    opacity: 0.72;
-  }
-
-  50% {
-    transform: scale(1.02);
-    opacity: 1;
   }
 }
 
