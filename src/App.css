@@ -40,6 +40,27 @@ body {
   filter: brightness(0.6);
 }
 
+.MainBackground::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: url("./assets/graphene_hex_portrait_vector.svg");
+  background-position: right 6vw center;
+  background-repeat: no-repeat;
+  background-size: min(58vw, 760px) auto;
+  opacity: 0.32;
+  mix-blend-mode: screen;
+  pointer-events: none;
+}
+
+@media only screen and (max-width: 640px) {
+  .MainBackground::after {
+    background-position: center 46%;
+    background-size: 118vw auto;
+    opacity: 0.2;
+  }
+}
+
 .App-logo {
   height: 40vmin;
   pointer-events: none;
