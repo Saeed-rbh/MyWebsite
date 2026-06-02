@@ -91,9 +91,6 @@ const GrapheneCell = ({ text, subtext, fade }) => {
       <div className="centered-text">
         <p>{text}</p>
         <b className="Intro-b">{subtext}</b>
-        <div className="loader-progress" aria-hidden="true">
-          <span />
-        </div>
       </div>
     </animated.div>
   );

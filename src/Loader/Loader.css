@@ -144,24 +144,6 @@
   animation: fadeIn 1.9s ease-in-out var(--delay) infinite;
 }
 
-.loader-progress {
-  width: min(220px, 54vw);
-  height: 3px;
-  margin: 18px auto 0;
-  overflow: hidden;
-  border-radius: 100px;
-  background: rgba(250, 249, 241, 0.08);
-}
-
-.loader-progress span {
-  display: block;
-  width: 42%;
-  height: 100%;
-  border-radius: inherit;
-  background: linear-gradient(90deg, transparent, #d49d81, transparent);
-  animation: loaderProgress 1.4s ease-in-out infinite;
-}
-
 @keyframes loaderRotate {
   from {
     transform: var(--cell-transform) rotate(0deg);
@@ -179,16 +161,6 @@
 
   to {
     transform: var(--cell-transform) rotate(0deg);
-  }
-}
-
-@keyframes loaderProgress {
-  0% {
-    transform: translateX(-110%);
-  }
-
-  100% {
-    transform: translateX(250%);
   }
 }
 
