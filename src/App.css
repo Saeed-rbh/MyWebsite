@@ -45,19 +45,20 @@ body {
   position: absolute;
   inset: 0;
   background-image: url("./assets/graphene_hex_portrait_vector.svg");
-  background-position: right 6vw center;
+  background-position: center;
   background-repeat: no-repeat;
-  background-size: min(58vw, 760px) auto;
-  opacity: 0.32;
-  mix-blend-mode: screen;
+  background-size: min(64vw, 820px) auto;
+  filter: sepia(1) saturate(1.35) hue-rotate(332deg) brightness(1.08);
+  opacity: 0.12;
+  mix-blend-mode: lighten;
   pointer-events: none;
 }
 
 @media only screen and (max-width: 640px) {
   .MainBackground::after {
-    background-position: center 46%;
-    background-size: 118vw auto;
-    opacity: 0.2;
+    background-position: center;
+    background-size: 128vw auto;
+    opacity: 0.09;
   }
 }
 
