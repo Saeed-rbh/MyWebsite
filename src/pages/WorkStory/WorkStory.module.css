@@ -162,6 +162,7 @@
   line-height: 0.86;
   letter-spacing: -0.085em;
   text-transform: uppercase;
+  overflow-wrap: anywhere;
   background: linear-gradient(115deg, #ffffff 0%, #ffffff 35%, #d49d81 58%, #777777 100%);
   background-size: 220% 100%;
   -webkit-background-clip: text;
@@ -1372,19 +1373,66 @@ blockquote::before {
 
   .hero {
     min-height: 100svh;
-    padding: 78px 0 24px;
+    padding: 52px 0 18px;
   }
 
   .heroFrame {
     min-height: auto;
     grid-template-columns: 1fr;
     border-radius: 0;
-    padding: 28px;
+    gap: 16px;
+    padding: 18px 12px 24px;
   }
 
   .heroFrame::before {
-    font-size: 88px;
-    right: 18px;
+    top: 20px;
+    right: 0;
+    font-size: clamp(62px, 21vw, 112px);
+    transform: none;
+  }
+
+  .heroFrame::after {
+    bottom: 12px;
+    width: min(360px, 72vw);
+  }
+
+  .hero h1 {
+    max-width: 11ch;
+    margin-top: 14px;
+    font-size: clamp(42px, 9.6vw, 76px);
+    line-height: 0.95;
+    letter-spacing: -0.045em;
+  }
+
+  .hero p {
+    max-width: 31ch;
+    margin-top: 16px;
+    font-size: clamp(0.95rem, 2.6vw, 1.08rem);
+    line-height: 1.36;
+  }
+
+  .chain,
+  .heroActions {
+    margin-top: 18px;
+  }
+
+  .chain {
+    gap: 7px 10px;
+  }
+
+  .chain span {
+    font-size: 0.76rem;
+    letter-spacing: 0.045em;
+  }
+
+  .heroActions {
+    gap: 8px;
+  }
+
+  .heroActions a {
+    min-height: 38px;
+    padding: 0 14px;
+    font-size: 0.82rem;
   }
 
   .sideNav {
@@ -1459,9 +1507,9 @@ blockquote::before {
   }
 
   .heroSvg {
-    max-width: 260px;
+    max-width: min(220px, 58vw);
     justify-self: end;
-    margin-top: -24px;
+    margin-top: -18px;
   }
 
   .characterGrid article,
@@ -1523,14 +1571,39 @@ blockquote::before {
     width: calc(100vw - 24px);
   }
 
+  .heroFrame {
+    padding: 14px 4px 20px;
+  }
+
   .hero h1 {
-    font-size: clamp(36px, 11vw, 52px);
-    letter-spacing: -0.04em;
+    max-width: 10ch;
+    font-size: clamp(32px, 8.9vw, 44px);
+    line-height: 1;
+    letter-spacing: -0.03em;
+  }
+
+  .eyebrow {
+    font-size: 0.62rem;
+    letter-spacing: 0.13em;
+  }
+
+  .hero p {
+    max-width: 28ch;
+    margin-top: 12px;
   }
 
   .hero p,
   .section p {
-    font-size: 0.94rem;
+    font-size: 0.88rem;
+  }
+
+  .chain {
+    display: none;
+  }
+
+  .heroSvg {
+    max-width: min(180px, 52vw);
+    margin-top: -14px;
   }
 
   .section {
