@@ -88,6 +88,8 @@ const useWorkStoryEffects = (scrollRef) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
             entry.target.classList.add(styles.visible);
+          } else {
+            entry.target.classList.remove(styles.visible);
           }
         });
       },
@@ -142,8 +144,6 @@ const useWorkStoryEffects = (scrollRef) => {
       root.style.setProperty("--scroll-progress", `${progressRatio}`);
       root.style.setProperty("--scroll-shift", `${root.scrollTop * -0.05}px`);
       root.style.setProperty("--scroll-shift-alt", `${root.scrollTop * 0.032}px`);
-      root.style.setProperty("--hero-title-y", `${progressRatio * -92}px`);
-      root.style.setProperty("--hero-copy-y", `${progressRatio * -42}px`);
 
       const rootRect = root.getBoundingClientRect();
       const viewportCenter = root.clientHeight / 2;
@@ -154,15 +154,7 @@ const useWorkStoryEffects = (scrollRef) => {
         const distance = (sectionCenter - viewportCenter) / root.clientHeight;
         const clamped = Math.max(-1, Math.min(1, distance));
         section.style.setProperty("--section-progress", clamped.toFixed(3));
-        section.style.setProperty("--p-soft", `${clamped * -34}px`);
-        section.style.setProperty("--p-mid", `${clamped * -72}px`);
-        section.style.setProperty("--p-fast", `${clamped * -104}px`);
         section.style.setProperty("--p-ghost", `${clamped * -132}px`);
-        section.style.setProperty("--p-x-left", `${clamped * -48}px`);
-        section.style.setProperty("--p-x-right", `${clamped * 58}px`);
-        section.style.setProperty("--p-svg-x", `${clamped * 84}px`);
-        section.style.setProperty("--p-svg-y", `${clamped * 118}px`);
-        section.style.setProperty("--p-svg-rotate", `${clamped * -5}deg`);
       });
     });
   };
