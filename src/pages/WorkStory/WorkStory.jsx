@@ -6,12 +6,12 @@ import styles from "./WorkStory.module.css";
 const chain = ["Process", "Structure", "Properties", "Application", "Scale-up"];
 
 const navItems = [
-  { id: "gap", label: "The Gap" },
-  { id: "process", label: "The Process" },
-  { id: "evidence", label: "The Evidence" },
-  { id: "modeling", label: "The Modeling" },
-  { id: "industry", label: "The Industry Shift" },
-  { id: "approach", label: "R&D Approach" },
+  { id: "gap", label: "Gap" },
+  { id: "process", label: "CFE" },
+  { id: "evidence", label: "Proof" },
+  { id: "modeling", label: "Model" },
+  { id: "industry", label: "Value" },
+  { id: "approach", label: "Approach" },
 ];
 
 const processSteps = [
@@ -38,38 +38,31 @@ const variables = [
 const characterization = [
   {
     name: "Raman spectroscopy",
-    purpose: "Structural fingerprints, defects, layer-related features",
-    proof: "Connects spectra to material quality and structural change.",
+    proof: "Defects + layer fingerprints.",
   },
   {
     name: "XPS",
-    purpose: "Surface chemistry, oxidation, bonding states",
-    proof: "Shows whether processing preserved or altered surface chemistry.",
+    proof: "Surface chemistry.",
   },
   {
     name: "TEM/STEM",
-    purpose: "Nanosheet morphology, lattice features, structural preservation",
-    proof: "Confirms nanoscale structure beyond bulk measurements.",
+    proof: "Nanoscale structure.",
   },
   {
     name: "SEM",
-    purpose: "Surface morphology and particle/nanosheet distribution",
-    proof: "Reveals output form, distribution, and process consistency.",
+    proof: "Morphology + distribution.",
   },
   {
     name: "AFM",
-    purpose: "Thickness, topography, nanosheet geometry",
-    proof: "Measures whether exfoliation produced thin, useful nanosheets.",
+    proof: "Thickness + topography.",
   },
   {
     name: "UV-Vis",
-    purpose: "Optical response and dispersion-related analysis",
-    proof: "Supports dispersion and optical behavior comparisons.",
+    proof: "Optical response.",
   },
   {
     name: "mIRage-Raman",
-    purpose: "Advanced photothermal and spectroscopic characterization",
-    proof: "Adds sub-micron chemical and vibrational insight.",
+    proof: "Sub-micron chemical signal.",
   },
 ];
 
@@ -206,6 +199,16 @@ const ModelingSvg = () => (
   </svg>
 );
 
+const TypeField = ({ items }) => (
+  <div className={styles.typeField} aria-hidden="true">
+    {items.map((item, index) => (
+      <span key={item} style={{ "--delay": `${index * 90}ms` }}>
+        {item}
+      </span>
+    ))}
+  </div>
+);
+
 const WorkStory = () => {
   const scrollRef = useRef(null);
   const { activeSection, progress, handleScroll } = useWorkStoryEffects(scrollRef);
@@ -252,9 +255,7 @@ const WorkStory = () => {
               <span className={styles.eyebrow}>Materials R&D Journey</span>
               <h1>From Lab Discovery to Manufacturing Thinking</h1>
               <p>
-                I connect advanced materials research with process development,
-                characterization, modeling, and commercialization to help move
-                nanomaterials toward real industrial use.
+                Process, proof, modeling, and scale-up thinking for advanced materials.
               </p>
 
               <div className={styles.chain} aria-label="R&D chain">
@@ -278,21 +279,12 @@ const WorkStory = () => {
         <div className={styles.storyGrid}>
           <SectionShell id="gap" kicker="01 / The gap I noticed" className={styles.asymGap}>
             <div className={styles.textBlock}>
-              <p>
-                During my PhD, I became interested in a recurring gap in
-                advanced materials: many nanomaterials show excellent properties
-                in the lab, but the processes used to make them are often too
-                slow, expensive, chemically intensive, inconsistent, or difficult
-                to scale.
-              </p>
-              <p>
-                Instead of only asking whether a material could be produced, I
-                began asking a more engineering-focused question:
+              <p className={styles.lead}>
+                Lab-quality nanomaterials often fail at manufacturing scale.
               </p>
             </div>
             <blockquote>
-              Can the process be made faster, cleaner, more scalable, and still
-              produce useful material quality?
+              Can quality survive speed, pressure, and scale?
             </blockquote>
           </SectionShell>
 
@@ -300,16 +292,9 @@ const WorkStory = () => {
             <div className={styles.sectionIntro}>
               <div>
                 <p className={styles.lead}>
-                  I focused on Compressible Flow Exfoliation, a gas-driven approach
-                  for producing 2D nanomaterials such as graphene, hexagonal boron
-                  nitride, and MoS2.
+                  A gas-driven route for 2D nanomaterials: graphene, h-BN, and MoS2.
                 </p>
-                <p>
-                  The work required thinking beyond material synthesis. I had to
-                  study how pressure, gas flow, temperature, carrier gas selection,
-                  nozzle conditions, precursor properties, and recovery methods
-                  influence the final material.
-                </p>
+                <TypeField items={["ΔP", "FLOW", "TEMP", "NOZZLE", "YIELD"]} />
               </div>
               <FlowSvg />
             </div>
@@ -326,17 +311,8 @@ const WorkStory = () => {
           <SectionShell id="system" kicker="03 / The system I built" className={`${styles.splitSection} ${styles.asymSystem}`}>
             <div>
               <h2>Building the Process</h2>
-              <p>
-                I developed and studied a high-pressure gas-driven exfoliation
-                setup designed to produce 2D nanosheets through rapid
-                acceleration, shear, and particle-gas interaction.
-              </p>
-              <p>
-                This work combined experimental design, process control,
-                material production, and engineering judgment. The goal was not
-                only to produce graphene, h-BN, and MoS2, but to understand
-                whether the process could become a practical route for scalable
-                nanomanufacturing.
+              <p className={styles.lead}>
+                High-pressure flow. Rapid acceleration. Particle-gas interaction.
               </p>
             </div>
             <div className={styles.variablePanel}>
@@ -355,15 +331,9 @@ const WorkStory = () => {
             <div className={styles.sectionIntro}>
               <div>
                 <p className={styles.lead}>
-                  Producing material is only the first step. The next step is
-                  proving what was produced, how the process changed it, and whether
-                  the output is useful.
+                  The output has to be measured, not assumed.
                 </p>
-                <p>
-                  I used advanced characterization to evaluate structure, morphology,
-                  surface chemistry, defects, optical response, and material
-                  preservation.
-                </p>
+                <TypeField items={["STRUCTURE", "CHEMISTRY", "MORPHOLOGY", "SIGNAL"]} />
               </div>
               <EvidenceSvg />
             </div>
@@ -371,8 +341,6 @@ const WorkStory = () => {
               {characterization.map((item, index) => (
                 <article key={item.name} style={{ "--delay": `${index * 70}ms` }}>
                   <span>{item.name}</span>
-                  <p>{item.purpose}</p>
-                  <strong>What it proves</strong>
                   <em>{item.proof}</em>
                 </article>
               ))}
@@ -382,12 +350,7 @@ const WorkStory = () => {
           <SectionShell id="modeling" kicker="05 / The modeling layer" title="Using Modeling to Understand What Experiments Alone Cannot Show" className={styles.asymModeling}>
             <div className={styles.sectionIntro}>
               <p className={styles.lead}>
-                My work also uses computational tools to interpret mechanisms and
-                support experimental decisions. I have used COMSOL simulations,
-                molecular dynamics, Python-based analysis, and machine-learning
-                interatomic potentials to study gas-particle interactions,
-                nanoscale behavior, thermal transport, and process-structure
-                relationships.
+                Experiments show the result. Modeling helps expose the mechanism.
               </p>
               <ModelingSvg />
             </div>
@@ -403,9 +366,7 @@ const WorkStory = () => {
 
           <SectionShell id="industry" kicker="06 / The industry shift" title="From Research Question to Industrial Value" className={styles.asymIndustry}>
             <p className={styles.lead}>
-              Through Lab2Market Validate, Lab2Market Launch, and Inventor to
-              Founder, I began looking at my research not only as a scientific
-              project, but as a potential industrial technology.
+              The question changed from “Can it be made?” to “Can it be made reliably?”
             </p>
             <div className={styles.beforeAfter}>
               <article>
@@ -431,21 +392,11 @@ const WorkStory = () => {
               ))}
             </div>
             <p className={styles.lead}>
-              This is the way I approach advanced materials development. I am
-              interested in the full chain: designing the process, validating the
-              material, understanding the mechanism, and connecting the result to
-              real applications.
-            </p>
-            <p>
-              I bring together hands-on process development, advanced
-              characterization, computational modeling, and commercialization
-              thinking.
+              Build the process. Prove the material. Understand the mechanism. Connect it to use.
             </p>
             <div className={styles.closeCard}>
               <p>
-                If your team is working on advanced materials,
-                nanomanufacturing, characterization, or process scale-up, I would
-                be happy to connect.
+                Advanced materials, nanomanufacturing, characterization, or process scale-up.
               </p>
               <div className={styles.heroActions}>
                 <Link to="/AcademicCV">Download Resume</Link>

@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@400;500;600;700&family=Teko:wght@500;600&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=Teko:wght@500;600&display=swap");
 
 .page {
   --story-bg: #050505;
@@ -25,7 +25,7 @@
     radial-gradient(circle at 14% 16%, rgba(212, 157, 129, 0.12), transparent 28%),
     radial-gradient(circle at 82% 30%, rgba(255, 255, 255, 0.055), transparent 32%),
     linear-gradient(135deg, rgba(0, 0, 0, 0.5), rgba(5, 5, 5, 0.96));
-  font-family: "Inter", sans-serif;
+  font-family: "Poppins", sans-serif;
   padding: 0 0 120px;
   text-align: left;
   touch-action: pan-y;
@@ -315,7 +315,8 @@
   border: 0;
   border-top: 1px solid rgba(255, 255, 255, 0.12);
   border-radius: 0;
-  padding: clamp(74px, 11vw, 136px) 0;
+  min-height: 78vh;
+  padding: clamp(74px, 10vw, 128px) 0;
   background: transparent;
   box-shadow: none;
   backdrop-filter: none;
@@ -492,7 +493,7 @@
   position: relative;
   z-index: 1;
   color: var(--story-muted);
-  font-size: clamp(16px, 1.45vw, 19px);
+  font-size: clamp(16px, 1.35vw, 18px);
   font-weight: 400;
   line-height: 1.62;
 }
@@ -514,10 +515,11 @@ blockquote::selection {
 
 .lead {
   max-width: 900px;
-  font-size: clamp(19px, 2.2vw, 28px) !important;
-  line-height: 1.35 !important;
+  font-size: clamp(22px, 2.6vw, 34px) !important;
+  line-height: 1.18 !important;
   color: #f0f0f0 !important;
-  font-weight: 600 !important;
+  font-weight: 800 !important;
+  letter-spacing: -0.055em;
 }
 
 .textBlock {
@@ -698,7 +700,7 @@ blockquote::before {
 }
 
 .characterGrid article {
-  min-height: 190px;
+  min-height: 132px;
   display: flex;
   flex-direction: column;
   gap: 12px;
@@ -747,6 +749,41 @@ blockquote::before {
   font-size: 0.86rem;
   font-style: normal;
   line-height: 1.55;
+}
+
+.typeField {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, max-content));
+  gap: 10px clamp(18px, 3vw, 42px);
+  margin-top: 34px;
+}
+
+.typeField span {
+  display: inline-flex;
+  align-items: baseline;
+  min-width: 0;
+  color: rgba(255, 255, 255, 0.9);
+  font-family: "Poppins", sans-serif;
+  font-size: clamp(36px, 5vw, 84px);
+  font-weight: 900;
+  line-height: 0.82;
+  letter-spacing: -0.085em;
+  text-transform: uppercase;
+  opacity: 0;
+  transform: translateY(22px);
+  animation: typePop 760ms cubic-bezier(0.25, 0.8, 0.25, 1) both;
+  animation-delay: var(--delay);
+}
+
+.typeField span:nth-child(even) {
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(212, 157, 129, 0.78);
+}
+
+.typeField span:nth-child(3n) {
+  color: var(--story-accent);
 }
 
 .characterGrid strong {
@@ -1077,6 +1114,20 @@ blockquote::before {
   }
 }
 
+@keyframes typePop {
+  from {
+    opacity: 0;
+    transform: translateY(22px) scaleX(0.94);
+    filter: blur(6px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scaleX(1);
+    filter: blur(0);
+  }
+}
+
 @keyframes svgFloat {
   0%,
   100% {
@@ -1378,6 +1429,7 @@ blockquote::before {
   .hero,
   .animatedSvg,
   .chain span,
+  .typeField span,
   .processStep,
   .variablePanel span,
   .characterGrid article,
