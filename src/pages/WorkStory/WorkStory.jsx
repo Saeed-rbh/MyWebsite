@@ -218,8 +218,8 @@ const WorkStory = () => {
   return (
     <>
       <SEO
-        title="Saeed Arabha | Work Story"
-        description="A recruiter-focused story of Saeed Arabha's materials R&D approach across process development, characterization, modeling, and industrial value."
+        title="Saeed Arabha | R&D Journey"
+        description="A recruiter-focused R&D narrative of Saeed Arabha's materials approach across process development, characterization, modeling, and industrial value."
         name="Saeed Arabha"
         type="website"
       />
@@ -228,8 +228,8 @@ const WorkStory = () => {
           <span style={{ width: `${progress}%` }} />
         </div>
 
-        <aside className={styles.sideNav} aria-label="Work story sections">
-          <span className={styles.navTitle}>Work Story</span>
+        <aside className={styles.sideNav} aria-label="R&D journey sections">
+          <span className={styles.navTitle}>R&D Journey</span>
           {navItems.map((item, index) => (
             <a
               key={item.id}
@@ -249,7 +249,7 @@ const WorkStory = () => {
         <header className={styles.hero} data-reveal>
           <div className={styles.heroFrame}>
             <div className={styles.heroCopy}>
-              <span className={styles.eyebrow}>Materials R&D Work Story</span>
+              <span className={styles.eyebrow}>Materials R&D Journey</span>
               <h1>From Lab Discovery to Manufacturing Thinking</h1>
               <p>
                 I connect advanced materials research with process development,
@@ -424,7 +424,7 @@ const WorkStory = () => {
             </div>
           </SectionShell>
 
-          <SectionShell id="approach" kicker="07 / Closing framework" title="My R&D Approach">
+          <SectionShell id="approach" kicker="07 / Closing framework" title="My R&D Approach" className={styles.asymApproach}>
             <div className={styles.finalChain}>
               {chain.map((item) => (
                 <span key={item}>{item}</span>

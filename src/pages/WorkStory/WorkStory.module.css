@@ -27,6 +27,7 @@
     linear-gradient(135deg, rgba(0, 0, 0, 0.5), rgba(5, 5, 5, 0.96));
   font-family: "Inter", sans-serif;
   padding: 0 0 120px;
+  text-align: left;
   touch-action: pan-y;
 }
 
@@ -95,7 +96,7 @@
 }
 
 .heroFrame::before {
-  content: "WORK";
+  content: "R&D";
   position: absolute;
   right: -4vw;
   top: 48%;
@@ -327,11 +328,34 @@
     filter 820ms ease;
 }
 
+.section::after {
+  position: absolute;
+  right: max(-2vw, -28px);
+  top: clamp(46px, 9vw, 118px);
+  z-index: 0;
+  color: rgba(255, 255, 255, 0.035);
+  font-family: "Poppins", sans-serif;
+  font-size: clamp(82px, 15vw, 210px);
+  font-weight: 800;
+  line-height: 0.78;
+  letter-spacing: -0.095em;
+  text-transform: uppercase;
+  pointer-events: none;
+  transform: translateX(24px);
+  opacity: 0;
+  transition: opacity 900ms ease, transform 1100ms cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
 .section.visible,
 .hero.visible {
   opacity: 1;
   transform: translateY(0) scale(1);
   filter: blur(0);
+}
+
+.section.visible::after {
+  opacity: 1;
+  transform: translateX(0);
 }
 
 .section::before {
@@ -354,21 +378,30 @@
 }
 
 .asymGap .textBlock {
-  max-width: 620px;
-  margin-left: clamp(0px, 10vw, 140px);
+  max-width: 700px;
+  margin-left: 0;
 }
 
 .asymGap blockquote {
-  margin-left: auto;
-  max-width: 980px;
+  margin-left: clamp(0px, 11vw, 150px);
+  max-width: 1040px;
+}
+
+.asymGap::after {
+  content: "GAP";
 }
 
 .sectionIntro {
   display: grid;
   grid-template-columns: minmax(0, 1.02fr) minmax(260px, 0.78fr);
   gap: clamp(26px, 5vw, 78px);
-  align-items: center;
+  align-items: start;
   margin-top: 12px;
+}
+
+.sectionIntro > div,
+.sectionIntro > p {
+  max-width: 760px;
 }
 
 .asymProcess h2,
@@ -377,7 +410,11 @@
 }
 
 .asymProcess .sectionIntro {
-  margin-left: clamp(0px, 6vw, 86px);
+  margin-left: 0;
+}
+
+.asymProcess::after {
+  content: "FLOW";
 }
 
 .asymSystem {
@@ -389,8 +426,12 @@
   margin-top: clamp(24px, 8vw, 96px);
 }
 
+.asymSystem::after {
+  content: "SYSTEM";
+}
+
 .asymEvidence h2 {
-  margin-left: clamp(0px, 18vw, 230px);
+  margin-left: 0;
 }
 
 .asymEvidence .sectionIntro {
@@ -398,28 +439,45 @@
 }
 
 .asymEvidence .sectionIntro > div {
-  order: 2;
+  order: 1;
 }
 
 .asymEvidence .sectionIntro svg {
-  order: 1;
+  order: 2;
+}
+
+.asymEvidence::after {
+  content: "PROOF";
 }
 
 .asymModeling h2 {
   max-width: 920px;
-  margin-left: clamp(0px, 8vw, 120px);
+  margin-left: 0;
 }
 
 .asymModeling .sectionIntro {
   grid-template-columns: minmax(0, 0.82fr) minmax(300px, 1fr);
 }
 
+.asymModeling::after {
+  content: "MODEL";
+}
+
 .asymIndustry h2 {
   max-width: 940px;
 }
 
+.asymIndustry::after {
+  content: "VALUE";
+}
+
+.asymApproach::after {
+  content: "R&D";
+}
+
 .section h2 {
   position: relative;
+  z-index: 1;
   max-width: 980px;
   margin: 14px 0 28px;
   font-family: "Poppins", sans-serif;
@@ -432,10 +490,26 @@
 
 .section p {
   position: relative;
+  z-index: 1;
   color: var(--story-muted);
   font-size: clamp(16px, 1.45vw, 19px);
   font-weight: 400;
   line-height: 1.62;
+}
+
+.section h2,
+blockquote,
+.lead,
+.characterGrid span,
+.beforeAfter h3,
+.modelPanel span {
+  text-wrap: balance;
+}
+
+.section h2::selection,
+blockquote::selection {
+  color: #111;
+  background: var(--story-accent);
 }
 
 .lead {
@@ -452,6 +526,7 @@
 
 blockquote {
   position: relative;
+  z-index: 1;
   max-width: 1080px;
   margin: 42px 0 0;
   border-left: 0;
@@ -487,8 +562,8 @@ blockquote::before {
 .processMap::before {
   content: "";
   position: absolute;
-  left: 5%;
-  right: 5%;
+  left: 0;
+  right: 7%;
   top: 18px;
   height: 1px;
   background: linear-gradient(90deg, transparent, var(--story-accent), transparent);
@@ -502,11 +577,16 @@ blockquote::before {
   min-height: 132px;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
   gap: 16px;
   opacity: 0;
   animation: cardIn 700ms cubic-bezier(0.25, 0.8, 0.25, 1) both;
   animation-delay: var(--delay);
+  transition: transform 260ms ease;
+}
+
+.processStep:hover {
+  transform: translateY(-8px);
 }
 
 .processStep span {
@@ -519,11 +599,17 @@ blockquote::before {
   transform: rotate(45deg);
   animation: nodePulse 3s ease-in-out infinite;
   animation-delay: var(--delay);
+  transition: background 260ms ease, box-shadow 260ms ease;
+}
+
+.processStep:hover span {
+  background: rgba(212, 157, 129, 0.12);
+  box-shadow: 0 0 32px rgba(212, 157, 129, 0.16);
 }
 
 .processStep p {
   margin: 0;
-  text-align: center;
+  text-align: left;
   color: #e2e2e2;
   font-family: "Poppins", sans-serif;
   font-size: clamp(0.82rem, 1vw, 1rem);
@@ -537,7 +623,7 @@ blockquote::before {
   display: grid;
   grid-template-columns: minmax(0, 1.05fr) minmax(320px, 0.95fr);
   gap: 28px;
-  align-items: center;
+  align-items: start;
 }
 
 .variablePanel,
@@ -550,6 +636,19 @@ blockquote::before {
   padding: 0 0 0 28px;
   background: transparent;
   box-shadow: none;
+}
+
+.variablePanel::before,
+.closeCard::before {
+  content: "";
+  position: absolute;
+  left: -2px;
+  top: 0;
+  width: 2px;
+  height: 42%;
+  background: #fff;
+  transform-origin: top;
+  animation: railScan 3.6s ease-in-out infinite;
 }
 
 .variablePanel h3 {
@@ -612,12 +711,13 @@ blockquote::before {
   transform: translateY(18px);
   animation: cardIn 700ms cubic-bezier(0.25, 0.8, 0.25, 1) both;
   animation-delay: var(--delay);
-  transition: transform 260ms ease, border-color 260ms ease;
+  transition: transform 260ms ease, border-color 260ms ease, opacity 260ms ease;
 }
 
 .characterGrid article:hover {
   transform: translateY(-4px);
   border-color: rgba(212, 157, 129, 0.3);
+  opacity: 1;
 }
 
 .characterGrid article:nth-child(2),
@@ -672,8 +772,8 @@ blockquote::before {
 .modelPanel span {
   min-height: auto;
   display: inline-flex;
-  align-items: center;
-  justify-content: center;
+  align-items: flex-start;
+  justify-content: flex-start;
   border: 0;
   border-bottom: 2px solid rgba(212, 157, 129, 0.5);
   border-radius: 0;
@@ -710,6 +810,11 @@ blockquote::before {
   border-radius: 0;
   padding: 22px 0 0;
   background: transparent;
+  transition: transform 320ms ease, border-color 320ms ease;
+}
+
+.beforeAfter article:hover {
+  transform: translateY(-10px);
 }
 
 .beforeAfter article:last-child {
@@ -717,6 +822,10 @@ blockquote::before {
   background: transparent;
   box-shadow: none;
   transform: translateY(clamp(34px, 6vw, 80px));
+}
+
+.beforeAfter article:last-child:hover {
+  transform: translateY(clamp(24px, 5vw, 64px));
 }
 
 .beforeAfter span {
@@ -760,7 +869,7 @@ blockquote::before {
   overflow: visible;
   color: var(--story-accent);
   filter: drop-shadow(0 24px 55px rgba(0, 0, 0, 0.34));
-  animation: svgFloat 7s ease-in-out infinite;
+  animation: svgFloat 6.6s ease-in-out infinite;
 }
 
 .heroSvg {
@@ -952,6 +1061,19 @@ blockquote::before {
   50% {
     transform: rotate(45deg) scale(1.16);
     opacity: 1;
+  }
+}
+
+@keyframes railScan {
+  0%,
+  100% {
+    transform: scaleY(0.32);
+    opacity: 0.35;
+  }
+
+  50% {
+    transform: scaleY(1);
+    opacity: 0.95;
   }
 }
 
@@ -1251,6 +1373,7 @@ blockquote::before {
   }
 
   .page::after,
+  .section::after,
   .section,
   .hero,
   .animatedSvg,
@@ -1268,6 +1391,8 @@ blockquote::before {
   .svgBars rect,
   .svgText,
   .svgTinyText,
+  .variablePanel::before,
+  .closeCard::before,
   .modelPanel span,
   .processMap::before {
     opacity: 1;
