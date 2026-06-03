@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=Teko:wght@500;600&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap");
 
 .page {
   --story-bg: #050505;
@@ -12,6 +12,11 @@
   --story-accent: #d49d81;
   --story-accent-soft: rgba(212, 157, 129, 0.18);
   --story-accent-faint: rgba(212, 157, 129, 0.08);
+  --scroll-shift: 0px;
+  --scroll-shift-alt: 0px;
+  --hero-title-y: 0px;
+  --hero-copy-y: 0px;
+  --parallax-ease: cubic-bezier(0.22, 1, 0.36, 1);
   position: absolute;
   inset: 0;
   z-index: 1;
@@ -47,6 +52,8 @@
   background-size: 82px 82px;
   mask-image: linear-gradient(to bottom, transparent, black 12%, black 74%, transparent);
   opacity: 0.45;
+  transform: translate3d(0, var(--scroll-shift), 0);
+  will-change: transform;
 }
 
 .page::after {
@@ -58,6 +65,8 @@
   background-size: 380px 380px;
   filter: blur(1px);
   opacity: 0.42;
+  transform: translate3d(0, var(--scroll-shift-alt), 0);
+  will-change: transform;
   animation: particleDrift 20s linear infinite;
 }
 
@@ -88,6 +97,7 @@
   align-items: center;
   overflow: visible;
   padding: clamp(18px, 6vw, 72px) 0;
+  perspective: 1200px;
 }
 
 .heroCopy {
@@ -153,6 +163,8 @@
   background-clip: text;
   -webkit-text-fill-color: transparent;
   animation: titleSweep 5.5s ease-in-out infinite;
+  transform: translate3d(0, var(--hero-title-y), 0);
+  will-change: transform, background-position;
 }
 
 .hero p {
@@ -164,6 +176,8 @@
   font-size: clamp(17px, 2vw, 24px);
   line-height: 1.45;
   font-weight: 400;
+  transform: translate3d(0, var(--hero-copy-y), 0);
+  will-change: transform;
 }
 
 .chain,
@@ -284,7 +298,8 @@
 
 .sideNav a span {
   color: rgba(255, 255, 255, 0.36);
-  font-family: "Teko", sans-serif;
+  font-family: "Poppins", sans-serif;
+  font-weight: 800;
   font-size: 1rem;
   line-height: 1;
 }
@@ -310,6 +325,17 @@
 }
 
 .section {
+  --section-progress: 0;
+  --section-accent: var(--story-accent);
+  --p-soft: 0px;
+  --p-mid: 0px;
+  --p-fast: 0px;
+  --p-ghost: 0px;
+  --p-x-left: 0px;
+  --p-x-right: 0px;
+  --p-svg-x: 0px;
+  --p-svg-y: 0px;
+  --p-svg-rotate: 0deg;
   position: relative;
   overflow: visible;
   border: 0;
@@ -342,8 +368,9 @@
   letter-spacing: -0.095em;
   text-transform: uppercase;
   pointer-events: none;
-  transform: translateX(24px);
+  transform: translate3d(24px, var(--p-ghost), 0);
   opacity: 0;
+  will-change: transform, opacity;
   transition: opacity 900ms ease, transform 1100ms cubic-bezier(0.25, 0.8, 0.25, 1);
 }
 
@@ -356,7 +383,7 @@
 
 .section.visible::after {
   opacity: 1;
-  transform: translateX(0);
+  transform: translate3d(0, var(--p-ghost), 0);
 }
 
 .section::before {
@@ -392,6 +419,16 @@
   content: "GAP";
 }
 
+.asymGap {
+  --section-accent: #f0c1a9;
+}
+
+.asymGap blockquote {
+  color: transparent;
+  -webkit-text-stroke: 1.15px rgba(255, 255, 255, 0.92);
+  text-shadow: 0 0 34px rgba(212, 157, 129, 0.14);
+}
+
 .sectionIntro {
   display: grid;
   grid-template-columns: minmax(0, 1.02fr) minmax(260px, 0.78fr);
@@ -418,6 +455,16 @@
   content: "FLOW";
 }
 
+.asymProcess {
+  --section-accent: #d49d81;
+}
+
+.asymProcess h2 {
+  color: var(--section-accent);
+  letter-spacing: -0.09em;
+  transform: translate3d(var(--p-x-left), var(--p-mid), 0) scaleX(0.94);
+}
+
 .asymSystem {
   grid-template-columns: minmax(280px, 0.82fr) minmax(0, 1.18fr);
   gap: clamp(34px, 8vw, 110px);
@@ -429,6 +476,15 @@
 
 .asymSystem::after {
   content: "SYSTEM";
+}
+
+.asymSystem {
+  --section-accent: #f0c1a9;
+}
+
+.asymSystem h2 {
+  max-width: 680px;
+  letter-spacing: -0.095em;
 }
 
 .asymEvidence h2 {
@@ -451,6 +507,16 @@
   content: "PROOF";
 }
 
+.asymEvidence {
+  --section-accent: #ffffff;
+}
+
+.asymEvidence h2 {
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(255, 255, 255, 0.86);
+  text-shadow: 0 0 36px rgba(212, 157, 129, 0.12);
+}
+
 .asymModeling h2 {
   max-width: 920px;
   margin-left: 0;
@@ -464,6 +530,17 @@
   content: "MODEL";
 }
 
+.asymModeling {
+  --section-accent: #c9d7ff;
+}
+
+.asymModeling h2 {
+  background: linear-gradient(100deg, #fff 0%, #c9d7ff 45%, #d49d81 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
 .asymIndustry h2 {
   max-width: 940px;
 }
@@ -472,8 +549,21 @@
   content: "VALUE";
 }
 
+.asymIndustry {
+  --section-accent: #ffd8c4;
+}
+
+.asymIndustry h2 {
+  color: #ffd8c4;
+  letter-spacing: -0.088em;
+}
+
 .asymApproach::after {
   content: "R&D";
+}
+
+.asymApproach {
+  --section-accent: #fff;
 }
 
 .section h2 {
@@ -487,6 +577,9 @@
   line-height: 0.9;
   letter-spacing: -0.075em;
   text-transform: uppercase;
+  transform: translate3d(var(--p-soft), var(--p-mid), 0);
+  will-change: transform;
+  transition: color 420ms ease, transform 220ms linear;
 }
 
 .section p {
@@ -496,6 +589,43 @@
   font-size: clamp(16px, 1.35vw, 18px);
   font-weight: 400;
   line-height: 1.62;
+  transform: translate3d(0, var(--p-soft), 0);
+  will-change: transform;
+}
+
+.asymGap blockquote {
+  color: transparent;
+  -webkit-text-stroke: 1.15px rgba(255, 255, 255, 0.92);
+  text-shadow: 0 0 34px rgba(212, 157, 129, 0.14);
+}
+
+.asymProcess h2 {
+  color: var(--section-accent);
+  letter-spacing: -0.09em;
+  transform: translate3d(var(--p-x-left), var(--p-mid), 0) scaleX(0.94);
+}
+
+.asymSystem h2 {
+  max-width: 680px;
+  letter-spacing: -0.095em;
+}
+
+.asymEvidence h2 {
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(255, 255, 255, 0.86);
+  text-shadow: 0 0 36px rgba(212, 157, 129, 0.12);
+}
+
+.asymModeling h2 {
+  background: linear-gradient(100deg, #fff 0%, #c9d7ff 45%, #d49d81 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.asymIndustry h2 {
+  color: #ffd8c4;
+  letter-spacing: -0.088em;
 }
 
 .section h2,
@@ -541,6 +671,8 @@ blockquote {
   letter-spacing: -0.065em;
   text-transform: uppercase;
   background: transparent;
+  transform: translate3d(var(--p-x-right), var(--p-fast), 0);
+  will-change: transform;
 }
 
 blockquote::before {
@@ -549,7 +681,7 @@ blockquote::before {
   width: 82px;
   height: 8px;
   margin-bottom: 20px;
-  background: var(--story-accent);
+  background: var(--section-accent);
   animation: pulseBar 2.6s ease-in-out infinite;
 }
 
@@ -559,6 +691,8 @@ blockquote::before {
   grid-template-columns: repeat(7, minmax(0, 1fr));
   gap: 18px;
   margin-top: 54px;
+  transform: translate3d(0, var(--p-mid), 0);
+  will-change: transform;
 }
 
 .processMap::before {
@@ -568,7 +702,7 @@ blockquote::before {
   right: 7%;
   top: 18px;
   height: 1px;
-  background: linear-gradient(90deg, transparent, var(--story-accent), transparent);
+  background: linear-gradient(90deg, transparent, var(--section-accent), transparent);
   transform-origin: left;
   animation: lineDraw 1.6s ease both;
 }
@@ -594,7 +728,7 @@ blockquote::before {
 .processStep span {
   width: 36px;
   height: 36px;
-  border: 2px solid var(--story-accent);
+  border: 2px solid var(--section-accent);
   border-radius: 0;
   background: transparent;
   box-shadow: none;
@@ -648,7 +782,7 @@ blockquote::before {
   top: 0;
   width: 2px;
   height: 42%;
-  background: #fff;
+  background: var(--section-accent);
   transform-origin: top;
   animation: railScan 3.6s ease-in-out infinite;
 }
@@ -688,7 +822,7 @@ blockquote::before {
 
 .variablePanel span:hover {
   transform: translateY(-3px);
-  color: var(--story-accent);
+  color: var(--section-accent);
   border-color: rgba(212, 157, 129, 0.34);
 }
 
@@ -697,6 +831,8 @@ blockquote::before {
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 0 28px;
   margin-top: 50px;
+  transform: translate3d(0, var(--p-mid), 0);
+  will-change: transform;
 }
 
 .characterGrid article {
@@ -733,7 +869,7 @@ blockquote::before {
 }
 
 .characterGrid span {
-  color: #fff;
+  color: var(--section-accent);
   font-family: "Poppins", sans-serif;
   font-size: clamp(1.08rem, 1.6vw, 1.45rem);
   font-weight: 800;
@@ -758,6 +894,8 @@ blockquote::before {
   grid-template-columns: repeat(2, minmax(0, max-content));
   gap: 10px clamp(18px, 3vw, 42px);
   margin-top: 34px;
+  transform: translate3d(var(--p-x-right), var(--p-fast), 0);
+  will-change: transform;
 }
 
 .typeField span {
@@ -783,12 +921,12 @@ blockquote::before {
 }
 
 .typeField span:nth-child(3n) {
-  color: var(--story-accent);
+  color: var(--section-accent);
 }
 
 .characterGrid strong {
   margin-top: auto;
-  color: var(--story-accent);
+  color: var(--section-accent);
   font-family: "Poppins", sans-serif;
   font-size: 0.7rem;
   font-weight: 700;
@@ -804,6 +942,8 @@ blockquote::before {
   margin-top: 44px;
   border-left: 0;
   padding-left: 0;
+  transform: translate3d(var(--p-soft), var(--p-mid), 0);
+  will-change: transform;
 }
 
 .modelPanel span {
@@ -812,7 +952,7 @@ blockquote::before {
   align-items: flex-start;
   justify-content: flex-start;
   border: 0;
-  border-bottom: 2px solid rgba(212, 157, 129, 0.5);
+  border-bottom: 2px solid color-mix(in srgb, var(--section-accent) 58%, transparent);
   border-radius: 0;
   padding: 0 0 8px;
   color: #fff;
@@ -830,7 +970,7 @@ blockquote::before {
 .modelPanel i {
   width: clamp(22px, 5vw, 80px);
   height: 2px;
-  background: linear-gradient(90deg, transparent, var(--story-accent));
+  background: linear-gradient(90deg, transparent, var(--section-accent));
   animation: lineDraw 900ms ease both;
 }
 
@@ -839,6 +979,8 @@ blockquote::before {
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 42px;
   margin-top: 48px;
+  transform: translate3d(0, var(--p-mid), 0);
+  will-change: transform;
 }
 
 .beforeAfter article {
@@ -866,7 +1008,7 @@ blockquote::before {
 }
 
 .beforeAfter span {
-  color: var(--story-accent);
+  color: var(--section-accent);
   font-family: "Poppins", sans-serif;
   font-weight: 700;
   text-transform: uppercase;
@@ -906,7 +1048,9 @@ blockquote::before {
   overflow: visible;
   color: var(--story-accent);
   filter: drop-shadow(0 24px 55px rgba(0, 0, 0, 0.34));
-  animation: svgFloat 6.6s ease-in-out infinite;
+  transform: translate3d(var(--p-svg-x), var(--p-svg-y), 0) rotate(var(--p-svg-rotate));
+  will-change: transform;
+  animation: svgGlow 6.6s ease-in-out infinite;
 }
 
 .heroSvg {
@@ -943,7 +1087,7 @@ blockquote::before {
 .svgTrace,
 .svgTraceSlow {
   fill: none;
-  stroke: var(--story-accent);
+  stroke: var(--section-accent);
   stroke-width: 2.2;
   stroke-linecap: round;
   stroke-linejoin: round;
@@ -960,7 +1104,7 @@ blockquote::before {
 
 .svgNodes circle,
 .svgNodesLarge circle {
-  fill: var(--story-accent);
+  fill: var(--section-accent);
   transform-origin: center;
   transform-box: fill-box;
   animation: svgNodePulse 2.6s ease-in-out infinite;
@@ -968,7 +1112,7 @@ blockquote::before {
 
 .svgNodesLarge circle {
   fill: rgba(212, 157, 129, 0.32);
-  stroke: var(--story-accent);
+  stroke: var(--section-accent);
   stroke-width: 2;
 }
 
@@ -998,7 +1142,7 @@ blockquote::before {
 }
 
 .svgTinyText {
-  fill: rgba(212, 157, 129, 0.8);
+  fill: color-mix(in srgb, var(--section-accent) 76%, transparent);
   font-size: 13px;
   letter-spacing: 0.12em;
 }
@@ -1136,6 +1280,19 @@ blockquote::before {
 
   50% {
     transform: translate3d(-10px, 14px, 0) rotate(-1.5deg);
+  }
+}
+
+@keyframes svgGlow {
+  0%,
+  100% {
+    opacity: 0.84;
+    filter: drop-shadow(0 20px 42px rgba(0, 0, 0, 0.32));
+  }
+
+  50% {
+    opacity: 1;
+    filter: drop-shadow(0 28px 72px rgba(212, 157, 129, 0.16));
   }
 }
 

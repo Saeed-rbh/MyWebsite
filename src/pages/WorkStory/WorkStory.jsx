@@ -124,14 +124,44 @@ const useWorkStoryEffects = (scrollRef) => {
     const root = scrollRef.current;
     if (!root) return;
     const maxScroll = root.scrollHeight - root.clientHeight;
-    setProgress(maxScroll <= 0 ? 0 : (root.scrollTop / maxScroll) * 100);
+    const nextProgress = maxScroll <= 0 ? 0 : (root.scrollTop / maxScroll) * 100;
+    setProgress(nextProgress);
+    root.style.setProperty("--scroll-progress", `${nextProgress / 100}`);
+    root.style.setProperty("--scroll-shift", `${root.scrollTop * -0.08}px`);
+    root.style.setProperty("--scroll-shift-alt", `${root.scrollTop * 0.045}px`);
+    root.style.setProperty("--hero-title-y", `${(nextProgress / 100) * -72}px`);
+    root.style.setProperty("--hero-copy-y", `${(nextProgress / 100) * -34}px`);
+
+    root.querySelectorAll("[data-parallax-section]").forEach((section) => {
+      const rect = section.getBoundingClientRect();
+      const rootRect = root.getBoundingClientRect();
+      const sectionCenter = rect.top - rootRect.top + rect.height / 2;
+      const viewportCenter = root.clientHeight / 2;
+      const distance = (sectionCenter - viewportCenter) / root.clientHeight;
+      const clamped = Math.max(-1, Math.min(1, distance));
+      section.style.setProperty("--section-progress", clamped.toFixed(3));
+      section.style.setProperty("--p-soft", `${clamped * -24}px`);
+      section.style.setProperty("--p-mid", `${clamped * -44}px`);
+      section.style.setProperty("--p-fast", `${clamped * -68}px`);
+      section.style.setProperty("--p-ghost", `${clamped * -82}px`);
+      section.style.setProperty("--p-x-left", `${clamped * -34}px`);
+      section.style.setProperty("--p-x-right", `${clamped * 42}px`);
+      section.style.setProperty("--p-svg-x", `${clamped * 54}px`);
+      section.style.setProperty("--p-svg-y", `${clamped * 88}px`);
+      section.style.setProperty("--p-svg-rotate", `${clamped * -3}deg`);
+    });
   };
 
   return { activeSection, progress, handleScroll };
 };
 
 const SectionShell = ({ id, kicker, title, children, className = "" }) => (
-  <section id={id} className={`${styles.section} ${className}`} data-reveal>
+  <section
+    id={id}
+    className={`${styles.section} ${className}`}
+    data-parallax-section
+    data-reveal
+  >
     {kicker && <span className={styles.kicker}>{kicker}</span>}
     {title && <h2>{title}</h2>}
     {children}
