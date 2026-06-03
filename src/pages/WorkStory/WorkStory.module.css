@@ -84,7 +84,7 @@
   min-height: 100svh;
   display: flex;
   align-items: center;
-  padding: 38px 0 40px;
+  padding: 34px 0 34px;
   scroll-snap-align: start;
   scroll-snap-stop: always;
   opacity: 0;
@@ -95,10 +95,10 @@
 .heroFrame {
   position: relative;
   width: 100%;
-  min-height: min(540px, calc(100svh - 78px));
+  min-height: min(520px, calc(100svh - 68px));
   display: grid;
-  grid-template-columns: minmax(0, 0.96fr) minmax(310px, 0.42fr);
-  gap: clamp(34px, 5vw, 86px);
+  grid-template-columns: minmax(0, 1fr);
+  gap: 0;
   align-items: center;
   overflow: visible;
   padding: clamp(8px, 2.8vw, 28px) 0;
@@ -108,13 +108,13 @@
 .heroCopy {
   position: relative;
   z-index: 1;
-  max-width: 980px;
+  max-width: min(1020px, 78vw);
 }
 
 .heroFrame::before {
   content: "R&D";
   position: absolute;
-  right: 2vw;
+  right: 4vw;
   top: 48%;
   z-index: 0;
   font-family: "Poppins", sans-serif;
@@ -132,8 +132,8 @@
   content: "";
   position: absolute;
   left: 0;
-  bottom: 18px;
-  width: min(720px, 56vw);
+  bottom: 4px;
+  width: min(820px, 64vw);
   height: 2px;
   background: linear-gradient(90deg, var(--story-accent), transparent);
   transform-origin: left;
@@ -155,7 +155,7 @@
 .hero h1 {
   position: relative;
   z-index: 1;
-  max-width: 1080px;
+  max-width: 1020px;
   margin: 16px 0 0;
   font-family: "Poppins", sans-serif;
   font-size: clamp(50px, 6.4vw, 94px);
@@ -191,8 +191,8 @@
   z-index: 1;
   display: flex;
   flex-wrap: wrap;
-  gap: 12px 20px;
-  margin-top: 26px;
+  gap: 14px 24px;
+  margin-top: 30px;
 }
 
 .chain span,
@@ -212,6 +212,40 @@
   text-transform: uppercase;
   animation: pillIn 720ms cubic-bezier(0.25, 0.8, 0.25, 1) both;
   animation-delay: var(--delay, 0ms);
+}
+
+.heroScrollCue {
+  position: relative;
+  z-index: 1;
+  width: fit-content;
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: clamp(46px, 8vh, 82px);
+  color: rgba(255, 255, 255, 0.72);
+  text-decoration: none;
+  font-family: "Poppins", sans-serif;
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.heroScrollCue i {
+  position: relative;
+  width: 1px;
+  height: 48px;
+  display: inline-block;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.14);
+}
+
+.heroScrollCue i::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent, var(--story-accent), transparent);
+  animation: scrollCue 1.8s ease-in-out infinite;
 }
 
 .heroActions {
@@ -252,153 +286,6 @@
 .heroActions a:hover {
   transform: translateY(-2px);
   box-shadow: 0 18px 42px rgba(212, 157, 129, 0.18);
-}
-
-.heroStage {
-  position: relative;
-  z-index: 1;
-  width: min(100%, 380px);
-  justify-self: end;
-  border-left: 1px solid rgba(212, 157, 129, 0.3);
-  padding: 10px 0 10px 28px;
-  color: #fff;
-}
-
-.heroStage::before,
-.heroStage::after {
-  content: "";
-  position: absolute;
-  pointer-events: none;
-}
-
-.heroStage::before {
-  left: -5px;
-  top: 18px;
-  width: 9px;
-  height: 34px;
-  border-radius: 999px;
-  background: var(--story-accent);
-  box-shadow: 0 0 32px rgba(212, 157, 129, 0.2);
-  animation: railScan 4s ease-in-out infinite;
-}
-
-.heroStage::after {
-  right: -12px;
-  bottom: -18px;
-  width: 120px;
-  height: 120px;
-  border: 1px solid rgba(212, 157, 129, 0.16);
-  border-radius: 999px;
-  opacity: 0.64;
-  animation: heroOrbit 9s linear infinite;
-}
-
-.heroStageHeader {
-  display: grid;
-  gap: 9px;
-}
-
-.heroStageHeader span,
-.heroStageList span,
-.heroStageMetrics span,
-.heroStageMaterials span {
-  font-family: "Poppins", sans-serif;
-  text-transform: uppercase;
-}
-
-.heroStageHeader span {
-  color: var(--story-accent);
-  font-size: 0.66rem;
-  font-weight: 800;
-  letter-spacing: 0.18em;
-}
-
-.heroStageHeader strong {
-  font-family: "Poppins", sans-serif;
-  font-size: clamp(28px, 2.8vw, 38px);
-  font-weight: 800;
-  line-height: 1;
-  letter-spacing: -0.015em;
-  word-spacing: 0.08em;
-  text-transform: uppercase;
-}
-
-.heroStageList {
-  position: relative;
-  display: grid;
-  gap: 12px;
-  margin-top: 30px;
-}
-
-.heroStageList::before {
-  content: "";
-  position: absolute;
-  left: 9px;
-  top: 12px;
-  bottom: 12px;
-  width: 1px;
-  background: linear-gradient(transparent, rgba(212, 157, 129, 0.45), transparent);
-}
-
-.heroStageList span {
-  position: relative;
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  min-height: 34px;
-  color: rgba(255, 255, 255, 0.82);
-  font-size: 0.82rem;
-  font-weight: 800;
-  letter-spacing: 0.04em;
-}
-
-.heroStageList b {
-  position: relative;
-  z-index: 1;
-  display: inline-flex;
-  width: 20px;
-  height: 20px;
-  align-items: center;
-  justify-content: center;
-  border-radius: 999px;
-  color: #1b0e07;
-  background: var(--story-accent);
-  font-size: 0.58rem;
-  letter-spacing: 0;
-}
-
-.heroStageMetrics {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 10px;
-  margin-top: 28px;
-}
-
-.heroStageMetrics span {
-  border-top: 1px solid rgba(255, 255, 255, 0.14);
-  padding-top: 9px;
-  color: rgba(255, 255, 255, 0.72);
-  font-size: 0.62rem;
-  font-weight: 700;
-  letter-spacing: 0.1em;
-}
-
-.heroStageMaterials {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  margin-top: 24px;
-}
-
-.heroStageMaterials span {
-  border: 1px solid rgba(212, 157, 129, 0.28);
-  border-radius: 999px;
-  padding: 6px 10px;
-  color: var(--story-accent);
-  background: rgba(212, 157, 129, 0.06);
-  font-size: 0.66rem;
-  font-weight: 800;
-  letter-spacing: 0.05em;
 }
 
 .sideNav {
@@ -1388,12 +1275,6 @@ blockquote::before {
   }
 }
 
-@keyframes heroOrbit {
-  to {
-    transform: rotate(360deg);
-  }
-}
-
 @keyframes pulseBar {
   0%,
   100% {
@@ -1404,6 +1285,17 @@ blockquote::before {
   50% {
     transform: scaleX(0.58);
     opacity: 0.5;
+  }
+}
+
+@keyframes scrollCue {
+  0% {
+    transform: translateY(-100%);
+  }
+
+  55%,
+  100% {
+    transform: translateY(100%);
   }
 }
 
@@ -1557,58 +1449,13 @@ blockquote::before {
 
   .heroFrame {
     min-height: auto;
-    grid-template-columns: minmax(0, 1fr) minmax(190px, 0.42fr);
+    grid-template-columns: 1fr;
     border-radius: 0;
-    gap: 20px;
     padding: 6px 8px 16px;
   }
 
   .heroCopy {
     max-width: 100%;
-  }
-
-  .heroStage {
-    width: min(100%, 230px);
-    padding-left: 16px;
-  }
-
-  .heroStageHeader span {
-    font-size: 0.58rem;
-  }
-
-  .heroStageHeader strong {
-    font-size: clamp(20px, 3.8vw, 27px);
-  }
-
-  .heroStageList {
-    gap: 8px;
-    margin-top: 18px;
-  }
-
-  .heroStageList span {
-    min-height: 28px;
-    gap: 10px;
-    font-size: 0.66rem;
-  }
-
-  .heroStageList b {
-    width: 18px;
-    height: 18px;
-    font-size: 0.52rem;
-  }
-
-  .heroStageMetrics {
-    gap: 6px;
-    margin-top: 16px;
-  }
-
-  .heroStageMetrics span,
-  .heroStageMaterials span {
-    font-size: 0.54rem;
-  }
-
-  .heroStageMaterials {
-    margin-top: 14px;
   }
 
   .heroFrame::before {
@@ -1642,6 +1489,10 @@ blockquote::before {
   .chain,
   .heroActions {
     margin-top: 12px;
+  }
+
+  .heroScrollCue {
+    margin-top: clamp(34px, 7vh, 58px);
   }
 
   .chain {
@@ -1798,34 +1649,6 @@ blockquote::before {
     padding: 2px 4px 14px;
   }
 
-  .heroStage {
-    width: 100%;
-    max-width: 280px;
-    justify-self: start;
-    margin-top: 4px;
-    padding: 4px 0 4px 14px;
-  }
-
-  .heroStage::after {
-    width: 88px;
-    height: 88px;
-    right: 8px;
-    bottom: -8px;
-  }
-
-  .heroStageList {
-    margin-top: 12px;
-  }
-
-  .heroStageMetrics {
-    display: none;
-  }
-
-  .heroStageMaterials {
-    gap: 6px;
-    margin-top: 10px;
-  }
-
   .hero h1 {
     max-width: 12ch;
     font-size: clamp(29px, 7.8vw, 39px);
@@ -1850,7 +1673,13 @@ blockquote::before {
   }
 
   .chain {
-    display: none;
+    display: flex;
+    gap: 8px 12px;
+    margin-top: 18px;
+  }
+
+  .heroScrollCue {
+    margin-top: 30px;
   }
 
   .section {
@@ -1905,8 +1734,6 @@ blockquote::before {
   .svgTinyText,
   .variablePanel::before,
   .closeCard::before,
-  .heroStage::before,
-  .heroStage::after,
   .modelPanel span,
   .processMap::before {
     opacity: 1;

@@ -235,30 +235,6 @@ const TypeField = ({ items }) => (
   </div>
 );
 
-const HeroStage = () => (
-  <div className={styles.heroStage} aria-hidden="true">
-    <div className={styles.heroStageHeader}>
-      <span>CFE Scale Pathway</span>
-      <strong>Research to Ready</strong>
-    </div>
-    <div className={styles.heroStageList}>
-      <span><b>01</b> Process Control</span>
-      <span><b>02</b> Material Proof</span>
-      <span><b>03</b> Scale Logic</span>
-    </div>
-    <div className={styles.heroStageMetrics}>
-      <span>Pressure</span>
-      <span>Structure</span>
-      <span>Quality</span>
-    </div>
-    <div className={styles.heroStageMaterials}>
-      <span>Graphene</span>
-      <span>h-BN</span>
-      <span>MoS2</span>
-    </div>
-  </div>
-);
-
 const WorkStory = () => {
   const scrollRef = useRef(null);
   const { activeSection, progress, showSideNav, handleScroll } = useWorkStoryEffects(scrollRef);
@@ -304,11 +280,8 @@ const WorkStory = () => {
             <div className={styles.heroCopy}>
               <span className={styles.eyebrow}>Materials R&D Journey</span>
               <h1>Lab to Manufacturing</h1>
-              <p>
-                Process, proof, scale.
-              </p>
 
-              <div className={styles.chain} aria-label="R&D chain">
+              <div className={styles.chain} aria-label="R&D skills">
                 {chain.map((item, index) => (
                   <span key={item} style={{ "--delay": `${index * 90}ms` }}>
                     {item}
@@ -316,13 +289,11 @@ const WorkStory = () => {
                 ))}
               </div>
 
-              <div className={styles.heroActions}>
-                <Link to="/research-progress">View CFE Case Study</Link>
-                <Link to="/AcademicCV">Download Resume</Link>
-                <a href="mailto:sarabha@yorku.ca">Contact Me</a>
-              </div>
+              <a className={styles.heroScrollCue} href="#gap" aria-label="Scroll to the story">
+                <span>Scroll</span>
+                <i />
+              </a>
             </div>
-            <HeroStage />
           </div>
         </header>
 
