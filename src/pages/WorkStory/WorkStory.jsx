@@ -279,7 +279,10 @@ const WorkStory = () => {
           <div className={styles.heroFrame}>
             <div className={styles.heroCopy}>
               <span className={styles.eyebrow}>Materials R&D Journey</span>
-              <h1>Lab to Manufacturing</h1>
+              <h1>
+                <span>Lab to</span>
+                <span>Manufacturing</span>
+              </h1>
 
               <div className={styles.chain} aria-label="R&D skills">
                 {chain.map((item, index) => (
