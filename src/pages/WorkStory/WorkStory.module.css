@@ -164,7 +164,8 @@
   letter-spacing: -0.035em;
   word-spacing: 0.09em;
   text-transform: uppercase;
-  overflow-wrap: anywhere;
+  overflow-wrap: normal;
+  word-break: normal;
   background: linear-gradient(115deg, #ffffff 0%, #ffffff 35%, #d49d81 58%, #777777 100%);
   background-size: 220% 100%;
   -webkit-background-clip: text;
@@ -1650,11 +1651,11 @@ blockquote::before {
   }
 
   .hero h1 {
-    max-width: 12ch;
-    font-size: clamp(29px, 7.8vw, 39px);
+    max-width: 100%;
+    font-size: clamp(28px, 7.2vw, 36px);
     line-height: 1.04;
     letter-spacing: -0.01em;
-    word-spacing: 0.08em;
+    word-spacing: 0.06em;
   }
 
   .eyebrow {
@@ -1673,9 +1674,15 @@ blockquote::before {
   }
 
   .chain {
-    display: flex;
-    gap: 8px 12px;
+    display: grid;
+    grid-template-columns: repeat(2, max-content);
+    justify-content: start;
+    gap: 8px 14px;
     margin-top: 18px;
+  }
+
+  .chain span:last-child {
+    grid-column: 1 / -1;
   }
 
   .heroScrollCue {
@@ -1697,7 +1704,8 @@ blockquote::before {
 
   .chain span,
   .finalChain span {
-    font-size: 0.82rem;
+    font-size: 0.72rem;
+    letter-spacing: 0.055em;
   }
 }
 
