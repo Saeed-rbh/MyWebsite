@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import SEO from "../../components/SEO/SEO";
 import styles from "./WorkStory.module.css";
 
-const chain = ["Process", "Structure", "Properties", "Application", "Scale-up"];
+const chain = ["Materials Scientist", "2D & Advanced Materials", "Characterization", "CFD", "Thermal Management"];
 
 const navItems = [
   { id: "gap", label: "Gap" },
