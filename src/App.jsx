@@ -34,7 +34,7 @@ function AppContent() {
 
   // Hide global elements on Admin Dashboard, Login page
   const isDashboard = location.pathname.startsWith('/admin') || location.pathname === '/login';
-  const isResearchProgress = location.pathname === '/research-progress';
+  const isStoryPage = location.pathname === '/research-progress' || location.pathname === '/work-story';
   const isMafia = location.pathname === '/Mafia';
 
   return (
@@ -43,14 +43,14 @@ function AppContent() {
         <div className="BackgroundColor1"></div>
       </div>
       {/* Floating carbon lattice — root-level so z-index works correctly */}
-      {visibility && !isDashboard && !isResearchProgress && !isMafia && <BackgroundLattice />}
+      {visibility && !isDashboard && !isStoryPage && !isMafia && <BackgroundLattice />}
       {/* Show Mouse everywhere except Admin/Login */}
       {visibility && !isDashboard && <Mouse />}
 
-      {/* Show Header, Menu, Footer ONLY if NOT in dashboard AND NOT in Research Progress AND NOT Mafia */}
-      {visibility && !isDashboard && !isResearchProgress && !isMafia && <Header />}
-      {visibility && !isDashboard && !isResearchProgress && !isMafia && <Menu />}
-      {visibility && !isDashboard && !isResearchProgress && !isMafia && <Footer />}
+      {/* Show Header, Menu, Footer ONLY if NOT in dashboard AND NOT in story pages AND NOT Mafia */}
+      {visibility && !isDashboard && !isStoryPage && !isMafia && <Header />}
+      {visibility && !isDashboard && !isStoryPage && !isMafia && <Menu />}
+      {visibility && !isDashboard && !isStoryPage && !isMafia && <Footer />}
 
       {visibility && (
         <ErrorBoundary>

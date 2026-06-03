@@ -1,17 +1,19 @@
-@import url("https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@400;500;600;700&family=Teko:wght@500;600&display=swap");
 
 .page {
-  --story-bg: #030711;
-  --story-panel: rgba(8, 17, 31, 0.72);
-  --story-panel-strong: rgba(11, 24, 42, 0.9);
-  --story-line: rgba(130, 198, 255, 0.16);
-  --story-text: #f6f8fb;
-  --story-muted: #a5b2c3;
-  --story-soft: #64748b;
-  --story-accent: #56d7ff;
-  --story-accent-2: #89a7ff;
-  --story-warm: #d49d81;
-  position: relative;
+  --story-bg: #050505;
+  --story-panel: rgba(255, 255, 255, 0.035);
+  --story-panel-strong: rgba(10, 10, 10, 0.74);
+  --story-border: rgba(255, 255, 255, 0.1);
+  --story-border-soft: rgba(255, 255, 255, 0.07);
+  --story-text: #ffffff;
+  --story-muted: #cfcfcf;
+  --story-soft: #8d8d8d;
+  --story-accent: #d49d81;
+  --story-accent-soft: rgba(212, 157, 129, 0.18);
+  --story-accent-faint: rgba(212, 157, 129, 0.08);
+  position: absolute;
+  inset: 0;
   z-index: 1;
   width: 100vw;
   height: 100vh;
@@ -20,23 +22,42 @@
   scroll-behavior: smooth;
   color: var(--story-text);
   background:
-    radial-gradient(circle at 76% 12%, rgba(86, 215, 255, 0.16), transparent 28%),
-    radial-gradient(circle at 18% 30%, rgba(137, 167, 255, 0.12), transparent 30%),
-    linear-gradient(135deg, rgba(3, 7, 17, 0.94), rgba(2, 6, 14, 0.98));
-  font-family: "Manrope", sans-serif;
+    radial-gradient(circle at 14% 16%, rgba(212, 157, 129, 0.12), transparent 28%),
+    radial-gradient(circle at 82% 30%, rgba(255, 255, 255, 0.055), transparent 32%),
+    linear-gradient(135deg, rgba(0, 0, 0, 0.5), rgba(5, 5, 5, 0.96));
+  font-family: "Inter", sans-serif;
   padding: 0 0 120px;
+  touch-action: pan-y;
 }
 
-.page::before {
+.page::before,
+.page::after {
   content: "";
   position: fixed;
   inset: 0;
+  z-index: -1;
   pointer-events: none;
+}
+
+.page::before {
   background-image:
-    linear-gradient(rgba(86, 215, 255, 0.055) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(86, 215, 255, 0.045) 1px, transparent 1px);
-  background-size: 72px 72px;
-  mask-image: linear-gradient(to bottom, transparent, black 12%, black 72%, transparent);
+    linear-gradient(rgba(212, 157, 129, 0.055) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(212, 157, 129, 0.04) 1px, transparent 1px);
+  background-size: 82px 82px;
+  mask-image: linear-gradient(to bottom, transparent, black 12%, black 74%, transparent);
+  opacity: 0.45;
+}
+
+.page::after {
+  background:
+    radial-gradient(circle at 22% 74%, rgba(212, 157, 129, 0.11), transparent 3px),
+    radial-gradient(circle at 46% 18%, rgba(212, 157, 129, 0.15), transparent 2px),
+    radial-gradient(circle at 70% 58%, rgba(255, 255, 255, 0.12), transparent 2px),
+    radial-gradient(circle at 86% 82%, rgba(212, 157, 129, 0.12), transparent 3px);
+  background-size: 380px 380px;
+  filter: blur(1px);
+  opacity: 0.42;
+  animation: particleDrift 20s linear infinite;
 }
 
 .progressTrack {
@@ -45,7 +66,7 @@
 
 .hero,
 .storyGrid {
-  width: min(1080px, calc(100vw - 56px));
+  width: min(1120px, calc(100vw - 72px));
   margin: 0 auto;
 }
 
@@ -53,70 +74,96 @@
   min-height: 100vh;
   display: flex;
   align-items: center;
-  padding: 120px 0 80px;
+  padding: 96px 0 70px;
 }
 
 .heroFrame {
+  position: relative;
   width: 100%;
   min-height: 620px;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  position: relative;
   overflow: hidden;
-  border: 1px solid var(--story-line);
-  border-radius: 28px;
-  padding: clamp(34px, 7vw, 88px);
+  border: 1px solid var(--story-border);
+  border-radius: 30px;
+  padding: clamp(34px, 7vw, 86px);
   background:
-    linear-gradient(145deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.018)),
-    rgba(4, 10, 20, 0.66);
+    linear-gradient(145deg, rgba(255, 255, 255, 0.058), rgba(255, 255, 255, 0.012)),
+    rgba(0, 0, 0, 0.34);
   box-shadow:
-    0 32px 120px rgba(0, 0, 0, 0.36),
+    0 20px 50px rgba(0, 0, 0, 0.52),
     inset 0 1px 0 rgba(255, 255, 255, 0.08);
-  backdrop-filter: blur(18px);
+  backdrop-filter: blur(20px);
+}
+
+.heroFrame::before {
+  content: "Work";
+  position: absolute;
+  right: clamp(18px, 5vw, 60px);
+  bottom: -22px;
+  font-family: "DM Serif Display", serif;
+  font-size: clamp(88px, 16vw, 220px);
+  line-height: 0.8;
+  color: rgba(255, 255, 255, 0.045);
+  pointer-events: none;
 }
 
 .heroFrame::after {
   content: "";
   position: absolute;
-  width: 480px;
-  height: 480px;
-  right: -160px;
-  top: -120px;
+  width: 520px;
+  height: 520px;
+  right: -180px;
+  top: -150px;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(86, 215, 255, 0.16), transparent 64%);
+  background: radial-gradient(circle, rgba(212, 157, 129, 0.18), transparent 64%);
   opacity: 0.9;
+  pointer-events: none;
 }
 
 .eyebrow,
 .kicker,
 .navTitle {
   color: var(--story-accent);
+  font-family: "Poppins", sans-serif;
   font-size: 0.72rem;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  font-weight: 800;
+  font-weight: 700;
 }
 
 .hero h1 {
-  max-width: 840px;
-  margin: 18px 0 0;
-  font-family: "Space Grotesk", sans-serif;
-  font-size: clamp(42px, 7.5vw, 92px);
-  line-height: 0.94;
-  letter-spacing: -0.055em;
+  position: relative;
+  z-index: 1;
+  max-width: 920px;
+  margin: 20px 0 0;
+  font-family: "Poppins", sans-serif;
+  font-size: clamp(42px, 7vw, 86px);
+  font-weight: 800;
+  line-height: 1.04;
+  letter-spacing: -0.045em;
+  background: linear-gradient(135deg, #ffffff 0%, #8f8f8f 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .hero p {
-  max-width: 720px;
-  margin: 28px 0 0;
+  position: relative;
+  z-index: 1;
+  max-width: 760px;
+  margin: 26px 0 0;
   color: var(--story-muted);
-  font-size: clamp(17px, 2vw, 22px);
-  line-height: 1.7;
+  font-size: clamp(16px, 1.7vw, 20px);
+  line-height: 1.62;
+  font-weight: 300;
 }
 
 .chain,
 .finalChain {
+  position: relative;
+  z-index: 1;
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
@@ -125,17 +172,19 @@
 
 .chain span,
 .finalChain span {
-  border: 1px solid rgba(86, 215, 255, 0.2);
+  border: 1px solid rgba(212, 157, 129, 0.26);
   border-radius: 999px;
-  padding: 10px 15px;
-  color: #dff8ff;
-  background: rgba(86, 215, 255, 0.065);
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.07);
-  animation: pillIn 650ms ease both;
+  padding: 9px 14px;
+  color: rgba(255, 255, 255, 0.82);
+  background: linear-gradient(to right, rgba(255, 255, 255, 0.07), rgba(212, 157, 129, 0.12));
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  animation: pillIn 720ms cubic-bezier(0.25, 0.8, 0.25, 1) both;
   animation-delay: var(--delay, 0ms);
 }
 
 .heroActions {
+  position: relative;
+  z-index: 1;
   display: flex;
   flex-wrap: wrap;
   gap: 12px;
@@ -147,65 +196,95 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  border: 1px solid rgba(212, 157, 129, 0.28);
   border-radius: 999px;
   padding: 0 18px;
   text-decoration: none;
-  font-weight: 800;
-  color: #021018;
-  background: linear-gradient(135deg, var(--story-accent), #b8f0ff);
-  transition: transform 220ms ease, box-shadow 220ms ease, background 220ms ease;
+  font-family: "Poppins", sans-serif;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #1b0e07;
+  background: linear-gradient(135deg, var(--story-accent), #f0c1a9);
+  box-shadow: 0 14px 34px rgba(212, 157, 129, 0.12);
+  transition: transform 260ms ease, box-shadow 260ms ease, background 260ms ease, color 260ms ease;
 }
 
 .heroActions a:nth-child(2),
 .heroActions a:nth-child(3) {
-  color: var(--story-text);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  background: rgba(255, 255, 255, 0.06);
+  color: rgba(255, 255, 255, 0.9);
+  border-color: rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.055);
+  box-shadow: none;
 }
 
 .heroActions a:hover {
   transform: translateY(-2px);
-  box-shadow: 0 14px 40px rgba(86, 215, 255, 0.18);
+  box-shadow: 0 18px 42px rgba(212, 157, 129, 0.18);
 }
 
 .sideNav {
   position: fixed;
+  right: 30px;
   top: 50%;
-  left: 28px;
   transform: translateY(-50%);
-  z-index: 4;
-  width: 185px;
+  z-index: 5;
+  width: 196px;
   display: flex;
   flex-direction: column;
-  gap: 8px;
-  padding: 14px;
+  gap: 10px;
+  padding: 18px 12px;
   border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 18px;
-  background: rgba(2, 8, 17, 0.62);
-  backdrop-filter: blur(18px);
+  border-radius: 22px;
+  background: rgba(212, 157, 129, 0.11);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.28);
+  backdrop-filter: blur(16px);
 }
 
 .sideNav a {
+  position: relative;
+  min-height: 34px;
   display: flex;
   gap: 9px;
   align-items: center;
-  color: var(--story-muted);
+  color: rgba(255, 255, 255, 0.58);
   text-decoration: none;
-  font-size: 0.78rem;
-  font-weight: 800;
-  border-radius: 12px;
-  padding: 9px 10px;
-  transition: color 180ms ease, background 180ms ease;
+  font-family: "Poppins", sans-serif;
+  font-size: 0.72rem;
+  font-weight: 600;
+  border-radius: 14px;
+  padding: 8px 10px 8px 22px;
+  transition: color 260ms ease, background 260ms ease, transform 260ms ease;
+}
+
+.sideNav a::before {
+  content: "";
+  position: absolute;
+  left: 8px;
+  top: 50%;
+  width: 6px;
+  height: 6px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.34);
+  transform: translateY(-50%);
+  transition: height 360ms cubic-bezier(0.25, 0.8, 0.25, 1), background 260ms ease;
 }
 
 .sideNav a span {
-  color: var(--story-soft);
-  font-size: 0.68rem;
+  color: rgba(255, 255, 255, 0.36);
+  font-family: "Teko", sans-serif;
+  font-size: 1rem;
+  line-height: 1;
 }
 
 .sideNav .activeNavItem {
   color: #fff;
-  background: rgba(86, 215, 255, 0.1);
+  background: rgba(255, 255, 255, 0.08);
+  transform: translateX(-2px);
+}
+
+.sideNav .activeNavItem::before {
+  height: 26px;
+  background: var(--story-accent);
 }
 
 .mobileSectionLabel {
@@ -219,79 +298,105 @@
 
 .section {
   position: relative;
-  border: 1px solid var(--story-line);
-  border-radius: 24px;
+  overflow: hidden;
+  border: 1px solid var(--story-border-soft);
+  border-radius: 28px;
   padding: clamp(28px, 5vw, 58px);
   background:
-    linear-gradient(145deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.015)),
-    var(--story-panel);
-  box-shadow: 0 22px 80px rgba(0, 0, 0, 0.26);
+    linear-gradient(145deg, rgba(255, 255, 255, 0.048), rgba(255, 255, 255, 0.012)),
+    rgba(0, 0, 0, 0.28);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.42);
+  backdrop-filter: blur(14px);
   opacity: 0;
-  transform: translateY(34px);
-  transition: opacity 700ms ease, transform 700ms ease;
+  transform: translateY(46px) scale(0.985);
+  filter: blur(8px);
+  transition:
+    opacity 820ms ease,
+    transform 900ms cubic-bezier(0.25, 0.8, 0.25, 1),
+    filter 820ms ease;
 }
 
 .section.visible,
 .hero.visible {
   opacity: 1;
-  transform: translateY(0);
+  transform: translateY(0) scale(1);
+  filter: blur(0);
 }
 
 .section::before {
   content: "";
   position: absolute;
-  left: 0;
-  top: 30px;
-  bottom: 30px;
+  left: -1px;
+  top: 32px;
+  bottom: 32px;
   width: 2px;
   border-radius: 999px;
-  background: linear-gradient(var(--story-accent), transparent);
+  background: linear-gradient(transparent, var(--story-accent), transparent);
+  opacity: 0.9;
+}
+
+.section::after {
+  content: "";
+  position: absolute;
+  right: -130px;
+  top: -160px;
+  width: 330px;
+  height: 330px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(212, 157, 129, 0.09), transparent 64%);
+  pointer-events: none;
 }
 
 .section h2 {
-  max-width: 760px;
+  position: relative;
+  max-width: 780px;
   margin: 12px 0 20px;
-  font-family: "Space Grotesk", sans-serif;
-  font-size: clamp(30px, 4vw, 54px);
-  line-height: 1.02;
-  letter-spacing: -0.04em;
+  font-family: "Poppins", sans-serif;
+  font-size: clamp(30px, 4vw, 52px);
+  font-weight: 700;
+  line-height: 1.08;
+  letter-spacing: -0.035em;
 }
 
 .section p {
+  position: relative;
   color: var(--story-muted);
   font-size: 1rem;
-  line-height: 1.8;
+  font-weight: 300;
+  line-height: 1.75;
 }
 
 .lead {
   max-width: 840px;
   font-size: 1.12rem !important;
-  color: #d5dfeb !important;
+  color: #dedede !important;
 }
 
 .textBlock {
-  max-width: 880px;
+  max-width: 900px;
 }
 
 blockquote {
-  max-width: 940px;
+  position: relative;
+  max-width: 960px;
   margin: 28px 0 0;
-  border-left: 3px solid var(--story-accent);
+  border-left: 2px solid var(--story-accent);
   padding: 22px 0 22px 26px;
   color: #fff;
-  font-family: "Space Grotesk", sans-serif;
-  font-size: clamp(25px, 4.6vw, 48px);
-  line-height: 1.12;
+  font-family: "Poppins", sans-serif;
+  font-size: clamp(25px, 4.5vw, 46px);
+  font-weight: 600;
+  line-height: 1.15;
   letter-spacing: -0.035em;
-  background: linear-gradient(90deg, rgba(86, 215, 255, 0.1), transparent 62%);
+  background: linear-gradient(90deg, var(--story-accent-faint), transparent 68%);
 }
 
 .processMap {
+  position: relative;
   display: grid;
   grid-template-columns: repeat(7, minmax(0, 1fr));
   gap: 8px;
   margin-top: 34px;
-  position: relative;
 }
 
 .processMap::before {
@@ -309,33 +414,35 @@ blockquote {
 .processStep {
   position: relative;
   z-index: 1;
-  min-height: 115px;
+  min-height: 116px;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 16px;
   opacity: 0;
-  animation: cardIn 650ms ease both;
+  animation: cardIn 700ms cubic-bezier(0.25, 0.8, 0.25, 1) both;
   animation-delay: var(--delay);
 }
 
 .processStep span {
   width: 46px;
   height: 46px;
-  border: 1px solid rgba(86, 215, 255, 0.36);
-  border-radius: 14px;
+  border: 1px solid rgba(212, 157, 129, 0.36);
+  border-radius: 15px;
   background:
-    linear-gradient(135deg, rgba(86, 215, 255, 0.16), rgba(255, 255, 255, 0.04)),
-    #07111f;
+    linear-gradient(135deg, rgba(212, 157, 129, 0.18), rgba(255, 255, 255, 0.04)),
+    #090909;
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.32);
   transform: rotate(45deg);
 }
 
 .processStep p {
   margin: 0;
   text-align: center;
-  color: #d8e5f2;
+  color: #e2e2e2;
+  font-family: "Poppins", sans-serif;
   font-size: 0.78rem;
-  font-weight: 800;
+  font-weight: 600;
   line-height: 1.45;
 }
 
@@ -349,8 +456,9 @@ blockquote {
 .variablePanel,
 .modelPanel,
 .closeCard {
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 20px;
+  position: relative;
+  border: 1px solid var(--story-border-soft);
+  border-radius: 24px;
   padding: 24px;
   background: var(--story-panel-strong);
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06);
@@ -358,8 +466,9 @@ blockquote {
 
 .variablePanel h3 {
   margin: 0 0 18px;
-  font-family: "Space Grotesk", sans-serif;
-  font-size: 1.35rem;
+  font-family: "Poppins", sans-serif;
+  font-size: 1.25rem;
+  font-weight: 600;
 }
 
 .variablePanel div {
@@ -370,20 +479,22 @@ blockquote {
 
 .variablePanel span {
   padding: 10px 12px;
+  border: 1px solid rgba(212, 157, 129, 0.18);
   border-radius: 12px;
-  color: #e8f8ff;
-  background: rgba(86, 215, 255, 0.085);
-  border: 1px solid rgba(86, 215, 255, 0.16);
-  font-size: 0.84rem;
-  font-weight: 800;
-  transition: transform 180ms ease, box-shadow 180ms ease;
-  animation: cardIn 600ms ease both;
+  color: rgba(255, 255, 255, 0.86);
+  background: linear-gradient(to right, rgba(255, 255, 255, 0.055), rgba(212, 157, 129, 0.1));
+  font-family: "Poppins", sans-serif;
+  font-size: 0.8rem;
+  font-weight: 600;
+  transition: transform 220ms ease, border-color 220ms ease, box-shadow 220ms ease;
+  animation: cardIn 650ms ease both;
   animation-delay: var(--delay);
 }
 
 .variablePanel span:hover {
   transform: translateY(-3px);
-  box-shadow: 0 12px 28px rgba(86, 215, 255, 0.11);
+  border-color: rgba(212, 157, 129, 0.34);
+  box-shadow: 0 12px 28px rgba(212, 157, 129, 0.1);
 }
 
 .characterGrid {
@@ -398,28 +509,28 @@ blockquote {
   display: flex;
   flex-direction: column;
   gap: 10px;
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 18px;
+  border: 1px solid var(--story-border-soft);
+  border-radius: 20px;
   padding: 18px;
-  background: rgba(255, 255, 255, 0.04);
+  background: var(--story-panel);
   opacity: 0;
-  transform: translateY(16px);
-  animation: cardIn 650ms ease both;
+  transform: translateY(18px);
+  animation: cardIn 700ms cubic-bezier(0.25, 0.8, 0.25, 1) both;
   animation-delay: var(--delay);
-  transition: transform 220ms ease, background 220ms ease, border-color 220ms ease;
+  transition: transform 260ms ease, background 260ms ease, border-color 260ms ease;
 }
 
 .characterGrid article:hover {
   transform: translateY(-4px);
-  border-color: rgba(86, 215, 255, 0.28);
-  background: rgba(86, 215, 255, 0.075);
+  border-color: rgba(212, 157, 129, 0.3);
+  background: rgba(212, 157, 129, 0.07);
 }
 
 .characterGrid span {
   color: #fff;
-  font-family: "Space Grotesk", sans-serif;
-  font-size: 1.05rem;
-  font-weight: 700;
+  font-family: "Poppins", sans-serif;
+  font-size: 1.02rem;
+  font-weight: 600;
 }
 
 .characterGrid p,
@@ -427,13 +538,16 @@ blockquote {
   margin: 0;
   color: var(--story-muted);
   font-size: 0.86rem;
+  font-style: normal;
   line-height: 1.55;
 }
 
 .characterGrid strong {
   margin-top: auto;
   color: var(--story-accent);
-  font-size: 0.72rem;
+  font-family: "Poppins", sans-serif;
+  font-size: 0.7rem;
+  font-weight: 700;
   letter-spacing: 0.13em;
   text-transform: uppercase;
 }
@@ -451,13 +565,14 @@ blockquote {
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  border: 1px solid rgba(212, 157, 129, 0.2);
   border-radius: 999px;
   padding: 0 18px;
   color: #fff;
   background: rgba(255, 255, 255, 0.055);
-  border: 1px solid rgba(86, 215, 255, 0.18);
-  font-weight: 800;
-  animation: cardIn 600ms ease both;
+  font-family: "Poppins", sans-serif;
+  font-weight: 600;
+  animation: cardIn 650ms ease both;
   animation-delay: var(--delay);
 }
 
@@ -475,30 +590,32 @@ blockquote {
 }
 
 .beforeAfter article {
-  border-radius: 20px;
+  border: 1px solid var(--story-border-soft);
+  border-radius: 24px;
   padding: 24px;
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  background: rgba(255, 255, 255, 0.04);
+  background: var(--story-panel);
 }
 
 .beforeAfter article:last-child {
-  border-color: rgba(86, 215, 255, 0.34);
-  background: linear-gradient(145deg, rgba(86, 215, 255, 0.14), rgba(255, 255, 255, 0.05));
-  box-shadow: 0 22px 70px rgba(86, 215, 255, 0.08);
+  border-color: rgba(212, 157, 129, 0.34);
+  background: linear-gradient(145deg, rgba(212, 157, 129, 0.16), rgba(255, 255, 255, 0.05));
+  box-shadow: 0 22px 70px rgba(212, 157, 129, 0.08);
 }
 
 .beforeAfter span {
   color: var(--story-accent);
-  font-weight: 900;
+  font-family: "Poppins", sans-serif;
+  font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.12em;
-  font-size: 0.74rem;
+  font-size: 0.72rem;
 }
 
 .beforeAfter h3 {
   margin: 12px 0;
-  font-family: "Space Grotesk", sans-serif;
-  font-size: 1.35rem;
+  font-family: "Poppins", sans-serif;
+  font-size: 1.32rem;
+  font-weight: 600;
 }
 
 .finalChain {
@@ -512,30 +629,34 @@ blockquote {
 
 .closeCard p {
   max-width: 800px;
-  color: #e4edf5;
+  color: #e4e4e4;
 }
 
 @keyframes cardIn {
   from {
     opacity: 0;
-    transform: translateY(16px);
+    transform: translateY(22px);
+    filter: blur(5px);
   }
 
   to {
     opacity: 1;
     transform: translateY(0);
+    filter: blur(0);
   }
 }
 
 @keyframes pillIn {
   from {
     opacity: 0;
-    transform: translateY(8px);
+    transform: translateY(10px);
+    filter: blur(4px);
   }
 
   to {
     opacity: 1;
     transform: translateY(0);
+    filter: blur(0);
   }
 }
 
@@ -549,15 +670,45 @@ blockquote {
   }
 }
 
+@keyframes particleDrift {
+  from {
+    background-position: 0 0;
+  }
+
+  to {
+    background-position: 380px 380px;
+  }
+}
+
 @media only screen and (max-width: 1280px) {
   .sideNav {
-    display: none;
+    width: 52px;
+    right: 14px;
+    align-items: center;
+    padding: 18px 8px;
+  }
+
+  .navTitle,
+  .sideNav a span,
+  .sideNav a {
+    font-size: 0;
+  }
+
+  .sideNav a {
+    width: 18px;
+    min-height: 18px;
+    padding: 6px;
+  }
+
+  .sideNav a::before {
+    left: 50%;
+    transform: translate(-50%, -50%);
   }
 }
 
 @media only screen and (max-width: 840px) {
   .page {
-    padding-bottom: 96px;
+    padding-bottom: 86px;
   }
 
   .hero,
@@ -567,13 +718,22 @@ blockquote {
 
   .hero {
     min-height: auto;
-    padding: 96px 0 28px;
+    padding: 78px 0 24px;
   }
 
   .heroFrame {
     min-height: auto;
-    border-radius: 20px;
+    border-radius: 22px;
     padding: 28px;
+  }
+
+  .heroFrame::before {
+    font-size: 88px;
+    right: 18px;
+  }
+
+  .sideNav {
+    display: none;
   }
 
   .progressTrack {
@@ -590,7 +750,7 @@ blockquote {
   .progressTrack span {
     display: block;
     height: 100%;
-    background: linear-gradient(90deg, var(--story-accent), var(--story-warm));
+    background: linear-gradient(90deg, var(--story-accent), #f0c1a9);
     transition: width 120ms linear;
   }
 
@@ -604,11 +764,12 @@ blockquote {
     border: 1px solid rgba(255, 255, 255, 0.12);
     border-radius: 999px;
     padding: 7px 12px;
-    color: #eaf9ff;
-    background: rgba(3, 7, 17, 0.72);
-    backdrop-filter: blur(16px);
-    font-size: 0.74rem;
-    font-weight: 900;
+    color: rgba(255, 255, 255, 0.86);
+    background: rgba(0, 0, 0, 0.58);
+    backdrop-filter: blur(14px);
+    font-family: "Poppins", sans-serif;
+    font-size: 0.72rem;
+    font-weight: 700;
     letter-spacing: 0.08em;
     text-transform: uppercase;
   }
@@ -659,12 +820,27 @@ blockquote {
 }
 
 @media only screen and (max-width: 520px) {
+  .page {
+    padding-bottom: 70px;
+  }
+
+  .hero,
+  .storyGrid {
+    width: calc(100vw - 24px);
+  }
+
   .hero h1 {
-    font-size: clamp(38px, 12vw, 54px);
+    font-size: clamp(36px, 11vw, 52px);
+    letter-spacing: -0.04em;
+  }
+
+  .hero p,
+  .section p {
+    font-size: 0.94rem;
   }
 
   .section {
-    border-radius: 18px;
+    border-radius: 20px;
     padding: 24px 20px;
   }
 
@@ -687,11 +863,13 @@ blockquote {
   .progressTrack span,
   .heroActions a,
   .variablePanel span,
-  .characterGrid article {
+  .characterGrid article,
+  .sideNav a {
     scroll-behavior: auto;
     transition: none;
   }
 
+  .page::after,
   .section,
   .hero,
   .chain span,
@@ -702,6 +880,7 @@ blockquote {
   .processMap::before {
     opacity: 1;
     transform: none;
+    filter: none;
     animation: none;
   }
 }
