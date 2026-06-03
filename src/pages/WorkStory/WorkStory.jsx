@@ -76,6 +76,8 @@ const modelingNodes = [
 const useWorkStoryEffects = (scrollRef) => {
   const [activeSection, setActiveSection] = useState(navItems[0].id);
   const [progress, setProgress] = useState(0);
+  const rafRef = useRef(null);
+  const lastProgressRef = useRef(0);
 
   useEffect(() => {
     const root = scrollRef.current;
@@ -117,38 +119,51 @@ const useWorkStoryEffects = (scrollRef) => {
     return () => {
       revealObserver.disconnect();
       sectionObserver.disconnect();
+      if (rafRef.current) cancelAnimationFrame(rafRef.current);
     };
   }, [scrollRef]);
 
   const handleScroll = () => {
     const root = scrollRef.current;
     if (!root) return;
-    const maxScroll = root.scrollHeight - root.clientHeight;
-    const nextProgress = maxScroll <= 0 ? 0 : (root.scrollTop / maxScroll) * 100;
-    setProgress(nextProgress);
-    root.style.setProperty("--scroll-progress", `${nextProgress / 100}`);
-    root.style.setProperty("--scroll-shift", `${root.scrollTop * -0.08}px`);
-    root.style.setProperty("--scroll-shift-alt", `${root.scrollTop * 0.045}px`);
-    root.style.setProperty("--hero-title-y", `${(nextProgress / 100) * -72}px`);
-    root.style.setProperty("--hero-copy-y", `${(nextProgress / 100) * -34}px`);
+    if (rafRef.current) return;
 
-    root.querySelectorAll("[data-parallax-section]").forEach((section) => {
-      const rect = section.getBoundingClientRect();
+    rafRef.current = requestAnimationFrame(() => {
+      rafRef.current = null;
+      const maxScroll = root.scrollHeight - root.clientHeight;
+      const nextProgress = maxScroll <= 0 ? 0 : (root.scrollTop / maxScroll) * 100;
+      const progressRatio = nextProgress / 100;
+
+      if (Math.abs(nextProgress - lastProgressRef.current) > 0.6) {
+        lastProgressRef.current = nextProgress;
+        setProgress(nextProgress);
+      }
+
+      root.style.setProperty("--scroll-progress", `${progressRatio}`);
+      root.style.setProperty("--scroll-shift", `${root.scrollTop * -0.05}px`);
+      root.style.setProperty("--scroll-shift-alt", `${root.scrollTop * 0.032}px`);
+      root.style.setProperty("--hero-title-y", `${progressRatio * -92}px`);
+      root.style.setProperty("--hero-copy-y", `${progressRatio * -42}px`);
+
       const rootRect = root.getBoundingClientRect();
-      const sectionCenter = rect.top - rootRect.top + rect.height / 2;
       const viewportCenter = root.clientHeight / 2;
-      const distance = (sectionCenter - viewportCenter) / root.clientHeight;
-      const clamped = Math.max(-1, Math.min(1, distance));
-      section.style.setProperty("--section-progress", clamped.toFixed(3));
-      section.style.setProperty("--p-soft", `${clamped * -24}px`);
-      section.style.setProperty("--p-mid", `${clamped * -44}px`);
-      section.style.setProperty("--p-fast", `${clamped * -68}px`);
-      section.style.setProperty("--p-ghost", `${clamped * -82}px`);
-      section.style.setProperty("--p-x-left", `${clamped * -34}px`);
-      section.style.setProperty("--p-x-right", `${clamped * 42}px`);
-      section.style.setProperty("--p-svg-x", `${clamped * 54}px`);
-      section.style.setProperty("--p-svg-y", `${clamped * 88}px`);
-      section.style.setProperty("--p-svg-rotate", `${clamped * -3}deg`);
+
+      root.querySelectorAll("[data-parallax-section]").forEach((section) => {
+        const rect = section.getBoundingClientRect();
+        const sectionCenter = rect.top - rootRect.top + rect.height / 2;
+        const distance = (sectionCenter - viewportCenter) / root.clientHeight;
+        const clamped = Math.max(-1, Math.min(1, distance));
+        section.style.setProperty("--section-progress", clamped.toFixed(3));
+        section.style.setProperty("--p-soft", `${clamped * -34}px`);
+        section.style.setProperty("--p-mid", `${clamped * -72}px`);
+        section.style.setProperty("--p-fast", `${clamped * -104}px`);
+        section.style.setProperty("--p-ghost", `${clamped * -132}px`);
+        section.style.setProperty("--p-x-left", `${clamped * -48}px`);
+        section.style.setProperty("--p-x-right", `${clamped * 58}px`);
+        section.style.setProperty("--p-svg-x", `${clamped * 84}px`);
+        section.style.setProperty("--p-svg-y", `${clamped * 118}px`);
+        section.style.setProperty("--p-svg-rotate", `${clamped * -5}deg`);
+      });
     });
   };
 
