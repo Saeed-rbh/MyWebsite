@@ -76,6 +76,7 @@ const modelingNodes = [
 const useWorkStoryEffects = (scrollRef) => {
   const [activeSection, setActiveSection] = useState(navItems[0].id);
   const [progress, setProgress] = useState(0);
+  const [showSideNav, setShowSideNav] = useState(false);
   const rafRef = useRef(null);
   const lastProgressRef = useRef(0);
 
@@ -118,6 +119,8 @@ const useWorkStoryEffects = (scrollRef) => {
       if (section) sectionObserver.observe(section);
     });
 
+    setShowSideNav(root.scrollTop > root.clientHeight * 0.7);
+
     return () => {
       revealObserver.disconnect();
       sectionObserver.disconnect();
@@ -135,11 +138,14 @@ const useWorkStoryEffects = (scrollRef) => {
       const maxScroll = root.scrollHeight - root.clientHeight;
       const nextProgress = maxScroll <= 0 ? 0 : (root.scrollTop / maxScroll) * 100;
       const progressRatio = nextProgress / 100;
+      const shouldShowSideNav = root.scrollTop > root.clientHeight * 0.7;
 
       if (Math.abs(nextProgress - lastProgressRef.current) > 0.6) {
         lastProgressRef.current = nextProgress;
         setProgress(nextProgress);
       }
+
+      setShowSideNav((current) => (current === shouldShowSideNav ? current : shouldShowSideNav));
 
       root.style.setProperty("--scroll-progress", `${progressRatio}`);
       root.style.setProperty("--scroll-shift", `${root.scrollTop * -0.05}px`);
@@ -159,7 +165,7 @@ const useWorkStoryEffects = (scrollRef) => {
     });
   };
 
-  return { activeSection, progress, handleScroll };
+  return { activeSection, progress, showSideNav, handleScroll };
 };
 
 const SectionShell = ({ id, kicker, title, children, className = "" }) => (
@@ -173,23 +179,6 @@ const SectionShell = ({ id, kicker, title, children, className = "" }) => (
     {title && <h2>{title}</h2>}
     {children}
   </section>
-);
-
-const HeroKineticSvg = () => (
-  <svg className={`${styles.animatedSvg} ${styles.heroSvg}`} viewBox="0 0 420 420" aria-hidden="true">
-    <circle className={styles.svgOrbit} cx="210" cy="210" r="150" />
-    <circle className={styles.svgOrbitAlt} cx="210" cy="210" r="96" />
-    <path className={styles.svgTrace} d="M66 246 C114 116, 269 84, 354 190 S284 376, 122 320" />
-    <path className={styles.svgTraceSlow} d="M84 162 C161 64, 312 102, 334 226 C354 340, 182 366, 92 270" />
-    <g className={styles.svgNodes}>
-      <circle cx="92" cy="270" r="7" />
-      <circle cx="174" cy="102" r="7" />
-      <circle cx="334" cy="226" r="7" />
-      <circle cx="246" cy="336" r="7" />
-    </g>
-    <text className={styles.svgText} x="118" y="216">PROCESS</text>
-    <text className={styles.svgTinyText} x="154" y="242">STRUCTURE / SCALE</text>
-  </svg>
 );
 
 const FlowSvg = () => (
@@ -248,7 +237,7 @@ const TypeField = ({ items }) => (
 
 const WorkStory = () => {
   const scrollRef = useRef(null);
-  const { activeSection, progress, handleScroll } = useWorkStoryEffects(scrollRef);
+  const { activeSection, progress, showSideNav, handleScroll } = useWorkStoryEffects(scrollRef);
 
   const activeIndex = useMemo(
     () => navItems.findIndex((item) => item.id === activeSection),
@@ -268,7 +257,7 @@ const WorkStory = () => {
           <span style={{ width: `${progress}%` }} />
         </div>
 
-        <aside className={styles.sideNav} aria-label="R&D journey sections">
+        <aside className={`${styles.sideNav} ${showSideNav ? styles.showSideNav : ""}`} aria-label="R&D journey sections">
           <span className={styles.navTitle}>R&D Journey</span>
           {navItems.map((item, index) => (
             <a
@@ -309,7 +298,6 @@ const WorkStory = () => {
                 <a href="mailto:sarabha@yorku.ca">Contact Me</a>
               </div>
             </div>
-            <HeroKineticSvg />
           </div>
         </header>
 
