@@ -81,10 +81,10 @@
 }
 
 .hero {
-  min-height: 100vh;
+  min-height: 100svh;
   display: flex;
   align-items: center;
-  padding: 96px 0 70px;
+  padding: 48px 0 44px;
   scroll-snap-align: start;
   scroll-snap-stop: always;
   opacity: 0;
@@ -95,13 +95,13 @@
 .heroFrame {
   position: relative;
   width: 100%;
-  min-height: 620px;
+  min-height: min(560px, calc(100svh - 92px));
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(280px, 0.46fr);
-  gap: clamp(24px, 5vw, 70px);
+  grid-template-columns: minmax(0, 0.92fr) minmax(240px, 0.38fr);
+  gap: clamp(18px, 3.5vw, 52px);
   align-items: center;
   overflow: visible;
-  padding: clamp(18px, 6vw, 72px) 0;
+  padding: clamp(10px, 3.8vw, 42px) 0;
   perspective: 1200px;
 }
 
@@ -155,9 +155,9 @@
   position: relative;
   z-index: 1;
   max-width: 1060px;
-  margin: 20px 0 0;
+  margin: 16px 0 0;
   font-family: "Poppins", sans-serif;
-  font-size: clamp(58px, 9.4vw, 132px);
+  font-size: clamp(48px, 7vw, 96px);
   font-weight: 800;
   line-height: 0.86;
   letter-spacing: -0.085em;
@@ -175,10 +175,10 @@
 .hero p {
   position: relative;
   z-index: 1;
-  max-width: 680px;
-  margin: 30px 0 0;
+  max-width: 480px;
+  margin: 18px 0 0;
   color: var(--story-muted);
-  font-size: clamp(17px, 2vw, 24px);
+  font-size: clamp(15px, 1.45vw, 19px);
   line-height: 1.45;
   font-weight: 400;
 }
@@ -190,7 +190,7 @@
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
-  margin-top: 34px;
+  margin-top: 24px;
 }
 
 .chain span,
@@ -217,7 +217,7 @@
   display: flex;
   flex-wrap: wrap;
   gap: 12px;
-  margin-top: 34px;
+  margin-top: 24px;
 }
 
 .heroActions a {
@@ -1047,7 +1047,7 @@ blockquote::before {
 
 .heroSvg {
   justify-self: end;
-  max-width: min(34vw, 420px);
+  max-width: min(28vw, 340px);
   opacity: 0.94;
 }
 
@@ -1373,15 +1373,15 @@ blockquote::before {
 
   .hero {
     min-height: 100svh;
-    padding: 52px 0 18px;
+    padding: 30px 0 14px;
   }
 
   .heroFrame {
     min-height: auto;
     grid-template-columns: 1fr;
     border-radius: 0;
-    gap: 16px;
-    padding: 18px 12px 24px;
+    gap: 10px;
+    padding: 8px 10px 18px;
   }
 
   .heroFrame::before {
@@ -1397,23 +1397,23 @@ blockquote::before {
   }
 
   .hero h1 {
-    max-width: 11ch;
-    margin-top: 14px;
-    font-size: clamp(42px, 9.6vw, 76px);
+    max-width: 12ch;
+    margin-top: 10px;
+    font-size: clamp(36px, 8.4vw, 62px);
     line-height: 0.95;
     letter-spacing: -0.045em;
   }
 
   .hero p {
-    max-width: 31ch;
-    margin-top: 16px;
-    font-size: clamp(0.95rem, 2.6vw, 1.08rem);
+    max-width: 24ch;
+    margin-top: 10px;
+    font-size: clamp(0.86rem, 2.3vw, 0.98rem);
     line-height: 1.36;
   }
 
   .chain,
   .heroActions {
-    margin-top: 18px;
+    margin-top: 12px;
   }
 
   .chain {
@@ -1430,9 +1430,9 @@ blockquote::before {
   }
 
   .heroActions a {
-    min-height: 38px;
+    min-height: 34px;
     padding: 0 14px;
-    font-size: 0.82rem;
+    font-size: 0.78rem;
   }
 
   .sideNav {
@@ -1507,7 +1507,7 @@ blockquote::before {
   }
 
   .heroSvg {
-    max-width: min(220px, 58vw);
+    max-width: min(180px, 46vw);
     justify-self: end;
     margin-top: -18px;
   }
@@ -1572,12 +1572,12 @@ blockquote::before {
   }
 
   .heroFrame {
-    padding: 14px 4px 20px;
+    padding: 2px 4px 14px;
   }
 
   .hero h1 {
-    max-width: 10ch;
-    font-size: clamp(32px, 8.9vw, 44px);
+    max-width: 11ch;
+    font-size: clamp(30px, 8vw, 40px);
     line-height: 1;
     letter-spacing: -0.03em;
   }
@@ -1588,8 +1588,8 @@ blockquote::before {
   }
 
   .hero p {
-    max-width: 28ch;
-    margin-top: 12px;
+    max-width: 20ch;
+    margin-top: 8px;
   }
 
   .hero p,
@@ -1602,8 +1602,8 @@ blockquote::before {
   }
 
   .heroSvg {
-    max-width: min(180px, 52vw);
-    margin-top: -14px;
+    max-width: min(140px, 42vw);
+    margin-top: -10px;
   }
 
   .section {

@@ -290,9 +290,9 @@ const WorkStory = () => {
           <div className={styles.heroFrame}>
             <div className={styles.heroCopy}>
               <span className={styles.eyebrow}>Materials R&D Journey</span>
-              <h1>From Lab Discovery to Manufacturing Thinking</h1>
+              <h1>Lab to Manufacturing</h1>
               <p>
-                Process, proof, modeling, and scale-up thinking for advanced materials.
+                Process, proof, scale.
               </p>
 
               <div className={styles.chain} aria-label="R&D chain">
