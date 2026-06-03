@@ -235,6 +235,32 @@ const TypeField = ({ items }) => (
   </div>
 );
 
+const HeroStage = () => (
+  <div className={styles.heroStage} aria-hidden="true">
+    <div className={styles.heroStageHeader}>
+      <span>CFE route</span>
+      <strong>Lab to Scale</strong>
+    </div>
+    <div className={styles.heroStageCore}>
+      <span className={styles.stageNode}>Powder</span>
+      <span className={styles.stageLine} />
+      <span className={styles.stageNode}>Flow</span>
+      <span className={styles.stageLine} />
+      <span className={styles.stageNode}>Proof</span>
+    </div>
+    <div className={styles.heroStageMetrics}>
+      <span>Pressure</span>
+      <span>Structure</span>
+      <span>Yield</span>
+    </div>
+    <div className={styles.heroStageMaterials}>
+      <span>Graphene</span>
+      <span>h-BN</span>
+      <span>MoS2</span>
+    </div>
+  </div>
+);
+
 const WorkStory = () => {
   const scrollRef = useRef(null);
   const { activeSection, progress, showSideNav, handleScroll } = useWorkStoryEffects(scrollRef);
@@ -298,6 +324,7 @@ const WorkStory = () => {
                 <a href="mailto:sarabha@yorku.ca">Contact Me</a>
               </div>
             </div>
+            <HeroStage />
           </div>
         </header>
 
