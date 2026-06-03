@@ -84,7 +84,7 @@
   min-height: 100svh;
   display: flex;
   align-items: center;
-  padding: 48px 0 44px;
+  padding: 38px 0 40px;
   scroll-snap-align: start;
   scroll-snap-stop: always;
   opacity: 0;
@@ -95,13 +95,13 @@
 .heroFrame {
   position: relative;
   width: 100%;
-  min-height: min(560px, calc(100svh - 92px));
+  min-height: min(540px, calc(100svh - 78px));
   display: grid;
-  grid-template-columns: minmax(0, 0.94fr) minmax(240px, 0.36fr);
-  gap: clamp(20px, 4vw, 64px);
+  grid-template-columns: minmax(0, 0.96fr) minmax(310px, 0.42fr);
+  gap: clamp(34px, 5vw, 86px);
   align-items: center;
   overflow: visible;
-  padding: clamp(10px, 3.8vw, 42px) 0;
+  padding: clamp(8px, 2.8vw, 28px) 0;
   perspective: 1200px;
 }
 
@@ -114,15 +114,15 @@
 .heroFrame::before {
   content: "R&D";
   position: absolute;
-  right: -4vw;
+  right: 2vw;
   top: 48%;
   z-index: 0;
   font-family: "Poppins", sans-serif;
-  font-size: clamp(110px, 18vw, 260px);
+  font-size: clamp(90px, 14vw, 210px);
   font-weight: 800;
   line-height: 0.78;
   letter-spacing: -0.09em;
-  color: rgba(255, 255, 255, 0.035);
+  color: rgba(255, 255, 255, 0.024);
   transform: translateY(-50%);
   pointer-events: none;
   animation: ghostWord 8s ease-in-out infinite;
@@ -132,8 +132,8 @@
   content: "";
   position: absolute;
   left: 0;
-  bottom: 52px;
-  width: min(620px, 62vw);
+  bottom: 18px;
+  width: min(720px, 56vw);
   height: 2px;
   background: linear-gradient(90deg, var(--story-accent), transparent);
   transform-origin: left;
@@ -155,13 +155,14 @@
 .hero h1 {
   position: relative;
   z-index: 1;
-  max-width: 1060px;
+  max-width: 1080px;
   margin: 16px 0 0;
   font-family: "Poppins", sans-serif;
-  font-size: clamp(48px, 7vw, 96px);
+  font-size: clamp(50px, 6.4vw, 94px);
   font-weight: 800;
-  line-height: 0.86;
-  letter-spacing: -0.085em;
+  line-height: 0.94;
+  letter-spacing: -0.035em;
+  word-spacing: 0.09em;
   text-transform: uppercase;
   overflow-wrap: anywhere;
   background: linear-gradient(115deg, #ffffff 0%, #ffffff 35%, #d49d81 58%, #777777 100%);
@@ -190,8 +191,8 @@
   z-index: 1;
   display: flex;
   flex-wrap: wrap;
-  gap: 10px;
-  margin-top: 24px;
+  gap: 12px 20px;
+  margin-top: 26px;
 }
 
 .chain span,
@@ -206,7 +207,8 @@
   font-family: "Poppins", sans-serif;
   font-size: 0.9rem;
   font-weight: 700;
-  letter-spacing: 0.07em;
+  letter-spacing: 0.09em;
+  word-spacing: 0.08em;
   text-transform: uppercase;
   animation: pillIn 720ms cubic-bezier(0.25, 0.8, 0.25, 1) both;
   animation-delay: var(--delay, 0ms);
@@ -255,10 +257,10 @@
 .heroStage {
   position: relative;
   z-index: 1;
-  width: min(100%, 330px);
+  width: min(100%, 380px);
   justify-self: end;
-  border-left: 1px solid rgba(212, 157, 129, 0.34);
-  padding: 8px 0 8px 24px;
+  border-left: 1px solid rgba(212, 157, 129, 0.3);
+  padding: 10px 0 10px 28px;
   color: #fff;
 }
 
@@ -271,9 +273,9 @@
 
 .heroStage::before {
   left: -5px;
-  top: 14px;
+  top: 18px;
   width: 9px;
-  height: 38px;
+  height: 34px;
   border-radius: 999px;
   background: var(--story-accent);
   box-shadow: 0 0 32px rgba(212, 157, 129, 0.2);
@@ -281,11 +283,11 @@
 }
 
 .heroStage::after {
-  right: 4px;
-  bottom: -14px;
-  width: 150px;
-  height: 150px;
-  border: 1px solid rgba(212, 157, 129, 0.28);
+  right: -12px;
+  bottom: -18px;
+  width: 120px;
+  height: 120px;
+  border: 1px solid rgba(212, 157, 129, 0.16);
   border-radius: 999px;
   opacity: 0.64;
   animation: heroOrbit 9s linear infinite;
@@ -293,10 +295,11 @@
 
 .heroStageHeader {
   display: grid;
-  gap: 7px;
+  gap: 9px;
 }
 
 .heroStageHeader span,
+.heroStageList span,
 .heroStageMetrics span,
 .heroStageMaterials span {
   font-family: "Poppins", sans-serif;
@@ -305,70 +308,79 @@
 
 .heroStageHeader span {
   color: var(--story-accent);
-  font-size: 0.68rem;
+  font-size: 0.66rem;
   font-weight: 800;
-  letter-spacing: 0.16em;
+  letter-spacing: 0.18em;
 }
 
 .heroStageHeader strong {
   font-family: "Poppins", sans-serif;
-  font-size: clamp(28px, 3vw, 42px);
+  font-size: clamp(28px, 2.8vw, 38px);
   font-weight: 800;
-  line-height: 0.92;
-  letter-spacing: -0.06em;
+  line-height: 1;
+  letter-spacing: -0.015em;
+  word-spacing: 0.08em;
   text-transform: uppercase;
 }
 
-.heroStageCore {
+.heroStageList {
   position: relative;
   display: grid;
-  grid-template-columns: auto 1fr auto 1fr auto;
-  align-items: center;
-  gap: 8px;
-  margin-top: 32px;
+  gap: 12px;
+  margin-top: 30px;
 }
 
-.stageNode {
+.heroStageList::before {
+  content: "";
+  position: absolute;
+  left: 9px;
+  top: 12px;
+  bottom: 12px;
+  width: 1px;
+  background: linear-gradient(transparent, rgba(212, 157, 129, 0.45), transparent);
+}
+
+.heroStageList span {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-height: 34px;
+  color: rgba(255, 255, 255, 0.82);
+  font-size: 0.82rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+}
+
+.heroStageList b {
   position: relative;
   z-index: 1;
   display: inline-flex;
+  width: 20px;
+  height: 20px;
   align-items: center;
   justify-content: center;
-  min-width: 58px;
-  min-height: 58px;
-  border: 1px solid rgba(212, 157, 129, 0.38);
   border-radius: 999px;
-  color: rgba(255, 255, 255, 0.86);
-  background: rgba(255, 255, 255, 0.04);
-  font-family: "Poppins", sans-serif;
-  font-size: 0.66rem;
-  font-weight: 800;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  animation: nodePulse 3.6s ease-in-out infinite;
-}
-
-.stageLine {
-  height: 1px;
-  background: linear-gradient(90deg, var(--story-accent), transparent);
-  transform-origin: left;
-  animation: lineDraw 1.5s ease both;
+  color: #1b0e07;
+  background: var(--story-accent);
+  font-size: 0.58rem;
+  letter-spacing: 0;
 }
 
 .heroStageMetrics {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 8px;
+  gap: 10px;
   margin-top: 28px;
 }
 
 .heroStageMetrics span {
   border-top: 1px solid rgba(255, 255, 255, 0.14);
-  padding-top: 10px;
+  padding-top: 9px;
   color: rgba(255, 255, 255, 0.72);
-  font-size: 0.64rem;
+  font-size: 0.62rem;
   font-weight: 700;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.1em;
 }
 
 .heroStageMaterials {
@@ -615,7 +627,8 @@
 
 .asymProcess h2 {
   color: var(--section-accent);
-  letter-spacing: -0.09em;
+  letter-spacing: -0.045em;
+  word-spacing: 0.07em;
   transform: scaleX(0.94);
   transform-origin: left center;
 }
@@ -639,7 +652,8 @@
 
 .asymSystem h2 {
   max-width: 680px;
-  letter-spacing: -0.095em;
+  letter-spacing: -0.045em;
+  word-spacing: 0.07em;
 }
 
 .asymEvidence h2 {
@@ -711,7 +725,8 @@
 
 .asymIndustry h2 {
   color: #ffd8c4;
-  letter-spacing: -0.088em;
+  letter-spacing: -0.04em;
+  word-spacing: 0.07em;
 }
 
 .asymApproach::after {
@@ -731,7 +746,8 @@
   font-size: clamp(44px, 7vw, 96px);
   font-weight: 800;
   line-height: 0.9;
-  letter-spacing: -0.075em;
+  letter-spacing: -0.045em;
+  word-spacing: 0.07em;
   text-transform: uppercase;
   transition: color 420ms ease;
 }
@@ -753,14 +769,16 @@
 
 .asymProcess h2 {
   color: var(--section-accent);
-  letter-spacing: -0.09em;
+  letter-spacing: -0.045em;
+  word-spacing: 0.07em;
   transform: scaleX(0.94);
   transform-origin: left center;
 }
 
 .asymSystem h2 {
   max-width: 680px;
-  letter-spacing: -0.095em;
+  letter-spacing: -0.045em;
+  word-spacing: 0.07em;
 }
 
 .asymEvidence h2 {
@@ -778,7 +796,8 @@
 
 .asymIndustry h2 {
   color: #ffd8c4;
-  letter-spacing: -0.088em;
+  letter-spacing: -0.04em;
+  word-spacing: 0.07em;
 }
 
 .section h2,
@@ -802,7 +821,8 @@ blockquote::selection {
   line-height: 1.18 !important;
   color: #f0f0f0 !important;
   font-weight: 800 !important;
-  letter-spacing: -0.055em;
+  letter-spacing: -0.035em;
+  word-spacing: 0.06em;
 }
 
 .textBlock {
@@ -821,7 +841,8 @@ blockquote {
   font-size: clamp(36px, 6.2vw, 84px);
   font-weight: 800;
   line-height: 0.98;
-  letter-spacing: -0.065em;
+  letter-spacing: -0.035em;
+  word-spacing: 0.06em;
   text-transform: uppercase;
   background: transparent;
 }
@@ -1053,7 +1074,8 @@ blockquote::before {
   font-size: clamp(30px, 4.5vw, 72px);
   font-weight: 900;
   line-height: 0.82;
-  letter-spacing: -0.085em;
+  letter-spacing: -0.035em;
+  word-spacing: 0.08em;
   text-transform: uppercase;
   opacity: 0;
   transform: translateY(22px);
@@ -1116,7 +1138,8 @@ blockquote::before {
   font-size: clamp(22px, 3.2vw, 46px);
   font-weight: 800;
   line-height: 0.96;
-  letter-spacing: -0.055em;
+  letter-spacing: -0.035em;
+  word-spacing: 0.06em;
   text-transform: uppercase;
   animation: cardIn 650ms ease both;
   animation-delay: var(--delay);
@@ -1175,7 +1198,8 @@ blockquote::before {
   font-size: clamp(32px, 4.6vw, 64px);
   font-weight: 800;
   line-height: 0.95;
-  letter-spacing: -0.06em;
+  letter-spacing: -0.035em;
+  word-spacing: 0.06em;
   text-transform: uppercase;
 }
 
@@ -1528,15 +1552,15 @@ blockquote::before {
 
   .hero {
     min-height: 100svh;
-    padding: 30px 0 14px;
+    padding: 24px 0 12px;
   }
 
   .heroFrame {
     min-height: auto;
-    grid-template-columns: minmax(0, 1fr) minmax(178px, 0.42fr);
+    grid-template-columns: minmax(0, 1fr) minmax(190px, 0.42fr);
     border-radius: 0;
-    gap: 18px;
-    padding: 8px 10px 18px;
+    gap: 20px;
+    padding: 6px 8px 16px;
   }
 
   .heroCopy {
@@ -1544,7 +1568,7 @@ blockquote::before {
   }
 
   .heroStage {
-    width: min(100%, 220px);
+    width: min(100%, 230px);
     padding-left: 16px;
   }
 
@@ -1553,17 +1577,23 @@ blockquote::before {
   }
 
   .heroStageHeader strong {
-    font-size: clamp(20px, 4.2vw, 28px);
+    font-size: clamp(20px, 3.8vw, 27px);
   }
 
-  .heroStageCore {
-    gap: 5px;
+  .heroStageList {
+    gap: 8px;
     margin-top: 18px;
   }
 
-  .stageNode {
-    min-width: 42px;
-    min-height: 42px;
+  .heroStageList span {
+    min-height: 28px;
+    gap: 10px;
+    font-size: 0.66rem;
+  }
+
+  .heroStageList b {
+    width: 18px;
+    height: 18px;
     font-size: 0.52rem;
   }
 
@@ -1597,8 +1627,9 @@ blockquote::before {
     max-width: 12ch;
     margin-top: 10px;
     font-size: clamp(36px, 8.4vw, 62px);
-    line-height: 0.95;
-    letter-spacing: -0.045em;
+    line-height: 1;
+    letter-spacing: -0.02em;
+    word-spacing: 0.08em;
   }
 
   .hero p {
@@ -1782,14 +1813,8 @@ blockquote::before {
     bottom: -8px;
   }
 
-  .heroStageCore {
-    grid-template-columns: auto 1fr auto 1fr auto;
+  .heroStageList {
     margin-top: 12px;
-  }
-
-  .stageNode {
-    min-width: 36px;
-    min-height: 36px;
   }
 
   .heroStageMetrics {
@@ -1802,10 +1827,11 @@ blockquote::before {
   }
 
   .hero h1 {
-    max-width: 11ch;
-    font-size: clamp(30px, 8vw, 40px);
-    line-height: 1;
-    letter-spacing: -0.03em;
+    max-width: 12ch;
+    font-size: clamp(29px, 7.8vw, 39px);
+    line-height: 1.04;
+    letter-spacing: -0.01em;
+    word-spacing: 0.08em;
   }
 
   .eyebrow {
@@ -1879,6 +1905,8 @@ blockquote::before {
   .svgTinyText,
   .variablePanel::before,
   .closeCard::before,
+  .heroStage::before,
+  .heroStage::after,
   .modelPanel span,
   .processMap::before {
     opacity: 1;

@@ -238,20 +238,18 @@ const TypeField = ({ items }) => (
 const HeroStage = () => (
   <div className={styles.heroStage} aria-hidden="true">
     <div className={styles.heroStageHeader}>
-      <span>CFE route</span>
-      <strong>Lab to Scale</strong>
+      <span>CFE Scale Pathway</span>
+      <strong>Research to Ready</strong>
     </div>
-    <div className={styles.heroStageCore}>
-      <span className={styles.stageNode}>Powder</span>
-      <span className={styles.stageLine} />
-      <span className={styles.stageNode}>Flow</span>
-      <span className={styles.stageLine} />
-      <span className={styles.stageNode}>Proof</span>
+    <div className={styles.heroStageList}>
+      <span><b>01</b> Process Control</span>
+      <span><b>02</b> Material Proof</span>
+      <span><b>03</b> Scale Logic</span>
     </div>
     <div className={styles.heroStageMetrics}>
       <span>Pressure</span>
       <span>Structure</span>
-      <span>Yield</span>
+      <span>Quality</span>
     </div>
     <div className={styles.heroStageMaterials}>
       <span>Graphene</span>
