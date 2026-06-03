@@ -145,6 +145,67 @@ const SectionShell = ({ id, kicker, title, children, className = "" }) => (
   </section>
 );
 
+const HeroKineticSvg = () => (
+  <svg className={`${styles.animatedSvg} ${styles.heroSvg}`} viewBox="0 0 420 420" aria-hidden="true">
+    <circle className={styles.svgOrbit} cx="210" cy="210" r="150" />
+    <circle className={styles.svgOrbitAlt} cx="210" cy="210" r="96" />
+    <path className={styles.svgTrace} d="M66 246 C114 116, 269 84, 354 190 S284 376, 122 320" />
+    <path className={styles.svgTraceSlow} d="M84 162 C161 64, 312 102, 334 226 C354 340, 182 366, 92 270" />
+    <g className={styles.svgNodes}>
+      <circle cx="92" cy="270" r="7" />
+      <circle cx="174" cy="102" r="7" />
+      <circle cx="334" cy="226" r="7" />
+      <circle cx="246" cy="336" r="7" />
+    </g>
+    <text className={styles.svgText} x="118" y="216">PROCESS</text>
+    <text className={styles.svgTinyText} x="154" y="242">STRUCTURE / SCALE</text>
+  </svg>
+);
+
+const FlowSvg = () => (
+  <svg className={`${styles.animatedSvg} ${styles.flowSvg}`} viewBox="0 0 520 260" aria-hidden="true">
+    <path className={styles.svgTrace} d="M28 132 H138 C180 132, 185 76, 236 76 H360 C421 76, 424 132, 492 132" />
+    <path className={styles.svgTraceSlow} d="M28 162 H156 C214 162, 218 210, 286 210 H496" />
+    <g className={styles.svgNodes}>
+      <circle cx="58" cy="132" r="8" />
+      <circle cx="236" cy="76" r="8" />
+      <circle cx="360" cy="76" r="8" />
+      <circle cx="492" cy="132" r="8" />
+      <circle cx="286" cy="210" r="8" />
+    </g>
+    <g className={styles.svgRings}>
+      <circle cx="250" cy="132" r="38" />
+      <circle cx="250" cy="132" r="62" />
+    </g>
+  </svg>
+);
+
+const EvidenceSvg = () => (
+  <svg className={`${styles.animatedSvg} ${styles.evidenceSvg}`} viewBox="0 0 520 240" aria-hidden="true">
+    <path className={styles.svgTrace} d="M30 145 C70 52, 106 52, 142 145 S214 238, 254 145 S326 52, 366 145 S438 238, 490 116" />
+    <path className={styles.svgTraceSlow} d="M30 180 H92 L112 126 L134 198 L156 82 L184 180 H490" />
+    <g className={styles.svgBars}>
+      <rect x="64" y="84" width="10" height="96" />
+      <rect x="238" y="46" width="10" height="142" />
+      <rect x="420" y="98" width="10" height="82" />
+    </g>
+  </svg>
+);
+
+const ModelingSvg = () => (
+  <svg className={`${styles.animatedSvg} ${styles.modelSvg}`} viewBox="0 0 520 300" aria-hidden="true">
+    <path className={styles.svgTrace} d="M104 92 L260 54 L424 114 L372 244 L178 238 Z" />
+    <path className={styles.svgTraceSlow} d="M104 92 L372 244 M424 114 L178 238 M260 54 L178 238" />
+    <g className={styles.svgNodesLarge}>
+      <circle cx="104" cy="92" r="17" />
+      <circle cx="260" cy="54" r="17" />
+      <circle cx="424" cy="114" r="17" />
+      <circle cx="372" cy="244" r="17" />
+      <circle cx="178" cy="238" r="17" />
+    </g>
+  </svg>
+);
+
 const WorkStory = () => {
   const scrollRef = useRef(null);
   const { activeSection, progress, handleScroll } = useWorkStoryEffects(scrollRef);
@@ -187,32 +248,35 @@ const WorkStory = () => {
 
         <header className={styles.hero} data-reveal>
           <div className={styles.heroFrame}>
-            <span className={styles.eyebrow}>Materials R&D Work Story</span>
-            <h1>From Lab Discovery to Manufacturing Thinking</h1>
-            <p>
-              I connect advanced materials research with process development,
-              characterization, modeling, and commercialization to help move
-              nanomaterials toward real industrial use.
-            </p>
+            <div className={styles.heroCopy}>
+              <span className={styles.eyebrow}>Materials R&D Work Story</span>
+              <h1>From Lab Discovery to Manufacturing Thinking</h1>
+              <p>
+                I connect advanced materials research with process development,
+                characterization, modeling, and commercialization to help move
+                nanomaterials toward real industrial use.
+              </p>
 
-            <div className={styles.chain} aria-label="R&D chain">
-              {chain.map((item, index) => (
-                <span key={item} style={{ "--delay": `${index * 90}ms` }}>
-                  {item}
-                </span>
-              ))}
-            </div>
+              <div className={styles.chain} aria-label="R&D chain">
+                {chain.map((item, index) => (
+                  <span key={item} style={{ "--delay": `${index * 90}ms` }}>
+                    {item}
+                  </span>
+                ))}
+              </div>
 
-            <div className={styles.heroActions}>
-              <Link to="/research-progress">View CFE Case Study</Link>
-              <Link to="/AcademicCV">Download Resume</Link>
-              <a href="mailto:sarabha@yorku.ca">Contact Me</a>
+              <div className={styles.heroActions}>
+                <Link to="/research-progress">View CFE Case Study</Link>
+                <Link to="/AcademicCV">Download Resume</Link>
+                <a href="mailto:sarabha@yorku.ca">Contact Me</a>
+              </div>
             </div>
+            <HeroKineticSvg />
           </div>
         </header>
 
         <div className={styles.storyGrid}>
-          <SectionShell id="gap" kicker="01 / The gap I noticed">
+          <SectionShell id="gap" kicker="01 / The gap I noticed" className={styles.asymGap}>
             <div className={styles.textBlock}>
               <p>
                 During my PhD, I became interested in a recurring gap in
@@ -232,18 +296,23 @@ const WorkStory = () => {
             </blockquote>
           </SectionShell>
 
-          <SectionShell id="process" kicker="02 / The direction I chose" title="Compressible Flow Exfoliation">
-            <p className={styles.lead}>
-              I focused on Compressible Flow Exfoliation, a gas-driven approach
-              for producing 2D nanomaterials such as graphene, hexagonal boron
-              nitride, and MoS2.
-            </p>
-            <p>
-              The work required thinking beyond material synthesis. I had to
-              study how pressure, gas flow, temperature, carrier gas selection,
-              nozzle conditions, precursor properties, and recovery methods
-              influence the final material.
-            </p>
+          <SectionShell id="process" kicker="02 / The direction I chose" title="Compressible Flow Exfoliation" className={styles.asymProcess}>
+            <div className={styles.sectionIntro}>
+              <div>
+                <p className={styles.lead}>
+                  I focused on Compressible Flow Exfoliation, a gas-driven approach
+                  for producing 2D nanomaterials such as graphene, hexagonal boron
+                  nitride, and MoS2.
+                </p>
+                <p>
+                  The work required thinking beyond material synthesis. I had to
+                  study how pressure, gas flow, temperature, carrier gas selection,
+                  nozzle conditions, precursor properties, and recovery methods
+                  influence the final material.
+                </p>
+              </div>
+              <FlowSvg />
+            </div>
             <div className={styles.processMap}>
               {processSteps.map((step, index) => (
                 <div key={step} className={styles.processStep} style={{ "--delay": `${index * 80}ms` }}>
@@ -254,7 +323,7 @@ const WorkStory = () => {
             </div>
           </SectionShell>
 
-          <SectionShell id="system" kicker="03 / The system I built" className={styles.splitSection}>
+          <SectionShell id="system" kicker="03 / The system I built" className={`${styles.splitSection} ${styles.asymSystem}`}>
             <div>
               <h2>Building the Process</h2>
               <p>
@@ -282,17 +351,22 @@ const WorkStory = () => {
             </div>
           </SectionShell>
 
-          <SectionShell id="evidence" kicker="04 / The evidence I collected" title="Proving the Material, Not Just Producing It">
-            <p className={styles.lead}>
-              Producing material is only the first step. The next step is
-              proving what was produced, how the process changed it, and whether
-              the output is useful.
-            </p>
-            <p>
-              I used advanced characterization to evaluate structure, morphology,
-              surface chemistry, defects, optical response, and material
-              preservation.
-            </p>
+          <SectionShell id="evidence" kicker="04 / The evidence I collected" title="Proving the Material, Not Just Producing It" className={styles.asymEvidence}>
+            <div className={styles.sectionIntro}>
+              <div>
+                <p className={styles.lead}>
+                  Producing material is only the first step. The next step is
+                  proving what was produced, how the process changed it, and whether
+                  the output is useful.
+                </p>
+                <p>
+                  I used advanced characterization to evaluate structure, morphology,
+                  surface chemistry, defects, optical response, and material
+                  preservation.
+                </p>
+              </div>
+              <EvidenceSvg />
+            </div>
             <div className={styles.characterGrid}>
               {characterization.map((item, index) => (
                 <article key={item.name} style={{ "--delay": `${index * 70}ms` }}>
@@ -305,15 +379,18 @@ const WorkStory = () => {
             </div>
           </SectionShell>
 
-          <SectionShell id="modeling" kicker="05 / The modeling layer" title="Using Modeling to Understand What Experiments Alone Cannot Show">
-            <p className={styles.lead}>
-              My work also uses computational tools to interpret mechanisms and
-              support experimental decisions. I have used COMSOL simulations,
-              molecular dynamics, Python-based analysis, and machine-learning
-              interatomic potentials to study gas-particle interactions,
-              nanoscale behavior, thermal transport, and process-structure
-              relationships.
-            </p>
+          <SectionShell id="modeling" kicker="05 / The modeling layer" title="Using Modeling to Understand What Experiments Alone Cannot Show" className={styles.asymModeling}>
+            <div className={styles.sectionIntro}>
+              <p className={styles.lead}>
+                My work also uses computational tools to interpret mechanisms and
+                support experimental decisions. I have used COMSOL simulations,
+                molecular dynamics, Python-based analysis, and machine-learning
+                interatomic potentials to study gas-particle interactions,
+                nanoscale behavior, thermal transport, and process-structure
+                relationships.
+              </p>
+              <ModelingSvg />
+            </div>
             <div className={styles.modelPanel}>
               {modelingNodes.map((node, index) => (
                 <React.Fragment key={node}>
@@ -324,7 +401,7 @@ const WorkStory = () => {
             </div>
           </SectionShell>
 
-          <SectionShell id="industry" kicker="06 / The industry shift" title="From Research Question to Industrial Value">
+          <SectionShell id="industry" kicker="06 / The industry shift" title="From Research Question to Industrial Value" className={styles.asymIndustry}>
             <p className={styles.lead}>
               Through Lab2Market Validate, Lab2Market Launch, and Inventor to
               Founder, I began looking at my research not only as a scientific
