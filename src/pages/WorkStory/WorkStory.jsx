@@ -396,7 +396,6 @@ const WorkStory = () => {
           </div>
           <a className={styles.heroScrollCue} href="#gap" aria-label="Scroll to the story">
             <i />
-            <span>Scroll</span>
           </a>
         </header>
 

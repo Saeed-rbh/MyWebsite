@@ -164,14 +164,9 @@
   text-transform: none;
   overflow-wrap: normal;
   word-break: normal;
-  background:
-    linear-gradient(112deg, #fffaf2 0%, #f7ddce 28%, #d49d81 48%, #fff4e8 68%, #a87963 100%);
-  background-size: 280% 100%;
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
+  color: #e7d1b8;
+  text-shadow: 0 0 16px rgba(231, 209, 184, 0.2);
   animation: titleSweep 7.5s cubic-bezier(0.45, 0, 0.25, 1) infinite;
-  will-change: background-position;
 }
 
 .hero h1 span {
@@ -184,7 +179,7 @@
   z-index: 1;
   max-width: 520px;
   margin: 14px 0 0;
-  color: rgba(255, 245, 237, 0.86);
+  color: #bfae9f;
   font-size: clamp(20px, 2.1vw, 32px);
   line-height: 1.35;
   font-weight: 400;
@@ -208,7 +203,7 @@
   border: 0;
   border-radius: 0;
   padding: 0 14px;
-  color: rgba(255, 245, 237, 0.62);
+  color: #8f8379;
   background: transparent;
   box-shadow: none;
   font-family: "Poppins", sans-serif;
@@ -223,13 +218,16 @@
 
 .chain span:not(:last-child)::after,
 .finalChain span:not(:last-child)::after {
-  content: "";
+  content: "|";
   position: absolute;
   right: 0;
-  top: 15%;
-  width: 1px;
-  height: 70%;
-  background: rgba(212, 157, 129, 0.42);
+  top: 50%;
+  transform: translateY(-50%);
+  color: rgba(143, 131, 121, 0.5);
+  font-size: 1.1em;
+  background: transparent;
+  width: auto;
+  height: auto;
 }
 
 .heroGraphene {
