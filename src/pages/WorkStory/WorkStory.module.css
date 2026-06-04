@@ -290,6 +290,13 @@
   overflow: visible;
 }
 
+.grapheneSpirals path {
+  fill: none;
+  stroke: rgba(212, 157, 129, 0.22);
+  stroke-width: 0.8;
+  opacity: 0.55;
+}
+
 .grapheneBonds line {
   stroke: rgba(255, 226, 205, 0.18);
   stroke-width: 1.5;
@@ -2039,7 +2046,7 @@ blockquote::before {
     width: min(310px, 74vw);
     height: clamp(160px, 44vw, 205px);
     min-height: 152px;
-    margin-bottom: -18px;
+    margin-bottom: 10px;
   }
 
   .section {
