@@ -1,20 +1,11 @@
-import React, { Suspense, useEffect, useMemo, useRef, useState } from "react";
-import { Canvas, useFrame } from "@react-three/fiber";
-import { useGLTF } from "@react-three/drei";
+import React, { useEffect, useMemo, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import SEO from "../../components/SEO/SEO";
 import styles from "./WorkStory.module.css";
 
 const chain = ["Materials Scientist", "2D & Advanced Materials", "Characterization", "CFD", "Thermal Management"];
 
-const grapheneModelUrls = ["/grapheneNew1.gltf", "/grapheneNew2.gltf", "/grapheneNew3.gltf"];
-const grapheneLayerTransforms = [
-  { position: [0, 0, 0] },
-  { position: [1.5, -1.25, 0.35] },
-  { position: [1.5, -3, 0.5] },
-];
 
-grapheneModelUrls.forEach((url) => useGLTF.preload(url));
 
 const navItems = [
   { id: "gap", label: "Gap" },
@@ -246,54 +237,112 @@ const TypeField = ({ items }) => (
   </div>
 );
 
-const HeroGrapheneLayer = ({ url, position }) => {
-  const { scene } = useGLTF(url);
-
-  const model = useMemo(() => {
-    return scene.clone(true);
-  }, [scene]);
-
-  return <primitive object={model} position={position} rotation={[0, -Math.PI / 6, Math.PI / 6]} scale={0.7} />;
-};
-
-const HeroGrapheneAssembly = () => {
-  const groupRef = useRef(null);
-
-  useFrame(({ clock }) => {
-    if (!groupRef.current) return;
-    const time = clock.elapsedTime;
-    groupRef.current.rotation.x = -0.92 + Math.sin(time * 0.35) * 0.045;
-    groupRef.current.rotation.y = 0.1 + Math.sin(time * 0.42) * 0.07;
-    groupRef.current.rotation.z = -0.18 + Math.sin(time * 0.3) * 0.035;
-  });
-
-  return (
-    <group ref={groupRef} position={[-1.2, 0.2, 0]} scale={0.62}>
-      {grapheneModelUrls.map((url, index) => (
-        <HeroGrapheneLayer
-          key={url}
-          url={url}
-          position={grapheneLayerTransforms[index].position}
-        />
-      ))}
-    </group>
-  );
-};
-
 const HeroGraphene = () => (
   <div className={styles.heroGraphene} aria-hidden="true">
-    <Canvas
-      camera={{ position: [0, 0, 6.5], fov: 38 }}
-      gl={{ alpha: true, antialias: true }}
-      dpr={[1, 1.7]}
+    <svg
+      className={styles.grapheneSvg}
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 314 301.41"
     >
-      <Suspense fallback={null}>
-        <ambientLight intensity={1.15} />
-        <pointLight position={[0, 2.6, 3.5]} intensity={3.2} color="#f0c1a9" />
-        <pointLight position={[-2.4, -1.5, 2.4]} intensity={1.2} color="#d49d81" />
-        <HeroGrapheneAssembly />
-      </Suspense>
-    </Canvas>
+      <defs>
+        <radialGradient id="grapheneGlow" cx="50%" cy="50%" r="50%">
+          <stop offset="0%" stopColor="#ffe2cd" stopOpacity="0.9" />
+          <stop offset="35%" stopColor="#f0c1a9" stopOpacity="0.5" />
+          <stop offset="70%" stopColor="#d49d81" stopOpacity="0.2" />
+          <stop offset="100%" stopColor="#d49d81" stopOpacity="0" />
+        </radialGradient>
+        <filter id="svgGlowFilter" x="-50%" y="-50%" width="200%" height="200%">
+          <feGaussianBlur in="SourceGraphic" stdDeviation="3" result="blur1" />
+          <feGaussianBlur in="SourceGraphic" stdDeviation="8" result="blur2" />
+          <feGaussianBlur in="SourceGraphic" stdDeviation="16" result="blur3" />
+          <feMerge>
+            <feMergeNode in="blur3" />
+            <feMergeNode in="blur2" />
+            <feMergeNode in="blur1" />
+            <feMergeNode in="SourceGraphic" />
+          </feMerge>
+        </filter>
+        <filter id="nodeGlowFilter" x="-100%" y="-100%" width="300%" height="300%">
+          <feGaussianBlur in="SourceGraphic" stdDeviation="4" result="blur" />
+          <feMerge>
+            <feMergeNode in="blur" />
+            <feMergeNode in="SourceGraphic" />
+          </feMerge>
+        </filter>
+      </defs>
+      <g className={styles.grapheneGroup} filter="url(#svgGlowFilter)">
+        {/* Bonds (lines) */}
+        <g className={styles.grapheneBonds}>
+          <line x1="51" y1="37" x2="40" y2="19" />
+          <line x1="128" y1="83" x2="111.1" y2="53.7" />
+          <line x1="189" y1="100" x2="205" y2="129" />
+          <line x1="127.55" y1="173.85" x2="111.65" y2="145.55" />
+          <line x1="51.55" y1="128.54" x2="35.65" y2="100.24" />
+          <line x1="35" y1="191" x2="51" y2="219" />
+          <line x1="67" y1="228" x2="96" y2="228" />
+          <line x1="111" y1="219" x2="128" y2="191" />
+          <line x1="36" y1="174" x2="51" y2="145" />
+          <line x1="66" y1="136" x2="97" y2="136" />
+          <line x1="111" y1="236" x2="127" y2="265" />
+          <line x1="143" y1="273" x2="174" y2="273" />
+          <line x1="190" y1="266" x2="206" y2="237" />
+          <line x1="206" y1="218" x2="190" y2="190" />
+          <line x1="174" y1="182" x2="144" y2="182" />
+          <line x1="219" y1="227" x2="249" y2="227" />
+          <line x1="265" y1="236" x2="281" y2="265" />
+          <line x1="265" y1="219" x2="281" y2="191" />
+          <line x1="282" y1="173" x2="266" y2="146" />
+          <line x1="249" y1="138" x2="220" y2="138" />
+          <line x1="187" y1="173" x2="204" y2="146" />
+          <line x1="110" y1="128" x2="128" y2="100" />
+          <line x1="143" y1="91" x2="174" y2="91" />
+          <line x1="35" y1="83" x2="51" y2="54" />
+          <line x1="66" y1="46" x2="97" y2="46" />
+          <line x1="188" y1="83" x2="206" y2="57" />
+          <line x1="112" y1="37" x2="123" y2="19" />
+          <line x1="280" y1="100" x2="264" y2="129" />
+          <line x1="280" y1="83" x2="266" y2="56" />
+          <line x1="251" y1="48" x2="219" y2="48" />
+          <line x1="204" y1="39" x2="193" y2="19" />
+          <line x1="267" y1="40" x2="279" y2="23" />
+          <line x1="295" y1="91" x2="314" y2="91" />
+          <line x1="295" y1="183" x2="311" y2="183" />
+          <line x1="189" y1="283" x2="197" y2="301" />
+          <line x1="127" y1="281" x2="116" y2="297" />
+          <line x1="49" y1="234" x2="38" y2="246" />
+          <line x1="21" y1="181" y2="181" />
+          <line x1="20" y1="91" x2="7" y2="91" />
+        </g>
+        {/* Atoms (circles) */}
+        <g className={styles.grapheneAtoms}>
+          <circle cx="30.5" cy="91.5" r="10" />
+          <circle cx="56.5" cy="136.5" r="10" />
+          <circle cx="56.5" cy="45.5" r="10" />
+          <circle cx="106.5" cy="137.5" r="10" />
+          <circle cx="133.5" cy="91.5" r="10" />
+          <circle cx="106.5" cy="45.5" r="10" />
+          <circle cx="34.5" cy="10.5" r="10" />
+          <circle cx="128.5" cy="10.5" r="10" />
+          <circle cx="30.5" cy="182.5" r="10" />
+          <circle cx="133.5" cy="182.5" r="10" />
+          <circle cx="56.5" cy="227.5" r="10" />
+          <circle cx="106.5" cy="227.5" r="10" />
+          <circle cx="183.5" cy="91.5" r="10" />
+          <circle cx="260.5" cy="47.5" r="10" />
+          <circle cx="209.5" cy="47.5" r="10" />
+          <circle cx="132.5" cy="273.5" r="10" />
+          <circle cx="184.5" cy="273.5" r="10" />
+          <circle cx="183.5" cy="182.5" r="10" />
+          <circle cx="209.5" cy="227.5" r="10" />
+          <circle cx="259.5" cy="227.5" r="10" />
+          <circle cx="209.5" cy="137.5" r="10" />
+          <circle cx="285.5" cy="182.5" r="10" />
+          <circle cx="259.5" cy="138.5" r="10" />
+          <circle cx="285.5" cy="91.5" r="10" />
+          <circle cx="285.5" cy="273.5" r="10" />
+        </g>
+      </g>
+    </svg>
   </div>
 );
 
