@@ -88,15 +88,23 @@ const useWorkStoryEffects = (scrollRef) => {
     if (!root) return undefined;
 
     const revealObserver = new IntersectionObserver(
-      (entries, observer) => {
+      (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
             entry.target.classList.add(styles.visible);
-            observer.unobserve(entry.target);
+            entry.target.classList.remove(styles.fadeOutUp);
+            entry.target.classList.remove(styles.fadeOutDown);
+          } else {
+            entry.target.classList.remove(styles.visible);
+            if (entry.boundingClientRect.top < 0) {
+              entry.target.classList.add(styles.fadeOutUp);
+            } else {
+              entry.target.classList.add(styles.fadeOutDown);
+            }
           }
         });
       },
-      { root, threshold: 0.05, rootMargin: "0px 0px -5% 0px" }
+      { root, threshold: 0.1, rootMargin: "-5% 0px -5% 0px" }
     );
 
     const sectionObserver = new IntersectionObserver(

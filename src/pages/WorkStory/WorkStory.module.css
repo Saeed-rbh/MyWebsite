@@ -88,9 +88,6 @@
   padding: 38px 0 34px;
   scroll-snap-align: start;
   scroll-snap-stop: always;
-  opacity: 0;
-  transform: translateY(15px);
-  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
 }
 
 .heroFrame {
@@ -473,9 +470,6 @@
   box-sizing: border-box;
   scroll-snap-align: start;
   scroll-snap-stop: always;
-  opacity: 0;
-  transform: translateY(15px);
-  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
 }
 
 .section::after {
@@ -497,10 +491,37 @@
   transition: opacity 900ms ease, transform 1100ms cubic-bezier(0.25, 0.8, 0.25, 1);
 }
 
-.section.visible,
-.hero.visible {
+.section > *,
+.hero > * {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.8s cubic-bezier(0.25, 0.8, 0.25, 1), 
+              transform 0.8s cubic-bezier(0.25, 0.8, 0.25, 1);
+  will-change: opacity, transform;
+}
+
+.section > *:nth-child(1), .hero > *:nth-child(1) { transition-delay: 0.1s; }
+.section > *:nth-child(2), .hero > *:nth-child(2) { transition-delay: 0.2s; }
+.section > *:nth-child(3), .hero > *:nth-child(3) { transition-delay: 0.3s; }
+.section > *:nth-child(4), .hero > *:nth-child(4) { transition-delay: 0.4s; }
+.section > *:nth-child(5), .hero > *:nth-child(5) { transition-delay: 0.5s; }
+
+.section.visible > *,
+.hero.visible > * {
   opacity: 1;
   transform: translateY(0);
+}
+
+.section.fadeOutUp > *,
+.hero.fadeOutUp > * {
+  opacity: 0;
+  transform: translateY(-25px);
+}
+
+.section.fadeOutDown > *,
+.hero.fadeOutDown > * {
+  opacity: 0;
+  transform: translateY(25px);
 }
 
 .section.visible::after {
