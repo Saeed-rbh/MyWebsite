@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { motion } from "framer-motion";
 import "./Home.css";
 import styles from "./Home.module.css";
 import SEO from "../../components/SEO/SEO";
@@ -78,7 +79,13 @@ const HomePage = () => {
   return (
     visibility && (
       <>
-        <div className={styles.container}>
+        <motion.div
+          className={styles.container}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.6, ease: "easeInOut" }}
+        >
           <SEO
             title="Saeed Arabha | Home"
             description="Personal website of Saeed Arabha, featuring academic CV, research, and portfolio."
@@ -108,7 +115,7 @@ const HomePage = () => {
             nextTitle={currentPopupIndex < popupsData.length - 1 ? popupsData[currentPopupIndex + 1].shortTitle : null}
             prevTitle={currentPopupIndex > 0 ? popupsData[currentPopupIndex - 1].shortTitle : null}
           />
-        </div>
+        </motion.div>
       </>
     )
   );

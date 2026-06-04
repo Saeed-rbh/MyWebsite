@@ -1,5 +1,6 @@
 import React, { useEffect, useMemo, useRef, useState } from "react";
 import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
 import SEO from "../../components/SEO/SEO";
 import styles from "./WorkStory.module.css";
 
@@ -352,7 +353,15 @@ const WorkStory = () => {
         name="Saeed Arabha"
         type="website"
       />
-      <main className={styles.page} ref={scrollRef} onScroll={handleScroll}>
+      <motion.main
+        className={styles.page}
+        ref={scrollRef}
+        onScroll={handleScroll}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+        transition={{ duration: 0.6, ease: "easeInOut" }}
+      >
         <div className={styles.progressTrack} aria-hidden="true">
           <span style={{ width: `${progress}%` }} />
         </div>
@@ -529,7 +538,7 @@ const WorkStory = () => {
             </div>
           </SectionShell>
         </div>
-      </main>
+      </motion.main>
     </>
   );
 };
