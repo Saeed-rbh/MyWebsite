@@ -245,23 +245,6 @@ const HeroGraphene = () => (
       viewBox="0 0 314 301.41"
     >
       <defs>
-        <radialGradient id="grapheneGlow" cx="50%" cy="50%" r="50%">
-          <stop offset="0%" stopColor="#ffe2cd" stopOpacity="0.9" />
-          <stop offset="35%" stopColor="#f0c1a9" stopOpacity="0.5" />
-          <stop offset="70%" stopColor="#d49d81" stopOpacity="0.2" />
-          <stop offset="100%" stopColor="#d49d81" stopOpacity="0" />
-        </radialGradient>
-        <filter id="svgGlowFilter" x="-50%" y="-50%" width="200%" height="200%">
-          <feGaussianBlur in="SourceGraphic" stdDeviation="3" result="blur1" />
-          <feGaussianBlur in="SourceGraphic" stdDeviation="8" result="blur2" />
-          <feGaussianBlur in="SourceGraphic" stdDeviation="16" result="blur3" />
-          <feMerge>
-            <feMergeNode in="blur3" />
-            <feMergeNode in="blur2" />
-            <feMergeNode in="blur1" />
-            <feMergeNode in="SourceGraphic" />
-          </feMerge>
-        </filter>
         <filter id="nodeGlowFilter" x="-100%" y="-100%" width="300%" height="300%">
           <feGaussianBlur in="SourceGraphic" stdDeviation="4" result="blur" />
           <feMerge>
@@ -270,7 +253,7 @@ const HeroGraphene = () => (
           </feMerge>
         </filter>
       </defs>
-      <g filter="url(#svgGlowFilter)">
+      <g>
         {/* Bonds (lines) */}
         <g className={styles.grapheneBonds}>
           <line x1="51" y1="37" x2="40" y2="19" />
