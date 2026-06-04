@@ -20,7 +20,7 @@
   inset: 0;
   z-index: 1;
   width: 100vw;
-  height: 100vh;
+  height: 100svh;
   overflow-x: hidden;
   overflow-y: auto;
   color: var(--story-text);
@@ -468,6 +468,16 @@
   box-shadow: none;
   backdrop-filter: none;
   box-sizing: border-box;
+}
+
+@media (hover: none) and (pointer: coarse) {
+  .page {
+    scroll-snap-type: y mandatory;
+  }
+  .section, .hero {
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
+  }
 }
 
 .section::after {
