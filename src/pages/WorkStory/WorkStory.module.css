@@ -118,58 +118,31 @@
   text-align: center;
 }
 
-.heroFrame::before {
-  content: "";
+.blackHoleContainer {
   position: absolute;
   left: 50%;
   top: 38%;
   z-index: 1;
   width: min(680px, 76vw);
   aspect-ratio: 1;
-  border-radius: 50%;
-  /* Black hole accretion disk: black core, white-hot inner rim, warm amber gas body */
-  background: radial-gradient(
-    circle at 50% 50%,
-    #000000 0% 12%,
-    rgba(255, 255, 255, 0.96) 16%,
-    rgba(255, 226, 205, 0.8) 22%,
-    rgba(212, 157, 129, 0.38) 42%,
-    rgba(212, 157, 129, 0.12) 65%,
-    transparent 80%
-  );
-  opacity: 0.95;
-  filter: blur(24px);
-  /* 3D Tilted plane */
-  transform: translate(-50%, -50%) rotate(-12deg) scaleY(0.32);
+  transform: translate(-50%, -50%);
   pointer-events: none;
+  overflow: visible;
+  display: grid;
+  place-items: center;
   animation: blackHoleBreath 8s ease-in-out infinite;
 }
 
-.heroFrame::after {
-  content: "";
-  position: absolute;
-  left: 50%;
-  top: 38%;
-  z-index: 1;
-  width: min(520px, 58vw);
-  aspect-ratio: 1;
-  border-radius: 50%;
-  /* Bright, sharp photon ring */
-  background: radial-gradient(
-    circle at 50% 50%,
-    transparent 45%,
-    rgba(255, 255, 255, 0.95) 48%,
-    rgba(255, 226, 205, 0.8) 51%,
-    rgba(212, 157, 129, 0.16) 55%,
-    transparent 60%
-  );
-  filter: blur(6px);
-  /* 3D Tilted plane */
-  transform: translate(-50%, -50%) rotate(-12deg) scaleY(0.32);
-  pointer-events: none;
-  opacity: 0.9;
-  animation: blackHoleRingBreath 8s ease-in-out infinite;
+.blackHoleImg {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  mix-blend-mode: screen;
+  filter: hue-rotate(-13deg) saturate(1.6) brightness(1.15)
+          drop-shadow(0 0 35px rgba(212, 157, 129, 0.45))
+          drop-shadow(0 0 75px rgba(212, 157, 129, 0.25));
 }
+
 
 .eyebrow,
 .kicker,
@@ -1481,25 +1454,12 @@ blockquote::before {
   0%,
   100% {
     opacity: 0.82;
-    transform: translate(-50%, -50%) rotate(-12deg) scaleY(0.32) scale(0.96);
+    transform: translate(-50%, -50%) scale(0.96);
   }
 
   50% {
     opacity: 1;
-    transform: translate(-50%, -50%) rotate(-12deg) scaleY(0.32) scale(1.04);
-  }
-}
-
-@keyframes blackHoleRingBreath {
-  0%,
-  100% {
-    opacity: 0.78;
-    transform: translate(-50%, -50%) rotate(-12deg) scaleY(0.32) scale(0.97);
-  }
-
-  50% {
-    opacity: 0.92;
-    transform: translate(-50%, -50%) rotate(-12deg) scaleY(0.32) scale(1.03);
+    transform: translate(-50%, -50%) scale(1.04);
   }
 }
 
@@ -1740,20 +1700,11 @@ blockquote::before {
     max-width: 100%;
   }
 
-  .heroFrame::before {
+  .blackHoleContainer {
     left: 50%;
     top: 38%;
     width: min(540px, 82vw);
-    transform: translate(-50%, -50%) rotate(-12deg) scaleY(0.32);
-    animation-name: blackHoleBreath;
-  }
-
-  .heroFrame::after {
-    left: 50%;
-    top: 38%;
-    width: min(390px, 60vw);
-    transform: translate(-50%, -50%) rotate(-12deg) scaleY(0.32);
-    animation-name: blackHoleRingBreath;
+    transform: translate(-50%, -50%);
   }
 
   .hero h1 {
@@ -1946,18 +1897,10 @@ blockquote::before {
     width: min(100%, calc(100vw - 28px));
   }
 
-  .heroFrame::before {
+  .blackHoleContainer {
     top: 42%;
     width: max(760px, 178vw);
-    transform: translate(-50%, -50%) rotate(-12deg) scaleY(0.32);
-    animation-name: blackHoleBreath;
-  }
-
-  .heroFrame::after {
-    top: 42%;
-    width: max(520px, 124vw);
-    transform: translate(-50%, -50%) rotate(-12deg) scaleY(0.32);
-    animation-name: blackHoleRingBreath;
+    transform: translate(-50%, -50%);
   }
 
   .heroGraphene {
