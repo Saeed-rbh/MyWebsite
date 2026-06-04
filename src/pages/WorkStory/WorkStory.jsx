@@ -457,15 +457,40 @@ const WorkStory = () => {
         </header>
 
         <div className={styles.storyGrid}>
-          <SectionShell id="gap" kicker="01 / The gap I noticed" className={styles.asymGap}>
+          <SectionShell id="gap" kicker="01 / The gap I noticed" title="The Production Gap" className={styles.asymGap}>
             <div className={styles.textBlock}>
               <p className={styles.lead}>
-                Lab-quality nanomaterials often fail at manufacturing scale.
+                2D materials are ready for industry. Production is still the bottleneck.
+              </p>
+              <p>
+                Graphene, h-BN, and MoS₂ have strong potential in coatings, composites, thermal management, membranes, and electronics. But industry needs materials that are not only high-performance — they must be scalable, consistent, affordable, and easy to integrate.
               </p>
             </div>
-            <blockquote>
-              Can quality survive speed, pressure, and scale?
-            </blockquote>
+
+            <div className={styles.gapGrid}>
+              <div className={styles.gapItem}>
+                <h3>Scale</h3>
+                <p>Lab methods often work in grams, while industry needs repeatable production at larger volumes.</p>
+              </div>
+              <div className={styles.gapItem}>
+                <h3>Cost</h3>
+                <p>High processing cost limits adoption in high-volume applications.</p>
+              </div>
+              <div className={styles.gapItem}>
+                <h3>Consistency</h3>
+                <p>Flake size, thickness, defects, and chemistry must remain reliable from batch to batch.</p>
+              </div>
+              <div className={styles.gapItem}>
+                <h3>Integration</h3>
+                <p>Companies need powders, dispersions, additives, or formulations that fit existing manufacturing lines.</p>
+              </div>
+            </div>
+
+            <div className={styles.textBlock}>
+              <p className={styles.highlight}>
+                My work focuses on closing this gap — from material production to application-ready performance.
+              </p>
+            </div>
           </SectionShell>
 
           <SectionShell id="process" kicker="02 / The direction I chose" title="Compressible Flow Exfoliation" className={styles.asymProcess}>
