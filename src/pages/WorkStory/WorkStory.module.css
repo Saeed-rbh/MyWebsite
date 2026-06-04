@@ -123,7 +123,7 @@
   left: 50%;
   top: 38%;
   z-index: 1;
-  width: min(680px, 76vw);
+  width: min(480px, 64vw);
   aspect-ratio: 1;
   transform: translate(-50%, -50%);
   pointer-events: none;
@@ -138,9 +138,7 @@
   height: 100%;
   object-fit: contain;
   mix-blend-mode: screen;
-  filter: hue-rotate(-13deg) saturate(1.6) brightness(1.15)
-          drop-shadow(0 0 35px rgba(212, 157, 129, 0.45))
-          drop-shadow(0 0 75px rgba(212, 157, 129, 0.25));
+  filter: hue-rotate(-13deg) saturate(1.5) brightness(1.2);
 }
 
 
@@ -246,25 +244,7 @@
   pointer-events: none;
 }
 
-.heroGraphene::before {
-  content: "";
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 160%;
-  height: 160%;
-  background: radial-gradient(
-    circle,
-    rgba(212, 157, 129, 0.28) 0%,
-    rgba(212, 157, 129, 0.12) 40%,
-    rgba(212, 157, 129, 0.02) 65%,
-    transparent 80%
-  );
-  z-index: -1;
-  pointer-events: none;
-  border-radius: 50%;
-}
+
 
 .grapheneSvg {
   display: block;
@@ -1703,7 +1683,7 @@ blockquote::before {
   .blackHoleContainer {
     left: 50%;
     top: 38%;
-    width: min(540px, 82vw);
+    width: min(420px, 72vw);
     transform: translate(-50%, -50%);
   }
 
@@ -1899,7 +1879,7 @@ blockquote::before {
 
   .blackHoleContainer {
     top: 42%;
-    width: max(760px, 178vw);
+    width: min(340px, 85vw);
     transform: translate(-50%, -50%);
   }
 
