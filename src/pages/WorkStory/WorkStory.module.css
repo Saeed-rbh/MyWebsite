@@ -248,46 +248,9 @@
   fill: url(#glassyNodeGrad);
   stroke: rgba(255, 226, 205, 0.55);
   stroke-width: 1.5;
-}
-
-.grapheneAtoms circle:nth-child(2),
-.grapheneAtoms circle:nth-child(7),
-.grapheneAtoms circle:nth-child(10),
-.grapheneAtoms circle:nth-child(13),
-.grapheneAtoms circle:nth-child(15),
-.grapheneAtoms circle:nth-child(20),
-.grapheneAtoms circle:nth-child(22) {
   transform-origin: center;
   transform-box: fill-box;
   animation: atomGlow 4s ease-in-out infinite alternate;
-}
-
-.grapheneAtoms circle:nth-child(2) {
-  animation-delay: -0.5s;
-}
-
-.grapheneAtoms circle:nth-child(7) {
-  animation-delay: -1.5s;
-}
-
-.grapheneAtoms circle:nth-child(10) {
-  animation-delay: -2.5s;
-}
-
-.grapheneAtoms circle:nth-child(13) {
-  animation-delay: -3.5s;
-}
-
-.grapheneAtoms circle:nth-child(15) {
-  animation-delay: -1s;
-}
-
-.grapheneAtoms circle:nth-child(20) {
-  animation-delay: -2s;
-}
-
-.grapheneAtoms circle:nth-child(22) {
-  animation-delay: -3s;
 }
 
 .heroScrollCue {
@@ -1577,18 +1540,14 @@ blockquote::before {
 
 @keyframes atomGlow {
   0% {
-    filter: drop-shadow(0 0 2px rgba(255, 226, 205, 0.5));
-    -webkit-filter: drop-shadow(0 0 2px rgba(255, 226, 205, 0.5));
-    stroke: rgba(255, 226, 205, 0.7);
+    stroke: rgba(255, 226, 205, 0.4);
     stroke-width: 1.5;
     r: 10px;
   }
   100% {
-    filter: drop-shadow(0 0 8px rgba(255, 226, 205, 1));
-    -webkit-filter: drop-shadow(0 0 8px rgba(255, 226, 205, 1));
     stroke: rgba(255, 226, 205, 1);
-    stroke-width: 2.2;
-    r: 11.5px;
+    stroke-width: 3.5;
+    r: 10px;
   }
 }
 

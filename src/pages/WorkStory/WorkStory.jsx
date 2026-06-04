@@ -297,31 +297,31 @@ const HeroGraphene = () => (
         </g>
         {/* Atoms (circles) */}
         <g className={styles.grapheneAtoms}>
-          <circle cx="30.5" cy="91.5" r="10" />
-          <circle cx="56.5" cy="136.5" r="10" />
-          <circle cx="56.5" cy="45.5" r="10" />
-          <circle cx="106.5" cy="137.5" r="10" />
-          <circle cx="133.5" cy="91.5" r="10" />
-          <circle cx="106.5" cy="45.5" r="10" />
-          <circle cx="34.5" cy="10.5" r="10" />
-          <circle cx="128.5" cy="10.5" r="10" />
-          <circle cx="30.5" cy="182.5" r="10" />
-          <circle cx="133.5" cy="182.5" r="10" />
-          <circle cx="56.5" cy="227.5" r="10" />
-          <circle cx="106.5" cy="227.5" r="10" />
-          <circle cx="183.5" cy="91.5" r="10" />
-          <circle cx="260.5" cy="47.5" r="10" />
-          <circle cx="209.5" cy="47.5" r="10" />
-          <circle cx="132.5" cy="273.5" r="10" />
-          <circle cx="184.5" cy="273.5" r="10" />
-          <circle cx="183.5" cy="182.5" r="10" />
-          <circle cx="209.5" cy="227.5" r="10" />
-          <circle cx="259.5" cy="227.5" r="10" />
-          <circle cx="209.5" cy="137.5" r="10" />
-          <circle cx="285.5" cy="182.5" r="10" />
-          <circle cx="259.5" cy="138.5" r="10" />
-          <circle cx="285.5" cy="91.5" r="10" />
-          <circle cx="285.5" cy="273.5" r="10" />
+          <circle cx="30.5" cy="91.5" r="10" style={{ animationDelay: "-1.53s", animationDuration: "5.22s" }} />
+          <circle cx="56.5" cy="136.5" r="10" style={{ animationDelay: "-2.81s", animationDuration: "4.34s" }} />
+          <circle cx="56.5" cy="45.5" r="10" style={{ animationDelay: "-1.06s", animationDuration: "4.65s" }} />
+          <circle cx="106.5" cy="137.5" r="10" style={{ animationDelay: "-2.34s", animationDuration: "4.75s" }} />
+          <circle cx="133.5" cy="91.5" r="10" style={{ animationDelay: "-3.13s", animationDuration: "3.35s" }} />
+          <circle cx="106.5" cy="45.5" r="10" style={{ animationDelay: "-1.99s", animationDuration: "4.98s" }} />
+          <circle cx="34.5" cy="10.5" r="10" style={{ animationDelay: "-0.61s", animationDuration: "5.5s" }} />
+          <circle cx="128.5" cy="10.5" r="10" style={{ animationDelay: "-3.73s", animationDuration: "4.73s" }} />
+          <circle cx="30.5" cy="182.5" r="10" style={{ animationDelay: "-1.21s", animationDuration: "5.81s" }} />
+          <circle cx="133.5" cy="182.5" r="10" style={{ animationDelay: "-1.93s", animationDuration: "4.92s" }} />
+          <circle cx="56.5" cy="227.5" r="10" style={{ animationDelay: "-4.17s", animationDuration: "4.81s" }} />
+          <circle cx="106.5" cy="227.5" r="10" style={{ animationDelay: "-0.33s", animationDuration: "4.5s" }} />
+          <circle cx="183.5" cy="91.5" r="10" style={{ animationDelay: "-3.01s", animationDuration: "4.61s" }} />
+          <circle cx="260.5" cy="47.5" r="10" style={{ animationDelay: "-1.58s", animationDuration: "5.18s" }} />
+          <circle cx="209.5" cy="47.5" r="10" style={{ animationDelay: "-0.46s", animationDuration: "5.76s" }} />
+          <circle cx="132.5" cy="273.5" r="10" style={{ animationDelay: "-4.37s", animationDuration: "4.42s" }} />
+          <circle cx="184.5" cy="273.5" r="10" style={{ animationDelay: "-4.92s", animationDuration: "3.01s" }} />
+          <circle cx="183.5" cy="182.5" r="10" style={{ animationDelay: "-2.95s", animationDuration: "4.87s" }} />
+          <circle cx="209.5" cy="227.5" r="10" style={{ animationDelay: "-3.6s", animationDuration: "4.27s" }} />
+          <circle cx="259.5" cy="227.5" r="10" style={{ animationDelay: "-2.49s", animationDuration: "3.01s" }} />
+          <circle cx="209.5" cy="137.5" r="10" style={{ animationDelay: "-2.32s", animationDuration: "4.86s" }} />
+          <circle cx="285.5" cy="182.5" r="10" style={{ animationDelay: "-0.44s", animationDuration: "5.18s" }} />
+          <circle cx="259.5" cy="138.5" r="10" style={{ animationDelay: "-1.86s", animationDuration: "3.66s" }} />
+          <circle cx="285.5" cy="91.5" r="10" style={{ animationDelay: "-4.57s", animationDuration: "4.89s" }} />
+          <circle cx="285.5" cy="273.5" r="10" style={{ animationDelay: "-2.9s", animationDuration: "5.91s" }} />
         </g>
       </g>
     </svg>
