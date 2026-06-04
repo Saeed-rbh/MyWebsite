@@ -1696,8 +1696,10 @@ blockquote::before {
   }
 
   .mobileSectionLabel {
-    position: sticky;
+    position: fixed;
     top: 8px;
+    left: 0;
+    right: 0;
     z-index: 10;
     display: none;
     width: fit-content;
