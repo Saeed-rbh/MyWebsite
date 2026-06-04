@@ -250,7 +250,7 @@
 
 .heroScrollCue {
   position: absolute;
-  left: 50%;
+  left: auto;
   bottom: clamp(14px, 3.2vh, 30px);
   z-index: 3;
   width: fit-content;
