@@ -2,7 +2,9 @@ import React, { useEffect, useMemo, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import SEO from "../../components/SEO/SEO";
 import styles from "./WorkStory.module.css";
-import glowRing from "../../assets/glow_ring.svg";
+import bgGlow from '../../assets/bg-glow.svg';
+import glowingCircle from '../../assets/glowing_circle.svg';
+import particleFrame from '../../assets/particle-frame.svg';
 
 
 const chain = ["Materials Scientist", "2D & Advanced Materials", "Characterization", "CFD", "Thermal Management"];
@@ -252,50 +254,8 @@ const HeroGraphene = () => (
           <stop offset="40%" stopColor="#ffe2cd" stopOpacity="0.15" />
           <stop offset="100%" stopColor="#d49d81" stopOpacity="0.04" />
         </radialGradient>
-        <linearGradient id="spiralGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stopColor="#d49d81" stopOpacity="0.05" />
-          <stop offset="50%" stopColor="#ffe2cd" stopOpacity="0.42" />
-          <stop offset="100%" stopColor="#f0c1a9" stopOpacity="0.05" />
-        </linearGradient>
-        <filter id="nodeGlowFilter" x="-150%" y="-150%" width="400%" height="400%">
-          <feGaussianBlur in="SourceGraphic" stdDeviation="2" result="blur1" />
-          <feGaussianBlur in="SourceGraphic" stdDeviation="8" result="blur2" />
-          <feMerge>
-            <feMergeNode in="blur2" />
-            <feMergeNode in="blur1" />
-            <feMergeNode in="SourceGraphic" />
-          </feMerge>
-        </filter>
-        <filter id="spiralGlowFilter" x="-100%" y="-100%" width="300%" height="300%">
-          <feGaussianBlur in="SourceGraphic" stdDeviation="1.8" result="blur" />
-          <feMerge>
-            <feMergeNode in="blur" />
-            <feMergeNode in="SourceGraphic" />
-          </feMerge>
-        </filter>
       </defs>
       <g>
-        {/* Spiral lines behind the graphene */}
-        <g 
-          className={styles.grapheneSpirals}
-          transform="translate(157, 150.7) scale(0.65) translate(-239.13, -218.98)"
-        >
-          <path d="M118.79,226s-91.5-87.25,35-225.62" />
-          <path d="M118.79,227.44s-49-16-39-97" />
-          <path d="M90,271.46s-97.18-87-66.18-193" />
-          <path d="M167,226s-44.56-107.5,40.12-169.5" />
-          <path d="M268.36,226s-14.57,86.5-117.57,76.5" />
-          <path d="M270.15,135.46s20.64-19,62.64-7" />
-          <path d="M323.17,141.21s130.62,58.25,154.62,125.25" />
-          <path d="M327.47,135s55.39,1.5,120.35,58.5" />
-          <path d="M358.27,284.46s-.72,85.6-35.1,122.8" />
-          <path d="M253.29,196.64s112.5,28.82,122.5,135.82" />
-          <path d="M278.79,327.46s-9,33-59,63" />
-          <path d="M193.79,368.46s-92,48.8-193.5-22.6" />
-          <path d="M171.77,332.46s-72,9.15-135-40.42" />
-          <path d="M245.79,375.46s-32,46-112,62" />
-          <path d="M179.79,143.62S257,45.46,390.87,78.46" />
-        </g>
         {/* Bonds (lines) */}
         <g className={styles.grapheneBonds}>
           <line x1="51" y1="37" x2="40" y2="19" />
@@ -413,11 +373,11 @@ const WorkStory = () => {
 
         <header className={styles.hero} data-reveal>
           <div className={styles.heroFrame}>
-            <div className={styles.blackHoleContainer}>
+            <div className={styles.glowingCircleContainer}>
               <img
-                src={glowRing}
-                className={styles.blackHoleImg}
-                alt="Black hole accretion disk"
+                src={glowingCircle}
+                className={styles.glowingCircleImg}
+                alt="Glowing Circle Background"
               />
             </div>
             <div className={styles.heroCopy}>
