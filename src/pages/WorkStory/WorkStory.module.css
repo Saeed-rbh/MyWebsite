@@ -23,7 +23,6 @@
   height: 100vh;
   overflow-x: hidden;
   overflow-y: auto;
-  scroll-snap-type: y mandatory;
   color: var(--story-text);
   background: transparent;
   font-family: "Poppins", sans-serif;
@@ -84,8 +83,6 @@
   align-items: center;
   justify-content: center;
   padding: 38px 0 34px;
-  scroll-snap-align: start;
-  scroll-snap-stop: always;
 }
 
 .heroFrame {
@@ -471,8 +468,6 @@
   box-shadow: none;
   backdrop-filter: none;
   box-sizing: border-box;
-  scroll-snap-align: start;
-  scroll-snap-stop: always;
 }
 
 .section::after {
