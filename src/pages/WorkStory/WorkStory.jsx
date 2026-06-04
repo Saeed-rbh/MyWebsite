@@ -2,7 +2,6 @@ import React, { useEffect, useMemo, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import SEO from "../../components/SEO/SEO";
 import styles from "./WorkStory.module.css";
-import glowingCircle from '../../assets/glowing_circle.svg';
 
 
 const chain = ["Materials Scientist", "2D & Advanced Materials", "Characterization", "CFD", "Thermal Management"];
@@ -371,17 +370,10 @@ const WorkStory = () => {
 
         <header className={styles.hero} data-reveal>
           <div className={styles.heroFrame}>
-            <div className={styles.glowingCircleContainer}>
-              <img
-                src={glowingCircle}
-                className={styles.glowingCircleImg}
-                alt="Glowing Circle Background"
-              />
-            </div>
             <div className={styles.heroCopy}>
               <HeroGraphene />
               <h1>
-                <span>Material R&D Journey</span>
+                <span>Material R<span className={styles.regularAmp}>&</span>D Journey</span>
               </h1>
               <p>Lab to Manufacturing</p>
 
