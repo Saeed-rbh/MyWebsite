@@ -27,7 +27,7 @@
   scroll-padding-block: 0;
   scroll-behavior: smooth;
   color: var(--story-text);
-  background: #000000;
+  background: transparent;
   font-family: "Poppins", sans-serif;
   padding: 0;
   text-align: left;
