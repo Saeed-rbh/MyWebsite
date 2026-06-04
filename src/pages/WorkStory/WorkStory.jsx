@@ -477,7 +477,7 @@ const WorkStory = () => {
             <div className={styles.sectionIntro}>
               <div>
                 <p className={styles.lead}>
-                  2D materials are ready for industry, but production remains the bottleneck. Scale, cost, consistency, and integration must be solved to unlock their potential.
+                  2D materials are ready for industry — but scalable, affordable production remains the barrier.
                 </p>
                 <TypeField items={["SCALE", "COST", "CONSISTENCY", "INTEGRATION"]} />
               </div>
@@ -486,7 +486,7 @@ const WorkStory = () => {
 
             <div className={styles.textBlock}>
               <p className={styles.highlight}>
-                My work focuses on closing this gap — from material production to application-ready performance.
+                I develop production pathways to make 2D materials affordable, consistent, and scalable
               </p>
             </div>
           </SectionShell>
