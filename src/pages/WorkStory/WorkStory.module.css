@@ -26,10 +26,7 @@
   scroll-padding-block: 0;
   scroll-behavior: smooth;
   color: var(--story-text);
-  background:
-    radial-gradient(circle at 14% 16%, rgba(212, 157, 129, 0.12), transparent 28%),
-    radial-gradient(circle at 82% 30%, rgba(255, 255, 255, 0.055), transparent 32%),
-    linear-gradient(135deg, rgba(0, 0, 0, 0.5), rgba(5, 5, 5, 0.96));
+  background: #000000;
   font-family: "Poppins", sans-serif;
   padding: 0;
   text-align: left;
@@ -138,6 +135,8 @@
   object-fit: cover;
   mix-blend-mode: screen;
   opacity: 0.9;
+  mask-image: radial-gradient(ellipse at center, black 30%, transparent 75%);
+  -webkit-mask-image: radial-gradient(ellipse at center, black 30%, transparent 75%);
 }
 
 
