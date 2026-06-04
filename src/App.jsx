@@ -48,8 +48,8 @@ function AppContent() {
       {visibility && !isDashboard && <Mouse />}
 
       {/* Show Header, Menu, Footer ONLY if NOT in dashboard AND NOT in story pages AND NOT Mafia */}
-      {visibility && !isDashboard && !isStoryPage && !isMafia && <Header />}
-      {visibility && !isDashboard && !isStoryPage && !isMafia && <Menu />}
+      {visibility && !isDashboard && (!isStoryPage || location.pathname === '/work-story') && !isMafia && <Header />}
+      {visibility && !isDashboard && (!isStoryPage || location.pathname === '/work-story') && !isMafia && <Menu />}
       {visibility && !isDashboard && !isStoryPage && !isMafia && <Footer />}
 
       {visibility && (
