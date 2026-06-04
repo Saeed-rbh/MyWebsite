@@ -321,44 +321,37 @@
   stroke-width: 1.2;
 }
 
-.grapheneAtoms circle:nth-child(3),
-.grapheneAtoms circle:nth-child(5),
+.grapheneAtoms circle:nth-child(2),
 .grapheneAtoms circle:nth-child(7),
 .grapheneAtoms circle:nth-child(10),
 .grapheneAtoms circle:nth-child(13),
 .grapheneAtoms circle:nth-child(15),
-.grapheneAtoms circle:nth-child(18),
 .grapheneAtoms circle:nth-child(20),
-.grapheneAtoms circle:nth-child(22),
-.grapheneAtoms circle:nth-child(24) {
+.grapheneAtoms circle:nth-child(22) {
   fill: #ffe2cd;
   stroke: #f0c1a9;
   filter: url(#nodeGlowFilter);
   animation: atomGlow 4s ease-in-out infinite alternate;
 }
 
-.grapheneAtoms circle:nth-child(5) {
-  animation-delay: -0.8s;
+.grapheneAtoms circle:nth-child(2) {
+  animation-delay: -0.5s;
 }
 
 .grapheneAtoms circle:nth-child(7) {
-  animation-delay: -1.6s;
+  animation-delay: -1.5s;
 }
 
 .grapheneAtoms circle:nth-child(10) {
-  animation-delay: -2.4s;
+  animation-delay: -2.5s;
 }
 
 .grapheneAtoms circle:nth-child(13) {
-  animation-delay: -3.2s;
+  animation-delay: -3.5s;
 }
 
 .grapheneAtoms circle:nth-child(15) {
-  animation-delay: -0.4s;
-}
-
-.grapheneAtoms circle:nth-child(18) {
-  animation-delay: -1.2s;
+  animation-delay: -1s;
 }
 
 .grapheneAtoms circle:nth-child(20) {
@@ -366,11 +359,7 @@
 }
 
 .grapheneAtoms circle:nth-child(22) {
-  animation-delay: -2.8s;
-}
-
-.grapheneAtoms circle:nth-child(24) {
-  animation-delay: -3.6s;
+  animation-delay: -3s;
 }
 
 .heroScrollCue {

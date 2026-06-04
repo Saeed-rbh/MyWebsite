@@ -250,12 +250,10 @@ const HeroGraphene = () => (
           <stop offset="40%" stopColor="#ffe2cd" stopOpacity="0.15" />
           <stop offset="100%" stopColor="#d49d81" stopOpacity="0.04" />
         </radialGradient>
-        <filter id="nodeGlowFilter" x="-200%" y="-200%" width="500%" height="500%">
+        <filter id="nodeGlowFilter" x="-150%" y="-150%" width="400%" height="400%">
           <feGaussianBlur in="SourceGraphic" stdDeviation="2" result="blur1" />
-          <feGaussianBlur in="SourceGraphic" stdDeviation="6" result="blur2" />
-          <feGaussianBlur in="SourceGraphic" stdDeviation="15" result="blur3" />
+          <feGaussianBlur in="SourceGraphic" stdDeviation="8" result="blur2" />
           <feMerge>
-            <feMergeNode in="blur3" />
             <feMergeNode in="blur2" />
             <feMergeNode in="blur1" />
             <feMergeNode in="SourceGraphic" />
