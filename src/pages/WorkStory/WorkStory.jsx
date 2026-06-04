@@ -1,7 +1,6 @@
 import React, { Suspense, useEffect, useMemo, useRef, useState } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
 import { useGLTF } from "@react-three/drei";
-import * as THREE from "three";
 import { Link } from "react-router-dom";
 import SEO from "../../components/SEO/SEO";
 import styles from "./WorkStory.module.css";
@@ -9,6 +8,11 @@ import styles from "./WorkStory.module.css";
 const chain = ["Materials Scientist", "2D & Advanced Materials", "Characterization", "CFD", "Thermal Management"];
 
 const grapheneModelUrls = ["/grapheneNew1.gltf", "/grapheneNew2.gltf", "/grapheneNew3.gltf"];
+const grapheneLayerTransforms = [
+  { position: [0, 0, 0] },
+  { position: [1.5, -1.25, 0.35] },
+  { position: [1.5, -3, 0.5] },
+];
 
 grapheneModelUrls.forEach((url) => useGLTF.preload(url));
 
@@ -242,36 +246,36 @@ const TypeField = ({ items }) => (
   </div>
 );
 
-const HeroGrapheneLayer = ({ url, position, rotation, scale, delay = 0 }) => {
-  const groupRef = useRef(null);
+const HeroGrapheneLayer = ({ url, position }) => {
   const { scene } = useGLTF(url);
 
   const model = useMemo(() => {
-    const clone = scene.clone(true);
-    clone.traverse((child) => {
-      if (!child.isMesh) return;
-      child.material = new THREE.MeshStandardMaterial({
-        color: "#f2d5c5",
-        emissive: "#c88d70",
-        emissiveIntensity: 0.22,
-        roughness: 0.4,
-        metalness: 0.12,
-      });
-    });
-    return clone;
+    return scene.clone(true);
   }, [scene]);
+
+  return <primitive object={model} position={position} rotation={[0, -Math.PI / 6, Math.PI / 6]} scale={0.7} />;
+};
+
+const HeroGrapheneAssembly = () => {
+  const groupRef = useRef(null);
 
   useFrame(({ clock }) => {
     if (!groupRef.current) return;
-    const time = clock.elapsedTime + delay;
-    groupRef.current.rotation.x = rotation[0] + Math.sin(time * 0.38) * 0.08;
-    groupRef.current.rotation.y = rotation[1] + Math.sin(time * 0.48) * 0.16;
-    groupRef.current.rotation.z = rotation[2] + time * 0.1;
+    const time = clock.elapsedTime;
+    groupRef.current.rotation.x = -0.92 + Math.sin(time * 0.35) * 0.045;
+    groupRef.current.rotation.y = 0.1 + Math.sin(time * 0.42) * 0.07;
+    groupRef.current.rotation.z = -0.18 + Math.sin(time * 0.3) * 0.035;
   });
 
   return (
-    <group ref={groupRef} position={position} rotation={rotation} scale={scale}>
-      <primitive object={model} />
+    <group ref={groupRef} position={[-1.2, 0.2, 0]} scale={0.62}>
+      {grapheneModelUrls.map((url, index) => (
+        <HeroGrapheneLayer
+          key={url}
+          url={url}
+          position={grapheneLayerTransforms[index].position}
+        />
+      ))}
     </group>
   );
 };
@@ -287,11 +291,7 @@ const HeroGraphene = () => (
         <ambientLight intensity={1.15} />
         <pointLight position={[0, 2.6, 3.5]} intensity={3.2} color="#f0c1a9" />
         <pointLight position={[-2.4, -1.5, 2.4]} intensity={1.2} color="#d49d81" />
-        <group position={[-0.8, -0.55, 0]} rotation={[-0.92, 0.1, -0.18]} scale={0.82}>
-          <HeroGrapheneLayer url={grapheneModelUrls[0]} position={[0, 0, 0]} rotation={[0, 0, 0]} scale={0.62} />
-          <HeroGrapheneLayer url={grapheneModelUrls[1]} position={[0.12, 0.08, -0.12]} rotation={[0.02, 0.08, 0.12]} scale={0.62} delay={0.7} />
-          <HeroGrapheneLayer url={grapheneModelUrls[2]} position={[-0.1, -0.08, 0.12]} rotation={[-0.02, -0.08, -0.1]} scale={0.62} delay={1.4} />
-        </group>
+        <HeroGrapheneAssembly />
       </Suspense>
     </Canvas>
   </div>
