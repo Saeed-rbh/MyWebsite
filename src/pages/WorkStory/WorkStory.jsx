@@ -88,16 +88,15 @@ const useWorkStoryEffects = (scrollRef) => {
     if (!root) return undefined;
 
     const revealObserver = new IntersectionObserver(
-      (entries) => {
+      (entries, observer) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
             entry.target.classList.add(styles.visible);
-          } else {
-            entry.target.classList.remove(styles.visible);
+            observer.unobserve(entry.target);
           }
         });
       },
-      { root, threshold: 0.18 }
+      { root, threshold: 0.05, rootMargin: "0px 0px -5% 0px" }
     );
 
     const sectionObserver = new IntersectionObserver(
