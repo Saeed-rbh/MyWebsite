@@ -239,6 +239,22 @@ const SectionShell = ({ id, kicker, title, children, className = "" }) => (
   </section>
 );
 
+const GapSvg = () => (
+  <svg className={`${styles.animatedSvg} ${styles.gapSvg}`} viewBox="0 0 520 260" aria-hidden="true">
+    <path className={styles.svgTrace} d="M30 180 L200 180 L260 70 L320 180 L490 180" />
+    <path className={styles.svgTraceSlow} d="M110 120 H410" />
+    <path className={styles.svgTraceSlow} d="M260 70 V180" strokeDasharray="6 6" />
+    <g className={styles.svgNodes}>
+      <circle cx="200" cy="180" r="8" />
+      <circle cx="260" cy="70" r="8" />
+      <circle cx="320" cy="180" r="8" />
+    </g>
+    <g className={styles.svgRings}>
+      <circle cx="260" cy="70" r="32" />
+    </g>
+  </svg>
+);
+
 const FlowSvg = () => (
   <svg className={`${styles.animatedSvg} ${styles.flowSvg}`} viewBox="0 0 520 260" aria-hidden="true">
     <path className={styles.svgTrace} d="M28 132 H138 C180 132, 185 76, 236 76 H360 C421 76, 424 132, 492 132" />
@@ -458,32 +474,14 @@ const WorkStory = () => {
 
         <div className={styles.storyGrid}>
           <SectionShell id="gap" kicker="01 / The gap I noticed" title="The Production Gap" className={styles.asymGap}>
-            <div className={styles.textBlock}>
-              <p className={styles.lead}>
-                2D materials are ready for industry. Production is still the bottleneck.
-              </p>
-              <p>
-                Graphene, h-BN, and MoS₂ have strong potential in coatings, composites, thermal management, membranes, and electronics. But industry needs materials that are not only high-performance — they must be scalable, consistent, affordable, and easy to integrate.
-              </p>
-            </div>
-
-            <div className={styles.gapGrid}>
-              <div className={styles.gapItem}>
-                <h3>Scale</h3>
-                <p>Lab methods often work in grams, while industry needs repeatable production at larger volumes.</p>
+            <div className={styles.sectionIntro}>
+              <div>
+                <p className={styles.lead}>
+                  2D materials are ready for industry, but production remains the bottleneck. Scale, cost, consistency, and integration must be solved to unlock their potential.
+                </p>
+                <TypeField items={["SCALE", "COST", "CONSISTENCY", "INTEGRATION"]} />
               </div>
-              <div className={styles.gapItem}>
-                <h3>Cost</h3>
-                <p>High processing cost limits adoption in high-volume applications.</p>
-              </div>
-              <div className={styles.gapItem}>
-                <h3>Consistency</h3>
-                <p>Flake size, thickness, defects, and chemistry must remain reliable from batch to batch.</p>
-              </div>
-              <div className={styles.gapItem}>
-                <h3>Integration</h3>
-                <p>Companies need powders, dispersions, additives, or formulations that fit existing manufacturing lines.</p>
-              </div>
+              <GapSvg />
             </div>
 
             <div className={styles.textBlock}>

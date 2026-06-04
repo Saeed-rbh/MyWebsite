@@ -584,44 +584,6 @@
   --section-accent: #f0c1a9;
 }
 
-.gapGrid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  gap: clamp(24px, 4vw, 42px);
-  margin: clamp(48px, 6vw, 72px) 0;
-  max-width: 1100px;
-}
-
-.gapItem {
-  background: rgba(255, 255, 255, 0.02);
-  border: 1px solid var(--story-border-soft);
-  padding: 32px 28px;
-  border-radius: 16px;
-  transition: transform 0.3s ease, background 0.3s ease;
-}
-
-.gapItem:hover {
-  background: rgba(255, 255, 255, 0.04);
-  transform: translateY(-4px);
-  border-color: rgba(212, 157, 129, 0.2);
-}
-
-.gapItem h3 {
-  font-family: "Playfair Display", serif;
-  font-size: 1.4rem;
-  font-weight: 600;
-  color: var(--story-accent);
-  margin: 0 0 16px 0;
-  letter-spacing: 0.02em;
-}
-
-.gapItem p {
-  margin: 0;
-  font-size: 0.95rem;
-  line-height: 1.6;
-  color: var(--story-muted);
-}
-
 .asymGap .highlight {
   font-family: "Playfair Display", serif;
   font-size: clamp(1.4rem, 2.5vw, 2.2rem);
