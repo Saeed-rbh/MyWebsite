@@ -245,10 +245,17 @@ const HeroGraphene = () => (
       viewBox="0 0 314 301.41"
     >
       <defs>
+        <radialGradient id="glassyNodeGrad" cx="35%" cy="35%" r="65%">
+          <stop offset="0%" stopColor="#ffffff" stopOpacity="0.45" />
+          <stop offset="40%" stopColor="#ffe2cd" stopOpacity="0.15" />
+          <stop offset="100%" stopColor="#d49d81" stopOpacity="0.04" />
+        </radialGradient>
         <filter id="nodeGlowFilter" x="-200%" y="-200%" width="500%" height="500%">
-          <feGaussianBlur in="SourceGraphic" stdDeviation="3" result="blur1" />
-          <feGaussianBlur in="SourceGraphic" stdDeviation="9" result="blur2" />
+          <feGaussianBlur in="SourceGraphic" stdDeviation="2" result="blur1" />
+          <feGaussianBlur in="SourceGraphic" stdDeviation="6" result="blur2" />
+          <feGaussianBlur in="SourceGraphic" stdDeviation="15" result="blur3" />
           <feMerge>
+            <feMergeNode in="blur3" />
             <feMergeNode in="blur2" />
             <feMergeNode in="blur1" />
             <feMergeNode in="SourceGraphic" />
@@ -258,10 +265,31 @@ const HeroGraphene = () => (
       <g>
         {/* Spiral lines behind the graphene */}
         <g className={styles.grapheneSpirals}>
-          <path d="M 157 150 C 180 130, 180 90, 140 85 C 90 80, 60 130, 80 190 C 100 250, 200 260, 250 200 C 300 140, 260 50, 160 40" />
-          <path d="M 157 150 C 130 170, 130 210, 170 215 C 220 220, 250 170, 230 110 C 210 50, 110 40, 60 100 C 10 160, 50 250, 150 260" />
-          <path d="M 157 150 C 170 170, 210 170, 215 130 C 220 80, 170 50, 110 70 C 50 90, 40 190, 100 240 C 160 290, 250 250, 260 150" />
-          <path d="M 157 150 C 140 130, 100 130, 95 170 C 90 220, 140 250, 200 230 C 260 210, 270 110, 210 60 C 150 10, 60 50, 50 150" />
+          {/* Bundle 1 */}
+          <path d="M 60 220 C 50 160, 90 110, 157 150 C 210 180, 260 210, 290 170" />
+          <path d="M 63 218 C 53 158, 92 108, 157 150 C 212 182, 262 212, 292 168" />
+          <path d="M 57 222 C 47 162, 88 112, 157 150 C 208 178, 258 208, 288 172" />
+
+          {/* Bundle 2 */}
+          <path d="M 260 80 C 270 140, 230 190, 157 150 C 104 120, 54 90, 24 130" />
+          <path d="M 263 82 C 273 142, 232 192, 157 150 C 106 122, 56 92, 26 128" />
+          <path d="M 257 78 C 267 138, 228 188, 157 150 C 102 118, 52 88, 22 132" />
+
+          {/* Bundle 3 */}
+          <path d="M 100 30 C 70 80, 100 160, 157 150 C 220 140, 270 90, 250 40" />
+          <path d="M 98 32 C 68 82, 98 162, 157 150 C 218 138, 268 88, 248 38" />
+          <path d="M 102 28 C 72 78, 102 158, 157 150 C 222 142, 272 92, 252 42" />
+
+          {/* Bundle 4 */}
+          <path d="M 220 270 C 250 220, 220 140, 157 150 C 94 160, 44 210, 64 260" />
+          <path d="M 222 268 C 252 218, 222 138, 157 150 C 96 158, 46 208, 66 258" />
+          <path d="M 218 272 C 248 222, 218 142, 157 150 C 92 162, 42 212, 62 262" />
+
+          {/* Long continuous spirals */}
+          <path d="M 157 150 C 120 120, 110 70, 160 65 C 220 60, 250 120, 230 180 C 200 250, 100 240, 70 170 C 50 120, 100 50, 180 35" />
+          <path d="M 157 150 C 194 180, 204 230, 154 235 C 94 240, 64 180, 84 120 C 114 50, 214 60, 244 130 C 264 180, 214 250, 134 265" />
+          <path d="M 157 150 C 122 122, 112 72, 162 67 C 222 62, 252 122, 232 182 C 202 252, 102 242, 72 172" />
+          <path d="M 157 150 C 196 182, 206 232, 156 237 C 96 242, 66 182, 86 122 C 116 52, 216 62, 246 132" />
         </g>
         {/* Bonds (lines) */}
         <g className={styles.grapheneBonds}>

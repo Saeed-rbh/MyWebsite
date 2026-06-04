@@ -292,9 +292,21 @@
 
 .grapheneSpirals path {
   fill: none;
-  stroke: rgba(212, 157, 129, 0.22);
-  stroke-width: 0.8;
+  stroke: rgba(212, 157, 129, 0.25);
+  stroke-width: 0.6;
   opacity: 0.55;
+}
+
+.grapheneSpirals path:nth-child(3n) {
+  stroke-width: 0.9;
+  stroke: rgba(255, 226, 205, 0.32);
+  opacity: 0.8;
+}
+
+.grapheneSpirals path:nth-child(3n+1) {
+  stroke-width: 0.45;
+  stroke: rgba(212, 157, 129, 0.18);
+  opacity: 0.45;
 }
 
 .grapheneBonds line {
@@ -304,8 +316,8 @@
 }
 
 .grapheneAtoms circle {
-  fill: rgba(255, 255, 255, 0.08);
-  stroke: rgba(255, 226, 205, 0.35);
+  fill: url(#glassyNodeGrad);
+  stroke: rgba(255, 226, 205, 0.32);
   stroke-width: 1.2;
 }
 
@@ -1642,13 +1654,15 @@ blockquote::before {
 
 @keyframes atomGlow {
   0% {
-    fill: rgba(255, 255, 255, 0.08);
+    fill: #ffe2cd;
+    fill-opacity: 0.2;
     stroke: rgba(255, 226, 205, 0.35);
     r: 10;
   }
   100% {
-    fill: #ffe2cd;
-    stroke: #f0c1a9;
+    fill: #ffffff;
+    fill-opacity: 1;
+    stroke: #ffe2cd;
     r: 11.5;
   }
 }
