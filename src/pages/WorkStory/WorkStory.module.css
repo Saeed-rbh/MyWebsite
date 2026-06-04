@@ -239,15 +239,15 @@
 }
 
 .grapheneBonds line {
-  stroke: rgba(255, 226, 205, 0.18);
-  stroke-width: 1.5;
+  stroke: rgba(255, 226, 205, 0.40);
+  stroke-width: 2;
   stroke-linecap: round;
 }
 
 .grapheneAtoms circle {
   fill: url(#glassyNodeGrad);
-  stroke: rgba(255, 226, 205, 0.32);
-  stroke-width: 1.2;
+  stroke: rgba(255, 226, 205, 0.55);
+  stroke-width: 1.5;
 }
 
 .grapheneAtoms circle:nth-child(2),
@@ -257,9 +257,8 @@
 .grapheneAtoms circle:nth-child(15),
 .grapheneAtoms circle:nth-child(20),
 .grapheneAtoms circle:nth-child(22) {
-  fill: #ffe2cd;
-  stroke: #f0c1a9;
-  filter: url(#nodeGlowFilter);
+  transform-origin: center;
+  transform-box: fill-box;
   animation: atomGlow 4s ease-in-out infinite alternate;
 }
 
@@ -1578,16 +1577,18 @@ blockquote::before {
 
 @keyframes atomGlow {
   0% {
-    fill: #ffe2cd;
-    fill-opacity: 0.2;
-    stroke: rgba(255, 226, 205, 0.35);
-    r: 10;
+    filter: drop-shadow(0 0 2px rgba(255, 226, 205, 0.5));
+    -webkit-filter: drop-shadow(0 0 2px rgba(255, 226, 205, 0.5));
+    stroke: rgba(255, 226, 205, 0.7);
+    stroke-width: 1.5;
+    r: 10px;
   }
   100% {
-    fill: #ffffff;
-    fill-opacity: 1;
-    stroke: #ffe2cd;
-    r: 11.5;
+    filter: drop-shadow(0 0 8px rgba(255, 226, 205, 1));
+    -webkit-filter: drop-shadow(0 0 8px rgba(255, 226, 205, 1));
+    stroke: rgba(255, 226, 205, 1);
+    stroke-width: 2.2;
+    r: 11.5px;
   }
 }
 

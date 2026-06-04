@@ -247,9 +247,9 @@ const HeroGraphene = () => (
     >
       <defs>
         <radialGradient id="glassyNodeGrad" cx="35%" cy="35%" r="65%">
-          <stop offset="0%" stopColor="#ffffff" stopOpacity="0.45" />
-          <stop offset="40%" stopColor="#ffe2cd" stopOpacity="0.15" />
-          <stop offset="100%" stopColor="#d49d81" stopOpacity="0.04" />
+          <stop offset="0%" stopColor="#ffffff" stopOpacity="0.65" />
+          <stop offset="40%" stopColor="#ffe2cd" stopOpacity="0.30" />
+          <stop offset="100%" stopColor="#d49d81" stopOpacity="0.10" />
         </radialGradient>
       </defs>
       <g>
