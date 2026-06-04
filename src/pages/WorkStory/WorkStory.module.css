@@ -119,19 +119,21 @@
   content: "";
   position: absolute;
   left: 50%;
-  top: 43%;
+  top: 41%;
   z-index: 1;
-  width: min(620px, 74vw);
+  width: min(640px, 76vw);
   aspect-ratio: 1;
   border-radius: 50%;
   background:
-    radial-gradient(circle, rgba(212, 157, 129, 0.18) 0 24%, rgba(212, 157, 129, 0.06) 42%, transparent 68%),
-    conic-gradient(from 220deg, transparent 0 14%, rgba(240, 193, 169, 0.64), transparent 38% 100%);
+    radial-gradient(circle at 50% 28%, rgba(255, 230, 203, 0.34) 0 7%, rgba(230, 176, 139, 0.22) 18%, transparent 46%),
+    radial-gradient(circle, rgba(212, 157, 129, 0.2) 0 28%, rgba(212, 157, 129, 0.08) 48%, transparent 70%),
+    conic-gradient(from 205deg, transparent 0 9%, rgba(255, 217, 185, 0.62) 16%, rgba(212, 157, 129, 0.16) 31%, transparent 47% 100%);
   box-shadow:
-    0 0 58px rgba(212, 157, 129, 0.24),
-    inset 0 0 62px rgba(240, 193, 169, 0.1);
-  opacity: 0.92;
-  filter: blur(0.5px);
+    0 0 82px rgba(212, 157, 129, 0.26),
+    0 0 160px rgba(212, 157, 129, 0.12),
+    inset 0 0 84px rgba(240, 193, 169, 0.16);
+  opacity: 0.9;
+  filter: blur(1px);
   transform: translate(-50%, -50%);
   pointer-events: none;
   animation: haloBreath 7s ease-in-out infinite;
@@ -141,13 +143,15 @@
   content: "";
   position: absolute;
   left: 50%;
-  top: 43%;
+  top: 41%;
   z-index: 1;
-  width: min(420px, 58vw);
+  width: min(430px, 58vw);
   aspect-ratio: 1;
-  border: 1px solid rgba(212, 157, 129, 0.26);
+  border: 1px solid rgba(240, 193, 169, 0.24);
   border-radius: 50%;
-  box-shadow: 0 0 28px rgba(212, 157, 129, 0.12);
+  box-shadow:
+    0 0 34px rgba(212, 157, 129, 0.14),
+    inset 0 0 42px rgba(212, 157, 129, 0.08);
   transform: translate(-50%, -50%);
   pointer-events: none;
   animation: haloSpin 18s linear infinite;
@@ -244,26 +248,21 @@
   background: rgba(212, 157, 129, 0.42);
 }
 
-.heroMolecule {
+.heroGraphene {
   position: relative;
   z-index: 2;
-  width: min(220px, 34vw);
-  height: auto;
-  overflow: visible;
-  color: var(--story-accent);
-  filter: drop-shadow(0 0 22px rgba(240, 193, 169, 0.36));
+  width: min(270px, 36vw);
+  height: min(190px, 25vw);
+  min-height: 132px;
+  margin-bottom: -6px;
+  pointer-events: none;
+  filter:
+    drop-shadow(0 0 16px rgba(255, 226, 205, 0.26))
+    drop-shadow(0 0 34px rgba(212, 157, 129, 0.18));
 }
 
-.heroMolecule path {
-  fill: none;
-  stroke: rgba(240, 193, 169, 0.38);
-  stroke-width: 1.2;
-}
-
-.heroMolecule circle {
-  fill: rgba(255, 239, 226, 0.92);
-  stroke: rgba(212, 157, 129, 0.56);
-  stroke-width: 1.1;
+.heroGraphene canvas {
+  display: block;
 }
 
 .heroScrollCue {
@@ -272,8 +271,8 @@
   width: fit-content;
   display: grid;
   place-items: center;
-  gap: 10px;
-  margin-top: clamp(34px, 6vh, 64px);
+  gap: 12px;
+  margin-top: clamp(22px, 4.8vh, 52px);
   color: rgba(255, 255, 255, 0.72);
   text-decoration: none;
   font-family: "Poppins", sans-serif;
@@ -286,18 +285,27 @@
 .heroScrollCue i {
   position: relative;
   width: 1px;
-  height: 78px;
+  height: 82px;
   display: inline-block;
-  overflow: hidden;
-  background: rgba(255, 255, 255, 0.14);
+  overflow: visible;
+  background: linear-gradient(180deg, rgba(255, 245, 237, 0.04), rgba(240, 193, 169, 0.74) 72%, rgba(255, 245, 237, 0.42));
+  box-shadow: 0 0 18px rgba(240, 193, 169, 0.28);
 }
 
 .heroScrollCue i::before {
   content: "";
   position: absolute;
-  inset: 0;
-  background: linear-gradient(180deg, transparent, var(--story-accent), transparent);
-  animation: scrollCue 1.8s ease-in-out infinite;
+  left: 50%;
+  bottom: -5px;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #ffe7d5;
+  box-shadow:
+    0 0 12px rgba(255, 231, 213, 0.88),
+    0 0 28px rgba(212, 157, 129, 0.64);
+  transform: translateX(-50%);
+  animation: scrollDot 1.8s ease-in-out infinite;
 }
 
 .heroActions {
@@ -1359,14 +1367,20 @@ blockquote::before {
   }
 }
 
-@keyframes scrollCue {
+@keyframes scrollDot {
   0% {
-    transform: translateY(-100%);
+    opacity: 0.72;
+    transform: translateX(-50%) scale(0.82);
   }
 
-  55%,
+  50% {
+    opacity: 1;
+    transform: translateX(-50%) scale(1.16);
+  }
+
   100% {
-    transform: translateY(100%);
+    opacity: 0.72;
+    transform: translateX(-50%) scale(0.82);
   }
 }
 
@@ -1774,8 +1788,11 @@ blockquote::before {
     margin-top: 30px;
   }
 
-  .heroMolecule {
-    width: min(160px, 46vw);
+  .heroGraphene {
+    width: min(220px, 62vw);
+    height: 136px;
+    min-height: 118px;
+    margin-bottom: -10px;
   }
 
   .section {

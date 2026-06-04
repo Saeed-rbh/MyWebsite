@@ -1,9 +1,16 @@
-import React, { useEffect, useMemo, useRef, useState } from "react";
+import React, { Suspense, useEffect, useMemo, useRef, useState } from "react";
+import { Canvas, useFrame } from "@react-three/fiber";
+import { useGLTF } from "@react-three/drei";
+import * as THREE from "three";
 import { Link } from "react-router-dom";
 import SEO from "../../components/SEO/SEO";
 import styles from "./WorkStory.module.css";
 
 const chain = ["Materials Scientist", "2D & Advanced Materials", "Characterization", "CFD", "Thermal Management"];
+
+const grapheneModelUrls = ["/grapheneNew1.gltf", "/grapheneNew2.gltf", "/grapheneNew3.gltf"];
+
+grapheneModelUrls.forEach((url) => useGLTF.preload(url));
 
 const navItems = [
   { id: "gap", label: "Gap" },
@@ -235,24 +242,59 @@ const TypeField = ({ items }) => (
   </div>
 );
 
-const HeroMolecule = () => (
-  <svg className={styles.heroMolecule} viewBox="0 0 220 160" aria-hidden="true">
-    <path d="M54 92 L82 68 L116 72 L148 50 L178 70" />
-    <path d="M82 68 L92 104 L130 112 L148 50" />
-    <path d="M54 92 L78 122 L130 112 L178 70" />
-    <path d="M92 104 L116 72 L150 98" />
-    <g>
-      <circle cx="54" cy="92" r="7" />
-      <circle cx="82" cy="68" r="8" />
-      <circle cx="116" cy="72" r="7" />
-      <circle cx="148" cy="50" r="8" />
-      <circle cx="178" cy="70" r="7" />
-      <circle cx="78" cy="122" r="7" />
-      <circle cx="92" cy="104" r="8" />
-      <circle cx="130" cy="112" r="7" />
-      <circle cx="150" cy="98" r="6" />
-    </g>
-  </svg>
+const HeroGrapheneLayer = ({ url, position, rotation, scale, delay = 0 }) => {
+  const groupRef = useRef(null);
+  const { scene } = useGLTF(url);
+
+  const model = useMemo(() => {
+    const clone = scene.clone(true);
+    clone.traverse((child) => {
+      if (!child.isMesh) return;
+      child.material = new THREE.MeshStandardMaterial({
+        color: "#f2d5c5",
+        emissive: "#c88d70",
+        emissiveIntensity: 0.22,
+        roughness: 0.4,
+        metalness: 0.12,
+      });
+    });
+    return clone;
+  }, [scene]);
+
+  useFrame(({ clock }) => {
+    if (!groupRef.current) return;
+    const time = clock.elapsedTime + delay;
+    groupRef.current.rotation.x = rotation[0] + Math.sin(time * 0.38) * 0.08;
+    groupRef.current.rotation.y = rotation[1] + Math.sin(time * 0.48) * 0.16;
+    groupRef.current.rotation.z = rotation[2] + time * 0.1;
+  });
+
+  return (
+    <group ref={groupRef} position={position} rotation={rotation} scale={scale}>
+      <primitive object={model} />
+    </group>
+  );
+};
+
+const HeroGraphene = () => (
+  <div className={styles.heroGraphene} aria-hidden="true">
+    <Canvas
+      camera={{ position: [0, 0, 6.5], fov: 38 }}
+      gl={{ alpha: true, antialias: true }}
+      dpr={[1, 1.7]}
+    >
+      <Suspense fallback={null}>
+        <ambientLight intensity={1.15} />
+        <pointLight position={[0, 2.6, 3.5]} intensity={3.2} color="#f0c1a9" />
+        <pointLight position={[-2.4, -1.5, 2.4]} intensity={1.2} color="#d49d81" />
+        <group position={[-0.8, -0.55, 0]} rotation={[-0.92, 0.1, -0.18]} scale={0.82}>
+          <HeroGrapheneLayer url={grapheneModelUrls[0]} position={[0, 0, 0]} rotation={[0, 0, 0]} scale={0.62} />
+          <HeroGrapheneLayer url={grapheneModelUrls[1]} position={[0.12, 0.08, -0.12]} rotation={[0.02, 0.08, 0.12]} scale={0.62} delay={0.7} />
+          <HeroGrapheneLayer url={grapheneModelUrls[2]} position={[-0.1, -0.08, 0.12]} rotation={[-0.02, -0.08, -0.1]} scale={0.62} delay={1.4} />
+        </group>
+      </Suspense>
+    </Canvas>
+  </div>
 );
 
 const WorkStory = () => {
@@ -298,7 +340,7 @@ const WorkStory = () => {
         <header className={styles.hero} data-reveal>
           <div className={styles.heroFrame}>
             <div className={styles.heroCopy}>
-              <HeroMolecule />
+              <HeroGraphene />
               <h1>
                 <span>Material R&D Journey</span>
               </h1>
@@ -313,8 +355,8 @@ const WorkStory = () => {
               </div>
 
               <a className={styles.heroScrollCue} href="#gap" aria-label="Scroll to the story">
-                <span>Scroll</span>
                 <i />
+                <span>Scroll</span>
               </a>
             </div>
           </div>
