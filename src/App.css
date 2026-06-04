@@ -10,6 +10,7 @@ body {
   overflow-x: hidden;
   /* Hide horizontal scrollbar */
   margin: 0;
+  background-color: #000000;
 }
 
 #root {
@@ -39,6 +40,7 @@ body {
   position: fixed;
   z-index: -100;
   overflow: hidden;
+  opacity: 0.8;
 }
 
 .App-logo {
