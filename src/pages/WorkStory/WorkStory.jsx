@@ -353,13 +353,12 @@ const WorkStory = () => {
                   </span>
                 ))}
               </div>
-
-              <a className={styles.heroScrollCue} href="#gap" aria-label="Scroll to the story">
-                <i />
-                <span>Scroll</span>
-              </a>
             </div>
           </div>
+          <a className={styles.heroScrollCue} href="#gap" aria-label="Scroll to the story">
+            <i />
+            <span>Scroll</span>
+          </a>
         </header>
 
         <div className={styles.storyGrid}>

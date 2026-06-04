@@ -81,6 +81,8 @@
 }
 
 .hero {
+  position: relative;
+  box-sizing: border-box;
   min-height: 100svh;
   display: flex;
   align-items: center;
@@ -266,13 +268,15 @@
 }
 
 .heroScrollCue {
-  position: relative;
-  z-index: 1;
+  position: absolute;
+  left: 50%;
+  bottom: clamp(14px, 3.2vh, 30px);
+  z-index: 3;
   width: fit-content;
   display: grid;
   place-items: center;
   gap: 12px;
-  margin-top: clamp(22px, 4.8vh, 52px);
+  margin: 0;
   color: rgba(255, 255, 255, 0.72);
   text-decoration: none;
   font-family: "Poppins", sans-serif;
@@ -280,23 +284,38 @@
   font-weight: 800;
   letter-spacing: 0.18em;
   text-transform: uppercase;
+  transform: translateX(-50%);
 }
 
 .heroScrollCue i {
   position: relative;
   width: 1px;
-  height: 82px;
+  height: clamp(70px, 10vh, 94px);
   display: inline-block;
   overflow: visible;
-  background: linear-gradient(180deg, rgba(255, 245, 237, 0.04), rgba(240, 193, 169, 0.74) 72%, rgba(255, 245, 237, 0.42));
-  box-shadow: 0 0 18px rgba(240, 193, 169, 0.28);
+  background: linear-gradient(180deg, rgba(255, 245, 237, 0.04), rgba(240, 193, 169, 0.26), rgba(255, 245, 237, 0.08));
+  box-shadow: 0 0 12px rgba(240, 193, 169, 0.18);
 }
 
 .heroScrollCue i::before {
   content: "";
   position: absolute;
+  left: 0;
+  top: -44px;
+  width: 1px;
+  height: 44px;
+  background: linear-gradient(180deg, transparent, #ffe7d5 42%, var(--story-accent), transparent);
+  box-shadow:
+    0 0 12px rgba(255, 231, 213, 0.82),
+    0 0 26px rgba(212, 157, 129, 0.58);
+  animation: scrollLineDown 1.85s ease-in-out infinite;
+}
+
+.heroScrollCue i::after {
+  content: "";
+  position: absolute;
   left: 50%;
-  bottom: -5px;
+  bottom: 0;
   width: 10px;
   height: 10px;
   border-radius: 50%;
@@ -1384,6 +1403,26 @@ blockquote::before {
   }
 }
 
+@keyframes scrollLineDown {
+  0% {
+    opacity: 0;
+    transform: translateY(0);
+  }
+
+  16% {
+    opacity: 1;
+  }
+
+  72% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+    transform: translateY(calc(clamp(70px, 10vh, 94px) + 44px));
+  }
+}
+
 @keyframes nodePulse {
   0%,
   100% {
@@ -1580,7 +1619,7 @@ blockquote::before {
   }
 
   .heroScrollCue {
-    margin-top: clamp(34px, 7vh, 58px);
+    bottom: clamp(10px, 2.4vh, 22px);
   }
 
   .chain {
@@ -1785,7 +1824,9 @@ blockquote::before {
   }
 
   .heroScrollCue {
-    margin-top: 30px;
+    bottom: 10px;
+    gap: 9px;
+    font-size: 0.62rem;
   }
 
   .heroGraphene {
