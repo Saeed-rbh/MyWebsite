@@ -2,9 +2,7 @@ import React, { useEffect, useMemo, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import SEO from "../../components/SEO/SEO";
 import styles from "./WorkStory.module.css";
-import bgGlow from '../../assets/bg-glow.svg';
 import glowingCircle from '../../assets/glowing_circle.svg';
-import particleFrame from '../../assets/particle-frame.svg';
 
 
 const chain = ["Materials Scientist", "2D & Advanced Materials", "Characterization", "CFD", "Thermal Management"];
