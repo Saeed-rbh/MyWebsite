@@ -235,6 +235,26 @@ const TypeField = ({ items }) => (
   </div>
 );
 
+const HeroMolecule = () => (
+  <svg className={styles.heroMolecule} viewBox="0 0 220 160" aria-hidden="true">
+    <path d="M54 92 L82 68 L116 72 L148 50 L178 70" />
+    <path d="M82 68 L92 104 L130 112 L148 50" />
+    <path d="M54 92 L78 122 L130 112 L178 70" />
+    <path d="M92 104 L116 72 L150 98" />
+    <g>
+      <circle cx="54" cy="92" r="7" />
+      <circle cx="82" cy="68" r="8" />
+      <circle cx="116" cy="72" r="7" />
+      <circle cx="148" cy="50" r="8" />
+      <circle cx="178" cy="70" r="7" />
+      <circle cx="78" cy="122" r="7" />
+      <circle cx="92" cy="104" r="8" />
+      <circle cx="130" cy="112" r="7" />
+      <circle cx="150" cy="98" r="6" />
+    </g>
+  </svg>
+);
+
 const WorkStory = () => {
   const scrollRef = useRef(null);
   const { activeSection, progress, showSideNav, handleScroll } = useWorkStoryEffects(scrollRef);
@@ -271,18 +291,18 @@ const WorkStory = () => {
           ))}
         </aside>
 
-        <div className={styles.mobileSectionLabel}>
+        <div className={`${styles.mobileSectionLabel} ${showSideNav ? styles.showMobileSectionLabel : ""}`}>
           <span>{navItems[Math.max(activeIndex, 0)]?.label}</span>
         </div>
 
         <header className={styles.hero} data-reveal>
           <div className={styles.heroFrame}>
             <div className={styles.heroCopy}>
-              <span className={styles.eyebrow}>Materials R&D Journey</span>
+              <HeroMolecule />
               <h1>
-                <span>Lab to</span>
-                <span>Manufacturing</span>
+                <span>Material R&D Journey</span>
               </h1>
+              <p>Lab to Manufacturing</p>
 
               <div className={styles.chain} aria-label="R&D skills">
                 {chain.map((item, index) => (

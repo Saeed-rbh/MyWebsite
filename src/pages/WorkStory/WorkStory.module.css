@@ -84,7 +84,8 @@
   min-height: 100svh;
   display: flex;
   align-items: center;
-  padding: 34px 0 34px;
+  justify-content: center;
+  padding: 38px 0 34px;
   scroll-snap-align: start;
   scroll-snap-stop: always;
   opacity: 0;
@@ -95,50 +96,61 @@
 .heroFrame {
   position: relative;
   width: 100%;
-  min-height: min(520px, calc(100svh - 68px));
+  min-height: min(660px, calc(100svh - 72px));
   display: grid;
   grid-template-columns: minmax(0, 1fr);
   gap: 0;
-  align-items: center;
+  place-items: center;
   overflow: visible;
-  padding: clamp(8px, 2.8vw, 28px) 0;
+  padding: clamp(18px, 4vw, 48px) 0;
   perspective: 1200px;
 }
 
 .heroCopy {
   position: relative;
-  z-index: 1;
-  max-width: min(1020px, 78vw);
+  z-index: 2;
+  width: min(1040px, 92vw);
+  display: grid;
+  place-items: center;
+  text-align: center;
 }
 
 .heroFrame::before {
-  content: "R&D";
+  content: "";
   position: absolute;
-  right: 4vw;
-  top: 48%;
-  z-index: 0;
-  font-family: "Poppins", sans-serif;
-  font-size: clamp(90px, 14vw, 210px);
-  font-weight: 800;
-  line-height: 0.78;
-  letter-spacing: -0.09em;
-  color: rgba(255, 255, 255, 0.024);
-  transform: translateY(-50%);
+  left: 50%;
+  top: 43%;
+  z-index: 1;
+  width: min(620px, 74vw);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle, rgba(212, 157, 129, 0.18) 0 24%, rgba(212, 157, 129, 0.06) 42%, transparent 68%),
+    conic-gradient(from 220deg, transparent 0 14%, rgba(240, 193, 169, 0.64), transparent 38% 100%);
+  box-shadow:
+    0 0 58px rgba(212, 157, 129, 0.24),
+    inset 0 0 62px rgba(240, 193, 169, 0.1);
+  opacity: 0.92;
+  filter: blur(0.5px);
+  transform: translate(-50%, -50%);
   pointer-events: none;
-  animation: ghostWord 8s ease-in-out infinite;
+  animation: haloBreath 7s ease-in-out infinite;
 }
 
 .heroFrame::after {
   content: "";
   position: absolute;
-  left: 0;
-  bottom: 4px;
-  width: min(820px, 64vw);
-  height: 2px;
-  background: linear-gradient(90deg, var(--story-accent), transparent);
-  transform-origin: left;
+  left: 50%;
+  top: 43%;
+  z-index: 1;
+  width: min(420px, 58vw);
+  aspect-ratio: 1;
+  border: 1px solid rgba(212, 157, 129, 0.26);
+  border-radius: 50%;
+  box-shadow: 0 0 28px rgba(212, 157, 129, 0.12);
+  transform: translate(-50%, -50%);
   pointer-events: none;
-  animation: lineDraw 1.4s 0.35s cubic-bezier(0.25, 0.8, 0.25, 1) both;
+  animation: haloSpin 18s linear infinite;
 }
 
 .eyebrow,
@@ -155,18 +167,17 @@
 .hero h1 {
   position: relative;
   z-index: 1;
-  max-width: 1020px;
-  margin: 16px 0 0;
-  font-family: "Poppins", sans-serif;
-  font-size: clamp(50px, 6.4vw, 94px);
-  font-weight: 800;
-  line-height: 0.94;
-  letter-spacing: -0.035em;
-  word-spacing: 0.09em;
-  text-transform: uppercase;
+  max-width: 980px;
+  margin: 12px 0 0;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(42px, 5vw, 72px);
+  font-weight: 700;
+  line-height: 1.08;
+  letter-spacing: -0.02em;
+  text-transform: none;
   overflow-wrap: normal;
   word-break: normal;
-  background: linear-gradient(115deg, #ffffff 0%, #ffffff 35%, #d49d81 58%, #777777 100%);
+  background: linear-gradient(115deg, #fff4e8 0%, #f3d8c8 54%, #b98c75 100%);
   background-size: 220% 100%;
   -webkit-background-clip: text;
   background-clip: text;
@@ -183,12 +194,13 @@
 .hero p {
   position: relative;
   z-index: 1;
-  max-width: 480px;
-  margin: 18px 0 0;
-  color: var(--story-muted);
-  font-size: clamp(15px, 1.45vw, 19px);
-  line-height: 1.45;
+  max-width: 520px;
+  margin: 14px 0 0;
+  color: rgba(255, 245, 237, 0.86);
+  font-size: clamp(20px, 2.1vw, 32px);
+  line-height: 1.35;
   font-weight: 400;
+  white-space: nowrap;
 }
 
 .chain,
@@ -197,36 +209,71 @@
   z-index: 1;
   display: flex;
   flex-wrap: wrap;
-  gap: 10px;
-  margin-top: 30px;
+  justify-content: center;
+  gap: 0;
+  margin-top: 28px;
 }
 
 .chain span,
 .finalChain span {
-  border: 1px solid rgba(212, 157, 129, 0.18);
-  border-radius: 999px;
-  padding: 8px 12px;
-  color: rgba(255, 255, 255, 0.82);
-  background: rgba(255, 255, 255, 0.035);
+  position: relative;
+  border: 0;
+  border-radius: 0;
+  padding: 0 14px;
+  color: rgba(255, 245, 237, 0.62);
+  background: transparent;
   box-shadow: none;
   font-family: "Poppins", sans-serif;
-  font-size: 0.78rem;
-  font-weight: 700;
-  letter-spacing: 0.045em;
+  font-size: clamp(0.72rem, 1vw, 0.9rem);
+  font-weight: 400;
+  letter-spacing: 0.06em;
   word-spacing: 0.04em;
   text-transform: uppercase;
   animation: pillIn 720ms cubic-bezier(0.25, 0.8, 0.25, 1) both;
   animation-delay: var(--delay, 0ms);
 }
 
+.chain span:not(:last-child)::after,
+.finalChain span:not(:last-child)::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  top: 15%;
+  width: 1px;
+  height: 70%;
+  background: rgba(212, 157, 129, 0.42);
+}
+
+.heroMolecule {
+  position: relative;
+  z-index: 2;
+  width: min(220px, 34vw);
+  height: auto;
+  overflow: visible;
+  color: var(--story-accent);
+  filter: drop-shadow(0 0 22px rgba(240, 193, 169, 0.36));
+}
+
+.heroMolecule path {
+  fill: none;
+  stroke: rgba(240, 193, 169, 0.38);
+  stroke-width: 1.2;
+}
+
+.heroMolecule circle {
+  fill: rgba(255, 239, 226, 0.92);
+  stroke: rgba(212, 157, 129, 0.56);
+  stroke-width: 1.1;
+}
+
 .heroScrollCue {
   position: relative;
   z-index: 1;
   width: fit-content;
-  display: inline-flex;
-  align-items: center;
-  gap: 12px;
-  margin-top: clamp(46px, 8vh, 82px);
+  display: grid;
+  place-items: center;
+  gap: 10px;
+  margin-top: clamp(34px, 6vh, 64px);
   color: rgba(255, 255, 255, 0.72);
   text-decoration: none;
   font-family: "Poppins", sans-serif;
@@ -239,7 +286,7 @@
 .heroScrollCue i {
   position: relative;
   width: 1px;
-  height: 48px;
+  height: 78px;
   display: inline-block;
   overflow: hidden;
   background: rgba(255, 255, 255, 0.14);
@@ -1280,6 +1327,25 @@ blockquote::before {
   }
 }
 
+@keyframes haloBreath {
+  0%,
+  100% {
+    opacity: 0.76;
+    transform: translate(-50%, -50%) scale(0.96);
+  }
+
+  50% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1.04);
+  }
+}
+
+@keyframes haloSpin {
+  to {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
+
 @keyframes pulseBar {
   0%,
   100% {
@@ -1453,41 +1519,44 @@ blockquote::before {
   }
 
   .heroFrame {
-    min-height: auto;
+    min-height: min(640px, calc(100svh - 48px));
     grid-template-columns: 1fr;
     border-radius: 0;
-    padding: 6px 8px 16px;
+    padding: 18px 8px 18px;
   }
 
   .heroCopy {
+    width: min(100%, 680px);
     max-width: 100%;
   }
 
   .heroFrame::before {
-    top: 20px;
-    right: 0;
-    font-size: clamp(62px, 21vw, 112px);
-    transform: none;
+    left: 50%;
+    top: 42%;
+    width: min(560px, 86vw);
+    transform: translate(-50%, -50%);
   }
 
   .heroFrame::after {
-    bottom: 12px;
-    width: min(360px, 72vw);
+    left: 50%;
+    top: 42%;
+    width: min(380px, 66vw);
+    transform: translate(-50%, -50%);
   }
 
   .hero h1 {
-    max-width: 12ch;
+    max-width: 100%;
     margin-top: 10px;
-    font-size: clamp(36px, 8.4vw, 62px);
-    line-height: 1;
+    font-size: clamp(34px, 7.8vw, 56px);
+    line-height: 1.08;
     letter-spacing: -0.02em;
-    word-spacing: 0.08em;
+    word-spacing: 0.04em;
   }
 
   .hero p {
-    max-width: 24ch;
+    max-width: 100%;
     margin-top: 10px;
-    font-size: clamp(0.86rem, 2.3vw, 0.98rem);
+    font-size: clamp(1rem, 3.2vw, 1.4rem);
     line-height: 1.36;
   }
 
@@ -1501,12 +1570,15 @@ blockquote::before {
   }
 
   .chain {
-    gap: 7px 10px;
+    justify-content: center;
+    gap: 0;
+    max-width: 640px;
   }
 
   .chain span {
-    font-size: 0.76rem;
-    letter-spacing: 0.045em;
+    padding: 0 10px;
+    font-size: clamp(0.62rem, 1.8vw, 0.76rem);
+    letter-spacing: 0.04em;
   }
 
   .heroActions {
@@ -1545,7 +1617,7 @@ blockquote::before {
     position: sticky;
     top: 8px;
     z-index: 10;
-    display: flex;
+    display: none;
     width: fit-content;
     margin: 12px auto 0;
     border: 0;
@@ -1560,6 +1632,10 @@ blockquote::before {
     font-weight: 700;
     letter-spacing: 0.08em;
     text-transform: uppercase;
+  }
+
+  .showMobileSectionLabel {
+    display: flex;
   }
 
   .processMap,
@@ -1656,14 +1732,14 @@ blockquote::before {
 
   .hero h1 {
     max-width: 100%;
-    font-size: clamp(28px, 7.2vw, 36px);
+    font-size: clamp(28px, 8vw, 40px);
     line-height: 1.04;
     letter-spacing: -0.01em;
     word-spacing: 0.06em;
   }
 
   .hero h1 span {
-    display: block;
+    display: inline-block;
   }
 
   .eyebrow {
@@ -1672,8 +1748,9 @@ blockquote::before {
   }
 
   .hero p {
-    max-width: 20ch;
+    max-width: 100%;
     margin-top: 8px;
+    font-size: clamp(1rem, 5vw, 1.35rem);
   }
 
   .hero p,
@@ -1695,6 +1772,10 @@ blockquote::before {
 
   .heroScrollCue {
     margin-top: 30px;
+  }
+
+  .heroMolecule {
+    width: min(160px, 46vw);
   }
 
   .section {
