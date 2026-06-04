@@ -97,6 +97,7 @@
 
 .heroFrame {
   position: relative;
+  box-sizing: border-box;
   width: 100%;
   min-height: min(660px, calc(100svh - 72px));
   display: grid;
@@ -288,12 +289,17 @@
 }
 
 .heroScrollCue i {
+  --scroll-line-height: clamp(72px, 10vh, 96px);
+  --scroll-dot-size: 8px;
+  --scroll-glow-size: 34px;
   position: relative;
   width: 1px;
-  height: clamp(70px, 10vh, 94px);
+  height: calc(var(--scroll-line-height) + var(--scroll-dot-size));
   display: inline-block;
   overflow: visible;
-  background: linear-gradient(180deg, rgba(255, 245, 237, 0.04), rgba(240, 193, 169, 0.26), rgba(255, 245, 237, 0.08));
+  background:
+    linear-gradient(180deg, rgba(255, 245, 237, 0.04), rgba(240, 193, 169, 0.26), rgba(255, 245, 237, 0.08))
+    top center / 1px var(--scroll-line-height) no-repeat;
   box-shadow: 0 0 12px rgba(240, 193, 169, 0.18);
 }
 
@@ -301,14 +307,14 @@
   content: "";
   position: absolute;
   left: 0;
-  top: -44px;
+  top: calc(var(--scroll-glow-size) * -1);
   width: 1px;
-  height: 44px;
+  height: var(--scroll-glow-size);
   background: linear-gradient(180deg, transparent, #ffe7d5 42%, var(--story-accent), transparent);
   box-shadow:
     0 0 12px rgba(255, 231, 213, 0.82),
     0 0 26px rgba(212, 157, 129, 0.58);
-  animation: scrollLineDown 1.85s ease-in-out infinite;
+  animation: scrollLineDown 2.45s cubic-bezier(0.42, 0, 0.18, 1) infinite;
 }
 
 .heroScrollCue i::after {
@@ -316,15 +322,16 @@
   position: absolute;
   left: 50%;
   bottom: 0;
-  width: 10px;
-  height: 10px;
+  width: var(--scroll-dot-size);
+  height: var(--scroll-dot-size);
   border-radius: 50%;
   background: #ffe7d5;
   box-shadow:
-    0 0 12px rgba(255, 231, 213, 0.88),
-    0 0 28px rgba(212, 157, 129, 0.64);
-  transform: translateX(-50%);
-  animation: scrollDot 1.8s ease-in-out infinite;
+    0 0 9px rgba(255, 231, 213, 0.76),
+    0 0 20px rgba(212, 157, 129, 0.5);
+  opacity: 0;
+  transform: translateX(-50%) scale(0.56);
+  animation: scrollDot 2.45s cubic-bezier(0.42, 0, 0.18, 1) infinite;
 }
 
 .heroActions {
@@ -1387,19 +1394,30 @@ blockquote::before {
 }
 
 @keyframes scrollDot {
-  0% {
-    opacity: 0.72;
-    transform: translateX(-50%) scale(0.82);
+  0%,
+  66% {
+    opacity: 0;
+    transform: translateX(-50%) scale(0.56);
   }
 
-  50% {
+  76% {
+    opacity: 0.68;
+    transform: translateX(-50%) scale(0.98);
+  }
+
+  86% {
     opacity: 1;
-    transform: translateX(-50%) scale(1.16);
+    transform: translateX(-50%) scale(1.72);
+  }
+
+  94% {
+    opacity: 0.64;
+    transform: translateX(-50%) scale(1.02);
   }
 
   100% {
-    opacity: 0.72;
-    transform: translateX(-50%) scale(0.82);
+    opacity: 0;
+    transform: translateX(-50%) scale(0.56);
   }
 }
 
@@ -1417,9 +1435,14 @@ blockquote::before {
     opacity: 1;
   }
 
+  86% {
+    opacity: 1;
+    transform: translateY(var(--scroll-line-height));
+  }
+
   100% {
     opacity: 0;
-    transform: translateY(calc(clamp(70px, 10vh, 94px) + 44px));
+    transform: translateY(var(--scroll-line-height));
   }
 }
 
@@ -1563,19 +1586,19 @@ blockquote::before {
 
   .hero,
   .storyGrid {
-    width: min(100vw - 28px, 720px);
+    width: min(100vw - 20px, 720px);
   }
 
   .hero {
     min-height: 100svh;
-    padding: 24px 0 12px;
+    padding: 16px 0 10px;
   }
 
   .heroFrame {
-    min-height: min(640px, calc(100svh - 48px));
+    min-height: calc(100svh - 26px);
     grid-template-columns: 1fr;
     border-radius: 0;
-    padding: 18px 8px 18px;
+    padding: clamp(10px, 2vh, 18px) 8px clamp(126px, 18vh, 164px);
   }
 
   .heroCopy {
@@ -1600,7 +1623,7 @@ blockquote::before {
   .hero h1 {
     max-width: 100%;
     margin-top: 10px;
-    font-size: clamp(34px, 7.8vw, 56px);
+    font-size: clamp(30px, 6.4vw, 46px);
     line-height: 1.08;
     letter-spacing: -0.02em;
     word-spacing: 0.04em;
@@ -1609,7 +1632,7 @@ blockquote::before {
   .hero p {
     max-width: 100%;
     margin-top: 10px;
-    font-size: clamp(1rem, 3.2vw, 1.4rem);
+    font-size: clamp(0.96rem, 2.8vw, 1.28rem);
     line-height: 1.36;
   }
 
@@ -1625,7 +1648,7 @@ blockquote::before {
   .chain {
     justify-content: center;
     gap: 0;
-    max-width: 640px;
+    max-width: 560px;
   }
 
   .chain span {
@@ -1768,6 +1791,61 @@ blockquote::before {
   }
 }
 
+@media only screen and (max-width: 640px) {
+  .hero,
+  .storyGrid {
+    width: calc(100vw - 18px);
+  }
+
+  .heroFrame {
+    padding: 6px 6px clamp(126px, 18vh, 150px);
+  }
+
+  .heroGraphene {
+    width: min(230px, 54vw);
+    height: clamp(116px, 28vw, 146px);
+    min-height: 112px;
+    margin-bottom: -12px;
+  }
+
+  .hero h1 {
+    max-width: 96vw;
+    font-size: clamp(26px, 6.9vw, 36px);
+    line-height: 1.08;
+    letter-spacing: -0.01em;
+  }
+
+  .hero p {
+    margin-top: 7px;
+    font-size: clamp(0.92rem, 3.7vw, 1.08rem);
+  }
+
+  .chain {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    width: min(100%, 380px);
+    gap: 6px 0;
+    margin-top: 14px;
+  }
+
+  .chain span {
+    min-height: 0;
+    padding: 0 8px;
+    font-size: clamp(0.54rem, 2.2vw, 0.64rem);
+    line-height: 1.18;
+    letter-spacing: 0.035em;
+    text-align: center;
+  }
+
+  .chain span:first-child {
+    grid-column: 1 / -1;
+  }
+
+  .chain span::after {
+    display: none;
+  }
+}
+
 @media only screen and (max-width: 520px) {
   .page {
     padding-bottom: 0;
@@ -1785,7 +1863,7 @@ blockquote::before {
 
   .hero h1 {
     max-width: 100%;
-    font-size: clamp(28px, 8vw, 40px);
+    font-size: clamp(25px, 7vw, 32px);
     line-height: 1.04;
     letter-spacing: -0.01em;
     word-spacing: 0.06em;
@@ -1827,6 +1905,12 @@ blockquote::before {
     bottom: 10px;
     gap: 9px;
     font-size: 0.62rem;
+  }
+
+  .heroScrollCue i {
+    --scroll-line-height: clamp(62px, 9vh, 78px);
+    --scroll-dot-size: 7px;
+    --scroll-glow-size: 30px;
   }
 
   .heroGraphene {
