@@ -184,12 +184,13 @@
   text-transform: none;
   overflow-wrap: normal;
   word-break: normal;
-  background: linear-gradient(115deg, #fff4e8 0%, #f3d8c8 54%, #b98c75 100%);
-  background-size: 220% 100%;
+  background:
+    linear-gradient(112deg, #fffaf2 0%, #f7ddce 28%, #d49d81 48%, #fff4e8 68%, #a87963 100%);
+  background-size: 280% 100%;
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
-  animation: titleSweep 5.5s ease-in-out infinite;
+  animation: titleSweep 7.5s cubic-bezier(0.45, 0, 0.25, 1) infinite;
   will-change: background-position;
 }
 
@@ -276,14 +277,14 @@
   width: fit-content;
   display: grid;
   place-items: center;
-  gap: 12px;
+  gap: 10px;
   margin: 0;
-  color: rgba(255, 255, 255, 0.72);
+  color: rgba(240, 193, 169, 0.74);
   text-decoration: none;
   font-family: "Poppins", sans-serif;
-  font-size: 0.72rem;
-  font-weight: 800;
-  letter-spacing: 0.18em;
+  font-size: 0.66rem;
+  font-weight: 400;
+  letter-spacing: 0.24em;
   text-transform: uppercase;
   transform: translateX(-50%);
 }
@@ -327,11 +328,11 @@
   border-radius: 50%;
   background: #ffe7d5;
   box-shadow:
-    0 0 9px rgba(255, 231, 213, 0.76),
-    0 0 20px rgba(212, 157, 129, 0.5);
+    0 0 7px rgba(255, 231, 213, 0.62),
+    0 0 16px rgba(212, 157, 129, 0.42);
   opacity: 0;
-  transform: translateX(-50%) scale(0.56);
-  animation: scrollDot 2.45s cubic-bezier(0.42, 0, 0.18, 1) infinite;
+  transform: translateX(-50%) scale(0.86);
+  animation: scrollDot 2.45s ease-in-out infinite;
 }
 
 .heroActions {
@@ -1395,29 +1396,19 @@ blockquote::before {
 
 @keyframes scrollDot {
   0%,
-  66% {
+  68% {
     opacity: 0;
-    transform: translateX(-50%) scale(0.56);
+    transform: translateX(-50%) scale(0.86);
   }
 
-  76% {
-    opacity: 0.68;
-    transform: translateX(-50%) scale(0.98);
-  }
-
-  86% {
-    opacity: 1;
-    transform: translateX(-50%) scale(1.72);
-  }
-
-  94% {
-    opacity: 0.64;
-    transform: translateX(-50%) scale(1.02);
+  84% {
+    opacity: 0.92;
+    transform: translateX(-50%) scale(1.08);
   }
 
   100% {
     opacity: 0;
-    transform: translateX(-50%) scale(0.56);
+    transform: translateX(-50%) scale(0.86);
   }
 }
 
