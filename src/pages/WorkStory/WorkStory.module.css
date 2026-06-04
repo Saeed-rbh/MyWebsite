@@ -122,20 +122,20 @@
   content: "";
   position: absolute;
   left: 50%;
-  top: 36%;
+  top: 38%;
   z-index: 1;
   width: min(620px, 68vw);
   aspect-ratio: 1;
   border-radius: 50%;
   background: radial-gradient(
-    circle at 50% 35%,
-    rgba(212, 157, 129, 0.26) 0%,
-    rgba(212, 157, 129, 0.14) 30%,
-    rgba(212, 157, 129, 0.04) 55%,
-    transparent 75%
+    circle at 50% 45%,
+    rgba(212, 157, 129, 0.28) 0%,
+    rgba(212, 157, 129, 0.14) 35%,
+    rgba(212, 157, 129, 0.04) 60%,
+    transparent 80%
   );
   opacity: 0.9;
-  filter: blur(40px);
+  filter: blur(45px);
   transform: translate(-50%, -50%);
   pointer-events: none;
   animation: haloBreath 7s ease-in-out infinite;
@@ -145,21 +145,19 @@
   content: "";
   position: absolute;
   left: 50%;
-  top: 36%;
+  top: 38%;
   z-index: 1;
-  width: min(460px, 50vw);
+  width: min(480px, 52vw);
   aspect-ratio: 1;
   border-radius: 50%;
-  background: radial-gradient(
-    circle at 50% 28%,
-    transparent 35%,
-    rgba(255, 226, 205, 0.28) 46%,
-    rgba(212, 157, 129, 0.1) 56%,
-    transparent 70%
-  );
-  filter: blur(12px);
+  background: 
+    radial-gradient(ellipse at 50% 12%, rgba(255, 255, 255, 0.48) 0%, rgba(255, 226, 205, 0.25) 15%, transparent 45%),
+    radial-gradient(circle, transparent 46.5%, rgba(212, 157, 129, 0.16) 47.5%, rgba(255, 226, 205, 0.65) 50%, rgba(212, 157, 129, 0.16) 52.5%, transparent 53.5%);
+  filter: blur(5px);
   transform: translate(-50%, -50%);
   pointer-events: none;
+  mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0.82) 40%, rgba(0, 0, 0, 0.24) 80%, rgba(0, 0, 0, 0.08) 100%);
+  -webkit-mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0.82) 40%, rgba(0, 0, 0, 0.24) 80%, rgba(0, 0, 0, 0.08) 100%);
 }
 
 .eyebrow,
@@ -1708,14 +1706,14 @@ blockquote::before {
 
   .heroFrame::before {
     left: 50%;
-    top: 36%;
+    top: 38%;
     width: min(540px, 82vw);
     transform: translate(-50%, -50%);
   }
 
   .heroFrame::after {
     left: 50%;
-    top: 36%;
+    top: 38%;
     width: min(390px, 60vw);
     transform: translate(-50%, -50%);
   }
