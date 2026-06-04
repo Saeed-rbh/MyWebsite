@@ -292,18 +292,19 @@
 .grapheneSpirals path {
   fill: none;
   stroke: url(#spiralGrad);
-  stroke-width: 0.8;
-  opacity: 0.65;
+  stroke-width: 1.8;
+  opacity: 0.72;
+  filter: url(#spiralGlowFilter);
 }
 
 .grapheneSpirals path:nth-child(3n) {
-  stroke-width: 1.1;
-  opacity: 0.85;
+  stroke-width: 2.5;
+  opacity: 0.9;
 }
 
 .grapheneSpirals path:nth-child(3n+1) {
-  stroke-width: 0.55;
-  opacity: 0.48;
+  stroke-width: 1.2;
+  opacity: 0.58;
 }
 
 .grapheneBonds line {

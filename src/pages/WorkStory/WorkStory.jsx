@@ -264,6 +264,13 @@ const HeroGraphene = () => (
             <feMergeNode in="SourceGraphic" />
           </feMerge>
         </filter>
+        <filter id="spiralGlowFilter" x="-100%" y="-100%" width="300%" height="300%">
+          <feGaussianBlur in="SourceGraphic" stdDeviation="1.8" result="blur" />
+          <feMerge>
+            <feMergeNode in="blur" />
+            <feMergeNode in="SourceGraphic" />
+          </feMerge>
+        </filter>
       </defs>
       <g>
         {/* Spiral lines behind the graphene */}
