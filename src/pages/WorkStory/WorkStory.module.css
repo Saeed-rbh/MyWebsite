@@ -15,6 +15,7 @@
   --story-accent-faint: rgba(212, 157, 129, 0.08);
   --scroll-shift: 0px;
   --scroll-shift-alt: 0px;
+  --bg-opacity: 0.8;
   --parallax-ease: cubic-bezier(0.22, 1, 0.36, 1);
   position: absolute;
   inset: 0;
@@ -63,6 +64,21 @@
   transform: translate3d(0, var(--scroll-shift-alt), 0);
   will-change: transform;
   animation: particleDrift 20s linear infinite;
+}
+
+.glowingBg {
+  background-image: url("../../assets/glowing_circle.svg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100svh;
+  z-index: -50;
+  pointer-events: none;
+  opacity: var(--bg-opacity);
+  will-change: opacity;
 }
 
 .progressTrack {

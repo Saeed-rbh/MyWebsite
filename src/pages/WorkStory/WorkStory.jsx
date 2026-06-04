@@ -204,6 +204,10 @@ const useWorkStoryEffects = (scrollRef) => {
       root.style.setProperty("--scroll-progress", `${progressRatio}`);
       root.style.setProperty("--scroll-shift", `${root.scrollTop * -0.05}px`);
       root.style.setProperty("--scroll-shift-alt", `${root.scrollTop * 0.032}px`);
+      
+      const scrollRatio = root.scrollTop / root.clientHeight;
+      const bgOpacity = Math.max(0, 0.8 - (scrollRatio * 0.8));
+      root.style.setProperty("--bg-opacity", bgOpacity);
 
       const rootRect = root.getBoundingClientRect();
       const viewportCenter = root.clientHeight / 2;
@@ -405,6 +409,7 @@ const WorkStory = () => {
         exit={{ opacity: 0 }}
         transition={{ duration: 0.6, ease: "easeInOut" }}
       >
+        <div className={styles.glowingBg} aria-hidden="true" />
         <div className={styles.progressTrack} aria-hidden="true">
           <span style={{ width: `${progress}%` }} />
         </div>
