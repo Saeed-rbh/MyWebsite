@@ -1,4 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&display=swap");
 
 .page {
   --story-bg: #050505;
@@ -155,10 +156,10 @@
   position: relative;
   z-index: 1;
   max-width: 980px;
-  margin: 12px 0 0;
-  font-family: Georgia, "Times New Roman", serif;
-  font-size: clamp(42px, 5vw, 72px);
-  font-weight: 700;
+  margin: 8px 0 0;
+  font-family: "Playfair Display", Georgia, "Times New Roman", serif;
+  font-size: clamp(38px, 4.5vw, 68px);
+  font-weight: 500;
   line-height: 1.08;
   letter-spacing: -0.02em;
   text-transform: none;
@@ -180,9 +181,10 @@
   max-width: 520px;
   margin: 14px 0 0;
   color: #bfae9f;
-  font-size: clamp(20px, 2.1vw, 32px);
+  font-size: clamp(16px, 1.8vw, 22px);
   line-height: 1.35;
   font-weight: 400;
+  letter-spacing: 0.04em;
   white-space: nowrap;
 }
 
@@ -207,9 +209,9 @@
   background: transparent;
   box-shadow: none;
   font-family: "Poppins", sans-serif;
-  font-size: clamp(0.72rem, 1vw, 0.9rem);
+  font-size: clamp(0.6rem, 0.8vw, 0.72rem);
   font-weight: 400;
-  letter-spacing: 0.06em;
+  letter-spacing: 0.1em;
   word-spacing: 0.04em;
   text-transform: uppercase;
   animation: pillIn 720ms cubic-bezier(0.25, 0.8, 0.25, 1) both;
@@ -303,15 +305,13 @@
 }
 
 .heroScrollCue {
-  position: absolute;
-  left: 50%;
-  bottom: clamp(14px, 3.2vh, 30px);
+  position: relative;
   z-index: 3;
   width: fit-content;
-  display: grid;
-  place-items: center;
-  gap: 10px;
-  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 40px auto 0;
   color: rgba(240, 193, 169, 0.74);
   text-decoration: none;
   font-family: "Poppins", sans-serif;
@@ -319,7 +319,6 @@
   font-weight: 400;
   letter-spacing: 0.24em;
   text-transform: uppercase;
-  transform: translateX(-50%);
 }
 
 .heroScrollCue i {
