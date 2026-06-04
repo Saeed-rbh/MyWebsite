@@ -272,12 +272,6 @@
   width: 100%;
   height: 100%;
   overflow: visible;
-  animation: grapheneFloat 8s ease-in-out infinite;
-}
-
-.grapheneGroup {
-  transform-origin: 157px 150.7px;
-  animation: grapheneRotate 22s linear infinite;
 }
 
 .grapheneBonds line {
@@ -285,42 +279,39 @@
   stroke-width: 2;
   stroke-linecap: round;
   opacity: 0.72;
-  animation: bondPulse 4s ease-in-out infinite alternate;
-}
-
-.grapheneBonds line:nth-child(3n) {
-  animation-delay: -0.8s;
-}
-
-.grapheneBonds line:nth-child(3n+1) {
-  animation-delay: -1.6s;
-}
-
-.grapheneBonds line:nth-child(3n+2) {
-  animation-delay: -2.4s;
 }
 
 .grapheneAtoms circle {
   fill: #c7b299;
   stroke: #c69c6d;
   stroke-width: 1;
-  animation: atomGlow 3.5s ease-in-out infinite alternate;
 }
 
-.grapheneAtoms circle:nth-child(4n) {
-  animation-delay: -0.6s;
+.grapheneAtoms circle:nth-child(3),
+.grapheneAtoms circle:nth-child(7),
+.grapheneAtoms circle:nth-child(13),
+.grapheneAtoms circle:nth-child(18),
+.grapheneAtoms circle:nth-child(22) {
+  fill: #ffe2cd;
+  stroke: #f0c1a9;
+  filter: url(#nodeGlowFilter);
+  animation: atomGlow 4s ease-in-out infinite alternate;
 }
 
-.grapheneAtoms circle:nth-child(4n+1) {
-  animation-delay: -1.2s;
+.grapheneAtoms circle:nth-child(7) {
+  animation-delay: -1s;
 }
 
-.grapheneAtoms circle:nth-child(4n+2) {
-  animation-delay: -1.8s;
+.grapheneAtoms circle:nth-child(13) {
+  animation-delay: -2s;
 }
 
-.grapheneAtoms circle:nth-child(4n+3) {
-  animation-delay: -2.4s;
+.grapheneAtoms circle:nth-child(18) {
+  animation-delay: -3s;
+}
+
+.grapheneAtoms circle:nth-child(22) {
+  animation-delay: -0.5s;
 }
 
 .heroScrollCue {
@@ -1599,35 +1590,6 @@ blockquote::before {
 
   50% {
     opacity: 1;
-  }
-}
-
-@keyframes grapheneFloat {
-  0%, 100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-6px);
-  }
-}
-
-@keyframes grapheneRotate {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
-}
-
-@keyframes bondPulse {
-  0% {
-    opacity: 0.52;
-    stroke: #c69c6d;
-  }
-  100% {
-    opacity: 0.92;
-    stroke: #f0c1a9;
   }
 }
 

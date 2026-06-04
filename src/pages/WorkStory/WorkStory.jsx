@@ -270,7 +270,7 @@ const HeroGraphene = () => (
           </feMerge>
         </filter>
       </defs>
-      <g className={styles.grapheneGroup} filter="url(#svgGlowFilter)">
+      <g filter="url(#svgGlowFilter)">
         {/* Bonds (lines) */}
         <g className={styles.grapheneBonds}>
           <line x1="51" y1="37" x2="40" y2="19" />
