@@ -844,42 +844,55 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 24px;
-  background: rgba(0, 0, 0, 0.4);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  padding: 40px;
-  border-radius: 12px;
-  backdrop-filter: blur(10px);
+  gap: 32px;
+  padding: 0;
+  max-width: 800px;
+  text-align: center;
 }
 
 .gapLeadData {
   display: flex;
-  gap: 12px;
+  gap: 16px;
   align-items: center;
-  font-family: var(--font-mono);
-  font-size: 0.9rem;
-  letter-spacing: 0.1em;
+  font-family: "Poppins", sans-serif;
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
 }
 
 .dataLabel {
-  color: #888;
+  color: #bfae9f;
+  opacity: 0.6;
 }
 
 .dataValue {
-  color: var(--color-primary);
-  background: rgba(255, 107, 0, 0.1);
-  padding: 4px 8px;
-  border-radius: 4px;
+  color: #eddfd4;
+  background: transparent;
+  padding: 0;
+  border-radius: 0;
+  position: relative;
+}
+
+.dataValue::after {
+  content: "";
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, #d49d81, transparent);
 }
 
 .gapLeadText {
-  font-family: "Inter", sans-serif;
-  font-size: clamp(1.2rem, 3vw, 1.8rem);
+  font-family: "Playfair Display", Georgia, "Times New Roman", serif;
+  font-size: clamp(2rem, 4vw, 3.5rem);
   font-weight: 400;
-  line-height: 1.5;
-  color: #e0e0e0;
+  font-style: italic;
+  line-height: 1.3;
+  color: #fffaf2;
   margin: 0;
-  text-align: center;
+  text-shadow: 0 4px 24px rgba(0, 0, 0, 0.4);
 }
 
 .gapPillar {
