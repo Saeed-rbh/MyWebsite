@@ -376,19 +376,28 @@ const GapSection = ({ scrollRef }) => {
     initial: { opacity: 0, y: "20vh", scale: 1 },
     animate: {
       opacity: activeIndex === index ? 1 : 0,
-      y: activeIndex === index ? "0vh" : activeIndex > index ? "-10vh" : "20vh",
-      scale: activeIndex === index ? 1 : activeIndex > index ? 0.8 : 1,
+      y: activeIndex === index ? "0vh" : activeIndex > index ? "-13vh" : "18vh",
+      scale: activeIndex === index ? 1 : activeIndex > index ? 0.92 : 1.04,
+      filter: activeIndex === index ? "blur(0px)" : "blur(8px)",
       pointerEvents: activeIndex === index ? "auto" : "none"
     },
-    transition: { duration: 0.5, ease: "easeInOut" }
+    transition: { duration: 0.68, ease: [0.22, 1, 0.36, 1] },
+    "aria-hidden": activeIndex !== index
   });
+
+  const slideProgress = `${((activeIndex - 1) / 5) * 100}%`;
 
   return (
     <div ref={sectionRef} className={styles.storyPin} id="gap" data-parallax-section data-reveal>
       <div className={styles.storyPinInner}>
+        <div className={styles.gapAmbient} aria-hidden="true" />
 
         <div className={styles.gapSvgContainer}>
           <GapSvg />
+        </div>
+
+        <div className={styles.storyProgress} aria-hidden="true">
+          <span style={{ height: slideProgress }} />
         </div>
 
         <motion.div className={styles.storyPinKicker} {...getSlideProps(1)}>
@@ -408,13 +417,13 @@ const GapSection = ({ scrollRef }) => {
         <motion.div className={styles.storySlide} {...getSlideProps(2)}>
           <div className={styles.gapLeadBlock}>
              <div className={styles.gapLeadData}>
-                <span className={styles.dataLabel}>STATUS</span>
-                <span className={styles.dataValue}>READY</span>
+                <span className={styles.dataLabel}>INDUSTRY PULL</span>
+                <span className={styles.dataValue}>HIGH</span>
              </div>
              <p className={styles.gapLeadText}>
-                2D materials are ready for industry —<br />
-                but scalable, affordable production<br />
-                remains the barrier.
+                2D materials are not short on promise.<br />
+                They are short on production routes<br />
+                that can survive scale.
              </p>
           </div>
         </motion.div>
@@ -423,10 +432,10 @@ const GapSection = ({ scrollRef }) => {
           <div className={`${styles.gapPillarBlock} ${styles.staggerLeft}`}>
             <div className={styles.pillarNumber}>01</div>
             <div className={styles.pillarContent}>
-              <h3 className={styles.gapPillarTitle}>SCALE CONSTRAINT</h3>
-              <p className={styles.gapPillarDesc}>Lab synthesis is restricted to <strong>grams</strong>.<br/>Industrial application demands <strong>metric tons</strong>.</p>
+              <h3 className={styles.gapPillarTitle}>Scale Constraint</h3>
+              <p className={styles.gapPillarDesc}>Many lab routes prove the material at <strong>small batch</strong> scale.<br/>Manufacturing needs repeatable throughput.</p>
               <div className={styles.pillarMetrics}>
-                <span>Yield: mg/hr → kg/hr</span>
+                <span>Question: can yield rise without losing quality?</span>
               </div>
             </div>
           </div>
@@ -436,10 +445,10 @@ const GapSection = ({ scrollRef }) => {
           <div className={`${styles.gapPillarBlock} ${styles.staggerRight}`}>
             <div className={styles.pillarNumber}>02</div>
             <div className={styles.pillarContent}>
-              <h3 className={styles.gapPillarTitle}>COST BARRIER</h3>
-              <p className={styles.gapPillarDesc}>Prohibitive processing overhead<br/>restricts <strong>high-volume</strong> adoption.</p>
+              <h3 className={styles.gapPillarTitle}>Cost Barrier</h3>
+              <p className={styles.gapPillarDesc}>Energy, solvent, post-processing, and recovery losses<br/>can quietly dominate the economics.</p>
               <div className={styles.pillarMetrics}>
-                <span>Target: &lt; $100/kg</span>
+                <span>Focus: lower process overhead</span>
               </div>
             </div>
           </div>
@@ -449,10 +458,10 @@ const GapSection = ({ scrollRef }) => {
           <div className={`${styles.gapPillarBlock} ${styles.staggerLeft}`}>
             <div className={styles.pillarNumber}>03</div>
             <div className={styles.pillarContent}>
-              <h3 className={styles.gapPillarTitle}>CONSISTENCY</h3>
-              <p className={styles.gapPillarDesc}>Batch-to-batch variation prevents<br/>reliable integration into products.</p>
+              <h3 className={styles.gapPillarTitle}>Consistency</h3>
+              <p className={styles.gapPillarDesc}>Industry cannot design around a material<br/>whose structure, chemistry, and defects drift batch to batch.</p>
               <div className={styles.pillarMetrics}>
-                <span>Specs: ±2% variance</span>
+                <span>Need: controllable process windows</span>
               </div>
             </div>
           </div>
@@ -460,9 +469,9 @@ const GapSection = ({ scrollRef }) => {
 
         <motion.div className={styles.storySlide} {...getSlideProps(6)}>
           <p className={styles.gapHighlight}>
-            I develop production pathways to make<br />
-            2D materials <span className={styles.highlightWord}>affordable</span>, <span className={styles.highlightWord}>consistent</span>,<br />
-            and <span className={styles.highlightWord}>scalable</span>.
+            My work lives in that gap:<br />
+            turning promising 2D materials into<br />
+            <span className={styles.highlightWord}>scalable</span>, <span className={styles.highlightWord}>consistent</span>, and <span className={styles.highlightWord}>usable</span> outputs.
           </p>
         </motion.div>
 
