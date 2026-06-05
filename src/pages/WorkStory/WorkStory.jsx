@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo, useRef, useState } from "react";
 import { Link } from "react-router-dom";
-import { motion, animate, useScroll, useTransform } from "framer-motion";
+import { motion, animate, useScroll, useTransform, useSpring } from "framer-motion";
 import SEO from "../../components/SEO/SEO";
 import styles from "./WorkStory.module.css";
 
@@ -408,29 +408,34 @@ const GapScrollytelling = ({ scrollRef }) => {
     offset: ["start start", "end end"]
   });
 
-  // Slide 1: 0 to 0.33
-  const y1 = useTransform(scrollYProgress, [0, 0.25, 0.33], [0, 0, -100]);
-  const opacity1 = useTransform(scrollYProgress, [0, 0.25, 0.33], [1, 1, 0]);
+  // Smooth out scroll progress so snap jumps feel like a smooth camera move
+  const smoothProgress = useSpring(scrollYProgress, {
+    damping: 30,
+    stiffness: 80,
+    restDelta: 0.001
+  });
 
-  // Slide 2: 0.33 to 0.66
-  const y2 = useTransform(scrollYProgress, [0.25, 0.33, 0.58, 0.66], [100, 0, 0, -100]);
-  const opacity2 = useTransform(scrollYProgress, [0.25, 0.33, 0.58, 0.66], [0, 1, 1, 0]);
-
-  // Slide 3: 0.66 to 1
-  const y3 = useTransform(scrollYProgress, [0.58, 0.66, 0.9, 1], [100, 0, 0, -50]);
-  const opacity3 = useTransform(scrollYProgress, [0.58, 0.66, 0.9, 1], [0, 1, 1, 0]);
+  // Use a wider mapping for 600vh wrapper: 3 parts (0.33 each)
+  // Slide 1: stays from 0 to 0.25, leaves to top at 0.33
+  const y1 = useTransform(smoothProgress, [0, 0.25, 0.33], ["0vh", "0vh", "-100vh"]);
+  
+  // Slide 2: enters from bottom at 0.25 -> 0.33, stays until 0.58, leaves at 0.66
+  const y2 = useTransform(smoothProgress, [0.25, 0.33, 0.58, 0.66], ["100vh", "0vh", "0vh", "-100vh"]);
+  
+  // Slide 3: enters from bottom at 0.58 -> 0.66, stays until 1.0
+  const y3 = useTransform(smoothProgress, [0.58, 0.66, 0.9, 1], ["100vh", "0vh", "0vh", "-50vh"]);
 
   return (
     <div ref={targetRef} className={styles.scrollyWrapper} id="gap" data-parallax-section data-reveal>
       {/* Intermediate snap points for mobile scroll-snap */}
       <div className={styles.snapPoint} style={{ top: "0" }} />
-      <div className={styles.snapPoint} style={{ top: "133vh" }} />
-      <div className={styles.snapPoint} style={{ top: "266vh" }} />
+      <div className={styles.snapPoint} style={{ top: "200vh" }} />
       <div className={styles.snapPoint} style={{ top: "400vh" }} />
+      <div className={styles.snapPoint} style={{ top: "600vh" }} />
 
       <div className={`${styles.stickyContainer} ${styles.hudContainer}`}>
         {/* Slide 1 */}
-        <motion.div className={styles.slide} style={{ y: y1, opacity: opacity1 }}>
+        <motion.div className={styles.slide} style={{ y: y1 }}>
           <div className={styles.slideIntro}>
             <h2 className={styles.techHeader}>[ The Production Gap ]</h2>
             <p className={styles.lead}>
@@ -440,7 +445,7 @@ const GapScrollytelling = ({ scrollRef }) => {
         </motion.div>
 
         {/* Slide 2 */}
-        <motion.div className={styles.slide} style={{ y: y2, opacity: opacity2 }}>
+        <motion.div className={styles.slide} style={{ y: y2 }}>
           <div className={styles.slideIntro}>
             <TypeField items={["SCALE", "COST", "CONSISTENCY", "INTEGRATION"]} />
             <GapSvg />
@@ -448,7 +453,7 @@ const GapScrollytelling = ({ scrollRef }) => {
         </motion.div>
 
         {/* Slide 3 */}
-        <motion.div className={`${styles.slide} ${styles.techSlide}`} style={{ y: y3, opacity: opacity3 }}>
+        <motion.div className={`${styles.slide} ${styles.techSlide}`} style={{ y: y3 }}>
           <p className={styles.highlight}>
             &gt; I develop production pathways to make 2D materials affordable, consistent, and scalable_
           </p>
