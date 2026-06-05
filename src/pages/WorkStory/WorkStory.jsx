@@ -411,7 +411,7 @@ const GapSection = ({ scrollRef }) => {
         </motion.div>
 
         <motion.div className={styles.storySlide} style={{ y: s3y, opacity: s3op }}>
-          <div className={styles.gapPillarBlock}>
+          <div className={`${styles.gapPillarBlock} ${styles.staggerLeft}`}>
             <div className={styles.pillarNumber}>01</div>
             <div className={styles.pillarContent}>
               <h3 className={styles.gapPillarTitle}>SCALE CONSTRAINT</h3>
@@ -424,7 +424,7 @@ const GapSection = ({ scrollRef }) => {
         </motion.div>
 
         <motion.div className={styles.storySlide} style={{ y: s4y, opacity: s4op }}>
-          <div className={styles.gapPillarBlock}>
+          <div className={`${styles.gapPillarBlock} ${styles.staggerRight}`}>
             <div className={styles.pillarNumber}>02</div>
             <div className={styles.pillarContent}>
               <h3 className={styles.gapPillarTitle}>COST BARRIER</h3>
@@ -437,7 +437,7 @@ const GapSection = ({ scrollRef }) => {
         </motion.div>
 
         <motion.div className={styles.storySlide} style={{ y: s5y, opacity: s5op }}>
-          <div className={styles.gapPillarBlock}>
+          <div className={`${styles.gapPillarBlock} ${styles.staggerLeft}`}>
             <div className={styles.pillarNumber}>03</div>
             <div className={styles.pillarContent}>
               <h3 className={styles.gapPillarTitle}>CONSISTENCY REQ.</h3>

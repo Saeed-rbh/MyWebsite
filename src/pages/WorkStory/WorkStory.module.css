@@ -670,18 +670,12 @@
   position: relative;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
   width: 100%;
   max-width: 800px;
-  text-align: center;
 }
 
 .pillarNumber {
   position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
   font-family: "Playfair Display", Georgia, "Times New Roman", serif;
   font-size: clamp(6rem, 15vw, 10rem);
   font-weight: 500;
@@ -693,14 +687,26 @@
   letter-spacing: -0.02em;
 }
 
+/* Stagger Left (Title left, Desc right) */
+.staggerLeft .pillarContent { align-items: flex-start; text-align: left; }
+.staggerLeft .gapPillarDesc { align-self: flex-end; text-align: right; margin-left: 15%; }
+.staggerLeft .pillarMetrics { align-self: flex-end; }
+.staggerLeft .pillarNumber { top: -15%; left: -5%; transform: none; }
+
+/* Stagger Right (Title right, Desc left) */
+.staggerRight .pillarContent { align-items: flex-end; text-align: right; }
+.staggerRight .gapPillarDesc { align-self: flex-start; text-align: left; margin-right: 15%; }
+.staggerRight .pillarMetrics { align-self: flex-start; }
+.staggerRight .pillarNumber { top: -15%; right: -5%; left: auto; transform: none; }
+
 .pillarContent {
   position: relative;
   z-index: 1;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  gap: 16px;
-  max-width: 600px;
+  gap: 28px;
+  max-width: 700px;
+  width: 100%;
 }
 
 .gapPillarTitle {
@@ -819,7 +825,8 @@
   font-family: "Playfair Display", Georgia, "Times New Roman", serif;
   font-size: clamp(38px, 4.5vw, 68px);
   font-weight: 500;
-  line-height: 1.08;
+  line-height: 1.25;
+
   letter-spacing: -0.02em;
   text-transform: uppercase;
   display: block;
