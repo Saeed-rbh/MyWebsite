@@ -399,6 +399,83 @@ const HeroGraphene = () => (
   </div>
 );
 
+// Single element: flies in from below when entering viewport, flies out upward when leaving
+const ScrollLine = ({ children, delay = 0, className = "" }) => {
+  const ref = useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start 95%", "end 5%"],
+  });
+
+  const y = useTransform(
+    scrollYProgress,
+    [0, 0.18, 0.82, 1],
+    ["80px", "0px", "0px", "-80px"]
+  );
+  const opacity = useTransform(
+    scrollYProgress,
+    [0, 0.18, 0.82, 1],
+    [0, 1, 1, 0]
+  );
+
+  return (
+    <motion.div ref={ref} style={{ y, opacity }} className={className} transition={{ delay }}>
+      {children}
+    </motion.div>
+  );
+};
+
+const GapSection = () => (
+  <section className={`${styles.section} ${styles.hudSection}`} id="gap" data-parallax-section data-reveal>
+    <div className={styles.gapInner}>
+
+      <ScrollLine>
+        <span className={styles.kicker}>01 / The gap I noticed</span>
+      </ScrollLine>
+
+      <ScrollLine delay={0.05}>
+        <h2 className={styles.gapTitle}>The Production Gap</h2>
+      </ScrollLine>
+
+      <ScrollLine delay={0.1}>
+        <p className={styles.gapLead}>
+          2D materials are ready for industry — but scalable,<br />
+          affordable production remains the barrier.
+        </p>
+      </ScrollLine>
+
+      <div className={styles.gapPillars}>
+        {[
+          { label: "Scale", body: "Lab methods work in grams. Industry needs repeatable, larger-volume production." },
+          { label: "Cost", body: "High processing cost limits adoption in high-volume applications." },
+          { label: "Consistency", body: "Flake size, thickness, and chemistry must stay reliable batch to batch." },
+          { label: "Integration", body: "Companies need powders, dispersions, or formulations that fit existing lines." },
+        ].map(({ label, body }, i) => (
+          <ScrollLine key={label} delay={i * 0.05}>
+            <div className={styles.gapPillar}>
+              <span className={styles.gapPillarLabel}>{label}</span>
+              <p className={styles.gapPillarBody}>{body}</p>
+            </div>
+          </ScrollLine>
+        ))}
+      </div>
+
+      <ScrollLine delay={0.1}>
+        <div className={styles.gapSvgWrap}>
+          <GapSvg />
+        </div>
+      </ScrollLine>
+
+      <ScrollLine delay={0.05}>
+        <p className={styles.gapHighlight}>
+          I develop production pathways to make 2D materials affordable, consistent, and scalable.
+        </p>
+      </ScrollLine>
+
+    </div>
+  </section>
+);
+
 const WorkStory = () => {
   const scrollRef = useRef(null);
 
@@ -474,43 +551,7 @@ const WorkStory = () => {
         </header>
 
         <div className={styles.storyGrid}>
-          <SectionShell id="gap" kicker="01 / The gap I noticed" title="[ The Production Gap ]" className={styles.hudSection}>
-            <div className={styles.sectionIntro}>
-              <motion.div
-                initial={{ y: 80 }}
-                whileInView={{ y: 0 }}
-                viewport={{ once: false, margin: "-10%" }}
-                transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-              >
-                <p className={styles.lead}>
-                  2D materials are ready for industry — but scalable, affordable production remains the barrier.
-                </p>
-                <div className={styles.slideIntro} style={{ marginTop: "40px" }}>
-                  <TypeField items={["SCALE", "COST", "CONSISTENCY", "INTEGRATION"]} />
-                </div>
-              </motion.div>
-              <motion.div
-                initial={{ y: 120 }}
-                whileInView={{ y: 0 }}
-                viewport={{ once: false, margin: "-10%" }}
-                transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1], delay: 0.1 }}
-              >
-                <GapSvg />
-              </motion.div>
-            </div>
-            <motion.div 
-              className={styles.techSlide}
-              initial={{ y: 100 }}
-              whileInView={{ y: 0 }}
-              viewport={{ once: false, margin: "-10%" }}
-              transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
-              style={{ marginTop: "60px", padding: "40px 0", borderTop: "1px solid rgba(255,255,255,0.05)" }}
-            >
-              <p className={styles.highlight}>
-                &gt; I develop production pathways to make 2D materials affordable, consistent, and scalable_
-              </p>
-            </motion.div>
-          </SectionShell>
+          <GapSection />
 
           <SectionShell id="process" kicker="02 / The direction I chose" title="Compressible Flow Exfoliation" className={styles.asymProcess}>
             <div className={styles.sectionIntro}>

@@ -595,31 +595,89 @@
 }
 
 .hudSection {
-  background-image: repeating-linear-gradient(
-    0deg,
-    transparent,
-    transparent 2px,
-    rgba(255, 255, 255, 0.015) 2px,
-    rgba(255, 255, 255, 0.015) 4px
-  );
-  background-size: 100% 4px;
-  position: relative;
+  overflow: hidden;
 }
 
-.hudSection::before {
-  content: "GAP";
-  position: absolute;
-  right: max(-2vw, -28px);
-  top: clamp(46px, 9vw, 118px);
-  z-index: 0;
-  color: rgba(255, 255, 255, 0.035);
-  font-family: "Roboto Mono", "Courier New", monospace;
-  font-size: clamp(82px, 15vw, 210px);
-  font-weight: 800;
-  line-height: 0.78;
-  letter-spacing: -0.095em;
+/* ── Gap Section ────────────────────────────── */
+.gapInner {
+  width: min(760px, calc(100vw - 72px));
+  margin: 0 auto;
+  padding: clamp(80px, 12vw, 140px) 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.gapTitle {
+  font-family: "Poppins", sans-serif;
+  font-size: clamp(2.2rem, 5vw, 4rem);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1.05;
+  color: var(--story-text);
+  margin: 20px 0 0;
+}
+
+.gapLead {
+  font-size: clamp(1.05rem, 2vw, 1.3rem);
+  font-weight: 300;
+  line-height: 1.65;
+  color: var(--story-muted);
+  margin: 28px 0 0;
+}
+
+.gapPillars {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1px;
+  margin: 56px 0 0;
+  border: 1px solid rgba(255, 255, 255, 0.07);
+}
+
+.gapPillar {
+  padding: 28px 24px;
+  border-right: 1px solid rgba(255, 255, 255, 0.07);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+}
+
+.gapPillarLabel {
+  display: block;
+  font-family: "Roboto Mono", monospace;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
-  pointer-events: none;
+  color: var(--story-accent);
+  margin-bottom: 10px;
+}
+
+.gapPillarBody {
+  font-size: 0.88rem;
+  line-height: 1.6;
+  color: var(--story-soft);
+}
+
+.gapSvgWrap {
+  margin: 56px 0 0;
+  display: flex;
+  justify-content: center;
+}
+
+.gapHighlight {
+  margin: 64px 0 0;
+  font-size: clamp(1.1rem, 2.2vw, 1.5rem);
+  font-weight: 500;
+  line-height: 1.45;
+  color: var(--story-text);
+  padding: 32px 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+@media (max-width: 600px) {
+  .gapPillars {
+    grid-template-columns: 1fr;
+  }
 }
 
 /* Sci-Fi HUD Elements */
