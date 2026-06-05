@@ -682,16 +682,15 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  font-family: "Georgia", serif;
+  font-family: "Playfair Display", Georgia, "Times New Roman", serif;
   font-size: clamp(6rem, 15vw, 10rem);
-  font-weight: 300;
-  color: var(--color-primary);
+  font-weight: 500;
+  color: #bfae9f;
   opacity: 0.08;
   z-index: 0;
   pointer-events: none;
   line-height: 0.8;
   letter-spacing: -0.02em;
-  font-style: italic;
 }
 
 .pillarContent {
@@ -705,36 +704,42 @@
 }
 
 .gapPillarTitle {
-  font-family: var(--font-mono);
-  font-size: clamp(1.2rem, 2.5vw, 1.8rem);
+  font-family: "Playfair Display", Georgia, "Times New Roman", serif;
+  font-size: clamp(28px, 3.5vw, 42px);
   font-weight: 500;
-  color: var(--color-primary);
-  letter-spacing: 0.15em;
-  margin: 0;
+  line-height: 1.08;
+  letter-spacing: -0.02em;
   text-transform: uppercase;
+  background: linear-gradient(112deg, #fffaf2 0%, #e7d1b8 28%, #d49d81 48%, #fff4e8 68%, #a87963 100%);
+  background-size: 280% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin: 0;
 }
 
 .gapPillarDesc {
-  font-family: "Inter", sans-serif;
-  font-size: clamp(1.2rem, 2.5vw, 1.6rem);
-  font-weight: 300;
-  color: #fff;
-  line-height: 1.5;
+  font-family: "Poppins", sans-serif;
+  color: #bfae9f;
+  font-size: clamp(16px, 1.8vw, 22px);
+  line-height: 1.35;
+  font-weight: 400;
+  letter-spacing: 0.04em;
   margin: 0;
 }
 
 .gapPillarDesc strong {
-  font-family: "Inter", sans-serif;
   font-weight: 600;
-  font-style: italic;
+  color: #eddfd4;
 }
 
 .pillarMetrics {
-  font-family: "Georgia", serif;
-  font-size: clamp(1rem, 2vw, 1.3rem);
+  font-family: "Poppins", sans-serif;
+  color: #eddfd4;
+  font-size: clamp(0.6rem, 0.8vw, 0.72rem);
   font-weight: 400;
-  color: #a0a0a0;
-  font-style: italic;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
   margin-top: 8px;
 }
 
@@ -801,23 +806,30 @@
 }
 
 .gapTitleLight {
-  font-family: "Inter", sans-serif;
-  font-size: clamp(1.5rem, 4vw, 2.5rem);
-  font-weight: 300;
-  color: #a0a0a0;
-  letter-spacing: 0.2em;
+  font-family: "Poppins", sans-serif;
+  color: #bfae9f;
+  font-size: clamp(16px, 1.8vw, 22px);
+  line-height: 1.35;
+  font-weight: 400;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
 }
 
 .gapTitleHeavy {
-  font-family: var(--font-mono);
-  font-size: clamp(3rem, 8vw, 5.5rem);
-  font-weight: 600;
-  color: var(--color-primary);
+  font-family: "Playfair Display", Georgia, "Times New Roman", serif;
+  font-size: clamp(38px, 4.5vw, 68px);
+  font-weight: 500;
+  line-height: 1.08;
   letter-spacing: -0.02em;
-  line-height: 1;
   text-transform: uppercase;
   display: block;
+  background: linear-gradient(112deg, #fffaf2 0%, #e7d1b8 28%, #d49d81 48%, #fff4e8 68%, #a87963 100%);
+  background-size: 280% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: titleSweep 7.5s cubic-bezier(0.45, 0, 0.25, 1) infinite;
+  margin-top: 8px;
 }
 
 /* Lead Block */
