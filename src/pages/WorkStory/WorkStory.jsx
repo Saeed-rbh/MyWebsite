@@ -402,30 +402,24 @@ const HeroGraphene = () => (
 // Context so every ScrollLine knows which container to track
 const ScrollContainerContext = React.createContext(null);
 
-// Single element: flies in from below, flies out upward — tracks the page's scroll container
+// Flies in from below on enter, flies out upward on exit
+// Uses IntersectionObserver via whileInView so it always works regardless of scroll container
 const ScrollLine = ({ children, className = "" }) => {
   const containerRef = React.useContext(ScrollContainerContext);
-  const ref = useRef(null);
-
-  const { scrollYProgress } = useScroll({
-    target: ref,
-    container: containerRef,
-    offset: ["start 95%", "end 5%"],
-  });
-
-  const y = useTransform(
-    scrollYProgress,
-    [0, 0.2, 0.8, 1],
-    ["70px", "0px", "0px", "-70px"]
-  );
-  const opacity = useTransform(
-    scrollYProgress,
-    [0, 0.2, 0.8, 1],
-    [0, 1, 1, 0]
-  );
 
   return (
-    <motion.div ref={ref} style={{ y, opacity }} className={className}>
+    <motion.div
+      className={className}
+      initial={{ y: 60, opacity: 0 }}
+      whileInView={{ y: 0, opacity: 1 }}
+      exit={{ y: -60, opacity: 0 }}
+      viewport={{
+        once: false,
+        margin: "-80px 0px",
+        root: containerRef,
+      }}
+      transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+    >
       {children}
     </motion.div>
   );
