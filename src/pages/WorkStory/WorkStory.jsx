@@ -360,101 +360,104 @@ const HeroGraphene = () => (
   </div>
 );
 
-// Context so every Parallax element knows which container to track
-const ScrollContainerContext = React.createContext(null);
-
-const ParallaxBlock = ({ children, speed = 1, className = "" }) => {
-  const containerRef = React.useContext(ScrollContainerContext);
-  const ref = useRef(null);
+const GapSection = ({ scrollRef }) => {
+  const sectionRef = useRef(null);
 
   const { scrollYProgress } = useScroll({
-    target: ref,
-    container: containerRef,
-    offset: ["start end", "end start"],
+    target: sectionRef,
+    container: scrollRef,
+    offset: ["start start", "end end"],
   });
 
-  // Speed multiplier determines how much it drifts relative to normal scroll
-  const distance = speed * 120;
-  const y = useTransform(scrollYProgress, [0, 1], [distance, -distance]);
+  // Fast In (100vh -> 15vh)
+  // Slow Drift (15vh -> -15vh)
+  // Fast Out (-15vh -> -100vh)
   
-  // Fade in and out at the edges of the screen
-  const opacity = useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [0, 1, 1, 0]);
+  // Slide 1: Already there at start. Drifts until 0.15, fast out by 0.2
+  const s1y  = useTransform(scrollYProgress, [0, 0.15, 0.2],       ["0vh", "-15vh", "-100vh"]);
+  const s1op = useTransform(scrollYProgress, [0, 0.15, 0.2],       [1, 1, 0]);
+
+  // Slide 2: In 0.15-0.2, Drifts 0.2-0.35, Out 0.35-0.4
+  const s2y  = useTransform(scrollYProgress, [0.15, 0.2, 0.35, 0.4], ["100vh", "15vh", "-15vh", "-100vh"]);
+  const s2op = useTransform(scrollYProgress, [0.15, 0.2, 0.35, 0.4], [0, 1, 1, 0]);
+
+  // Slide 3: In 0.35-0.4, Drifts 0.4-0.55, Out 0.55-0.6
+  const s3y  = useTransform(scrollYProgress, [0.35, 0.4, 0.55, 0.6], ["100vh", "15vh", "-15vh", "-100vh"]);
+  const s3op = useTransform(scrollYProgress, [0.35, 0.4, 0.55, 0.6], [0, 1, 1, 0]);
+
+  // Slide 4: In 0.55-0.6, Drifts 0.6-0.75, Out 0.75-0.8
+  const s4y  = useTransform(scrollYProgress, [0.55, 0.6, 0.75, 0.8], ["100vh", "15vh", "-15vh", "-100vh"]);
+  const s4op = useTransform(scrollYProgress, [0.55, 0.6, 0.75, 0.8], [0, 1, 1, 0]);
+
+  // Slide 5: In 0.75-0.8, Drifts 0.8-1.0
+  const s5y  = useTransform(scrollYProgress, [0.75, 0.8, 1.0],       ["100vh", "15vh", "0vh"]);
+  const s5op = useTransform(scrollYProgress, [0.75, 0.8, 1.0],       [0, 1, 1]);
 
   return (
-    <motion.div ref={ref} style={{ y, opacity }} className={className}>
-      {children}
-    </motion.div>
-  );
-};
+    <div ref={sectionRef} className={styles.storyPin} id="gap" data-parallax-section data-reveal>
+      <div className={styles.storyPinInner}>
 
-const GapSection = ({ scrollRef }) => {
-  return (
-    <ScrollContainerContext.Provider value={scrollRef}>
-      <div className={styles.storyPin} id="gap" data-parallax-section data-reveal>
-        <div className={styles.storyPinInner}>
+        {/* Ghost watermark */}
+        <div className={styles.gapBgLabel} aria-hidden="true">GAP</div>
 
-          {/* Ghost watermark */}
-          <div className={styles.gapBgLabel} aria-hidden="true">GAP</div>
+        {/* Kicker line */}
+        <motion.div className={styles.storyPinKicker} style={{ y: s1y, opacity: s1op }}>
+          <span className={styles.kicker}>01 / The gap I noticed</span>
+        </motion.div>
 
-          {/* Kicker line */}
-          <ParallaxBlock speed={1.5} className={styles.storySlide}>
-            <span className={styles.kicker}>01 / The gap I noticed</span>
-          </ParallaxBlock>
+        {/* Slide 1 — Title */}
+        <motion.div className={styles.storySlide} style={{ y: s1y, opacity: s1op }}>
+          <h2 className={styles.gapTitle}>The<br />Production Gap</h2>
+        </motion.div>
 
-          {/* Slide 1 — Title */}
-          <ParallaxBlock speed={0.8} className={styles.storySlide}>
-            <h2 className={styles.gapTitle}>The<br />Production Gap</h2>
-          </ParallaxBlock>
+        {/* Slide 2 — Lead */}
+        <motion.div className={styles.storySlide} style={{ y: s2y, opacity: s2op }}>
+          <p className={styles.gapLead}>
+            2D materials are ready for industry —<br />
+            but scalable, affordable production<br />
+            remains the barrier.
+          </p>
+        </motion.div>
 
-          {/* Slide 2 — Lead */}
-          <ParallaxBlock speed={1.2} className={styles.storySlide}>
-            <p className={styles.gapLead}>
-              2D materials are ready for industry —<br />
-              but scalable, affordable production<br />
-              remains the barrier.
-            </p>
-          </ParallaxBlock>
-
-          {/* Slide 3 — Scale + Cost */}
-          <ParallaxBlock speed={0.9} className={styles.storySlide}>
-            <div className={styles.storyPillarPair}>
-              <div className={styles.storyPillar}>
-                <span className={styles.gapPillarLabel}>Scale</span>
-                <p>Lab methods work in grams. Industry needs repeatable, larger-volume production.</p>
-              </div>
-              <div className={styles.storyPillar}>
-                <span className={styles.gapPillarLabel}>Cost</span>
-                <p>High processing cost limits adoption in high-volume applications.</p>
-              </div>
+        {/* Slide 3 — Scale + Cost */}
+        <motion.div className={styles.storySlide} style={{ y: s3y, opacity: s3op }}>
+          <div className={styles.storyPillarPair}>
+            <div className={styles.storyPillar}>
+              <span className={styles.gapPillarLabel}>Scale</span>
+              <p>Lab methods work in grams. Industry needs repeatable, larger-volume production.</p>
             </div>
-          </ParallaxBlock>
-
-          {/* Slide 4 — Consistency + Integration */}
-          <ParallaxBlock speed={1.3} className={styles.storySlide}>
-            <div className={styles.storyPillarPair}>
-              <div className={styles.storyPillar}>
-                <span className={styles.gapPillarLabel}>Consistency</span>
-                <p>Flake size, thickness, and chemistry must stay reliable batch to batch.</p>
-              </div>
-              <div className={styles.storyPillar}>
-                <span className={styles.gapPillarLabel}>Integration</span>
-                <p>Companies need powders, dispersions, or formulations that fit existing lines.</p>
-              </div>
+            <div className={styles.storyPillar}>
+              <span className={styles.gapPillarLabel}>Cost</span>
+              <p>High processing cost limits adoption in high-volume applications.</p>
             </div>
-          </ParallaxBlock>
+          </div>
+        </motion.div>
 
-          {/* Slide 5 — Closing */}
-          <ParallaxBlock speed={1.1} className={styles.storySlide}>
-            <p className={styles.gapHighlight}>
-              I develop production pathways to make<br />
-              2D materials affordable, consistent,<br />
-              and scalable.
-            </p>
-          </ParallaxBlock>
+        {/* Slide 4 — Consistency + Integration */}
+        <motion.div className={styles.storySlide} style={{ y: s4y, opacity: s4op }}>
+          <div className={styles.storyPillarPair}>
+            <div className={styles.storyPillar}>
+              <span className={styles.gapPillarLabel}>Consistency</span>
+              <p>Flake size, thickness, and chemistry must stay reliable batch to batch.</p>
+            </div>
+            <div className={styles.storyPillar}>
+              <span className={styles.gapPillarLabel}>Integration</span>
+              <p>Companies need powders, dispersions, or formulations that fit existing lines.</p>
+            </div>
+          </div>
+        </motion.div>
 
-        </div>
+        {/* Slide 5 — Closing */}
+        <motion.div className={styles.storySlide} style={{ y: s5y, opacity: s5op }}>
+          <p className={styles.gapHighlight}>
+            I develop production pathways to make<br />
+            2D materials affordable, consistent,<br />
+            and scalable.
+          </p>
+        </motion.div>
+
       </div>
-    </ScrollContainerContext.Provider>
+    </div>
   );
 };
 
