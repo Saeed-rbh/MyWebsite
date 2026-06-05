@@ -387,43 +387,73 @@ const GapSection = ({ scrollRef }) => {
         </motion.div>
 
         <motion.div className={styles.storySlide} style={{ y: s1y, opacity: s1op }}>
-          <h2 className={styles.gapTitle}>The<br />Production Gap</h2>
+          <div className={styles.gapTitleWrapper}>
+            <span className={styles.gapTitleAccent}>CHASM</span>
+            <h2 className={styles.gapTitleMain}>
+              <span className={styles.gapTitleLight}>The</span><br/>
+              <span className={styles.gapTitleHeavy}>Production Gap</span>
+            </h2>
+          </div>
         </motion.div>
 
         <motion.div className={styles.storySlide} style={{ y: s2y, opacity: s2op }}>
-          <p className={styles.gapLead}>
-            2D materials are ready for industry —<br />
-            but scalable, affordable production<br />
-            remains the barrier.
-          </p>
+          <div className={styles.gapLeadBlock}>
+             <div className={styles.gapLeadData}>
+                <span className={styles.dataLabel}>STATUS</span>
+                <span className={styles.dataValue}>READY</span>
+             </div>
+             <p className={styles.gapLeadText}>
+                2D materials are ready for industry —<br />
+                but scalable, affordable production<br />
+                remains the barrier.
+             </p>
+          </div>
         </motion.div>
 
         <motion.div className={styles.storySlide} style={{ y: s3y, opacity: s3op }}>
-          <div className={styles.gapPillarBlock}>
-            <h3 className={styles.gapPillarTitle}>[ PARAMETER : SCALE ]</h3>
-            <p className={styles.gapPillarDesc}>Lab synthesis is restricted to grams.<br/>Industrial application demands metric tons.</p>
+          <div className={`${styles.gapPillarBlock} ${styles.pillarLeft}`}>
+            <div className={styles.pillarNumber}>01</div>
+            <div className={styles.pillarContent}>
+              <h3 className={styles.gapPillarTitle}>[ PARAMETER : SCALE ]</h3>
+              <p className={styles.gapPillarDesc}>Lab synthesis is restricted to <strong>grams</strong>.<br/>Industrial application demands <strong>metric tons</strong>.</p>
+              <div className={styles.pillarMetrics}>
+                <span>Yield: mg/hr → kg/hr</span>
+              </div>
+            </div>
           </div>
         </motion.div>
 
         <motion.div className={styles.storySlide} style={{ y: s4y, opacity: s4op }}>
-          <div className={styles.gapPillarBlock}>
-            <h3 className={styles.gapPillarTitle}>[ METRIC : COST ]</h3>
-            <p className={styles.gapPillarDesc}>Prohibitive processing overhead<br/>restricts high-volume adoption.</p>
+          <div className={`${styles.gapPillarBlock} ${styles.pillarRight}`}>
+            <div className={styles.pillarNumber}>02</div>
+            <div className={styles.pillarContent}>
+              <h3 className={styles.gapPillarTitle}>[ METRIC : COST ]</h3>
+              <p className={styles.gapPillarDesc}>Prohibitive processing overhead<br/>restricts <strong>high-volume</strong> adoption.</p>
+              <div className={styles.pillarMetrics}>
+                <span>Target: &lt; $100/kg</span>
+              </div>
+            </div>
           </div>
         </motion.div>
 
         <motion.div className={styles.storySlide} style={{ y: s5y, opacity: s5op }}>
-          <div className={styles.gapPillarBlock}>
-            <h3 className={styles.gapPillarTitle}>[ REQ : CONSISTENCY ]</h3>
-            <p className={styles.gapPillarDesc}>Flake morphology and surface chemistry<br/>must remain invariant across batches.</p>
+          <div className={`${styles.gapPillarBlock} ${styles.pillarLeft}`}>
+            <div className={styles.pillarNumber}>03</div>
+            <div className={styles.pillarContent}>
+              <h3 className={styles.gapPillarTitle}>[ REQ : CONSISTENCY ]</h3>
+              <p className={styles.gapPillarDesc}>Flake morphology and surface chemistry<br/>must remain <strong>invariant</strong> across batches.</p>
+              <div className={styles.pillarMetrics}>
+                <span>Variance: &lt; 5%</span>
+              </div>
+            </div>
           </div>
         </motion.div>
 
         <motion.div className={styles.storySlide} style={{ y: s6y, opacity: s6op }}>
           <p className={styles.gapHighlight}>
             I develop production pathways to make<br />
-            2D materials affordable, consistent,<br />
-            and scalable.
+            2D materials <span className={styles.highlightWord}>affordable</span>, <span className={styles.highlightWord}>consistent</span>,<br />
+            and <span className={styles.highlightWord}>scalable</span>.
           </p>
         </motion.div>
 
