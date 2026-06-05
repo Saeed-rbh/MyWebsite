@@ -47,7 +47,7 @@ const ScrollVideoCanvas = ({ scrollYProgress }) => {
     }
 
     ctx.clearRect(0, 0, canvas.width, canvas.height);
-    ctx.globalAlpha = 0.6;
+    ctx.globalAlpha = 1.0;
     ctx.drawImage(img, xOffset, yOffset, renderWidth, renderHeight);
   };
 
@@ -429,17 +429,17 @@ const GapSection = ({ scrollRef }) => {
     offset: ["start start", "end end"],
   });
 
-  const s1y  = useTransform(scrollYProgress, [0, 0.15, 0.2],         ["0vh", "-15vh", "-100vh"]);
+  const s1y  = useTransform(scrollYProgress, [0, 0.15, 0.2],         ["0vh", "-5vh", "-100vh"]);
   const s1op = useTransform(scrollYProgress, [0, 0.15, 0.2],         [1, 1, 0]);
-  const s2y  = useTransform(scrollYProgress, [0.1, 0.15, 0.3, 0.35], ["100vh", "15vh", "-15vh", "-100vh"]);
+  const s2y  = useTransform(scrollYProgress, [0.1, 0.15, 0.3, 0.35], ["100vh", "5vh", "-5vh", "-100vh"]);
   const s2op = useTransform(scrollYProgress, [0.1, 0.15, 0.3, 0.35], [0, 1, 1, 0]);
-  const s3y  = useTransform(scrollYProgress, [0.25, 0.3, 0.45, 0.5], ["100vh", "15vh", "-15vh", "-100vh"]);
+  const s3y  = useTransform(scrollYProgress, [0.25, 0.3, 0.45, 0.5], ["100vh", "5vh", "-5vh", "-100vh"]);
   const s3op = useTransform(scrollYProgress, [0.25, 0.3, 0.45, 0.5], [0, 1, 1, 0]);
-  const s4y  = useTransform(scrollYProgress, [0.4, 0.45, 0.6, 0.65], ["100vh", "15vh", "-15vh", "-100vh"]);
+  const s4y  = useTransform(scrollYProgress, [0.4, 0.45, 0.6, 0.65], ["100vh", "5vh", "-5vh", "-100vh"]);
   const s4op = useTransform(scrollYProgress, [0.4, 0.45, 0.6, 0.65], [0, 1, 1, 0]);
-  const s5y  = useTransform(scrollYProgress, [0.55, 0.6, 0.75, 0.8], ["100vh", "15vh", "-15vh", "-100vh"]);
+  const s5y  = useTransform(scrollYProgress, [0.55, 0.6, 0.75, 0.8], ["100vh", "5vh", "-5vh", "-100vh"]);
   const s5op = useTransform(scrollYProgress, [0.55, 0.6, 0.75, 0.8], [0, 1, 1, 0]);
-  const s6y  = useTransform(scrollYProgress, [0.7, 0.75, 1.0],       ["100vh", "15vh", "0vh"]);
+  const s6y  = useTransform(scrollYProgress, [0.7, 0.75, 1.0],       ["100vh", "5vh", "0vh"]);
   const s6op = useTransform(scrollYProgress, [0.7, 0.75, 1.0],       [0, 1, 1]);
 
   return (
