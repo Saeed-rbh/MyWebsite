@@ -435,7 +435,7 @@ const GapSection = ({ scrollRef }) => {
         </motion.div>
 
         <motion.div className={styles.storySlide} style={{ y: s4y, opacity: s4op, scale: s4scale }}>
-          <div className={`${styles.gapPillarBlock} ${styles.staggerRight}`}>
+          <div className={`${styles.gapPillarBlock} ${styles.staggerLeft}`}>
             <div className={styles.pillarNumber}>02</div>
             <div className={styles.pillarContent}>
               <h3 className={styles.gapPillarTitle}>COST BARRIER</h3>
