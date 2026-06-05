@@ -594,28 +594,29 @@
   margin-top: 24px;
 }
 
-/* ── Pinned Storytelling: The Production Gap ── */
+/* ── Pinned Storytelling: The Production Gap Section (Flowing Parallax) ── */
 .storyPin {
   position: relative;
   width: 100%;
-  height: 600vh;
+  padding: clamp(100px, 15vh, 200px) 0;
   z-index: 5;
+  scroll-snap-align: start;
 }
 
 .storyPinInner {
-  position: sticky;
-  top: 0;
-  height: 100vh;
-  width: 100%;
-  display: grid;
-  place-items: center;
-  overflow: hidden;
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  width: min(760px, calc(100vw - 72px));
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 30vh; /* Large gaps so they appear sequentially as user scrolls */
+  position: relative;
 }
 
 /* Ghost watermark behind slides */
 .gapBgLabel {
-  grid-area: 1 / 1;
+  position: sticky;
+  top: 50vh;
+  transform: translateY(-50%);
   font-family: "Poppins", sans-serif;
   font-size: clamp(120px, 30vw, 320px);
   font-weight: 800;
@@ -624,6 +625,8 @@
   pointer-events: none;
   user-select: none;
   z-index: 0;
+  text-align: center;
+  width: 100%;
 }
 
 /* Kicker pinned to top-left of sticky area */
@@ -636,8 +639,7 @@
 
 /* Each slide perfectly stacked in the center cell */
 .storySlide {
-  grid-area: 1 / 1;
-  width: min(600px, calc(100vw - 48px));
+  width: 100%;
   text-align: center;
   display: flex;
   flex-direction: column;
