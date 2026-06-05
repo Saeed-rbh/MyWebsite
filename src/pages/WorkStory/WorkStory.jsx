@@ -361,29 +361,27 @@ const GapSection = ({ scrollRef }) => {
     offset: ["start start", "end end"],
   });
 
-  const s1y      = useTransform(scrollYProgress, [0, 0.1, 0.15], ["0vh", "0vh", "-10vh"]);
-  const s1scale  = useTransform(scrollYProgress, [0, 0.1, 0.15], [1, 1, 0.8]);
-  const s1op     = useTransform(scrollYProgress, [0, 0.1, 0.15], [1, 1, 0]);
+  const [activeIndex, setActiveIndex] = useState(1);
 
-  const s2y      = useTransform(scrollYProgress, [0.1, 0.15, 0.25, 0.3], ["50vh", "0vh", "0vh", "-10vh"]);
-  const s2scale  = useTransform(scrollYProgress, [0.1, 0.15, 0.25, 0.3], [1, 1, 1, 0.8]);
-  const s2op     = useTransform(scrollYProgress, [0.1, 0.15, 0.25, 0.3], [0, 1, 1, 0]);
+  useMotionValueEvent(scrollYProgress, "change", (latest) => {
+    if (latest < 0.12) setActiveIndex(1);
+    else if (latest < 0.28) setActiveIndex(2);
+    else if (latest < 0.44) setActiveIndex(3);
+    else if (latest < 0.60) setActiveIndex(4);
+    else if (latest < 0.76) setActiveIndex(5);
+    else setActiveIndex(6);
+  });
 
-  const s3y      = useTransform(scrollYProgress, [0.25, 0.3, 0.4, 0.45], ["50vh", "0vh", "0vh", "-10vh"]);
-  const s3scale  = useTransform(scrollYProgress, [0.25, 0.3, 0.4, 0.45], [1, 1, 1, 0.8]);
-  const s3op     = useTransform(scrollYProgress, [0.25, 0.3, 0.4, 0.45], [0, 1, 1, 0]);
-
-  const s4y      = useTransform(scrollYProgress, [0.4, 0.45, 0.55, 0.6], ["50vh", "0vh", "0vh", "-10vh"]);
-  const s4scale  = useTransform(scrollYProgress, [0.4, 0.45, 0.55, 0.6], [1, 1, 1, 0.8]);
-  const s4op     = useTransform(scrollYProgress, [0.4, 0.45, 0.55, 0.6], [0, 1, 1, 0]);
-
-  const s5y      = useTransform(scrollYProgress, [0.55, 0.6, 0.7, 0.75], ["50vh", "0vh", "0vh", "-10vh"]);
-  const s5scale  = useTransform(scrollYProgress, [0.55, 0.6, 0.7, 0.75], [1, 1, 1, 0.8]);
-  const s5op     = useTransform(scrollYProgress, [0.55, 0.6, 0.7, 0.75], [0, 1, 1, 0]);
-
-  const s6y      = useTransform(scrollYProgress, [0.7, 0.75, 1.0], ["50vh", "0vh", "0vh"]);
-  const s6scale  = useTransform(scrollYProgress, [0.7, 0.75, 1.0], [1, 1, 1]);
-  const s6op     = useTransform(scrollYProgress, [0.7, 0.75, 1.0], [0, 1, 1]);
+  const getSlideProps = (index) => ({
+    initial: { opacity: 0, y: "20vh", scale: 1 },
+    animate: {
+      opacity: activeIndex === index ? 1 : 0,
+      y: activeIndex === index ? "0vh" : activeIndex > index ? "-10vh" : "20vh",
+      scale: activeIndex === index ? 1 : activeIndex > index ? 0.8 : 1,
+      pointerEvents: activeIndex === index ? "auto" : "none"
+    },
+    transition: { duration: 0.5, ease: "easeInOut" }
+  });
 
   return (
     <div ref={sectionRef} className={styles.storyPin} id="gap" data-parallax-section data-reveal>
@@ -393,11 +391,11 @@ const GapSection = ({ scrollRef }) => {
           <GapSvg />
         </div>
 
-        <motion.div className={styles.storyPinKicker} style={{ y: s1y, opacity: s1op }}>
+        <motion.div className={styles.storyPinKicker} {...getSlideProps(1)}>
           <span className={styles.kicker}>01 / The gap I noticed</span>
         </motion.div>
 
-        <motion.div className={styles.storySlide} style={{ y: s1y, opacity: s1op, scale: s1scale }}>
+        <motion.div className={styles.storySlide} {...getSlideProps(1)}>
           <div className={styles.gapTitleWrapper}>
             <span className={styles.gapTitleAccent}>CHASM</span>
             <h2 className={styles.gapTitleMain}>
@@ -407,7 +405,7 @@ const GapSection = ({ scrollRef }) => {
           </div>
         </motion.div>
 
-        <motion.div className={styles.storySlide} style={{ y: s2y, opacity: s2op, scale: s2scale }}>
+        <motion.div className={styles.storySlide} {...getSlideProps(2)}>
           <div className={styles.gapLeadBlock}>
              <div className={styles.gapLeadData}>
                 <span className={styles.dataLabel}>STATUS</span>
@@ -421,7 +419,7 @@ const GapSection = ({ scrollRef }) => {
           </div>
         </motion.div>
 
-        <motion.div className={styles.storySlide} style={{ y: s3y, opacity: s3op, scale: s3scale }}>
+        <motion.div className={styles.storySlide} {...getSlideProps(3)}>
           <div className={`${styles.gapPillarBlock} ${styles.staggerLeft}`}>
             <div className={styles.pillarNumber}>01</div>
             <div className={styles.pillarContent}>
@@ -434,7 +432,7 @@ const GapSection = ({ scrollRef }) => {
           </div>
         </motion.div>
 
-        <motion.div className={styles.storySlide} style={{ y: s4y, opacity: s4op, scale: s4scale }}>
+        <motion.div className={styles.storySlide} {...getSlideProps(4)}>
           <div className={`${styles.gapPillarBlock} ${styles.staggerRight}`}>
             <div className={styles.pillarNumber}>02</div>
             <div className={styles.pillarContent}>
@@ -447,20 +445,20 @@ const GapSection = ({ scrollRef }) => {
           </div>
         </motion.div>
 
-        <motion.div className={styles.storySlide} style={{ y: s5y, opacity: s5op, scale: s5scale }}>
+        <motion.div className={styles.storySlide} {...getSlideProps(5)}>
           <div className={`${styles.gapPillarBlock} ${styles.staggerLeft}`}>
             <div className={styles.pillarNumber}>03</div>
             <div className={styles.pillarContent}>
-              <h3 className={styles.gapPillarTitle}>CONSISTENCY REQ.</h3>
-              <p className={styles.gapPillarDesc}>Flake morphology and surface chemistry<br/>must remain <strong>invariant</strong> across batches.</p>
+              <h3 className={styles.gapPillarTitle}>CONSISTENCY</h3>
+              <p className={styles.gapPillarDesc}>Batch-to-batch variation prevents<br/>reliable integration into products.</p>
               <div className={styles.pillarMetrics}>
-                <span>Variance: &lt; 5%</span>
+                <span>Specs: ±2% variance</span>
               </div>
             </div>
           </div>
         </motion.div>
 
-        <motion.div className={styles.storySlide} style={{ y: s6y, opacity: s6op, scale: s6scale }}>
+        <motion.div className={styles.storySlide} {...getSlideProps(6)}>
           <p className={styles.gapHighlight}>
             I develop production pathways to make<br />
             2D materials <span className={styles.highlightWord}>affordable</span>, <span className={styles.highlightWord}>consistent</span>,<br />
