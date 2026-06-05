@@ -687,17 +687,46 @@
   letter-spacing: -0.02em;
 }
 
-/* Stagger Left (Title left, Desc right) */
-.staggerLeft .pillarContent { align-items: flex-start; text-align: left; }
-.staggerLeft .gapPillarDesc { align-self: flex-end; text-align: left; }
-.staggerLeft .pillarMetrics { align-self: flex-end; }
-.staggerLeft .pillarNumber { top: -15%; left: -5%; transform: none; }
+.staggerLeft {
+  align-self: flex-start;
+}
+.staggerLeft .pillarContent {
+  align-items: flex-start;
+  text-align: left;
+}
+.staggerLeft .gapPillarDesc {
+  align-self: flex-start;
+  text-align: left;
+}
+.staggerLeft .pillarMetrics {
+  align-self: flex-start;
+}
+.staggerLeft .pillarNumber {
+  top: -15%;
+  left: -5%;
+  transform: none;
+}
 
-/* Stagger Right (Title right, Desc left) */
-.staggerRight .pillarContent { align-items: flex-end; text-align: right; }
-.staggerRight .gapPillarDesc { align-self: flex-start; text-align: right; }
-.staggerRight .pillarMetrics { align-self: flex-start; }
-.staggerRight .pillarNumber { top: -15%; right: -5%; left: auto; transform: none; }
+.staggerRight {
+  align-self: flex-end;
+}
+.staggerRight .pillarContent {
+  align-items: flex-end;
+  text-align: right;
+}
+.staggerRight .gapPillarDesc {
+  align-self: flex-end;
+  text-align: right;
+}
+.staggerRight .pillarMetrics {
+  align-self: flex-end;
+}
+.staggerRight .pillarNumber {
+  top: -15%;
+  right: -5%;
+  left: auto;
+  transform: none;
+}
 
 .pillarContent {
   position: relative;
