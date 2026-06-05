@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo, useRef, useState } from "react";
 import { Link } from "react-router-dom";
-import { motion, animate } from "framer-motion";
+import { motion, animate, useScroll, useTransform } from "framer-motion";
 import SEO from "../../components/SEO/SEO";
 import styles from "./WorkStory.module.css";
 
@@ -399,6 +399,59 @@ const HeroGraphene = () => (
   </div>
 );
 
+const GapScrollytelling = ({ scrollRef }) => {
+  const targetRef = useRef(null);
+  
+  const { scrollYProgress } = useScroll({
+    target: targetRef,
+    container: scrollRef,
+    offset: ["start start", "end end"]
+  });
+
+  // Slide 1: 0 to 0.33
+  const y1 = useTransform(scrollYProgress, [0, 0.15, 0.25, 0.33], [100, 0, 0, -100]);
+  const opacity1 = useTransform(scrollYProgress, [0, 0.15, 0.25, 0.33], [0, 1, 1, 0]);
+
+  // Slide 2: 0.33 to 0.66
+  const y2 = useTransform(scrollYProgress, [0.33, 0.48, 0.58, 0.66], [100, 0, 0, -100]);
+  const opacity2 = useTransform(scrollYProgress, [0.33, 0.48, 0.58, 0.66], [0, 1, 1, 0]);
+
+  // Slide 3: 0.66 to 1
+  const y3 = useTransform(scrollYProgress, [0.66, 0.81, 0.9, 1], [100, 0, 0, -100]);
+  const opacity3 = useTransform(scrollYProgress, [0.66, 0.81, 0.9, 1], [0, 1, 1, 0]);
+
+  return (
+    <div ref={targetRef} className={styles.scrollyWrapper} id="gap" data-parallax-section data-reveal>
+      <div className={styles.stickyContainer}>
+        {/* Slide 1 */}
+        <motion.div className={styles.slide} style={{ y: y1, opacity: opacity1 }}>
+          <div className={styles.slideIntro}>
+            <h2>The Production Gap</h2>
+            <p className={styles.lead}>
+              2D materials are ready for industry — but scalable, affordable production remains the barrier.
+            </p>
+          </div>
+        </motion.div>
+
+        {/* Slide 2 */}
+        <motion.div className={styles.slide} style={{ y: y2, opacity: opacity2 }}>
+          <div className={styles.slideIntro}>
+            <TypeField items={["SCALE", "COST", "CONSISTENCY", "INTEGRATION"]} />
+            <GapSvg />
+          </div>
+        </motion.div>
+
+        {/* Slide 3 */}
+        <motion.div className={styles.slide} style={{ y: y3, opacity: opacity3 }}>
+          <p className={styles.highlight}>
+            I develop production pathways to make 2D materials affordable, consistent, and scalable
+          </p>
+        </motion.div>
+      </div>
+    </div>
+  );
+};
+
 const WorkStory = () => {
   const scrollRef = useRef(null);
   const { activeSection, progress, showSideNav, handleScroll } = useWorkStoryEffects(scrollRef);
@@ -473,23 +526,7 @@ const WorkStory = () => {
         </header>
 
         <div className={styles.storyGrid}>
-          <SectionShell id="gap" kicker="01 / The gap I noticed" title="The Production Gap" className={styles.asymGap}>
-            <div className={styles.sectionIntro}>
-              <div>
-                <p className={styles.lead}>
-                  2D materials are ready for industry — but scalable, affordable production remains the barrier.
-                </p>
-                <TypeField items={["SCALE", "COST", "CONSISTENCY", "INTEGRATION"]} />
-              </div>
-              <GapSvg />
-            </div>
-
-            <div className={styles.textBlock}>
-              <p className={styles.highlight}>
-                I develop production pathways to make 2D materials affordable, consistent, and scalable
-              </p>
-            </div>
-          </SectionShell>
+          <GapScrollytelling scrollRef={scrollRef} />
 
           <SectionShell id="process" kicker="02 / The direction I chose" title="Compressible Flow Exfoliation" className={styles.asymProcess}>
             <div className={styles.sectionIntro}>
