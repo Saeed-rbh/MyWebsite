@@ -689,13 +689,13 @@
 
 /* Stagger Left (Title left, Desc right) */
 .staggerLeft .pillarContent { align-items: flex-start; text-align: left; }
-.staggerLeft .gapPillarDesc { align-self: flex-end; text-align: right; margin-left: 15%; }
+.staggerLeft .gapPillarDesc { align-self: flex-end; text-align: left; }
 .staggerLeft .pillarMetrics { align-self: flex-end; }
 .staggerLeft .pillarNumber { top: -15%; left: -5%; transform: none; }
 
 /* Stagger Right (Title right, Desc left) */
 .staggerRight .pillarContent { align-items: flex-end; text-align: right; }
-.staggerRight .gapPillarDesc { align-self: flex-start; text-align: left; margin-right: 15%; }
+.staggerRight .gapPillarDesc { align-self: flex-start; text-align: right; }
 .staggerRight .pillarMetrics { align-self: flex-start; }
 .staggerRight .pillarNumber { top: -15%; right: -5%; left: auto; transform: none; }
 
@@ -711,7 +711,7 @@
 
 .gapPillarTitle {
   font-family: "Playfair Display", Georgia, "Times New Roman", serif;
-  font-size: clamp(28px, 3.5vw, 42px);
+  font-size: clamp(38px, 13.5vw, 75px);
   font-weight: 500;
   line-height: 1.08;
   letter-spacing: -0.02em;
@@ -727,7 +727,7 @@
 .gapPillarDesc {
   font-family: "Poppins", sans-serif;
   color: #bfae9f;
-  font-size: clamp(16px, 1.8vw, 22px);
+  font-size: clamp(0.6rem, 0.8vw, 0.72rem);
   line-height: 1.35;
   font-weight: 400;
   letter-spacing: 0.04em;
