@@ -454,6 +454,12 @@ const GapScrollytelling = ({ scrollRef }) => {
 
 const WorkStory = () => {
   const scrollRef = useRef(null);
+  const [isMounted, setIsMounted] = useState(false);
+
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
+
   const { activeSection, progress, showSideNav, handleScroll } = useWorkStoryEffects(scrollRef);
 
   const activeIndex = useMemo(
@@ -526,7 +532,7 @@ const WorkStory = () => {
         </header>
 
         <div className={styles.storyGrid}>
-          <GapScrollytelling scrollRef={scrollRef} />
+          {isMounted && <GapScrollytelling scrollRef={scrollRef} />}
 
           <SectionShell id="process" kicker="02 / The direction I chose" title="Compressible Flow Exfoliation" className={styles.asymProcess}>
             <div className={styles.sectionIntro}>
