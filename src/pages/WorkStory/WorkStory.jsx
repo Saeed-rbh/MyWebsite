@@ -361,18 +361,29 @@ const GapSection = ({ scrollRef }) => {
     offset: ["start start", "end end"],
   });
 
-  const s1y  = useTransform(scrollYProgress, [0, 0.15, 0.2],         ["0vh", "-5vh", "-100vh"]);
-  const s1op = useTransform(scrollYProgress, [0, 0.15, 0.2],         [1, 1, 0]);
-  const s2y  = useTransform(scrollYProgress, [0.1, 0.15, 0.3, 0.35], ["100vh", "5vh", "-5vh", "-100vh"]);
-  const s2op = useTransform(scrollYProgress, [0.1, 0.15, 0.3, 0.35], [0, 1, 1, 0]);
-  const s3y  = useTransform(scrollYProgress, [0.25, 0.3, 0.45, 0.5], ["100vh", "5vh", "-5vh", "-100vh"]);
-  const s3op = useTransform(scrollYProgress, [0.25, 0.3, 0.45, 0.5], [0, 1, 1, 0]);
-  const s4y  = useTransform(scrollYProgress, [0.4, 0.45, 0.6, 0.65], ["100vh", "5vh", "-5vh", "-100vh"]);
-  const s4op = useTransform(scrollYProgress, [0.4, 0.45, 0.6, 0.65], [0, 1, 1, 0]);
-  const s5y  = useTransform(scrollYProgress, [0.55, 0.6, 0.75, 0.8], ["100vh", "5vh", "-5vh", "-100vh"]);
-  const s5op = useTransform(scrollYProgress, [0.55, 0.6, 0.75, 0.8], [0, 1, 1, 0]);
-  const s6y  = useTransform(scrollYProgress, [0.7, 0.75, 1.0],       ["100vh", "5vh", "0vh"]);
-  const s6op = useTransform(scrollYProgress, [0.7, 0.75, 1.0],       [0, 1, 1]);
+  const s1y      = useTransform(scrollYProgress, [0, 0.1, 0.15], ["0vh", "0vh", "-10vh"]);
+  const s1scale  = useTransform(scrollYProgress, [0, 0.1, 0.15], [1, 1, 0.8]);
+  const s1op     = useTransform(scrollYProgress, [0, 0.1, 0.15], [1, 1, 0]);
+
+  const s2y      = useTransform(scrollYProgress, [0.1, 0.15, 0.25, 0.3], ["50vh", "0vh", "0vh", "-10vh"]);
+  const s2scale  = useTransform(scrollYProgress, [0.1, 0.15, 0.25, 0.3], [1, 1, 1, 0.8]);
+  const s2op     = useTransform(scrollYProgress, [0.1, 0.15, 0.25, 0.3], [0, 1, 1, 0]);
+
+  const s3y      = useTransform(scrollYProgress, [0.25, 0.3, 0.4, 0.45], ["50vh", "0vh", "0vh", "-10vh"]);
+  const s3scale  = useTransform(scrollYProgress, [0.25, 0.3, 0.4, 0.45], [1, 1, 1, 0.8]);
+  const s3op     = useTransform(scrollYProgress, [0.25, 0.3, 0.4, 0.45], [0, 1, 1, 0]);
+
+  const s4y      = useTransform(scrollYProgress, [0.4, 0.45, 0.55, 0.6], ["50vh", "0vh", "0vh", "-10vh"]);
+  const s4scale  = useTransform(scrollYProgress, [0.4, 0.45, 0.55, 0.6], [1, 1, 1, 0.8]);
+  const s4op     = useTransform(scrollYProgress, [0.4, 0.45, 0.55, 0.6], [0, 1, 1, 0]);
+
+  const s5y      = useTransform(scrollYProgress, [0.55, 0.6, 0.7, 0.75], ["50vh", "0vh", "0vh", "-10vh"]);
+  const s5scale  = useTransform(scrollYProgress, [0.55, 0.6, 0.7, 0.75], [1, 1, 1, 0.8]);
+  const s5op     = useTransform(scrollYProgress, [0.55, 0.6, 0.7, 0.75], [0, 1, 1, 0]);
+
+  const s6y      = useTransform(scrollYProgress, [0.7, 0.75, 1.0], ["50vh", "0vh", "0vh"]);
+  const s6scale  = useTransform(scrollYProgress, [0.7, 0.75, 1.0], [1, 1, 1]);
+  const s6op     = useTransform(scrollYProgress, [0.7, 0.75, 1.0], [0, 1, 1]);
 
   return (
     <div ref={sectionRef} className={styles.storyPin} id="gap" data-parallax-section data-reveal>
@@ -386,7 +397,7 @@ const GapSection = ({ scrollRef }) => {
           <span className={styles.kicker}>01 / The gap I noticed</span>
         </motion.div>
 
-        <motion.div className={styles.storySlide} style={{ y: s1y, opacity: s1op }}>
+        <motion.div className={styles.storySlide} style={{ y: s1y, opacity: s1op, scale: s1scale }}>
           <div className={styles.gapTitleWrapper}>
             <span className={styles.gapTitleAccent}>CHASM</span>
             <h2 className={styles.gapTitleMain}>
@@ -396,7 +407,7 @@ const GapSection = ({ scrollRef }) => {
           </div>
         </motion.div>
 
-        <motion.div className={styles.storySlide} style={{ y: s2y, opacity: s2op }}>
+        <motion.div className={styles.storySlide} style={{ y: s2y, opacity: s2op, scale: s2scale }}>
           <div className={styles.gapLeadBlock}>
              <div className={styles.gapLeadData}>
                 <span className={styles.dataLabel}>STATUS</span>
@@ -410,7 +421,7 @@ const GapSection = ({ scrollRef }) => {
           </div>
         </motion.div>
 
-        <motion.div className={styles.storySlide} style={{ y: s3y, opacity: s3op }}>
+        <motion.div className={styles.storySlide} style={{ y: s3y, opacity: s3op, scale: s3scale }}>
           <div className={`${styles.gapPillarBlock} ${styles.staggerLeft}`}>
             <div className={styles.pillarNumber}>01</div>
             <div className={styles.pillarContent}>
@@ -423,7 +434,7 @@ const GapSection = ({ scrollRef }) => {
           </div>
         </motion.div>
 
-        <motion.div className={styles.storySlide} style={{ y: s4y, opacity: s4op }}>
+        <motion.div className={styles.storySlide} style={{ y: s4y, opacity: s4op, scale: s4scale }}>
           <div className={`${styles.gapPillarBlock} ${styles.staggerRight}`}>
             <div className={styles.pillarNumber}>02</div>
             <div className={styles.pillarContent}>
@@ -436,7 +447,7 @@ const GapSection = ({ scrollRef }) => {
           </div>
         </motion.div>
 
-        <motion.div className={styles.storySlide} style={{ y: s5y, opacity: s5op }}>
+        <motion.div className={styles.storySlide} style={{ y: s5y, opacity: s5op, scale: s5scale }}>
           <div className={`${styles.gapPillarBlock} ${styles.staggerLeft}`}>
             <div className={styles.pillarNumber}>03</div>
             <div className={styles.pillarContent}>
@@ -449,7 +460,7 @@ const GapSection = ({ scrollRef }) => {
           </div>
         </motion.div>
 
-        <motion.div className={styles.storySlide} style={{ y: s6y, opacity: s6op }}>
+        <motion.div className={styles.storySlide} style={{ y: s6y, opacity: s6op, scale: s6scale }}>
           <p className={styles.gapHighlight}>
             I develop production pathways to make<br />
             2D materials <span className={styles.highlightWord}>affordable</span>, <span className={styles.highlightWord}>consistent</span>,<br />
