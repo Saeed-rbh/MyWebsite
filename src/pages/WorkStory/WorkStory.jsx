@@ -422,11 +422,11 @@ const GapScrollytelling = ({ scrollRef }) => {
 
   return (
     <div ref={targetRef} className={styles.scrollyWrapper} id="gap" data-parallax-section data-reveal>
-      <div className={styles.stickyContainer}>
+      <div className={`${styles.stickyContainer} ${styles.hudContainer}`}>
         {/* Slide 1 */}
         <motion.div className={styles.slide} style={{ y: y1, opacity: opacity1 }}>
           <div className={styles.slideIntro}>
-            <h2>The Production Gap</h2>
+            <h2 className={styles.techHeader}>[ The Production Gap ]</h2>
             <p className={styles.lead}>
               2D materials are ready for industry — but scalable, affordable production remains the barrier.
             </p>
@@ -442,9 +442,9 @@ const GapScrollytelling = ({ scrollRef }) => {
         </motion.div>
 
         {/* Slide 3 */}
-        <motion.div className={styles.slide} style={{ y: y3, opacity: opacity3 }}>
+        <motion.div className={`${styles.slide} ${styles.techSlide}`} style={{ y: y3, opacity: opacity3 }}>
           <p className={styles.highlight}>
-            I develop production pathways to make 2D materials affordable, consistent, and scalable
+            &gt; I develop production pathways to make 2D materials affordable, consistent, and scalable_
           </p>
         </motion.div>
       </div>

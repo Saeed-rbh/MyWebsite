@@ -637,13 +637,42 @@
   top: clamp(46px, 9vw, 118px);
   z-index: 0;
   color: rgba(255, 255, 255, 0.035);
-  font-family: "Poppins", sans-serif;
+  font-family: "Roboto Mono", "Courier New", monospace;
   font-size: clamp(82px, 15vw, 210px);
   font-weight: 800;
   line-height: 0.78;
   letter-spacing: -0.095em;
   text-transform: uppercase;
   pointer-events: none;
+}
+
+/* Sci-Fi HUD Elements */
+.hudContainer {
+  background-image: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(255, 255, 255, 0.015) 2px,
+    rgba(255, 255, 255, 0.015) 4px
+  );
+  background-size: 100% 4px;
+}
+
+.hudContainer::before {
+  content: "[ SYS.INFO / THE GAP I NOTICED ]";
+  font-family: "Roboto Mono", monospace;
+}
+
+.techHeader {
+  font-family: "Roboto Mono", "Courier New", monospace;
+  letter-spacing: 0.05em;
+  font-weight: 500;
+}
+
+.techSlide .highlight {
+  font-family: "Roboto Mono", "Courier New", monospace;
+  font-weight: 400;
+  letter-spacing: -0.02em;
 }
 
 .slide {
