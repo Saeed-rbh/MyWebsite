@@ -4,90 +4,6 @@ import { motion, animate, useScroll, useTransform, useSpring, useMotionValueEven
 import SEO from "../../components/SEO/SEO";
 import styles from "./WorkStory.module.css";
 
-const ScrollVideoCanvas = ({ scrollYProgress }) => {
-  const canvasRef = useRef(null);
-  const imagesRef = useRef([]);
-  const [imagesLoaded, setImagesLoaded] = useState(false);
-
-  useEffect(() => {
-    const frameCount = 300;
-    let loadedCount = 0;
-    const images = [];
-
-    for (let i = 1; i <= frameCount; i++) {
-      const img = new Image();
-      const index = i.toString().padStart(3, '0');
-      img.src = `/Gap/ezgif-frame-${index}.jpg`;
-      img.onload = () => {
-        loadedCount++;
-        if (loadedCount === frameCount) {
-          setImagesLoaded(true);
-        }
-      };
-      images.push(img);
-    }
-    imagesRef.current = images;
-  }, []);
-
-  const drawFrame = (canvas, ctx, img) => {
-    const canvasAspect = canvas.width / canvas.height;
-    const imgAspect = img.width / img.height;
-    let renderWidth, renderHeight, xOffset, yOffset;
-
-    if (canvasAspect > imgAspect) {
-      renderWidth = canvas.width;
-      renderHeight = canvas.width / imgAspect;
-      xOffset = 0;
-      yOffset = (canvas.height - renderHeight) / 2;
-    } else {
-      renderHeight = canvas.height;
-      renderWidth = canvas.height * imgAspect;
-      yOffset = 0;
-      xOffset = (canvas.width - renderWidth) / 2;
-    }
-
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    ctx.globalAlpha = 1.0;
-    ctx.drawImage(img, xOffset, yOffset, renderWidth, renderHeight);
-  };
-
-  useMotionValueEvent(scrollYProgress, "change", (latest) => {
-    if (!imagesLoaded) return;
-    const canvas = canvasRef.current;
-    if (!canvas) return;
-    const ctx = canvas.getContext("2d");
-
-    const frameIndex = Math.min(299, Math.max(0, Math.floor(latest * 300)));
-    const img = imagesRef.current[frameIndex];
-    if (img) drawFrame(canvas, ctx, img);
-  });
-
-  useEffect(() => {
-    const canvas = canvasRef.current;
-    if (!canvas) return;
-
-    const resizeCanvas = () => {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-      
-      if (imagesLoaded) {
-        const currentProgress = scrollYProgress.get();
-        const frameIndex = Math.min(299, Math.max(0, Math.floor(currentProgress * 300)));
-        const img = imagesRef.current[frameIndex];
-        if (img) {
-          drawFrame(canvas, canvas.getContext("2d"), img);
-        }
-      }
-    };
-
-    window.addEventListener("resize", resizeCanvas);
-    resizeCanvas();
-    return () => window.removeEventListener("resize", resizeCanvas);
-  }, [imagesLoaded, scrollYProgress]);
-
-  return <canvas ref={canvasRef} className={styles.gapCanvasBackground} />;
-};
-
 const chain = ["Materials Scientist", "2D & Advanced Materials", "Characterization", "CFD", "Thermal Management"];
 
 const navItems = [
@@ -278,6 +194,22 @@ const SectionShell = ({ id, kicker, title, children, className = "" }) => (
   </section>
 );
 
+const GapSvg = () => (
+  <svg className={`${styles.animatedSvg} ${styles.gapSvg}`} viewBox="0 0 520 260" aria-hidden="true">
+    <path className={styles.svgTrace} d="M30 180 L200 180 L260 70 L320 180 L490 180" />
+    <path className={styles.svgTraceSlow} d="M110 120 H410" />
+    <path className={styles.svgTraceSlow} d="M260 70 V180" strokeDasharray="6 6" />
+    <g className={styles.svgNodes}>
+      <circle cx="200" cy="180" r="8" />
+      <circle cx="260" cy="70" r="8" />
+      <circle cx="320" cy="180" r="8" />
+    </g>
+    <g className={styles.svgRings}>
+      <circle cx="260" cy="70" r="32" />
+    </g>
+  </svg>
+);
+
 const FlowSvg = () => (
   <svg className={`${styles.animatedSvg} ${styles.flowSvg}`} viewBox="0 0 520 260" aria-hidden="true">
     <path className={styles.svgTrace} d="M28 132 H138 C180 132, 185 76, 236 76 H360 C421 76, 424 132, 492 132" />
@@ -446,7 +378,9 @@ const GapSection = ({ scrollRef }) => {
     <div ref={sectionRef} className={styles.storyPin} id="gap" data-parallax-section data-reveal>
       <div className={styles.storyPinInner}>
 
-        <ScrollVideoCanvas scrollYProgress={scrollYProgress} />
+        <div className={styles.gapSvgContainer}>
+          <GapSvg />
+        </div>
 
         <motion.div className={styles.storyPinKicker} style={{ y: s1y, opacity: s1op }}>
           <span className={styles.kicker}>01 / The gap I noticed</span>
@@ -466,22 +400,22 @@ const GapSection = ({ scrollRef }) => {
 
         <motion.div className={styles.storySlide} style={{ y: s3y, opacity: s3op }}>
           <div className={styles.gapPillarBlock}>
-            <h3 className={styles.gapPillarTitle}>Scale.</h3>
-            <p className={styles.gapPillarDesc}>Lab methods work in grams.<br/>Industry demands tons.</p>
+            <h3 className={styles.gapPillarTitle}>[ PARAMETER : SCALE ]</h3>
+            <p className={styles.gapPillarDesc}>Lab synthesis is restricted to grams.<br/>Industrial application demands metric tons.</p>
           </div>
         </motion.div>
 
         <motion.div className={styles.storySlide} style={{ y: s4y, opacity: s4op }}>
           <div className={styles.gapPillarBlock}>
-            <h3 className={styles.gapPillarTitle}>Cost.</h3>
-            <p className={styles.gapPillarDesc}>High processing overhead<br/>kills high-volume adoption.</p>
+            <h3 className={styles.gapPillarTitle}>[ METRIC : COST ]</h3>
+            <p className={styles.gapPillarDesc}>Prohibitive processing overhead<br/>restricts high-volume adoption.</p>
           </div>
         </motion.div>
 
         <motion.div className={styles.storySlide} style={{ y: s5y, opacity: s5op }}>
           <div className={styles.gapPillarBlock}>
-            <h3 className={styles.gapPillarTitle}>Consistency.</h3>
-            <p className={styles.gapPillarDesc}>Flake size and chemistry must<br/>stay reliable batch to batch.</p>
+            <h3 className={styles.gapPillarTitle}>[ REQ : CONSISTENCY ]</h3>
+            <p className={styles.gapPillarDesc}>Flake morphology and surface chemistry<br/>must remain invariant across batches.</p>
           </div>
         </motion.div>
 
