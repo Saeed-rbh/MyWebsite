@@ -669,42 +669,29 @@
 .gapPillarBlock {
   position: relative;
   display: flex;
+  flex-direction: column;
   align-items: center;
+  justify-content: center;
   width: 100%;
   max-width: 800px;
-}
-
-.pillarLeft {
-  justify-content: flex-start;
-  text-align: left;
-}
-
-.pillarRight {
-  justify-content: flex-end;
-  text-align: right;
+  text-align: center;
 }
 
 .pillarNumber {
   position: absolute;
   top: 50%;
-  transform: translateY(-50%);
-  font-family: var(--font-mono);
-  font-size: clamp(15rem, 45vw, 40rem);
-  font-weight: 900;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: "Georgia", serif;
+  font-size: clamp(6rem, 15vw, 10rem);
+  font-weight: 300;
   color: var(--color-primary);
-  opacity: 0.04;
+  opacity: 0.08;
   z-index: 0;
   pointer-events: none;
   line-height: 0.8;
-  letter-spacing: -0.08em;
-}
-
-.pillarLeft .pillarNumber {
-  right: -25%;
-}
-
-.pillarRight .pillarNumber {
-  left: -25%;
+  letter-spacing: -0.02em;
+  font-style: italic;
 }
 
 .pillarContent {
@@ -712,73 +699,43 @@
   z-index: 1;
   display: flex;
   flex-direction: column;
-  gap: 20px;
-  max-width: 500px;
-  padding: 32px;
-  background: rgba(0, 0, 0, 0.4);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(10px);
-}
-
-.pillarLeft .pillarContent {
-  align-items: flex-start;
-}
-
-.pillarRight .pillarContent {
-  align-items: flex-end;
+  align-items: center;
+  gap: 16px;
+  max-width: 600px;
 }
 
 .gapPillarTitle {
   font-family: var(--font-mono);
-  font-size: clamp(1rem, 2vw, 1.5rem);
-  font-weight: 600;
+  font-size: clamp(1.2rem, 2.5vw, 1.8rem);
+  font-weight: 500;
   color: var(--color-primary);
-  letter-spacing: 0.1em;
+  letter-spacing: 0.15em;
   margin: 0;
-  padding: 6px 12px;
-  border-left: 3px solid var(--color-primary);
-  background: linear-gradient(90deg, rgba(255,107,0,0.1) 0%, rgba(0,0,0,0) 100%);
-}
-
-.pillarRight .gapPillarTitle {
-  border-left: none;
-  border-right: 3px solid var(--color-primary);
-  background: linear-gradient(-90deg, rgba(255,107,0,0.1) 0%, rgba(0,0,0,0) 100%);
+  text-transform: uppercase;
 }
 
 .gapPillarDesc {
   font-family: "Inter", sans-serif;
-  font-size: clamp(1.2rem, 3vw, 1.8rem);
-  font-weight: 400;
+  font-size: clamp(1.2rem, 2.5vw, 1.6rem);
+  font-weight: 300;
   color: #fff;
-  line-height: 1.4;
+  line-height: 1.5;
   margin: 0;
-  letter-spacing: -0.02em;
 }
 
 .gapPillarDesc strong {
-  font-family: var(--font-mono);
-  font-weight: 900;
-  color: var(--color-primary);
-  text-transform: uppercase;
+  font-family: "Inter", sans-serif;
+  font-weight: 600;
+  font-style: italic;
 }
 
 .pillarMetrics {
-  font-family: var(--font-mono);
-  font-size: 1.1rem;
-  font-weight: 900;
-  color: #000;
-  background: var(--color-primary);
-  padding: 8px 16px;
-  display: inline-block;
-  align-self: flex-start;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  margin-top: 12px;
-}
-
-.pillarRight .pillarMetrics {
-  align-self: flex-end;
+  font-family: "Georgia", serif;
+  font-size: clamp(1rem, 2vw, 1.3rem);
+  font-weight: 400;
+  color: #a0a0a0;
+  font-style: italic;
+  margin-top: 8px;
 }
 
 .gapHighlight {
@@ -854,11 +811,11 @@
 
 .gapTitleHeavy {
   font-family: var(--font-mono);
-  font-size: clamp(4rem, 15vw, 11rem);
-  font-weight: 900;
+  font-size: clamp(3rem, 8vw, 5.5rem);
+  font-weight: 600;
   color: var(--color-primary);
-  letter-spacing: -0.06em;
-  line-height: 0.85;
+  letter-spacing: -0.02em;
+  line-height: 1;
   text-transform: uppercase;
   display: block;
 }

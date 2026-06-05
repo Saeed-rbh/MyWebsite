@@ -411,10 +411,10 @@ const GapSection = ({ scrollRef }) => {
         </motion.div>
 
         <motion.div className={styles.storySlide} style={{ y: s3y, opacity: s3op }}>
-          <div className={`${styles.gapPillarBlock} ${styles.pillarLeft}`}>
+          <div className={styles.gapPillarBlock}>
             <div className={styles.pillarNumber}>01</div>
             <div className={styles.pillarContent}>
-              <h3 className={styles.gapPillarTitle}>[ PARAMETER : SCALE ]</h3>
+              <h3 className={styles.gapPillarTitle}>SCALE CONSTRAINT</h3>
               <p className={styles.gapPillarDesc}>Lab synthesis is restricted to <strong>grams</strong>.<br/>Industrial application demands <strong>metric tons</strong>.</p>
               <div className={styles.pillarMetrics}>
                 <span>Yield: mg/hr → kg/hr</span>
@@ -424,10 +424,10 @@ const GapSection = ({ scrollRef }) => {
         </motion.div>
 
         <motion.div className={styles.storySlide} style={{ y: s4y, opacity: s4op }}>
-          <div className={`${styles.gapPillarBlock} ${styles.pillarRight}`}>
+          <div className={styles.gapPillarBlock}>
             <div className={styles.pillarNumber}>02</div>
             <div className={styles.pillarContent}>
-              <h3 className={styles.gapPillarTitle}>[ METRIC : COST ]</h3>
+              <h3 className={styles.gapPillarTitle}>COST BARRIER</h3>
               <p className={styles.gapPillarDesc}>Prohibitive processing overhead<br/>restricts <strong>high-volume</strong> adoption.</p>
               <div className={styles.pillarMetrics}>
                 <span>Target: &lt; $100/kg</span>
@@ -437,10 +437,10 @@ const GapSection = ({ scrollRef }) => {
         </motion.div>
 
         <motion.div className={styles.storySlide} style={{ y: s5y, opacity: s5op }}>
-          <div className={`${styles.gapPillarBlock} ${styles.pillarLeft}`}>
+          <div className={styles.gapPillarBlock}>
             <div className={styles.pillarNumber}>03</div>
             <div className={styles.pillarContent}>
-              <h3 className={styles.gapPillarTitle}>[ REQ : CONSISTENCY ]</h3>
+              <h3 className={styles.gapPillarTitle}>CONSISTENCY REQ.</h3>
               <p className={styles.gapPillarDesc}>Flake morphology and surface chemistry<br/>must remain <strong>invariant</strong> across batches.</p>
               <div className={styles.pillarMetrics}>
                 <span>Variance: &lt; 5%</span>
