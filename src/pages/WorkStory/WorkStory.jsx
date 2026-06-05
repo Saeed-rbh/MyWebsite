@@ -371,20 +371,20 @@ const GapSection = ({ scrollRef }) => {
 
   // 5 slides across 600vh. Each slide: enter → stay → exit
   // Slide 1 starts fully visible (opacity:1, y:0) since it's the first thing you see
-  const s1y  = useTransform(scrollYProgress, [0, 0.16, 0.2],        ["0px",  "0px",  "-90px"]);
+  const s1y  = useTransform(scrollYProgress, [0, 0.16, 0.2],        ["0vh",  "0vh",  "-100vh"]);
   const s1op = useTransform(scrollYProgress, [0, 0.16, 0.2],        [1,      1,      0]);
 
-  const s2y  = useTransform(scrollYProgress, [0.17, 0.22, 0.37, 0.42], ["90px", "0px", "0px", "-90px"]);
-  const s2op = useTransform(scrollYProgress, [0.17, 0.22, 0.37, 0.42], [0,      1,     1,     0]);
+  const s2y  = useTransform(scrollYProgress, [0.17, 0.23, 0.36, 0.42], ["100vh", "0vh", "0vh", "-100vh"]);
+  const s2op = useTransform(scrollYProgress, [0.17, 0.23, 0.36, 0.42], [0,       1,     1,     0]);
 
-  const s3y  = useTransform(scrollYProgress, [0.37, 0.43, 0.57, 0.62], ["90px", "0px", "0px", "-90px"]);
-  const s3op = useTransform(scrollYProgress, [0.37, 0.43, 0.57, 0.62], [0,      1,     1,     0]);
+  const s3y  = useTransform(scrollYProgress, [0.37, 0.43, 0.56, 0.62], ["100vh", "0vh", "0vh", "-100vh"]);
+  const s3op = useTransform(scrollYProgress, [0.37, 0.43, 0.56, 0.62], [0,       1,     1,     0]);
 
-  const s4y  = useTransform(scrollYProgress, [0.57, 0.63, 0.77, 0.82], ["90px", "0px", "0px", "-90px"]);
-  const s4op = useTransform(scrollYProgress, [0.57, 0.63, 0.77, 0.82], [0,      1,     1,     0]);
+  const s4y  = useTransform(scrollYProgress, [0.57, 0.63, 0.76, 0.82], ["100vh", "0vh", "0vh", "-100vh"]);
+  const s4op = useTransform(scrollYProgress, [0.57, 0.63, 0.76, 0.82], [0,       1,     1,     0]);
 
-  const s5y  = useTransform(scrollYProgress, [0.78, 0.84, 1.0],        ["90px", "0px", "0px"]);
-  const s5op = useTransform(scrollYProgress, [0.78, 0.84, 1.0],        [0,      1,     1]);
+  const s5y  = useTransform(scrollYProgress, [0.77, 0.83, 1.0],        ["100vh", "0vh", "0vh"]);
+  const s5op = useTransform(scrollYProgress, [0.77, 0.83, 1.0],        [0,       1,     1]);
 
   return (
     <div ref={sectionRef} className={styles.storyPin} id="gap" data-parallax-section data-reveal>
