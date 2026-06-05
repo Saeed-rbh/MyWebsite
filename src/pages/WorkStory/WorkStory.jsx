@@ -369,29 +369,31 @@ const GapSection = ({ scrollRef }) => {
     offset: ["start start", "end end"],
   });
 
-  // Fast In (100vh -> 15vh)
-  // Slow Drift (15vh -> -15vh)
-  // Fast Out (-15vh -> -100vh)
+  // Fast In (100vh -> 15vh), Slow Drift (15vh -> -15vh), Fast Out (-15vh -> -100vh)
   
-  // Slide 1: Already there at start. Drifts until 0.15, fast out by 0.2
-  const s1y  = useTransform(scrollYProgress, [0, 0.15, 0.2],       ["0vh", "-15vh", "-100vh"]);
-  const s1op = useTransform(scrollYProgress, [0, 0.15, 0.2],       [1, 1, 0]);
+  // Slide 1 (Title): Start -> 0.15 -> 0.2
+  const s1y  = useTransform(scrollYProgress, [0, 0.15, 0.2],         ["0vh", "-15vh", "-100vh"]);
+  const s1op = useTransform(scrollYProgress, [0, 0.15, 0.2],         [1, 1, 0]);
 
-  // Slide 2: In 0.15-0.2, Drifts 0.2-0.35, Out 0.35-0.4
-  const s2y  = useTransform(scrollYProgress, [0.15, 0.2, 0.35, 0.4], ["100vh", "15vh", "-15vh", "-100vh"]);
-  const s2op = useTransform(scrollYProgress, [0.15, 0.2, 0.35, 0.4], [0, 1, 1, 0]);
+  // Slide 2 (Lead): 0.1 -> 0.15 (in) -> 0.3 (drift) -> 0.35 (out)
+  const s2y  = useTransform(scrollYProgress, [0.1, 0.15, 0.3, 0.35], ["100vh", "15vh", "-15vh", "-100vh"]);
+  const s2op = useTransform(scrollYProgress, [0.1, 0.15, 0.3, 0.35], [0, 1, 1, 0]);
 
-  // Slide 3: In 0.35-0.4, Drifts 0.4-0.55, Out 0.55-0.6
-  const s3y  = useTransform(scrollYProgress, [0.35, 0.4, 0.55, 0.6], ["100vh", "15vh", "-15vh", "-100vh"]);
-  const s3op = useTransform(scrollYProgress, [0.35, 0.4, 0.55, 0.6], [0, 1, 1, 0]);
+  // Slide 3 (Scale): 0.25 -> 0.3 -> 0.45 -> 0.5
+  const s3y  = useTransform(scrollYProgress, [0.25, 0.3, 0.45, 0.5], ["100vh", "15vh", "-15vh", "-100vh"]);
+  const s3op = useTransform(scrollYProgress, [0.25, 0.3, 0.45, 0.5], [0, 1, 1, 0]);
 
-  // Slide 4: In 0.55-0.6, Drifts 0.6-0.75, Out 0.75-0.8
-  const s4y  = useTransform(scrollYProgress, [0.55, 0.6, 0.75, 0.8], ["100vh", "15vh", "-15vh", "-100vh"]);
-  const s4op = useTransform(scrollYProgress, [0.55, 0.6, 0.75, 0.8], [0, 1, 1, 0]);
+  // Slide 4 (Cost): 0.4 -> 0.45 -> 0.6 -> 0.65
+  const s4y  = useTransform(scrollYProgress, [0.4, 0.45, 0.6, 0.65], ["100vh", "15vh", "-15vh", "-100vh"]);
+  const s4op = useTransform(scrollYProgress, [0.4, 0.45, 0.6, 0.65], [0, 1, 1, 0]);
 
-  // Slide 5: In 0.75-0.8, Drifts 0.8-1.0
-  const s5y  = useTransform(scrollYProgress, [0.75, 0.8, 1.0],       ["100vh", "15vh", "0vh"]);
-  const s5op = useTransform(scrollYProgress, [0.75, 0.8, 1.0],       [0, 1, 1]);
+  // Slide 5 (Consistency): 0.55 -> 0.6 -> 0.75 -> 0.8
+  const s5y  = useTransform(scrollYProgress, [0.55, 0.6, 0.75, 0.8], ["100vh", "15vh", "-15vh", "-100vh"]);
+  const s5op = useTransform(scrollYProgress, [0.55, 0.6, 0.75, 0.8], [0, 1, 1, 0]);
+
+  // Slide 6 (Closing): 0.7 -> 0.75 -> 1.0 (drift until end)
+  const s6y  = useTransform(scrollYProgress, [0.7, 0.75, 1.0],       ["100vh", "15vh", "0vh"]);
+  const s6op = useTransform(scrollYProgress, [0.7, 0.75, 1.0],       [0, 1, 1]);
 
   return (
     <div ref={sectionRef} className={styles.storyPin} id="gap" data-parallax-section data-reveal>
@@ -419,36 +421,32 @@ const GapSection = ({ scrollRef }) => {
           </p>
         </motion.div>
 
-        {/* Slide 3 — Scale + Cost */}
+        {/* Slide 3 — Scale */}
         <motion.div className={styles.storySlide} style={{ y: s3y, opacity: s3op }}>
-          <div className={styles.storyPillarPair}>
-            <div className={styles.storyPillar}>
-              <span className={styles.gapPillarLabel}>Scale</span>
-              <p>Lab methods work in grams. Industry needs repeatable, larger-volume production.</p>
-            </div>
-            <div className={styles.storyPillar}>
-              <span className={styles.gapPillarLabel}>Cost</span>
-              <p>High processing cost limits adoption in high-volume applications.</p>
-            </div>
+          <div className={styles.gapPillarBlock}>
+            <h3 className={styles.gapPillarTitle}>Scale.</h3>
+            <p className={styles.gapPillarDesc}>Lab methods work in grams.<br/>Industry demands tons.</p>
           </div>
         </motion.div>
 
-        {/* Slide 4 — Consistency + Integration */}
+        {/* Slide 4 — Cost */}
         <motion.div className={styles.storySlide} style={{ y: s4y, opacity: s4op }}>
-          <div className={styles.storyPillarPair}>
-            <div className={styles.storyPillar}>
-              <span className={styles.gapPillarLabel}>Consistency</span>
-              <p>Flake size, thickness, and chemistry must stay reliable batch to batch.</p>
-            </div>
-            <div className={styles.storyPillar}>
-              <span className={styles.gapPillarLabel}>Integration</span>
-              <p>Companies need powders, dispersions, or formulations that fit existing lines.</p>
-            </div>
+          <div className={styles.gapPillarBlock}>
+            <h3 className={styles.gapPillarTitle}>Cost.</h3>
+            <p className={styles.gapPillarDesc}>High processing overhead<br/>kills high-volume adoption.</p>
           </div>
         </motion.div>
 
-        {/* Slide 5 — Closing */}
+        {/* Slide 5 — Consistency */}
         <motion.div className={styles.storySlide} style={{ y: s5y, opacity: s5op }}>
+          <div className={styles.gapPillarBlock}>
+            <h3 className={styles.gapPillarTitle}>Consistency.</h3>
+            <p className={styles.gapPillarDesc}>Flake size and chemistry must<br/>stay reliable batch to batch.</p>
+          </div>
+        </motion.div>
+
+        {/* Slide 6 — Closing */}
+        <motion.div className={styles.storySlide} style={{ y: s6y, opacity: s6op }}>
           <p className={styles.gapHighlight}>
             I develop production pathways to make<br />
             2D materials affordable, consistent,<br />
