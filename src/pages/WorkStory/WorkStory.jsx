@@ -1,13 +1,94 @@
 import React, { useEffect, useMemo, useRef, useState } from "react";
 import { Link } from "react-router-dom";
-import { motion, animate, useScroll, useTransform, useSpring } from "framer-motion";
+import { motion, animate, useScroll, useTransform, useSpring, useMotionValueEvent } from "framer-motion";
 import SEO from "../../components/SEO/SEO";
 import styles from "./WorkStory.module.css";
 
+const ScrollVideoCanvas = ({ scrollYProgress }) => {
+  const canvasRef = useRef(null);
+  const imagesRef = useRef([]);
+  const [imagesLoaded, setImagesLoaded] = useState(false);
+
+  useEffect(() => {
+    const frameCount = 300;
+    let loadedCount = 0;
+    const images = [];
+
+    for (let i = 1; i <= frameCount; i++) {
+      const img = new Image();
+      const index = i.toString().padStart(3, '0');
+      img.src = `/Gap/ezgif-frame-${index}.jpg`;
+      img.onload = () => {
+        loadedCount++;
+        if (loadedCount === frameCount) {
+          setImagesLoaded(true);
+        }
+      };
+      images.push(img);
+    }
+    imagesRef.current = images;
+  }, []);
+
+  const drawFrame = (canvas, ctx, img) => {
+    const canvasAspect = canvas.width / canvas.height;
+    const imgAspect = img.width / img.height;
+    let renderWidth, renderHeight, xOffset, yOffset;
+
+    if (canvasAspect > imgAspect) {
+      renderWidth = canvas.width;
+      renderHeight = canvas.width / imgAspect;
+      xOffset = 0;
+      yOffset = (canvas.height - renderHeight) / 2;
+    } else {
+      renderHeight = canvas.height;
+      renderWidth = canvas.height * imgAspect;
+      yOffset = 0;
+      xOffset = (canvas.width - renderWidth) / 2;
+    }
+
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.globalAlpha = 0.6;
+    ctx.drawImage(img, xOffset, yOffset, renderWidth, renderHeight);
+  };
+
+  useMotionValueEvent(scrollYProgress, "change", (latest) => {
+    if (!imagesLoaded) return;
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+    const ctx = canvas.getContext("2d");
+
+    const frameIndex = Math.min(299, Math.max(0, Math.floor(latest * 300)));
+    const img = imagesRef.current[frameIndex];
+    if (img) drawFrame(canvas, ctx, img);
+  });
+
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+
+    const resizeCanvas = () => {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+      
+      if (imagesLoaded) {
+        const currentProgress = scrollYProgress.get();
+        const frameIndex = Math.min(299, Math.max(0, Math.floor(currentProgress * 300)));
+        const img = imagesRef.current[frameIndex];
+        if (img) {
+          drawFrame(canvas, canvas.getContext("2d"), img);
+        }
+      }
+    };
+
+    window.addEventListener("resize", resizeCanvas);
+    resizeCanvas();
+    return () => window.removeEventListener("resize", resizeCanvas);
+  }, [imagesLoaded, scrollYProgress]);
+
+  return <canvas ref={canvasRef} className={styles.gapCanvasBackground} />;
+};
 
 const chain = ["Materials Scientist", "2D & Advanced Materials", "Characterization", "CFD", "Thermal Management"];
-
-
 
 const navItems = [
   { id: "gap", label: "Gap" },
@@ -88,9 +169,6 @@ const useWorkStoryEffects = (scrollRef) => {
   useEffect(() => {
     const root = scrollRef.current;
     if (!root) return undefined;
-
-    // Use native scroll for smooth scrollytelling.
-    // CSS scroll-snap handles the snapping where appropriate.
 
     const revealObserver = new IntersectionObserver(
       (entries) => {
@@ -200,22 +278,6 @@ const SectionShell = ({ id, kicker, title, children, className = "" }) => (
   </section>
 );
 
-const GapSvg = () => (
-  <svg className={`${styles.animatedSvg} ${styles.gapSvg}`} viewBox="0 0 520 260" aria-hidden="true">
-    <path className={styles.svgTrace} d="M30 180 L200 180 L260 70 L320 180 L490 180" />
-    <path className={styles.svgTraceSlow} d="M110 120 H410" />
-    <path className={styles.svgTraceSlow} d="M260 70 V180" strokeDasharray="6 6" />
-    <g className={styles.svgNodes}>
-      <circle cx="200" cy="180" r="8" />
-      <circle cx="260" cy="70" r="8" />
-      <circle cx="320" cy="180" r="8" />
-    </g>
-    <g className={styles.svgRings}>
-      <circle cx="260" cy="70" r="32" />
-    </g>
-  </svg>
-);
-
 const FlowSvg = () => (
   <svg className={`${styles.animatedSvg} ${styles.flowSvg}`} viewBox="0 0 520 260" aria-hidden="true">
     <path className={styles.svgTrace} d="M28 132 H138 C180 132, 185 76, 236 76 H360 C421 76, 424 132, 492 132" />
@@ -285,7 +347,6 @@ const HeroGraphene = () => (
         </radialGradient>
       </defs>
       <g>
-        {/* Bonds (lines) */}
         <g className={styles.grapheneBonds}>
           <line x1="51" y1="37" x2="40" y2="19" />
           <line x1="128" y1="83" x2="111.1" y2="53.7" />
@@ -327,7 +388,6 @@ const HeroGraphene = () => (
           <line x1="21" y1="181" y2="181" />
           <line x1="20" y1="91" x2="7" y2="91" />
         </g>
-        {/* Atoms (circles) */}
         <g className={styles.grapheneAtoms}>
           <circle cx="30.5" cy="91.5" r="10" style={{ animationDelay: "-1.53s", animationDuration: "5.22s" }} />
           <circle cx="56.5" cy="136.5" r="10" style={{ animationDelay: "-2.81s", animationDuration: "4.34s" }} />
@@ -369,29 +429,16 @@ const GapSection = ({ scrollRef }) => {
     offset: ["start start", "end end"],
   });
 
-  // Fast In (100vh -> 15vh), Slow Drift (15vh -> -15vh), Fast Out (-15vh -> -100vh)
-  
-  // Slide 1 (Title): Start -> 0.15 -> 0.2
   const s1y  = useTransform(scrollYProgress, [0, 0.15, 0.2],         ["0vh", "-15vh", "-100vh"]);
   const s1op = useTransform(scrollYProgress, [0, 0.15, 0.2],         [1, 1, 0]);
-
-  // Slide 2 (Lead): 0.1 -> 0.15 (in) -> 0.3 (drift) -> 0.35 (out)
   const s2y  = useTransform(scrollYProgress, [0.1, 0.15, 0.3, 0.35], ["100vh", "15vh", "-15vh", "-100vh"]);
   const s2op = useTransform(scrollYProgress, [0.1, 0.15, 0.3, 0.35], [0, 1, 1, 0]);
-
-  // Slide 3 (Scale): 0.25 -> 0.3 -> 0.45 -> 0.5
   const s3y  = useTransform(scrollYProgress, [0.25, 0.3, 0.45, 0.5], ["100vh", "15vh", "-15vh", "-100vh"]);
   const s3op = useTransform(scrollYProgress, [0.25, 0.3, 0.45, 0.5], [0, 1, 1, 0]);
-
-  // Slide 4 (Cost): 0.4 -> 0.45 -> 0.6 -> 0.65
   const s4y  = useTransform(scrollYProgress, [0.4, 0.45, 0.6, 0.65], ["100vh", "15vh", "-15vh", "-100vh"]);
   const s4op = useTransform(scrollYProgress, [0.4, 0.45, 0.6, 0.65], [0, 1, 1, 0]);
-
-  // Slide 5 (Consistency): 0.55 -> 0.6 -> 0.75 -> 0.8
   const s5y  = useTransform(scrollYProgress, [0.55, 0.6, 0.75, 0.8], ["100vh", "15vh", "-15vh", "-100vh"]);
   const s5op = useTransform(scrollYProgress, [0.55, 0.6, 0.75, 0.8], [0, 1, 1, 0]);
-
-  // Slide 6 (Closing): 0.7 -> 0.75 -> 1.0 (drift until end)
   const s6y  = useTransform(scrollYProgress, [0.7, 0.75, 1.0],       ["100vh", "15vh", "0vh"]);
   const s6op = useTransform(scrollYProgress, [0.7, 0.75, 1.0],       [0, 1, 1]);
 
@@ -399,20 +446,16 @@ const GapSection = ({ scrollRef }) => {
     <div ref={sectionRef} className={styles.storyPin} id="gap" data-parallax-section data-reveal>
       <div className={styles.storyPinInner}>
 
-        {/* Ghost watermark */}
-        <div className={styles.gapBgLabel} aria-hidden="true">GAP</div>
+        <ScrollVideoCanvas scrollYProgress={scrollYProgress} />
 
-        {/* Kicker line */}
         <motion.div className={styles.storyPinKicker} style={{ y: s1y, opacity: s1op }}>
           <span className={styles.kicker}>01 / The gap I noticed</span>
         </motion.div>
 
-        {/* Slide 1 — Title */}
         <motion.div className={styles.storySlide} style={{ y: s1y, opacity: s1op }}>
           <h2 className={styles.gapTitle}>The<br />Production Gap</h2>
         </motion.div>
 
-        {/* Slide 2 — Lead */}
         <motion.div className={styles.storySlide} style={{ y: s2y, opacity: s2op }}>
           <p className={styles.gapLead}>
             2D materials are ready for industry —<br />
@@ -421,7 +464,6 @@ const GapSection = ({ scrollRef }) => {
           </p>
         </motion.div>
 
-        {/* Slide 3 — Scale */}
         <motion.div className={styles.storySlide} style={{ y: s3y, opacity: s3op }}>
           <div className={styles.gapPillarBlock}>
             <h3 className={styles.gapPillarTitle}>Scale.</h3>
@@ -429,7 +471,6 @@ const GapSection = ({ scrollRef }) => {
           </div>
         </motion.div>
 
-        {/* Slide 4 — Cost */}
         <motion.div className={styles.storySlide} style={{ y: s4y, opacity: s4op }}>
           <div className={styles.gapPillarBlock}>
             <h3 className={styles.gapPillarTitle}>Cost.</h3>
@@ -437,7 +478,6 @@ const GapSection = ({ scrollRef }) => {
           </div>
         </motion.div>
 
-        {/* Slide 5 — Consistency */}
         <motion.div className={styles.storySlide} style={{ y: s5y, opacity: s5op }}>
           <div className={styles.gapPillarBlock}>
             <h3 className={styles.gapPillarTitle}>Consistency.</h3>
@@ -445,7 +485,6 @@ const GapSection = ({ scrollRef }) => {
           </div>
         </motion.div>
 
-        {/* Slide 6 — Closing */}
         <motion.div className={styles.storySlide} style={{ y: s6y, opacity: s6op }}>
           <p className={styles.gapHighlight}>
             I develop production pathways to make<br />
