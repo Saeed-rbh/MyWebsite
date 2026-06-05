@@ -399,77 +399,8 @@ const HeroGraphene = () => (
   </div>
 );
 
-const GapScrollytelling = ({ scrollRef }) => {
-  const targetRef = useRef(null);
-  
-  const { scrollYProgress } = useScroll({
-    target: targetRef,
-    container: scrollRef,
-    offset: ["start start", "end end"]
-  });
-
-  // Smooth out scroll progress so snap jumps feel like a smooth camera move
-  const smoothProgress = useSpring(scrollYProgress, {
-    damping: 30,
-    stiffness: 80,
-    restDelta: 0.001
-  });
-
-  // Use a wider mapping for 600vh wrapper: 3 parts (0.33 each)
-  // Slide 1: stays from 0 to 0.25, leaves to top at 0.33
-  const y1 = useTransform(smoothProgress, [0, 0.25, 0.33], ["0vh", "0vh", "-100vh"]);
-  
-  // Slide 2: enters from bottom at 0.25 -> 0.33, stays until 0.58, leaves at 0.66
-  const y2 = useTransform(smoothProgress, [0.25, 0.33, 0.58, 0.66], ["100vh", "0vh", "0vh", "-100vh"]);
-  
-  // Slide 3: enters from bottom at 0.58 -> 0.66, stays until 1.0
-  const y3 = useTransform(smoothProgress, [0.58, 0.66, 0.9, 1], ["100vh", "0vh", "0vh", "-50vh"]);
-
-  return (
-    <div ref={targetRef} className={styles.scrollyWrapper} id="gap" data-parallax-section data-reveal>
-      {/* Intermediate snap points for mobile scroll-snap */}
-      <div className={styles.snapPoint} style={{ top: "0" }} />
-      <div className={styles.snapPoint} style={{ top: "200vh" }} />
-      <div className={styles.snapPoint} style={{ top: "400vh" }} />
-      <div className={styles.snapPoint} style={{ top: "600vh" }} />
-
-      <div className={`${styles.stickyContainer} ${styles.hudContainer}`}>
-        {/* Slide 1 */}
-        <motion.div className={styles.slide} style={{ y: y1 }}>
-          <div className={styles.slideIntro}>
-            <h2 className={styles.techHeader}>[ The Production Gap ]</h2>
-            <p className={styles.lead}>
-              2D materials are ready for industry — but scalable, affordable production remains the barrier.
-            </p>
-          </div>
-        </motion.div>
-
-        {/* Slide 2 */}
-        <motion.div className={styles.slide} style={{ y: y2 }}>
-          <div className={styles.slideIntro}>
-            <TypeField items={["SCALE", "COST", "CONSISTENCY", "INTEGRATION"]} />
-            <GapSvg />
-          </div>
-        </motion.div>
-
-        {/* Slide 3 */}
-        <motion.div className={`${styles.slide} ${styles.techSlide}`} style={{ y: y3 }}>
-          <p className={styles.highlight}>
-            &gt; I develop production pathways to make 2D materials affordable, consistent, and scalable_
-          </p>
-        </motion.div>
-      </div>
-    </div>
-  );
-};
-
 const WorkStory = () => {
   const scrollRef = useRef(null);
-  const [isMounted, setIsMounted] = useState(false);
-
-  useEffect(() => {
-    setIsMounted(true);
-  }, []);
 
   const { activeSection, progress, showSideNav, handleScroll } = useWorkStoryEffects(scrollRef);
 
@@ -543,7 +474,43 @@ const WorkStory = () => {
         </header>
 
         <div className={styles.storyGrid}>
-          {isMounted && <GapScrollytelling scrollRef={scrollRef} />}
+          <SectionShell id="gap" kicker="01 / The gap I noticed" title="[ The Production Gap ]" className={styles.hudSection}>
+            <div className={styles.sectionIntro}>
+              <motion.div
+                initial={{ y: 80 }}
+                whileInView={{ y: 0 }}
+                viewport={{ once: false, margin: "-10%" }}
+                transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+              >
+                <p className={styles.lead}>
+                  2D materials are ready for industry — but scalable, affordable production remains the barrier.
+                </p>
+                <div className={styles.slideIntro} style={{ marginTop: "40px" }}>
+                  <TypeField items={["SCALE", "COST", "CONSISTENCY", "INTEGRATION"]} />
+                </div>
+              </motion.div>
+              <motion.div
+                initial={{ y: 120 }}
+                whileInView={{ y: 0 }}
+                viewport={{ once: false, margin: "-10%" }}
+                transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1], delay: 0.1 }}
+              >
+                <GapSvg />
+              </motion.div>
+            </div>
+            <motion.div 
+              className={styles.techSlide}
+              initial={{ y: 100 }}
+              whileInView={{ y: 0 }}
+              viewport={{ once: false, margin: "-10%" }}
+              transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
+              style={{ marginTop: "60px", padding: "40px 0", borderTop: "1px solid rgba(255,255,255,0.05)" }}
+            >
+              <p className={styles.highlight}>
+                &gt; I develop production pathways to make 2D materials affordable, consistent, and scalable_
+              </p>
+            </motion.div>
+          </SectionShell>
 
           <SectionShell id="process" kicker="02 / The direction I chose" title="Compressible Flow Exfoliation" className={styles.asymProcess}>
             <div className={styles.sectionIntro}>
