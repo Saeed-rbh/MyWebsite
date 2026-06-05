@@ -399,81 +399,89 @@ const HeroGraphene = () => (
   </div>
 );
 
-// Single element: flies in from below when entering viewport, flies out upward when leaving
-const ScrollLine = ({ children, delay = 0, className = "" }) => {
+// Context so every ScrollLine knows which container to track
+const ScrollContainerContext = React.createContext(null);
+
+// Single element: flies in from below, flies out upward — tracks the page's scroll container
+const ScrollLine = ({ children, className = "" }) => {
+  const containerRef = React.useContext(ScrollContainerContext);
   const ref = useRef(null);
+
   const { scrollYProgress } = useScroll({
     target: ref,
+    container: containerRef,
     offset: ["start 95%", "end 5%"],
   });
 
   const y = useTransform(
     scrollYProgress,
-    [0, 0.18, 0.82, 1],
-    ["80px", "0px", "0px", "-80px"]
+    [0, 0.2, 0.8, 1],
+    ["70px", "0px", "0px", "-70px"]
   );
   const opacity = useTransform(
     scrollYProgress,
-    [0, 0.18, 0.82, 1],
+    [0, 0.2, 0.8, 1],
     [0, 1, 1, 0]
   );
 
   return (
-    <motion.div ref={ref} style={{ y, opacity }} className={className} transition={{ delay }}>
+    <motion.div ref={ref} style={{ y, opacity }} className={className}>
       {children}
     </motion.div>
   );
 };
 
-const GapSection = () => (
-  <section className={`${styles.section} ${styles.hudSection}`} id="gap" data-parallax-section data-reveal>
-    <div className={styles.gapInner}>
+const GapSection = ({ scrollRef }) => (
+  <ScrollContainerContext.Provider value={scrollRef}>
+    <section className={`${styles.section} ${styles.hudSection}`} id="gap" data-parallax-section data-reveal>
+      <div className={styles.gapInner}>
 
-      <ScrollLine>
-        <span className={styles.kicker}>01 / The gap I noticed</span>
-      </ScrollLine>
+        <ScrollLine>
+          <span className={styles.kicker}>01 / The gap I noticed</span>
+        </ScrollLine>
 
-      <ScrollLine delay={0.05}>
-        <h2 className={styles.gapTitle}>The Production Gap</h2>
-      </ScrollLine>
+        <ScrollLine>
+          <h2 className={styles.gapTitle}>The Production Gap</h2>
+        </ScrollLine>
 
-      <ScrollLine delay={0.1}>
-        <p className={styles.gapLead}>
-          2D materials are ready for industry — but scalable,<br />
-          affordable production remains the barrier.
-        </p>
-      </ScrollLine>
+        <ScrollLine>
+          <p className={styles.gapLead}>
+            2D materials are ready for industry — but scalable,<br />
+            affordable production remains the barrier.
+          </p>
+        </ScrollLine>
 
-      <div className={styles.gapPillars}>
-        {[
-          { label: "Scale", body: "Lab methods work in grams. Industry needs repeatable, larger-volume production." },
-          { label: "Cost", body: "High processing cost limits adoption in high-volume applications." },
-          { label: "Consistency", body: "Flake size, thickness, and chemistry must stay reliable batch to batch." },
-          { label: "Integration", body: "Companies need powders, dispersions, or formulations that fit existing lines." },
-        ].map(({ label, body }, i) => (
-          <ScrollLine key={label} delay={i * 0.05}>
-            <div className={styles.gapPillar}>
-              <span className={styles.gapPillarLabel}>{label}</span>
-              <p className={styles.gapPillarBody}>{body}</p>
-            </div>
-          </ScrollLine>
-        ))}
-      </div>
-
-      <ScrollLine delay={0.1}>
-        <div className={styles.gapSvgWrap}>
-          <GapSvg />
+        <div className={styles.gapPillars}>
+          {[
+            { label: "Scale", body: "Lab methods work in grams. Industry needs repeatable, larger-volume production." },
+            { label: "Cost", body: "High processing cost limits adoption in high-volume applications." },
+            { label: "Consistency", body: "Flake size, thickness, and chemistry must stay reliable batch to batch." },
+            { label: "Integration", body: "Companies need powders, dispersions, or formulations that fit existing lines." },
+          ].map(({ label, body }) => (
+            <ScrollLine key={label}>
+              <div className={styles.gapPillar}>
+                <span className={styles.gapPillarLabel}>{label}</span>
+                <p className={styles.gapPillarBody}>{body}</p>
+              </div>
+            </ScrollLine>
+          ))}
         </div>
-      </ScrollLine>
 
-      <ScrollLine delay={0.05}>
-        <p className={styles.gapHighlight}>
-          I develop production pathways to make 2D materials affordable, consistent, and scalable.
-        </p>
-      </ScrollLine>
+        <ScrollLine>
+          <div className={styles.gapSvgWrap}>
+            <GapSvg />
+          </div>
+        </ScrollLine>
 
-    </div>
-  </section>
+        <ScrollLine>
+          <p className={styles.gapHighlight}>
+            I develop production pathways to make 2D materials affordable, consistent, and scalable.
+          </p>
+        </ScrollLine>
+
+      </div>
+    </section>
+  </ScrollContainerContext.Provider>
 );
 
 const WorkStory = () => {
@@ -551,7 +559,7 @@ const WorkStory = () => {
         </header>
 
         <div className={styles.storyGrid}>
-          <GapSection />
+          <GapSection scrollRef={scrollRef} />
 
           <SectionShell id="process" kicker="02 / The direction I chose" title="Compressible Flow Exfoliation" className={styles.asymProcess}>
             <div className={styles.sectionIntro}>
