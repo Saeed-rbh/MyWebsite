@@ -89,46 +89,8 @@ const useWorkStoryEffects = (scrollRef) => {
     const root = scrollRef.current;
     if (!root) return undefined;
 
-    const handleWheel = (e) => {
-      e.preventDefault();
-      if (isScrolling.current) return;
-
-      const direction = e.deltaY > 0 ? 1 : -1;
-      const currentScroll = root.scrollTop;
-      
-      const sections = Array.from(root.querySelectorAll('[data-reveal]'));
-      if (sections.length === 0) return;
-
-      let closestIdx = 0;
-      let minDiff = Infinity;
-      sections.forEach((sec, idx) => {
-        const diff = Math.abs(sec.offsetTop - currentScroll);
-        if (diff < minDiff) {
-          minDiff = diff;
-          closestIdx = idx;
-        }
-      });
-
-      const nextIdx = Math.max(0, Math.min(sections.length - 1, closestIdx + direction));
-
-      if (nextIdx !== closestIdx) {
-        isScrolling.current = true;
-        animate(currentScroll, sections[nextIdx].offsetTop, {
-          duration: 1.0,
-          ease: [0.22, 1, 0.36, 1], // Very soft, cinematic presentation ease
-          onUpdate: (val) => {
-            root.scrollTop = val;
-          },
-          onComplete: () => {
-            setTimeout(() => {
-              isScrolling.current = false;
-            }, 400); // Wait a bit after animation finishes to prevent accidental double-scroll
-          },
-        });
-      }
-    };
-
-    root.addEventListener("wheel", handleWheel, { passive: false });
+    // Use native scroll for smooth scrollytelling.
+    // CSS scroll-snap handles the snapping where appropriate.
 
     const revealObserver = new IntersectionObserver(
       (entries) => {
@@ -175,7 +137,6 @@ const useWorkStoryEffects = (scrollRef) => {
     setShowSideNav(root.scrollTop > root.clientHeight * 0.7);
 
     return () => {
-      root.removeEventListener("wheel", handleWheel);
       revealObserver.disconnect();
       sectionObserver.disconnect();
       if (rafRef.current) cancelAnimationFrame(rafRef.current);
