@@ -409,19 +409,25 @@ const GapScrollytelling = ({ scrollRef }) => {
   });
 
   // Slide 1: 0 to 0.33
-  const y1 = useTransform(scrollYProgress, [0, 0.15, 0.25, 0.33], [100, 0, 0, -100]);
-  const opacity1 = useTransform(scrollYProgress, [0, 0.15, 0.25, 0.33], [0, 1, 1, 0]);
+  const y1 = useTransform(scrollYProgress, [0, 0.25, 0.33], [0, 0, -100]);
+  const opacity1 = useTransform(scrollYProgress, [0, 0.25, 0.33], [1, 1, 0]);
 
   // Slide 2: 0.33 to 0.66
-  const y2 = useTransform(scrollYProgress, [0.33, 0.48, 0.58, 0.66], [100, 0, 0, -100]);
-  const opacity2 = useTransform(scrollYProgress, [0.33, 0.48, 0.58, 0.66], [0, 1, 1, 0]);
+  const y2 = useTransform(scrollYProgress, [0.25, 0.33, 0.58, 0.66], [100, 0, 0, -100]);
+  const opacity2 = useTransform(scrollYProgress, [0.25, 0.33, 0.58, 0.66], [0, 1, 1, 0]);
 
   // Slide 3: 0.66 to 1
-  const y3 = useTransform(scrollYProgress, [0.66, 0.81, 0.9, 1], [100, 0, 0, -100]);
-  const opacity3 = useTransform(scrollYProgress, [0.66, 0.81, 0.9, 1], [0, 1, 1, 0]);
+  const y3 = useTransform(scrollYProgress, [0.58, 0.66, 0.9, 1], [100, 0, 0, -50]);
+  const opacity3 = useTransform(scrollYProgress, [0.58, 0.66, 0.9, 1], [0, 1, 1, 0]);
 
   return (
     <div ref={targetRef} className={styles.scrollyWrapper} id="gap" data-parallax-section data-reveal>
+      {/* Intermediate snap points for mobile scroll-snap */}
+      <div className={styles.snapPoint} style={{ top: "0" }} />
+      <div className={styles.snapPoint} style={{ top: "133vh" }} />
+      <div className={styles.snapPoint} style={{ top: "266vh" }} />
+      <div className={styles.snapPoint} style={{ top: "400vh" }} />
+
       <div className={`${styles.stickyContainer} ${styles.hudContainer}`}>
         {/* Slide 1 */}
         <motion.div className={styles.slide} style={{ y: y1, opacity: opacity1 }}>

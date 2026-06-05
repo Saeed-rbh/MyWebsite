@@ -602,6 +602,16 @@
   z-index: 5;
 }
 
+.snapPoint {
+  position: absolute;
+  width: 100%;
+  height: 100vh;
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+  pointer-events: none;
+  visibility: hidden;
+}
+
 .stickyContainer {
   position: sticky;
   top: 0;
