@@ -399,84 +399,99 @@ const HeroGraphene = () => (
   </div>
 );
 
-// Context so every ScrollLine knows which container to track
-const ScrollContainerContext = React.createContext(null);
+const GapSection = ({ scrollRef }) => {
+  const sectionRef = useRef(null);
 
-// Flies in from below on enter, flies out upward on exit
-// Uses IntersectionObserver via whileInView so it always works regardless of scroll container
-const ScrollLine = ({ children, className = "" }) => {
-  const containerRef = React.useContext(ScrollContainerContext);
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    container: scrollRef,
+    offset: ["start start", "end end"],
+  });
+
+  // 5 slides across 600vh. Each slide: enter → stay → exit
+  // Slide 1 starts fully visible (opacity:1, y:0) since it's the first thing you see
+  const s1y  = useTransform(scrollYProgress, [0, 0.16, 0.2],        ["0px",  "0px",  "-90px"]);
+  const s1op = useTransform(scrollYProgress, [0, 0.16, 0.2],        [1,      1,      0]);
+
+  const s2y  = useTransform(scrollYProgress, [0.17, 0.22, 0.37, 0.42], ["90px", "0px", "0px", "-90px"]);
+  const s2op = useTransform(scrollYProgress, [0.17, 0.22, 0.37, 0.42], [0,      1,     1,     0]);
+
+  const s3y  = useTransform(scrollYProgress, [0.37, 0.43, 0.57, 0.62], ["90px", "0px", "0px", "-90px"]);
+  const s3op = useTransform(scrollYProgress, [0.37, 0.43, 0.57, 0.62], [0,      1,     1,     0]);
+
+  const s4y  = useTransform(scrollYProgress, [0.57, 0.63, 0.77, 0.82], ["90px", "0px", "0px", "-90px"]);
+  const s4op = useTransform(scrollYProgress, [0.57, 0.63, 0.77, 0.82], [0,      1,     1,     0]);
+
+  const s5y  = useTransform(scrollYProgress, [0.78, 0.84, 1.0],        ["90px", "0px", "0px"]);
+  const s5op = useTransform(scrollYProgress, [0.78, 0.84, 1.0],        [0,      1,     1]);
 
   return (
-    <motion.div
-      className={className}
-      initial={{ y: 60, opacity: 0 }}
-      whileInView={{ y: 0, opacity: 1 }}
-      exit={{ y: -60, opacity: 0 }}
-      viewport={{
-        once: false,
-        margin: "-80px 0px",
-        root: containerRef,
-      }}
-      transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-    >
-      {children}
-    </motion.div>
-  );
-};
+    <div ref={sectionRef} className={styles.storyPin} id="gap" data-parallax-section data-reveal>
+      <div className={styles.storyPinInner}>
 
-const GapSection = ({ scrollRef }) => (
-  <ScrollContainerContext.Provider value={scrollRef}>
-    <section className={`${styles.section} ${styles.hudSection}`} id="gap" data-parallax-section data-reveal>
-      <div className={styles.gapInner}>
+        {/* Ghost watermark */}
+        <div className={styles.gapBgLabel} aria-hidden="true">GAP</div>
 
-        <ScrollLine>
+        {/* Kicker line */}
+        <motion.div className={styles.storyPinKicker} style={{ y: s1y, opacity: s1op }}>
           <span className={styles.kicker}>01 / The gap I noticed</span>
-        </ScrollLine>
+        </motion.div>
 
-        <ScrollLine>
-          <h2 className={styles.gapTitle}>The Production Gap</h2>
-        </ScrollLine>
+        {/* Slide 1 — Title */}
+        <motion.div className={styles.storySlide} style={{ y: s1y, opacity: s1op }}>
+          <h2 className={styles.gapTitle}>The<br />Production Gap</h2>
+        </motion.div>
 
-        <ScrollLine>
+        {/* Slide 2 — Lead */}
+        <motion.div className={styles.storySlide} style={{ y: s2y, opacity: s2op }}>
           <p className={styles.gapLead}>
-            2D materials are ready for industry — but scalable,<br />
-            affordable production remains the barrier.
+            2D materials are ready for industry —<br />
+            but scalable, affordable production<br />
+            remains the barrier.
           </p>
-        </ScrollLine>
+        </motion.div>
 
-        <div className={styles.gapPillars}>
-          {[
-            { label: "Scale", body: "Lab methods work in grams. Industry needs repeatable, larger-volume production." },
-            { label: "Cost", body: "High processing cost limits adoption in high-volume applications." },
-            { label: "Consistency", body: "Flake size, thickness, and chemistry must stay reliable batch to batch." },
-            { label: "Integration", body: "Companies need powders, dispersions, or formulations that fit existing lines." },
-          ].map(({ label, body }) => (
-            <ScrollLine key={label}>
-              <div className={styles.gapPillar}>
-                <span className={styles.gapPillarLabel}>{label}</span>
-                <p className={styles.gapPillarBody}>{body}</p>
-              </div>
-            </ScrollLine>
-          ))}
-        </div>
-
-        <ScrollLine>
-          <div className={styles.gapSvgWrap}>
-            <GapSvg />
+        {/* Slide 3 — Scale + Cost */}
+        <motion.div className={styles.storySlide} style={{ y: s3y, opacity: s3op }}>
+          <div className={styles.storyPillarPair}>
+            <div className={styles.storyPillar}>
+              <span className={styles.gapPillarLabel}>Scale</span>
+              <p>Lab methods work in grams. Industry needs repeatable, larger-volume production.</p>
+            </div>
+            <div className={styles.storyPillar}>
+              <span className={styles.gapPillarLabel}>Cost</span>
+              <p>High processing cost limits adoption in high-volume applications.</p>
+            </div>
           </div>
-        </ScrollLine>
+        </motion.div>
 
-        <ScrollLine>
+        {/* Slide 4 — Consistency + Integration */}
+        <motion.div className={styles.storySlide} style={{ y: s4y, opacity: s4op }}>
+          <div className={styles.storyPillarPair}>
+            <div className={styles.storyPillar}>
+              <span className={styles.gapPillarLabel}>Consistency</span>
+              <p>Flake size, thickness, and chemistry must stay reliable batch to batch.</p>
+            </div>
+            <div className={styles.storyPillar}>
+              <span className={styles.gapPillarLabel}>Integration</span>
+              <p>Companies need powders, dispersions, or formulations that fit existing lines.</p>
+            </div>
+          </div>
+        </motion.div>
+
+        {/* Slide 5 — Closing */}
+        <motion.div className={styles.storySlide} style={{ y: s5y, opacity: s5op }}>
           <p className={styles.gapHighlight}>
-            I develop production pathways to make 2D materials affordable, consistent, and scalable.
+            I develop production pathways to make<br />
+            2D materials affordable, consistent,<br />
+            and scalable.
           </p>
-        </ScrollLine>
+        </motion.div>
 
       </div>
-    </section>
-  </ScrollContainerContext.Provider>
-);
+    </div>
+  );
+};
 
 const WorkStory = () => {
   const scrollRef = useRef(null);

@@ -594,18 +594,107 @@
   margin-top: 24px;
 }
 
-.hudSection {
-  overflow: hidden;
+/* ── Pinned Storytelling: The Production Gap ── */
+.storyPin {
+  position: relative;
+  width: 100%;
+  height: 600vh;
+  z-index: 5;
 }
 
-/* ── Gap Section ────────────────────────────── */
-.gapInner {
-  width: min(760px, calc(100vw - 72px));
-  margin: 0 auto;
-  padding: clamp(80px, 12vw, 140px) 0;
+.storyPinInner {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Ghost watermark behind slides */
+.gapBgLabel {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "Poppins", sans-serif;
+  font-size: clamp(120px, 30vw, 320px);
+  font-weight: 800;
+  letter-spacing: -0.06em;
+  color: rgba(255, 255, 255, 0.025);
+  pointer-events: none;
+  user-select: none;
+  z-index: 0;
+}
+
+/* Kicker pinned to top-left of sticky area */
+.storyPinKicker {
+  position: absolute;
+  top: clamp(28px, 5vh, 56px);
+  left: clamp(24px, 6vw, 72px);
+  z-index: 2;
+}
+
+/* Each slide is absolutely centered */
+.storySlide {
+  position: absolute;
+  width: min(600px, calc(100vw - 48px));
+  text-align: center;
   display: flex;
   flex-direction: column;
-  gap: 0;
+  align-items: center;
+  gap: 24px;
+  z-index: 1;
+}
+
+/* Progress dots — bottom center */
+.storyDots {
+  position: absolute;
+  bottom: clamp(24px, 4vh, 48px);
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 8px;
+  z-index: 3;
+}
+
+.storyPillarPair {
+  display: flex;
+  gap: 20px;
+  width: 100%;
+  justify-content: center;
+}
+
+.storyPillar {
+  flex: 1;
+  max-width: 260px;
+  padding: 24px 20px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 8px;
+  text-align: left;
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.storyPillar p {
+  font-size: 0.88rem;
+  line-height: 1.6;
+  color: var(--story-muted);
+  margin: 10px 0 0;
+}
+
+@media (max-width: 540px) {
+  .storyPillarPair {
+    flex-direction: column;
+    align-items: center;
+  }
+  .storyPillar {
+    max-width: 100%;
+    width: 100%;
+  }
 }
 
 .gapTitle {
