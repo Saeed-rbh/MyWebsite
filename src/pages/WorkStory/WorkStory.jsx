@@ -210,6 +210,90 @@ const GapSvg = () => (
   </svg>
 );
 
+const grapheneCells = [
+  [0, 0], [1, 0], [-1, 0],
+  [0, 1], [-1, 1], [1, -1], [0, -1],
+  [2, -1], [1, 1], [-2, 1],
+  [-1, -1], [2, 0], [-2, 0], [0, 2],
+  [1, -2], [2, -2], [-2, 2], [-1, 2],
+  [3, -1], [2, 1],
+];
+
+const buildGraphenePatch = () => {
+  const size = 28;
+  const origin = { x: 188, y: 120 };
+  const atoms = [];
+  const atomMap = new Map();
+  const bondMap = new Map();
+  const rings = [];
+
+  const getAtomIndex = (x, y) => {
+    const key = `${Math.round(x * 10) / 10},${Math.round(y * 10) / 10}`;
+    if (!atomMap.has(key)) {
+      atomMap.set(key, atoms.length);
+      atoms.push([Math.round(x * 10) / 10, Math.round(y * 10) / 10]);
+    }
+    return atomMap.get(key);
+  };
+
+  grapheneCells.forEach(([q, r]) => {
+    const cx = origin.x + size * 1.5 * q;
+    const cy = origin.y + size * Math.sqrt(3) * (r + q / 2);
+    const ring = Array.from({ length: 6 }, (_, index) => {
+      const angle = (Math.PI / 180) * (60 * index);
+      return getAtomIndex(cx + size * Math.cos(angle), cy + size * Math.sin(angle));
+    });
+
+    rings.push(ring);
+    ring.forEach((from, index) => {
+      const to = ring[(index + 1) % ring.length];
+      const key = [from, to].sort((a, b) => a - b).join("-");
+      bondMap.set(key, [from, to]);
+    });
+  });
+
+  return {
+    atoms,
+    bonds: Array.from(bondMap.values()),
+    seedPath: rings[0].map((atomIndex) => atoms[atomIndex]).map(([x, y], index) => `${index === 0 ? "M" : "L"}${x} ${y}`).join(" ") + " Z",
+  };
+};
+
+const graphenePatch = buildGraphenePatch();
+
+const GrapheneScaleSvg = () => (
+  <svg className={styles.grapheneScaleSvg} viewBox="0 0 408 270" aria-hidden="true">
+    <g className={styles.grapheneScaleBonds}>
+      {graphenePatch.bonds.map(([from, to], index) => {
+        const [x1, y1] = graphenePatch.atoms[from];
+        const [x2, y2] = graphenePatch.atoms[to];
+        return (
+          <line
+            key={`${from}-${to}`}
+            x1={x1}
+            y1={y1}
+            x2={x2}
+            y2={y2}
+            style={{ "--bond-delay": `${index * 55}ms` }}
+          />
+        );
+      })}
+    </g>
+    <g className={styles.grapheneScaleAtoms}>
+      {graphenePatch.atoms.map(([cx, cy], index) => (
+        <circle
+          key={`${cx}-${cy}`}
+          cx={cx}
+          cy={cy}
+          r={index < 6 ? 5.8 : 4.7}
+          style={{ "--atom-delay": `${index * 70}ms` }}
+        />
+      ))}
+    </g>
+    <path className={styles.grapheneSeedRing} d={graphenePatch.seedPath} />
+  </svg>
+);
+
 const FlowSvg = () => (
   <svg className={`${styles.animatedSvg} ${styles.flowSvg}`} viewBox="0 0 520 260" aria-hidden="true">
     <path className={styles.svgTrace} d="M28 132 H138 C180 132, 185 76, 236 76 H360 C421 76, 424 132, 492 132" />
@@ -372,20 +456,89 @@ const GapSection = ({ scrollRef }) => {
     else setActiveIndex(6);
   });
 
-  const getSlideProps = (index) => ({
-    initial: { opacity: 0, y: "20vh", scale: 1 },
+  const slideMotion = {
+    title: {
+      future: "translate3d(0, 8vh, 0) scale(0.985)",
+      past: "translate3d(0, -7vh, 0) scale(0.985)",
+    },
+    lead: {
+      future: "translate3d(0, 9vh, 0) scale(0.99)",
+      past: "translate3d(0, -6vh, 0) scale(0.975)",
+    },
+    pillarLeft: {
+      future: "translate3d(-5vw, 5vh, 0) scale(0.985)",
+      past: "translate3d(4vw, -5vh, 0) scale(0.975)",
+    },
+    pillarRight: {
+      future: "translate3d(5vw, 5vh, 0) scale(0.985)",
+      past: "translate3d(-4vw, -5vh, 0) scale(0.975)",
+    },
+    close: {
+      future: "translate3d(0, 7vh, 0) scale(0.96)",
+      past: "translate3d(0, -4vh, 0) scale(1.015)",
+    },
+  };
+
+  const getSlideProps = (index, preset = "title") => ({
+    initial: { opacity: 0, transform: slideMotion[preset].future },
     animate: {
       opacity: activeIndex === index ? 1 : 0,
-      y: activeIndex === index ? "0vh" : activeIndex > index ? "-13vh" : "18vh",
-      scale: activeIndex === index ? 1 : activeIndex > index ? 0.92 : 1.04,
-      filter: activeIndex === index ? "blur(0px)" : "blur(8px)",
+      transform: activeIndex === index
+        ? "translate3d(0, 0, 0) scale(1)"
+        : activeIndex > index
+          ? slideMotion[preset].past
+          : slideMotion[preset].future,
+      filter: activeIndex === index ? "blur(0px)" : "blur(10px)",
       pointerEvents: activeIndex === index ? "auto" : "none"
     },
-    transition: { duration: 0.68, ease: [0.22, 1, 0.36, 1] },
+    transition: {
+      opacity: { duration: 0.58, ease: [0.23, 1, 0.32, 1] },
+      transform: { duration: 0.86, ease: [0.23, 1, 0.32, 1] },
+      filter: { duration: 0.72, ease: [0.23, 1, 0.32, 1] },
+    },
     "aria-hidden": activeIndex !== index
   });
 
-  const slideProgress = `${((activeIndex - 1) / 5) * 100}%`;
+  const slideClassName = (index, preset) =>
+    `${styles.storySlide} ${styles[`storySlide${preset[0].toUpperCase()}${preset.slice(1)}`]} ${
+      activeIndex === index ? styles.activeStorySlide : ""
+    }`;
+
+  const slideProgress = (activeIndex - 1) / 5;
+
+  const handlePillarLensMove = (event) => {
+    const target = event.currentTarget;
+    const rect = target.getBoundingClientRect();
+    target.style.setProperty("--word-lens-x", `${event.clientX - rect.left}px`);
+    target.style.setProperty("--word-lens-y", `${event.clientY - rect.top}px`);
+    target.style.setProperty("--word-lens-opacity", "1");
+  };
+
+  const handlePillarLensEnter = (event) => {
+    handlePillarLensMove(event);
+  };
+
+  const handlePillarLensLeave = (event) => {
+    event.currentTarget.style.setProperty("--word-lens-opacity", "0");
+  };
+
+  const renderPillarWord = (word) => (
+    <span
+      key={word}
+      className={styles.gapPillarWord}
+      data-text={word}
+      onPointerEnter={handlePillarLensEnter}
+      onPointerMove={handlePillarLensMove}
+      onPointerLeave={handlePillarLensLeave}
+    >
+      <span className={styles.gapPillarWordFill}>{word}</span>
+      <span className={styles.gapPillarWordLens} aria-hidden="true">{word}</span>
+    </span>
+  );
+
+  const renderSkills = (skills) => skills.map((skill) => (
+    <span key={skill}>{skill}</span>
+  ));
 
   return (
     <div ref={sectionRef} className={styles.storyPin} id="gap" data-parallax-section data-reveal>
@@ -397,82 +550,109 @@ const GapSection = ({ scrollRef }) => {
         </div>
 
         <div className={styles.storyProgress} aria-hidden="true">
-          <span style={{ height: slideProgress }} />
+          <span style={{ transform: `scaleY(${slideProgress})` }} />
         </div>
 
-        <motion.div className={styles.storyPinKicker} {...getSlideProps(1)}>
-          <span className={styles.kicker}>01 / The gap I noticed</span>
+        <motion.div className={styles.storyPinKicker} {...getSlideProps(1, "title")}>
+          <span>Opening Frame</span>
         </motion.div>
 
-        <motion.div className={styles.storySlide} {...getSlideProps(1)}>
+        <motion.div className={slideClassName(1, "title")} {...getSlideProps(1, "title")}>
           <div className={styles.gapTitleWrapper}>
-            <span className={styles.gapTitleAccent}>CHASM</span>
+            <span className={styles.gapTitleAccent}>2D</span>
             <h2 className={styles.gapTitleMain}>
-              <span className={styles.gapTitleLight}>The</span><br/>
-              <span className={styles.gapTitleHeavy}>Production Gap</span>
+              <span className={styles.gapTitleLight}>Graphene / h-BN / MoS2</span>
+              <span className={styles.gapTitleHeavy}>The Manufacturing Gap</span>
+              <span className={styles.gapTitleSub}>Material Science • Mechanical Engineering • Process Scaling • Production Design</span>
             </h2>
           </div>
         </motion.div>
 
-        <motion.div className={styles.storySlide} {...getSlideProps(2)}>
+        <motion.div className={slideClassName(2, "lead")} {...getSlideProps(2, "lead")}>
           <div className={styles.gapLeadBlock}>
              <div className={styles.gapLeadData}>
                 <span className={styles.dataLabel}>INDUSTRY PULL</span>
                 <span className={styles.dataValue}>HIGH</span>
              </div>
-             <p className={styles.gapLeadText}>
-                2D materials are not short on promise.<br />
-                They are short on production routes<br />
-                that can survive scale.
-             </p>
+             <div className={styles.gapLeadText}>
+                <span className={styles.gapLeadEyebrow}>layered materials are restricted by laboratory limitations</span>
+                <strong>
+                  <span>Industry Pull</span>
+                  <span>High</span>
+                </strong>
+                <span className={styles.gapLeadConnector}>Application-ready materials demand</span>
+                <em>
+                  <span>Population Control</span>
+                  <span>Defect Mitigation</span>
+                  <span>Dispersion Mechanics</span>
+                  <span>Quality Assurance</span>
+                </em>
+             </div>
           </div>
         </motion.div>
 
-        <motion.div className={styles.storySlide} {...getSlideProps(3)}>
+        <motion.div className={slideClassName(3, "pillarLeft")} {...getSlideProps(3, "pillarLeft")}>
           <div className={`${styles.gapPillarBlock} ${styles.staggerLeft}`}>
-            <div className={styles.pillarNumber}>01</div>
+            <div className={styles.grapheneScaleWrap}>
+              <GrapheneScaleSvg />
+            </div>
             <div className={styles.pillarContent}>
-              <h3 className={styles.gapPillarTitle}>Scale Constraint</h3>
-              <p className={styles.gapPillarDesc}>Many lab routes prove the material at <strong>small batch</strong> scale.<br/>Manufacturing needs repeatable throughput.</p>
+              <h3 className={styles.gapPillarTitle}>
+                <span className={styles.gapPillarIndex}>03</span>
+                <span className={styles.gapPillarFrame}>03 - Scale</span>
+                {renderPillarWord("Throughput")}
+              </h3>
+              <p className={styles.gapPillarDesc}>The challenge is not proving exfoliation once.<br/>It is engineering a continuous, usable yield of targeted 20-layer nanoplatelets from bulk powder.</p>
               <div className={styles.pillarMetrics}>
-                <span>Question: can yield rise without losing quality?</span>
+                {renderSkills(["Powder Fluidization", "Gas Dynamics", "Shear Optimization", "High-Volume Processing"])}
               </div>
             </div>
           </div>
         </motion.div>
 
-        <motion.div className={styles.storySlide} {...getSlideProps(4)}>
+        <motion.div className={slideClassName(4, "pillarRight")} {...getSlideProps(4, "pillarRight")}>
           <div className={`${styles.gapPillarBlock} ${styles.staggerRight}`}>
-            <div className={styles.pillarNumber}>02</div>
             <div className={styles.pillarContent}>
-              <h3 className={styles.gapPillarTitle}>Cost Barrier</h3>
-              <p className={styles.gapPillarDesc}>Energy, solvent, post-processing, and recovery losses<br/>can quietly dominate the economics.</p>
+              <h3 className={styles.gapPillarTitle}>
+                <span className={styles.gapPillarIndex}>04</span>
+                <span className={styles.gapPillarFrame}>04 - Cost</span>
+                {renderPillarWord("Process")}
+                {renderPillarWord("Economics")}
+              </h3>
+              <p className={styles.gapPillarDesc}>Industry adoption depends entirely on the real production price.<br/>Minimizing solvent load, optimizing energy input, and maximizing recovery dictate true commercial viability.</p>
               <div className={styles.pillarMetrics}>
-                <span>Focus: lower process overhead</span>
+                {renderSkills(["System Thermodynamics", "Resource Recovery", "High-Pressure Mechanics", "Energy Efficiency"])}
               </div>
             </div>
           </div>
         </motion.div>
 
-        <motion.div className={styles.storySlide} {...getSlideProps(5)}>
+        <motion.div className={slideClassName(5, "pillarLeft")} {...getSlideProps(5, "pillarLeft")}>
           <div className={`${styles.gapPillarBlock} ${styles.staggerLeft}`}>
-            <div className={styles.pillarNumber}>03</div>
             <div className={styles.pillarContent}>
-              <h3 className={styles.gapPillarTitle}>Consistency</h3>
-              <p className={styles.gapPillarDesc}>Industry cannot design around a material<br/>whose structure, chemistry, and defects drift batch to batch.</p>
+              <h3 className={styles.gapPillarTitle}>
+                <span className={styles.gapPillarIndex}>05</span>
+                <span className={styles.gapPillarFrame}>05 - Consistency</span>
+                {renderPillarWord("Exact")}
+                {renderPillarWord("Specifications")}
+              </h3>
+              <p className={styles.gapPillarDesc}>Applications demand a precise material window, not a mystery powder.<br/>CFE connects fluid parameters directly to consistent morphology and surface chemistry.</p>
               <div className={styles.pillarMetrics}>
-                <span>Need: controllable process windows</span>
+                {renderSkills(["Advanced Metrology", "Spectroscopic Analysis", "Defect Mapping", "Process-to-Property Mapping"])}
               </div>
             </div>
           </div>
         </motion.div>
 
-        <motion.div className={styles.storySlide} {...getSlideProps(6)}>
-          <p className={styles.gapHighlight}>
-            My work lives in that gap:<br />
-            turning promising 2D materials into<br />
-            <span className={styles.highlightWord}>scalable</span>, <span className={styles.highlightWord}>consistent</span>, and <span className={styles.highlightWord}>usable</span> outputs.
-          </p>
+        <motion.div className={slideClassName(6, "close")} {...getSlideProps(6, "close")}>
+          <div className={styles.gapHighlight}>
+            <span className={styles.gapHighlightSmall}>My Focus</span>
+            <strong>process &gt; material &gt; proof</strong>
+            <span>
+              I develop Compressible Flow Exfoliation as the premier gas-driven route for <em>scalable nanomaterial manufacturing</em>.
+            </span>
+            <span className={styles.gapHighlightMeta}>System Engineering • Fluid Mechanics • Technology Commercialization • Process Automation</span>
+          </div>
         </motion.div>
 
       </div>
@@ -517,20 +697,6 @@ const WorkStory = () => {
           <span style={{ width: `${progress}%` }} />
         </div>
 
-        <aside className={`${styles.sideNav} ${showSideNav ? styles.showSideNav : ""}`} aria-label="R&D journey sections">
-          <span className={styles.navTitle}>R&D Journey</span>
-          {navItems.map((item, index) => (
-            <a
-              key={item.id}
-              href={`#${item.id}`}
-              className={activeSection === item.id ? styles.activeNavItem : ""}
-            >
-              <span>{String(index + 1).padStart(2, "0")}</span>
-              {item.label}
-            </a>
-          ))}
-        </aside>
-
         <div className={`${styles.mobileSectionLabel} ${showSideNav ? styles.showMobileSectionLabel : ""}`}>
           <span>{navItems[Math.max(activeIndex, 0)]?.label}</span>
         </div>
@@ -562,7 +728,7 @@ const WorkStory = () => {
         <div className={styles.storyGrid}>
           {isMounted && <GapSection scrollRef={scrollRef} />}
 
-          <SectionShell id="process" kicker="02 / The direction I chose" title="Compressible Flow Exfoliation" className={styles.asymProcess}>
+          <SectionShell id="process" kicker="Direction" title="Compressible Flow Exfoliation" className={styles.asymProcess}>
             <div className={styles.sectionIntro}>
               <div>
                 <p className={styles.lead}>
@@ -582,7 +748,7 @@ const WorkStory = () => {
             </div>
           </SectionShell>
 
-          <SectionShell id="system" kicker="03 / The system I built" className={`${styles.splitSection} ${styles.asymSystem}`}>
+          <SectionShell id="system" kicker="System" className={`${styles.splitSection} ${styles.asymSystem}`}>
             <div>
               <h2>Building the Process</h2>
               <p className={styles.lead}>
@@ -601,7 +767,7 @@ const WorkStory = () => {
             </div>
           </SectionShell>
 
-          <SectionShell id="evidence" kicker="04 / The evidence I collected" title="Proving the Material, Not Just Producing It" className={styles.asymEvidence}>
+          <SectionShell id="evidence" kicker="Evidence" title="Proving the Material, Not Just Producing It" className={styles.asymEvidence}>
             <div className={styles.sectionIntro}>
               <div>
                 <p className={styles.lead}>
@@ -621,7 +787,7 @@ const WorkStory = () => {
             </div>
           </SectionShell>
 
-          <SectionShell id="modeling" kicker="05 / The modeling layer" title="Using Modeling to Understand What Experiments Alone Cannot Show" className={styles.asymModeling}>
+          <SectionShell id="modeling" kicker="Modeling" title="Using Modeling to Understand What Experiments Alone Cannot Show" className={styles.asymModeling}>
             <div className={styles.sectionIntro}>
               <p className={styles.lead}>
                 Experiments show the result. Modeling helps expose the mechanism.
@@ -638,7 +804,7 @@ const WorkStory = () => {
             </div>
           </SectionShell>
 
-          <SectionShell id="industry" kicker="06 / The industry shift" title="From Research Question to Industrial Value" className={styles.asymIndustry}>
+          <SectionShell id="industry" kicker="Industry" title="From Research Question to Industrial Value" className={styles.asymIndustry}>
             <p className={styles.lead}>
               The question changed from “Can it be made?” to “Can it be made reliably?”
             </p>
@@ -659,7 +825,7 @@ const WorkStory = () => {
             </div>
           </SectionShell>
 
-          <SectionShell id="approach" kicker="07 / Closing framework" title="My R&D Approach" className={styles.asymApproach}>
+          <SectionShell id="approach" kicker="Framework" title="My R&D Approach" className={styles.asymApproach}>
             <div className={styles.finalChain}>
               {chain.map((item) => (
                 <span key={item}>{item}</span>
