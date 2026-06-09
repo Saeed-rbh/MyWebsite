@@ -252,10 +252,23 @@ const buildGraphenePatch = () => {
     });
   });
 
+  const bonds = Array.from(bondMap.values());
+  const atomDistances = atoms.map(([x, y]) => Math.hypot(x - origin.x, y - origin.y));
+  const maxAtomDistance = Math.max(...atomDistances);
+  const atomOrders = atomDistances.map((distance) => distance / maxAtomDistance);
+  const bondDistances = bonds.map(([from, to]) => {
+    const [x1, y1] = atoms[from];
+    const [x2, y2] = atoms[to];
+    return Math.hypot((x1 + x2) / 2 - origin.x, (y1 + y2) / 2 - origin.y);
+  });
+  const maxBondDistance = Math.max(...bondDistances);
+  const bondOrders = bondDistances.map((distance) => distance / maxBondDistance);
+
   return {
     atoms,
-    bonds: Array.from(bondMap.values()),
-    seedPath: rings[0].map((atomIndex) => atoms[atomIndex]).map(([x, y], index) => `${index === 0 ? "M" : "L"}${x} ${y}`).join(" ") + " Z",
+    atomOrders,
+    bonds,
+    bondOrders,
   };
 };
 
@@ -263,10 +276,23 @@ const graphenePatch = buildGraphenePatch();
 
 const GrapheneScaleSvg = () => (
   <svg className={styles.grapheneScaleSvg} viewBox="0 0 408 270" aria-hidden="true">
+    <defs>
+      <radialGradient id="grapheneScaleNodeGrad" cx="35%" cy="35%" r="65%">
+        <stop offset="0%" stopColor="#ffffff" stopOpacity="0.65" />
+        <stop offset="40%" stopColor="#ffe2cd" stopOpacity="0.30" />
+        <stop offset="100%" stopColor="#d49d81" stopOpacity="0.10" />
+      </radialGradient>
+    </defs>
     <g className={styles.grapheneScaleBonds}>
       {graphenePatch.bonds.map(([from, to], index) => {
         const [x1, y1] = graphenePatch.atoms[from];
         const [x2, y2] = graphenePatch.atoms[to];
+        const order = graphenePatch.bondOrders[index];
+        const inStart = order * 0.24;
+        const inEnd = inStart + 0.08;
+        const outStart = 0.64 + (1 - order) * 0.24;
+        const outEnd = outStart + 0.08;
+        const keyTimes = `0;${inStart.toFixed(3)};${inEnd.toFixed(3)};${outStart.toFixed(3)};${Math.min(outEnd, 0.98).toFixed(3)};1`;
         return (
           <line
             key={`${from}-${to}`}
@@ -274,23 +300,72 @@ const GrapheneScaleSvg = () => (
             y1={y1}
             x2={x2}
             y2={y2}
-            style={{ "--bond-delay": `${index * 55}ms` }}
-          />
+            opacity="0"
+            strokeDasharray="58"
+            strokeDashoffset="58"
+          >
+            <animate
+              attributeName="opacity"
+              dur="9.4s"
+              repeatCount="indefinite"
+              keyTimes={keyTimes}
+              values="0;0;0.92;0.92;0;0"
+              calcMode="spline"
+              keySplines="0.23 1 0.32 1;0.23 1 0.32 1;0.23 1 0.32 1;0.23 1 0.32 1;0.23 1 0.32 1"
+            />
+            <animate
+              attributeName="stroke-dashoffset"
+              dur="9.4s"
+              repeatCount="indefinite"
+              keyTimes={keyTimes}
+              values="58;58;0;0;58;58"
+              calcMode="spline"
+              keySplines="0.23 1 0.32 1;0.23 1 0.32 1;0.23 1 0.32 1;0.23 1 0.32 1;0.23 1 0.32 1"
+            />
+          </line>
         );
       })}
     </g>
     <g className={styles.grapheneScaleAtoms}>
-      {graphenePatch.atoms.map(([cx, cy], index) => (
-        <circle
-          key={`${cx}-${cy}`}
-          cx={cx}
-          cy={cy}
-          r={index < 6 ? 5.8 : 4.7}
-          style={{ "--atom-delay": `${index * 70}ms` }}
-        />
-      ))}
+      {graphenePatch.atoms.map(([cx, cy], index) => {
+        const order = graphenePatch.atomOrders[index];
+        const atomRadius = index < 6 ? 5.8 : 4.7;
+        const inStart = order * 0.24;
+        const inEnd = inStart + 0.08;
+        const outStart = 0.64 + (1 - order) * 0.24;
+        const outEnd = outStart + 0.08;
+        const keyTimes = `0;${inStart.toFixed(3)};${inEnd.toFixed(3)};${outStart.toFixed(3)};${Math.min(outEnd, 0.98).toFixed(3)};1`;
+        return (
+          <circle
+            key={`${cx}-${cy}`}
+            className={styles.grapheneScaleAtom}
+            cx={cx}
+            cy={cy}
+            r={atomRadius}
+            opacity="0"
+          >
+            <animate
+              attributeName="opacity"
+              dur="9.4s"
+              repeatCount="indefinite"
+              keyTimes={keyTimes}
+              values="0;0;1;1;0;0"
+              calcMode="spline"
+              keySplines="0.23 1 0.32 1;0.23 1 0.32 1;0.23 1 0.32 1;0.23 1 0.32 1;0.23 1 0.32 1"
+            />
+            <animate
+              attributeName="r"
+              dur="9.4s"
+              repeatCount="indefinite"
+              keyTimes={keyTimes}
+              values={`0.4;0.4;${atomRadius};${atomRadius};0.4;0.4`}
+              calcMode="spline"
+              keySplines="0.23 1 0.32 1;0.23 1 0.32 1;0.23 1 0.32 1;0.23 1 0.32 1;0.23 1 0.32 1"
+            />
+          </circle>
+        );
+      })}
     </g>
-    <path className={styles.grapheneSeedRing} d={graphenePatch.seedPath} />
   </svg>
 );
 
@@ -594,7 +669,7 @@ const GapSection = ({ scrollRef }) => {
         <motion.div className={slideClassName(3, "pillarLeft")} {...getSlideProps(3, "pillarLeft")}>
           <div className={`${styles.gapPillarBlock} ${styles.staggerLeft}`}>
             <div className={styles.grapheneScaleWrap}>
-              <GrapheneScaleSvg />
+              {activeIndex === 3 && <GrapheneScaleSvg />}
             </div>
             <div className={styles.pillarContent}>
               <h3 className={styles.gapPillarTitle}>

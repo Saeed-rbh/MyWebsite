@@ -862,7 +862,7 @@
   z-index: 0;
   width: clamp(380px, 42vw, 640px);
   aspect-ratio: 1.7;
-  opacity: 0.78;
+  opacity: 0.72;
   transform: translateY(-50%);
   pointer-events: none;
 }
@@ -871,42 +871,26 @@
   width: 100%;
   height: 100%;
   overflow: visible;
-  filter: drop-shadow(0 24px 62px rgba(0, 0, 0, 0.48));
 }
 
 .grapheneScaleBonds line {
-  stroke: rgba(212, 157, 129, 0.62);
+  stroke: rgba(255, 226, 205, 0.4);
   stroke-width: 2;
   stroke-linecap: round;
   stroke-dasharray: 58;
   stroke-dashoffset: 58;
-  animation: grapheneBondDraw 8.8s cubic-bezier(0.23, 1, 0.32, 1) infinite;
-  animation-delay: calc(var(--bond-delay) * 1.45);
 }
 
-.grapheneScaleAtoms circle {
-  fill: rgba(255, 250, 242, 0.86);
-  stroke: rgba(212, 157, 129, 0.85);
-  stroke-width: 1.2;
-  opacity: 0;
+.grapheneScaleAtom {
+  fill: url(#grapheneScaleNodeGrad);
+  stroke: rgba(255, 226, 205, 0.55);
+  stroke-width: 1.5;
   transform-box: fill-box;
   transform-origin: center;
-  animation: grapheneAtomBuild 8.8s cubic-bezier(0.23, 1, 0.32, 1) infinite;
-  animation-delay: calc(var(--atom-delay) * 1.45);
 }
 
-.grapheneScaleAtoms circle:nth-child(-n + 6) {
-  fill: rgba(212, 157, 129, 0.9);
-  stroke: rgba(255, 250, 242, 0.82);
-}
-
-.grapheneSeedRing {
-  fill: rgba(212, 157, 129, 0.055);
-  stroke: rgba(255, 250, 242, 0.66);
-  stroke-width: 1.4;
-  stroke-dasharray: 280;
-  stroke-dashoffset: 280;
-  animation: grapheneSeedTrace 8.8s cubic-bezier(0.23, 1, 0.32, 1) infinite;
+.grapheneScaleAtom:nth-child(-n + 6) {
+  stroke: rgba(255, 226, 205, 0.82);
 }
 
 .staggerLeft {
@@ -2478,48 +2462,33 @@ blockquote::before {
   }
 }
 
-@keyframes grapheneSeedTrace {
+@keyframes grapheneScaleBondFlow {
   0% {
-    opacity: 0;
-    stroke-dashoffset: 280;
-  }
-  8%, 58% {
-    opacity: 1;
-    stroke-dashoffset: 0;
-  }
-  82%, 100% {
-    opacity: 0.38;
-    stroke-dashoffset: 0;
-  }
-}
-
-@keyframes grapheneBondDraw {
-  0%, 9% {
     opacity: 0;
     stroke-dashoffset: 58;
   }
-  34%, 72% {
-    opacity: 1;
+  26%, 68% {
+    opacity: 0.92;
     stroke-dashoffset: 0;
   }
-  100% {
-    opacity: 0.22;
-    stroke-dashoffset: 0;
+  90%, 100% {
+    opacity: 0;
+    stroke-dashoffset: 58;
   }
 }
 
-@keyframes grapheneAtomBuild {
-  0%, 10% {
+@keyframes grapheneScaleAtomFlow {
+  0% {
     opacity: 0;
-    transform: scale(0.2);
+    transform: scale(0.16);
   }
-  28%, 74% {
+  25%, 68% {
     opacity: 1;
     transform: scale(1);
   }
-  100% {
-    opacity: 0.32;
-    transform: scale(0.92);
+  90%, 100% {
+    opacity: 0;
+    transform: scale(0.16);
   }
 }
 
@@ -2530,7 +2499,8 @@ blockquote::before {
 
   .hero,
   .storyGrid {
-    width: min(100vw - 20px, 720px);
+    width: min(100%, 720px);
+    max-width: 100%;
   }
 
   .hero {
@@ -2719,12 +2689,16 @@ blockquote::before {
 
   .storyPin {
     height: 520vh;
+    width: 100%;
+    overflow: hidden;
   }
 
   .storyPinInner {
-    width: 100vw;
+    width: 100%;
+    max-width: 100%;
     height: 100svh;
-    padding: 0 18px;
+    overflow: hidden;
+    padding: 0 clamp(14px, 4vw, 22px);
   }
 
   .storyPinInner::before {
@@ -2746,27 +2720,55 @@ blockquote::before {
 
   .gapSvgContainer {
     opacity: 0.12;
+    overflow: hidden;
   }
 
   .gapSvg {
-    width: 118vw;
+    width: 100%;
     max-width: none;
   }
 
+  .storySlide {
+    width: 100%;
+    max-width: 100%;
+    overflow: hidden;
+    align-items: center;
+    justify-content: center;
+    padding-inline: clamp(12px, 4vw, 20px);
+  }
+
+  .gapTitleWrapper,
+  .gapTitleMain {
+    width: 100%;
+    max-width: 100%;
+    align-items: center;
+    justify-items: center;
+    text-align: center;
+  }
+
   .gapTitleAccent {
-    font-size: clamp(5rem, 24vw, 10rem);
+    font-size: clamp(4.5rem, 21vw, 8.5rem);
     letter-spacing: 0.04em;
   }
 
+  .gapTitleLight {
+    font-size: clamp(0.62rem, 2.2vw, 0.8rem);
+    letter-spacing: 0.16em;
+    text-align: center;
+  }
+
   .gapTitleHeavy {
-    font-size: clamp(2.7rem, 11vw, 5rem);
-    line-height: 0.84;
-    letter-spacing: -0.055em;
+    max-width: min(100%, 560px);
+    font-size: clamp(2.05rem, 9.2vw, 3.85rem);
+    line-height: 0.94;
+    letter-spacing: -0.018em;
+    overflow-wrap: anywhere;
   }
 
   .gapTitleSub {
-    max-width: 320px;
+    max-width: min(320px, 86vw);
     line-height: 1.5;
+    text-align: center;
   }
 
   .gapLeadBlock {
@@ -2822,9 +2824,11 @@ blockquote::before {
   }
 
   .gapPillarBlock {
-    max-width: min(650px, calc(100vw - 46px));
+    width: 100%;
+    max-width: min(650px, calc(100vw - 34px));
     min-height: 340px;
     align-self: center;
+    align-items: center;
   }
 
   .grapheneScaleWrap {
@@ -2838,6 +2842,12 @@ blockquote::before {
   .staggerLeft,
   .staggerRight {
     align-self: center;
+  }
+
+  .staggerLeft .pillarContent,
+  .staggerRight .pillarContent {
+    width: min(100%, 360px);
+    max-width: calc(100vw - 44px);
   }
 
   .staggerLeft .pillarContent,
@@ -2855,10 +2865,12 @@ blockquote::before {
 
   .gapPillarTitle {
     justify-items: center;
-    font-size: clamp(2.65rem, 11vw, 5.25rem);
-    line-height: 0.86;
+    width: 100%;
+    max-width: 100%;
+    font-size: clamp(2rem, 9.2vw, 3.85rem);
+    line-height: 0.94;
     text-align: center;
-    padding-top: clamp(42px, 13vw, 72px);
+    padding-top: clamp(34px, 10vw, 58px);
   }
 
   .gapPillarIndex,
@@ -2866,15 +2878,35 @@ blockquote::before {
     left: 50%;
     right: auto;
     bottom: -0.06em;
-    font-size: clamp(6rem, 28vw, 10rem);
+    font-size: clamp(5.2rem, 24vw, 8.4rem);
     letter-spacing: -0.08em;
-    opacity: 0.13;
+    opacity: 0.1;
     transform: translateX(-50%);
   }
 
+  .gapPillarFrame {
+    width: fit-content;
+    max-width: 100%;
+    padding-bottom: 6px;
+    font-size: clamp(0.58rem, 2.1vw, 0.68rem);
+    letter-spacing: 0.14em;
+  }
+
+  .gapPillarWord {
+    max-width: 100%;
+    overflow-wrap: anywhere;
+  }
+
+  .gapPillarDesc {
+    width: 100%;
+    max-width: 340px;
+    font-size: clamp(0.86rem, 3.3vw, 1rem);
+  }
+
   .pillarMetrics {
-    max-width: 320px;
+    max-width: min(320px, 100%);
     line-height: 1.5;
+    justify-content: center;
   }
 
   .gapHighlight {
@@ -2884,8 +2916,8 @@ blockquote::before {
   }
 
   .gapHighlight strong {
-    font-size: clamp(2.8rem, 11vw, 5.8rem);
-    line-height: 0.86;
+    font-size: clamp(2.2rem, 9.4vw, 4.4rem);
+    line-height: 0.92;
   }
 
   .gapHighlight > span:last-child {
@@ -2897,7 +2929,8 @@ blockquote::before {
 @media only screen and (max-width: 640px) {
   .hero,
   .storyGrid {
-    width: 100vw;
+    width: 100%;
+    max-width: 100%;
   }
 
   .hero {
@@ -2977,7 +3010,8 @@ blockquote::before {
 
   .hero,
   .storyGrid {
-    width: 100vw;
+    width: 100%;
+    max-width: 100%;
   }
 
   .heroFrame {
@@ -3042,6 +3076,87 @@ blockquote::before {
   .section {
     border-radius: 0;
     padding: 24px 20px;
+  }
+
+  .storyPinKicker {
+    top: clamp(64px, 9vh, 88px);
+    left: 16px;
+  }
+
+  .storyProgress {
+    right: 10px;
+    opacity: 0.45;
+  }
+
+  .gapTitleAccent {
+    font-size: clamp(3.8rem, 19vw, 6.2rem);
+  }
+
+  .gapTitleLight {
+    font-size: clamp(0.58rem, 2.5vw, 0.72rem);
+    letter-spacing: 0.14em;
+  }
+
+  .gapTitleHeavy {
+    max-width: 330px;
+    font-size: clamp(1.85rem, 8.8vw, 3rem);
+    line-height: 0.98;
+  }
+
+  .gapTitleSub {
+    max-width: 280px;
+    font-size: clamp(0.68rem, 2.8vw, 0.82rem);
+  }
+
+  .gapLeadBlock {
+    max-width: calc(100vw - 36px);
+  }
+
+  .gapLeadText {
+    width: 100%;
+  }
+
+  .gapLeadText strong {
+    font-size: clamp(2.3rem, 11vw, 3.6rem);
+  }
+
+  .gapPillarBlock {
+    max-width: calc(100vw - 28px);
+    min-height: 320px;
+  }
+
+  .staggerLeft .pillarContent,
+  .staggerRight .pillarContent {
+    max-width: calc(100vw - 38px);
+  }
+
+  .grapheneScaleWrap {
+    top: 18%;
+    width: min(360px, 88vw);
+  }
+
+  .gapPillarTitle {
+    max-width: 320px;
+    font-size: clamp(1.72rem, 8.4vw, 2.9rem);
+    line-height: 0.98;
+  }
+
+  .gapPillarIndex,
+  .staggerRight .gapPillarIndex {
+    font-size: clamp(4.2rem, 21vw, 6.4rem);
+  }
+
+  .gapPillarDesc {
+    max-width: 300px;
+  }
+
+  .pillarMetrics {
+    max-width: 300px;
+    gap: 7px 10px;
+  }
+
+  .pillarMetrics span {
+    font-size: clamp(0.72rem, 3.1vw, 0.86rem) !important;
   }
 
   .heroActions {
@@ -3150,7 +3265,6 @@ blockquote::before {
   .svgTinyText,
   .grapheneScaleBonds line,
   .grapheneScaleAtoms circle,
-  .grapheneSeedRing,
   .variablePanel::before,
   .closeCard::before,
   .modelPanel span,
@@ -3190,8 +3304,7 @@ blockquote::before {
     stroke-dashoffset: 0;
   }
 
-  .grapheneScaleBonds line,
-  .grapheneSeedRing {
+  .grapheneScaleBonds line {
     stroke-dashoffset: 0;
   }
 }
