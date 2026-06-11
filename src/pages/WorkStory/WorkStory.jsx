@@ -156,6 +156,7 @@ const useWorkStoryEffects = (scrollRef) => {
 
     rafRef.current = requestAnimationFrame(() => {
       rafRef.current = null;
+      const isMobile = window.matchMedia("(max-width: 840px)").matches;
       const maxScroll = root.scrollHeight - root.clientHeight;
       const nextProgress = maxScroll <= 0 ? 0 : (root.scrollTop / maxScroll) * 100;
       const progressRatio = nextProgress / 100;
@@ -167,6 +168,8 @@ const useWorkStoryEffects = (scrollRef) => {
       }
 
       setShowSideNav((current) => (current === shouldShowSideNav ? current : shouldShowSideNav));
+
+      if (isMobile) return;
 
       root.style.setProperty("--scroll-progress", `${progressRatio}`);
       root.style.setProperty("--scroll-shift", `${root.scrollTop * -0.05}px`);
@@ -529,6 +532,10 @@ const GapSection = ({ scrollRef }) => {
   const [isPinReady, setIsPinReady] = useState(() => (
     typeof window === "undefined" || !window.matchMedia("(max-width: 840px)").matches
   ));
+  const activeIndexRef = useRef(1);
+  const pinReadyRef = useRef(
+    typeof window === "undefined" || !window.matchMedia("(max-width: 840px)").matches
+  );
 
   useEffect(() => {
     const root = scrollRef.current;
@@ -545,16 +552,22 @@ const GapSection = ({ scrollRef }) => {
       const latest = clamp(rawProgress, 0, 1);
       const nextPinReady = !isMobile || root.scrollTop >= sectionStart - 1;
 
-      setIsPinReady((current) => (current === nextPinReady ? current : nextPinReady));
-      setActiveIndex((current) => {
-        let next = 6;
-        if (latest < 0.12) next = 1;
-        else if (latest < 0.28) next = 2;
-        else if (latest < 0.44) next = 3;
-        else if (latest < 0.60) next = 4;
-        else if (latest < 0.76) next = 5;
-        return current === next ? current : next;
-      });
+      if (pinReadyRef.current !== nextPinReady) {
+        pinReadyRef.current = nextPinReady;
+        setIsPinReady(nextPinReady);
+      }
+
+      let next = 6;
+      if (latest < 0.12) next = 1;
+      else if (latest < 0.28) next = 2;
+      else if (latest < 0.44) next = 3;
+      else if (latest < 0.60) next = 4;
+      else if (latest < 0.76) next = 5;
+
+      if (activeIndexRef.current !== next) {
+        activeIndexRef.current = next;
+        setActiveIndex(next);
+      }
     };
 
     updateGapState();

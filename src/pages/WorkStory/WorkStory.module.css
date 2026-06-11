@@ -2506,6 +2506,13 @@ blockquote::before {
   .page {
     padding-bottom: 0;
     scroll-snap-type: none;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .page::before,
+  .page::after,
+  .glowingBg {
+    display: none;
   }
 
   .hero,
@@ -2738,7 +2745,7 @@ blockquote::before {
   }
 
   .storyPin {
-    height: 620vh;
+    height: 860vh;
     width: 100%;
     overflow: visible;
     scroll-snap-align: none;
@@ -2789,8 +2796,9 @@ blockquote::before {
   }
 
   .gapSvgContainer {
-    opacity: 0.12;
+    opacity: 0.08;
     overflow: hidden;
+    mix-blend-mode: normal;
   }
 
   .gapSvg {
@@ -2942,11 +2950,28 @@ blockquote::before {
   }
 
   .grapheneScaleWrap {
-    top: 7%;
-    right: -34%;
-    width: min(540px, 132vw);
-    opacity: 0.22;
-    transform: none;
+    display: none;
+  }
+
+  .animatedSvg,
+  .heroGraphene,
+  .grapheneScaleWrap {
+    animation: none;
+    filter: none;
+    will-change: auto;
+  }
+
+  .svgOrbit,
+  .svgOrbitAlt,
+  .svgRings circle,
+  .svgTrace,
+  .svgTraceSlow,
+  .svgNodes circle,
+  .svgNodesLarge circle,
+  .svgBars rect,
+  .grapheneBonds line,
+  .grapheneAtoms circle {
+    animation: none;
   }
 
   .staggerLeft,
