@@ -2509,12 +2509,6 @@ blockquote::before {
     -webkit-overflow-scrolling: touch;
   }
 
-  .page::before,
-  .page::after,
-  .glowingBg {
-    display: none;
-  }
-
   .hero,
   .storyGrid {
     width: min(100%, 720px);
@@ -2950,28 +2944,11 @@ blockquote::before {
   }
 
   .grapheneScaleWrap {
-    display: none;
-  }
-
-  .animatedSvg,
-  .heroGraphene,
-  .grapheneScaleWrap {
-    animation: none;
-    filter: none;
-    will-change: auto;
-  }
-
-  .svgOrbit,
-  .svgOrbitAlt,
-  .svgRings circle,
-  .svgTrace,
-  .svgTraceSlow,
-  .svgNodes circle,
-  .svgNodesLarge circle,
-  .svgBars rect,
-  .grapheneBonds line,
-  .grapheneAtoms circle {
-    animation: none;
+    top: 7%;
+    right: -34%;
+    width: min(540px, 132vw);
+    opacity: 0.22;
+    transform: none;
   }
 
   .staggerLeft,
