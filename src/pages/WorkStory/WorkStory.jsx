@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo, useRef, useState } from "react";
 import { Link } from "react-router-dom";
-import { motion, animate, useScroll, useTransform, useSpring, useMotionValueEvent } from "framer-motion";
+import { motion } from "framer-motion";
 import SEO from "../../components/SEO/SEO";
 import styles from "./WorkStory.module.css";
 
@@ -86,6 +86,15 @@ const useWorkStoryEffects = (scrollRef) => {
     const root = scrollRef.current;
     if (!root) return undefined;
 
+    const syncStoryFrameHeight = () => {
+      root.style.setProperty("--story-frame-height", `${root.clientHeight}px`);
+    };
+
+    syncStoryFrameHeight();
+    window.addEventListener("resize", syncStoryFrameHeight);
+    window.addEventListener("orientationchange", syncStoryFrameHeight);
+    window.visualViewport?.addEventListener("resize", syncStoryFrameHeight);
+
     const revealObserver = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -131,6 +140,9 @@ const useWorkStoryEffects = (scrollRef) => {
     setShowSideNav(root.scrollTop > root.clientHeight * 0.7);
 
     return () => {
+      window.removeEventListener("resize", syncStoryFrameHeight);
+      window.removeEventListener("orientationchange", syncStoryFrameHeight);
+      window.visualViewport?.removeEventListener("resize", syncStoryFrameHeight);
       revealObserver.disconnect();
       sectionObserver.disconnect();
       if (rafRef.current) cancelAnimationFrame(rafRef.current);
@@ -513,23 +525,51 @@ const HeroGraphene = () => (
 
 const GapSection = ({ scrollRef }) => {
   const sectionRef = useRef(null);
-
-  const { scrollYProgress } = useScroll({
-    target: sectionRef,
-    container: scrollRef,
-    offset: ["start start", "end end"],
-  });
-
   const [activeIndex, setActiveIndex] = useState(1);
+  const [isPinReady, setIsPinReady] = useState(() => (
+    typeof window === "undefined" || !window.matchMedia("(max-width: 840px)").matches
+  ));
 
-  useMotionValueEvent(scrollYProgress, "change", (latest) => {
-    if (latest < 0.12) setActiveIndex(1);
-    else if (latest < 0.28) setActiveIndex(2);
-    else if (latest < 0.44) setActiveIndex(3);
-    else if (latest < 0.60) setActiveIndex(4);
-    else if (latest < 0.76) setActiveIndex(5);
-    else setActiveIndex(6);
-  });
+  useEffect(() => {
+    const root = scrollRef.current;
+    const section = sectionRef.current;
+    if (!root || !section) return undefined;
+
+    const clamp = (value, min, max) => Math.min(Math.max(value, min), max);
+
+    const updateGapState = () => {
+      const isMobile = window.matchMedia("(max-width: 840px)").matches;
+      const sectionStart = section.offsetTop;
+      const pinDistance = Math.max(section.offsetHeight - root.clientHeight, 1);
+      const rawProgress = (root.scrollTop - sectionStart) / pinDistance;
+      const latest = clamp(rawProgress, 0, 1);
+      const nextPinReady = !isMobile || root.scrollTop >= sectionStart - 1;
+
+      setIsPinReady((current) => (current === nextPinReady ? current : nextPinReady));
+      setActiveIndex((current) => {
+        let next = 6;
+        if (latest < 0.12) next = 1;
+        else if (latest < 0.28) next = 2;
+        else if (latest < 0.44) next = 3;
+        else if (latest < 0.60) next = 4;
+        else if (latest < 0.76) next = 5;
+        return current === next ? current : next;
+      });
+    };
+
+    updateGapState();
+    root.addEventListener("scroll", updateGapState, { passive: true });
+    window.addEventListener("resize", updateGapState);
+    window.addEventListener("orientationchange", updateGapState);
+    window.visualViewport?.addEventListener("resize", updateGapState);
+
+    return () => {
+      root.removeEventListener("scroll", updateGapState);
+      window.removeEventListener("resize", updateGapState);
+      window.removeEventListener("orientationchange", updateGapState);
+      window.visualViewport?.removeEventListener("resize", updateGapState);
+    };
+  }, [scrollRef]);
 
   const slideMotion = {
     title: {
@@ -557,14 +597,14 @@ const GapSection = ({ scrollRef }) => {
   const getSlideProps = (index, preset = "title") => ({
     initial: { opacity: 0, transform: slideMotion[preset].future },
     animate: {
-      opacity: activeIndex === index ? 1 : 0,
+      opacity: isPinReady && activeIndex === index ? 1 : 0,
       transform: activeIndex === index
         ? "translate3d(0, 0, 0) scale(1)"
         : activeIndex > index
           ? slideMotion[preset].past
           : slideMotion[preset].future,
-      filter: activeIndex === index ? "blur(0px)" : "blur(10px)",
-      pointerEvents: activeIndex === index ? "auto" : "none"
+      filter: isPinReady && activeIndex === index ? "blur(0px)" : "blur(10px)",
+      pointerEvents: isPinReady && activeIndex === index ? "auto" : "none"
     },
     transition: {
       opacity: { duration: 0.58, ease: [0.23, 1, 0.32, 1] },
@@ -616,7 +656,12 @@ const GapSection = ({ scrollRef }) => {
   ));
 
   return (
-    <div ref={sectionRef} className={styles.storyPin} id="gap" data-parallax-section data-reveal>
+    <div
+      ref={sectionRef}
+      className={`${styles.storyPin} ${isPinReady ? styles.storyPinReady : styles.storyPinWaiting}`}
+      id="gap"
+      data-parallax-section
+    >
       <div className={styles.storyPinInner}>
         <div className={styles.gapAmbient} aria-hidden="true" />
 
@@ -673,11 +718,11 @@ const GapSection = ({ scrollRef }) => {
             </div>
             <div className={styles.pillarContent}>
               <h3 className={styles.gapPillarTitle}>
-                <span className={styles.gapPillarIndex}>03</span>
-                <span className={styles.gapPillarFrame}>03 - Scale</span>
+                <span className={styles.gapPillarIndex}>01</span>
+                <span className={styles.gapPillarFrame}>01 - Scale</span>
                 {renderPillarWord("Throughput")}
               </h3>
-              <p className={styles.gapPillarDesc}>The challenge is not proving exfoliation once.<br/>It is engineering a continuous, usable yield of targeted 20-layer nanoplatelets from bulk powder.</p>
+              <p className={styles.gapPillarDesc}>The challenge is not proving exfoliation once.<br/> It is engineering a continuous, usable yield of targeted 20-layer nanoplatelets from bulk powder.</p>
               <div className={styles.pillarMetrics}>
                 {renderSkills(["Powder Fluidization", "Gas Dynamics", "Shear Optimization", "High-Volume Processing"])}
               </div>
@@ -689,12 +734,12 @@ const GapSection = ({ scrollRef }) => {
           <div className={`${styles.gapPillarBlock} ${styles.staggerRight}`}>
             <div className={styles.pillarContent}>
               <h3 className={styles.gapPillarTitle}>
-                <span className={styles.gapPillarIndex}>04</span>
-                <span className={styles.gapPillarFrame}>04 - Cost</span>
+                <span className={styles.gapPillarIndex}>02</span>
+                <span className={styles.gapPillarFrame}>02 - Cost</span>
                 {renderPillarWord("Process")}
                 {renderPillarWord("Economics")}
               </h3>
-              <p className={styles.gapPillarDesc}>Industry adoption depends entirely on the real production price.<br/>Minimizing solvent load, optimizing energy input, and maximizing recovery dictate true commercial viability.</p>
+              <p className={styles.gapPillarDesc}>Industry adoption depends entirely on the real production price.<br/> Minimizing solvent load, optimizing energy input, and maximizing recovery dictate true commercial viability.</p>
               <div className={styles.pillarMetrics}>
                 {renderSkills(["System Thermodynamics", "Resource Recovery", "High-Pressure Mechanics", "Energy Efficiency"])}
               </div>
@@ -706,12 +751,12 @@ const GapSection = ({ scrollRef }) => {
           <div className={`${styles.gapPillarBlock} ${styles.staggerLeft}`}>
             <div className={styles.pillarContent}>
               <h3 className={styles.gapPillarTitle}>
-                <span className={styles.gapPillarIndex}>05</span>
-                <span className={styles.gapPillarFrame}>05 - Consistency</span>
+                <span className={styles.gapPillarIndex}>03</span>
+                <span className={styles.gapPillarFrame}>03 - Consistency</span>
                 {renderPillarWord("Exact")}
                 {renderPillarWord("Specifications")}
               </h3>
-              <p className={styles.gapPillarDesc}>Applications demand a precise material window, not a mystery powder.<br/>CFE connects fluid parameters directly to consistent morphology and surface chemistry.</p>
+              <p className={styles.gapPillarDesc}>Applications demand a precise material window, not a mystery powder.<br/> CFE connects fluid parameters directly to consistent morphology and surface chemistry.</p>
               <div className={styles.pillarMetrics}>
                 {renderSkills(["Advanced Metrology", "Spectroscopic Analysis", "Defect Mapping", "Process-to-Property Mapping"])}
               </div>
