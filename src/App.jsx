@@ -3,7 +3,7 @@ import "./App.css";
 import React, { lazy, Suspense } from "react";
 import { AnimatePresence } from "framer-motion";
 import { useSelector } from "react-redux";
-import { BrowserRouter as Router, Route, Routes, useLocation } from "react-router-dom";
+import { BrowserRouter as Router, Navigate, Route, Routes, useLocation } from "react-router-dom";
 import store from "./store/configureStore";
 import useUpdateVariable from "./pages/Resume/General/useUpdateVariable";
 import Header from "./components/Header/Header";
@@ -34,7 +34,8 @@ function AppContent() {
 
   // Hide global elements on Admin Dashboard, Login page
   const isDashboard = location.pathname.startsWith('/admin') || location.pathname === '/login';
-  const isStoryPage = location.pathname === '/research-progress' || location.pathname === '/work-story';
+  const isWorkStoryPage = location.pathname === '/R&D-Portfolio' || location.pathname === '/work-story';
+  const isStoryPage = location.pathname === '/research-progress' || isWorkStoryPage;
   const isMafia = location.pathname === '/Mafia';
 
   return (
@@ -48,8 +49,8 @@ function AppContent() {
       {visibility && !isDashboard && <Mouse />}
 
       {/* Show Header, Menu, Footer ONLY if NOT in dashboard AND NOT in story pages AND NOT Mafia */}
-      {visibility && !isDashboard && (!isStoryPage || location.pathname === '/work-story') && !isMafia && <Header />}
-      {visibility && !isDashboard && (!isStoryPage || location.pathname === '/work-story') && !isMafia && <Menu />}
+      {visibility && !isDashboard && (!isStoryPage || isWorkStoryPage) && !isMafia && <Header />}
+      {visibility && !isDashboard && (!isStoryPage || isWorkStoryPage) && !isMafia && <Menu />}
       {visibility && !isDashboard && !isStoryPage && !isMafia && <Footer />}
 
       {visibility && (
@@ -58,7 +59,8 @@ function AppContent() {
             <AnimatePresence mode="wait">
               <Routes location={location} key={location.pathname}>
                 <Route exact path="/" element={<HomePage />} />
-                <Route path="/work-story" element={<WorkStory />} />
+                <Route path="/R&D-Portfolio" element={<WorkStory />} />
+                <Route path="/work-story" element={<Navigate to="/R&D-Portfolio" replace />} />
                 <Route path="/AcademicCV" element={<AcademicCV />} />
                 <Route path="/academiccv" element={<AcademicCV />} />
                 <Route exact path="/Graphene" element={<Graphene />} />

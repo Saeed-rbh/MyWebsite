@@ -4,7 +4,13 @@ import { motion } from "framer-motion";
 import SEO from "../../components/SEO/SEO";
 import styles from "./WorkStory.module.css";
 
-const chain = ["Materials Scientist", "2D & Advanced Materials", "Characterization", "CFD", "Thermal Management"];
+const chain = [
+  "2D Nanomaterials",
+  "Process Scale-Up",
+  "Metrology & Characterization",
+  "Nanoscale Thermal Transport",
+  "Computational Modeling",
+];
 
 const navItems = [
   { id: "gap", label: "Gap" },
@@ -696,7 +702,7 @@ const GapSection = ({ scrollRef }) => {
             <h2 className={styles.gapTitleMain}>
               <span className={styles.gapTitleLight}>Graphene / h-BN / MoS2</span>
               <span className={styles.gapTitleHeavy}>The Manufacturing Gap</span>
-              <span className={styles.gapTitleSub}>Material Science • Mechanical Engineering • Process Scaling • Production Design</span>
+              <span className={styles.gapTitleSub}>Process Engineering • Materials Characterization • Scale-Up • Root Cause Analysis</span>
             </h2>
           </div>
         </motion.div>
@@ -704,20 +710,20 @@ const GapSection = ({ scrollRef }) => {
         <motion.div className={slideClassName(2, "lead")} {...getSlideProps(2, "lead")}>
           <div className={styles.gapLeadBlock}>
              <div className={styles.gapLeadData}>
-                <span className={styles.dataLabel}>INDUSTRY PULL</span>
+                <span className={styles.dataLabel}>INDUSTRY DEMAND</span>
                 <span className={styles.dataValue}>HIGH</span>
              </div>
              <div className={styles.gapLeadText}>
-                <span className={styles.gapLeadEyebrow}>layered materials are restricted by laboratory limitations</span>
+                <span className={styles.gapLeadEyebrow}>Promising materials are restricted by laboratory limitations</span>
                 <strong>
-                  <span>Industry Pull</span>
+                  <span>Industry Need</span>
                   <span>High</span>
                 </strong>
                 <span className={styles.gapLeadConnector}>Application-ready materials demand</span>
                 <em>
-                  <span>Population Control</span>
-                  <span>Defect Mitigation</span>
-                  <span>Dispersion Mechanics</span>
+                  <span>Scalable Production</span>
+                  <span>Defect Control</span>
+                  <span>Process Economics</span>
                   <span>Quality Assurance</span>
                 </em>
              </div>
@@ -735,9 +741,9 @@ const GapSection = ({ scrollRef }) => {
                 <span className={styles.gapPillarFrame}>01 - Scale</span>
                 {renderPillarWord("Throughput")}
               </h3>
-              <p className={styles.gapPillarDesc}>The challenge is not proving exfoliation once.<br/> It is engineering a continuous, usable yield of targeted 20-layer nanoplatelets from bulk powder.</p>
+              <p className={styles.gapPillarDesc}>The challenge is not proving exfoliation once.<br/> It is engineering a continuous, reproducible yield of targeted nanomaterials from bulk powder.</p>
               <div className={styles.pillarMetrics}>
-                {renderSkills(["Powder Fluidization", "Gas Dynamics", "Shear Optimization", "High-Volume Processing"])}
+                {renderSkills(["Powder Fluidization", "Gas Dynamics", "Process Optimization", "High-Volume Processing"])}
               </div>
             </div>
           </div>
@@ -769,9 +775,9 @@ const GapSection = ({ scrollRef }) => {
                 {renderPillarWord("Exact")}
                 {renderPillarWord("Specifications")}
               </h3>
-              <p className={styles.gapPillarDesc}>Applications demand a precise material window, not a mystery powder.<br/> CFE connects fluid parameters directly to consistent morphology and surface chemistry.</p>
+              <p className={styles.gapPillarDesc}>Applications demand a precise material window, not a mystery powder.<br/> Advanced metrology connects fluid parameters directly to consistent morphology and surface chemistry.</p>
               <div className={styles.pillarMetrics}>
-                {renderSkills(["Advanced Metrology", "Spectroscopic Analysis", "Defect Mapping", "Process-to-Property Mapping"])}
+                {renderSkills(["Advanced Metrology", "Spectroscopic Analysis", "Defect Mapping", "Statistical Process Control"])}
               </div>
             </div>
           </div>
@@ -780,11 +786,11 @@ const GapSection = ({ scrollRef }) => {
         <motion.div className={slideClassName(6, "close")} {...getSlideProps(6, "close")}>
           <div className={styles.gapHighlight}>
             <span className={styles.gapHighlightSmall}>My Focus</span>
-            <strong>process &gt; material &gt; proof</strong>
+            <strong>build &gt; measure &gt; optimize</strong>
             <span>
-              I develop Compressible Flow Exfoliation as the premier gas-driven route for <em>scalable nanomaterial manufacturing</em>.
+              I develop gas-driven exfoliation routes and build the rigorous metrology workflows required for <em>scalable, on-spec nanomaterial manufacturing</em>.
             </span>
-            <span className={styles.gapHighlightMeta}>System Engineering • Fluid Mechanics • Technology Commercialization • Process Automation</span>
+            <span className={styles.gapHighlightMeta}>Process Engineering • Metrology & Characterization • Technology Commercialization • Thermal Transport</span>
           </div>
         </motion.div>
 
@@ -839,9 +845,9 @@ const WorkStory = () => {
             <div className={styles.heroCopy}>
               <HeroGraphene />
               <h1>
-                <span>Material R<span className={styles.regularAmp}>&</span>D Journey</span>
+                <span>SAEED ARABHA</span>
               </h1>
-              <p>Lab to Manufacturing</p>
+              <p>Process & Metrology Engineer</p>
 
               <div className={styles.chain} aria-label="R&D skills">
                 {chain.map((item, index) => (
