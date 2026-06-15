@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import SEO from "../../components/SEO/SEO";
@@ -81,9 +81,7 @@ const modelingNodes = [
 ];
 
 const useWorkStoryEffects = (scrollRef) => {
-  const [activeSection, setActiveSection] = useState(navItems[0].id);
   const [progress, setProgress] = useState(0);
-  const [showSideNav, setShowSideNav] = useState(false);
   const rafRef = useRef(null);
   const lastProgressRef = useRef(0);
   const isScrolling = useRef(false);
@@ -121,36 +119,15 @@ const useWorkStoryEffects = (scrollRef) => {
       { root, threshold: 0.1, rootMargin: "-5% 0px -5% 0px" }
     );
 
-    const sectionObserver = new IntersectionObserver(
-      (entries) => {
-        const visibleEntry = entries
-          .filter((entry) => entry.isIntersecting)
-          .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
-
-        if (visibleEntry?.target?.id) {
-          setActiveSection(visibleEntry.target.id);
-        }
-      },
-      { root, rootMargin: "-20% 0px -55% 0px", threshold: [0.2, 0.45, 0.7] }
-    );
-
     root.querySelectorAll("[data-reveal]").forEach((element) => {
       revealObserver.observe(element);
     });
-
-    navItems.forEach(({ id }) => {
-      const section = root.querySelector(`#${id}`);
-      if (section) sectionObserver.observe(section);
-    });
-
-    setShowSideNav(root.scrollTop > root.clientHeight * 0.7);
 
     return () => {
       window.removeEventListener("resize", syncStoryFrameHeight);
       window.removeEventListener("orientationchange", syncStoryFrameHeight);
       window.visualViewport?.removeEventListener("resize", syncStoryFrameHeight);
       revealObserver.disconnect();
-      sectionObserver.disconnect();
       if (rafRef.current) cancelAnimationFrame(rafRef.current);
     };
   }, [scrollRef]);
@@ -166,14 +143,11 @@ const useWorkStoryEffects = (scrollRef) => {
       const maxScroll = root.scrollHeight - root.clientHeight;
       const nextProgress = maxScroll <= 0 ? 0 : (root.scrollTop / maxScroll) * 100;
       const progressRatio = nextProgress / 100;
-      const shouldShowSideNav = root.scrollTop > root.clientHeight * 0.7;
 
       if (Math.abs(nextProgress - lastProgressRef.current) > 0.6) {
         lastProgressRef.current = nextProgress;
         setProgress(nextProgress);
       }
-
-      setShowSideNav((current) => (current === shouldShowSideNav ? current : shouldShowSideNav));
 
       const scrollRatio = root.scrollTop / root.clientHeight;
       const bgOpacity = scrollRatio <= 0.05
@@ -201,7 +175,7 @@ const useWorkStoryEffects = (scrollRef) => {
     });
   };
 
-  return { activeSection, progress, showSideNav, handleScroll };
+  return { progress, handleScroll };
 };
 
 const SectionShell = ({ id, kicker, title, children, className = "" }) => (
@@ -711,16 +685,16 @@ const GapSection = ({ scrollRef }) => {
           <span style={{ transform: `scaleY(${slideProgress})` }} />
         </div>
 
-        <motion.div className={styles.storyPinKicker} {...getSlideProps(1, "title")}>
-          <span>Opening Frame</span>
-        </motion.div>
-
         <motion.div className={slideClassName(1, "title")} {...getSlideProps(1, "title")}>
           <div className={styles.gapTitleWrapper}>
             <span className={styles.gapTitleAccent}>2D</span>
             <h2 className={styles.gapTitleMain}>
               <span className={styles.gapTitleLight}>Graphene / h-BN / MoS2</span>
-              <span className={styles.gapTitleHeavy}>The Manufacturing Gap</span>
+              <span className={styles.gapTitleHeavy}>
+                <span>The</span>
+                <span>Manufacturing</span>
+                <span>Gap</span>
+              </span>
               <span className={styles.gapTitleSub}>Process Engineering • Materials Characterization • Scale-Up • Root Cause Analysis</span>
             </h2>
           </div>
@@ -757,7 +731,7 @@ const GapSection = ({ scrollRef }) => {
             <div className={styles.pillarContent}>
               <h3 className={styles.gapPillarTitle}>
                 <span className={styles.gapPillarIndex}>01</span>
-                <span className={styles.gapPillarFrame}>01 - Scale</span>
+                <span className={styles.gapPillarFrame}>Scale</span>
                 {renderPillarWord("Throughput")}
               </h3>
               <p className={styles.gapPillarDesc}>The challenge is not proving exfoliation once.<br/> It is engineering a continuous, reproducible yield of targeted nanomaterials from bulk powder.</p>
@@ -773,7 +747,7 @@ const GapSection = ({ scrollRef }) => {
             <div className={styles.pillarContent}>
               <h3 className={styles.gapPillarTitle}>
                 <span className={styles.gapPillarIndex}>02</span>
-                <span className={styles.gapPillarFrame}>02 - Cost</span>
+                <span className={styles.gapPillarFrame}>Cost</span>
                 {renderPillarWord("Process")}
                 {renderPillarWord("Economics")}
               </h3>
@@ -790,7 +764,7 @@ const GapSection = ({ scrollRef }) => {
             <div className={styles.pillarContent}>
               <h3 className={styles.gapPillarTitle}>
                 <span className={styles.gapPillarIndex}>03</span>
-                <span className={styles.gapPillarFrame}>03 - Consistency</span>
+                <span className={styles.gapPillarFrame}>Consistency</span>
                 {renderPillarWord("Exact")}
                 {renderPillarWord("Specifications")}
               </h3>
@@ -826,19 +800,14 @@ const WorkStory = () => {
     setIsMounted(true);
   }, []);
 
-  const { activeSection, progress, showSideNav, handleScroll } = useWorkStoryEffects(scrollRef);
-
-  const activeIndex = useMemo(
-    () => navItems.findIndex((item) => item.id === activeSection),
-    [activeSection]
-  );
+  const { progress, handleScroll } = useWorkStoryEffects(scrollRef);
 
   return (
     <>
       <SEO
-        title="R&D Journey"
+        title="Saeed Arabha | R&D Journey"
         description="A recruiter-focused R&D narrative of Saeed Arabha's materials approach across process development, characterization, modeling, and industrial value."
-        name="R&D Journey"
+        name="Saeed Arabha"
         type="website"
       />
       <motion.main
@@ -855,16 +824,12 @@ const WorkStory = () => {
           <span style={{ width: `${progress}%` }} />
         </div>
 
-        <div className={`${styles.mobileSectionLabel} ${showSideNav ? styles.showMobileSectionLabel : ""}`}>
-          <span>{navItems[Math.max(activeIndex, 0)]?.label}</span>
-        </div>
-
         <header className={styles.hero} data-reveal>
           <div className={styles.heroFrame}>
             <div className={styles.heroCopy}>
               <HeroGraphene />
               <h1>
-                <span>R&amp;D JOURNEY</span>
+                <span>SAEED ARABHA</span>
               </h1>
               <p>Process & Metrology Engineer</p>
 

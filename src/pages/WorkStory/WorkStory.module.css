@@ -372,10 +372,6 @@
   box-shadow: 0 18px 42px rgba(212, 157, 129, 0.18);
 }
 
-.mobileSectionLabel {
-  display: none;
-}
-
 .storyGrid {
   display: grid;
   gap: 0;
@@ -638,34 +634,6 @@
 .gapSvg {
   width: 100%;
   max-width: 800px;
-}
-
-/* Kicker pinned to top-left of sticky area */
-.storyPinKicker {
-  position: absolute;
-  top: clamp(86px, 12vh, 128px);
-  left: clamp(24px, 6vw, 72px);
-  z-index: 3;
-  display: inline-flex;
-  align-items: center;
-  gap: 14px;
-  border-left: 1px solid rgba(212, 157, 129, 0.42);
-  padding-left: 16px;
-  color: rgba(237, 223, 212, 0.72);
-  font-family: "Poppins", sans-serif;
-  font-size: clamp(0.68rem, 0.8vw, 0.78rem);
-  font-weight: 700;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-}
-
-.storyPinKicker::before {
-  content: "";
-  width: 42px;
-  height: 1px;
-  border-radius: 0;
-  background: linear-gradient(90deg, var(--story-accent), transparent);
-  box-shadow: none;
 }
 
 /* Each slide perfectly stacked in the center cell */
@@ -996,17 +964,19 @@
   color: var(--story-accent);
   font-family: "Poppins", sans-serif !important;
   font-size: 1rem !important;
-  font-weight: 400;
+  font-weight: 700;
   line-height: 1;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.11em;
   text-transform: uppercase;
 }
 
 .gapPillarFrame::before {
   content: "";
   width: 34px;
-  height: 1px;
+  height: 2px;
+  flex: 0 0 auto;
   background: rgba(212, 157, 129, 0.62);
+  transform: translateY(-0.02em);
 }
 
 .gapPillarTitle {
@@ -1027,18 +997,18 @@
   cursor: default;
 }
 
-  .gapPillarIndex {
-    position: absolute;
-    bottom: -0.08em;
+.gapPillarIndex {
+  position: absolute;
+  bottom: -0.08em;
   z-index: -1;
   width: max-content;
   display: block;
   padding: 0;
-    color: var(--story-accent);
-    font-family: "Poppins", sans-serif;
-    font-size: clamp(7rem, 14vw, 13rem);
-    font-weight: 900;
-    letter-spacing: 0.02em;
+  color: var(--story-accent);
+  font-family: "Poppins", sans-serif;
+  font-size: clamp(7rem, 14vw, 13rem);
+  font-weight: 900;
+  letter-spacing: 0.02em;
   line-height: 0.72;
   text-transform: uppercase;
   text-shadow: none;
@@ -1100,8 +1070,13 @@
 }
 
 .staggerRight .gapPillarFrame {
+  align-items: center;
   justify-content: flex-end;
   margin-left: 0;
+}
+
+.staggerLeft .gapPillarFrame {
+  align-items: center;
 }
 
 .staggerRight .pillarMetrics {
@@ -1277,12 +1252,16 @@
   font-family: "Poppins", sans-serif;
   font-size: clamp(3.4rem, 7.4vw, 6rem);
   font-weight: 900;
-  line-height: 0.8;
+  line-height: 0.82;
   letter-spacing: -0.04em;
   text-transform: uppercase;
   display: block;
   color: #fffaf2;
   text-shadow: 0 18px 58px rgba(0, 0, 0, 0.55);
+}
+
+.gapTitleHeavy > span {
+  display: block;
 }
 
 .gapTitleSub {
@@ -2649,33 +2628,6 @@ blockquote::before {
     background: linear-gradient(90deg, var(--story-accent), #f0c1a9);
   }
 
-  .mobileSectionLabel {
-    position: fixed;
-    top: 8px;
-    left: 0;
-    right: 0;
-    z-index: 10;
-    display: none;
-    width: fit-content;
-    margin: 12px auto 0;
-    border: 0;
-    border-bottom: 1px solid rgba(212, 157, 129, 0.46);
-    border-radius: 0;
-    padding: 7px 0 5px;
-    color: rgba(255, 255, 255, 0.86);
-    background: transparent;
-    backdrop-filter: none;
-    font-family: "Poppins", sans-serif;
-    font-size: 0.72rem;
-    font-weight: 700;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-  }
-
-  .showMobileSectionLabel {
-    display: flex;
-  }
-
   .processMap,
   .characterGrid,
   .beforeAfter,
@@ -2821,23 +2773,6 @@ blockquote::before {
     opacity: var(--gap-line-opacity);
   }
 
-  .storyPinKicker {
-    top: clamp(82px, 11vh, 104px);
-    left: 50%;
-    border-left: 0;
-    border-bottom: 1px solid rgba(212, 157, 129, 0.42);
-    padding-left: 0;
-    padding-bottom: 6px;
-    font-size: 0.62rem;
-    letter-spacing: 0.12em;
-    text-align: center;
-    transform: translateX(-50%);
-  }
-
-  .storyPinKicker::before {
-    display: none;
-  }
-
   .storyProgress {
     display: none;
   }
@@ -2895,7 +2830,7 @@ blockquote::before {
   .gapTitleHeavy {
     max-width: min(100%, 560px);
     font-size: clamp(1.9rem, 8.4vw, 3.45rem);
-    line-height: 1;
+    line-height: 0.9;
     letter-spacing: -0.018em;
     overflow-wrap: anywhere;
   }
@@ -2999,10 +2934,10 @@ blockquote::before {
   }
 
   .grapheneScaleWrap {
-    top: 5%;
+    top: -3%;
     right: -38%;
     width: min(590px, 146vw);
-    opacity: 0.2;
+    opacity: 0.34;
     transform: none;
   }
 
@@ -3041,6 +2976,11 @@ blockquote::before {
     text-align: left;
   }
 
+  .staggerLeft .gapPillarFrame,
+  .staggerRight .gapPillarFrame {
+    align-items: center;
+  }
+
   .gapPillarTitle {
     justify-content: flex-start;
     justify-items: flex-start;
@@ -3057,9 +2997,8 @@ blockquote::before {
   .staggerLeft .gapPillarIndex,
   .staggerRight .gapPillarIndex {
     left: auto;
-    right: auto;
-    top: calc(clamp(-64px, -12vw, -38px) + 45px);
     right: clamp(-24px, -4vw, -10px);
+    top: calc(clamp(-64px, -12vw, -38px) + 45px);
     bottom: auto;
     font-size: clamp(9rem, 44vw, 14rem);
     letter-spacing: 0.01em;
@@ -3082,9 +3021,10 @@ blockquote::before {
   .gapPillarFrame {
     width: fit-content;
     max-width: 100%;
+    align-items: center;
     padding-bottom: 6px;
     font-size: clamp(0.62rem, 2.35vw, 0.78rem) !important;
-    font-weight: 300;
+    font-weight: 700;
     letter-spacing: 0.14em;
   }
 
@@ -3359,11 +3299,6 @@ blockquote::before {
     padding: 24px 20px;
   }
 
-  .storyPinKicker {
-    top: clamp(64px, 9vh, 88px);
-    left: 50%;
-  }
-
   .storyProgress {
     display: none;
   }
@@ -3380,7 +3315,7 @@ blockquote::before {
   .gapTitleHeavy {
     max-width: 330px;
     font-size: clamp(1.62rem, 7.6vw, 2.5rem);
-    line-height: 1;
+    line-height: 0.92;
   }
 
   .gapTitleSub {
@@ -3418,11 +3353,16 @@ blockquote::before {
     margin-left: clamp(6px, 2.8vw, 14px);
   }
 
+  .staggerLeft .gapPillarFrame,
+  .staggerRight .gapPillarFrame {
+    align-items: center;
+  }
+
   .grapheneScaleWrap {
-    top: 5%;
+    top: -5%;
     right: -48%;
     width: min(560px, 154vw);
-    opacity: 0.17;
+    opacity: 0.3;
   }
 
   .gapPillarTitle {
