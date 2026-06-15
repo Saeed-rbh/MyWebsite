@@ -779,11 +779,20 @@ const GapSection = ({ scrollRef }) => {
         <motion.div className={slideClassName(6, "close")} {...getSlideProps(6, "close")}>
           <div className={styles.gapHighlight}>
             <span className={styles.gapHighlightSmall}>My Focus</span>
-            <strong>build &gt; measure &gt; optimize</strong>
+            <strong>
+              <span>Build &gt;&gt;</span>
+              <span>measure &gt;&gt;</span>
+              <span>Optimize</span>
+            </strong>
             <span>
               I develop gas-driven exfoliation routes and build the rigorous metrology workflows required for <em>scalable, on-spec nanomaterial manufacturing</em>.
             </span>
-            <span className={styles.gapHighlightMeta}>Process Engineering • Metrology & Characterization • Technology Commercialization • Thermal Transport</span>
+            <span className={styles.gapHighlightMeta}>
+              <span>Process Engineering</span>
+              <span>Metrology & Characterization</span>
+              <span>Technology Commercialization</span>
+              <span>Thermal Transport</span>
+            </span>
           </div>
         </motion.div>
 
