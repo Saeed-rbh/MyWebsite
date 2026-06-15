@@ -408,54 +408,6 @@ const GrapheneScaleSvg = () => (
   </svg>
 );
 
-const GrapheneCostSvg = () => (
-  <svg className={`${styles.grapheneScaleSvg} ${styles.grapheneCostSvg}`} viewBox="0 0 408 270" aria-hidden="true">
-    <defs>
-      <radialGradient id="grapheneCostNodeGrad" cx="35%" cy="35%" r="65%">
-        <stop offset="0%" stopColor="#ffffff" stopOpacity="0.58" />
-        <stop offset="44%" stopColor="#ffe2cd" stopOpacity="0.28" />
-        <stop offset="100%" stopColor="#d49d81" stopOpacity="0.12" />
-      </radialGradient>
-      <linearGradient id="grapheneCostFlowGrad" x1="60" y1="0" x2="348" y2="0" gradientUnits="userSpaceOnUse">
-        <stop offset="0%" stopColor="#d49d81" stopOpacity="0.12" />
-        <stop offset="48%" stopColor="#ffe2cd" stopOpacity="0.72" />
-        <stop offset="100%" stopColor="#d49d81" stopOpacity="0.16" />
-      </linearGradient>
-    </defs>
-
-    <g className={styles.grapheneCostBonds}>
-      {graphenePatch.bonds.map(([from, to]) => {
-        const [x1, y1] = graphenePatch.atoms[from];
-        const [x2, y2] = graphenePatch.atoms[to];
-        return <line key={`${from}-${to}`} x1={x1} y1={y1} x2={x2} y2={y2} />;
-      })}
-    </g>
-
-    <g className={styles.grapheneCostAtoms}>
-      {graphenePatch.atoms.map(([cx, cy]) => (
-        <circle key={`${cx}-${cy}`} cx={cx} cy={cy} r="3.7" />
-      ))}
-    </g>
-
-    <g className={styles.grapheneCostEconomics}>
-      <path className={styles.grapheneCostCurve} d="M42 210 C86 168, 126 154, 170 154 C226 154, 244 118, 292 96 C326 80, 350 70, 382 48" />
-      <path className={styles.grapheneCostCurveAlt} d="M56 52 C96 78, 128 94, 170 96 C226 100, 244 132, 292 154 C328 171, 354 184, 380 214" />
-      <g className={styles.grapheneCostNodes}>
-        <circle cx="64" cy="200" r="9" />
-        <circle cx="170" cy="154" r="7" />
-        <circle cx="292" cy="96" r="7" />
-        <circle cx="368" cy="54" r="9" />
-      </g>
-      <g className={styles.grapheneCostTicks}>
-        <path d="M70 230 H138" />
-        <path d="M151 220 H219" />
-        <path d="M232 210 H300" />
-        <path d="M313 200 H381" />
-      </g>
-    </g>
-  </svg>
-);
-
 const FlowSvg = () => (
   <svg className={`${styles.animatedSvg} ${styles.flowSvg}`} viewBox="0 0 520 260" aria-hidden="true">
     <path className={styles.svgTrace} d="M28 132 H138 C180 132, 185 76, 236 76 H360 C421 76, 424 132, 492 132" />
@@ -616,10 +568,15 @@ const GapSection = ({ scrollRef }) => {
 
     const clamp = (value, min, max) => Math.min(Math.max(value, min), max);
 
-    const updateGapState = () => {
-      const isMobile = window.matchMedia("(max-width: 840px)").matches;
+    const getGapMetrics = () => {
       const sectionStart = section.offsetTop;
       const pinDistance = Math.max(section.offsetHeight - root.clientHeight, 1);
+      return { sectionStart, pinDistance };
+    };
+
+    const updateGapState = () => {
+      const isMobile = window.matchMedia("(max-width: 840px)").matches;
+      const { sectionStart, pinDistance } = getGapMetrics();
       const rawProgress = (root.scrollTop - sectionStart) / pinDistance;
       const latest = clamp(rawProgress, 0, 1);
       const nextPinReady = !isMobile || root.scrollTop >= sectionStart - 1;
@@ -804,9 +761,6 @@ const GapSection = ({ scrollRef }) => {
 
         <motion.div className={slideClassName(4, "pillarRight")} {...getSlideProps(4, "pillarRight")}>
           <div className={`${styles.gapPillarBlock} ${styles.staggerRight}`}>
-            <div className={`${styles.grapheneScaleWrap} ${styles.grapheneCostWrap}`}>
-              {activeIndex === 4 && <GrapheneCostSvg />}
-            </div>
             <div className={styles.pillarContent}>
               <h3 className={styles.gapPillarTitle}>
                 <span className={styles.gapPillarIndex}>02</span>

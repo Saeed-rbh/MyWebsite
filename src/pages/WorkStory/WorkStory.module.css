@@ -519,7 +519,7 @@
   --story-pin-visibility: 1;
   position: relative;
   width: 100%;
-  height: 560vh;
+  height: 760vh;
   z-index: 5;
   scroll-snap-align: start;
 }
@@ -928,70 +928,6 @@
 .grapheneScaleAtom:nth-child(-n + 6) {
   stroke: rgba(255, 226, 205, 0.82);
 }
-
-.grapheneCostWrap {
-  left: clamp(-170px, -10vw, -72px);
-  right: auto;
-  opacity: 0.58;
-}
-
-.grapheneCostBonds line {
-  stroke: rgba(255, 226, 205, 0.24);
-  stroke-width: 1.65;
-  stroke-linecap: round;
-  animation: grapheneCostLattice 7.8s cubic-bezier(0.23, 1, 0.32, 1) infinite;
-}
-
-.grapheneCostAtoms circle {
-  fill: url(#grapheneCostNodeGrad);
-  stroke: rgba(255, 226, 205, 0.34);
-  stroke-width: 1.2;
-  animation: grapheneCostAtoms 7.8s cubic-bezier(0.23, 1, 0.32, 1) infinite;
-}
-
-.grapheneCostCurve,
-.grapheneCostCurveAlt {
-  fill: none;
-  stroke: url(#grapheneCostFlowGrad);
-  stroke-width: 2.4;
-  stroke-linecap: round;
-  stroke-dasharray: 430;
-  stroke-dashoffset: 430;
-  filter: drop-shadow(0 0 10px rgba(212, 157, 129, 0.22));
-  animation: grapheneCostFlow 7.8s cubic-bezier(0.23, 1, 0.32, 1) infinite;
-}
-
-.grapheneCostCurveAlt {
-  animation-delay: 520ms;
-  opacity: 0.72;
-}
-
-.grapheneCostNodes circle {
-  fill: transparent;
-  stroke: rgba(255, 226, 205, 0.72);
-  stroke-width: 1.6;
-  transform-box: fill-box;
-  transform-origin: center;
-  animation: grapheneCostPulse 7.8s cubic-bezier(0.23, 1, 0.32, 1) infinite;
-}
-
-.grapheneCostNodes circle:nth-child(2) { animation-delay: 240ms; }
-.grapheneCostNodes circle:nth-child(3) { animation-delay: 480ms; }
-.grapheneCostNodes circle:nth-child(4) { animation-delay: 720ms; }
-
-.grapheneCostTicks path {
-  fill: none;
-  stroke: rgba(221, 181, 160, 0.5);
-  stroke-width: 1.3;
-  stroke-linecap: round;
-  stroke-dasharray: 68;
-  stroke-dashoffset: 68;
-  animation: grapheneCostTicks 7.8s cubic-bezier(0.23, 1, 0.32, 1) infinite;
-}
-
-.grapheneCostTicks path:nth-child(2) { animation-delay: 140ms; }
-.grapheneCostTicks path:nth-child(3) { animation-delay: 280ms; }
-.grapheneCostTicks path:nth-child(4) { animation-delay: 420ms; }
 
 .staggerLeft {
   align-self: flex-start;
@@ -2936,65 +2872,6 @@ blockquote::before {
   }
 }
 
-@keyframes grapheneCostLattice {
-  0%, 100% {
-    opacity: 0.18;
-  }
-  28%, 72% {
-    opacity: 0.68;
-  }
-}
-
-@keyframes grapheneCostAtoms {
-  0%, 100% {
-    opacity: 0.2;
-  }
-  30%, 72% {
-    opacity: 0.9;
-  }
-}
-
-@keyframes grapheneCostFlow {
-  0% {
-    opacity: 0;
-    stroke-dashoffset: 430;
-  }
-  22%, 66% {
-    opacity: 0.95;
-    stroke-dashoffset: 0;
-  }
-  88%, 100% {
-    opacity: 0;
-    stroke-dashoffset: -430;
-  }
-}
-
-@keyframes grapheneCostPulse {
-  0%, 100% {
-    opacity: 0;
-    transform: scale(0.5);
-  }
-  28%, 66% {
-    opacity: 1;
-    transform: scale(1);
-  }
-}
-
-@keyframes grapheneCostTicks {
-  0% {
-    opacity: 0;
-    stroke-dashoffset: 68;
-  }
-  24%, 70% {
-    opacity: 0.85;
-    stroke-dashoffset: 0;
-  }
-  88%, 100% {
-    opacity: 0;
-    stroke-dashoffset: -68;
-  }
-}
-
 @media only screen and (max-width: 840px) {
   .page {
     padding-bottom: 0;
@@ -3397,14 +3274,6 @@ blockquote::before {
     width: min(590px, 146vw);
     opacity: 0.34;
     transform: none;
-  }
-
-  .grapheneCostWrap {
-    top: -4%;
-    left: -44%;
-    right: auto;
-    width: min(560px, 142vw);
-    opacity: 0.28;
   }
 
   .staggerLeft,
@@ -3812,14 +3681,6 @@ blockquote::before {
     right: -48%;
     width: min(560px, 154vw);
     opacity: 0.3;
-  }
-
-  .grapheneCostWrap {
-    top: -6%;
-    left: -52%;
-    right: auto;
-    width: min(520px, 148vw);
-    opacity: 0.24;
   }
 
   .gapPillarTitle {
