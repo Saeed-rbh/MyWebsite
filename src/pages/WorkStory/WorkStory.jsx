@@ -220,6 +220,19 @@ const renderPillarWord = (word) => (
   </span>
 );
 
+const renderFocusWord = (word) => (
+  <span
+    key={word}
+    className={styles.gapFocusWord}
+    onPointerEnter={handlePillarLensEnter}
+    onPointerMove={handlePillarLensMove}
+    onPointerLeave={handlePillarLensLeave}
+  >
+    <span className={styles.gapFocusWordOutline}>{word}</span>
+    <span className={styles.gapFocusWordFill} aria-hidden="true">{word}</span>
+  </span>
+);
+
 const SectionShell = ({ id, kicker, title, children, className = "" }) => (
   <section
     id={id}
@@ -404,6 +417,63 @@ const GrapheneScaleSvg = () => (
           </circle>
         );
       })}
+    </g>
+  </svg>
+);
+
+const ConsistencyCheckSvg = () => (
+  <svg className={`${styles.grapheneScaleSvg} ${styles.consistencyCheckSvg}`} viewBox="0 0 408 270" aria-hidden="true">
+    <defs>
+      <radialGradient id="consistencyNodeGrad" cx="35%" cy="35%" r="65%">
+        <stop offset="0%" stopColor="#ffffff" stopOpacity="0.88" />
+        <stop offset="34%" stopColor="#ffe2cd" stopOpacity="0.48" />
+        <stop offset="72%" stopColor="#d49d81" stopOpacity="0.28" />
+        <stop offset="100%" stopColor="#5b2f20" stopOpacity="0.2" />
+      </radialGradient>
+      <radialGradient id="consistencyDepthGrad" cx="35%" cy="35%" r="70%">
+        <stop offset="0%" stopColor="#d49d81" stopOpacity="0.18" />
+        <stop offset="100%" stopColor="#000000" stopOpacity="0.28" />
+      </radialGradient>
+      <linearGradient id="consistencyScanGrad" x1="82" y1="0" x2="326" y2="0" gradientUnits="userSpaceOnUse">
+        <stop offset="0%" stopColor="#d49d81" stopOpacity="0" />
+        <stop offset="48%" stopColor="#fffaf2" stopOpacity="0.82" />
+        <stop offset="100%" stopColor="#d49d81" stopOpacity="0" />
+      </linearGradient>
+    </defs>
+
+    <g className={styles.consistencySheet}>
+      <g className={styles.consistencySheetDepth}>
+        {graphenePatch.bonds.map(([from, to]) => {
+          const [x1, y1] = graphenePatch.atoms[from];
+          const [x2, y2] = graphenePatch.atoms[to];
+          return <line key={`depth-${from}-${to}`} x1={x1 + 8} y1={y1 + 12} x2={x2 + 8} y2={y2 + 12} />;
+        })}
+        {graphenePatch.atoms.map(([cx, cy], index) => (
+          <circle key={`depth-${cx}-${cy}`} cx={cx + 8} cy={cy + 12} r={index < 6 ? "5.6" : "4.6"} />
+        ))}
+      </g>
+      <g className={styles.consistencySheetBonds}>
+        {graphenePatch.bonds.map(([from, to]) => {
+          const [x1, y1] = graphenePatch.atoms[from];
+          const [x2, y2] = graphenePatch.atoms[to];
+          return <line key={`${from}-${to}`} x1={x1} y1={y1} x2={x2} y2={y2} />;
+        })}
+      </g>
+      <g className={styles.consistencySheetAtoms}>
+        {graphenePatch.atoms.map(([cx, cy], index) => (
+          <circle key={`${cx}-${cy}`} cx={cx} cy={cy} r={index < 6 ? "5.2" : "4.2"} />
+        ))}
+      </g>
+    </g>
+
+    <g className={styles.consistencyScan}>
+      <rect x="76" y="66" width="256" height="4" rx="2" />
+      <path d="M82 66 H326" />
+    </g>
+
+    <g className={styles.consistencyConfirm}>
+      <circle cx="308" cy="70" r="24" />
+      <path d="M296 70 L305 79 L322 59" />
     </g>
   </svg>
 );
@@ -778,6 +848,9 @@ const GapSection = ({ scrollRef }) => {
 
         <motion.div className={slideClassName(5, "pillarLeft")} {...getSlideProps(5, "pillarLeft")}>
           <div className={`${styles.gapPillarBlock} ${styles.staggerLeft}`}>
+            <div className={`${styles.grapheneScaleWrap} ${styles.consistencyCheckWrap}`}>
+              {activeIndex === 5 && <ConsistencyCheckSvg />}
+            </div>
             <div className={styles.pillarContent}>
               <h3 className={styles.gapPillarTitle}>
                 <span className={styles.gapPillarIndex}>03</span>
@@ -797,9 +870,9 @@ const GapSection = ({ scrollRef }) => {
           <div className={styles.gapHighlight}>
             <span className={styles.gapHighlightSmall}>My Focus</span>
             <strong>
-              <span>Build &gt;&gt;</span>
-              <span>measure &gt;&gt;</span>
-              <span>Optimize</span>
+              {renderFocusWord("Build >>")}
+              {renderFocusWord("measure >>")}
+              {renderFocusWord("Optimize")}
             </strong>
             <span>
               I develop gas-driven exfoliation routes and build the rigorous metrology workflows required for <em>scalable, on-spec nanomaterial manufacturing</em>.

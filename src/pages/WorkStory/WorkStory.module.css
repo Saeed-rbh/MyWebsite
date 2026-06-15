@@ -929,6 +929,97 @@
   stroke: rgba(255, 226, 205, 0.82);
 }
 
+.consistencyCheckWrap {
+  right: clamp(-158px, -9vw, -66px);
+  opacity: 0.66;
+}
+
+.consistencyCheckSvg {
+  filter:
+    drop-shadow(0 24px 42px rgba(0, 0, 0, 0.38))
+    drop-shadow(0 0 24px rgba(212, 157, 129, 0.12));
+}
+
+.consistencySheet {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: consistencySheetCycle 7.8s cubic-bezier(0.23, 1, 0.32, 1) infinite;
+}
+
+.consistencySheetDepth line {
+  stroke: rgba(92, 47, 32, 0.38);
+  stroke-width: 3.4;
+  stroke-linecap: round;
+}
+
+.consistencySheetDepth circle {
+  fill: url(#consistencyDepthGrad);
+  stroke: rgba(212, 157, 129, 0.12);
+  stroke-width: 1.2;
+}
+
+.consistencySheetBonds line {
+  stroke: rgba(255, 226, 205, 0.56);
+  stroke-width: 2.1;
+  stroke-linecap: round;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.34));
+}
+
+.consistencySheetAtoms circle {
+  fill: url(#consistencyNodeGrad);
+  stroke: rgba(255, 226, 205, 0.72);
+  stroke-width: 1.35;
+  filter:
+    drop-shadow(0 3px 6px rgba(0, 0, 0, 0.42))
+    drop-shadow(0 0 8px rgba(212, 157, 129, 0.18));
+}
+
+.consistencyScan {
+  opacity: 0;
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: consistencyScanCycle 7.8s cubic-bezier(0.23, 1, 0.32, 1) infinite;
+}
+
+.consistencyScan rect {
+  fill: url(#consistencyScanGrad);
+  filter: drop-shadow(0 0 16px rgba(255, 226, 205, 0.32));
+}
+
+.consistencyScan path {
+  fill: none;
+  stroke: rgba(255, 250, 242, 0.8);
+  stroke-width: 1;
+  stroke-linecap: round;
+}
+
+.consistencyConfirm {
+  opacity: 0;
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: consistencyConfirmCycle 7.8s cubic-bezier(0.23, 1, 0.32, 1) infinite;
+}
+
+.consistencyConfirm circle {
+  fill: rgba(8, 6, 4, 0.72);
+  stroke: rgba(255, 226, 205, 0.86);
+  stroke-width: 1.7;
+  filter:
+    drop-shadow(0 10px 18px rgba(0, 0, 0, 0.38))
+    drop-shadow(0 0 18px rgba(212, 157, 129, 0.24));
+}
+
+.consistencyConfirm path {
+  fill: none;
+  stroke: rgba(255, 250, 242, 0.92);
+  stroke-width: 3;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: 48;
+  stroke-dashoffset: 48;
+  animation: consistencyCheckDraw 7.8s cubic-bezier(0.23, 1, 0.32, 1) infinite;
+}
+
 .staggerLeft {
   align-self: flex-start;
 }
@@ -1168,8 +1259,6 @@
   display: flex;
   flex-direction: column;
   gap: clamp(2px, 0.5vw, 8px);
-  color: transparent;
-  -webkit-text-stroke: 1.15px rgba(255, 250, 242, 0.9);
   font-size: clamp(3rem, 7vw, 6rem);
   font-weight: 900;
   line-height: 0.86;
@@ -1180,8 +1269,40 @@
     0 18px 58px rgba(0, 0, 0, 0.5);
 }
 
-.gapHighlight strong span {
+.gapFocusWord {
+  position: relative;
   display: block;
+  --word-lens-x: 50%;
+  --word-lens-y: 50%;
+  --word-lens-opacity: 0;
+  color: transparent;
+  -webkit-text-stroke: 1.15px rgba(255, 250, 242, 0.9);
+  cursor: default;
+}
+
+.gapFocusWordOutline,
+.gapFocusWordFill {
+  display: block;
+}
+
+.gapFocusWordOutline {
+  position: relative;
+  z-index: 1;
+}
+
+.gapFocusWordFill {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  color: var(--gap-ink);
+  -webkit-text-stroke: 0;
+  text-shadow:
+    0 0 22px rgba(255, 226, 205, 0.3),
+    0 18px 58px rgba(0, 0, 0, 0.5);
+  clip-path: circle(36px at var(--word-lens-x) var(--word-lens-y));
+  opacity: var(--word-lens-opacity);
+  pointer-events: none;
+  transition: opacity 90ms ease;
 }
 
 .gapHighlight > span:not(.gapHighlightSmall):not(.gapHighlightMeta) {
@@ -2872,6 +2993,75 @@ blockquote::before {
   }
 }
 
+@keyframes consistencySheetCycle {
+  0% {
+    opacity: 0;
+    transform: translate3d(0, 34px, 0) rotateZ(-18deg) scale(0.94);
+  }
+  18% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) rotateZ(-6deg) scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) rotateZ(8deg) scale(1);
+  }
+  72% {
+    opacity: 0.92;
+    transform: translate3d(0, -12px, 0) rotateZ(20deg) scale(0.99);
+  }
+  92%, 100% {
+    opacity: 0;
+    transform: translate3d(0, -76px, 0) rotateZ(34deg) scale(0.96);
+  }
+}
+
+@keyframes consistencyScanCycle {
+  0%, 20% {
+    opacity: 0;
+    transform: translate3d(0, 132px, 0);
+  }
+  32% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+  48% {
+    opacity: 1;
+    transform: translate3d(0, 108px, 0);
+  }
+  58%, 100% {
+    opacity: 0;
+    transform: translate3d(0, 108px, 0);
+  }
+}
+
+@keyframes consistencyConfirmCycle {
+  0%, 42% {
+    opacity: 0;
+    transform: translate3d(0, 8px, 0) scale(0.82);
+  }
+  54%, 72% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  88%, 100% {
+    opacity: 0;
+    transform: translate3d(0, -18px, 0) scale(0.9);
+  }
+}
+
+@keyframes consistencyCheckDraw {
+  0%, 45% {
+    stroke-dashoffset: 48;
+  }
+  58%, 78% {
+    stroke-dashoffset: 0;
+  }
+  92%, 100% {
+    stroke-dashoffset: 48;
+  }
+}
+
 @media only screen and (max-width: 840px) {
   .page {
     padding-bottom: 0;
@@ -3274,6 +3464,13 @@ blockquote::before {
     width: min(590px, 146vw);
     opacity: 0.34;
     transform: none;
+  }
+
+  .consistencyCheckWrap {
+    top: -2%;
+    right: -42%;
+    width: min(560px, 142vw);
+    opacity: 0.34;
   }
 
   .staggerLeft,
@@ -3681,6 +3878,13 @@ blockquote::before {
     right: -48%;
     width: min(560px, 154vw);
     opacity: 0.3;
+  }
+
+  .consistencyCheckWrap {
+    top: -4%;
+    right: -52%;
+    width: min(530px, 150vw);
+    opacity: 0.32;
   }
 
   .gapPillarTitle {
