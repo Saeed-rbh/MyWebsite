@@ -3,7 +3,9 @@ import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import SEO from "../../components/SEO/SEO";
 import styles from "./WorkStory.module.css";
-
+import ramanImg from "../../assets/gallery/raman.png";
+import semImg from "../../assets/gallery/sem.png";
+import xpsImg from "../../assets/gallery/xps.png";
 const chain = [
   "2D Nanomaterials",
   "Process Scale-Up",
@@ -22,13 +24,13 @@ const navItems = [
 ];
 
 const processSteps = [
-  "Precursor powder",
-  "High-pressure gas",
-  "Heated flow",
-  "Nozzle acceleration",
-  "Exfoliation",
-  "Collection",
-  "Characterization",
+  { id: "precursor", title: "Precursor powder", detail: "Raw bulk materials like graphite or MoS2 are loaded into the system as the initial feedstock." },
+  { id: "gas", title: "High-pressure gas", detail: "Compressible gas (e.g., Nitrogen or Argon) is introduced and pressurized to act as the driving force." },
+  { id: "heated", title: "Heated flow", detail: "The gas stream is heated to reduce viscosity and increase kinetic energy prior to acceleration." },
+  { id: "nozzle", title: "Nozzle acceleration", detail: "The gas-powder mixture is forced through a converging-diverging nozzle, rapidly accelerating to supersonic speeds." },
+  { id: "exfoliation", title: "Exfoliation", detail: "Intense shear forces and shockwaves tear the layered bulk material into few-layer or single-layer nanosheets." },
+  { id: "collection", title: "Collection", detail: "The exfoliated nanomaterial is decelerated and captured using liquid dispersion or dry cyclonic separation." },
+  { id: "characterization", title: "Characterization", detail: "The final product is analyzed to confirm layer count, lateral size, and structural integrity." },
 ];
 
 const variables = [
@@ -46,30 +48,40 @@ const characterization = [
   {
     name: "Raman spectroscopy",
     proof: "Defects + layer fingerprints.",
+    detail: "High-resolution Raman mapping confirms pristine graphene structure with minimal D-band intensity and distinct 2D-band signatures indicative of few-layer material.",
+    image: ramanImg,
   },
   {
     name: "XPS",
     proof: "Surface chemistry.",
-  },
-  {
-    name: "TEM/STEM",
-    proof: "Nanoscale structure.",
+    detail: "X-ray Photoelectron Spectroscopy validates surface purity, showing strong C1s and minimal oxygen integration, confirming high-quality non-oxidative exfoliation.",
+    image: xpsImg,
   },
   {
     name: "SEM",
     proof: "Morphology + distribution.",
+    detail: "Scanning Electron Microscopy reveals the highly ordered layered morphology and provides statistical distributions of lateral flake size across batches.",
+    image: semImg,
+  },
+  {
+    name: "TEM/STEM",
+    proof: "Nanoscale structure.",
+    detail: "Atomic-resolution imaging demonstrates the defect-free basal plane structure and the characteristic atomic arrangement of the exfoliated nanosheets."
   },
   {
     name: "AFM",
     proof: "Thickness + topography.",
+    detail: "Atomic Force Microscopy profiles confirm flake thickness typically below 3nm, corresponding to 1-10 atomic layers."
   },
   {
     name: "UV-Vis",
     proof: "Optical response.",
+    detail: "Optical absorption spectra provide rapid, scalable batch-to-batch consistency checks based on characteristic excitonic peaks."
   },
   {
     name: "mIRage-Raman",
     proof: "Sub-micron chemical signal.",
+    detail: "Optical photothermal infrared spectroscopy captures simultaneous sub-micron chemical and structural fingerprints of the material."
   },
 ];
 
@@ -178,6 +190,36 @@ const useWorkStoryEffects = (scrollRef) => {
   return { progress, handleScroll };
 };
 
+const handlePillarLensMove = (event) => {
+  const target = event.currentTarget;
+  const rect = target.getBoundingClientRect();
+  target.style.setProperty("--word-lens-x", `${event.clientX - rect.left}px`);
+  target.style.setProperty("--word-lens-y", `${event.clientY - rect.top}px`);
+  target.style.setProperty("--word-lens-opacity", "1");
+};
+
+const handlePillarLensEnter = (event) => {
+  handlePillarLensMove(event);
+};
+
+const handlePillarLensLeave = (event) => {
+  event.currentTarget.style.setProperty("--word-lens-opacity", "0");
+};
+
+const renderPillarWord = (word) => (
+  <span
+    key={word}
+    className={styles.gapPillarWord}
+    data-text={word}
+    onPointerEnter={handlePillarLensEnter}
+    onPointerMove={handlePillarLensMove}
+    onPointerLeave={handlePillarLensLeave}
+  >
+    <span className={styles.gapPillarWordFill}>{word}</span>
+    <span className={styles.gapPillarWordLens} aria-hidden="true">{word}</span>
+  </span>
+);
+
 const SectionShell = ({ id, kicker, title, children, className = "" }) => (
   <section
     id={id}
@@ -186,7 +228,7 @@ const SectionShell = ({ id, kicker, title, children, className = "" }) => (
     data-reveal
   >
     {kicker && <span className={styles.kicker}>{kicker}</span>}
-    {title && <h2>{title}</h2>}
+    {typeof title === 'string' ? <h2>{title}</h2> : title}
     {children}
   </section>
 );
@@ -362,6 +404,54 @@ const GrapheneScaleSvg = () => (
           </circle>
         );
       })}
+    </g>
+  </svg>
+);
+
+const GrapheneCostSvg = () => (
+  <svg className={`${styles.grapheneScaleSvg} ${styles.grapheneCostSvg}`} viewBox="0 0 408 270" aria-hidden="true">
+    <defs>
+      <radialGradient id="grapheneCostNodeGrad" cx="35%" cy="35%" r="65%">
+        <stop offset="0%" stopColor="#ffffff" stopOpacity="0.58" />
+        <stop offset="44%" stopColor="#ffe2cd" stopOpacity="0.28" />
+        <stop offset="100%" stopColor="#d49d81" stopOpacity="0.12" />
+      </radialGradient>
+      <linearGradient id="grapheneCostFlowGrad" x1="60" y1="0" x2="348" y2="0" gradientUnits="userSpaceOnUse">
+        <stop offset="0%" stopColor="#d49d81" stopOpacity="0.12" />
+        <stop offset="48%" stopColor="#ffe2cd" stopOpacity="0.72" />
+        <stop offset="100%" stopColor="#d49d81" stopOpacity="0.16" />
+      </linearGradient>
+    </defs>
+
+    <g className={styles.grapheneCostBonds}>
+      {graphenePatch.bonds.map(([from, to]) => {
+        const [x1, y1] = graphenePatch.atoms[from];
+        const [x2, y2] = graphenePatch.atoms[to];
+        return <line key={`${from}-${to}`} x1={x1} y1={y1} x2={x2} y2={y2} />;
+      })}
+    </g>
+
+    <g className={styles.grapheneCostAtoms}>
+      {graphenePatch.atoms.map(([cx, cy]) => (
+        <circle key={`${cx}-${cy}`} cx={cx} cy={cy} r="3.7" />
+      ))}
+    </g>
+
+    <g className={styles.grapheneCostEconomics}>
+      <path className={styles.grapheneCostCurve} d="M42 210 C86 168, 126 154, 170 154 C226 154, 244 118, 292 96 C326 80, 350 70, 382 48" />
+      <path className={styles.grapheneCostCurveAlt} d="M56 52 C96 78, 128 94, 170 96 C226 100, 244 132, 292 154 C328 171, 354 184, 380 214" />
+      <g className={styles.grapheneCostNodes}>
+        <circle cx="64" cy="200" r="9" />
+        <circle cx="170" cy="154" r="7" />
+        <circle cx="292" cy="96" r="7" />
+        <circle cx="368" cy="54" r="9" />
+      </g>
+      <g className={styles.grapheneCostTicks}>
+        <path d="M70 230 H138" />
+        <path d="M151 220 H219" />
+        <path d="M232 210 H300" />
+        <path d="M313 200 H381" />
+      </g>
     </g>
   </svg>
 );
@@ -624,36 +714,6 @@ const GapSection = ({ scrollRef }) => {
     { ring: 0.66, halo: 0.8, line: 0.22, svg: 0.13, scale: 1.01 },
   ][activeIndex - 1];
 
-  const handlePillarLensMove = (event) => {
-    const target = event.currentTarget;
-    const rect = target.getBoundingClientRect();
-    target.style.setProperty("--word-lens-x", `${event.clientX - rect.left}px`);
-    target.style.setProperty("--word-lens-y", `${event.clientY - rect.top}px`);
-    target.style.setProperty("--word-lens-opacity", "1");
-  };
-
-  const handlePillarLensEnter = (event) => {
-    handlePillarLensMove(event);
-  };
-
-  const handlePillarLensLeave = (event) => {
-    event.currentTarget.style.setProperty("--word-lens-opacity", "0");
-  };
-
-  const renderPillarWord = (word) => (
-    <span
-      key={word}
-      className={styles.gapPillarWord}
-      data-text={word}
-      onPointerEnter={handlePillarLensEnter}
-      onPointerMove={handlePillarLensMove}
-      onPointerLeave={handlePillarLensLeave}
-    >
-      <span className={styles.gapPillarWordFill}>{word}</span>
-      <span className={styles.gapPillarWordLens} aria-hidden="true">{word}</span>
-    </span>
-  );
-
   const renderSkills = (skills) => skills.map((skill) => (
     <span key={skill}>{skill}</span>
   ));
@@ -744,6 +804,9 @@ const GapSection = ({ scrollRef }) => {
 
         <motion.div className={slideClassName(4, "pillarRight")} {...getSlideProps(4, "pillarRight")}>
           <div className={`${styles.gapPillarBlock} ${styles.staggerRight}`}>
+            <div className={`${styles.grapheneScaleWrap} ${styles.grapheneCostWrap}`}>
+              {activeIndex === 4 && <GrapheneCostSvg />}
+            </div>
             <div className={styles.pillarContent}>
               <h3 className={styles.gapPillarTitle}>
                 <span className={styles.gapPillarIndex}>02</span>
@@ -796,6 +859,94 @@ const GapSection = ({ scrollRef }) => {
           </div>
         </motion.div>
 
+      </div>
+    </div>
+  );
+};
+
+const InteractiveProcessMap = ({ steps }) => {
+  const [activeStepId, setActiveStepId] = useState(null);
+
+  return (
+    <div className={styles.interactiveProcessWrapper}>
+      <div className={styles.processMap}>
+        {steps.map((step, index) => {
+          const isActive = activeStepId === step.id;
+          return (
+            <div 
+              key={step.id} 
+              className={`${styles.processStep} ${isActive ? styles.processStepActive : ''}`} 
+              style={{ "--delay": `${index * 80}ms` }}
+              onPointerEnter={() => setActiveStepId(step.id)}
+              onPointerLeave={() => setActiveStepId(null)}
+            >
+              <span className={styles.processStepNode} />
+              <p>{step.title}</p>
+            </div>
+          );
+        })}
+      </div>
+      <div className={styles.processDetailPanel}>
+        {steps.map(step => (
+          <div 
+            key={step.id}
+            className={`${styles.processDetailContent} ${activeStepId === step.id ? styles.processDetailActive : ''}`}
+            aria-hidden={activeStepId !== step.id}
+          >
+            <h4>{step.title}</h4>
+            <p>{step.detail}</p>
+          </div>
+        ))}
+        {!activeStepId && (
+          <div className={`${styles.processDetailContent} ${styles.processDetailActive} ${styles.processDetailHint}`}>
+            <p>Hover over a process node to explore the mechanics.</p>
+          </div>
+        )}
+      </div>
+    </div>
+  );
+};
+
+const InteractiveEvidenceGallery = ({ items }) => {
+  const [activeIndex, setActiveIndex] = useState(0);
+
+  return (
+    <div className={styles.interactiveEvidenceGallery}>
+      <div className={styles.evidenceSidebar}>
+        {items.map((item, index) => (
+          <button 
+            key={item.name}
+            className={`${styles.evidenceTab} ${activeIndex === index ? styles.evidenceTabActive : ''}`}
+            onClick={() => setActiveIndex(index)}
+            style={{ "--delay": `${index * 50}ms` }}
+          >
+            <span className={styles.evidenceTabName}>{item.name}</span>
+            <span className={styles.evidenceTabProof}>{item.proof}</span>
+          </button>
+        ))}
+      </div>
+      <div className={styles.evidenceVisualizer}>
+        {items.map((item, index) => (
+          <div 
+            key={item.name}
+            className={`${styles.evidencePanel} ${activeIndex === index ? styles.evidencePanelActive : ''}`}
+            aria-hidden={activeIndex !== index}
+          >
+            {item.image ? (
+              <div className={styles.evidenceImageWrapper}>
+                <img src={item.image} alt={item.name} className={styles.evidenceImage} />
+                <div className={styles.evidenceImageOverlay} />
+              </div>
+            ) : (
+              <div className={styles.evidencePlaceholder}>
+                <span>{item.name} data visualization</span>
+              </div>
+            )}
+            <div className={styles.evidenceDetail}>
+              <p>{item.detail}</p>
+            </div>
+          </div>
+        ))}
       </div>
     </div>
   );
@@ -860,7 +1011,18 @@ const WorkStory = () => {
         <div className={styles.storyGrid}>
           {isMounted && <GapSection scrollRef={scrollRef} />}
 
-          <SectionShell id="process" kicker="Direction" title="Compressible Flow Exfoliation" className={styles.asymProcess}>
+          <SectionShell 
+            id="process" 
+            kicker="Direction" 
+            title={
+              <h2 className={styles.sectionTitleStacked}>
+                <span>Compressible</span>
+                <span>Flow</span>
+                {renderPillarWord("Exfoliation")}
+              </h2>
+            } 
+            className={styles.asymProcess}
+          >
             <div className={styles.sectionIntro}>
               <div>
                 <p className={styles.lead}>
@@ -870,26 +1032,27 @@ const WorkStory = () => {
               </div>
               <FlowSvg />
             </div>
-            <div className={styles.processMap}>
-              {processSteps.map((step, index) => (
-                <div key={step} className={styles.processStep} style={{ "--delay": `${index * 80}ms` }}>
-                  <span />
-                  <p>{step}</p>
-                </div>
-              ))}
-            </div>
+            <InteractiveProcessMap steps={processSteps} />
           </SectionShell>
 
-          <SectionShell id="system" kicker="System" className={`${styles.splitSection} ${styles.asymSystem}`}>
+          <SectionShell 
+            id="system" 
+            kicker="System" 
+            className={`${styles.splitSection} ${styles.asymSystem}`}
+          >
             <div>
-              <h2>Building the Process</h2>
+              <h2 className={styles.sectionTitleStacked}>
+                <span>Building</span>
+                <span>The</span>
+                {renderPillarWord("Process")}
+              </h2>
               <p className={styles.lead}>
                 High-pressure flow. Rapid acceleration. Particle-gas interaction.
               </p>
             </div>
             <div className={styles.variablePanel}>
               <h3>Process Variables I Investigated</h3>
-              <div>
+              <div className={styles.inlineGradientList}>
                 {variables.map((variable, index) => (
                   <span key={variable} style={{ "--delay": `${index * 70}ms` }}>
                     {variable}
@@ -899,7 +1062,17 @@ const WorkStory = () => {
             </div>
           </SectionShell>
 
-          <SectionShell id="evidence" kicker="Evidence" title="Proving the Material, Not Just Producing It" className={styles.asymEvidence}>
+          <SectionShell 
+            id="evidence" 
+            kicker="Evidence" 
+            title={
+              <h2 className={styles.sectionTitleStacked}>
+                <span>Proving The</span>
+                {renderPillarWord("Material")}
+              </h2>
+            } 
+            className={styles.asymEvidence}
+          >
             <div className={styles.sectionIntro}>
               <div>
                 <p className={styles.lead}>
@@ -909,17 +1082,20 @@ const WorkStory = () => {
               </div>
               <EvidenceSvg />
             </div>
-            <div className={styles.characterGrid}>
-              {characterization.map((item, index) => (
-                <article key={item.name} style={{ "--delay": `${index * 70}ms` }}>
-                  <span>{item.name}</span>
-                  <em>{item.proof}</em>
-                </article>
-              ))}
-            </div>
+            <InteractiveEvidenceGallery items={characterization} />
           </SectionShell>
 
-          <SectionShell id="modeling" kicker="Modeling" title="Using Modeling to Understand What Experiments Alone Cannot Show" className={styles.asymModeling}>
+          <SectionShell 
+            id="modeling" 
+            kicker="Modeling" 
+            title={
+              <h2 className={styles.sectionTitleStacked}>
+                <span>Exposing The</span>
+                {renderPillarWord("Mechanism")}
+              </h2>
+            } 
+            className={styles.asymModeling}
+          >
             <div className={styles.sectionIntro}>
               <p className={styles.lead}>
                 Experiments show the result. Modeling helps expose the mechanism.
@@ -936,7 +1112,17 @@ const WorkStory = () => {
             </div>
           </SectionShell>
 
-          <SectionShell id="industry" kicker="Industry" title="From Research Question to Industrial Value" className={styles.asymIndustry}>
+          <SectionShell 
+            id="industry" 
+            kicker="Industry" 
+            title={
+              <h2 className={styles.sectionTitleStacked}>
+                <span>From Research To</span>
+                {renderPillarWord("Value")}
+              </h2>
+            } 
+            className={styles.asymIndustry}
+          >
             <p className={styles.lead}>
               The question changed from “Can it be made?” to “Can it be made reliably?”
             </p>
@@ -957,8 +1143,18 @@ const WorkStory = () => {
             </div>
           </SectionShell>
 
-          <SectionShell id="approach" kicker="Framework" title="My R&D Approach" className={styles.asymApproach}>
-            <div className={styles.finalChain}>
+          <SectionShell 
+            id="approach" 
+            kicker="Framework" 
+            title={
+              <h2 className={styles.sectionTitleStacked}>
+                <span>My R&D</span>
+                {renderPillarWord("Approach")}
+              </h2>
+            } 
+            className={styles.asymApproach}
+          >
+            <div className={`${styles.finalChain} ${styles.inlineGradientList}`}>
               {chain.map((item) => (
                 <span key={item}>{item}</span>
               ))}
