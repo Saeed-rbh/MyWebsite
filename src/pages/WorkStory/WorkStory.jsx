@@ -175,15 +175,17 @@ const useWorkStoryEffects = (scrollRef) => {
 
       setShowSideNav((current) => (current === shouldShowSideNav ? current : shouldShowSideNav));
 
+      const scrollRatio = root.scrollTop / root.clientHeight;
+      const bgOpacity = scrollRatio <= 0.05
+        ? 0.8
+        : Math.max(0.2, 0.8 - ((scrollRatio - 0.05) * 1.08));
+      root.style.setProperty("--bg-opacity", bgOpacity.toFixed(3));
+
       if (isMobile) return;
 
       root.style.setProperty("--scroll-progress", `${progressRatio}`);
       root.style.setProperty("--scroll-shift", `${root.scrollTop * -0.05}px`);
       root.style.setProperty("--scroll-shift-alt", `${root.scrollTop * 0.032}px`);
-      
-      const scrollRatio = root.scrollTop / root.clientHeight;
-      const bgOpacity = Math.max(0, 0.8 - (scrollRatio * 0.8));
-      root.style.setProperty("--bg-opacity", bgOpacity);
 
       const rootRect = root.getBoundingClientRect();
       const viewportCenter = root.clientHeight / 2;
@@ -564,11 +566,11 @@ const GapSection = ({ scrollRef }) => {
       }
 
       let next = 6;
-      if (latest < 0.12) next = 1;
-      else if (latest < 0.28) next = 2;
-      else if (latest < 0.44) next = 3;
-      else if (latest < 0.60) next = 4;
-      else if (latest < 0.76) next = 5;
+      if (latest < 0.15) next = 1;
+      else if (latest < 0.31) next = 2;
+      else if (latest < 0.47) next = 3;
+      else if (latest < 0.63) next = 4;
+      else if (latest < 0.79) next = 5;
 
       if (activeIndexRef.current !== next) {
         activeIndexRef.current = next;
@@ -626,9 +628,9 @@ const GapSection = ({ scrollRef }) => {
       pointerEvents: isPinReady && activeIndex === index ? "auto" : "none"
     },
     transition: {
-      opacity: { duration: 0.58, ease: [0.23, 1, 0.32, 1] },
-      transform: { duration: 0.86, ease: [0.23, 1, 0.32, 1] },
-      filter: { duration: 0.72, ease: [0.23, 1, 0.32, 1] },
+      opacity: { duration: 0.46, ease: [0.23, 1, 0.32, 1] },
+      transform: { duration: 0.68, ease: [0.23, 1, 0.32, 1] },
+      filter: { duration: 0.56, ease: [0.23, 1, 0.32, 1] },
     },
     "aria-hidden": activeIndex !== index
   });
@@ -639,6 +641,14 @@ const GapSection = ({ scrollRef }) => {
     }`;
 
   const slideProgress = (activeIndex - 1) / 5;
+  const atmosphere = [
+    { ring: 0.78, halo: 0.9, line: 0.28, svg: 0.16, scale: 1 },
+    { ring: 0.62, halo: 0.74, line: 0.18, svg: 0.12, scale: 1.03 },
+    { ring: 0.82, halo: 0.94, line: 0.34, svg: 0.18, scale: 1.06 },
+    { ring: 0.58, halo: 0.7, line: 0.16, svg: 0.11, scale: 0.98 },
+    { ring: 0.74, halo: 0.86, line: 0.3, svg: 0.15, scale: 1.04 },
+    { ring: 0.66, halo: 0.8, line: 0.22, svg: 0.13, scale: 1.01 },
+  ][activeIndex - 1];
 
   const handlePillarLensMove = (event) => {
     const target = event.currentTarget;
@@ -681,7 +691,16 @@ const GapSection = ({ scrollRef }) => {
       id="gap"
       data-parallax-section
     >
-      <div className={styles.storyPinInner}>
+      <div
+        className={styles.storyPinInner}
+        style={{
+          "--gap-ring-opacity": atmosphere.ring,
+          "--gap-halo-opacity": atmosphere.halo,
+          "--gap-line-opacity": atmosphere.line,
+          "--gap-svg-opacity": atmosphere.svg,
+          "--gap-atmosphere-scale": atmosphere.scale,
+        }}
+      >
         <div className={styles.gapAmbient} aria-hidden="true" />
 
         <div className={styles.gapSvgContainer}>
@@ -817,9 +836,9 @@ const WorkStory = () => {
   return (
     <>
       <SEO
-        title="Saeed Arabha | R&D Journey"
+        title="R&D Journey"
         description="A recruiter-focused R&D narrative of Saeed Arabha's materials approach across process development, characterization, modeling, and industrial value."
-        name="Saeed Arabha"
+        name="R&D Journey"
         type="website"
       />
       <motion.main
@@ -845,7 +864,7 @@ const WorkStory = () => {
             <div className={styles.heroCopy}>
               <HeroGraphene />
               <h1>
-                <span>SAEED ARABHA</span>
+                <span>R&amp;D JOURNEY</span>
               </h1>
               <p>Process & Metrology Engineer</p>
 

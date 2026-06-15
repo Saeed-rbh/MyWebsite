@@ -32,6 +32,7 @@
   padding: 0;
   text-align: left;
   touch-action: pan-y;
+  overscroll-behavior-y: contain;
 }
 
 .page::before,
@@ -45,11 +46,13 @@
 
 .page::before {
   background-image:
+    linear-gradient(rgba(255, 255, 255, 0.028) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.022) 1px, transparent 1px),
     linear-gradient(rgba(212, 157, 129, 0.055) 1px, transparent 1px),
     linear-gradient(90deg, rgba(212, 157, 129, 0.04) 1px, transparent 1px);
-  background-size: 82px 82px;
+  background-size: 24px 24px, 24px 24px, 82px 82px, 82px 82px;
   mask-image: linear-gradient(to bottom, transparent, black 12%, black 74%, transparent);
-  opacity: 0.45;
+  opacity: 0.52;
   transform: translate3d(0, var(--scroll-shift), 0);
   will-change: transform;
 }
@@ -81,6 +84,7 @@
   pointer-events: none;
   opacity: var(--bg-opacity);
   will-change: opacity;
+  transition: opacity 520ms cubic-bezier(0.23, 1, 0.32, 1);
 }
 
 .progressTrack {
@@ -388,7 +392,18 @@
   border-radius: 0;
   min-height: 100svh;
   padding: clamp(74px, 10vw, 128px) 0;
-  background: transparent;
+  background-image:
+    linear-gradient(90deg, transparent 0, rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+    linear-gradient(180deg, transparent 0, rgba(212, 157, 129, 0.035) 1px, transparent 1px),
+    linear-gradient(115deg, transparent 0 46%, rgba(212, 157, 129, 0.045) 46% 46.25%, transparent 46.25% 100%);
+  background-position:
+    50% 0,
+    0 50%,
+    center;
+  background-size:
+    clamp(92px, 11vw, 164px) 100%,
+    100% clamp(72px, 9vw, 132px),
+    100% 100%;
   box-shadow: none;
   backdrop-filter: none;
   box-sizing: border-box;
@@ -518,6 +533,11 @@
 }
 
 .storyPinInner {
+  --gap-ring-opacity: 0.72;
+  --gap-halo-opacity: 0.9;
+  --gap-line-opacity: 0.32;
+  --gap-svg-opacity: 0.18;
+  --gap-atmosphere-scale: 1;
   position: sticky;
   top: 0;
   height: 100vh;
@@ -527,6 +547,18 @@
   place-items: center;
   overflow: hidden;
   isolation: isolate;
+  background-image:
+    linear-gradient(90deg, transparent 0, rgba(255, 255, 255, 0.038) 1px, transparent 1px),
+    linear-gradient(180deg, transparent 0, rgba(212, 157, 129, 0.03) 1px, transparent 1px),
+    radial-gradient(circle at 50% 50%, transparent 0 28%, rgba(212, 157, 129, 0.035) 28.1% 28.25%, transparent 28.35%);
+  background-position:
+    center,
+    center,
+    center;
+  background-size:
+    clamp(96px, 9vw, 148px) 100%,
+    100% clamp(76px, 8vw, 128px),
+    100% 100%;
   opacity: var(--story-pin-visibility);
   transition: opacity 120ms cubic-bezier(0.23, 1, 0.32, 1);
 }
@@ -548,7 +580,12 @@
   box-shadow:
     inset 0 0 72px rgba(212, 157, 129, 0.055),
     0 0 120px rgba(212, 157, 129, 0.045);
-  opacity: 0.72;
+  opacity: var(--gap-ring-opacity);
+  transform: scale(var(--gap-atmosphere-scale));
+  transition:
+    opacity 760ms cubic-bezier(0.23, 1, 0.32, 1),
+    transform 1100ms cubic-bezier(0.23, 1, 0.32, 1),
+    box-shadow 900ms cubic-bezier(0.23, 1, 0.32, 1);
 }
 
 .storyPinInner::after {
@@ -558,7 +595,8 @@
   height: 1px;
   background: linear-gradient(90deg, transparent, rgba(240, 193, 169, 0.34), transparent);
   transform: translate(-50%, -50%);
-  opacity: 0.32;
+  opacity: var(--gap-line-opacity);
+  transition: opacity 760ms cubic-bezier(0.23, 1, 0.32, 1);
 }
 
 .gapAmbient {
@@ -571,7 +609,11 @@
     radial-gradient(circle at 72% 62%, rgba(255, 255, 255, 0.06), transparent 38%),
     linear-gradient(120deg, transparent 12%, rgba(212, 157, 129, 0.045), transparent 76%);
   filter: blur(8px);
-  opacity: 0.9;
+  opacity: var(--gap-halo-opacity);
+  transform: scale(var(--gap-atmosphere-scale));
+  transition:
+    opacity 760ms cubic-bezier(0.23, 1, 0.32, 1),
+    transform 1100ms cubic-bezier(0.23, 1, 0.32, 1);
 }
 
 /* Gap Background SVG Container */
@@ -586,8 +628,11 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  opacity: 0.18;
+  opacity: var(--gap-svg-opacity);
   mix-blend-mode: screen;
+  transition:
+    opacity 820ms cubic-bezier(0.23, 1, 0.32, 1),
+    transform 1100ms cubic-bezier(0.23, 1, 0.32, 1);
 }
 
 .gapSvg {
@@ -2764,8 +2809,16 @@ blockquote::before {
   }
 
   .storyPinInner::before {
-    width: 86vw;
-    height: 86vw;
+    width: min(94vw, 470px);
+    height: min(94vw, 470px);
+    opacity: var(--gap-ring-opacity);
+    box-shadow:
+      inset 0 0 42px rgba(212, 157, 129, 0.05),
+      0 0 70px rgba(212, 157, 129, 0.035);
+  }
+
+  .storyPinInner::after {
+    opacity: var(--gap-line-opacity);
   }
 
   .storyPinKicker {
@@ -2790,9 +2843,10 @@ blockquote::before {
   }
 
   .gapSvgContainer {
-    opacity: 0.08;
+    opacity: var(--gap-svg-opacity);
     overflow: hidden;
     mix-blend-mode: normal;
+    transform: translate3d(0, -2vh, 0) scale(1.04);
   }
 
   .gapSvg {
@@ -2813,6 +2867,7 @@ blockquote::before {
     padding-inline: clamp(16px, 5vw, 24px);
     box-sizing: border-box;
     text-align: center;
+    contain: layout paint;
   }
 
   .gapTitleWrapper,
@@ -2856,7 +2911,7 @@ blockquote::before {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 22px;
+    gap: 18px;
     max-width: min(620px, calc(100% - 24px));
     width: 100%;
     text-align: center;
@@ -2926,7 +2981,7 @@ blockquote::before {
   .gapPillarBlock {
     width: 100%;
     max-width: min(430px, calc(100% - 28px));
-    min-height: clamp(390px, 58vh, 520px);
+    min-height: clamp(390px, 57vh, 510px);
     align-self: center;
     align-items: stretch;
     justify-content: center;
@@ -2944,10 +2999,10 @@ blockquote::before {
   }
 
   .grapheneScaleWrap {
-    top: 7%;
-    right: -34%;
-    width: min(540px, 132vw);
-    opacity: 0.22;
+    top: 5%;
+    right: -38%;
+    width: min(590px, 146vw);
+    opacity: 0.2;
     transform: none;
   }
 
@@ -2967,6 +3022,10 @@ blockquote::before {
     margin-right: 0;
     text-align: left;
     gap: 13px;
+  }
+
+  .staggerLeft .pillarContent {
+    margin-left: clamp(12px, 4.8vw, 24px);
   }
 
   .staggerLeft .pillarContent,
@@ -3043,8 +3102,8 @@ blockquote::before {
     width: 100%;
     max-width: 330px;
     color: rgba(237, 223, 212, 0.78);
-    font-size: clamp(0.74rem, 2.75vw, 0.88rem) !important;
-    line-height: 1.48;
+    font-size: clamp(0.72rem, 2.55vw, 0.84rem) !important;
+    line-height: 1.42;
     letter-spacing: 0.01em;
   }
 
@@ -3057,8 +3116,8 @@ blockquote::before {
     grid-template-columns: repeat(2, minmax(0, 1fr));
     max-width: min(330px, 100%);
     width: 100%;
-    gap: 9px 14px;
-    line-height: 1.22;
+    gap: 8px 12px;
+    line-height: 1.18;
     justify-content: stretch;
     padding-top: 13px;
     border-top-color: rgba(212, 157, 129, 0.24);
@@ -3068,8 +3127,8 @@ blockquote::before {
     justify-content: flex-start;
     min-width: 0;
     padding-left: 12px;
-    font-size: clamp(0.62rem, 2.45vw, 0.76rem) !important;
-    line-height: 1.22;
+    font-size: clamp(0.6rem, 2.3vw, 0.72rem) !important;
+    line-height: 1.18;
   }
 
   .pillarMetrics span::before {
@@ -3131,6 +3190,24 @@ blockquote::before {
 }
 
 @media only screen and (max-width: 640px) {
+  .page::before {
+    background-size: 26px 26px, 26px 26px, 92px 92px, 92px 92px;
+    opacity: 0.28;
+    mask-image: linear-gradient(to bottom, transparent, black 18%, black 78%, transparent);
+  }
+
+  .page::after {
+    background-size: 460px 460px;
+    filter: blur(0.6px);
+    opacity: 0.26;
+    animation-duration: 28s;
+  }
+
+  .glowingBg {
+    opacity: var(--bg-opacity);
+    background-size: 145vmax;
+  }
+
   .hero,
   .storyGrid {
     width: 100%;
@@ -3143,7 +3220,7 @@ blockquote::before {
 
   .heroFrame {
     min-height: 100svh;
-    padding: clamp(56px, 9vh, 88px) 18px clamp(142px, 18vh, 170px);
+    padding: clamp(48px, 8vh, 78px) 18px clamp(132px, 17vh, 158px);
   }
 
   .heroCopy {
@@ -3173,7 +3250,7 @@ blockquote::before {
     display: flex;
     width: min(100%, 520px);
     gap: 0;
-    margin-top: clamp(42px, 8vh, 70px);
+    margin-top: clamp(32px, 6vh, 54px);
   }
 
   .chain span {
@@ -3220,7 +3297,7 @@ blockquote::before {
 
   .heroFrame {
     grid-template-columns: 1fr;
-    padding: clamp(58px, 8vh, 82px) 14px clamp(136px, 18vh, 160px);
+    padding: clamp(50px, 7vh, 74px) 14px clamp(124px, 16vh, 150px);
   }
 
   .hero h1 {
@@ -3255,7 +3332,7 @@ blockquote::before {
     justify-content: center;
     gap: 0;
     width: min(100%, 520px);
-    margin-top: clamp(34px, 6vh, 50px);
+    margin-top: clamp(28px, 5vh, 44px);
   }
 
   .heroScrollCue {
@@ -3302,8 +3379,8 @@ blockquote::before {
 
   .gapTitleHeavy {
     max-width: 330px;
-    font-size: clamp(1.68rem, 8vw, 2.65rem);
-    line-height: 1.04;
+    font-size: clamp(1.62rem, 7.6vw, 2.5rem);
+    line-height: 1;
   }
 
   .gapTitleSub {
@@ -3327,7 +3404,7 @@ blockquote::before {
 
   .gapPillarBlock {
     max-width: calc(100% - 20px);
-    min-height: clamp(372px, 60vh, 500px);
+    min-height: clamp(358px, 57vh, 480px);
   }
 
   .staggerLeft .pillarContent,
@@ -3336,43 +3413,48 @@ blockquote::before {
     margin-left: clamp(30px, 10vw, 42px);
   }
 
+  .staggerLeft .pillarContent {
+    max-width: calc(100% - 34px);
+    margin-left: clamp(6px, 2.8vw, 14px);
+  }
+
   .grapheneScaleWrap {
-    top: 8%;
-    right: -42%;
-    width: min(500px, 138vw);
-    opacity: 0.18;
+    top: 5%;
+    right: -48%;
+    width: min(560px, 154vw);
+    opacity: 0.17;
   }
 
   .gapPillarTitle {
     max-width: min(100%, 315px);
-    font-size: clamp(2.05rem, 9.5vw, 3.05rem);
-    line-height: 0.94;
-    padding-top: clamp(68px, 19vw, 92px);
+    font-size: clamp(1.96rem, 9.1vw, 2.9rem);
+    line-height: 0.92;
+    padding-top: clamp(74px, 20vw, 98px);
   }
 
   .gapPillarIndex,
   .staggerLeft .gapPillarIndex,
   .staggerRight .gapPillarIndex {
-    top: calc(clamp(-56px, -13vw, -34px) + 45px);
-    right: clamp(-18px, -3vw, -8px);
-    font-size: clamp(8.7rem, 43vw, 11.8rem);
-    opacity: 0.14;
+    top: calc(clamp(-54px, -12vw, -32px) + 54px);
+    right: clamp(-12px, -2vw, -6px);
+    font-size: clamp(8.9rem, 42vw, 11.6rem);
+    opacity: 0.13;
   }
 
   .staggerLeft .gapPillarIndex {
-    left: clamp(-52px, -12vw, -20px);
+    left: clamp(-44px, -10vw, -18px);
     right: auto;
   }
 
   .staggerRight .gapPillarIndex {
     left: auto;
-    right: clamp(-18px, -3vw, -8px);
+    right: clamp(-12px, -2vw, -6px);
   }
 
   .gapPillarDesc {
     max-width: 295px;
-    font-size: clamp(0.7rem, 2.65vw, 0.8rem) !important;
-    line-height: 1.44;
+    font-size: clamp(0.68rem, 2.5vw, 0.78rem) !important;
+    line-height: 1.38;
   }
 
   .pillarMetrics {
@@ -3381,8 +3463,8 @@ blockquote::before {
   }
 
   .pillarMetrics span {
-    font-size: clamp(0.58rem, 2.5vw, 0.7rem) !important;
-    line-height: 1.24;
+    font-size: clamp(0.56rem, 2.35vw, 0.68rem) !important;
+    line-height: 1.18;
   }
 
   .heroActions {
