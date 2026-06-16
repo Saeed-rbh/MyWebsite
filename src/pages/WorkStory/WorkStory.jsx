@@ -24,24 +24,24 @@ const navItems = [
 ];
 
 const processSteps = [
-  { id: "precursor", title: "Precursor powder", detail: "Raw bulk materials like graphite or MoS2 are loaded into the system as the initial feedstock." },
-  { id: "gas", title: "High-pressure gas", detail: "Compressible gas (e.g., Nitrogen or Argon) is introduced and pressurized to act as the driving force." },
-  { id: "heated", title: "Heated flow", detail: "The gas stream is heated to reduce viscosity and increase kinetic energy prior to acceleration." },
-  { id: "nozzle", title: "Nozzle acceleration", detail: "The gas-powder mixture is forced through a converging-diverging nozzle, rapidly accelerating to supersonic speeds." },
-  { id: "exfoliation", title: "Exfoliation", detail: "Intense shear forces and shockwaves tear the layered bulk material into few-layer or single-layer nanosheets." },
-  { id: "collection", title: "Collection", detail: "The exfoliated nanomaterial is decelerated and captured using liquid dispersion or dry cyclonic separation." },
-  { id: "characterization", title: "Characterization", detail: "The final product is analyzed to confirm layer count, lateral size, and structural integrity." },
+  { id: "precursor", title: "Bulk powder", detail: "Layered feedstock enters as a powder, preserving the chemistry while preparing it for mechanical separation." },
+  { id: "gas", title: "Gas loading", detail: "Compressed nitrogen or argon becomes the process medium, replacing solvent-heavy exfoliation routes." },
+  { id: "heated", title: "Thermal tuning", detail: "Temperature sets gas density, viscosity, and momentum transfer before the powder reaches the nozzle." },
+  { id: "nozzle", title: "Acceleration", detail: "The gas-powder stream is driven through a controlled restriction where velocity and pressure gradients rise sharply." },
+  { id: "exfoliation", title: "Layer release", detail: "Shear, impact, and rapid expansion separate stacked crystals into usable nanosheet populations." },
+  { id: "collection", title: "Recovery", detail: "The output is slowed, captured, and recovered as either dry powder or a controlled dispersion." },
+  { id: "characterization", title: "Verification", detail: "Metrology closes the loop by checking layer count, lateral size, morphology, and defect density." },
 ];
 
 const variables = [
-  "Pressure",
-  "Gas type",
-  "Temperature",
-  "Flow behavior",
-  "Nozzle condition",
-  "Precursor material",
-  "Recovery method",
-  "Material quality",
+  "Pressure ratio",
+  "Gas identity",
+  "Thermal state",
+  "Flow regime",
+  "Nozzle geometry",
+  "Feedstock",
+  "Recovery path",
+  "Quality window",
 ];
 
 const characterization = [
@@ -88,8 +88,8 @@ const characterization = [
 const modelingNodes = [
   "Experiment",
   "Simulation",
-  "Data Analysis",
-  "Process Understanding",
+  "Data",
+  "Mechanism",
 ];
 
 const useWorkStoryEffects = (scrollRef) => {
@@ -924,9 +924,10 @@ const InteractiveProcessMap = ({ steps }) => {
             <p>{step.detail}</p>
           </div>
         ))}
-        {!activeStepId && (
-          <div className={`${styles.processDetailContent} ${styles.processDetailActive} ${styles.processDetailHint}`}>
-            <p>Hover over a process node to explore the mechanics.</p>
+        {!activeStepId && steps[0] && (
+          <div className={`${styles.processDetailContent} ${styles.processDetailActive}`}>
+            <h4>{steps[0].title}</h4>
+            <p>{steps[0].detail}</p>
           </div>
         )}
       </div>
@@ -1053,9 +1054,9 @@ const WorkStory = () => {
             <div className={styles.sectionIntro}>
               <div>
                 <p className={styles.lead}>
-                  A gas-driven route for 2D nanomaterials: graphene, h-BN, and MoS2.
+                  A dry, gas-driven route that converts layered powders into scalable 2D material populations.
                 </p>
-                <TypeField items={["ΔP", "FLOW", "TEMP", "NOZZLE", "YIELD"]} />
+                <TypeField items={["BULK", "GAS", "SHEAR", "RECOVERY", "METROLOGY"]} />
               </div>
               <FlowSvg />
             </div>
@@ -1074,11 +1075,11 @@ const WorkStory = () => {
                 {renderPillarWord("Process")}
               </h2>
               <p className={styles.lead}>
-                High-pressure flow. Rapid acceleration. Particle-gas interaction.
+                I tune the operating window, then connect each variable to material output.
               </p>
             </div>
             <div className={styles.variablePanel}>
-              <h3>Process Variables I Investigated</h3>
+              <h3>Controlled Variables</h3>
               <div className={styles.inlineGradientList}>
                 {variables.map((variable, index) => (
                   <span key={variable} style={{ "--delay": `${index * 70}ms` }}>
@@ -1103,9 +1104,9 @@ const WorkStory = () => {
             <div className={styles.sectionIntro}>
               <div>
                 <p className={styles.lead}>
-                  The output has to be measured, not assumed.
+                  The material is only useful when structure, chemistry, and morphology are verified.
                 </p>
-                <TypeField items={["STRUCTURE", "CHEMISTRY", "MORPHOLOGY", "SIGNAL"]} />
+                <TypeField items={["STRUCTURE", "CHEMISTRY", "MORPHOLOGY", "DEFECTS"]} />
               </div>
               <EvidenceSvg />
             </div>
@@ -1125,7 +1126,7 @@ const WorkStory = () => {
           >
             <div className={styles.sectionIntro}>
               <p className={styles.lead}>
-                Experiments show the result. Modeling helps expose the mechanism.
+                Experiments show what changed. Modeling explains why it changed.
               </p>
               <ModelingSvg />
             </div>
@@ -1151,20 +1152,19 @@ const WorkStory = () => {
             className={styles.asymIndustry}
           >
             <p className={styles.lead}>
-              The question changed from “Can it be made?” to “Can it be made reliably?”
+              The work shifts from making a material once to making it reliably.
             </p>
             <div className={styles.beforeAfter}>
               <article>
                 <span>Before</span>
                 <h3>Academic question</h3>
-                <p>Can we produce and characterize the material?</p>
+                <p>Can the material be produced and measured?</p>
               </article>
               <article>
                 <span>After</span>
                 <h3>Industrial question</h3>
                 <p>
-                  Can the process create consistent, scalable,
-                  application-ready material?
+                  Can the process deliver consistent material at usable scale?
                 </p>
               </article>
             </div>
@@ -1187,11 +1187,11 @@ const WorkStory = () => {
               ))}
             </div>
             <p className={styles.lead}>
-              Build the process. Prove the material. Understand the mechanism. Connect it to use.
+              Build the route. Measure the output. Explain the mechanism. Connect it to use.
             </p>
             <div className={styles.closeCard}>
               <p>
-                Advanced materials, nanomanufacturing, characterization, or process scale-up.
+                Focused on nanomanufacturing, characterization, process scale-up, and applied materials R&D.
               </p>
               <div className={styles.heroActions}>
                 <Link to="/AcademicCV">Download Resume</Link>
