@@ -3998,7 +3998,7 @@ blockquote::before {
   }
 
   .consistencyCheckWrap .consistencyConfirm {
-    --consistency-check-x: -228px;
+    --consistency-check-x: -96px;
     --consistency-check-y: 4px;
   }
 
@@ -4417,7 +4417,7 @@ blockquote::before {
   }
 
   .consistencyCheckWrap .consistencyConfirm {
-    --consistency-check-x: -238px;
+    --consistency-check-x: -116px;
     --consistency-check-y: 6px;
   }
 
