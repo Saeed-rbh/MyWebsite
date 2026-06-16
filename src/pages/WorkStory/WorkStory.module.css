@@ -3865,6 +3865,20 @@ blockquote::before {
     contain: layout paint;
   }
 
+  .storySlideTitle {
+    position: fixed;
+    inset: 0;
+    width: 100vw;
+    max-width: 100vw;
+    height: var(--story-frame-height);
+    min-height: var(--story-frame-height);
+    padding-inline: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none;
+  }
+
   .gapTitleWrapper,
   .gapTitleMain {
     display: grid;
@@ -3874,6 +3888,11 @@ blockquote::before {
     align-items: center;
     justify-items: center;
     text-align: center;
+  }
+
+  .storySlideTitle .gapTitleWrapper,
+  .storySlideTitle .gapTitleMain {
+    max-width: min(100%, 300px);
   }
 
   .gapTitleAccent {
@@ -3888,15 +3907,21 @@ blockquote::before {
   }
 
   .gapTitleHeavy {
-    max-width: min(100%, 560px);
-    font-size: clamp(1.9rem, 8.4vw, 3.45rem);
+    max-width: min(100%, 300px);
+    font-size: clamp(1.55rem, 7.2vw, 2.35rem);
     line-height: 0.9;
-    letter-spacing: -0.018em;
-    overflow-wrap: anywhere;
+    letter-spacing: -0.012em;
+    overflow-wrap: normal;
+    word-break: normal;
+  }
+
+  .gapTitleHeavy > span {
+    max-width: 100%;
+    white-space: nowrap;
   }
 
   .gapTitleSub {
-    max-width: min(320px, 86vw);
+    max-width: min(270px, 82vw);
     font-size: clamp(0.68rem, 2.2vw, 0.8rem);
     line-height: 1.32;
     text-align: center;
@@ -4357,13 +4382,13 @@ blockquote::before {
   }
 
   .gapTitleHeavy {
-    max-width: 330px;
-    font-size: clamp(1.62rem, 7.6vw, 2.5rem);
+    max-width: min(270px, calc(100vw - 54px));
+    font-size: clamp(1.45rem, 6.9vw, 2.05rem);
     line-height: 0.92;
   }
 
   .gapTitleSub {
-    max-width: 280px;
+    max-width: min(250px, calc(100vw - 64px));
     font-size: clamp(0.62rem, 2.45vw, 0.74rem);
     line-height: 1.32;
   }
