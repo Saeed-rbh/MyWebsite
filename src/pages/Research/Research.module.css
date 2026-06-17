@@ -1,0 +1,63 @@
+.grapheneScene {
+  height: 100dvh;
+  width: 100vw;
+  overflow: hidden;
+  isolation: isolate;
+  background:
+    radial-gradient(circle at 18% 82%, rgba(21, 58, 83, 0.6), transparent 34%),
+    radial-gradient(circle at 76% 24%, rgba(134, 208, 239, 0.25), transparent 30%),
+    linear-gradient(135deg, #07121c 0%, #0e2333 42%, #eef8fb 100%);
+}
+
+.flowBackdrop,
+.flowImage,
+.flowMesh {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.flowBackdrop {
+  z-index: -4;
+  background:
+    linear-gradient(118deg, rgba(4, 14, 22, 0.96) 0%, rgba(8, 27, 42, 0.88) 41%, rgba(225, 246, 252, 0.76) 100%),
+    radial-gradient(circle at 60% 45%, rgba(92, 177, 216, 0.42), transparent 42%);
+}
+
+.flowImage {
+  z-index: -3;
+  background-image: url("/images/research/compressible-flow-exfoliation.png");
+  background-repeat: no-repeat;
+  background-size: min(1180px, 94vw) auto;
+  background-position: 74% 50%;
+  opacity: 0.55;
+  filter: saturate(0.92) contrast(1.06) drop-shadow(0 28px 80px rgba(4, 23, 36, 0.45));
+  transform: rotate(-2deg) scale(1.03);
+}
+
+.flowMesh {
+  z-index: -2;
+  background:
+    linear-gradient(108deg, rgba(7, 18, 28, 0.92) 0%, rgba(7, 18, 28, 0.56) 36%, rgba(7, 18, 28, 0.12) 72%, rgba(238, 248, 251, 0.5) 100%),
+    repeating-linear-gradient(60deg, rgba(191, 224, 239, 0.09) 0 1px, transparent 1px 34px),
+    repeating-linear-gradient(120deg, rgba(39, 109, 149, 0.1) 0 1px, transparent 1px 40px);
+  mix-blend-mode: normal;
+}
+
+.grapheneScene canvas {
+  filter: drop-shadow(0 24px 70px rgba(93, 188, 229, 0.22));
+}
+
+@media (max-width: 760px) {
+  .flowImage {
+    background-size: 920px auto;
+    background-position: 62% 52%;
+    opacity: 0.42;
+  }
+
+  .flowMesh {
+    background:
+      linear-gradient(112deg, rgba(7, 18, 28, 0.95) 0%, rgba(7, 18, 28, 0.7) 48%, rgba(238, 248, 251, 0.18) 100%),
+      repeating-linear-gradient(60deg, rgba(191, 224, 239, 0.08) 0 1px, transparent 1px 30px);
+  }
+}

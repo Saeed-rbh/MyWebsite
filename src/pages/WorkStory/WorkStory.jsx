@@ -24,13 +24,12 @@ const navItems = [
 ];
 
 const processSteps = [
-  { id: "precursor", title: "Bulk powder", detail: "Layered feedstock enters as a powder, preserving the chemistry while preparing it for mechanical separation." },
-  { id: "gas", title: "Gas loading", detail: "Compressed nitrogen or argon becomes the process medium, replacing solvent-heavy exfoliation routes." },
-  { id: "heated", title: "Thermal tuning", detail: "Temperature sets gas density, viscosity, and momentum transfer before the powder reaches the nozzle." },
+  { id: "precursor", title: "Precursor", detail: "Layered feedstock enters as a powder, preserving the chemistry while preparing it for mechanical separation." },
+  { id: "gas", title: "Pressurization", detail: "Compressed nitrogen or argon becomes the process medium, replacing solvent-heavy exfoliation routes." },
+  { id: "heated", title: "Heating", detail: "Temperature sets gas density, viscosity, and momentum transfer before the powder reaches the nozzle." },
   { id: "nozzle", title: "Acceleration", detail: "The gas-powder stream is driven through a controlled restriction where velocity and pressure gradients rise sharply." },
-  { id: "exfoliation", title: "Layer release", detail: "Shear, impact, and rapid expansion separate stacked crystals into usable nanosheet populations." },
-  { id: "collection", title: "Recovery", detail: "The output is slowed, captured, and recovered as either dry powder or a controlled dispersion." },
-  { id: "characterization", title: "Verification", detail: "Metrology closes the loop by checking layer count, lateral size, morphology, and defect density." },
+  { id: "exfoliation", title: "Exfoliation", detail: "Shear, impact, and rapid expansion separate stacked crystals into usable nanosheet populations." },
+  { id: "characterization", title: "METROLOGY", tone: "metrology", detail: "Metrology closes the loop by checking layer count, lateral size, morphology, and defect density." },
 ];
 
 const variables = [
@@ -220,10 +219,10 @@ const renderPillarWord = (word) => (
   </span>
 );
 
-const renderFocusWord = (word) => (
+const renderFocusWord = (word, className = "") => (
   <span
     key={word}
-    className={styles.gapFocusWord}
+    className={`${styles.gapFocusWord} ${className}`}
     onPointerEnter={handlePillarLensEnter}
     onPointerMove={handlePillarLensMove}
     onPointerLeave={handlePillarLensLeave}
@@ -478,24 +477,6 @@ const ConsistencyCheckSvg = () => (
   </svg>
 );
 
-const FlowSvg = () => (
-  <svg className={`${styles.animatedSvg} ${styles.flowSvg}`} viewBox="0 0 520 260" aria-hidden="true">
-    <path className={styles.svgTrace} d="M28 132 H138 C180 132, 185 76, 236 76 H360 C421 76, 424 132, 492 132" />
-    <path className={styles.svgTraceSlow} d="M28 162 H156 C214 162, 218 210, 286 210 H496" />
-    <g className={styles.svgNodes}>
-      <circle cx="58" cy="132" r="8" />
-      <circle cx="236" cy="76" r="8" />
-      <circle cx="360" cy="76" r="8" />
-      <circle cx="492" cy="132" r="8" />
-      <circle cx="286" cy="210" r="8" />
-    </g>
-    <g className={styles.svgRings}>
-      <circle cx="250" cy="132" r="38" />
-      <circle cx="250" cy="132" r="62" />
-    </g>
-  </svg>
-);
-
 const EvidenceSvg = () => (
   <svg className={`${styles.animatedSvg} ${styles.evidenceSvg}`} viewBox="0 0 520 240" aria-hidden="true">
     <path className={styles.svgTrace} d="M30 145 C70 52, 106 52, 142 145 S214 238, 254 145 S326 52, 366 145 S438 238, 490 116" />
@@ -520,16 +501,6 @@ const ModelingSvg = () => (
       <circle cx="178" cy="238" r="17" />
     </g>
   </svg>
-);
-
-const TypeField = ({ items }) => (
-  <div className={styles.typeField} aria-hidden="true">
-    {items.map((item, index) => (
-      <span key={item} style={{ "--delay": `${index * 90}ms` }}>
-        {item}
-      </span>
-    ))}
-  </div>
 );
 
 const HeroGraphene = () => (
@@ -899,10 +870,11 @@ const InteractiveProcessMap = ({ steps }) => {
       <div className={styles.processMap}>
         {steps.map((step, index) => {
           const isActive = activeStepId === step.id;
+          const toneClass = step.tone === "metrology" ? styles.processStepMetrology : "";
           return (
             <div 
               key={step.id} 
-              className={`${styles.processStep} ${isActive ? styles.processStepActive : ''}`} 
+              className={`${styles.processStep} ${toneClass} ${isActive ? styles.processStepActive : ''}`} 
               style={{ "--delay": `${index * 80}ms` }}
               onPointerEnter={() => setActiveStepId(step.id)}
               onPointerLeave={() => setActiveStepId(null)}
@@ -912,24 +884,6 @@ const InteractiveProcessMap = ({ steps }) => {
             </div>
           );
         })}
-      </div>
-      <div className={styles.processDetailPanel}>
-        {steps.map(step => (
-          <div 
-            key={step.id}
-            className={`${styles.processDetailContent} ${activeStepId === step.id ? styles.processDetailActive : ''}`}
-            aria-hidden={activeStepId !== step.id}
-          >
-            <h4>{step.title}</h4>
-            <p>{step.detail}</p>
-          </div>
-        ))}
-        {!activeStepId && steps[0] && (
-          <div className={`${styles.processDetailContent} ${styles.processDetailActive}`}>
-            <h4>{steps[0].title}</h4>
-            <p>{steps[0].detail}</p>
-          </div>
-        )}
       </div>
     </div>
   );
@@ -1041,24 +995,23 @@ const WorkStory = () => {
 
           <SectionShell 
             id="process" 
-            kicker="Direction" 
+            kicker="The Answer" 
             title={
               <h2 className={styles.sectionTitleStacked}>
-                <span>Compressible</span>
-                <span>Flow</span>
-                {renderPillarWord("Exfoliation")}
+                {renderFocusWord("Compressible")}
+                {renderFocusWord("Flow")}
+                {renderFocusWord("Exfoliation")}
               </h2>
             } 
             className={styles.asymProcess}
           >
+            <div className={styles.cfeProcessImage} aria-hidden="true" />
             <div className={styles.sectionIntro}>
               <div>
                 <p className={styles.lead}>
                   A dry, gas-driven route that converts layered powders into scalable 2D material populations.
                 </p>
-                <TypeField items={["BULK", "GAS", "SHEAR", "RECOVERY", "METROLOGY"]} />
               </div>
-              <FlowSvg />
             </div>
             <InteractiveProcessMap steps={processSteps} />
           </SectionShell>
@@ -1106,7 +1059,6 @@ const WorkStory = () => {
                 <p className={styles.lead}>
                   The material is only useful when structure, chemistry, and morphology are verified.
                 </p>
-                <TypeField items={["STRUCTURE", "CHEMISTRY", "MORPHOLOGY", "DEFECTS"]} />
               </div>
               <EvidenceSvg />
             </div>

@@ -5,6 +5,7 @@ import * as THREE from "three";
 import Controls from "./Controls";
 import { animated } from "react-spring";
 import IntroText from "./IntroText";
+import styles from "./Research.module.css";
 // import GrapheneInfo from "./GrapheneInfo";
 // import "./Graphene.css";
 import useGraphenePageLogic from "./useGraphenePageLogic";
@@ -36,12 +37,11 @@ function Graphene() {
 
   return (
     <animated.div
+      className={styles.grapheneScene}
       style={{
         position: "absolute",
         top: 0,
         bottom: 0,
-        height: "100vh",
-        width: "100vw",
         display: "flex",
         justifyContent: "center",
       }}
@@ -52,6 +52,9 @@ function Graphene() {
         name="Saeed Arabha"
         type="article"
       />
+      <div className={styles.flowBackdrop} aria-hidden="true" />
+      <div className={styles.flowImage} aria-hidden="true" />
+      <div className={styles.flowMesh} aria-hidden="true" />
       <IntroText
         screenHeight={screenHeight}
         startAnimation={startAnimation}
