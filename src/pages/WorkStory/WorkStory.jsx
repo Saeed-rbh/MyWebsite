@@ -1,11 +1,109 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
+import {
+  TbHexagon,
+} from "react-icons/tb";
 import SEO from "../../components/SEO/SEO";
 import styles from "./WorkStory.module.css";
-import ramanImg from "../../assets/gallery/raman.png";
-import semImg from "../../assets/gallery/sem.png";
-import xpsImg from "../../assets/gallery/xps.png";
+
+// Unique custom SVG icon components for each controlled variable
+const PressureIcon = (props) => (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" {...props}>
+    <path d="M4 18a8 8 0 1 1 16 0" />
+    <circle cx="12" cy="18" r="1.5" />
+    <line className={styles.gaugeNeedle} x1="12" y1="18" x2="16" y2="10" />
+    <path d="M12 4v2" />
+    <path d="M6 8l1.5 1.5" />
+    <path d="M18 8l-1.5 1.5" />
+  </svg>
+);
+
+const GasIcon = (props) => (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" {...props}>
+    {/* Particle 1: Argon (Heavy monoatomic) */}
+    <circle className={styles.particleAr} cx="6" cy="15" r="2.2" />
+    <path className={styles.particleArPath} d="M6 15l4.5-3" strokeDasharray="3 3" />
+
+    {/* Particle 2: Nitrogen (Diatomic molecule) */}
+    <g className={styles.particleN2}>
+      <circle cx="11.5" cy="7.5" r="1.5" />
+      <circle cx="14" cy="9" r="1.5" />
+      <line x1="11.5" y1="7.5" x2="14" y2="9" />
+    </g>
+
+    {/* Particle 3: Helium (Light monoatomic) */}
+    <circle className={styles.particleHe1} cx="17.5" cy="15.5" r="1.2" />
+    <path className={styles.particleHe1Path} d="M17.5 15.5l-3.5-4.5" strokeDasharray="2 2" />
+
+    {/* Particle 4: Small Helium atom */}
+    <circle className={styles.particleHe2} cx="18.5" cy="6.5" r="1" />
+
+    {/* Collision dynamics / thermal energy indicator */}
+    <path className={styles.particleCollision} d="M12.5 12l-1.5-1.5M12.5 12l1.5 1.5M12.5 12l1.5-1.5M12.5 12l-1.5 1.5" opacity="0.6" />
+
+    {/* Thermal dispersion wave */}
+    <path className={styles.gasWave} d="M3 6c4-2.5 9-2.5 13 0" opacity="0.5" />
+
+    {/* Small ambient gas particles/dots that float around */}
+    <circle className={`${styles.ambientDot} ${styles.ad1}`} cx="4" cy="8" r="0.6" />
+    <circle className={`${styles.ambientDot} ${styles.ad2}`} cx="8" cy="4.5" r="0.5" />
+    <circle className={`${styles.ambientDot} ${styles.ad3}`} cx="10.5" cy="17" r="0.6" />
+    <circle className={`${styles.ambientDot} ${styles.ad4}`} cx="14" cy="13.5" r="0.5" />
+    <circle className={`${styles.ambientDot} ${styles.ad5}`} cx="20.5" cy="11" r="0.6" />
+    <circle className={`${styles.ambientDot} ${styles.ad6}`} cx="15.5" cy="4" r="0.5" />
+    <circle className={`${styles.ambientDot} ${styles.ad7}`} cx="21" cy="16.5" r="0.6" />
+    <circle className={`${styles.ambientDot} ${styles.ad8}`} cx="7" cy="10" r="0.5" />
+  </svg>
+);
+
+const ThermalIcon = (props) => (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" {...props}>
+    <path className={styles.flame} d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z" />
+  </svg>
+);
+
+const NozzleIcon = (props) => (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" {...props}>
+    <path className={styles.nozzleWave1} d="M15 10c0.8 1 0.8 3 0 4" />
+    <path className={styles.nozzleWave2} d="M18 8c1.2 1.5 1.2 4.5 0 6" />
+    <path d="M2 6c3 0 5 4 10 4s7-4 10-4" />
+    <path d="M2 18c3 0 5-4 10-4s7 4 10 4" />
+    <line className={styles.nozzleFlow} x1="2" y1="12" x2="22" y2="12" strokeDasharray="3 3" opacity="0.6" />
+  </svg>
+);
+
+const FlowIcon = (props) => (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" {...props}>
+    <path className={styles.flowStream1} d="M2 6h8c3 0 4 3 6 3h6" />
+    <path className={styles.flowStream2} d="M2 12h5c2 0 3 2 5 2h3c2 0 3-4 5-4h2" />
+    <path className={styles.flowStream3} d="M2 18h10c3 0 4-3 6-3h6" />
+  </svg>
+);
+
+const FeedstockIcon = (props) => (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" {...props}>
+    <path className={styles.feedstockTop} d="M12 3L20 7L12 11L4 7L12 3Z" />
+    <path className={styles.feedstockMid} d="M4 12L12 16L20 12" />
+    <path className={styles.feedstockBot} d="M4 17L12 21L20 17" />
+    <line className={styles.feedstockLine} x1="12" y1="7" x2="12" y2="14" strokeDasharray="2 2" />
+  </svg>
+);
+
+const RecoveryIcon = (props) => (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" {...props}>
+    <path className={styles.recoveryArrow1} d="M4.05 11a8 8 0 0 1 7.95-7 8 8 0 0 1 6.08 2.78L20 8M20 4v4h-4" />
+    <path className={styles.recoveryArrow2} d="M19.95 13a8 8 0 0 1-7.95 7 8 8 0 0 1-6.08-2.78L4 16M4 20v-4h4" />
+  </svg>
+);
+
+const QualityIcon = (props) => (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" {...props}>
+    <circle className={styles.qualityCircle} cx="12" cy="12" r="9" />
+    <path className={styles.qualityCheck} d="M9 12l2 2 4-4" />
+  </svg>
+);
+
 const chain = [
   "2D Nanomaterials",
   "Process Scale-Up",
@@ -33,55 +131,47 @@ const processSteps = [
 ];
 
 const variables = [
-  "Pressure ratio",
-  "Gas identity",
-  "Thermal state",
-  "Flow regime",
-  "Nozzle geometry",
-  "Feedstock",
-  "Recovery path",
-  "Quality window",
+  { label: "Pressure ratio", Icon: PressureIcon },
+  { label: "Gas identity", Icon: GasIcon },
+  { label: "Thermal state", Icon: ThermalIcon },
+  { label: "Nozzle geometry", Icon: NozzleIcon },
+  { label: "Flow regime", Icon: FlowIcon },
+  { label: "Feedstock", Icon: FeedstockIcon },
+  { label: "Recovery path", Icon: RecoveryIcon },
+  { label: "Quality window", Icon: QualityIcon },
 ];
 
 const characterization = [
   {
-    name: "Raman spectroscopy",
-    proof: "Defects + layer fingerprints.",
-    detail: "High-resolution Raman mapping confirms pristine graphene structure with minimal D-band intensity and distinct 2D-band signatures indicative of few-layer material.",
-    image: ramanImg,
+    id: "raman",
+    name: "RAMAN",
+    proof: "Structural signature",
+    detail: "D/G band ratio, layer fingerprinting, defect density analysis.",
   },
   {
+    id: "xps",
     name: "XPS",
-    proof: "Surface chemistry.",
-    detail: "X-ray Photoelectron Spectroscopy validates surface purity, showing strong C1s and minimal oxygen integration, confirming high-quality non-oxidative exfoliation.",
-    image: xpsImg,
+    proof: "Chemical composition",
+    detail: "C1s dominance, minimal oxygen, non-oxidative proof.",
   },
   {
-    name: "SEM",
-    proof: "Morphology + distribution.",
-    detail: "Scanning Electron Microscopy reveals the highly ordered layered morphology and provides statistical distributions of lateral flake size across batches.",
-    image: semImg,
+    id: "sem-tem",
+    name: "SEM/TEM",
+    proof: "Morphology & structure",
+    detail: "Layered structure, flake size statistics, and hexagonal lattice symmetry.",
   },
   {
-    name: "TEM/STEM",
-    proof: "Nanoscale structure.",
-    detail: "Atomic-resolution imaging demonstrates the defect-free basal plane structure and the characteristic atomic arrangement of the exfoliated nanosheets."
-  },
-  {
+    id: "afm",
     name: "AFM",
-    proof: "Thickness + topography.",
-    detail: "Atomic Force Microscopy profiles confirm flake thickness typically below 3nm, corresponding to 1-10 atomic layers."
+    proof: "Topography",
+    detail: "Sub-3nm flakes, 1-10 layers, high-resolution height mapping.",
   },
   {
-    name: "UV-Vis",
-    proof: "Optical response.",
-    detail: "Optical absorption spectra provide rapid, scalable batch-to-batch consistency checks based on characteristic excitonic peaks."
-  },
-  {
-    name: "mIRage-Raman",
-    proof: "Sub-micron chemical signal.",
-    detail: "Optical photothermal infrared spectroscopy captures simultaneous sub-micron chemical and structural fingerprints of the material."
-  },
+    id: "uv-vis",
+    name: "UV-VIS",
+    proof: "Optical response",
+    detail: "Batch consistency via excitonic absorption peaks.",
+  }
 ];
 
 const modelingNodes = [
@@ -205,31 +295,65 @@ const handlePillarLensLeave = (event) => {
   event.currentTarget.style.setProperty("--word-lens-opacity", "0");
 };
 
-const renderPillarWord = (word) => (
-  <span
-    key={word}
-    className={styles.gapPillarWord}
-    data-text={word}
-    onPointerEnter={handlePillarLensEnter}
-    onPointerMove={handlePillarLensMove}
-    onPointerLeave={handlePillarLensLeave}
-  >
-    <span className={styles.gapPillarWordFill}>{word}</span>
-    <span className={styles.gapPillarWordLens} aria-hidden="true">{word}</span>
-  </span>
+const renderSpotlightWord = (
+  word,
+  {
+    className = "",
+    mode = "outline",
+  } = {}
+) => {
+  const isFilled = mode === "filled";
+
+  return (
+    <span
+      key={word}
+      className={className}
+      data-spotlight-mode={mode}
+      data-text={word}
+      onPointerEnter={handlePillarLensEnter}
+      onPointerMove={handlePillarLensMove}
+      onPointerLeave={handlePillarLensLeave}
+    >
+      <span className={isFilled ? styles.gapPillarWordFill : styles.gapFocusWordOutline}>
+        {word}
+      </span>
+      <span
+        className={isFilled ? styles.gapPillarWordLens : styles.gapFocusWordFill}
+        aria-hidden="true"
+      >
+        {word}
+      </span>
+    </span>
+  );
+};
+
+const renderPillarWord = (word) => renderSpotlightWord(word, {
+  className: styles.gapPillarWord,
+  mode: "filled",
+});
+
+const renderFocusWord = (word, className = "") => renderSpotlightWord(word, {
+  className: `${styles.gapFocusWord} ${className}`,
+  mode: "outline",
+});
+
+const renderFilledTitleWord = (word, className = "") => renderSpotlightWord(word, {
+  className: `${styles.gapPillarWord} ${styles.spotlightTitleFilledWord} ${className}`,
+  mode: "filled",
+});
+
+const SpotlightTitle = ({ words, className = "" }) => (
+  <h2 className={`${styles.sectionTitleStacked} ${styles.spotlightTitle} ${className}`}>
+    {words.map((word) => renderFocusWord(word))}
+  </h2>
 );
 
-const renderFocusWord = (word, className = "") => (
-  <span
-    key={word}
-    className={`${styles.gapFocusWord} ${className}`}
-    onPointerEnter={handlePillarLensEnter}
-    onPointerMove={handlePillarLensMove}
-    onPointerLeave={handlePillarLensLeave}
-  >
-    <span className={styles.gapFocusWordOutline}>{word}</span>
-    <span className={styles.gapFocusWordFill} aria-hidden="true">{word}</span>
-  </span>
+const SystemSpotlightTitle = () => (
+  <h2 className={`${styles.sectionTitleStacked} ${styles.spotlightTitle} ${styles.systemTitle} ${styles.systemFilledTitle}`}>
+    {renderFilledTitleWord("Building", styles.spotlightTitleLight)}
+    {renderFilledTitleWord("The", styles.spotlightTitleLight)}
+    {renderFilledTitleWord("Process", styles.spotlightTitleCopper)}
+  </h2>
 );
 
 const SectionShell = ({ id, kicker, title, children, className = "" }) => (
@@ -889,46 +1013,330 @@ const InteractiveProcessMap = ({ steps }) => {
   );
 };
 
-const InteractiveEvidenceGallery = ({ items }) => {
-  const [activeIndex, setActiveIndex] = useState(0);
+const RamanChart = ({ isActive }) => (
+  <svg viewBox="0 0 240 130" style={{ width: "100%", height: "100%" }} fill="none" xmlns="http://www.w3.org/2000/svg">
+    {/* Grid lines */}
+    <line x1="20" y1="20" x2="220" y2="20" stroke="rgba(255,255,255,0.03)" strokeWidth="1" />
+    <line x1="20" y1="50" x2="220" y2="50" stroke="rgba(255,255,255,0.03)" strokeWidth="1" />
+    <line x1="20" y1="80" x2="220" y2="80" stroke="rgba(255,255,255,0.03)" strokeWidth="1" />
+    <line x1="20" y1="110" x2="220" y2="110" stroke="rgba(255,255,255,0.05)" strokeWidth="1" />
+    <line x1="20" y1="20" x2="20" y2="110" stroke="rgba(255,255,255,0.05)" strokeWidth="1" />
+    <line x1="86.6" y1="20" x2="86.6" y2="110" stroke="rgba(255,255,255,0.03)" strokeWidth="1" />
+    <line x1="153.3" y1="20" x2="153.3" y2="110" stroke="rgba(255,255,255,0.03)" strokeWidth="1" />
+    <line x1="220" y1="20" x2="220" y2="110" stroke="rgba(255,255,255,0.05)" strokeWidth="1" />
 
+    {/* Spectral line */}
+    <path 
+      d="M 20,110 Q 30,110 40,108 T 50,103 T 58,80 T 66,106 T 75,108 T 92,108 T 100,20 T 108,108 T 135,108 T 150,108 Q 165,95 178,55 Q 185,55 190,75 Q 198,104 205,108 Q 212,110 220,110" 
+      stroke={isActive ? "url(#ramanGlow)" : "rgba(255,255,255,0.4)"} 
+      strokeWidth="1.5" 
+      strokeLinecap="round"
+      strokeLinejoin="round" 
+    />
+
+    <defs>
+      <linearGradient id="ramanGlow" x1="0%" y1="0%" x2="100%" y2="0%">
+        <stop offset="0%" stopColor="#f0b07f" />
+        <stop offset="50%" stopColor="#d49d81" />
+        <stop offset="100%" stopColor="#f0b07f" />
+      </linearGradient>
+    </defs>
+  </svg>
+);
+
+const XpsChart = ({ isActive }) => (
+  <svg viewBox="0 0 240 130" style={{ width: "100%", height: "100%" }} fill="none" xmlns="http://www.w3.org/2000/svg">
+    {/* Grid lines */}
+    <line x1="25" y1="20" x2="220" y2="20" stroke="rgba(255,255,255,0.03)" strokeWidth="1" />
+    <line x1="25" y1="50" x2="220" y2="50" stroke="rgba(255,255,255,0.03)" strokeWidth="1" />
+    <line x1="25" y1="80" x2="220" y2="80" stroke="rgba(255,255,255,0.03)" strokeWidth="1" />
+    <line x1="25" y1="110" x2="220" y2="110" stroke="rgba(255,255,255,0.05)" strokeWidth="1" />
+    <line x1="25" y1="20" x2="25" y2="110" stroke="rgba(255,255,255,0.05)" strokeWidth="1" />
+
+    {/* XPS Spectral line (White/Grayish to match mockup) */}
+    <path 
+      d="M 25,108 L 75,108 L 82,108 L 90,30 L 98,108 L 165,108 L 172,108 L 178,92 L 183,108 L 220,108" 
+      stroke={isActive ? "rgba(255,255,255,0.85)" : "rgba(255,255,255,0.4)"} 
+      strokeWidth="1.2" 
+      strokeLinecap="round"
+      strokeLinejoin="round" 
+    />
+
+    {/* C 1s and O 1s Annotations matching mockup */}
+    <line x1="90" y1="15" x2="90" y2="30" stroke="rgba(255,255,255,0.5)" strokeWidth="0.8" />
+    <text x="90" y="10" fill="rgba(255,255,255,0.9)" fontSize="6" fontFamily="Rubik, sans-serif" textAnchor="middle">C 1s</text>
+
+    <line x1="178" y1="75" x2="178" y2="92" stroke="rgba(255,255,255,0.5)" strokeWidth="0.8" />
+    <text x="178" y="70" fill="rgba(255,255,255,0.9)" fontSize="6" fontFamily="Rubik, sans-serif" textAnchor="middle">O 1s</text>
+
+    {/* Axes Labels */}
+    <text x="12" y="65" fill="rgba(255,255,255,0.4)" fontSize="6" fontFamily="Rubik, sans-serif" textAnchor="middle" transform="rotate(-90 12 65)">Intensity (a.u.)</text>
+    <text x="122" y="125" fill="rgba(255,255,255,0.4)" fontSize="6" fontFamily="Rubik, sans-serif" textAnchor="middle">Binding energy (eV)</text>
+
+    {/* Axis Ticks */}
+    <text x="25" y="118" fill="rgba(255,255,255,0.3)" fontSize="6" fontFamily="Rubik, sans-serif" textAnchor="middle">1200</text>
+    <text x="90" y="118" fill="rgba(255,255,255,0.3)" fontSize="6" fontFamily="Rubik, sans-serif" textAnchor="middle">800</text>
+    <text x="155" y="118" fill="rgba(255,255,255,0.3)" fontSize="6" fontFamily="Rubik, sans-serif" textAnchor="middle">400</text>
+    <text x="220" y="118" fill="rgba(255,255,255,0.3)" fontSize="6" fontFamily="Rubik, sans-serif" textAnchor="middle">0</text>
+  </svg>
+);
+
+const SemTemChart = ({ isActive }) => (
+  <svg viewBox="0 0 240 130" style={{ width: "100%", height: "100%" }} fill="none" xmlns="http://www.w3.org/2000/svg">
+    {/* Left Side: 3D layered SEM flake */}
+    <g opacity={isActive ? "0.95" : "0.55"}>
+      {/* Shaded facets to make it look 3D and premium */}
+      <path d="M 20,55 L 60,30 L 95,50 L 85,85 L 40,95 Z" fill="rgba(255, 255, 255, 0.08)" stroke="rgba(255, 255, 255, 0.25)" strokeWidth="1" />
+      <path d="M 20,55 L 60,30 L 60,65 L 40,95 Z" fill="rgba(212, 157, 129, 0.08)" stroke="rgba(212, 157, 129, 0.25)" strokeWidth="0.8" />
+      <path d="M 60,30 L 95,50 L 85,85 L 60,65 Z" fill="rgba(255, 255, 255, 0.04)" stroke="rgba(255, 255, 255, 0.15)" strokeWidth="0.8" />
+      <path d="M 30,65 L 70,40 L 70,75 L 45,85 Z" fill="rgba(212, 157, 129, 0.1)" stroke="rgba(212, 157, 129, 0.35)" strokeWidth="0.8" />
+      <path d="M 40,40 L 75,50 L 65,70 L 50,65 Z" fill="rgba(255, 255, 255, 0.1)" stroke="rgba(255, 255, 255, 0.25)" strokeWidth="0.8" />
+
+      {/* SEM Scale bar (1 µm matching mockup) */}
+      <line x1="50" y1="112" x2="80" y2="112" stroke="rgba(255,255,255,0.8)" strokeWidth="1.5" />
+      <text x="65" y="106" fill="rgba(255,255,255,0.7)" fontSize="6" fontFamily="Rubik, sans-serif" textAnchor="middle">1 µm</text>
+    </g>
+
+    {/* Right Side: Simulated Diffraction Pattern (matching mockup) */}
+    <g opacity={isActive ? "0.85" : "0.45"}>
+      {/* Background box for diffraction pattern */}
+      <rect x="130" y="20" width="80" height="80" rx="4" fill="rgba(0,0,0,0.4)" stroke="rgba(255,255,255,0.1)" strokeWidth="0.5" />
+      
+      {/* Hexagonal dot pattern */}
+      <circle cx="170" cy="60" r="3" fill="#ffffff" filter="blur(1px)" />
+      <circle cx="170" cy="60" r="1.5" fill="#ffffff" />
+      
+      <circle cx="150" cy="48" r="1.5" fill="rgba(255,255,255,0.6)" filter="blur(0.5px)" />
+      <circle cx="190" cy="48" r="1.5" fill="rgba(255,255,255,0.6)" filter="blur(0.5px)" />
+      <circle cx="150" cy="72" r="1.5" fill="rgba(255,255,255,0.6)" filter="blur(0.5px)" />
+      <circle cx="190" cy="72" r="1.5" fill="rgba(255,255,255,0.6)" filter="blur(0.5px)" />
+      <circle cx="170" cy="36" r="1.5" fill="rgba(255,255,255,0.6)" filter="blur(0.5px)" />
+      <circle cx="170" cy="84" r="1.5" fill="rgba(255,255,255,0.6)" filter="blur(0.5px)" />
+      
+      <circle cx="130" cy="60" r="1" fill="rgba(255,255,255,0.4)" />
+      <circle cx="210" cy="60" r="1" fill="rgba(255,255,255,0.4)" />
+      <circle cx="150" cy="24" r="1" fill="rgba(255,255,255,0.4)" />
+      <circle cx="190" cy="24" r="1" fill="rgba(255,255,255,0.4)" />
+      <circle cx="150" cy="96" r="1" fill="rgba(255,255,255,0.4)" />
+      <circle cx="190" cy="96" r="1" fill="rgba(255,255,255,0.4)" />
+
+      {/* Diffraction Scale bar (5 1/nm matching mockup) */}
+      <line x1="150" y1="112" x2="190" y2="112" stroke="rgba(255,255,255,0.8)" strokeWidth="1.5" />
+      <text x="170" y="106" fill="rgba(255,255,255,0.7)" fontSize="6" fontFamily="Rubik, sans-serif" textAnchor="middle">5 1/nm</text>
+    </g>
+  </svg>
+);
+
+const AfmChart = ({ isActive }) => (
+  <svg viewBox="0 0 240 130" style={{ width: "100%", height: "100%" }} fill="none" xmlns="http://www.w3.org/2000/svg">
+    {/* Stylized AFM contour scan lines */}
+    <g opacity={isActive ? "1" : "0.55"}>
+      {/* Background base texture */}
+      <rect x="15" y="10" width="170" height="110" fill="rgba(212, 157, 129, 0.015)" rx="4" />
+
+      {/* Contour lines (copper color levels) */}
+      {/* Level 1 (deepest layer) */}
+      <path 
+        d="M 25,45 Q 60,30 110,40 T 170,80 T 130,110 T 60,95 Q 30,75 25,45 Z" 
+        fill="rgba(63, 33, 19, 0.25)" 
+        stroke="rgba(212,157,129,0.18)" 
+        strokeWidth="1" 
+      />
+      {/* Level 2 */}
+      <path 
+        d="M 40,55 Q 70,42 105,50 T 150,82 T 120,100 T 65,90 Q 45,75 40,55 Z" 
+        fill="rgba(110, 60, 36, 0.35)" 
+        stroke="rgba(212,157,129,0.3)" 
+        strokeWidth="1" 
+      />
+      {/* Level 3 */}
+      <path 
+        d="M 60,65 Q 85,55 110,60 T 135,82 T 110,92 T 75,85 Q 65,75 60,65 Z" 
+        fill="rgba(180, 105, 68, 0.45)" 
+        stroke="rgba(212,157,129,0.5)" 
+        strokeWidth="1" 
+      />
+      {/* Level 4 (Highest/Thickest point) */}
+      <path 
+        d="M 80,72 Q 95,65 110,68 T 120,80 T 110,87 T 88,83 Q 82,78 80,72 Z" 
+        fill="rgba(242, 165, 110, 0.55)" 
+        stroke="rgba(242, 165, 110, 0.8)" 
+        strokeWidth="1.2" 
+      />
+
+      {/* Scale bar (200 nm matching mockup) */}
+      <line x1="140" y1="112" x2="175" y2="112" stroke="rgba(255,255,255,0.7)" strokeWidth="1.5" />
+      <text x="157.5" y="106" fill="rgba(255,255,255,0.6)" fontSize="6" fontFamily="Rubik, sans-serif" textAnchor="middle">200 nm</text>
+    </g>
+
+    {/* Color Gradient Scale on the Right (matching mockup text) */}
+    <g opacity={isActive ? "0.9" : "0.5"}>
+      {/* 10 nm top label */}
+      <text x="214" y="20" fill="rgba(255,255,255,0.7)" fontSize="6" fontFamily="Rubik, sans-serif" alignmentBaseline="middle">10 nm</text>
+      
+      {/* Scale Gradient Bar */}
+      <rect x="200" y="25" width="8" height="80" fill="url(#afmScaleGradient)" rx="1" stroke="rgba(255,255,255,0.15)" strokeWidth="0.5" />
+      
+      {/* -10 nm bottom label */}
+      <text x="214" y="110" fill="rgba(255,255,255,0.7)" fontSize="6" fontFamily="Rubik, sans-serif" alignmentBaseline="middle">-10 nm</text>
+    </g>
+
+    <defs>
+      <linearGradient id="afmScaleGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+        <stop offset="0%" stopColor="#f2a56e" />
+        <stop offset="50%" stopColor="#6e3c24" />
+        <stop offset="100%" stopColor="#1a0d07" />
+      </linearGradient>
+    </defs>
+  </svg>
+);
+
+const UvVisChart = ({ isActive }) => (
+  <svg viewBox="0 0 240 130" style={{ width: "100%", height: "100%" }} fill="none" xmlns="http://www.w3.org/2000/svg">
+    {/* Grid lines */}
+    <line x1="25" y1="20" x2="220" y2="20" stroke="rgba(255,255,255,0.03)" strokeWidth="1" />
+    <line x1="25" y1="50" x2="220" y2="50" stroke="rgba(255,255,255,0.03)" strokeWidth="1" />
+    <line x1="25" y1="80" x2="220" y2="80" stroke="rgba(255,255,255,0.03)" strokeWidth="1" />
+    <line x1="25" y1="110" x2="220" y2="110" stroke="rgba(255,255,255,0.05)" strokeWidth="1" />
+    <line x1="25" y1="20" x2="25" y2="110" stroke="rgba(255,255,255,0.05)" strokeWidth="1" />
+
+    {/* Spectral line */}
+    <path 
+      d="M 25,108 Q 50,108 60,70 Q 70,25 80,48 Q 98,90 120,90 Q 155,90 175,102 T 220,108" 
+      stroke={isActive ? "url(#uvvisGlow)" : "rgba(255,255,255,0.4)"} 
+      strokeWidth="1.5" 
+      strokeLinecap="round"
+      strokeLinejoin="round" 
+    />
+
+    {/* Axes Labels */}
+    <text x="12" y="65" fill="rgba(255,255,255,0.4)" fontSize="6" fontFamily="Rubik, sans-serif" textAnchor="middle" transform="rotate(-90 12 65)">Absorbance (a.u.)</text>
+    <text x="122" y="125" fill="rgba(255,255,255,0.4)" fontSize="6" fontFamily="Rubik, sans-serif" textAnchor="middle">Wavelength (nm)</text>
+
+    {/* Axis Ticks (300, 500, 700, 900) */}
+    <text x="25" y="118" fill="rgba(255,255,255,0.3)" fontSize="6" fontFamily="Rubik, sans-serif" textAnchor="middle">300</text>
+    <text x="90" y="118" fill="rgba(255,255,255,0.3)" fontSize="6" fontFamily="Rubik, sans-serif" textAnchor="middle">500</text>
+    <text x="155" y="118" fill="rgba(255,255,255,0.3)" fontSize="6" fontFamily="Rubik, sans-serif" textAnchor="middle">700</text>
+    <text x="220" y="118" fill="rgba(255,255,255,0.3)" fontSize="6" fontFamily="Rubik, sans-serif" textAnchor="middle">900</text>
+
+    <defs>
+      <linearGradient id="uvvisGlow" x1="0%" y1="0%" x2="100%" y2="0%">
+        <stop offset="0%" stopColor="#f0b07f" />
+        <stop offset="100%" stopColor="#d49d81" />
+      </linearGradient>
+    </defs>
+  </svg>
+);
+
+const SvgMap = {
+  "uv-vis": UvVisChart,
+  "sem-tem": SemTemChart,
+  raman: RamanChart,
+  afm: AfmChart,
+  xps: XpsChart
+};
+
+// SVG Badge Icons matching the declassified print / modern UI layout
+const WaveIcon = () => (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" style={{ width: "55%", height: "55%" }}>
+    <path d="M2 12c.5-1.5 1.75-3 3.5-3s3 1.5 3.5 3c.5 1.5 1.75 3 3.5 3s3-1.5 3.5-3c.5-1.5 1.75-3 3.5-3s3 1.5 3.5 3" />
+  </svg>
+);
+
+const LatticeIcon = () => (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" style={{ width: "55%", height: "55%" }}>
+    <circle cx="12" cy="12" r="2" fill="currentColor" />
+    <circle cx="6" cy="6" r="1.2" fill="currentColor" />
+    <circle cx="18" cy="6" r="1.2" fill="currentColor" />
+    <circle cx="6" cy="18" r="1.2" fill="currentColor" />
+    <circle cx="18" cy="18" r="1.2" fill="currentColor" />
+    <line x1="6" y1="6" x2="18" y2="18" strokeWidth="0.8" strokeDasharray="1 1" stroke="currentColor" />
+    <line x1="18" y1="6" x2="6" y2="18" strokeWidth="0.8" strokeDasharray="1 1" stroke="currentColor" />
+    <line x1="6" y1="6" x2="18" y2="6" strokeWidth="0.8" stroke="currentColor" />
+    <line x1="18" y1="6" x2="18" y2="18" strokeWidth="0.8" stroke="currentColor" />
+    <line x1="18" y1="18" x2="6" y2="18" strokeWidth="0.8" stroke="currentColor" />
+    <line x1="6" y1="18" x2="6" y2="6" strokeWidth="0.8" stroke="currentColor" />
+  </svg>
+);
+
+const RamanIcon = () => (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" style={{ width: "55%", height: "55%" }}>
+    <path d="M 3,20 L 9,20 Q 11,20 12,5 Q 13,20 15,20 L 21,20" />
+  </svg>
+);
+
+const ConcentricIcon = () => (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" style={{ width: "55%", height: "55%" }}>
+    <circle cx="12" cy="12" r="8" stroke="currentColor" />
+    <circle cx="12" cy="12" r="5" stroke="currentColor" />
+    <circle cx="12" cy="12" r="2" fill="currentColor" stroke="currentColor" />
+  </svg>
+);
+
+const XpsIcon = () => (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" style={{ width: "55%", height: "55%" }}>
+    <path d="M 3,20 L 8,20 Q 9.5,20 10,4 Q 10.5,20 12,20 L 15,20 Q 16.5,20 17,12 Q 17.5,20 19,20 L 21,20" />
+  </svg>
+);
+
+const BadgeIconMap = {
+  "uv-vis": WaveIcon,
+  "sem-tem": LatticeIcon,
+  raman: RamanIcon,
+  afm: ConcentricIcon,
+  xps: XpsIcon
+};
+
+const TechniqueChain = ({ items }) => {
   return (
-    <div className={styles.interactiveEvidenceGallery}>
-      <div className={styles.evidenceSidebar}>
-        {items.map((item, index) => (
-          <button 
-            key={item.name}
-            className={`${styles.evidenceTab} ${activeIndex === index ? styles.evidenceTabActive : ''}`}
-            onClick={() => setActiveIndex(index)}
-            style={{ "--delay": `${index * 50}ms` }}
-          >
-            <span className={styles.evidenceTabName}>{item.name}</span>
-            <span className={styles.evidenceTabProof}>{item.proof}</span>
-          </button>
-        ))}
-      </div>
-      <div className={styles.evidenceVisualizer}>
-        {items.map((item, index) => (
-          <div 
-            key={item.name}
-            className={`${styles.evidencePanel} ${activeIndex === index ? styles.evidencePanelActive : ''}`}
-            aria-hidden={activeIndex !== index}
-          >
-            {item.image ? (
-              <div className={styles.evidenceImageWrapper}>
-                <img src={item.image} alt={item.name} className={styles.evidenceImage} />
-                <div className={styles.evidenceImageOverlay} />
+    <div className={styles.evidenceContainer}>
+      <svg className={styles.timelineCurveRail} viewBox="0 0 1000 420" preserveAspectRatio="none" aria-hidden="true">
+        <path d="M0 352 C245 330 450 306 612 266 C772 226 896 184 1000 112" />
+        <path d="M0 352 C245 330 450 306 612 266 C772 226 896 184 1000 112" />
+      </svg>
+
+      <div className={styles.evidenceGridStatic}>
+        {items.map((item, index) => {
+          const ChartComponent = SvgMap[item.id] || UvVisChart;
+          const BadgeIcon = BadgeIconMap[item.id] || WaveIcon;
+          const plot = [
+            { x: 11, bottom: 22, width: "15.8%" },
+            { x: 32, bottom: 50, width: "15.8%" },
+            { x: 52, bottom: 84, width: "15.8%" },
+            { x: 71, bottom: 128, width: "15.2%" },
+            { x: 88, bottom: 174, width: "15%" }
+          ][index] || { x: 50, bottom: 80, width: "16%" };
+
+          return (
+            <div
+              key={item.id}
+              className={styles.evidenceColumnWrapper}
+              style={{ "--plot-x": `${plot.x}%`, "--plot-bottom": `${plot.bottom}px`, "--card-width": plot.width }}
+            >
+              <div className={styles.evidenceColumnStatic}>
+                <div className={styles.evidenceCardImageContainer}>
+                  <ChartComponent isActive={true} />
+                </div>
+
+                <div className={styles.evidenceCardTextContainer}>
+                  <span className={styles.evidenceBadgeIcon}>
+                    <BadgeIcon />
+                  </span>
+                  <span className={styles.evidenceCardCopy}>
+                    <span className={styles.evidenceCardTitle}>{item.name}</span>
+                    <span className={styles.evidenceCardSubtitle}>{item.proof}</span>
+                  </span>
+                </div>
               </div>
-            ) : (
-              <div className={styles.evidencePlaceholder}>
-                <span>{item.name} data visualization</span>
+
+              <div className={styles.timelineDotContainer}>
+                <div className={styles.timelineDot}></div>
+                <span className={styles.timelineIndex}>{String(index + 1).padStart(2, "0")}</span>
+                <span className={styles.timelineLabel}>{item.name}</span>
               </div>
-            )}
-            <div className={styles.evidenceDetail}>
-              <p>{item.detail}</p>
             </div>
-          </div>
-        ))}
+          );
+        })}
       </div>
     </div>
   );
@@ -997,11 +1405,7 @@ const WorkStory = () => {
             id="process" 
             kicker="The Answer" 
             title={
-              <h2 className={styles.sectionTitleStacked}>
-                {renderFocusWord("Compressible")}
-                {renderFocusWord("Flow")}
-                {renderFocusWord("Exfoliation")}
-              </h2>
+              <SpotlightTitle words={["Compressible", "Flow", "Exfoliation"]} />
             } 
             className={styles.asymProcess}
           >
@@ -1018,25 +1422,26 @@ const WorkStory = () => {
 
           <SectionShell 
             id="system" 
-            kicker="System" 
             className={`${styles.splitSection} ${styles.asymSystem}`}
           >
-            <div>
-              <h2 className={styles.sectionTitleStacked}>
-                <span>Building</span>
-                <span>The</span>
-                {renderPillarWord("Process")}
-              </h2>
-              <p className={styles.lead}>
-                I tune the operating window, then connect each variable to material output.
+            <div className={styles.systemCopy}>
+              <SystemSpotlightTitle />
+              <p className={`${styles.lead} ${styles.systemLead}`}>
+                I tune the operating window,<br />
+                then connect each variable<br />
+                to material output.
               </p>
             </div>
             <div className={styles.variablePanel}>
-              <h3>Controlled Variables</h3>
-              <div className={styles.inlineGradientList}>
-                {variables.map((variable, index) => (
-                  <span key={variable} style={{ "--delay": `${index * 70}ms` }}>
-                    {variable}
+              <h3>
+                <TbHexagon aria-hidden="true" />
+                <span>Controlled Variables</span>
+              </h3>
+              <div className={styles.controlledList}>
+                {variables.map(({ label, Icon }, index) => (
+                  <span key={label} style={{ "--delay": `${index * 70}ms` }}>
+                    <Icon aria-hidden="true" />
+                    <em>{label}</em>
                   </span>
                 ))}
               </div>
@@ -1045,34 +1450,27 @@ const WorkStory = () => {
 
           <SectionShell 
             id="evidence" 
-            kicker="Evidence" 
+            kicker="EVIDENCE" 
             title={
-              <h2 className={styles.sectionTitleStacked}>
-                <span>Proving The</span>
-                {renderPillarWord("Material")}
-              </h2>
+              <SpotlightTitle words={["Proving The", "Material"]} />
             } 
             className={styles.asymEvidence}
           >
             <div className={styles.sectionIntro}>
-              <div>
-                <p className={styles.lead}>
+              <div className={styles.evidenceIntroBlock}>
+                <p className={styles.evidenceLeadText}>
                   The material is only useful when structure, chemistry, and morphology are verified.
                 </p>
               </div>
-              <EvidenceSvg />
             </div>
-            <InteractiveEvidenceGallery items={characterization} />
+            <TechniqueChain items={characterization} />
           </SectionShell>
 
           <SectionShell 
             id="modeling" 
-            kicker="Modeling" 
+            kicker="MODELING" 
             title={
-              <h2 className={styles.sectionTitleStacked}>
-                <span>Exposing The</span>
-                {renderPillarWord("Mechanism")}
-              </h2>
+              <SpotlightTitle words={["Exposing The", "Mechanism"]} />
             } 
             className={styles.asymModeling}
           >
@@ -1080,7 +1478,6 @@ const WorkStory = () => {
               <p className={styles.lead}>
                 Experiments show what changed. Modeling explains why it changed.
               </p>
-              <ModelingSvg />
             </div>
             <div className={styles.modelPanel}>
               {modelingNodes.map((node, index) => (
@@ -1094,12 +1491,9 @@ const WorkStory = () => {
 
           <SectionShell 
             id="industry" 
-            kicker="Industry" 
+            kicker="INDUSTRY" 
             title={
-              <h2 className={styles.sectionTitleStacked}>
-                <span>From Research To</span>
-                {renderPillarWord("Value")}
-              </h2>
+              <SpotlightTitle words={["From Research To", "Value"]} />
             } 
             className={styles.asymIndustry}
           >
@@ -1124,22 +1518,20 @@ const WorkStory = () => {
 
           <SectionShell 
             id="approach" 
-            kicker="Framework" 
+            kicker="FRAMEWORK" 
             title={
-              <h2 className={styles.sectionTitleStacked}>
-                <span>My R&D</span>
-                {renderPillarWord("Approach")}
-              </h2>
+              <SpotlightTitle words={["My R&D", "Approach"]} />
             } 
             className={styles.asymApproach}
           >
-            <div className={`${styles.finalChain} ${styles.inlineGradientList}`}>
+            <div className={styles.finalChain}>
               {chain.map((item) => (
-                <span key={item}>{item}</span>
+                <span key={item}>{item === "Metrology & Characterization" ? "Metrology" : item === "Nanoscale Thermal Transport" ? "Thermal Transport" : item}</span>
               ))}
             </div>
             <p className={styles.lead}>
-              Build the route. Measure the output. Explain the mechanism. Connect it to use.
+              Build the route. Measure the output.<br />
+              Explain the mechanism. Connect it to use.
             </p>
             <div className={styles.closeCard}>
               <p>
