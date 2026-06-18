@@ -4073,7 +4073,7 @@ blockquote::before {
 }
 
 .asymApproach .sectionTitleStacked {
-  max-width: 1280px;
+  max-width: 1280px !important;
   gap: clamp(2px, 0.5vw, 8px);
   margin-bottom: clamp(34px, 5vh, 58px);
   color: transparent;
