@@ -6509,7 +6509,7 @@ blockquote::before {
 .asymEvidence .kicker {
   position: relative;
   z-index: 2;
-  display: inline-flex;
+  display: flex;
   align-items: center;
   gap: 0;
   margin: 0 0 clamp(14px, 1.8vh, 20px);
