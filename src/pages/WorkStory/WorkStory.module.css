@@ -1291,7 +1291,7 @@
 .gapHighlight > span:not(.gapHighlightSmall):not(.gapHighlightMeta) {
   max-width: 720px;
   color: var(--gap-body);
-  font-size: clamp(0.96rem, 1.28vw, 1.16rem);
+  font-size: clamp(0.96rem, 1.28vw, 1.1rem);
   font-weight: 400;
   line-height: 1.45;
   letter-spacing: 0.02em;
@@ -1419,10 +1419,13 @@
   background-clip: text !important;
   -webkit-text-fill-color: transparent !important;
   font-family: "Poppins", sans-serif;
-  font-size: clamp(0.72rem, 0.96vw, 0.9rem);
+  font-size: clamp(0.72rem, 0.96vw, 0.8rem);
   font-weight: 600;
   letter-spacing: 0.1em;
   text-transform: uppercase;
+  font-family: "Poppins", sans-serif;
+  /* font-size: clamp(0.6rem, 0.8vw, 0.72rem); */
+  /* font-weight: 400; */
 }
 
 /* Lead Block */
