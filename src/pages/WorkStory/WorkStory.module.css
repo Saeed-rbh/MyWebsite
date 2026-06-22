@@ -4322,7 +4322,7 @@ blockquote::before {
 
 .asymIndustry .beforeAfter article:first-child {
   grid-column: 1;
-  opacity: 0.58;
+  opacity: 0.8;
 }
 
 .asymIndustry .beforeAfter article:last-child {
