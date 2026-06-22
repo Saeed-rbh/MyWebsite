@@ -1423,7 +1423,7 @@
   text-shadow: 0 0 28px rgba(212, 157, 129, 0.22);
 }
 
-.gapHighlightMeta {
+/* .gapHighlightMeta_OLD {
   border-top: 1px solid var(--gap-rule);
   padding-top: 12px;
   color: #ffffffbd !important;
@@ -1445,6 +1445,64 @@
   -webkit-background-clip: inherit;
   background-clip: inherit;
   -webkit-text-fill-color: inherit;
+}*/
+
+.gapHighlightMeta {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 6px 0;
+  border-top: 1px solid var(--gap-rule);
+  padding-top: 12px;
+  
+  /* Keep original gradient text color and effects */
+  color: #ffffffbd !important;
+  background: linear-gradient(to right, #cb7548d1, #ddb5a0cc 50%) text !important;
+  -webkit-background-clip: text !important;
+  background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  font-family: "Poppins", sans-serif !important;
+  font-size: clamp(0.6rem, 0.8vw, 0.72rem) !important;
+  font-weight: 400 !important;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.gapHighlightMeta span {
+  position: relative;
+  border: 0;
+  border-radius: 0;
+  padding: 4px 14px;
+  box-shadow: none;
+  font-family: "Poppins", sans-serif;
+  font-size: inherit;
+  font-weight: inherit;
+  letter-spacing: 0.1em;
+  word-spacing: 0.04em;
+  text-transform: uppercase;
+  
+  /* Inherit text gradient */
+  color: inherit;
+  background: inherit;
+  -webkit-background-clip: inherit;
+  background-clip: inherit;
+  -webkit-text-fill-color: inherit;
+}
+
+.gapHighlightMeta span:not(:last-child)::after {
+  content: "|";
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  color: rgba(143, 131, 121, 0.5);
+  -webkit-text-fill-color: rgba(143, 131, 121, 0.5);
+  font-size: 1.1em;
+  background: transparent;
+  width: auto;
+  height: auto;
 }
 
 .storyPillarPair {
@@ -1524,7 +1582,7 @@
   display: block;
 }
 
-.gapTitleSub {
+/* .gapTitleSub_OLD {
   border-top: 1px solid var(--gap-rule);
   padding-top: 12px;
   color: #ffffffbd !important;
@@ -1538,8 +1596,66 @@
   letter-spacing: 0.1em;
   text-transform: uppercase;
   font-family: "Poppins", sans-serif;
-  /* font-size: clamp(0.6rem, 0.8vw, 0.72rem); */
-  /* font-weight: 400; */
+  font-size-old: clamp(0.6rem, 0.8vw, 0.72rem);
+  font-weight-old: 400;
+}*/
+
+.gapTitleSub {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 6px 0;
+  border-top: 1px solid var(--gap-rule);
+  padding-top: 12px;
+  
+  /* Keep original gradient text color and effects */
+  color: #ffffffbd !important;
+  background: linear-gradient(to right, #cb7548d1, #ddb5a0cc 50%) text !important;
+  -webkit-background-clip: text !important;
+  background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  font-family: "Poppins", sans-serif !important;
+  font-size: clamp(0.6rem, 0.8vw, 0.72rem) !important;
+  font-weight: 400 !important;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.gapTitleSub span {
+  position: relative;
+  border: 0;
+  border-radius: 0;
+  padding: 4px 14px;
+  box-shadow: none;
+  font-family: "Poppins", sans-serif;
+  font-size: inherit;
+  font-weight: inherit;
+  letter-spacing: 0.1em;
+  word-spacing: 0.04em;
+  text-transform: uppercase;
+  
+  /* Inherit text gradient */
+  color: inherit;
+  background: inherit;
+  -webkit-background-clip: inherit;
+  background-clip: inherit;
+  -webkit-text-fill-color: inherit;
+}
+
+.gapTitleSub span:not(:last-child)::after {
+  content: "|";
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  color: rgba(143, 131, 121, 0.5);
+  -webkit-text-fill-color: rgba(143, 131, 121, 0.5);
+  font-size: 1.1em;
+  background: transparent;
+  width: auto;
+  height: auto;
 }
 
 /* Lead Block */
@@ -1662,7 +1778,7 @@
   text-transform: uppercase;
 }
 
-.gapLeadText em {
+/* .gapLeadText em_OLD {
   border-top: 1px solid var(--gap-rule);
   padding-top: clamp(14px, 2vh, 22px);
   font-style: normal;
@@ -1691,6 +1807,65 @@
 .gapLeadText em span:not(:first-child)::before {
   content: " \2022  ";
   -webkit-text-fill-color: transparent;
+}*/
+
+.gapLeadText em {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 6px 0;
+  border-top: 1px solid var(--gap-rule);
+  padding-top: clamp(14px, 2vh, 22px);
+  
+  /* Keep original gradient text color and effects */
+  font-style: normal;
+  color: #ffffffbd !important;
+  background: linear-gradient(to right, #cb7548d1, #ddb5a0cc 50%) text !important;
+  -webkit-background-clip: text !important;
+  background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  font-family: "Poppins", sans-serif !important;
+  font-size: clamp(0.6rem, 0.8vw, 0.72rem) !important;
+  font-weight: 400 !important;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.gapLeadText em span {
+  position: relative;
+  border: 0;
+  border-radius: 0;
+  padding: 4px 14px;
+  box-shadow: none;
+  font-family: "Poppins", sans-serif;
+  font-size: inherit;
+  font-weight: inherit;
+  letter-spacing: 0.1em;
+  word-spacing: 0.04em;
+  text-transform: uppercase;
+  
+  /* Inherit text gradient */
+  color: inherit;
+  background: inherit;
+  -webkit-background-clip: inherit;
+  background-clip: inherit;
+  -webkit-text-fill-color: inherit;
+}
+
+.gapLeadText em span:not(:last-child)::after {
+  content: "|";
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  color: rgba(143, 131, 121, 0.5);
+  -webkit-text-fill-color: rgba(143, 131, 121, 0.5);
+  font-size: 1.1em;
+  background: transparent;
+  width: auto;
+  height: auto;
 }
 
 .gapPillar {

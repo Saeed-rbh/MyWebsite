@@ -941,7 +941,11 @@ const GapSection = ({ scrollRef }) => {
                 <span>Manufacturing</span>
                 <span>Gap</span>
               </span>
-              <span className={styles.gapTitleSub}>Process Engineering • Materials Characterization • Scale-Up • Root Cause Analysis</span>
+              <span className={styles.gapTitleSub}>
+                {["Process Engineering", "Materials Characterization", "Scale-Up", "Root Cause Analysis"].map((item) => (
+                  <span key={item}>{item}</span>
+                ))}
+              </span>
             </h2>
           </div>
         </motion.div>
