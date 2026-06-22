@@ -383,14 +383,37 @@ const renderFilledTitleWord = (word, className = "") => renderSpotlightWord(word
   mode: "filled",
 });
 
-const SpotlightTitle = ({ words, className = "" }) => (
-  <h2
-    className={`${styles.sectionTitleStacked} ${styles.spotlightTitle} ${className}`}
-    aria-label={words.join(" ")}
-  >
-    {words.map((word) => renderFocusWord(word))}
-  </h2>
-);
+const SpotlightTitle = ({ words, className = "" }) => {
+  const isSplit = className.includes(styles.splitLineLayout);
+  
+  if (isSplit) {
+    // Force "From" & "Research" on line 1, and "To" & "Value" on line 2
+    return (
+      <h2
+        className={`${styles.sectionTitleStacked} ${styles.spotlightTitle} ${className}`}
+        aria-label={words.join(" ")}
+      >
+        <span style={{ display: "flex", gap: "0.24em" }}>
+          {renderFocusWord(words[0])}
+          {renderFocusWord(words[1])}
+        </span>
+        <span style={{ display: "flex", gap: "0.24em" }}>
+          {renderFocusWord(words[2])}
+          {renderFocusWord(words[3])}
+        </span>
+      </h2>
+    );
+  }
+  
+  return (
+    <h2
+      className={`${styles.sectionTitleStacked} ${styles.spotlightTitle} ${className}`}
+      aria-label={words.join(" ")}
+    >
+      {words.map((word) => renderFocusWord(word))}
+    </h2>
+  );
+};
 
 const SystemSpotlightTitle = () => (
   <h2
@@ -1570,7 +1593,7 @@ const WorkStory = () => {
             id="industry" 
             kicker="INDUSTRY" 
             title={
-              <SpotlightTitle words={["From Research", "To Value"]} />
+              <SpotlightTitle words={["From", "Research", "To", "Value"]} className={styles.splitLineLayout} />
             } 
             className={styles.asymIndustry}
           >
