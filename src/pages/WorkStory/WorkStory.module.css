@@ -3158,7 +3158,6 @@ blockquote::before {
 .asymSystem .sectionTitleStacked > span:not(.gapPillarWord),
 .asymEvidence .sectionTitleStacked > span:not(.gapPillarWord),
 .asymModeling .sectionTitleStacked > span:not(.gapPillarWord),
-.asymIndustry .sectionTitleStacked > span:not(.gapPillarWord),
 .asymApproach .sectionTitleStacked > span:not(.gapPillarWord) {
   color: transparent;
   -webkit-text-stroke: 1.05px rgba(255, 250, 242, 0.84);
@@ -4610,6 +4609,10 @@ blockquote::before {
   -webkit-text-stroke: 1.15px rgb(201 164 144) !important;
 }
 
+.asymIndustry .gapFocusWordOutline {
+  -webkit-text-stroke: 1.15px var(--gap-body) !important;
+}
+
 .asymProcess .gapFocusWordFill,
 .asymSystem .gapFocusWordFill,
 .asymEvidence .gapFocusWordFill,
@@ -4626,6 +4629,11 @@ blockquote::before {
   text-shadow:
     0 0 22px rgba(255, 226, 205, 0.3),
     0 18px 58px rgba(0, 0, 0, 0.5) !important;
+}
+
+.asymIndustry .gapFocusWordFill {
+  color: var(--gap-body) !important;
+  -webkit-text-fill-color: var(--gap-body) !important;
 }
 
 .asymEvidence .evidenceSvg,
