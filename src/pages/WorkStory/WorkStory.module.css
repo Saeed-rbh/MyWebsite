@@ -2237,7 +2237,7 @@
   z-index: 2;
   max-width: 390px;
   margin: 0;
-  color: rgba(255, 250, 242, 0.9) !important;
+  color: var(--gap-body) !important;
   font-size: clamp(1.15rem, 1.75vw, 1.42rem) !important;
   font-weight: 400 !important;
   line-height: 1.18 !important;
@@ -2403,12 +2403,11 @@ blockquote::selection {
 
 .lead {
   max-width: 900px;
-  font-size: clamp(22px, 2.6vw, 34px) !important;
-  line-height: 1.18 !important;
-  color: #f0f0f0 !important;
-  font-weight: 800 !important;
-  letter-spacing: -0.035em;
-  word-spacing: 0.06em;
+  font-size: clamp(0.96rem, 1.28vw, 1.1rem) !important;
+  line-height: 1.45 !important;
+  color: var(--gap-body) !important;
+  font-weight: 100 !important;
+  /* letter-spacing: 0.02em; */
 }
 
 .asymProcess .sectionIntro .lead {
@@ -6980,7 +6979,7 @@ blockquote::before {
 
 .evidenceLeadText {
   margin: 0;
-  color: rgba(255, 250, 242, 0.82) !important;
+  color: var(--gap-body) !important;
   font-size: clamp(0.96rem, 1.28vw, 1.1rem) !important;
   font-weight: 100 !important;
   line-height: 1.45 !important;
