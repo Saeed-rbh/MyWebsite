@@ -23,7 +23,7 @@ const Footer = () => {
     window.location.pathname.toLowerCase() === "/academiccv"
   );
   const [researchClicked, setResearchClicked] = useState(
-    window.location.pathname.toLowerCase() === "/research-progress"
+    window.location.pathname.toLowerCase() === "/r&d-portfolio"
   );
   const [isMouseHover, setMouseHover] = useState([false, null, null]);
   const [disapear, setDisapear] = useState(resumeClicked ? false : true);
@@ -62,12 +62,12 @@ const Footer = () => {
     setResumeClicked(true);
   };
   const handleClickResearch = () => {
-    dispatch(updateCurrentPage("/research-progress"));
+    dispatch(updateCurrentPage("/R&D-Portfolio"));
 
     handleButtonClick(false);
 
     setTimeout(() => {
-      navigate("/research-progress");
+      navigate("/R&D-Portfolio");
     }, 1000);
     setResearchClicked(true);
   };

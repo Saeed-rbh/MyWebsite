@@ -59,7 +59,7 @@ const ResumeInfo = ({
               onMouseLeave={() => setIsHoveredResearch(false)}
             >
               <ResearchStoryIcon isHovered={isHoveredResearch} />
-              <span>RESEARCH STORY</span>
+              <span>R&D PORTFOLIO</span>
             </animated.button>
           </>
         )}
