@@ -1570,7 +1570,7 @@ const WorkStory = () => {
             id="industry" 
             kicker="INDUSTRY" 
             title={
-              <SpotlightTitle words={["From Research To", "Value"]} />
+              <SpotlightTitle words={["From Research", "To Value"]} />
             } 
             className={styles.asymIndustry}
           >
