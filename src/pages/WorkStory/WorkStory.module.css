@@ -88,7 +88,14 @@
 }
 
 .progressTrack {
-  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 20;
+  display: block;
+  width: 100%;
+  height: 2px;
+  pointer-events: none;
 }
 
 .hero,
@@ -190,8 +197,11 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 0;
+  gap: 6px 0;
   margin-top: 28px;
+  max-width: min(920px, 100%);
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .chain span,
@@ -199,7 +209,7 @@
   position: relative;
   border: 0;
   border-radius: 0;
-  padding: 0 14px;
+  padding: 4px 14px;
   color: #eddfd4;
   background: transparent;
   box-shadow: none;
@@ -355,7 +365,7 @@
   font-weight: 600;
   color: #1b0e07;
   background: linear-gradient(135deg, var(--story-accent), #f0c1a9);
-  box-shadow: 0 14px 34px rgba(212, 157, 129, 0.12);
+  box-shadow: 0 5px 8px rgba(212, 157, 129, 0.16);
   transition: transform 260ms ease, box-shadow 260ms ease, background 260ms ease, color 260ms ease;
 }
 
@@ -369,7 +379,7 @@
 
 .heroActions a:hover {
   transform: translateY(-2px);
-  box-shadow: 0 18px 42px rgba(212, 157, 129, 0.18);
+  box-shadow: 0 8px 14px rgba(212, 157, 129, 0.18);
 }
 
 .storyGrid {
@@ -415,6 +425,21 @@
   }
 }
 
+.section {
+  content-visibility: auto;
+  contain-intrinsic-size: 1000px;
+}
+
+.sectionPlaceholder {
+  width: 100%;
+  min-height: clamp(320px, 54vh, 620px);
+  pointer-events: none;
+}
+
+.section[data-section-ready="false"]::after {
+  opacity: 0.08;
+}
+
 .section::after {
   position: absolute;
   right: max(-2vw, -28px);
@@ -435,39 +460,97 @@
   -webkit-text-stroke: 1px rgba(212, 157, 129, 0.38);
 }
 
+/* ── Creative Scroll Reveal — Element Personalities ── */
+/* Base hidden state — every child starts invisible */
 .section > *,
 .hero > * {
   opacity: 0;
-  transform: translateY(20px);
-  transition: opacity 0.8s cubic-bezier(0.25, 0.8, 0.25, 1), 
-              transform 0.8s cubic-bezier(0.25, 0.8, 0.25, 1);
-  will-change: opacity, transform;
+  transform: translate3d(0, 32px, 0) scale(0.97);
+  filter: blur(6px);
+  transition:
+    opacity 0.72s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.86s cubic-bezier(0.22, 1, 0.36, 1),
+    filter 0.68s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: opacity, transform, filter;
 }
 
-.section > *:nth-child(1), .hero > *:nth-child(1) { transition-delay: 0.1s; }
-.section > *:nth-child(2), .hero > *:nth-child(2) { transition-delay: 0.2s; }
-.section > *:nth-child(3), .hero > *:nth-child(3) { transition-delay: 0.3s; }
-.section > *:nth-child(4), .hero > *:nth-child(4) { transition-delay: 0.4s; }
-.section > *:nth-child(5), .hero > *:nth-child(5) { transition-delay: 0.5s; }
+/* ── Stagger delays — extended to 8 children ── */
+.section > *:nth-child(1), .hero > *:nth-child(1) { transition-delay: 0ms; }
+.section > *:nth-child(2), .hero > *:nth-child(2) { transition-delay: 90ms; }
+.section > *:nth-child(3), .hero > *:nth-child(3) { transition-delay: 175ms; }
+.section > *:nth-child(4), .hero > *:nth-child(4) { transition-delay: 255ms; }
+.section > *:nth-child(5), .hero > *:nth-child(5) { transition-delay: 330ms; }
+.section > *:nth-child(6), .hero > *:nth-child(6) { transition-delay: 400ms; }
+.section > *:nth-child(7), .hero > *:nth-child(7) { transition-delay: 465ms; }
+.section > *:nth-child(8), .hero > *:nth-child(8) { transition-delay: 525ms; }
 
+/* ── Per-child unique entrance personality ── */
+/* 1st child (kicker / eyebrow): slides up from further down + letterspace expand */
+.section > *:nth-child(1), .hero > *:nth-child(1) {
+  transform: translate3d(0, 48px, 0) scale(0.94);
+  filter: blur(8px);
+}
+/* 2nd child (title h2): rises + gentle left drift */
+.section > *:nth-child(2), .hero > *:nth-child(2) {
+  transform: translate3d(-18px, 36px, 0) scale(0.96);
+  filter: blur(10px);
+}
+/* 3rd child (intro / lead text): fades in from right */
+.section > *:nth-child(3), .hero > *:nth-child(3) {
+  transform: translate3d(22px, 24px, 0) scale(0.97);
+  filter: blur(7px);
+}
+/* 4th child (main panel / interactive): scale pop from below */
+.section > *:nth-child(4), .hero > *:nth-child(4) {
+  transform: translate3d(0, 40px, 0) scale(0.93);
+  filter: blur(8px);
+}
+/* 5th child: slide from left */
+.section > *:nth-child(5), .hero > *:nth-child(5) {
+  transform: translate3d(-28px, 20px, 0) scale(0.97);
+  filter: blur(6px);
+}
+/* 6th+ children: gentle vertical only */
+.section > *:nth-child(n+6), .hero > *:nth-child(n+6) {
+  transform: translate3d(0, 22px, 0) scale(0.98);
+  filter: blur(5px);
+}
+
+/* ── Visible state — all children settle to natural position ── */
 .section.visible > *,
 .hero.visible > * {
   opacity: 1;
-  transform: translateY(0);
+  transform: translate3d(0, 0, 0) scale(1);
+  filter: blur(0);
 }
 
+/* ── Exit Up (section scrolled past) — compress upward, blur ── */
 .section.fadeOutUp > *,
 .hero.fadeOutUp > * {
   opacity: 0;
-  transform: translateY(-25px);
+  transform: translate3d(0, -22px, 0) scale(0.984);
+  filter: blur(6px);
+  transition-duration: 0.44s, 0.58s, 0.44s;
+  transition-delay: 0ms !important;
 }
+/* Stagger exit slightly for polish */
+.section.fadeOutUp > *:nth-child(1), .hero.fadeOutUp > *:nth-child(1) { transition-delay: 0ms !important; }
+.section.fadeOutUp > *:nth-child(2), .hero.fadeOutUp > *:nth-child(2) { transition-delay: 30ms !important; }
+.section.fadeOutUp > *:nth-child(3), .hero.fadeOutUp > *:nth-child(3) { transition-delay: 55ms !important; }
+.section.fadeOutUp > *:nth-child(4), .hero.fadeOutUp > *:nth-child(4) { transition-delay: 75ms !important; }
+.section.fadeOutUp > *:nth-child(5), .hero.fadeOutUp > *:nth-child(5) { transition-delay: 90ms !important; }
 
+/* ── Exit Down (section not yet reached) — sink down ── */
 .section.fadeOutDown > *,
 .hero.fadeOutDown > * {
   opacity: 0;
-  transform: translateY(25px);
+  transform: translate3d(0, 28px, 0) scale(0.978);
+  filter: blur(7px);
+  transition-duration: 0.5s, 0.64s, 0.5s;
+  transition-delay: 0ms !important;
 }
 
+/* Ghost watermark text reveal */
 .section.visible::after {
   opacity: 1;
 }
@@ -1920,10 +2003,10 @@
   max-width: min(620px, 100%);
   margin: 0 0 clamp(34px, 4vw, 48px);
   color: #fffaf2;
-  font-size: clamp(4.7rem, 8.6vw, 8.4rem);
+  font-size: clamp(4.2rem, 7.4vw, 6rem);
   font-weight: 900;
   line-height: 0.82;
-  letter-spacing: -0.055em;
+  letter-spacing: -0.04em;
   word-spacing: 0;
   text-shadow:
     0 1px 0 rgba(255, 255, 255, 0.2),
@@ -3828,6 +3911,66 @@ blockquote::before {
     word-spacing: 0;
   }
 
+  @media (prefers-reduced-motion: reduce) {
+    .page {
+      scroll-behavior: auto;
+    }
+
+    .progressTrack span {
+      transform: scaleX(var(--story-progress, 0));
+      transition: none !important;
+    }
+
+    .progressTrack span::after,
+    .heroFrame,
+    .hero h1 span,
+    .asymProcess.visible .cfeProcessImage,
+    .asymProcess.visible .processStepActive .processStepNode,
+    .asymProcess.visible .processStep:hover .processStepNode,
+    .asymEvidence.visible .timelineDot,
+    .hero.visible h1,
+    .section.visible h2,
+    .section.visible .sectionTitleStacked {
+      animation: none !important;
+    }
+
+    .section > *,
+    .hero > *,
+    .hero h1,
+    .hero p,
+    .hero .chain span,
+    .hero .heroScrollCue,
+    .hero .heroGraphene,
+    .asymEvidence .evidenceColumnWrapper,
+    .asymEvidence.visible .evidenceColumnWrapper,
+    .asymProcess .processStep,
+    .asymSystem .controlledList span,
+    .asymSystem .systemCopy,
+    .asymSystem .variablePanel,
+    .asymModeling .modelPanel span,
+    .asymIndustry .beforeAfter article,
+    .asymApproach .finalChain span,
+    .asymApproach .closeCard,
+    .heroScrollCue,
+    .heroActions a,
+    .controlledList span,
+    .controlledList span svg,
+    .beforeAfter article,
+    .finalChain span,
+    .closeCard {
+      transition: none !important;
+      filter: none !important;
+      transform: none !important;
+      opacity: 1 !important;
+    }
+
+    .asymEvidence .evidenceColumnWrapper,
+    .asymEvidence.visible .evidenceColumnWrapper {
+      opacity: 1 !important;
+      transform: translateX(-50%) !important;
+    }
+  }
+
   .asymSystem .systemLead::before {
     width: 40px;
     margin-bottom: clamp(18px, 2.2vh, 26px);
@@ -4641,6 +4784,41 @@ blockquote::before {
   }
 }
 
+
+@media only screen and (max-width: 1440px) and (min-width: 841px) {
+  .hero,
+  .storyGrid {
+    width: min(1020px, calc(100vw - 72px));
+    margin: 0 auto;
+  }
+
+  .storyPin,
+  .storyPinInner {
+    width: 100%;
+    max-width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .storySlide {
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+
+  .asymProcess::after {
+    right: max(0vw, -38px);
+    top: clamp(76px, 13.5vw, 164px);
+  }
+
+  .cfeProcessImage,
+  .asymProcess .cfeProcessImage {
+    right: clamp(0px, 0vw, 136px);
+    width: min(34vw, 460px);
+    top: clamp(100px, 15vw, 150px);
+  }
+}
+
 @media only screen and (max-width: 840px) {
   .page {
     padding-bottom: 0;
@@ -5413,6 +5591,29 @@ blockquote::before {
     --scroll-line-height: clamp(112px, 18vh, 150px);
     --scroll-dot-size: 9px;
     --scroll-glow-size: 40px;
+  }
+}
+
+
+@media only screen and (max-width: 700px) {
+  .cfeProcessImage,
+  .asymProcess .cfeProcessImage {
+    right: clamp(-26px, -4vw, -10px);
+    width: min(58vw, 300px);
+  }
+}
+
+@media only screen and (max-width: 520px) {
+  .cfeProcessImage,
+  .asymProcess .cfeProcessImage {
+    top: clamp(96px, 22vw, 142px);
+    right: clamp(-14px, -2vw, -6px);
+    width: min(54vw, 240px);
+    opacity: 0.38;
+  }
+
+  .asymProcess.visible .cfeProcessImage {
+    opacity: 0.38;
   }
 }
 
@@ -7131,5 +7332,860 @@ blockquote::before {
     font-size: clamp(2.45rem, 12.8vw, 4.6rem) !important;
     line-height: 0.9 !important;
     letter-spacing: -0.035em !important;
+  }
+}
+
+/* R&D portfolio motion polish */
+.page {
+  --motion-quick: 140ms;
+  --motion-medium: 420ms;
+  --motion-slow: 860ms;
+  --motion-ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+  --motion-ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
+  --motion-ease-ui: cubic-bezier(0.32, 0.72, 0, 1);
+  scroll-behavior: smooth;
+}
+
+.progressTrack {
+  overflow: hidden;
+  background:
+    linear-gradient(90deg, rgba(255, 250, 242, 0.1), rgba(212, 157, 129, 0.12)),
+    rgba(5, 5, 5, 0.72);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.progressTrack span {
+  position: relative;
+  display: block;
+  width: 100% !important;
+  height: 100%;
+  background: linear-gradient(90deg, var(--story-accent), #f0c1a9);
+  transform: scaleX(var(--story-progress, 0));
+  transform-origin: left center;
+  transition: transform 150ms linear;
+  will-change: transform;
+  box-shadow:
+    0 0 16px rgba(212, 157, 129, 0.34),
+    0 0 34px rgba(240, 193, 169, 0.16);
+}
+
+.progressTrack span::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent, rgba(255, 250, 242, 0.82), transparent);
+  opacity: 0.58;
+  transform: translate3d(-100%, 0, 0);
+  animation: storyProgressSweep 2.8s var(--motion-ease-out) infinite;
+}
+
+.heroFrame {
+  animation: storyHeroSettle 1200ms var(--motion-ease-out) both;
+}
+
+.hero h1 span {
+  animation: storyTitleGlow 7.2s ease-in-out infinite;
+}
+
+.heroScrollCue,
+.heroActions a {
+  transition:
+    transform var(--motion-medium) var(--motion-ease-out),
+    opacity var(--motion-medium) var(--motion-ease-out),
+    color 220ms ease,
+    border-color 220ms ease,
+    background 220ms ease,
+    box-shadow var(--motion-medium) var(--motion-ease-out);
+}
+
+.heroScrollCue:focus-visible,
+.heroActions a:focus-visible {
+  outline: 1px solid rgba(255, 250, 242, 0.88);
+  outline-offset: 5px;
+}
+
+.heroActions a:active {
+  transform: translate3d(0, -1px, 0) scale(0.975);
+  transition-duration: var(--motion-quick);
+}
+
+.section::after {
+  transition:
+    opacity 900ms var(--motion-ease-out),
+    transform 1100ms var(--motion-ease-out),
+    filter 900ms var(--motion-ease-out);
+}
+
+/* ── Motion-enhanced reveal (overrides base stagger per-child) ── */
+.section > *,
+.hero > * {
+  transform: translate3d(0, 32px, 0) scale(0.97);
+  filter: blur(8px);
+  transition:
+    opacity 640ms var(--motion-ease-out),
+    transform 900ms var(--motion-ease-out),
+    filter 800ms var(--motion-ease-out);
+}
+
+/* Unique motion personality per child */
+.section > *:nth-child(1), .hero > *:nth-child(1) {
+  transform: translate3d(0, 52px, 0) scale(0.93);
+  filter: blur(10px);
+  transition:
+    opacity 560ms var(--motion-ease-out),
+    transform 820ms cubic-bezier(0.16, 1, 0.3, 1),
+    filter 720ms var(--motion-ease-out);
+}
+.section > *:nth-child(2), .hero > *:nth-child(2) {
+  transform: translate3d(-20px, 38px, 0) scale(0.95);
+  filter: blur(12px);
+  transition:
+    opacity 680ms var(--motion-ease-out),
+    transform 960ms cubic-bezier(0.16, 1, 0.3, 1),
+    filter 860ms var(--motion-ease-out);
+}
+.section > *:nth-child(3), .hero > *:nth-child(3) {
+  transform: translate3d(24px, 26px, 0) scale(0.97);
+  filter: blur(9px);
+  transition:
+    opacity 700ms var(--motion-ease-out),
+    transform 980ms cubic-bezier(0.16, 1, 0.3, 1),
+    filter 880ms var(--motion-ease-out);
+}
+.section > *:nth-child(4), .hero > *:nth-child(4) {
+  transform: translate3d(0, 44px, 0) scale(0.92);
+  filter: blur(10px);
+  transition:
+    opacity 720ms var(--motion-ease-out),
+    transform 1020ms cubic-bezier(0.16, 1, 0.3, 1),
+    filter 900ms var(--motion-ease-out);
+}
+.section > *:nth-child(5), .hero > *:nth-child(5) {
+  transform: translate3d(-30px, 22px, 0) scale(0.97);
+  filter: blur(7px);
+  transition:
+    opacity 680ms var(--motion-ease-out),
+    transform 940ms cubic-bezier(0.16, 1, 0.3, 1),
+    filter 840ms var(--motion-ease-out);
+}
+
+.section.visible > *,
+.hero.visible > * {
+  transform: translate3d(0, 0, 0) scale(1);
+  filter: blur(0);
+}
+
+/* Exit Up: elements were already seen — slide up and dissolve */
+.section.fadeOutUp > *,
+.hero.fadeOutUp > * {
+  transform: translate3d(0, -24px, 0) scale(0.986);
+  filter: blur(7px);
+  transition-duration: 380ms, 520ms, 400ms;
+  transition-delay: 0ms !important;
+}
+.section.fadeOutUp > *:nth-child(1), .hero.fadeOutUp > *:nth-child(1) { transition-delay: 0ms !important; transform: translate3d(0, -32px, 0) scale(0.982); }
+.section.fadeOutUp > *:nth-child(2), .hero.fadeOutUp > *:nth-child(2) { transition-delay: 28ms !important; transform: translate3d(-8px, -20px, 0) scale(0.988); }
+.section.fadeOutUp > *:nth-child(3), .hero.fadeOutUp > *:nth-child(3) { transition-delay: 52ms !important; transform: translate3d(8px, -16px, 0) scale(0.99); }
+.section.fadeOutUp > *:nth-child(4), .hero.fadeOutUp > *:nth-child(4) { transition-delay: 70ms !important; }
+
+/* Exit Down: not yet reached — elements fall back down */
+.section.fadeOutDown > *,
+.hero.fadeOutDown > * {
+  transform: translate3d(0, 30px, 0) scale(0.978);
+  filter: blur(8px);
+  transition-duration: 420ms, 560ms, 440ms;
+  transition-delay: 0ms !important;
+}
+
+.asymProcess.visible .cfeProcessImage {
+  animation: storyCfeFloat 7.8s ease-in-out 1300ms infinite;
+  will-change: transform;
+}
+
+.processStep {
+  transform-origin: left top;
+}
+
+.processStep,
+.processStepNode,
+.controlledList span,
+.controlledList span svg,
+.modelPanel span,
+.finalChain span,
+.beforeAfter article,
+.evidenceColumnStatic,
+.evidenceColumnWrapper,
+.closeCard,
+.asymSystem .variablePanel {
+  transition-timing-function: var(--motion-ease-out);
+}
+
+.processStep:active {
+  transform: translate3d(0, -2px, 0) scale(0.985);
+  transition-duration: var(--motion-quick);
+}
+
+.asymProcess.visible .processStepActive .processStepNode {
+  animation: storyNodeSignal 2.7s ease-in-out infinite;
+}
+
+.controlledList span {
+  transition:
+    transform 320ms var(--motion-ease-out),
+    filter 320ms ease,
+    color 220ms ease;
+}
+
+.controlledList span svg {
+  transition:
+    transform 420ms var(--motion-ease-out),
+    filter 320ms ease,
+    color 220ms ease;
+}
+
+.asymSystem .variablePanel {
+  transition:
+    transform 520ms var(--motion-ease-out),
+    border-color 320ms ease,
+    box-shadow 520ms var(--motion-ease-out);
+}
+
+.asymEvidence .evidenceColumnWrapper {
+  opacity: 0;
+  transform: translate3d(-50%, 18px, 0) scale(0.975);
+  filter: blur(8px);
+  transition:
+    opacity 520ms var(--motion-ease-out),
+    transform 780ms var(--motion-ease-out),
+    filter 640ms var(--motion-ease-out);
+  transition-delay: calc(var(--motion-delay, 0ms) + 220ms);
+}
+
+.asymEvidence.visible .evidenceColumnWrapper {
+  opacity: 1;
+  transform: translate3d(-50%, 0, 0) scale(1);
+  filter: blur(0);
+}
+
+.evidenceColumnStatic {
+  transition:
+    transform 420ms var(--motion-ease-out),
+    border-color 260ms ease,
+    box-shadow 420ms var(--motion-ease-out),
+    filter 320ms ease;
+}
+
+.timelineDot {
+  position: relative;
+}
+
+.asymEvidence.visible .timelineDot {
+  animation: storyTimelineDot 3.2s ease-in-out infinite;
+}
+
+.beforeAfter article,
+.closeCard {
+  transition:
+    transform 420ms var(--motion-ease-out),
+    border-color 280ms ease,
+    box-shadow 420ms var(--motion-ease-out),
+    filter 320ms ease;
+}
+
+.finalChain span {
+  transition:
+    transform 420ms var(--motion-ease-out),
+    color 240ms ease,
+    -webkit-text-stroke-color 240ms ease;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .heroScrollCue:hover {
+    transform: translate3d(0, -4px, 0);
+    opacity: 1;
+  }
+
+  .heroActions a:hover {
+    transform: translate3d(0, -4px, 0) scale(1.012);
+    box-shadow:
+      0 8px 14px rgba(0, 0, 0, 0.28),
+      0 0 12px rgba(212, 157, 129, 0.18);
+  }
+
+  .asymProcess.visible .processStep:hover .processStepNode {
+    animation: storyNodeSignal 2.4s ease-in-out infinite;
+  }
+
+  .controlledList span:hover {
+    transform: translate3d(8px, 0, 0);
+    filter: drop-shadow(0 0 16px rgba(212, 157, 129, 0.16));
+  }
+
+  .controlledList span:hover svg {
+    transform: translate3d(0, -1px, 0) rotate(-4deg) scale(1.04);
+    filter: drop-shadow(0 0 14px rgba(242, 165, 110, 0.22));
+  }
+
+  .asymSystem .variablePanel:hover {
+    transform: translate3d(0, -6px, 0);
+    border-color: rgba(242, 165, 110, 0.78);
+    box-shadow:
+      inset 0 0 0 1px rgba(255, 219, 188, 0.1),
+      inset 0 1px 0 rgba(255, 236, 214, 0.16),
+      0 0 44px rgba(212, 157, 129, 0.24),
+      0 34px 86px rgba(0, 0, 0, 0.56);
+  }
+
+  .evidenceColumnWrapper:hover {
+    z-index: 5;
+    transform: translate3d(-50%, -10px, 0) scale(1.018);
+    filter: saturate(1.08);
+  }
+
+  .evidenceColumnWrapper:hover .evidenceColumnStatic {
+    box-shadow:
+      inset 0 1px 0 rgba(255, 250, 242, 0.16),
+      inset 0 0 0 1px rgba(212, 157, 129, 0.1),
+      0 24px 70px rgba(0, 0, 0, 0.58),
+      0 0 0 1px rgba(212, 157, 129, 0.14),
+      0 0 34px rgba(212, 157, 129, 0.24),
+      0 0 64px rgba(212, 157, 129, 0.1);
+  }
+
+  .beforeAfter article:hover {
+    transform: translate3d(0, -8px, 0);
+    filter: drop-shadow(0 24px 38px rgba(0, 0, 0, 0.24));
+  }
+
+  .finalChain span:hover {
+    transform: translate3d(10px, 0, 0);
+  }
+}
+
+@keyframes storyProgressSweep {
+  0% {
+    transform: translate3d(-100%, 0, 0);
+    opacity: 0;
+  }
+  24%,
+  56% {
+    opacity: 0.58;
+  }
+  100% {
+    transform: translate3d(100%, 0, 0);
+    opacity: 0;
+  }
+}
+
+@keyframes storyHeroSettle {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 18px, 0) scale(0.985);
+    filter: blur(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) scale(1);
+    filter: blur(0);
+  }
+}
+
+@keyframes storyTitleGlow {
+  0%,
+  100% {
+    text-shadow:
+      0 0 32px rgba(212, 157, 129, 0.18),
+      0 18px 70px rgba(0, 0, 0, 0.56);
+  }
+  50% {
+    text-shadow:
+      0 0 46px rgba(240, 193, 169, 0.26),
+      0 22px 86px rgba(0, 0, 0, 0.62);
+  }
+}
+
+@keyframes storyCfeFloat {
+  0%,
+  100% {
+    transform: translate3d(0, var(--cfe-image-y), 0) scale(1) rotate(-1.5deg);
+  }
+  50% {
+    transform: translate3d(-5px, calc(var(--cfe-image-y) - 9px), 0) scale(1.01) rotate(-1deg);
+  }
+}
+
+@keyframes storyNodeSignal {
+  0%,
+  100% {
+    box-shadow:
+      0 0 0 7px rgba(212, 157, 129, 0.08),
+      0 0 24px rgba(212, 157, 129, 0.16);
+  }
+  50% {
+    box-shadow:
+      0 0 0 11px rgba(212, 157, 129, 0.03),
+      0 0 36px rgba(242, 165, 110, 0.26);
+  }
+}
+
+@keyframes storyTimelineDot {
+  0%,
+  100% {
+    box-shadow:
+      0 0 8px var(--story-accent),
+      0 0 0 0 rgba(212, 157, 129, 0.22);
+  }
+  50% {
+    box-shadow:
+      0 0 14px var(--story-accent),
+      0 0 0 9px rgba(212, 157, 129, 0);
+  }
+}
+
+
+/* Smoothness tuning for the scroll-heavy R&D portfolio */
+.page {
+  scrollbar-gutter: stable;
+  isolation: isolate;
+}
+
+.glowingBg,
+.page::before,
+.page::after,
+.progressTrack,
+.heroFrame,
+.storySlide,
+.storyAtmosphere,
+.storyOrbitalSystem,
+.storyOrbitalSvg,
+.cfeProcessImage,
+.animatedSvg,
+.modelPanel,
+.variablePanel,
+.beforeAfter article,
+.closeCard {
+  backface-visibility: hidden;
+  transform-style: preserve-3d;
+}
+
+.heroFrame,
+.storySlide,
+.storyAtmosphere,
+.storyOrbitalSystem,
+.storyOrbitalSvg,
+.cfeProcessImage,
+.animatedSvg {
+  will-change: transform, opacity, filter;
+}
+
+.section > *,
+.hero > *,
+.processStep,
+.controlledList span,
+.evidenceColumnWrapper,
+.modelPanel span,
+.beforeAfter article,
+.closeCard,
+.finalChain span {
+  backface-visibility: hidden;
+  will-change: transform, opacity, filter;
+}
+
+@media (hover: none), (pointer: coarse) {
+  .heroFrame,
+  .storySlide,
+  .storyAtmosphere,
+  .storyOrbitalSystem,
+  .storyOrbitalSvg,
+  .cfeProcessImage,
+  .animatedSvg {
+    will-change: auto;
+  }
+}
+
+
+/* ══════════════════════════════════════════════════════════════
+   CREATIVE SECTION-SPECIFIC SCROLL REVEALS
+   Each section has a distinct entrance personality
+   ══════════════════════════════════════════════════════════════ */
+
+/* ── Kicker / eyebrow labels: letter-spacing bloom on enter ── */
+.section.visible .kicker,
+.section.visible .eyebrow {
+  letter-spacing: 0.18em;
+  transition:
+    opacity 540ms var(--motion-ease-out),
+    transform 720ms cubic-bezier(0.16, 1, 0.3, 1),
+    filter 600ms var(--motion-ease-out),
+    letter-spacing 900ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* ── Section titles: copper shimmer text shadow on reveal ── */
+.section.visible h2,
+.section.visible .sectionTitleStacked {
+  animation: storyTitleGlow 6s ease-in-out 600ms infinite;
+}
+
+/* ── Lead / intro text: slight opacity boost ── */
+.section.visible .lead,
+.section.visible .sectionIntro {
+  transition-delay: 200ms;
+}
+
+/* ── Process steps: cascade in from left on section visible ── */
+.asymProcess .processStep {
+  opacity: 0;
+  transform: translate3d(-32px, 14px, 0) scale(0.96);
+  filter: blur(5px);
+  transition:
+    opacity 560ms var(--motion-ease-out),
+    transform 760ms cubic-bezier(0.16, 1, 0.3, 1),
+    filter 580ms var(--motion-ease-out);
+  transition-delay: calc(var(--delay, 0ms) + 300ms);
+}
+
+.asymProcess.visible .processStep {
+  opacity: 1;
+  transform: translate3d(0, 0, 0) scale(1);
+  filter: blur(0);
+}
+
+/* ── Controlled variables: stagger from right ── */
+.asymSystem .controlledList span {
+  opacity: 0;
+  transform: translate3d(24px, 8px, 0) scale(0.97);
+  filter: blur(4px);
+  transition:
+    opacity 480ms var(--motion-ease-out),
+    transform 680ms cubic-bezier(0.16, 1, 0.3, 1),
+    filter 500ms var(--motion-ease-out),
+    color 220ms ease;
+  transition-delay: calc(var(--delay, 0ms) + 380ms);
+}
+
+.asymSystem.visible .controlledList span {
+  opacity: 1;
+  transform: translate3d(0, 0, 0) scale(1);
+  filter: blur(0);
+}
+
+/* ── Evidence cards: staggered rise from below (enhanced) ── */
+.asymEvidence .evidenceColumnWrapper {
+  opacity: 0;
+  transform: translate3d(-50%, 28px, 0) scale(0.97);
+  filter: blur(10px);
+  transition:
+    opacity 600ms var(--motion-ease-out),
+    transform 880ms cubic-bezier(0.16, 1, 0.3, 1),
+    filter 720ms var(--motion-ease-out);
+  transition-delay: calc(var(--motion-delay, 0ms) + 260ms);
+}
+
+.asymEvidence.visible .evidenceColumnWrapper {
+  opacity: 1;
+  transform: translate3d(-50%, 0, 0) scale(1);
+  filter: blur(0);
+}
+
+/* ── Modeling nodes: scale pop with stagger ── */
+.asymModeling .modelPanel span {
+  opacity: 0;
+  transform: scale(0.82) translate3d(0, 14px, 0);
+  filter: blur(7px);
+  transition:
+    opacity 540ms var(--motion-ease-out),
+    transform 780ms cubic-bezier(0.34, 1.56, 0.64, 1),
+    filter 560ms var(--motion-ease-out);
+  transition-delay: calc(var(--delay, 0ms) + 320ms);
+}
+
+.asymModeling.visible .modelPanel span {
+  opacity: 1;
+  transform: scale(1) translate3d(0, 0, 0);
+  filter: blur(0);
+}
+
+/* ── Industry before/after cards: slide in from opposite sides ── */
+.asymIndustry .beforeAfter article:nth-child(odd) {
+  opacity: 0;
+  transform: translate3d(-30px, 20px, 0) scale(0.96);
+  filter: blur(8px);
+  transition:
+    opacity 580ms var(--motion-ease-out),
+    transform 840ms cubic-bezier(0.16, 1, 0.3, 1),
+    filter 640ms var(--motion-ease-out),
+    border-color 280ms ease,
+    box-shadow 420ms var(--motion-ease-out);
+  transition-delay: 300ms;
+}
+
+.asymIndustry .beforeAfter article:nth-child(even) {
+  opacity: 0;
+  transform: translate3d(30px, 20px, 0) scale(0.96);
+  filter: blur(8px);
+  transition:
+    opacity 580ms var(--motion-ease-out),
+    transform 840ms cubic-bezier(0.16, 1, 0.3, 1),
+    filter 640ms var(--motion-ease-out),
+    border-color 280ms ease,
+    box-shadow 420ms var(--motion-ease-out);
+  transition-delay: 440ms;
+}
+
+.asymIndustry.visible .beforeAfter article {
+  opacity: 1;
+  transform: translate3d(0, 0, 0) scale(1);
+  filter: blur(0);
+}
+
+/* ── Approach section final chain: letter cascade left-to-right ── */
+.asymApproach .finalChain span {
+  opacity: 0;
+  transform: translate3d(0, 20px, 0) scale(0.94);
+  filter: blur(6px);
+  transition:
+    opacity 500ms var(--motion-ease-out),
+    transform 720ms cubic-bezier(0.16, 1, 0.3, 1),
+    filter 540ms var(--motion-ease-out),
+    color 240ms ease,
+    -webkit-text-stroke-color 240ms ease;
+  transition-delay: 240ms;
+}
+
+.asymApproach .finalChain span:nth-child(1) { transition-delay: 240ms; }
+.asymApproach .finalChain span:nth-child(2) { transition-delay: 320ms; }
+.asymApproach .finalChain span:nth-child(3) { transition-delay: 400ms; }
+.asymApproach .finalChain span:nth-child(4) { transition-delay: 475ms; }
+.asymApproach .finalChain span:nth-child(5) { transition-delay: 545ms; }
+
+.asymApproach.visible .finalChain span {
+  opacity: 1;
+  transform: translate3d(0, 0, 0) scale(1);
+  filter: blur(0);
+}
+
+/* ── Close card (CTA block): scale up from background ── */
+.asymApproach .closeCard {
+  opacity: 0;
+  transform: translate3d(0, 32px, 0) scale(0.95);
+  filter: blur(8px);
+  transition:
+    opacity 620ms var(--motion-ease-out),
+    transform 900ms cubic-bezier(0.16, 1, 0.3, 1),
+    filter 700ms var(--motion-ease-out),
+    border-color 280ms ease,
+    box-shadow 420ms var(--motion-ease-out);
+  transition-delay: 580ms;
+}
+
+.asymApproach.visible .closeCard {
+  opacity: 1;
+  transform: translate3d(0, 0, 0) scale(1);
+  filter: blur(0);
+}
+
+/* ── System copy + variable panel: split entrance ── */
+.asymSystem .systemCopy {
+  opacity: 0;
+  transform: translate3d(-26px, 20px, 0) scale(0.97);
+  filter: blur(8px);
+  transition:
+    opacity 620ms var(--motion-ease-out),
+    transform 900ms cubic-bezier(0.16, 1, 0.3, 1),
+    filter 720ms var(--motion-ease-out);
+  transition-delay: 100ms;
+}
+
+.asymSystem.visible .systemCopy {
+  opacity: 1;
+  transform: translate3d(0, 0, 0) scale(1);
+  filter: blur(0);
+}
+
+.asymSystem .variablePanel {
+  opacity: 0;
+  transform: translate3d(26px, 20px, 0) scale(0.96);
+  filter: blur(8px);
+  transition:
+    opacity 640ms var(--motion-ease-out),
+    transform 940ms cubic-bezier(0.16, 1, 0.3, 1),
+    filter 760ms var(--motion-ease-out),
+    border-color 320ms ease,
+    box-shadow 520ms var(--motion-ease-out);
+  transition-delay: 220ms;
+}
+
+.asymSystem.visible .variablePanel {
+  opacity: 1;
+  transform: translate3d(0, 0, 0) scale(1);
+  filter: blur(0);
+}
+
+/* ── Hero graphene SVG: grand spin-in on load ── */
+.hero .heroGraphene {
+  opacity: 0;
+  transform: scale(0.78) rotate(-8deg);
+  filter: blur(14px);
+  transition:
+    opacity 1.1s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 1.4s cubic-bezier(0.16, 1, 0.3, 1),
+    filter 1.1s cubic-bezier(0.16, 1, 0.3, 1);
+  transition-delay: 0ms;
+}
+
+.hero.visible .heroGraphene {
+  opacity: 1;
+  transform: scale(1) rotate(0deg);
+  filter: blur(0);
+}
+
+/* ── Hero h1: stately reveal from below with scale ── */
+.hero h1 {
+  opacity: 0;
+  transform: translate3d(0, 42px, 0) scale(0.95);
+  filter: blur(10px);
+  transition:
+    opacity 780ms cubic-bezier(0.16, 1, 0.3, 1),
+    transform 1000ms cubic-bezier(0.16, 1, 0.3, 1),
+    filter 820ms cubic-bezier(0.16, 1, 0.3, 1);
+  transition-delay: 80ms;
+}
+
+.hero.visible h1 {
+  opacity: 1;
+  transform: translate3d(0, 0, 0) scale(1);
+  filter: blur(0);
+  animation: storyTitleGlow 8s ease-in-out 1200ms infinite;
+}
+
+/* ── Hero p (subtitle): fade up with right drift ── */
+.hero p {
+  opacity: 0;
+  transform: translate3d(16px, 26px, 0) scale(0.97);
+  filter: blur(7px);
+  transition:
+    opacity 700ms cubic-bezier(0.22, 1, 0.36, 1),
+    transform 920ms cubic-bezier(0.16, 1, 0.3, 1),
+    filter 740ms cubic-bezier(0.22, 1, 0.36, 1);
+  transition-delay: 200ms;
+}
+
+.hero.visible p {
+  opacity: 1;
+  transform: translate3d(0, 0, 0) scale(1);
+  filter: blur(0);
+}
+
+/* ── Hero chain (skills pills): cascade stagger ── */
+.hero .chain span {
+  opacity: 0;
+  transform: translate3d(0, 18px, 0) scale(0.9);
+  filter: blur(5px);
+  transition:
+    opacity 480ms var(--motion-ease-out),
+    transform 680ms cubic-bezier(0.34, 1.56, 0.64, 1),
+    filter 500ms var(--motion-ease-out);
+  transition-delay: calc(var(--delay, 0ms) + 350ms);
+}
+
+.hero.visible .chain span {
+  opacity: 1;
+  transform: translate3d(0, 0, 0) scale(1);
+  filter: blur(0);
+}
+
+/* ── Hero scroll cue: bounce in after hero settles ── */
+.hero .heroScrollCue {
+  opacity: 0;
+  transform: translate3d(0, 28px, 0);
+  transition:
+    opacity 600ms var(--motion-ease-out),
+    transform 800ms cubic-bezier(0.16, 1, 0.3, 1);
+  transition-delay: 900ms;
+}
+
+.hero.visible .heroScrollCue {
+  opacity: 0.52;
+  transform: translate3d(0, 0, 0);
+}
+
+/* ── Fade out exits override for per-element styles ──
+   When a section exits, per-element overrides revert
+   to the base fadeOut behavior via transition-delay reset */
+.section.fadeOutUp .kicker,
+.section.fadeOutUp .eyebrow,
+.section.fadeOutUp h2,
+.section.fadeOutUp .sectionTitleStacked,
+.section.fadeOutUp .lead,
+.section.fadeOutUp .sectionIntro {
+  transition-delay: 0ms !important;
+}
+
+.section.fadeOutDown .kicker,
+.section.fadeOutDown .eyebrow,
+.section.fadeOutDown h2,
+.section.fadeOutDown .sectionTitleStacked,
+.section.fadeOutDown .lead,
+.section.fadeOutDown .sectionIntro {
+  transition-delay: 0ms !important;
+}
+
+.asymProcess.fadeOutUp .processStep,
+.asymProcess.fadeOutDown .processStep {
+  transition-delay: 0ms !important;
+  opacity: 0;
+}
+
+.asymSystem.fadeOutUp .controlledList span,
+.asymSystem.fadeOutDown .controlledList span,
+.asymSystem.fadeOutUp .systemCopy,
+.asymSystem.fadeOutDown .systemCopy,
+.asymSystem.fadeOutUp .variablePanel,
+.asymSystem.fadeOutDown .variablePanel {
+  transition-delay: 0ms !important;
+  opacity: 0;
+}
+
+.asymIndustry.fadeOutUp .beforeAfter article,
+.asymIndustry.fadeOutDown .beforeAfter article {
+  transition-delay: 0ms !important;
+  opacity: 0;
+}
+
+.asymApproach.fadeOutUp .finalChain span,
+.asymApproach.fadeOutDown .finalChain span,
+.asymApproach.fadeOutUp .closeCard,
+.asymApproach.fadeOutDown .closeCard {
+  transition-delay: 0ms !important;
+  opacity: 0;
+}
+
+.asymModeling.fadeOutUp .modelPanel span,
+.asymModeling.fadeOutDown .modelPanel span {
+  transition-delay: 0ms !important;
+  opacity: 0;
+}
+
+.asymEvidence.fadeOutUp .evidenceColumnWrapper,
+.asymEvidence.fadeOutDown .evidenceColumnWrapper {
+  transition-delay: 0ms !important;
+  opacity: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .section > *, .hero > *, .hero h1, .hero p, .hero .chain span,
+  .hero .heroScrollCue, .hero .heroGraphene, .asymProcess .processStep,
+  .asymSystem .controlledList span, .asymSystem .systemCopy, .asymSystem .variablePanel,
+  .asymModeling .modelPanel span, .asymIndustry .beforeAfter article,
+  .asymApproach .finalChain span, .asymApproach .closeCard, .finalChain span, .closeCard {
+    transition: none !important;
+    filter: none !important;
+    transform: none !important;
+    opacity: 1 !important;
+  }
+  .asymEvidence .evidenceColumnWrapper, .asymEvidence.visible .evidenceColumnWrapper {
+    opacity: 1 !important;
+    transform: translateX(-50%) !important;
   }
 }

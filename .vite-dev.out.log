@@ -1,0 +1,93 @@
+
+> instagram@0.1.0 dev
+> vite --host 127.0.0.1
+
+Port 3000 is in use, trying another one...
+Port 3001 is in use, trying another one...
+
+  [32m[1mVITE[22m v5.4.21[39m  [2mready in [0m[1m1084[22m[2m[0m ms[22m
+
+  [32m➜[39m  [1mLocal[22m:   [36mhttp://127.0.0.1:[1m3002[22m/[39m
+[2m11:17:21 AM[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/pages/WorkStory/WorkStory.jsx[22m
+[2m11:18:17 AM[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/pages/WorkStory/WorkStory.jsx[22m
+[2m11:20:31 AM[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/pages/WorkStory/WorkStory.jsx[22m
+[2m11:25:18 AM[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/pages/WorkStory/WorkStory.jsx[22m
+[2m11:30:45 AM[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/pages/WorkStory/WorkStory.jsx[22m
+[2m11:33:18 AM[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/pages/WorkStory/WorkStory.jsx[22m
+[2m11:38:48 AM[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/pages/WorkStory/WorkStory.jsx[22m
+[2m11:39:27 AM[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/pages/WorkStory/WorkStory.jsx[22m
+[2m11:46:50 AM[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/pages/WorkStory/WorkStory.jsx[22m
+[2m11:47:23 AM[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/pages/WorkStory/WorkStory.jsx[22m
+[2m11:47:57 AM[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/pages/WorkStory/WorkStory.jsx[22m
+[2m11:48:39 AM[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/pages/WorkStory/WorkStory.jsx[22m
+[2m11:49:31 AM[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/pages/WorkStory/WorkStory.jsx[22m
+[2m11:50:02 AM[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/pages/WorkStory/WorkStory.jsx[22m
+[2m11:51:57 AM[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/pages/WorkStory/WorkStory.jsx[22m
+[2m11:52:33 AM[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/pages/WorkStory/WorkStory.jsx[22m
+[2m11:53:26 AM[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/pages/WorkStory/WorkStory.jsx[22m
+[2m11:54:03 AM[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/pages/WorkStory/WorkStory.jsx[22m
+[2m11:59:57 AM[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/pages/WorkStory/WorkStory.jsx[22m
+[2m12:01:10 PM[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/pages/WorkStory/WorkStory.jsx[22m
+[2m12:16:57 PM[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/pages/WorkStory/WorkStory.jsx[22m
+[2m12:17:35 PM[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/pages/WorkStory/WorkStory.jsx[22m
+[2m12:19:32 PM[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/pages/WorkStory/WorkStory.jsx[22m
+[2m12:20:27 PM[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/pages/WorkStory/WorkStory.jsx[22m
+[2m12:20:58 PM[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/pages/WorkStory/WorkStory.jsx[22m
+[2m12:21:42 PM[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/pages/WorkStory/WorkStory.jsx[22m
+[2m12:26:05 PM[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/pages/WorkStory/WorkStory.jsx[22m
+[2m12:26:48 PM[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/pages/WorkStory/WorkStory.jsx[22m
+[2m12:34:20 PM[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/pages/WorkStory/WorkStory.jsx[22m
+[2m12:39:53 PM[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/pages/WorkStory/WorkStory.jsx[22m
+[2m12:48:01 PM[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/pages/WorkStory/WorkStory.jsx[22m
+[2m12:49:14 PM[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/pages/WorkStory/WorkStory.jsx[22m
+[2m12:49:48 PM[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/pages/WorkStory/WorkStory.jsx[22m
+[2m12:50:16 PM[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/pages/WorkStory/WorkStory.jsx[22m
+[2m12:50:44 PM[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/pages/WorkStory/WorkStory.jsx[22m
+[2m12:52:25 PM[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/pages/WorkStory/WorkStory.jsx[22m
+[2m12:59:20 PM[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/pages/WorkStory/WorkStory.jsx[22m
+[2m1:00:23 PM[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/pages/WorkStory/WorkStory.jsx[22m
+[2m1:07:59 PM[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/pages/WorkStory/WorkStory.jsx[22m
+[2m2:16:44 PM[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/pages/WorkStory/WorkStory.jsx[22m
+[2m2:20:02 PM[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/pages/WorkStory/WorkStory.jsx[22m
+[2m2:21:03 PM[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/pages/WorkStory/WorkStory.jsx[22m
+[2m2:28:34 PM[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/pages/WorkStory/WorkStory.jsx[22m
+[2m2:30:42 PM[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/pages/WorkStory/WorkStory.jsx[22m
+[2m2:35:25 PM[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/pages/WorkStory/WorkStory.jsx[22m
+[2m2:35:32 PM[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/pages/WorkStory/WorkStory.jsx[22m
+[2m2:43:33 PM[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/pages/WorkStory/WorkStory.jsx[22m
+[2m2:45:05 PM[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/pages/WorkStory/WorkStory.jsx[22m
+[2m2:45:06 PM[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/pages/WorkStory/WorkStory.jsx[22m
+[2m2:46:48 PM[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/pages/WorkStory/WorkStory.jsx[22m
+[2m2:46:55 PM[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/pages/WorkStory/WorkStory.jsx[22m
+[2m2:47:08 PM[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/pages/WorkStory/WorkStory.jsx[22m
+[2m2:47:28 PM[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/pages/WorkStory/WorkStory.jsx[22m
+[2m2:48:21 PM[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/pages/WorkStory/WorkStory.jsx[22m
+[2m2:49:04 PM[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/pages/WorkStory/WorkStory.jsx[22m
+[2m2:49:19 PM[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/pages/WorkStory/WorkStory.jsx[22m
+[2m2:49:22 PM[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/pages/WorkStory/WorkStory.jsx[22m
+[2m2:49:34 PM[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/pages/WorkStory/WorkStory.jsx[22m
+[2m2:49:47 PM[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/pages/WorkStory/WorkStory.jsx[22m
+[2m2:49:48 PM[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/pages/WorkStory/WorkStory.jsx[22m
+[2m2:53:29 PM[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/pages/WorkStory/WorkStory.jsx[22m
+[2m2:57:59 PM[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/pages/WorkStory/WorkStory.jsx[22m
+[2m2:58:41 PM[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/pages/WorkStory/WorkStory.jsx[22m
+[2m3:59:03 PM[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/pages/WorkStory/WorkStory.jsx[22m
+[2m4:02:43 PM[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/pages/WorkStory/WorkStory.jsx[22m
+[2m4:04:12 PM[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/pages/WorkStory/WorkStory.jsx[22m
+[2m4:06:10 PM[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/pages/WorkStory/WorkStory.jsx[22m
+[2m4:17:19 PM[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/pages/WorkStory/WorkStory.jsx[22m
+[2m4:19:34 PM[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/pages/WorkStory/WorkStory.jsx[22m
+[2m4:19:46 PM[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/pages/WorkStory/WorkStory.jsx[22m
+[2m4:21:09 PM[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/pages/WorkStory/WorkStory.jsx[22m
+[2m4:21:47 PM[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/pages/WorkStory/WorkStory.jsx[22m
+[2m4:24:17 PM[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/pages/WorkStory/WorkStory.jsx[22m
+[2m4:30:13 PM[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/pages/WorkStory/WorkStory.jsx[22m
+[2m4:32:48 PM[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/pages/WorkStory/WorkStory.jsx[22m
+[2m4:32:55 PM[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/pages/WorkStory/WorkStory.jsx[22m
+[2m4:33:02 PM[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/pages/WorkStory/WorkStory.jsx[22m
+[2m4:34:10 PM[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/pages/WorkStory/WorkStory.jsx[22m
+[2m4:35:42 PM[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/pages/WorkStory/WorkStory.jsx[22m
+[2m4:41:30 PM[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/App.jsx[22m
+[2m4:41:53 PM[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/App.css[22m
+[2m4:42:09 PM[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/App.jsx[22m
+[2m5:16:56 PM[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/App.jsx[22m

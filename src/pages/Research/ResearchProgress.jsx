@@ -90,7 +90,7 @@ const timelineData = [
 
 const PageContainer = styled(motion.div)`
   background-color: transparent;
-  height: 100vh;
+  height: 100dvh;
   width: 100vw;
   color: #fff;
   font-family: "Inter", sans-serif;
@@ -99,6 +99,9 @@ const PageContainer = styled(motion.div)`
   top: 0;
   left: 0;
   touch-action: none; /* Prevent default touch scrolling */
+  contain: layout paint size;
+  will-change: transform, opacity, filter;
+  transform: translate3d(0, 0, 0);
 `;
 
 const SlideContainer = styled(motion.div)`
@@ -112,6 +115,9 @@ const SlideContainer = styled(motion.div)`
   align-items: center;
   padding: 0 40px;
   box-sizing: border-box;
+  will-change: transform, opacity, filter;
+  backface-visibility: hidden;
+  transform: translate3d(0, 0, 0);
 `;
 
 // -- Header Styles --
@@ -329,6 +335,8 @@ const GlassCard = styled(motion.div)`
   justify-content: center;
   align-items: center;
   box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+  will-change: transform, opacity;
+  transform: translate3d(0, 0, 0);
 `;
 
 const IndicatorContainer = styled(motion.div)`
@@ -358,6 +366,7 @@ const IndicatorDot = styled.div`
   cursor: pointer;
   position: relative;
   overflow: hidden;
+  will-change: height, transform;
 
   /* Fill indicator */
   &::after {
@@ -394,9 +403,10 @@ const slideVariants = {
         filter: "blur(0px)",
         zIndex: 2,
         transition: {
-            y: { type: "spring", stiffness: 100, damping: 20 }, // Smoother spring
-            opacity: { duration: 0.8, ease: "circOut" },
-            scale: { duration: 0.8, ease: "circOut" }
+            y: { type: "spring", stiffness: 86, damping: 24, mass: 0.9 },
+            opacity: { duration: 0.72, ease: [0.22, 1, 0.36, 1] },
+            scale: { duration: 0.72, ease: [0.22, 1, 0.36, 1] },
+            filter: { duration: 0.72, ease: [0.22, 1, 0.36, 1] }
         }
     },
     exit: (direction) => ({
@@ -407,9 +417,10 @@ const slideVariants = {
         filter: "blur(12px)",
         zIndex: 1, // Goes behind
         transition: {
-            y: { type: "spring", stiffness: 100, damping: 20 },
-            opacity: { duration: 0.6, ease: "easeIn" },
-            scale: { duration: 0.6 }
+            y: { type: "spring", stiffness: 86, damping: 24, mass: 0.9 },
+            opacity: { duration: 0.52, ease: "easeIn" },
+            scale: { duration: 0.52 },
+            filter: { duration: 0.52 }
         }
     })
 };
@@ -431,7 +442,7 @@ const fadeInUp = {
         opacity: 1,
         y: 0,
         filter: "blur(0px)",
-        transition: { type: "spring", stiffness: 100, damping: 20 }
+        transition: { type: "spring", stiffness: 92, damping: 24, mass: 0.85 }
     }
 };
 
@@ -448,29 +459,41 @@ const GrapheneCanvas = () => {
         const backCanvas = backRef.current;
         if (!frontCanvas || !backCanvas) return;
 
-        const ctxFront = frontCanvas.getContext('2d');
-        const ctxBack = backCanvas.getContext('2d');
+        const ctxFront = frontCanvas.getContext('2d', { alpha: true });
+        const ctxBack = backCanvas.getContext('2d', { alpha: true });
         let animationFrameId;
 
         let width = window.innerWidth;
         let height = window.innerHeight;
+        let dpr = Math.min(window.devicePixelRatio || 1, 1.5);
 
         const setSize = () => {
             width = window.innerWidth;
             height = window.innerHeight;
-            frontCanvas.width = width;
-            frontCanvas.height = height;
-            backCanvas.width = width;
-            backCanvas.height = height;
+            dpr = Math.min(window.devicePixelRatio || 1, 1.5);
+
+            frontCanvas.width = Math.floor(width * dpr);
+            frontCanvas.height = Math.floor(height * dpr);
+            backCanvas.width = Math.floor(width * dpr);
+            backCanvas.height = Math.floor(height * dpr);
+
+            frontCanvas.style.width = `${width}px`;
+            frontCanvas.style.height = `${height}px`;
+            backCanvas.style.width = `${width}px`;
+            backCanvas.style.height = `${height}px`;
+
+            ctxFront.setTransform(dpr, 0, 0, dpr, 0, 0);
+            ctxBack.setTransform(dpr, 0, 0, dpr, 0, 0);
         };
         setSize();
 
         const mouse = { x: null, y: null, radius: 250 };
 
-        window.addEventListener('mousemove', (e) => {
+        const handleMouseMove = (e) => {
             mouse.x = e.clientX;
             mouse.y = e.clientY;
-        });
+        };
+        window.addEventListener('mousemove', handleMouseMove, { passive: true });
 
         const handleResize = () => {
             setSize();
@@ -595,6 +618,7 @@ const GrapheneCanvas = () => {
         }
 
         const flakes = [];
+        const atoms = [];
         const flakeCount = 15;
         const atomCount = 20;
 
@@ -602,19 +626,19 @@ const GrapheneCanvas = () => {
             flakes.push(new Flake());
         }
         for (let i = 0; i < atomCount; i++) {
-            flakes.push(new Atom());
+            const atom = new Atom();
+            flakes.push(atom);
+            atoms.push(atom);
         }
 
         const animate = () => {
             ctxFront.clearRect(0, 0, width, height);
             ctxBack.clearRect(0, 0, width, height);
 
-            // 1. Update & Sort
+            // 1. Update all particles.
             flakes.forEach(f => f.update());
-            flakes.sort((a, b) => a.depth - b.depth);
 
             // 2. Draw Connections (Atoms only)
-            const atoms = flakes.filter(f => f instanceof Atom);
             for (let i = 0; i < atoms.length; i++) {
                 for (let j = i + 1; j < atoms.length; j++) {
                     const a = atoms[i];
@@ -656,6 +680,7 @@ const GrapheneCanvas = () => {
         animate();
 
         return () => {
+            window.removeEventListener('mousemove', handleMouseMove);
             window.removeEventListener('resize', handleResize);
             cancelAnimationFrame(animationFrameId);
         };
@@ -669,7 +694,9 @@ const GrapheneCanvas = () => {
                 style={{
                     position: 'absolute', top: 0, left: 0, zIndex: 0, pointerEvents: 'none',
                     filter: 'blur(6px)', // Reduced blur per feedback
-                    opacity: 0.8
+                    opacity: 0.8,
+                    transform: 'translate3d(0, 0, 0)',
+                    willChange: 'transform'
                 }}
             />
             {/* Sharp Front Layer */}
@@ -677,7 +704,9 @@ const GrapheneCanvas = () => {
                 ref={frontRef}
                 style={{
                     position: 'absolute', top: 0, left: 0, zIndex: 0, pointerEvents: 'none',
-                    filter: 'blur(4px)' // Foreground blur
+                    filter: 'blur(4px)', // Foreground blur
+                    transform: 'translate3d(0, 0, 0)',
+                    willChange: 'transform'
                 }}
             />
         </>

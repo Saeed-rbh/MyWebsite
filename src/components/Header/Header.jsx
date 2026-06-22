@@ -74,62 +74,74 @@ const Header = () => {
 
   useEffect(() => {
     const isRDPage = location.pathname.toLowerCase() === "/r&d-portfolio";
-    if (isRDPage) {
-      const sectionIds = ["gap", "process", "system", "evidence", "modeling", "industry", "approach"];
-      
-      const setupObserver = () => {
-        const scrollContainer = document.querySelector('main');
-        
-        const observerOptions = {
-          root: scrollContainer || null,
-          rootMargin: "-45% 0px -45% 0px",
-          threshold: 0
-        };
-
-        const observerCallback = (entries) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              setActiveSection(entry.target.id);
-            }
-          });
-        };
-
-        const observer = new IntersectionObserver(observerCallback, observerOptions);
-
-        sectionIds.forEach((id) => {
-          const element = document.getElementById(id);
-          if (element) {
-            observer.observe(element);
-          }
-        });
-
-        // Set initial active section
-        const currentActive = sectionIds.find(id => {
-          const rect = document.getElementById(id)?.getBoundingClientRect();
-          return rect && rect.top <= window.innerHeight * 0.5 && rect.bottom >= window.innerHeight * 0.5;
-        });
-        if (currentActive) {
-          setActiveSection(currentActive);
-        }
-
-        return observer;
-      };
-
-      // Set a small delay to ensure the DOM has rendered
-      let observer;
-      const timer = setTimeout(() => {
-        observer = setupObserver();
-      }, 500);
-
-      return () => {
-        clearTimeout(timer);
-        if (observer) {
-          observer.disconnect();
-        }
-      };
-    } else {
+    if (!isRDPage) {
       setActiveSection("");
+      return undefined;
     }
+
+    const sectionIds = ["gap", "process", "system", "evidence", "modeling", "industry", "approach"];
+    let rafId = null;
+    let scrollContainer = null;
+
+    const updateActiveSection = () => {
+      if (!scrollContainer) return;
+
+      const containerRect = scrollContainer.getBoundingClientRect();
+      const viewportCenter = scrollContainer.clientHeight / 2;
+      let nextSection = "";
+      let closestDistance = Number.POSITIVE_INFINITY;
+
+      sectionIds.forEach((id) => {
+        const element = document.getElementById(id);
+        if (!element) return;
+
+        const rect = element.getBoundingClientRect();
+        const sectionCenter = rect.top - containerRect.top + rect.height / 2;
+        const distance = Math.abs(sectionCenter - viewportCenter);
+        const intersectsViewport = rect.bottom > containerRect.top && rect.top < containerRect.bottom;
+
+        if (intersectsViewport && distance < closestDistance) {
+          closestDistance = distance;
+          nextSection = id;
+        }
+      });
+
+      if (nextSection) {
+        setActiveSection((current) => (current === nextSection ? current : nextSection));
+      }
+    };
+
+    const requestUpdate = () => {
+      if (rafId) return;
+      rafId = requestAnimationFrame(() => {
+        rafId = null;
+        updateActiveSection();
+      });
+    };
+
+    const setup = () => {
+      scrollContainer = document.querySelector('main[class*="page"]') || document.querySelector("main");
+      if (!scrollContainer) return;
+
+      updateActiveSection();
+      scrollContainer.addEventListener("scroll", requestUpdate, { passive: true });
+      window.addEventListener("resize", requestUpdate, { passive: true });
+      window.addEventListener("orientationchange", requestUpdate, { passive: true });
+      window.visualViewport?.addEventListener("resize", requestUpdate, { passive: true });
+    };
+
+    const timer = setTimeout(setup, 120);
+
+    return () => {
+      clearTimeout(timer);
+      if (rafId) cancelAnimationFrame(rafId);
+      if (scrollContainer) {
+        scrollContainer.removeEventListener("scroll", requestUpdate);
+      }
+      window.removeEventListener("resize", requestUpdate);
+      window.removeEventListener("orientationchange", requestUpdate);
+      window.visualViewport?.removeEventListener("resize", requestUpdate);
+    };
   }, [location.pathname]);
 
   const sectionLabels = {

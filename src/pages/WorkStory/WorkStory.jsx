@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
-import { motion } from "framer-motion";
+import { motion, useScroll, useSpring, useTransform } from "framer-motion";
 import {
   TbHexagon,
 } from "react-icons/tb";
@@ -181,24 +181,70 @@ const modelingNodes = [
   "Mechanism",
 ];
 
+const storySpring = {
+  stiffness: 82,
+  damping: 30,
+  mass: 0.9,
+  restDelta: 0.001,
+};
+
+const routeTransition = {
+  duration: 0.62,
+  ease: [0.22, 1, 0.36, 1],
+};
+
+const slideTransition = {
+  opacity: { duration: 0.52, ease: [0.22, 1, 0.36, 1] },
+  x: { duration: 0.72, ease: [0.22, 1, 0.36, 1] },
+  y: { duration: 0.72, ease: [0.22, 1, 0.36, 1] },
+  scale: { duration: 0.72, ease: [0.22, 1, 0.36, 1] },
+  filter: { duration: 0.62, ease: [0.22, 1, 0.36, 1] },
+};
+
+const slideMotion = {
+  title: {
+    future: { x: 0, y: "8vh", scale: 0.985 },
+    past: { x: 0, y: "-7vh", scale: 0.985 },
+  },
+  lead: {
+    future: { x: 0, y: "9vh", scale: 0.99 },
+    past: { x: 0, y: "-6vh", scale: 0.975 },
+  },
+  pillarLeft: {
+    future: { x: "-5vw", y: "5vh", scale: 0.985 },
+    past: { x: "4vw", y: "-5vh", scale: 0.975 },
+  },
+  pillarRight: {
+    future: { x: "5vw", y: "5vh", scale: 0.985 },
+    past: { x: "-4vw", y: "-5vh", scale: 0.975 },
+  },
+  close: {
+    future: { x: 0, y: "7vh", scale: 0.96 },
+    past: { x: 0, y: "-4vh", scale: 1.015 },
+  },
+};
+
 const useWorkStoryEffects = (scrollRef) => {
-  const [progress, setProgress] = useState(0);
   const rafRef = useRef(null);
-  const lastProgressRef = useRef(0);
-  const isScrolling = useRef(false);
+  const isMobileRef = useRef(false);
+  const parallaxSectionsRef = useRef([]);
 
   useEffect(() => {
     const root = scrollRef.current;
     if (!root) return undefined;
 
-    const syncStoryFrameHeight = () => {
+    const mediaQuery = window.matchMedia("(max-width: 840px)");
+    const syncCachedLayout = () => {
+      isMobileRef.current = mediaQuery.matches;
       root.style.setProperty("--story-frame-height", `${root.clientHeight}px`);
+      parallaxSectionsRef.current = Array.from(root.querySelectorAll("[data-parallax-section]"));
     };
 
-    syncStoryFrameHeight();
-    window.addEventListener("resize", syncStoryFrameHeight);
-    window.addEventListener("orientationchange", syncStoryFrameHeight);
-    window.visualViewport?.addEventListener("resize", syncStoryFrameHeight);
+    syncCachedLayout();
+    window.addEventListener("resize", syncCachedLayout, { passive: true });
+    window.addEventListener("orientationchange", syncCachedLayout, { passive: true });
+    window.visualViewport?.addEventListener("resize", syncCachedLayout, { passive: true });
+    mediaQuery.addEventListener?.("change", syncCachedLayout);
 
     const revealObserver = new IntersectionObserver(
       (entries) => {
@@ -225,9 +271,10 @@ const useWorkStoryEffects = (scrollRef) => {
     });
 
     return () => {
-      window.removeEventListener("resize", syncStoryFrameHeight);
-      window.removeEventListener("orientationchange", syncStoryFrameHeight);
-      window.visualViewport?.removeEventListener("resize", syncStoryFrameHeight);
+      window.removeEventListener("resize", syncCachedLayout);
+      window.removeEventListener("orientationchange", syncCachedLayout);
+      window.visualViewport?.removeEventListener("resize", syncCachedLayout);
+      mediaQuery.removeEventListener?.("change", syncCachedLayout);
       revealObserver.disconnect();
       if (rafRef.current) cancelAnimationFrame(rafRef.current);
     };
@@ -235,40 +282,34 @@ const useWorkStoryEffects = (scrollRef) => {
 
   const handleScroll = () => {
     const root = scrollRef.current;
-    if (!root) return;
-    if (rafRef.current) return;
+    if (!root || rafRef.current) return;
 
     rafRef.current = requestAnimationFrame(() => {
       rafRef.current = null;
-      const isMobile = window.matchMedia("(max-width: 840px)").matches;
-      const maxScroll = root.scrollHeight - root.clientHeight;
-      const nextProgress = maxScroll <= 0 ? 0 : (root.scrollTop / maxScroll) * 100;
-      const progressRatio = nextProgress / 100;
+      const scrollTop = root.scrollTop;
+      const clientHeight = root.clientHeight;
+      const maxScroll = root.scrollHeight - clientHeight;
+      const progressRatio = maxScroll <= 0 ? 0 : scrollTop / maxScroll;
 
-      if (Math.abs(nextProgress - lastProgressRef.current) > 0.6) {
-        lastProgressRef.current = nextProgress;
-        setProgress(nextProgress);
-      }
-
-      const scrollRatio = root.scrollTop / root.clientHeight;
+      const scrollRatio = scrollTop / clientHeight;
       const bgOpacity = scrollRatio <= 0.05
         ? 0.8
         : Math.max(0.2, 0.8 - ((scrollRatio - 0.05) * 1.08));
       root.style.setProperty("--bg-opacity", bgOpacity.toFixed(3));
 
-      if (isMobile) return;
+      if (isMobileRef.current) return;
 
-      root.style.setProperty("--scroll-progress", `${progressRatio}`);
-      root.style.setProperty("--scroll-shift", `${root.scrollTop * -0.05}px`);
-      root.style.setProperty("--scroll-shift-alt", `${root.scrollTop * 0.032}px`);
+      root.style.setProperty("--scroll-progress", progressRatio.toFixed(4));
+      root.style.setProperty("--scroll-shift", `${scrollTop * -0.05}px`);
+      root.style.setProperty("--scroll-shift-alt", `${scrollTop * 0.032}px`);
 
       const rootRect = root.getBoundingClientRect();
-      const viewportCenter = root.clientHeight / 2;
+      const viewportCenter = clientHeight / 2;
 
-      root.querySelectorAll("[data-parallax-section]").forEach((section) => {
+      parallaxSectionsRef.current.forEach((section) => {
         const rect = section.getBoundingClientRect();
         const sectionCenter = rect.top - rootRect.top + rect.height / 2;
-        const distance = (sectionCenter - viewportCenter) / root.clientHeight;
+        const distance = (sectionCenter - viewportCenter) / clientHeight;
         const clamped = Math.max(-1, Math.min(1, distance));
         section.style.setProperty("--section-progress", clamped.toFixed(3));
         section.style.setProperty("--p-ghost", `${clamped * -132}px`);
@@ -276,7 +317,7 @@ const useWorkStoryEffects = (scrollRef) => {
     });
   };
 
-  return { progress, handleScroll };
+  return { handleScroll };
 };
 
 const handlePillarLensMove = (event) => {
@@ -343,31 +384,62 @@ const renderFilledTitleWord = (word, className = "") => renderSpotlightWord(word
 });
 
 const SpotlightTitle = ({ words, className = "" }) => (
-  <h2 className={`${styles.sectionTitleStacked} ${styles.spotlightTitle} ${className}`}>
+  <h2
+    className={`${styles.sectionTitleStacked} ${styles.spotlightTitle} ${className}`}
+    aria-label={words.join(" ")}
+  >
     {words.map((word) => renderFocusWord(word))}
   </h2>
 );
 
 const SystemSpotlightTitle = () => (
-  <h2 className={`${styles.sectionTitleStacked} ${styles.spotlightTitle} ${styles.systemTitle} ${styles.systemFilledTitle}`}>
+  <h2
+    className={`${styles.sectionTitleStacked} ${styles.spotlightTitle} ${styles.systemTitle} ${styles.systemFilledTitle}`}
+    aria-label="Building The Process"
+  >
     {renderFilledTitleWord("Building", styles.spotlightTitleLight)}
     {renderFilledTitleWord("The", styles.spotlightTitleLight)}
     {renderFilledTitleWord("Process", styles.spotlightTitleCopper)}
   </h2>
 );
 
-const SectionShell = ({ id, kicker, title, children, className = "" }) => (
-  <section
-    id={id}
-    className={`${styles.section} ${className}`}
-    data-parallax-section
-    data-reveal
-  >
-    {kicker && <span className={styles.kicker}>{kicker}</span>}
-    {typeof title === 'string' ? <h2>{title}</h2> : title}
-    {children}
-  </section>
-);
+const SectionShell = ({ id, kicker, title, children, className = "" }) => {
+  const sectionRef = useRef(null);
+  const [shouldRenderContent, setShouldRenderContent] = useState(false);
+
+  useEffect(() => {
+    const section = sectionRef.current;
+    if (!section) return undefined;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setShouldRenderContent(true);
+          observer.disconnect();
+        }
+      },
+      { root: null, rootMargin: "85% 0px", threshold: 0 }
+    );
+
+    observer.observe(section);
+    return () => observer.disconnect();
+  }, []);
+
+  return (
+    <section
+      ref={sectionRef}
+      id={id}
+      className={`${styles.section} ${className}`}
+      data-parallax-section
+      data-reveal
+      data-section-ready={shouldRenderContent ? "true" : "false"}
+    >
+      {kicker && <span className={styles.kicker}>{kicker}</span>}
+      {typeof title === 'string' ? <h2>{title}</h2> : title}
+      {shouldRenderContent ? children : <div className={styles.sectionPlaceholder} aria-hidden="true" />}
+    </section>
+  );
+};
 
 const GapSvg = () => (
   <svg className={`${styles.animatedSvg} ${styles.gapSvg}`} viewBox="0 0 520 260" aria-hidden="true">
@@ -725,6 +797,8 @@ const GapSection = ({ scrollRef }) => {
   const pinReadyRef = useRef(
     typeof window === "undefined" || !window.matchMedia("(max-width: 840px)").matches
   );
+  const rafRef = useRef(null);
+  const metricsRef = useRef({ isMobile: false, sectionStart: 0, pinDistance: 1 });
 
   useEffect(() => {
     const root = scrollRef.current;
@@ -732,92 +806,82 @@ const GapSection = ({ scrollRef }) => {
     if (!root || !section) return undefined;
 
     const clamp = (value, min, max) => Math.min(Math.max(value, min), max);
+    const mediaQuery = window.matchMedia("(max-width: 840px)");
 
-    const getGapMetrics = () => {
-      const sectionStart = section.offsetTop;
-      const pinDistance = Math.max(section.offsetHeight - root.clientHeight, 1);
-      return { sectionStart, pinDistance };
+    const syncGapMetrics = () => {
+      metricsRef.current = {
+        isMobile: mediaQuery.matches,
+        sectionStart: section.offsetTop,
+        pinDistance: Math.max(section.offsetHeight - root.clientHeight, 1),
+      };
     };
 
     const updateGapState = () => {
-      const isMobile = window.matchMedia("(max-width: 840px)").matches;
-      const { sectionStart, pinDistance } = getGapMetrics();
-      const rawProgress = (root.scrollTop - sectionStart) / pinDistance;
-      const latest = clamp(rawProgress, 0, 1);
-      const nextPinReady = !isMobile || root.scrollTop >= sectionStart - 1;
+      if (rafRef.current) return;
 
-      if (pinReadyRef.current !== nextPinReady) {
-        pinReadyRef.current = nextPinReady;
-        setIsPinReady(nextPinReady);
-      }
+      rafRef.current = requestAnimationFrame(() => {
+        rafRef.current = null;
+        const { isMobile, sectionStart, pinDistance } = metricsRef.current;
+        const scrollTop = root.scrollTop;
+        const rawProgress = (scrollTop - sectionStart) / pinDistance;
+        const latest = clamp(rawProgress, 0, 1);
+        const nextPinReady = !isMobile || scrollTop >= sectionStart - 1;
 
-      let next = 6;
-      if (latest < 0.15) next = 1;
-      else if (latest < 0.31) next = 2;
-      else if (latest < 0.47) next = 3;
-      else if (latest < 0.63) next = 4;
-      else if (latest < 0.79) next = 5;
+        if (pinReadyRef.current !== nextPinReady) {
+          pinReadyRef.current = nextPinReady;
+          setIsPinReady(nextPinReady);
+        }
 
-      if (activeIndexRef.current !== next) {
-        activeIndexRef.current = next;
-        setActiveIndex(next);
-      }
+        let next = 6;
+        if (latest < 0.15) next = 1;
+        else if (latest < 0.31) next = 2;
+        else if (latest < 0.47) next = 3;
+        else if (latest < 0.63) next = 4;
+        else if (latest < 0.79) next = 5;
+
+        if (activeIndexRef.current !== next) {
+          activeIndexRef.current = next;
+          setActiveIndex(next);
+        }
+      });
     };
 
+    const handleMetricChange = () => {
+      syncGapMetrics();
+      updateGapState();
+    };
+
+    syncGapMetrics();
     updateGapState();
     root.addEventListener("scroll", updateGapState, { passive: true });
-    window.addEventListener("resize", updateGapState);
-    window.addEventListener("orientationchange", updateGapState);
-    window.visualViewport?.addEventListener("resize", updateGapState);
+    window.addEventListener("resize", handleMetricChange, { passive: true });
+    window.addEventListener("orientationchange", handleMetricChange, { passive: true });
+    window.visualViewport?.addEventListener("resize", handleMetricChange, { passive: true });
+    mediaQuery.addEventListener?.("change", handleMetricChange);
 
     return () => {
       root.removeEventListener("scroll", updateGapState);
-      window.removeEventListener("resize", updateGapState);
-      window.removeEventListener("orientationchange", updateGapState);
-      window.visualViewport?.removeEventListener("resize", updateGapState);
+      window.removeEventListener("resize", handleMetricChange);
+      window.removeEventListener("orientationchange", handleMetricChange);
+      window.visualViewport?.removeEventListener("resize", handleMetricChange);
+      mediaQuery.removeEventListener?.("change", handleMetricChange);
+      if (rafRef.current) cancelAnimationFrame(rafRef.current);
     };
   }, [scrollRef]);
 
-  const slideMotion = {
-    title: {
-      future: "translate3d(0, 8vh, 0) scale(0.985)",
-      past: "translate3d(0, -7vh, 0) scale(0.985)",
-    },
-    lead: {
-      future: "translate3d(0, 9vh, 0) scale(0.99)",
-      past: "translate3d(0, -6vh, 0) scale(0.975)",
-    },
-    pillarLeft: {
-      future: "translate3d(-5vw, 5vh, 0) scale(0.985)",
-      past: "translate3d(4vw, -5vh, 0) scale(0.975)",
-    },
-    pillarRight: {
-      future: "translate3d(5vw, 5vh, 0) scale(0.985)",
-      past: "translate3d(-4vw, -5vh, 0) scale(0.975)",
-    },
-    close: {
-      future: "translate3d(0, 7vh, 0) scale(0.96)",
-      past: "translate3d(0, -4vh, 0) scale(1.015)",
-    },
-  };
-
   const getSlideProps = (index, preset = "title") => ({
-    initial: { opacity: 0, transform: slideMotion[preset].future },
+    initial: { opacity: 0, ...slideMotion[preset].future },
     animate: {
       opacity: isPinReady && activeIndex === index ? 1 : 0,
-      transform: activeIndex === index
-        ? "translate3d(0, 0, 0) scale(1)"
+      ...(activeIndex === index
+        ? { x: 0, y: 0, scale: 1 }
         : activeIndex > index
           ? slideMotion[preset].past
-          : slideMotion[preset].future,
+          : slideMotion[preset].future),
       filter: isPinReady && activeIndex === index ? "blur(0px)" : "blur(10px)",
       pointerEvents: isPinReady && activeIndex === index ? "auto" : "none"
     },
-    transition: {
-      opacity: { duration: 0.46, ease: [0.23, 1, 0.32, 1] },
-      transform: { duration: 0.68, ease: [0.23, 1, 0.32, 1] },
-      filter: { duration: 0.56, ease: [0.23, 1, 0.32, 1] },
-    },
+    transition: slideTransition,
     "aria-hidden": activeIndex !== index
   });
 
@@ -1311,7 +1375,7 @@ const TechniqueChain = ({ items }) => {
             <div
               key={item.id}
               className={styles.evidenceColumnWrapper}
-              style={{ "--plot-x": `${plot.x}%`, "--plot-bottom": `${plot.bottom}px`, "--card-width": plot.width }}
+              style={{ "--plot-x": `${plot.x}%`, "--plot-bottom": `${plot.bottom}px`, "--card-width": plot.width, "--motion-delay": `${index * 70}ms` }}
             >
               <div className={styles.evidenceColumnStatic}>
                 <div className={styles.evidenceCardImageContainer}>
@@ -1345,12 +1409,15 @@ const TechniqueChain = ({ items }) => {
 const WorkStory = () => {
   const scrollRef = useRef(null);
   const [isMounted, setIsMounted] = useState(false);
+  const { scrollYProgress } = useScroll({ container: scrollRef });
+  const smoothProgress = useSpring(scrollYProgress, storySpring);
+  const glowOpacity = useTransform(smoothProgress, [0, 0.12, 1], [0.42, 0.9, 0.68]);
 
   useEffect(() => {
     setIsMounted(true);
   }, []);
 
-  const { progress, handleScroll } = useWorkStoryEffects(scrollRef);
+  const { handleScroll } = useWorkStoryEffects(scrollRef);
 
   return (
     <>
@@ -1367,11 +1434,17 @@ const WorkStory = () => {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
-        transition={{ duration: 0.6, ease: "easeInOut" }}
+        transition={routeTransition}
       >
         <div className={styles.glowingBg} aria-hidden="true" />
         <div className={styles.progressTrack} aria-hidden="true">
-          <span style={{ width: `${progress}%` }} />
+          <motion.span
+            style={{
+              scaleX: smoothProgress,
+              opacity: glowOpacity,
+              transformOrigin: "left center",
+            }}
+          />
         </div>
 
         <header className={styles.hero} data-reveal>

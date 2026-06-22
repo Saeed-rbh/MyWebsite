@@ -1,7 +1,7 @@
 
 import "./App.css";
 import React, { lazy, Suspense } from "react";
-import { AnimatePresence } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import { useSelector } from "react-redux";
 import { BrowserRouter as Router, Navigate, Route, Routes, useLocation } from "react-router-dom";
 import store from "./store/configureStore";
@@ -14,6 +14,7 @@ import Mouse from "./Mouse";
 import ScrollToNavigate from "./Helper/ScrollToNavigate"; // Import scroll detector
 import ErrorBoundary from "./components/ErrorBoundary/ErrorBoundary";
 import BackgroundLattice from "./components/BackgroundLattice/BackgroundLattice";
+import SiteMotionObserver from "./components/SiteMotion/SiteMotionObserver";
 
 import FallbackLoader from "./Loader/FallbackLoader";
 const AcademicCV = lazy(() => import("./pages/Resume/Resume"));
@@ -31,12 +32,19 @@ function AppContent() {
   useUpdateVariable();
   const { visibility } = useSelector((state) => state.ui);
   const location = useLocation();
+  const normalizedPath = (() => {
+    try {
+      return decodeURIComponent(location.pathname);
+    } catch {
+      return location.pathname;
+    }
+  })();
 
   // Hide global elements on Admin Dashboard, Login page
-  const isDashboard = location.pathname.startsWith('/admin') || location.pathname === '/login';
-  const isWorkStoryPage = location.pathname === '/R&D-Portfolio' || location.pathname === '/work-story';
-  const isStoryPage = location.pathname === '/research-progress' || isWorkStoryPage;
-  const isMafia = location.pathname === '/Mafia';
+  const isDashboard = normalizedPath.startsWith('/admin') || normalizedPath === '/login';
+  const isWorkStoryPage = normalizedPath === '/R&D-Portfolio' || normalizedPath === '/work-story';
+  const isStoryPage = normalizedPath === '/research-progress' || isWorkStoryPage;
+  const isMafia = normalizedPath === '/Mafia';
 
   return (
     <div className="App">
@@ -55,20 +63,32 @@ function AppContent() {
 
       {visibility && (
         <ErrorBoundary>
+          <SiteMotionObserver />
           <Suspense fallback={null}>
             <AnimatePresence mode="wait">
-              <Routes location={location} key={location.pathname}>
-                <Route exact path="/" element={<HomePage />} />
-                <Route path="/R&D-Portfolio" element={<WorkStory />} />
-                <Route path="/work-story" element={<Navigate to="/R&D-Portfolio" replace />} />
-                <Route path="/AcademicCV" element={<AcademicCV />} />
-                <Route path="/academiccv" element={<AcademicCV />} />
-                <Route exact path="/Graphene" element={<Graphene />} />
-                <Route path="/research-progress" element={<ResearchProgress />} />
-                <Route path="/Mafia" element={<Mafia />} />
-                <Route exact path="/admin" element={<AdminDashboard />} />
-                <Route exact path="/login" element={<Login />} />
-              </Routes>
+              <motion.div
+                key={location.pathname}
+                className="RouteMotionFrame"
+                data-route-motion-root
+                initial={{ opacity: 0, transform: "translate3d(0, 18px, 0) scale(0.985)", filter: "blur(10px)" }}
+                animate={{ opacity: 1, transform: "translate3d(0, 0, 0) scale(1)", filter: "blur(0px)" }}
+                exit={{ opacity: 0, transform: "translate3d(0, -16px, 0) scale(0.988)", filter: "blur(8px)" }}
+                transition={{ duration: 0.48, ease: [0.23, 1, 0.32, 1] }}
+              >
+                <Routes location={location}>
+                  <Route exact path="/" element={<HomePage />} />
+                  <Route path="/R&D-Portfolio" element={<WorkStory />} />
+                  <Route path="/R%26D-Portfolio" element={<Navigate to="/R&D-Portfolio" replace />} />
+                  <Route path="/work-story" element={<Navigate to="/R&D-Portfolio" replace />} />
+                  <Route path="/AcademicCV" element={<AcademicCV />} />
+                  <Route path="/academiccv" element={<AcademicCV />} />
+                  <Route exact path="/Graphene" element={<Graphene />} />
+                  <Route path="/research-progress" element={<ResearchProgress />} />
+                  <Route path="/Mafia" element={<Mafia />} />
+                  <Route exact path="/admin" element={<AdminDashboard />} />
+                  <Route exact path="/login" element={<Login />} />
+                </Routes>
+              </motion.div>
             </AnimatePresence>
           </Suspense>
         </ErrorBoundary>
