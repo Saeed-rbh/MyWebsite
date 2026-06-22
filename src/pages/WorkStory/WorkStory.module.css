@@ -1328,10 +1328,10 @@
   height: auto;
 }
 
-.gapHighlightMeta span:not(:first-child)::before {
+/* .gapHighlightMeta span:not(:first-child)::before {
   content: " • ";
   -webkit-text-fill-color: transparent;
-}
+}*/
 
 .gapHighlight {
   max-width: 880px;
