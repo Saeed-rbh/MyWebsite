@@ -18,6 +18,7 @@
   --story-frame-height: 100svh;
   --bg-opacity: 0.8;
   --parallax-ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --gap-body: rgba(237, 223, 212, 0.82);
   position: absolute;
   inset: 0;
   z-index: 1;
