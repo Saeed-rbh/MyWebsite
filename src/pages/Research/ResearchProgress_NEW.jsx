@@ -100,15 +100,16 @@ const ChapterSubtitle = styled(motion.h2)`
 `;
 
 const IntroDescription = styled(motion.p)`
-  font-size: 1.2rem;
+  font-size: clamp(0.96rem, 1.28vw, 1.1rem);
   color: #ddd;
-  line-height: 1.8;
+  line-height: 1.45;
   max-width: 700px;
   font-family: "Poppins", sans-serif;
-  font-weight: 300;
+  font-weight: 100;
+  /* letter-spacing: 0.02em; */
   
   @media (max-width: 768px) {
-    font-size: 1rem;
+    font-size: clamp(0.82rem, 2.7vw, 1rem);
   }
 `;
 
