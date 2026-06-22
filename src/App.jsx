@@ -1,7 +1,7 @@
 
 import "./App.css";
 import React, { lazy, Suspense } from "react";
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence, motion } from "motion/react";
 import { useSelector } from "react-redux";
 import { BrowserRouter as Router, Navigate, Route, Routes, useLocation } from "react-router-dom";
 import store from "./store/configureStore";

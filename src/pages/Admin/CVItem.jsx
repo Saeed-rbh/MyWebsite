@@ -1,5 +1,5 @@
 import React from 'react';
-import { Reorder, useDragControls, motion, AnimatePresence } from 'framer-motion';
+import { Reorder, useDragControls, motion, AnimatePresence } from 'motion/react';
 import {
     FaTrash, FaPlus, FaCloudUploadAlt, FaCheck, FaTimes,
     FaArrowUp, FaArrowDown, FaLayerGroup, FaChevronDown, FaChevronUp, FaSpinner

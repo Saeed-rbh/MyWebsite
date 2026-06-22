@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
-import { motion, useScroll, useSpring, useTransform } from "framer-motion";
+import { motion, useScroll, useSpring, useTransform } from "motion/react";
 import {
   TbHexagon,
 } from "react-icons/tb";

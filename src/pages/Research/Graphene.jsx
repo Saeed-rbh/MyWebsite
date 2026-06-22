@@ -15,7 +15,7 @@ import { CgArrowLongRight } from "react-icons/cg";
 import { useSelector } from "react-redux";
 // import removed - selectVisibility no longer used after Redux migration
 import { BsFillTriangleFill } from "react-icons/bs";
-import { motion } from "framer-motion";
+import { motion } from "motion/react";
 import { HiArrowSmRight } from "react-icons/hi";
 import { SiGooglescholar } from "react-icons/si";
 import { RiDownloadCloudFill } from "react-icons/ri";

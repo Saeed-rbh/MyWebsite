@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef, useCallback } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence } from "motion/react";
 import styled from "@emotion/styled";
 import { useWheel, useDrag } from "@use-gesture/react";
 import Header from "../../components/Header/Header";

@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useSpring, animated, easings } from "react-spring";
 import { useLocation, useNavigate } from "react-router-dom";
 import { TbHomeMove } from "react-icons/tb";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence } from "motion/react";
 import { updateMenu } from "../../actions/Actions";
 import HomePage from "../../pages/Home/Home";
 import Logo from "./Logo";

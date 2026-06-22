@@ -11,7 +11,7 @@ import {
     FaAddressBook, FaHome, FaArrowUp, FaArrowDown
 } from 'react-icons/fa';
 import { MdDashboard } from 'react-icons/md';
-import { Reorder, useDragControls } from 'framer-motion';
+import { Reorder, useDragControls } from 'motion/react';
 import CVItem from './CVItem';
 
 // Helper to format field labels

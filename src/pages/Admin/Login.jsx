@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { login } from '../../services/api';
 import { useNavigate } from 'react-router-dom';
 import styles from './Login.module.css';
-import { motion } from 'framer-motion';
+import { motion } from 'motion/react';
 
 const Login = () => {
     const [credentials, setCredentials] = useState({ username: '', password: '' });

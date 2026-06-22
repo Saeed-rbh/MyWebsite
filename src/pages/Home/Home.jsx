@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { motion } from "framer-motion";
+import { motion } from "motion/react";
 import "./Home.css";
 import styles from "./Home.module.css";
 import SEO from "../../components/SEO/SEO";
