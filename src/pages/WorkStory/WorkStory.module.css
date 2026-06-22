@@ -1402,6 +1402,12 @@
   transition: opacity 90ms ease;
 }
 
+.focusArrow {
+  color: var(--gap-body) !important;
+  -webkit-text-fill-color: var(--gap-body) !important;
+  -webkit-text-stroke: 0 !important;
+}
+
 .gapHighlight > span:not(.gapHighlightSmall):not(.gapHighlightMeta) {
   max-width: 720px;
   color: var(--gap-body);

@@ -1033,8 +1033,8 @@ const GapSection = ({ scrollRef }) => {
           <div className={styles.gapHighlight}>
             <span className={styles.gapHighlightSmall}>My Focus</span>
             <strong>
-              {renderFocusWord("Build >>")}
-              {renderFocusWord("measure >>")}
+              {renderFocusWord(<>Build <span className={styles.focusArrow}>{">>"}</span></>)}
+              {renderFocusWord(<>measure <span className={styles.focusArrow}>{">>"}</span></>)}
               {renderFocusWord("Optimize")}
             </strong>
             <span>
