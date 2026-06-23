@@ -1211,20 +1211,20 @@
 
 .gapPillarIndex {
   position: absolute;
-  bottom: -0.08em;
+  bottom: 0.12em;
   z-index: -1;
   width: max-content;
   display: block;
   padding: 0;
   color: var(--story-accent);
   font-family: "Poppins", sans-serif;
-  font-size: clamp(7rem, 14vw, 13rem);
+  font-size: clamp(7rem, 17vw, 13rem);
   font-weight: 900;
   letter-spacing: 0.02em;
   line-height: 0.72;
   text-transform: uppercase;
   text-shadow: none;
-  opacity: 0.16;
+  opacity: 0.1;
   pointer-events: none;
   -webkit-text-stroke: 1px rgba(212, 157, 129, 0.38);
 }
