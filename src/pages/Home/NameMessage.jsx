@@ -8,7 +8,7 @@ const NameMessage = ({ MenuHide, delay }) => {
   const springProps = useSpring(AnimationConstants(MenuHide, delay));
   return (
     <animated.b style={springProps} className={styles.nameContainer}>
-      I'm Saeed Arabha
+      R<span className={styles.ampersand}>&</span>D Journey
       <animated.div style={springProps} className={styles.separator}></animated.div>
     </animated.b>
   );

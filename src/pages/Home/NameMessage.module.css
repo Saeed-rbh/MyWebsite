@@ -16,6 +16,16 @@
     margin-top: -80px;
 }
 
+.ampersand {
+    font-family: Georgia, "Times New Roman", serif;
+    font-weight: 500;
+    font-size: 0.9em;
+    margin: 0 0.05em;
+    background: inherit;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
 .separator {
     background: linear-gradient(to right, #f9ebe50f 0%, #d4a58d38 100%);
     padding: 0;

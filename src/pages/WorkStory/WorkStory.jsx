@@ -865,6 +865,7 @@ const GapSection = ({ scrollRef }) => {
         if (activeIndexRef.current !== next) {
           activeIndexRef.current = next;
           setActiveIndex(next);
+          document.getElementById("gap")?.setAttribute("data-active-slide", next);
         }
       });
     };
@@ -1479,7 +1480,7 @@ const WorkStory = () => {
             <div className={styles.heroCopy}>
               <HeroGraphene />
               <h1>
-                <span>SAEED ARABHA</span>
+                <span>R<span className={styles.regularAmp}>&</span>D JOURNEY</span>
               </h1>
               <p>Process & Metrology Engineer</p>
 

@@ -71,6 +71,7 @@ const Header = () => {
   const MenuStyle = useHoverMoveEffect(MenuRef, 100, 0.2);
 
   const [activeSection, setActiveSection] = useState("");
+  const [activeGapSlide, setActiveGapSlide] = useState("1");
 
   useEffect(() => {
     const isRDPage = location.pathname.toLowerCase() === "/r&d-portfolio";
@@ -84,21 +85,22 @@ const Header = () => {
     let scrollContainer = null;
 
     const updateActiveSection = () => {
-      if (!scrollContainer) return;
-
-      const containerRect = scrollContainer.getBoundingClientRect();
-      const viewportCenter = scrollContainer.clientHeight / 2;
       let nextSection = "";
       let closestDistance = Number.POSITIVE_INFINITY;
+      let gapRect = null;
+
+      const viewportCenter = window.innerHeight / 2;
 
       sectionIds.forEach((id) => {
         const element = document.getElementById(id);
         if (!element) return;
 
         const rect = element.getBoundingClientRect();
-        const sectionCenter = rect.top - containerRect.top + rect.height / 2;
+        if (id === "gap") gapRect = rect;
+
+        const sectionCenter = rect.top + rect.height / 2;
         const distance = Math.abs(sectionCenter - viewportCenter);
-        const intersectsViewport = rect.bottom > containerRect.top && rect.top < containerRect.bottom;
+        const intersectsViewport = rect.bottom > 0 && rect.top < window.innerHeight;
 
         if (intersectsViewport && distance < closestDistance) {
           closestDistance = distance;
@@ -108,6 +110,24 @@ const Header = () => {
 
       if (nextSection) {
         setActiveSection((current) => (current === nextSection ? current : nextSection));
+      } else if (scrollContainer && scrollContainer.scrollTop < 100) {
+        setActiveSection("");
+      }
+
+      if (nextSection === "gap" && gapRect) {
+        const pinDistance = Math.max(gapRect.height - window.innerHeight, 1);
+        const scrolledPastGapTop = -gapRect.top;
+        const rawProgress = scrolledPastGapTop / pinDistance;
+        const latest = Math.min(Math.max(rawProgress, 0), 1);
+        
+        let next = "6";
+        if (latest < 0.15) next = "1";
+        else if (latest < 0.31) next = "2";
+        else if (latest < 0.47) next = "3";
+        else if (latest < 0.63) next = "4";
+        else if (latest < 0.79) next = "5";
+
+        setActiveGapSlide((current) => (current === next ? current : next));
       }
     };
 
@@ -145,13 +165,22 @@ const Header = () => {
   }, [location.pathname]);
 
   const sectionLabels = {
-    gap: "GAP",
-    process: "CFE",
-    system: "SYSTEM",
-    evidence: "PROOF",
-    modeling: "MODEL",
-    industry: "VALUE",
-    approach: "APPROACH"
+    gap: "The Gap",
+    process: "The Answer",
+    system: "The System",
+    evidence: "Evidence",
+    modeling: "Modeling",
+    industry: "Industry demand",
+    approach: "My Approach"
+  };
+
+  const gapSubLabels = {
+    "1": "The Gap",
+    "2": "Industry Demand",
+    "3": "Scale",
+    "4": "Cost",
+    "5": "Consistency",
+    "6": "My Focus"
   };
 
   const contactInfoAnimation1 = useSpring({
@@ -192,10 +221,26 @@ const Header = () => {
     }, 1000);
   };
 
-  const isRDPage = location.pathname.toLowerCase() === "/r&d-portfolio";
-  const currentLabel = (isRDPage && activeSection && sectionLabels[activeSection]) 
-    ? sectionLabels[activeSection] 
-    : (isRDPage ? "R&D" : null);
+  const getPageTitle = () => {
+    const path = location.pathname.toLowerCase();
+    if (path === "/") return null;
+    if (path === "/r&d-portfolio" || path === "/work-story") {
+      if (activeSection === "gap") {
+        return gapSubLabels[activeGapSlide] || "The Gap";
+      }
+      return (activeSection && sectionLabels[activeSection]) ? sectionLabels[activeSection] : "R&D journey";
+    }
+    if (path === "/academiccv") return "Academic CV";
+    if (path === "/graphene") return "Graphene";
+    if (path === "/research-progress") return "Research Progress";
+    
+    const formatted = location.pathname.replace(/^\//, '').replace(/-/g, ' ');
+    if (!formatted) return null;
+    return formatted.replace(/\b\w/g, l => l.toUpperCase());
+  };
+
+  const currentLabel = getPageTitle();
+  const isHomePage = location.pathname === "/";
 
   return (
     visibility && (
@@ -230,10 +275,10 @@ const Header = () => {
                 color: "#faf9f1"
               }}
             >
-              {isRDPage ? "Home" : "Home Page"}
+              {isHomePage ? "Home Page" : "Home"}
             </button>
             
-            {isRDPage && currentLabel && (
+            {!isHomePage && currentLabel && (
               <span style={{ 
                 margin: "0 16px 0 16px", 
                 opacity: 0.4, 
@@ -245,30 +290,27 @@ const Header = () => {
               }}>/</span>
             )}
             
-            <AnimatePresence mode="wait">
-              {isRDPage && currentLabel && (
-                <motion.div
-                  key={currentLabel}
-                  initial={{ opacity: 0, x: -4 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  exit={{ opacity: 0, x: 4 }}
-                  transition={{ duration: 0.15, ease: "easeInOut" }}
-                  style={{ display: "inline-flex", alignItems: "center" }}
-                >
-                  <span style={{ 
-                    fontWeight: 300, 
-                    letterSpacing: "0.05em", 
-                    color: "#d49d81", 
-                    fontSize: "12px",
-                    fontFamily: "Rubik, sans-serif",
-                    lineHeight: "normal",
-                    textShadow: "0 0 8px rgba(212, 157, 129, 0.25)"
-                  }}>
-                    {currentLabel}
-                  </span>
-                </motion.div>
-              )}
-            </AnimatePresence>
+            {!isHomePage && currentLabel && (
+              <motion.div
+                key={currentLabel}
+                initial={{ opacity: 0, x: -4 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.15, ease: "easeInOut" }}
+                style={{ display: "inline-flex", alignItems: "center" }}
+              >
+                <span style={{ 
+                  fontWeight: 300, 
+                  letterSpacing: "0.05em", 
+                  color: "#d49d81", 
+                  fontSize: "12px",
+                  fontFamily: "Rubik, sans-serif",
+                  lineHeight: "normal",
+                  textShadow: "0 0 8px rgba(212, 157, 129, 0.25)"
+                }}>
+                  {currentLabel}
+                </span>
+              </motion.div>
+            )}
           </animated.div>
           
           <animated.div style={contactInfoAnimation3}>
