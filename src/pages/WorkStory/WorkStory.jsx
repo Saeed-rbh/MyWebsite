@@ -660,16 +660,7 @@ const ConsistencyCheckSvg = () => (
     </defs>
 
     <g className={styles.consistencySheet}>
-      <g className={styles.consistencySheetDepth}>
-        {graphenePatch.bonds.map(([from, to]) => {
-          const [x1, y1] = graphenePatch.atoms[from];
-          const [x2, y2] = graphenePatch.atoms[to];
-          return <line key={`depth-${from}-${to}`} x1={x1 + 8} y1={y1 + 12} x2={x2 + 8} y2={y2 + 12} />;
-        })}
-        {graphenePatch.atoms.map(([cx, cy], index) => (
-          <circle key={`depth-${cx}-${cy}`} cx={cx + 8} cy={cy + 12} r={index < 6 ? "5.6" : "4.6"} />
-        ))}
-      </g>
+
       <g className={styles.consistencySheetBonds}>
         {graphenePatch.bonds.map(([from, to]) => {
           const [x1, y1] = graphenePatch.atoms[from];
