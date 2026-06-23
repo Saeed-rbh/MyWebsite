@@ -1620,18 +1620,19 @@ const WorkStory = () => {
                 <span
                   className={styles.gapFocusWord}
                   data-spotlight-mode="focus"
+                  data-text="My R&D"
                   onPointerEnter={handlePillarLensEnter}
                   onPointerMove={handlePillarLensMove}
                   onPointerLeave={handlePillarLensLeave}
                 >
                   <span className={styles.gapFocusWordOutline}>
-                    My <span style={{ color: "var(--gap-body)", WebkitTextStroke: "0" }}>R&amp;D</span>
+                    My <span className={styles.rdFocusText}>R&amp;D</span>
                   </span>
                   <span
                     className={styles.gapFocusWordFill}
                     aria-hidden="true"
                   >
-                    My <span style={{ color: "var(--gap-body)", WebkitTextStroke: "0" }}>R&amp;D</span>
+                    My <span className={styles.rdFocusText}>R&amp;D</span>
                   </span>
                 </span>
                 {renderFocusWord("Approach")}
