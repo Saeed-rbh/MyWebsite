@@ -1613,6 +1613,17 @@
   text-transform: uppercase;
 }
 
+.gapTitleCategory {
+  font-family: "Poppins", sans-serif;
+  color: var(--story-accent, #d49d81);
+  font-size: clamp(0.75rem, 1vw, 0.95rem);
+  line-height: 1;
+  font-weight: 800;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  margin-bottom: 4px;
+}
+
 .gapTitleHeavy {
   font-family: "Poppins", sans-serif;
   font-size: clamp(3.4rem, 7.4vw, 6rem);

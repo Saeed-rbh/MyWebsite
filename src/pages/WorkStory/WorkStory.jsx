@@ -959,7 +959,8 @@ const GapSection = ({ scrollRef }) => {
           <div className={styles.gapTitleWrapper}>
             <span className={styles.gapTitleAccent}>2D</span>
             <h2 className={styles.gapTitleMain}>
-              <span className={styles.gapTitleLight}>Graphene / h-BN / MoS2</span>
+              <span className={styles.gapTitleCategory}>2D Nanomaterials</span>
+              <span className={styles.gapTitleLight}>Graphene | h-BN | MoS2</span>
               <span className={styles.gapTitleHeavy}>
                 {renderPillarWord("The")}
                 {renderPillarWord("Manufacturing")}
