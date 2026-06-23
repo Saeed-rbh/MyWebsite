@@ -79,17 +79,21 @@ const Header = () => {
       setActiveSection("");
       return undefined;
     }
-
     const sectionIds = ["gap", "process", "system", "evidence", "modeling", "industry", "approach"];
     let rafId = null;
     let scrollContainer = null;
 
     const updateActiveSection = () => {
-      let nextSection = "";
-      let closestDistance = Number.POSITIVE_INFINITY;
-      let gapRect = null;
+      const isRDPage = location.pathname.toLowerCase() === "/r&d-portfolio";
+      if (!isRDPage) {
+        setActiveSection("");
+        return;
+      }
 
       const viewportCenter = window.innerHeight / 2;
+      let nextSection = "";
+      let gapRect = null;
+      let minDistance = Infinity;
 
       sectionIds.forEach((id) => {
         const element = document.getElementById(id);
@@ -98,13 +102,20 @@ const Header = () => {
         const rect = element.getBoundingClientRect();
         if (id === "gap") gapRect = rect;
 
-        const sectionCenter = rect.top + rect.height / 2;
-        const distance = Math.abs(sectionCenter - viewportCenter);
-        const intersectsViewport = rect.bottom > 0 && rect.top < window.innerHeight;
-
-        if (intersectsViewport && distance < closestDistance) {
-          closestDistance = distance;
+        // Check if the section spans the center of the viewport
+        if (rect.top <= viewportCenter && rect.bottom >= viewportCenter) {
           nextSection = id;
+        } else {
+          // Fallback: if no section spans the center (e.g., small elements or gaps),
+          // find the one closest to the center.
+          const distance = Math.min(Math.abs(rect.top - viewportCenter), Math.abs(rect.bottom - viewportCenter));
+          if (!nextSection && distance < minDistance) {
+            minDistance = distance;
+            // Only use fallback if it's actually somewhat in view
+            if (rect.top < window.innerHeight && rect.bottom > 0) {
+              nextSection = id;
+            }
+          }
         }
       });
 

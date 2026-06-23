@@ -212,11 +212,11 @@
 .hero p {
   position: relative;
   z-index: 1;
-  max-width: 520px;
-  margin: 14px 0 0;
+  max-width: 100%;
+  margin: 10px 0 0;
   color: #bfae9f;
-  font-size: clamp(16px, 1.8vw, 22px);
-  line-height: 1.35;
+  font-size: clamp(0.8rem, 2.4vw, 0.9rem);
+  line-height: 1.38;
   font-weight: 400;
   letter-spacing: 0.04em;
   white-space: nowrap;
