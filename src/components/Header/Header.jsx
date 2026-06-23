@@ -150,8 +150,20 @@ const Header = () => {
       });
     };
 
+    let setupTimer = null;
+    let attempts = 0;
+
     const setup = () => {
-      scrollContainer = document.querySelector('main[class*="page"]') || document.querySelector("main");
+      const gapElement = document.getElementById("gap");
+      if (!gapElement) {
+        attempts++;
+        if (attempts < 30) {
+          setupTimer = setTimeout(setup, 100);
+        }
+        return;
+      }
+
+      scrollContainer = gapElement.closest('main') || document.querySelector('main[class*="page"]') || document.querySelector("main");
       if (!scrollContainer) return;
 
       updateActiveSection();
@@ -161,10 +173,10 @@ const Header = () => {
       window.visualViewport?.addEventListener("resize", requestUpdate, { passive: true });
     };
 
-    const timer = setTimeout(setup, 120);
+    setup();
 
     return () => {
-      clearTimeout(timer);
+      if (setupTimer) clearTimeout(setupTimer);
       if (rafId) cancelAnimationFrame(rafId);
       if (scrollContainer) {
         scrollContainer.removeEventListener("scroll", requestUpdate);
