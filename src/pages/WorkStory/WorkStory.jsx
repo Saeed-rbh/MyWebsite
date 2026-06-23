@@ -1625,14 +1625,15 @@ const WorkStory = () => {
                   onPointerMove={handlePillarLensMove}
                   onPointerLeave={handlePillarLensLeave}
                 >
-                  <span className={styles.gapFocusWordOutline}>
-                    My <span className={styles.rdFocusText}>R&amp;D</span>
+                  <span className={styles.gapFocusWordOutline} style={{ whiteSpace: "nowrap" }}>
+                    My&nbsp;<span className={styles.rdFocusText}>R&amp;D</span>
                   </span>
                   <span
                     className={styles.gapFocusWordFill}
                     aria-hidden="true"
+                    style={{ whiteSpace: "nowrap" }}
                   >
-                    My <span className={styles.rdFocusText}>R&amp;D</span>
+                    My&nbsp;<span className={styles.rdFocusText}>R&amp;D</span>
                   </span>
                 </span>
                 {renderFocusWord("Approach")}
