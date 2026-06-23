@@ -1618,7 +1618,7 @@ const WorkStory = () => {
                 aria-label="My R&D Approach"
               >
                 <span
-                  className={styles.gapFocusWord}
+                  className={`${styles.gapFocusWord} ${styles.forceNoWrap}`}
                   data-spotlight-mode="focus"
                   data-text="My R&D"
                   onPointerEnter={handlePillarLensEnter}

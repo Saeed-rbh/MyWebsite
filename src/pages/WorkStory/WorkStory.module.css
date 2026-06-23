@@ -1459,6 +1459,17 @@
   -webkit-text-stroke: 0 !important;
 }
 
+.spotlightTitle .gapFocusWord.forceNoWrap {
+  white-space: nowrap !important;
+  text-wrap: nowrap !important;
+}
+
+.spotlightTitle .gapFocusWord.forceNoWrap .gapFocusWordOutline,
+.spotlightTitle .gapFocusWord.forceNoWrap .gapFocusWordFill {
+  white-space: nowrap !important;
+  text-wrap: nowrap !important;
+}
+
 .gapHighlight > span:not(.gapHighlightSmall):not(.gapHighlightMeta) {
   max-width: 720px;
   color: var(--gap-body);
