@@ -1596,12 +1596,12 @@ const WorkStory = () => {
             <div className={styles.beforeAfter}>
               <article>
                 <span>Before</span>
-                <h3>Academic question</h3>
+                <h3>Academic<br />Question</h3>
                 <p>Can the material be produced and measured?</p>
               </article>
               <article>
                 <span>After</span>
-                <h3>Industrial question</h3>
+                <h3>Industrial<br />Question</h3>
                 <p>
                   Can the process deliver consistent material at usable scale?
                 </p>
