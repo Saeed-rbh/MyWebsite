@@ -467,7 +467,7 @@
 }
 
 .section {
-  content-visibility: auto;
+  content-visibility: visible;
   contain-intrinsic-size: 1000px;
 }
 
