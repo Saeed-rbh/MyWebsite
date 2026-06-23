@@ -1129,6 +1129,7 @@
 
 .staggerLeft {
   align-self: flex-start;
+  margin-right: auto;
 }
 .staggerLeft .pillarContent {
   align-items: flex-start;
@@ -1144,6 +1145,7 @@
 }
 .staggerRight {
   align-self: flex-end;
+  margin-left: auto;
 }
 .staggerRight .pillarContent {
   align-items: flex-end;
