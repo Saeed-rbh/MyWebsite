@@ -961,9 +961,9 @@ const GapSection = ({ scrollRef }) => {
             <h2 className={styles.gapTitleMain}>
               <span className={styles.gapTitleLight}>Graphene / h-BN / MoS2</span>
               <span className={styles.gapTitleHeavy}>
-                <span>The</span>
-                <span>Manufacturing</span>
-                <span>Gap</span>
+                {renderPillarWord("The")}
+                {renderPillarWord("Manufacturing")}
+                {renderPillarWord("Gap")}
               </span>
               <span className={styles.gapTitleSub}>
                 {["Process Engineering", "Materials Characterization", "Scale-Up", "Root Cause Analysis"].map((item) => (
