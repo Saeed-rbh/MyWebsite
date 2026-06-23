@@ -1286,6 +1286,7 @@
   align-items: center;
   justify-content: flex-end;
   margin-left: 0;
+  flex-direction: row-reverse;
 }
 
 .staggerLeft .gapPillarFrame {
