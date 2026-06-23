@@ -984,7 +984,7 @@ const GapSection = ({ scrollRef }) => {
              <div className={styles.gapLeadText}>
                 <span className={styles.gapLeadEyebrow}>Promising materials are restricted by laboratory limitations</span>
                 <strong>
-                  <span>Industry Need</span>
+                  {renderPillarWord("Industry Need")}
                   <span>High</span>
                 </strong>
                 <span className={styles.gapLeadConnector}>Application-ready materials demand</span>
