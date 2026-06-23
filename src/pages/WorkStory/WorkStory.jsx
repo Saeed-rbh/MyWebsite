@@ -1613,8 +1613,30 @@ const WorkStory = () => {
             id="approach" 
             kicker="FRAMEWORK" 
             title={
-              <SpotlightTitle words={["My R&D", "Approach"]} />
-            } 
+              <h2
+                className={`${styles.sectionTitleStacked} ${styles.spotlightTitle}`}
+                aria-label="My R&D Approach"
+              >
+                <span
+                  className={styles.gapFocusWord}
+                  data-spotlight-mode="focus"
+                  onPointerEnter={handlePillarLensEnter}
+                  onPointerMove={handlePillarLensMove}
+                  onPointerLeave={handlePillarLensLeave}
+                >
+                  <span className={styles.gapFocusWordOutline}>
+                    My <span style={{ color: "var(--gap-body)", WebkitTextStroke: "0" }}>R&amp;D</span>
+                  </span>
+                  <span
+                    className={styles.gapFocusWordFill}
+                    aria-hidden="true"
+                  >
+                    My <span style={{ color: "var(--gap-body)", WebkitTextStroke: "0" }}>R&amp;D</span>
+                  </span>
+                </span>
+                {renderFocusWord("Approach")}
+              </h2>
+            }
             className={styles.asymApproach}
           >
             <div className={styles.finalChain}>
