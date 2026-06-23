@@ -1454,6 +1454,7 @@
 }
 
 .spotlightTitle .gapFocusWord .rdFocusText {
+  display: inline !important;
   color: var(--gap-body) !important;
   -webkit-text-fill-color: var(--gap-body) !important;
   -webkit-text-stroke: 0 !important;
@@ -1466,6 +1467,9 @@
 
 .spotlightTitle .gapFocusWord.forceNoWrap .gapFocusWordOutline,
 .spotlightTitle .gapFocusWord.forceNoWrap .gapFocusWordFill {
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: baseline !important;
   white-space: nowrap !important;
   text-wrap: nowrap !important;
 }
