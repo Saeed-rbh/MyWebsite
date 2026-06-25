@@ -591,6 +591,23 @@
   transition-delay: 0ms !important;
 }
 
+/* ── Custom animations for asymApproach internal elements ── */
+.asymApproach .approachCopy > * {
+  opacity: 0;
+  transform: translate3d(0, 32px, 0) scale(0.97);
+  filter: blur(6px);
+  transition: opacity 0.72s cubic-bezier(0.22, 1, 0.36, 1), transform 0.86s cubic-bezier(0.22, 1, 0.36, 1), filter 0.68s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: opacity, transform, filter;
+}
+.asymApproach .approachCopy > *:nth-child(1) { transition-delay: 0ms; transform: translate3d(0, 48px, 0) scale(0.94); filter: blur(8px); }
+.asymApproach .approachCopy > *:nth-child(2) { transition-delay: 90ms; transform: translate3d(-18px, 36px, 0) scale(0.96); filter: blur(10px); }
+.asymApproach .approachCopy > *:nth-child(3) { transition-delay: 175ms; transform: translate3d(22px, 24px, 0) scale(0.97); filter: blur(7px); }
+.asymApproach .approachCopy > *:nth-child(4) { transition-delay: 255ms; transform: translate3d(0, 40px, 0) scale(0.93); filter: blur(8px); }
+
+.asymApproach.visible .approachCopy > * { opacity: 1; transform: translate3d(0, 0, 0) scale(1); filter: blur(0); }
+.asymApproach.fadeOutUp .approachCopy > * { opacity: 0; transform: translate3d(0, -22px, 0) scale(0.984); filter: blur(6px); transition-duration: 0.44s, 0.58s, 0.44s; transition-delay: 0ms !important; }
+.asymApproach.fadeOutDown .approachCopy > * { opacity: 0; transform: translate3d(0, 28px, 0) scale(0.978); filter: blur(7px); transition-duration: 0.5s, 0.64s, 0.5s; transition-delay: 0ms !important; }
+
 /* Ghost watermark text reveal */
 .section.visible::after {
   opacity: 1;
@@ -1732,7 +1749,95 @@
   -webkit-text-fill-color: inherit;
 }
 
-.gapTitleSub span:not(:last-child)::after {
+
+/* Manufacturing Gap title choreography */
+.storySlideTitle .gapTitleCategory,
+.storySlideTitle .gapTitleHeavy > span,
+.storySlideTitle .gapTitleSub span {
+  opacity: 0;
+  filter: blur(10px);
+  transition:
+    opacity 680ms cubic-bezier(0.22, 1, 0.36, 1),
+    transform 860ms cubic-bezier(0.22, 1, 0.36, 1),
+    filter 760ms cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: opacity, transform, filter;
+}
+
+.storySlideTitle .gapTitleCategory {
+  transform: translate3d(0, 18px, 0) scale(0.92);
+}
+
+.storySlideTitle .gapTitleLight {
+  transform: translate3d(0, 18px, 0) scale(0.96);
+}
+
+.storySlideTitle .gapTitleHeavy > span:nth-child(1) {
+  transform: translate3d(-4vw, 28px, 0) scale(0.94);
+}
+
+.storySlideTitle .gapTitleHeavy > span:nth-child(2) {
+  transform: translate3d(4vw, 30px, 0) scale(0.96);
+}
+
+.storySlideTitle .gapTitleHeavy > span:nth-child(3) {
+  transform: translate3d(0, 34px, 0) scale(1.04);
+}
+
+.storySlideTitle .gapTitleSub span {
+  transform: translate3d(0, 14px, 0) scale(0.9);
+}
+
+.activeStorySlide.storySlideTitle .gapTitleCategory,
+.activeStorySlide.storySlideTitle .gapTitleHeavy > span,
+.activeStorySlide.storySlideTitle .gapTitleSub span {
+  opacity: 1;
+  filter: blur(0);
+  transform: translate3d(0, 0, 0) scale(1);
+}
+
+.activeStorySlide.storySlideTitle .gapTitleAccent {
+  transition-delay: 40ms;
+}
+
+.activeStorySlide.storySlideTitle .gapTitleCategory {
+  transition-delay: 120ms;
+}
+
+.activeStorySlide.storySlideTitle .gapTitleLight {
+  transition-delay: 220ms;
+}
+
+.activeStorySlide.storySlideTitle .gapTitleHeavy > span:nth-child(1) {
+  transition-delay: 330ms;
+}
+
+.activeStorySlide.storySlideTitle .gapTitleHeavy > span:nth-child(2) {
+  transition-delay: 460ms;
+}
+
+.activeStorySlide.storySlideTitle .gapTitleHeavy > span:nth-child(3) {
+  transition-delay: 590ms;
+}
+
+.activeStorySlide.storySlideTitle .gapTitleSub {
+  transition-delay: 720ms;
+}
+
+.activeStorySlide.storySlideTitle .gapTitleSub span:nth-child(1) {
+  transition-delay: 780ms;
+}
+
+.activeStorySlide.storySlideTitle .gapTitleSub span:nth-child(2) {
+  transition-delay: 860ms;
+}
+
+.activeStorySlide.storySlideTitle .gapTitleSub span:nth-child(3) {
+  transition-delay: 940ms;
+}
+
+.activeStorySlide.storySlideTitle .gapTitleSub span:nth-child(4) {
+  transition-delay: 1020ms;
+}.gapTitleSub span:not(:last-child)::after {
   content: "|";
   position: absolute;
   right: 0;
@@ -7503,7 +7608,6 @@ blockquote::before {
   flex-direction: column !important;
   align-items: flex-start !important;
   justify-content: flex-start !important;
-  gap: clamp(2px, 0.5vw, 8px) !important;
   max-width: 720px !important;
   color: transparent !important;
   font-family: "Poppins", sans-serif !important;
@@ -8532,4 +8636,1972 @@ blockquote::before {
     opacity: 1 !important;
     transform: translateX(-50%) !important;
   }
+}
+
+/* R&D approach orbital split */
+.page .asymApproach {
+  --approach-accent: #f0b28f;
+  --approach-ink: #fffaf2;
+  --approach-muted: rgba(255, 250, 242, 0.76);
+  --approach-dim: rgba(255, 250, 242, 0.48);
+  --approach-line: rgba(240, 178, 143, 0.34);
+  min-height: 100svh;
+  display: grid;
+  align-items: center;
+  padding: clamp(90px, 11vh, 124px) clamp(42px, 5vw, 86px) clamp(52px, 7vh, 88px);
+  background: transparent;
+  overflow: hidden;
+}
+
+.page .asymApproach::before {
+  content: none;
+}
+
+.page .asymApproach::after {
+  content: "";
+  position: absolute;
+  right: -17vw;
+  bottom: -10vh;
+  z-index: 0;
+  width: clamp(360px, 35vw, 660px);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 35% 32%, rgba(240, 178, 143, 0.1), transparent 24%),
+    radial-gradient(circle, #12100f 0 46%, #070606 62%, #010101 100%);
+  box-shadow: inset 24px 18px 90px rgba(240, 178, 143, 0.06);
+  opacity: 0.76;
+  transform: none;
+  transition: none;
+}
+
+.page .asymApproach.visible::after {
+  opacity: 0.76;
+}
+
+.page .asymApproach .approachStage {
+  position: relative;
+  z-index: 2;
+  width: min(100%, 1510px);
+  min-height: min(760px, calc(100svh - 150px));
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: minmax(390px, 0.84fr) minmax(560px, 1.16fr);
+  align-items: center;
+  gap: clamp(46px, 5.6vw, 108px);
+}
+
+.page .asymApproach .approachCopy {
+  position: relative;
+  z-index: 3;
+  display: grid;
+  justify-items: start;
+}
+
+.page .asymApproach .approachEyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: clamp(18px, 2.8vw, 46px);
+  margin-bottom: clamp(28px, 5vh, 48px);
+  color: var(--approach-accent);
+  font-size: clamp(0.78rem, 1.05vw, 1.04rem);
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+}
+
+.page .asymApproach .approachEyebrow i {
+  position: relative;
+  width: clamp(72px, 8.8vw, 126px);
+  height: 1px;
+  background: linear-gradient(90deg, rgba(240, 178, 143, 0.05), rgba(240, 178, 143, 0.82));
+}
+
+.page .asymApproach .approachEyebrow i::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  right: 0;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--approach-accent);
+  box-shadow: 0 0 18px rgba(240, 178, 143, 0.68);
+  transform: translate(50%, -50%);
+}
+
+.page .asymApproach .approachImpactTitle {
+  display: grid;
+  gap: clamp(8px, 1.1vh, 14px);
+  margin: 0 0 clamp(28px, 5vh, 48px);
+  max-width: 720px;
+  color: var(--approach-ink);
+  font-family: "Poppins", sans-serif;
+  font-size: clamp(4.4rem, 7.2vw, 8.25rem);
+  font-weight: 800;
+  line-height: 0.98;
+  letter-spacing: -0.068em;
+  text-transform: none;
+  text-shadow:
+    0 0 20px rgba(255, 250, 242, 0.08),
+    0 28px 70px rgba(0, 0, 0, 0.64);
+}
+
+.page .asymApproach .approachImpactTitle span {
+  display: block;
+}
+
+.page .asymApproach .approachImpactTitle strong {
+  color: var(--approach-accent);
+  font-weight: 800;
+  -webkit-text-fill-color: var(--approach-accent);
+}
+
+.page .asymApproach > .approachLead,
+.page .asymApproach .approachLead {
+  max-width: 640px;
+  margin: 0 0 clamp(38px, 5vh, 58px);
+  border-left: 2px solid var(--approach-accent);
+  padding-left: clamp(22px, 2vw, 32px);
+  color: var(--approach-ink) !important;
+  font-size: clamp(1.04rem, 1.42vw, 1.42rem) !important;
+  font-weight: 300 !important;
+  line-height: 1.55 !important;
+  letter-spacing: -0.025em;
+  word-spacing: 0;
+}
+
+.page .asymApproach .heroActions {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: clamp(10px, 1.2vw, 16px);
+}
+
+.page .asymApproach .heroActions a {
+  min-width: clamp(150px, 11.5vw, 188px);
+  min-height: clamp(38px, 4.6vh, 44px);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border: 1px solid rgba(240, 178, 143, 0.74);
+  border-radius: 999px;
+  padding: 0 clamp(14px, 1.4vw, 20px);
+  color: var(--approach-ink);
+  background: rgba(0, 0, 0, 0.16);
+  font-size: clamp(0.78rem, 0.88vw, 0.92rem);
+  font-weight: 400;
+  letter-spacing: 0;
+  text-decoration: none;
+  box-shadow: 0 0 0 1px rgba(255, 250, 242, 0.025);
+}
+
+.page .asymApproach .heroActions a:first-child {
+  border-color: transparent;
+  color: #150c07;
+  background:
+    linear-gradient(180deg, rgba(255, 250, 242, 0.48), rgba(255, 250, 242, 0.08) 46%, transparent 48%),
+    linear-gradient(90deg, #f0af8c, #ffd1b7);
+  box-shadow:
+    0 18px 44px rgba(240, 178, 143, 0.26),
+    inset 0 1px 0 rgba(255, 255, 255, 0.52);
+}
+
+.page .asymApproach .heroActions a svg {
+  width: 18px;
+  height: 18px;
+  stroke-width: 1.65;
+}
+
+.page .asymApproach .approachOrbit {
+  position: relative;
+  z-index: 2;
+  min-height: min(760px, calc(100svh - 150px));
+  overflow: visible;
+}
+
+.page .asymApproach .orbitRing {
+  position: absolute;
+  top: 50%;
+  left: -26%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  border: 1px solid var(--approach-line);
+  pointer-events: none;
+  transform: translateY(-50%);
+}
+
+.page .asymApproach .orbitRingOuter {
+  width: clamp(760px, 76vw, 1220px);
+  opacity: 0.58;
+}
+
+.page .asymApproach .orbitRingMiddle {
+  left: -8%;
+  width: clamp(610px, 61vw, 980px);
+  opacity: 0.42;
+}
+
+.page .asymApproach .orbitRingInner {
+  left: 5%;
+  width: clamp(460px, 46vw, 730px);
+  border-color: rgba(240, 178, 143, 0.15);
+  border-style: dashed;
+  opacity: 0.34;
+}
+
+.page .asymApproach .orbitPlanet {
+  display: none;
+}
+
+.page .asymApproach .orbitStep {
+  position: absolute;
+  z-index: 4;
+  display: grid;
+  grid-template-columns: clamp(78px, 6.7vw, 100px) minmax(0, 330px);
+  align-items: center;
+  gap: clamp(20px, 2vw, 30px);
+  color: var(--approach-ink);
+}
+
+.page .asymApproach .orbitStep1 {
+  top: 14%;
+  left: 39%;
+}
+
+.page .asymApproach .orbitStep2 {
+  top: 43%;
+  left: 45%;
+}
+
+.page .asymApproach .orbitStep3 {
+  top: 72%;
+  left: 50%;
+}
+
+.page .asymApproach .orbitIcon {
+  display: inline-grid;
+  place-items: center;
+  width: clamp(76px, 6.8vw, 100px);
+  aspect-ratio: 1;
+  border: 1px solid rgba(240, 178, 143, 0.58);
+  border-radius: 50%;
+  color: var(--approach-accent);
+  background: rgba(8, 7, 6, 0.78);
+  box-shadow:
+    0 0 34px rgba(240, 178, 143, 0.18),
+    inset 0 0 28px rgba(240, 178, 143, 0.08);
+}
+
+.page .asymApproach .orbitIcon svg {
+  width: 46%;
+  height: 46%;
+  stroke-width: 1.65;
+}
+
+.page .asymApproach .orbitCopy {
+  position: relative;
+  display: grid;
+  justify-items: start;
+}
+
+.page .asymApproach .orbitNumber {
+  position: absolute;
+  display: inline-block;
+  padding-bottom: 11px;
+  color: var(--approach-accent);
+  font-size: clamp(5.92rem, 8vw, 8.2rem);
+  font-weight: 900;
+  line-height: 1;
+  letter-spacing: -0.05em;
+  opacity: 0.2;
+  margin-top: -50px;
+  margin-left: -8px;
+}
+
+.page .asymApproach .orbitNumber::after {
+  content: none;
+}
+
+.page .asymApproach .orbitCopy strong {
+  color: var(--approach-accent);
+  font-size: clamp(0.92rem, 1.2vw, 1.08rem);
+  font-weight: 600;
+  line-height: 1.1;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  margin: 5px 0;
+}
+
+.page .asymApproach .orbitCopy > span:last-child {
+  max-width: 290px;
+  color: var(--gap-body) !important;
+  font-size: clamp(0.4rem, 1.15vw, 1.1rem) !important;
+  font-weight: 100 !important;
+  line-height: 1.1 !important;
+  letter-spacing: -0.01em;
+  opacity: 0.9;
+}
+
+@media only screen and (max-width: 1180px) {
+  .page .asymApproach .approachStage {
+    grid-template-columns: minmax(340px, 0.82fr) minmax(500px, 1.18fr);
+    gap: clamp(30px, 4vw, 56px);
+  }
+
+  .page .asymApproach .orbitStep {
+    grid-template-columns: 78px minmax(0, 290px);
+  }
+
+  .page .asymApproach .orbitStep1,
+  .page .asymApproach .orbitStep2,
+  .page .asymApproach .orbitStep3 {
+    left: 38%;
+  }
+}
+
+@media only screen and (max-width: 940px) {
+  .page .asymApproach {
+    padding: clamp(78px, 11vh, 106px) clamp(22px, 5vw, 44px) clamp(42px, 7vh, 70px);
+  }
+
+  .page .asymApproach .approachStage {
+    min-height: auto;
+    grid-template-columns: 1fr;
+    gap: clamp(34px, 6vh, 56px);
+  }
+
+  .page .asymApproach .approachImpactTitle {
+    max-width: 680px;
+    font-size: clamp(3.8rem, 12vw, 6.9rem);
+  }
+
+  .page .asymApproach .approachOrbit {
+    min-height: 560px;
+    width: min(100%, 760px);
+  }
+
+  .page .asymApproach .orbitRing {
+    left: -18%;
+  }
+
+  .page .asymApproach .orbitStep1 {
+    left: 36%;
+  }
+
+  .page .asymApproach .orbitStep2 {
+    left: 41%;
+  }
+
+  .page .asymApproach .orbitStep3 {
+    left: 45%;
+  }
+}
+
+@media only screen and (max-width: 640px) {
+  .page .asymApproach {
+    padding: clamp(72px, 12vh, 92px) 16px 38px;
+  }
+
+  .page .asymApproach::before {
+    opacity: 0.28;
+  }
+
+  .page .asymApproach::after,
+  .page .asymApproach .orbitRing,
+  .page .asymApproach .approachEyebrow {
+    gap: 18px;
+    margin-bottom: 26px;
+    font-size: 0.72rem;
+    letter-spacing: 0.24em;
+  }
+
+  .page .asymApproach .approachEyebrow i {
+    width: 68px;
+  }
+
+  .page .asymApproach .approachImpactTitle {
+    font-size: clamp(3.05rem, 16vw, 4.8rem);
+    line-height: 1;
+  }
+
+  .page .asymApproach .approachLead {
+    margin-bottom: 28px;
+    padding-left: 18px;
+    font-size: clamp(1rem, 4.8vw, 1.22rem) !important;
+    line-height: 1.5 !important;
+  }
+
+  .page .asymApproach .heroActions {
+    width: 100%;
+    align-items: stretch;
+  }
+
+  .page .asymApproach .heroActions a {
+    width: 100%;
+    min-width: 0;
+    min-height: 44px;
+  }
+
+  .page .asymApproach .approachOrbit {
+    min-height: auto;
+    display: grid;
+    gap: 18px;
+    width: 100%;
+  }
+
+  .page .asymApproach .orbitStep,
+  .page .asymApproach .orbitStep1,
+  .page .asymApproach .orbitStep2,
+  .page .asymApproach .orbitStep3 {
+    position: relative;
+    top: auto;
+    left: auto;
+    grid-template-columns: 56px minmax(0, 1fr);
+    gap: 16px;
+    padding-top: 18px;
+    border-top: 1px solid rgba(240, 178, 143, 0.18);
+  }
+
+  .page .asymApproach .orbitIcon {
+    width: 54px;
+  }
+
+  .page .asymApproach .orbitCopy {
+    gap: 8px;
+  }
+
+  .page .asymApproach .orbitCopy strong {
+    letter-spacing: 0.12em;
+  }
+}
+/* R&D approach performance flattening */
+.page .asymApproach,
+.page .asymApproach *,
+.page .asymApproach *::before,
+.page .asymApproach *::after {
+  animation: none !important;
+  transition: none !important;
+  filter: none !important;
+  will-change: auto !important;
+}
+
+.page .asymApproach > *,
+.page .asymApproach.visible > *,
+.page .asymApproach.fadeOutUp > *,
+.page .asymApproach.fadeOutDown > * {
+  opacity: 1 !important;
+  transform: none !important;
+  filter: none !important;
+}
+
+.page .asymApproach::after,
+.page .asymApproach.visible::after {
+  content: none;
+}
+
+.page .asymApproach .approachImpactTitle {
+  text-shadow: none;
+}
+
+.page .asymApproach .approachEyebrow i::after,
+.page .asymApproach .heroActions a,
+.page .asymApproach .heroActions a:first-child,
+.page .asymApproach .orbitIcon {
+  box-shadow: none;
+}
+
+.page .asymApproach .heroActions a:first-child {
+  background: #f0b28f;
+}
+
+.page .asymApproach .orbitRingOuter,
+.page .asymApproach .orbitRingMiddle {
+  display: none;
+}
+
+.page .asymApproach .orbitRingInner {
+  left: -2%;
+  width: clamp(480px, 46vw, 720px);
+  border-style: solid;
+  border-color: rgba(240, 178, 143, 0.22);
+  opacity: 0.5;
+}
+
+.page .asymApproach .orbitIcon {
+  background: #080706;
+}
+
+/* R&D approach compact texture polish */
+.page .asymApproach {
+  padding: clamp(68px, 8vh, 92px) clamp(34px, 4vw, 64px) clamp(34px, 5vh, 58px);
+  background:
+    linear-gradient(rgba(255, 250, 242, 0.018) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 250, 242, 0.014) 1px, transparent 1px),
+    #000;
+  background-size: 76px 76px, 76px 76px, auto;
+}
+
+.page .asymApproach .approachStage {
+  width: min(100%, 1420px);
+  min-height: min(650px, calc(100svh - 118px));
+  grid-template-columns: minmax(430px, 0.98fr) minmax(520px, 1.02fr);
+  gap: clamp(16px, 2.2vw, 42px);
+}
+
+.page .asymApproach .approachEyebrow {
+  margin-bottom: clamp(20px, 3vh, 32px);
+}
+
+.page .asymApproach .approachImpactTitle {
+  max-width: 690px;
+  margin-bottom: clamp(20px, 3.2vh, 32px);
+}
+
+.page .asymApproach .approachLead {
+  margin-bottom: clamp(24px, 3.6vh, 36px);
+}
+
+.page .asymApproach .approachOrbit {
+  min-height: min(650px, calc(100svh - 118px));
+}
+
+.page .asymApproach .orbitRingInner {
+  display: block;
+  left: -13%;
+  width: clamp(560px, 54vw, 820px);
+  border-color: rgba(240, 178, 143, 0.2);
+  opacity: 0.42;
+}
+
+.page .asymApproach .orbitStep {
+  grid-template-columns: clamp(62px, 5vw, 82px) minmax(0, 360px);
+  gap: clamp(14px, 1.5vw, 22px);
+}
+
+.page .asymApproach .orbitIcon {
+  width: clamp(62px, 5vw, 82px);
+}
+
+.page .asymApproach .orbitStep1 {
+  top: 15%;
+  left: 27%;
+}
+
+.page .asymApproach .orbitStep2 {
+  top: 43%;
+  left: 31%;
+}
+
+.page .asymApproach .orbitStep3 {
+  top: 71%;
+  left: 35%;
+}
+
+.page .asymApproach .orbitNumber {
+  font-size: clamp(4.8rem, 6.6vw, 7rem);
+  margin-top: -38px;
+  margin-left: -5px;
+  opacity: 0.16;
+}
+
+@media only screen and (max-width: 1180px) {
+  .page .asymApproach .approachStage {
+    grid-template-columns: minmax(360px, 0.95fr) minmax(460px, 1.05fr);
+    gap: clamp(18px, 3vw, 38px);
+  }
+
+  .page .asymApproach .orbitStep1,
+  .page .asymApproach .orbitStep2,
+  .page .asymApproach .orbitStep3 {
+    left: 30%;
+  }
+}
+
+@media only screen and (max-width: 940px) {
+  .page .asymApproach {
+    padding: clamp(70px, 9vh, 94px) clamp(22px, 5vw, 44px) clamp(36px, 6vh, 58px);
+  }
+
+  .page .asymApproach .approachStage {
+    grid-template-columns: 1fr;
+    gap: clamp(28px, 5vh, 44px);
+  }
+
+  .page .asymApproach .approachOrbit {
+    min-height: 500px;
+    width: min(100%, 720px);
+    justify-self: center;
+  }
+
+  .page .asymApproach .orbitRingInner {
+    left: -8%;
+    width: min(720px, 106vw);
+  }
+
+  .page .asymApproach .orbitStep1 {
+    left: 28%;
+  }
+
+  .page .asymApproach .orbitStep2 {
+    left: 34%;
+  }
+
+  .page .asymApproach .orbitStep3 {
+    left: 39%;
+  }
+}
+
+@media only screen and (max-width: 640px) {
+  .page .asymApproach {
+    padding: clamp(68px, 10vh, 88px) 16px 34px;
+    background-size: 52px 52px, 52px 52px, auto;
+  }
+
+  .page .asymApproach::after,
+  .page .asymApproach .orbitRing {
+    display: none;
+  }
+
+  .page .asymApproach .approachEyebrow {
+    gap: 18px;
+    margin-bottom: 24px;
+    font-size: 0.72rem;
+    letter-spacing: 0.24em;
+  }
+
+  .page .asymApproach .approachImpactTitle {
+    margin-bottom: 22px;
+  }
+
+  .page .asymApproach .approachLead {
+    margin-bottom: 24px;
+  }
+
+  .page .asymApproach .approachOrbit {
+    gap: 14px;
+  }
+
+  .page .asymApproach .orbitStep,
+  .page .asymApproach .orbitStep1,
+  .page .asymApproach .orbitStep2,
+  .page .asymApproach .orbitStep3 {
+    grid-template-columns: 54px minmax(0, 1fr);
+    gap: 14px;
+    padding-top: 16px;
+  }
+
+  .page .asymApproach .orbitNumber {
+    font-size: clamp(3.6rem, 17vw, 5rem);
+    margin-top: -26px;
+  }
+}
+/* R&D approach lightweight texture + tighter split */
+.page .asymApproach {
+  background: transparent !important;
+  background-image: none !important;
+  padding-inline: clamp(28px, 3.2vw, 48px);
+}
+
+.page .asymApproach::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background-image:
+    repeating-linear-gradient(0deg, rgba(255, 250, 242, 0.035) 0 1px, transparent 1px 56px),
+    repeating-linear-gradient(90deg, rgba(240, 178, 143, 0.026) 0 1px, transparent 1px 56px),
+    repeating-linear-gradient(135deg, transparent 0 18px, rgba(240, 178, 143, 0.025) 18px 19px, transparent 19px 92px);
+  mask-image: linear-gradient(90deg, transparent 0%, black 10%, black 92%, transparent 100%);
+  opacity: 0.72;
+}
+
+.page .asymApproach .approachStage {
+  width: min(100%, 1320px);
+  grid-template-columns: minmax(360px, 0.96fr) minmax(430px, 1.04fr);
+  gap: clamp(0px, 1vw, 18px);
+}
+
+.page .asymApproach .approachOrbit {
+  margin-left: clamp(-72px, -4vw, -28px);
+}
+
+.page .asymApproach .orbitRingInner {
+  left: -24%;
+  width: clamp(520px, 50vw, 760px);
+}
+
+.page .asymApproach .orbitStep1 {
+  left: 12%;
+}
+
+.page .asymApproach .orbitStep2 {
+  left: 17%;
+}
+
+.page .asymApproach .orbitStep3 {
+  left: 22%;
+}
+
+@media only screen and (max-width: 1180px) {
+  .page .asymApproach .approachStage {
+    grid-template-columns: minmax(330px, 0.92fr) minmax(410px, 1.08fr);
+    gap: clamp(0px, 1.4vw, 18px);
+  }
+
+  .page .asymApproach .approachOrbit {
+    margin-left: clamp(-58px, -3vw, -18px);
+  }
+
+  .page .asymApproach .orbitStep1 {
+    left: 14%;
+  }
+
+  .page .asymApproach .orbitStep2 {
+    left: 19%;
+  }
+
+  .page .asymApproach .orbitStep3 {
+    left: 24%;
+  }
+}
+
+@media only screen and (max-width: 940px) {
+  .page .asymApproach::before {
+    mask-image: linear-gradient(180deg, transparent 0%, black 9%, black 94%, transparent 100%);
+  }
+
+  .page .asymApproach .approachStage {
+    grid-template-columns: 1fr;
+    gap: clamp(22px, 4vh, 38px);
+  }
+
+  .page .asymApproach .approachOrbit {
+    margin-left: 0;
+  }
+}
+
+@media only screen and (max-width: 640px) {
+  .page .asymApproach {
+    background: transparent !important;
+    background-image: none !important;
+  }
+
+  .page .asymApproach::before {
+    background-size: auto;
+    opacity: 0.55;
+  }
+}
+/* Final R&D approach layout and reveal */
+.page .asymApproach {
+  background: transparent !important;
+  background-image: none !important;
+  padding: clamp(68px, 8vh, 92px) clamp(34px, 4vw, 64px) clamp(34px, 5vh, 58px) !important;
+}
+
+.page .asymApproach::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background-image:
+    repeating-linear-gradient(0deg, rgba(255, 250, 242, 0.035) 0 1px, transparent 1px 56px),
+    repeating-linear-gradient(90deg, rgba(240, 178, 143, 0.026) 0 1px, transparent 1px 56px),
+    repeating-linear-gradient(135deg, transparent 0 18px, rgba(240, 178, 143, 0.025) 18px 19px, transparent 19px 92px);
+  mask-image: linear-gradient(90deg, transparent 0%, black 10%, black 92%, transparent 100%);
+  opacity: 0.72;
+}
+
+.page .asymApproach .approachStage {
+  width: min(100%, 1420px) !important;
+  min-height: min(650px, calc(100svh - 118px)) !important;
+  grid-template-columns: minmax(430px, 0.98fr) minmax(520px, 1.02fr) !important;
+  gap: clamp(16px, 2.2vw, 42px) !important;
+}
+
+.page .asymApproach .approachOrbit {
+  min-height: min(650px, calc(100svh - 118px)) !important;
+  margin-left: 0 !important;
+}
+
+.page .asymApproach .orbitRingInner {
+  display: block !important;
+  left: -13% !important;
+  width: clamp(560px, 54vw, 820px) !important;
+  border-color: rgba(240, 178, 143, 0.2) !important;
+  opacity: 0 !important;
+}
+
+.page .asymApproach .orbitStep1 {
+  top: 15% !important;
+  left: 27% !important;
+}
+
+.page .asymApproach .orbitStep2 {
+  top: 43% !important;
+  left: 31% !important;
+}
+
+.page .asymApproach .orbitStep3 {
+  top: 71% !important;
+  left: 35% !important;
+}
+
+.page .asymApproach .approachStage .approachEyebrow,
+.page .asymApproach .approachStage .approachLead,
+.page .asymApproach .approachStage .heroActions a,
+.page .asymApproach .approachStage .orbitRingInner,
+.page .asymApproach .approachStage .orbitStep {
+  animation: none !important;
+  opacity: 0 !important;
+  filter: blur(9px) !important;
+  transition:
+    opacity 720ms cubic-bezier(0.22, 1, 0.36, 1) !important,
+    transform 860ms cubic-bezier(0.22, 1, 0.36, 1) !important,
+    filter 700ms cubic-bezier(0.22, 1, 0.36, 1) !important;
+  will-change: opacity, transform, filter !important;
+}
+
+.page .asymApproach .approachStage .approachEyebrow {
+  transform: translate3d(-22px, 20px, 0) !important;
+}
+
+.page .asymApproach .approachStage .approachImpactTitle span:nth-child(1) {
+  transform: translate3d(-34px, 30px, 0) scale(0.97) !important;
+}
+
+.page .asymApproach .approachStage .approachImpactTitle span:nth-child(2) {
+  transform: translate3d(30px, 30px, 0) scale(0.97) !important;
+}
+
+.page .asymApproach .approachStage .approachLead {
+  transform: translate3d(0, 26px, 0) !important;
+}
+
+.page .asymApproach .approachStage .heroActions a {
+  transform: translate3d(0, 20px, 0) scale(0.96) !important;
+}
+
+.page .asymApproach .approachStage .orbitRingInner {
+  transform: translate3d(-34px, -50%, 0) scale(0.94) !important;
+}
+
+.page .asymApproach .approachStage .orbitStep1 {
+  transform: translate3d(46px, -24px, 0) scale(0.96) !important;
+}
+
+.page .asymApproach .approachStage .orbitStep2 {
+  transform: translate3d(58px, 0, 0) scale(0.96) !important;
+}
+
+.page .asymApproach .approachStage .orbitStep3 {
+  transform: translate3d(46px, 24px, 0) scale(0.96) !important;
+}
+
+.page .asymApproach.visible .approachStage .approachEyebrow,
+.page .asymApproach.visible .approachStage .approachLead,
+.page .asymApproach.visible .approachStage .heroActions a,
+.page .asymApproach.visible .approachStage .orbitStep {
+  opacity: 1 !important;
+  filter: blur(0) !important;
+  transform: translate3d(0, 0, 0) scale(1) !important;
+}
+
+.page .asymApproach.visible .approachStage .orbitRingInner {
+  opacity: 0.42 !important;
+  filter: blur(0) !important;
+  transform: translate3d(0, -50%, 0) scale(1) !important;
+}
+
+.page .asymApproach.visible .approachStage .approachEyebrow { transition-delay: 80ms !important; }
+.page .asymApproach.visible .approachStage .approachLead { transition-delay: 360ms !important; }
+.page .asymApproach.visible .approachStage .heroActions a:nth-child(1) { transition-delay: 455ms !important; }
+.page .asymApproach.visible .approachStage .heroActions a:nth-child(2) { transition-delay: 530ms !important; }
+.page .asymApproach.visible .approachStage .orbitRingInner { transition-delay: 260ms !important; }
+.page .asymApproach.visible .approachStage .orbitStep1 { transition-delay: 430ms !important; }
+.page .asymApproach.visible .approachStage .orbitStep2 { transition-delay: 540ms !important; }
+.page .asymApproach.visible .approachStage .orbitStep3 { transition-delay: 650ms !important; }
+
+.page .asymApproach.fadeOutUp .approachStage .approachEyebrow,
+.page .asymApproach.fadeOutUp .approachStage .approachLead,
+.page .asymApproach.fadeOutUp .approachStage .heroActions a,
+.page .asymApproach.fadeOutUp .approachStage .orbitRingInner,
+.page .asymApproach.fadeOutUp .approachStage .orbitStep {
+  opacity: 0 !important;
+  filter: blur(7px) !important;
+  transform: translate3d(0, -24px, 0) scale(0.985) !important;
+  transition-delay: 0ms !important;
+}
+
+.page .asymApproach.fadeOutDown .approachStage .approachEyebrow,
+.page .asymApproach.fadeOutDown .approachStage .approachLead,
+.page .asymApproach.fadeOutDown .approachStage .heroActions a,
+.page .asymApproach.fadeOutDown .approachStage .orbitRingInner,
+.page .asymApproach.fadeOutDown .approachStage .orbitStep {
+  opacity: 0 !important;
+  filter: blur(9px) !important;
+  transform: translate3d(0, 28px, 0) scale(0.975) !important;
+  transition-delay: 0ms !important;
+}
+
+@media only screen and (max-width: 1180px) {
+  .page .asymApproach .approachStage {
+    grid-template-columns: minmax(360px, 0.95fr) minmax(460px, 1.05fr) !important;
+    gap: clamp(18px, 3vw, 38px) !important;
+  }
+
+  .page .asymApproach .orbitStep1,
+  .page .asymApproach .orbitStep2,
+  .page .asymApproach .orbitStep3 {
+    left: 30% !important;
+  }
+}
+
+@media only screen and (max-width: 940px) {
+  .page .asymApproach::before {
+    mask-image: linear-gradient(180deg, transparent 0%, black 9%, black 94%, transparent 100%);
+  }
+
+  .page .asymApproach .approachStage {
+    grid-template-columns: 1fr !important;
+    gap: clamp(28px, 5vh, 44px) !important;
+  }
+
+  .page .asymApproach .approachOrbit {
+    margin-left: 0 !important;
+  }
+
+  .page .asymApproach .orbitStep1 { left: 28% !important; }
+  .page .asymApproach .orbitStep2 { left: 34% !important; }
+  .page .asymApproach .orbitStep3 { left: 39% !important; }
+}
+
+@media only screen and (max-width: 640px) {
+  .page .asymApproach {
+    background: transparent !important;
+    background-image: none !important;
+  }
+
+  .page .asymApproach::before {
+    opacity: 0.55;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .page .asymApproach .approachStage .approachEyebrow,
+  .page .asymApproach .approachStage .approachLead,
+  .page .asymApproach .approachStage .heroActions a,
+  .page .asymApproach .approachStage .orbitRingInner,
+  .page .asymApproach .approachStage .orbitStep {
+    opacity: 1 !important;
+    filter: none !important;
+    transform: none !important;
+    animation: none !important;
+    transition: none !important;
+  }
+}
+/* Scroll-triggered approach stage activation */
+.page .asymApproach .approachStage:not(.approachStageActive) .approachEyebrow,
+.page .asymApproach .approachStage:not(.approachStageActive) .approachLead,
+.page .asymApproach .approachStage:not(.approachStageActive) .heroActions a,
+.page .asymApproach .approachStage:not(.approachStageActive) .orbitRingInner,
+.page .asymApproach .approachStage:not(.approachStageActive) .orbitStep {
+  animation: none !important;
+  opacity: 0 !important;
+  filter: blur(9px) !important;
+  transition:
+    opacity 720ms cubic-bezier(0.22, 1, 0.36, 1) !important,
+    transform 860ms cubic-bezier(0.22, 1, 0.36, 1) !important,
+    filter 700ms cubic-bezier(0.22, 1, 0.36, 1) !important;
+}
+
+.page .asymApproach .approachStage:not(.approachStageActive) .approachEyebrow {
+  transform: translate3d(-22px, 20px, 0) !important;
+}
+
+.page .asymApproach .approachStage:not(.approachStageActive) .approachImpactTitle span:nth-child(1) {
+  transform: translate3d(-34px, 30px, 0) scale(0.97) !important;
+}
+
+.page .asymApproach .approachStage:not(.approachStageActive) .approachImpactTitle span:nth-child(2) {
+  transform: translate3d(30px, 30px, 0) scale(0.97) !important;
+}
+
+.page .asymApproach .approachStage:not(.approachStageActive) .approachLead {
+  transform: translate3d(0, 26px, 0) !important;
+}
+
+.page .asymApproach .approachStage:not(.approachStageActive) .heroActions a {
+  transform: translate3d(0, 20px, 0) scale(0.96) !important;
+}
+
+.page .asymApproach .approachStage:not(.approachStageActive) .orbitRingInner {
+  transform: translate3d(-34px, -50%, 0) scale(0.94) !important;
+}
+
+.page .asymApproach .approachStage:not(.approachStageActive) .orbitStep1 {
+  transform: translate3d(46px, -24px, 0) scale(0.96) !important;
+}
+
+.page .asymApproach .approachStage:not(.approachStageActive) .orbitStep2 {
+  transform: translate3d(58px, 0, 0) scale(0.96) !important;
+}
+
+.page .asymApproach .approachStage:not(.approachStageActive) .orbitStep3 {
+  transform: translate3d(46px, 24px, 0) scale(0.96) !important;
+}
+
+.page .asymApproach .approachStage.approachStageActive .approachEyebrow,
+.page .asymApproach .approachStage.approachStageActive .approachLead,
+.page .asymApproach .approachStage.approachStageActive .heroActions a,
+.page .asymApproach .approachStage.approachStageActive .orbitStep {
+  animation: none !important;
+  opacity: 1 !important;
+  filter: blur(0) !important;
+  transform: translate3d(0, 0, 0) scale(1) !important;
+}
+
+.page .asymApproach .approachStage.approachStageActive .orbitRingInner {
+  animation: none !important;
+  opacity: 0.42 !important;
+  filter: blur(0) !important;
+  transform: translate3d(0, -50%, 0) scale(1) !important;
+}
+
+.page .asymApproach .approachStage.approachStageActive .approachEyebrow { transition-delay: 80ms !important; }
+.page .asymApproach .approachStage.approachStageActive .approachLead { transition-delay: 360ms !important; }
+.page .asymApproach .approachStage.approachStageActive .heroActions a:nth-child(1) { transition-delay: 455ms !important; }
+.page .asymApproach .approachStage.approachStageActive .heroActions a:nth-child(2) { transition-delay: 530ms !important; }
+.page .asymApproach .approachStage.approachStageActive .orbitRingInner { transition-delay: 260ms !important; }
+.page .asymApproach .approachStage.approachStageActive .orbitStep1 { transition-delay: 430ms !important; }
+.page .asymApproach .approachStage.approachStageActive .orbitStep2 { transition-delay: 540ms !important; }
+.page .asymApproach .approachStage.approachStageActive .orbitStep3 { transition-delay: 650ms !important; }
+
+/* Evidence split-scroll proof stage */
+.page .asymEvidence {
+  --evidence-card-height: clamp(190px, 25vh, 244px);
+  --evidence-rail-gap: clamp(22px, 3.2vh, 34px);
+  min-height: 270svh !important;
+  width: 100vw !important;
+  margin-left: calc(50% - 50vw) !important;
+  padding: 0 !important;
+  overflow: visible !important;
+  background: transparent !important;
+}
+
+.page .asymEvidence::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(90deg, transparent 0 49.8%, rgba(212, 157, 129, 0.16) 49.8% 50%, transparent 50% 100%),
+    repeating-linear-gradient(0deg, rgba(255, 250, 242, 0.028) 0 1px, transparent 1px 58px),
+    repeating-linear-gradient(90deg, rgba(240, 178, 143, 0.02) 0 1px, transparent 1px 58px);
+  mask-image: linear-gradient(180deg, transparent 0%, black 6%, black 94%, transparent 100%);
+  opacity: 0.82;
+}
+
+.page .asymEvidence::after {
+  content: "PROOF";
+  position: absolute;
+  left: 2.8vw;
+  top: 42svh;
+  z-index: 0;
+  color: transparent;
+  font-family: "Poppins", sans-serif;
+  font-size: clamp(7rem, 16vw, 18rem);
+  font-weight: 900;
+  line-height: 0.8;
+  letter-spacing: -0.075em;
+  -webkit-text-stroke: 1px rgba(212, 157, 129, 0.13);
+  opacity: 0.72;
+  transform: rotate(-90deg) translate3d(-12%, -32%, 0);
+  transform-origin: left top;
+  pointer-events: none;
+}
+
+.evidenceScrollScene {
+  position: relative;
+  z-index: 2;
+  min-height: 270svh;
+  width: 100%;
+}
+
+.evidenceScrollStage {
+  position: sticky;
+  top: 0;
+  min-height: 100svh;
+  display: grid;
+  grid-template-columns: minmax(360px, 0.92fr) minmax(600px, 1.08fr);
+  align-items: center;
+  gap: clamp(30px, 5vw, 82px);
+  width: min(100%, 1480px);
+  margin: 0 auto;
+  padding: clamp(70px, 9vh, 104px) clamp(30px, 5vw, 78px) clamp(40px, 6vh, 70px);
+  box-sizing: border-box;
+}
+
+.evidenceStickyCopy {
+  position: relative;
+  z-index: 3;
+  align-self: center;
+  width: min(100%, 560px);
+  min-height: 54svh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border-left: 2px solid rgba(212, 157, 129, 0.68);
+  padding-left: clamp(20px, 2.6vw, 38px);
+}
+
+.evidenceStickyCopy .kicker {
+  margin: 0 0 clamp(18px, 2.4vh, 28px);
+}
+
+.evidenceStickyCopy .spotlightTitle {
+  max-width: min(540px, 100%) !important;
+  margin: 0 0 clamp(26px, 3.8vh, 42px) !important;
+  font-size: clamp(3.3rem, 6.6vw, 7.5rem) !important;
+  line-height: 0.84 !important;
+}
+
+.evidenceStickyCopy .evidenceLeadText {
+  max-width: 455px;
+  margin: 0;
+  color: rgba(255, 250, 242, 0.84) !important;
+  font-family: "Poppins", sans-serif;
+  font-size: clamp(1rem, 1.28vw, 1.24rem) !important;
+  font-weight: 300 !important;
+  line-height: 1.48 !important;
+  letter-spacing: -0.02em;
+  text-wrap: pretty;
+}
+
+.evidenceRails {
+  position: relative;
+  z-index: 3;
+  align-self: stretch;
+  height: 100svh;
+  min-height: 660px;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(18px, 2.2vw, 34px);
+  overflow: hidden;
+  padding: clamp(18px, 3vh, 32px) 0;
+  mask-image: linear-gradient(180deg, transparent 0%, black 12%, black 88%, transparent 100%);
+}
+
+.evidenceRails::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 10%;
+  bottom: 10%;
+  width: 1px;
+  background: linear-gradient(180deg, transparent, rgba(212, 157, 129, 0.34), transparent);
+  box-shadow: 0 0 22px rgba(212, 157, 129, 0.12);
+  pointer-events: none;
+}
+
+.evidenceRail {
+  display: grid;
+  align-content: start;
+  gap: var(--evidence-rail-gap);
+  will-change: transform;
+  transform: translateZ(0);
+}
+
+.evidenceRailSecondary {
+  padding-top: calc(var(--evidence-card-height) * 0.5);
+}
+
+.evidenceRailCard {
+  position: relative;
+  min-height: var(--evidence-card-height);
+  display: grid;
+  grid-template-rows: minmax(110px, 1fr) auto;
+  border: 1px solid rgba(212, 157, 129, 0.46);
+  border-radius: 8px;
+  background:
+    linear-gradient(145deg, rgba(255, 250, 242, 0.04), transparent 34%),
+    radial-gradient(circle at 50% 18%, rgba(212, 157, 129, 0.12), transparent 56%),
+    rgba(7, 6, 5, 0.82);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 250, 242, 0.1),
+    inset 0 0 0 1px rgba(0, 0, 0, 0.22),
+    0 18px 48px rgba(0, 0, 0, 0.5),
+    0 0 22px rgba(212, 157, 129, 0.08);
+  overflow: hidden;
+  opacity: 0;
+  filter: blur(8px);
+  transform: translate3d(0, 24px, 0) scale(0.98);
+  transition:
+    opacity 640ms var(--motion-ease-out),
+    transform 860ms cubic-bezier(0.16, 1, 0.3, 1),
+    filter 720ms var(--motion-ease-out),
+    border-color 260ms ease,
+    box-shadow 420ms var(--motion-ease-out);
+  transition-delay: calc(var(--motion-delay, 0ms) + 220ms);
+}
+
+.asymEvidence.visible .evidenceRailCard {
+  opacity: 1;
+  filter: blur(0);
+  transform: translate3d(0, 0, 0) scale(1);
+}
+
+.evidenceRailCard::before,
+.evidenceRailCard::after {
+  content: "";
+  position: absolute;
+  pointer-events: none;
+}
+
+.evidenceRailCard::before {
+  inset: 0;
+  background:
+    linear-gradient(90deg, rgba(255, 250, 242, 0.11), transparent 13%, transparent 86%, rgba(212, 157, 129, 0.1)),
+    radial-gradient(circle at 96% 8%, rgba(212, 157, 129, 0.12), transparent 22%);
+  mix-blend-mode: screen;
+  opacity: 0.7;
+}
+
+.evidenceRailCard::after {
+  left: 1px;
+  right: 1px;
+  top: 1px;
+  height: 40%;
+  border-radius: 7px 7px 0 0;
+  border-top: 1px solid rgba(255, 250, 242, 0.18);
+  background: linear-gradient(100deg, transparent 0 28%, rgba(255, 250, 242, 0.09) 42%, transparent 58%);
+  opacity: 0.62;
+}
+
+.evidenceRailFigure {
+  position: relative;
+  z-index: 1;
+  min-height: 0;
+  margin: clamp(9px, 0.86vw, 13px) clamp(9px, 0.86vw, 13px) 0;
+  border: 1px solid rgba(255, 250, 242, 0.06);
+  border-radius: 6px;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.025), transparent),
+    repeating-linear-gradient(0deg, rgba(255, 255, 255, 0.024) 0 1px, transparent 1px 24px),
+    rgba(0, 0, 0, 0.18);
+  box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.34);
+  overflow: hidden;
+}
+
+.evidenceRailFigure svg {
+  width: 100%;
+  height: 100%;
+  min-height: 110px;
+}
+
+.evidenceRailCopy {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: clamp(30px, 2.2vw, 38px) minmax(0, 1fr);
+  gap: 8px clamp(8px, 0.8vw, 12px);
+  align-items: center;
+  padding: 10px clamp(11px, 1vw, 15px) 13px;
+}
+
+.evidenceRailIcon {
+  display: grid;
+  place-items: center;
+  width: clamp(30px, 2.2vw, 38px);
+  height: clamp(30px, 2.2vw, 38px);
+  border: 1px solid rgba(212, 157, 129, 0.5);
+  border-radius: 50%;
+  color: var(--story-accent);
+  background:
+    radial-gradient(circle, rgba(212, 157, 129, 0.14), transparent 62%),
+    rgba(9, 7, 5, 0.92);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06), 0 0 16px rgba(212, 157, 129, 0.14);
+}
+
+.evidenceRailMeta {
+  display: grid;
+  min-width: 0;
+  gap: 3px;
+}
+
+.evidenceRailTitle {
+  color: rgba(255, 250, 242, 0.96);
+  font-family: "Poppins", sans-serif;
+  font-size: clamp(0.72rem, 0.82vw, 0.94rem);
+  font-weight: 800;
+  line-height: 1.05;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.evidenceRailProof {
+  color: rgba(255, 250, 242, 0.72);
+  font-family: "Poppins", sans-serif;
+  font-size: clamp(0.54rem, 0.6vw, 0.68rem);
+  font-weight: 500;
+  line-height: 1.18;
+}
+
+.evidenceRailDetail {
+  grid-column: 1 / -1;
+  color: rgba(255, 250, 242, 0.55);
+  font-family: "Poppins", sans-serif;
+  font-size: clamp(0.58rem, 0.66vw, 0.74rem);
+  font-weight: 300;
+  line-height: 1.36;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .evidenceRailCard:hover {
+    z-index: 4;
+    border-color: rgba(212, 157, 129, 0.78);
+    transform: translate3d(0, -8px, 0) scale(1.012);
+    box-shadow:
+      inset 0 1px 0 rgba(255, 250, 242, 0.16),
+      0 24px 70px rgba(0, 0, 0, 0.58),
+      0 0 34px rgba(212, 157, 129, 0.22);
+  }
+}
+
+@media (max-width: 1080px) {
+  .page .asymEvidence,
+  .evidenceScrollScene {
+    min-height: auto !important;
+  }
+
+  .evidenceScrollStage {
+    position: relative;
+    min-height: auto;
+    grid-template-columns: 1fr;
+    padding-block: clamp(72px, 11vw, 110px);
+  }
+
+  .evidenceStickyCopy {
+    min-height: auto;
+    width: min(100%, 660px);
+  }
+
+  .evidenceRails {
+    height: auto;
+    min-height: 0;
+    overflow: visible;
+    mask-image: none;
+  }
+
+  .evidenceRail,
+  .evidenceRailSecondary {
+    transform: none !important;
+    padding-top: 0;
+  }
+}
+
+@media (max-width: 720px) {
+  .evidenceScrollStage {
+    padding-inline: 18px;
+  }
+
+  .evidenceRails {
+    grid-template-columns: 1fr;
+  }
+
+  .evidenceRailCard {
+    min-height: 220px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .page .asymEvidence,
+  .evidenceScrollScene {
+    min-height: auto !important;
+  }
+
+  .evidenceScrollStage {
+    position: relative;
+    min-height: auto;
+  }
+
+  .evidenceRail,
+  .evidenceRailSecondary {
+    transform: none !important;
+    padding-top: 0;
+  }
+
+  .evidenceRailCard,
+  .asymEvidence.visible .evidenceRailCard {
+    opacity: 1 !important;
+    filter: none !important;
+    transform: none !important;
+    transition: none !important;
+  }
+}
+
+/* Evidence compact card + colored proof title tuning */
+.page .asymEvidence {
+  --evidence-card-height: clamp(142px, 18vh, 184px) !important;
+  --evidence-rail-gap: clamp(14px, 2vh, 22px) !important;
+}
+
+.evidenceStickyCopy .evidenceProofTitle {
+  max-width: min(430px, 100%) !important;
+  gap: clamp(0px, 0.25vw, 4px) !important;
+  margin-bottom: clamp(20px, 3vh, 34px) !important;
+  font-size: clamp(3.1rem, 6vw, 6.8rem) !important;
+  line-height: 0.78 !important;
+  letter-spacing: -0.055em !important;
+}
+
+.evidenceProofTitle .gapFocusWord {
+  text-shadow: 0 18px 48px rgba(0, 0, 0, 0.5) !important;
+}
+
+.evidenceProofTitle .gapFocusWord:nth-child(1) .gapFocusWordOutline,
+.evidenceProofTitle .gapFocusWord:nth-child(1) .gapFocusWordFill {
+  color: #fff4e8 !important;
+  -webkit-text-fill-color: #fff4e8 !important;
+  -webkit-text-stroke: 0 !important;
+}
+
+.evidenceProofTitle .gapFocusWord:nth-child(2) .gapFocusWordOutline,
+.evidenceProofTitle .gapFocusWord:nth-child(2) .gapFocusWordFill {
+  color: #d49d81 !important;
+  -webkit-text-fill-color: #d49d81 !important;
+  -webkit-text-stroke: 0 !important;
+  font-style: italic;
+  font-weight: 700;
+}
+
+.evidenceProofTitle .gapFocusWord:nth-child(3) .gapFocusWordOutline,
+.evidenceProofTitle .gapFocusWord:nth-child(3) .gapFocusWordFill {
+  color: #f0b28f !important;
+  -webkit-text-fill-color: #f0b28f !important;
+  -webkit-text-stroke: 0 !important;
+  text-shadow:
+    0 0 28px rgba(240, 178, 143, 0.24),
+    0 18px 54px rgba(0, 0, 0, 0.58) !important;
+}
+
+.evidenceRailCard {
+  min-height: var(--evidence-card-height) !important;
+  grid-template-rows: minmax(76px, 1fr) auto !important;
+  border: 0 !important;
+  border-radius: 7px !important;
+  background:
+    linear-gradient(145deg, rgba(255, 250, 242, 0.032), transparent 34%),
+    radial-gradient(circle at 50% 18%, rgba(212, 157, 129, 0.095), transparent 56%),
+    rgba(7, 6, 5, 0.74) !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 250, 242, 0.065),
+    0 14px 34px rgba(0, 0, 0, 0.38),
+    0 0 18px rgba(212, 157, 129, 0.055) !important;
+}
+
+.evidenceRailCard::after {
+  border-top: 0 !important;
+  opacity: 0.44 !important;
+}
+
+.evidenceRailFigure {
+  margin: clamp(6px, 0.55vw, 9px) clamp(6px, 0.55vw, 9px) 0 !important;
+  border: 0 !important;
+  border-radius: 5px !important;
+  box-shadow: inset 0 0 14px rgba(0, 0, 0, 0.26) !important;
+}
+
+.evidenceRailFigure svg {
+  min-height: 76px !important;
+}
+
+.evidenceRailCopy {
+  grid-template-columns: clamp(24px, 1.8vw, 31px) minmax(0, 1fr) !important;
+  gap: 5px clamp(7px, 0.7vw, 10px) !important;
+  padding: 7px clamp(9px, 0.82vw, 12px) 9px !important;
+}
+
+.evidenceRailIcon {
+  width: clamp(24px, 1.8vw, 31px) !important;
+  height: clamp(24px, 1.8vw, 31px) !important;
+  border: 0 !important;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.045), 0 0 12px rgba(212, 157, 129, 0.1) !important;
+}
+
+.evidenceRailTitle {
+  font-size: clamp(0.62rem, 0.72vw, 0.82rem) !important;
+}
+
+.evidenceRailProof {
+  font-size: clamp(0.48rem, 0.54vw, 0.62rem) !important;
+}
+
+.evidenceRailDetail {
+  font-size: clamp(0.5rem, 0.58vw, 0.66rem) !important;
+  line-height: 1.26 !important;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .evidenceRailCard:hover {
+    border: 0 !important;
+    box-shadow:
+      inset 0 1px 0 rgba(255, 250, 242, 0.08),
+      0 20px 54px rgba(0, 0, 0, 0.5),
+      0 0 28px rgba(212, 157, 129, 0.16) !important;
+  }
+}
+
+@media (max-width: 720px) {
+  .evidenceRailCard {
+    min-height: 168px !important;
+  }
+}
+
+/* Evidence square card refinement */
+.page .asymEvidence {
+  --evidence-card-height: clamp(126px, 17vw, 280px) !important;
+}
+
+.evidenceRail {
+  justify-items: center !important;
+}
+
+.evidenceRailCard {
+  width: min(100%, var(--evidence-card-height)) !important;
+  min-height: 0 !important;
+  aspect-ratio: 1 / 1 !important;
+  grid-template-rows: minmax(58px, 1fr) auto !important;
+  justify-self: center !important;
+}
+
+.evidenceRailFigure {
+  margin: clamp(5px, 0.45vw, 7px) clamp(5px, 0.45vw, 7px) 0 !important;
+}
+
+.evidenceRailFigure svg {
+  min-height: 58px !important;
+}
+
+.evidenceRailCopy {
+  grid-template-columns: clamp(20px, 1.45vw, 25px) minmax(0, 1fr) !important;
+  gap: 3px clamp(5px, 0.5vw, 7px) !important;
+  padding: 5px clamp(6px, 0.58vw, 8px) 7px !important;
+}
+
+.evidenceRailIcon {
+  width: clamp(20px, 1.45vw, 25px) !important;
+  height: clamp(20px, 1.45vw, 25px) !important;
+}
+
+.evidenceRailTitle {
+  font-size: clamp(0.54rem, 0.58vw, 0.68rem) !important;
+  letter-spacing: 0.08em !important;
+}
+
+.evidenceRailProof {
+  font-size: clamp(0.42rem, 0.45vw, 0.52rem) !important;
+  line-height: 1.12 !important;
+}
+
+.evidenceRailDetail {
+  font-size: clamp(0.43rem, 0.47vw, 0.54rem) !important;
+  line-height: 1.16 !important;
+}
+
+@media (max-width: 720px) {
+  .page .asymEvidence {
+    --evidence-card-height: clamp(136px, 42vw, 168px) !important;
+  }
+
+  .evidenceRailCard {
+    width: min(100%, var(--evidence-card-height)) !important;
+    min-height: 0 !important;
+  }
+}
+
+/* Force evidence cards to remain square even when copy wraps */
+.evidenceRailCard {
+  height: var(--evidence-card-height) !important;
+  max-height: var(--evidence-card-height) !important;
+}
+
+/* Evidence rail spacing refinement */
+.evidenceRails {
+  gap: 0 !important;
+}
+
+.evidenceRails::before {
+  content: none !important;
+  display: none !important;
+}
+
+/* Evidence divider and column proximity correction */
+.evidenceRails {
+  grid-template-columns: repeat(2, var(--evidence-card-height)) !important;
+  justify-content: center !important;
+  justify-items: stretch !important;
+  column-gap: clamp(0px, 0.45vw, 10px) !important;
+  row-gap: var(--evidence-rail-gap) !important;
+}
+
+.evidenceRail {
+  justify-items: stretch !important;
+}
+
+.evidenceRailCard {
+  width: var(--evidence-card-height) !important;
+  justify-self: stretch !important;
+}
+
+.evidenceRails::before,
+.evidenceRails::after {
+  content: none !important;
+  display: none !important;
+  opacity: 0 !important;
+  width: 0 !important;
+  box-shadow: none !important;
+  background: none !important;
+}
+
+.evidenceStickyCopy {
+  border-left: 0 !important;
+  padding-left: 0 !important;
+}
+
+@media (max-width: 720px) {
+  .evidenceRails {
+    grid-template-columns: var(--evidence-card-height) !important;
+    justify-content: center !important;
+    column-gap: 0 !important;
+  }
+}
+
+/* Evidence section line removal and rail gap tuning */
+.page .asymEvidence::before,
+.asymEvidence::before {
+  content: none !important;
+  display: none !important;
+  opacity: 0 !important;
+  width: 0 !important;
+  height: 0 !important;
+  background: none !important;
+  box-shadow: none !important;
+}
+
+.evidenceRails {
+  column-gap: clamp(0px, 1.45vw, 23px) !important;
+}
+
+/* Evidence sticky copy vertical adjustment */
+.evidenceStickyCopy {
+  border-left: 2px solid rgba(212, 157, 129, 0.68) !important;
+  padding-left: clamp(20px, 2.6vw, 38px) !important;
+  margin-top: -110px !important;
+}
+
+/* Evidence card readability tuning */
+.evidenceRailCopy {
+  grid-template-columns: clamp(24px, 1.8vw, 32px) minmax(0, 1fr) !important;
+  gap: 5px clamp(7px, 0.7vw, 10px) !important;
+  padding: clamp(7px, 0.7vw, 10px) clamp(9px, 0.9vw, 13px) clamp(9px, 0.9vw, 14px) !important;
+}
+
+.evidenceRailIcon {
+  width: clamp(24px, 1.8vw, 32px) !important;
+  height: clamp(24px, 1.8vw, 32px) !important;
+}
+
+.evidenceRailTitle {
+  font-size: clamp(0.74rem, 0.9vw, 1.02rem) !important;
+  line-height: 1.02 !important;
+  letter-spacing: 0.07em !important;
+}
+
+.evidenceRailProof {
+  font-size: clamp(0.58rem, 0.7vw, 0.78rem) !important;
+  line-height: 1.16 !important;
+  font-weight: 600 !important;
+  color: rgba(255, 250, 242, 0.82) !important;
+}
+
+.evidenceRailDetail {
+  font-size: clamp(0.56rem, 0.66vw, 0.74rem) !important;
+  line-height: 1.24 !important;
+  color: rgba(255, 250, 242, 0.68) !important;
+}
+
+@media (max-width: 720px) {
+  .evidenceRailTitle {
+    font-size: clamp(0.76rem, 3.4vw, 0.96rem) !important;
+  }
+
+  .evidenceRailProof {
+    font-size: clamp(0.6rem, 2.8vw, 0.76rem) !important;
+  }
+
+  .evidenceRailDetail {
+    font-size: clamp(0.58rem, 2.7vw, 0.72rem) !important;
+  }
+}
+
+/* Evidence responsive text-to-rail spacing */
+.evidenceScrollStage {
+  grid-template-columns:
+    minmax(clamp(280px, 30vw, 500px), 0.92fr)
+    minmax(calc((var(--evidence-card-height) * 2) + clamp(0px, 1.45vw, 23px)), max-content) !important;
+  gap: clamp(16px, 3vw, 46px) !important;
+  justify-content: center !important;
+}
+
+.evidenceStickyCopy {
+  width: min(100%, clamp(320px, 34vw, 520px)) !important;
+}
+
+.evidenceRails {
+  width: calc((var(--evidence-card-height) * 2) + clamp(0px, 1.45vw, 23px)) !important;
+  justify-self: start !important;
+}
+
+@media (max-width: 1280px) {
+  .evidenceScrollStage {
+    grid-template-columns:
+      minmax(300px, 0.9fr)
+      minmax(calc((var(--evidence-card-height) * 2) + clamp(0px, 1.45vw, 23px)), max-content) !important;
+    gap: clamp(14px, 2.4vw, 34px) !important;
+  }
+}
+
+@media (max-width: 1080px) {
+  .evidenceScrollStage {
+    grid-template-columns: 1fr !important;
+    gap: clamp(28px, 6vw, 56px) !important;
+  }
+
+  .evidenceRails {
+    width: 100% !important;
+    justify-self: stretch !important;
+  }
+}
+
+/* Evidence paragraph-only accent and simpler title word styling */
+.evidenceStickyCopy {
+  border-left: 0 !important;
+  padding-left: 0 !important;
+}
+
+.evidenceStickyCopy .evidenceLeadText {
+  border-left: 2px solid rgba(212, 157, 129, 0.68) !important;
+  padding-left: clamp(16px, 2vw, 28px) !important;
+}
+
+.evidenceProofTitle .gapFocusWord:nth-child(2) .gapFocusWordOutline,
+.evidenceProofTitle .gapFocusWord:nth-child(2) .gapFocusWordFill {
+  color: #f2c3a9 !important;
+  -webkit-text-fill-color: #f2c3a9 !important;
+  -webkit-text-stroke: 0 !important;
+  font-style: normal !important;
+  font-weight: inherit !important;
+  text-shadow: 0 18px 48px rgba(0, 0, 0, 0.5) !important;
+}
+
+.evidenceScrollStage {
+  padding: clamp(70px, 9vh, 104px) clamp(30px, 7vw, 78px) clamp(40px, 6vh, 70px) !important;
+}
+
+/* Evidence final title framing and background word */
+.evidenceStickyCopy {
+  border-left: 2px solid rgba(212, 157, 129, 0.68) !important;
+  padding-left: clamp(20px, 2.6vw, 38px) !important;
+  margin-top: -140px !important;
+}
+
+.evidenceStickyCopy .evidenceLeadText {
+  border-left: 0 !important;
+  padding-left: 0 !important;
+}
+
+.evidenceStickyCopy .evidenceProofTitle {
+  letter-spacing: 0 !important;
+}
+
+.page .asymEvidence::after,
+.asymEvidence::after {
+  content: "EVIDENCE" !important;
+  position: absolute !important;
+  right: max(4vw, -34px) !important;
+  left: auto !important;
+  top: clamp(34px, 7vw, 120px) !important;
+  z-index: 0 !important;
+  color: transparent !important;
+  font-family: "Poppins", sans-serif !important;
+  font-size: clamp(6.6rem, 14vw, 18rem) !important;
+  font-weight: 900 !important;
+  line-height: 0.78 !important;
+  letter-spacing: 0 !important;
+  -webkit-text-stroke: 1.4px rgba(212, 157, 129, 0.18) !important;
+  opacity: 0.58 !important;
+  transform: none !important;
+  pointer-events: none !important;
+}
+
+.page .asymEvidence.visible::after,
+.asymEvidence.visible::after {
+  opacity: 0.58 !important;
+}
+
+/* Evidence proof title sizing refinement */
+.evidenceStickyCopy .evidenceProofTitle {
+  max-width: min(430px, 100%) !important;
+  gap: clamp(0px, 0.25vw, 4px) !important;
+  margin-bottom: clamp(20px, 3vh, 34px) !important;
+  font-size: clamp(3rem, 7vw, 6rem) !important;
+  line-height: 0.78 !important;
+  letter-spacing: -0.055em !important;
+}
+
+/* Evidence final line placement, title tracking, and downward word motion */
+.evidenceStickyCopy {
+  border-left: 0 !important;
+  padding-left: 0 !important;
+}
+
+.evidenceStickyCopy .evidenceLeadText {
+  border-left: 2px solid rgba(212, 157, 129, 0.68) !important;
+  padding-left: clamp(18px, 2.2vw, 32px) !important;
+}
+
+.evidenceStickyCopy .evidenceProofTitle {
+  letter-spacing: -0.045em !important;
+}
+
+.page .asymEvidence::after,
+.asymEvidence::after {
+  content: none !important;
+  display: none !important;
+}
+
+.evidenceBackgroundWord {
+  position: absolute;
+  right: max(4vw, -34px);
+  top: clamp(34px, 7vw, 120px);
+  z-index: 0;
+  color: transparent;
+  font-family: "Poppins", sans-serif;
+  font-size: clamp(6.6rem, 14vw, 18rem);
+  font-weight: 900;
+  line-height: 0.78;
+  letter-spacing: 0;
+  -webkit-text-stroke: 1.4px rgba(212, 157, 129, 0.18);
+  opacity: 0.58;
+  pointer-events: none;
+  user-select: none;
+  white-space: nowrap;
+  will-change: transform;
+}
+
+/* Evidence Material letter reveal */
+.evidenceProofTitle .evidenceMaterialWord {
+  color: transparent !important;
+  -webkit-text-stroke: 0 !important;
+}
+
+.evidenceMaterialWord .gapFocusWordOutline {
+  color: #f0b28f !important;
+  -webkit-text-fill-color: #f0b28f !important;
+  -webkit-text-stroke: 0 !important;
+  opacity: 0.2 !important;
+}
+
+.evidenceMaterialLetters {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  display: flex;
+  color: #f0b28f;
+  -webkit-text-fill-color: #f0b28f;
+  -webkit-text-stroke: 0;
+  text-shadow:
+    0 0 28px rgba(240, 178, 143, 0.24),
+    0 18px 54px rgba(0, 0, 0, 0.58);
+  pointer-events: none;
+}
+
+.evidenceMaterialLetters span {
+  opacity: 0.2;
+  transform: translate3d(0, 0.08em, 0);
+  transition:
+    opacity 420ms ease,
+    transform 520ms cubic-bezier(0.16, 1, 0.3, 1);
+  transition-delay: calc(180ms + (var(--letter-index) * 70ms));
+}
+
+.asymEvidence.visible .evidenceMaterialLetters span {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+}
+
+.evidenceMaterialWord .gapFocusWordFill {
+  display: none !important;
+}
+
+/* Evidence Material reveal layout fix */
+.evidenceProofTitle .evidenceMaterialWord {
+  display: block !important;
+  width: max-content !important;
+  max-width: none !important;
+  white-space: nowrap !important;
+  overflow: visible !important;
+}
+
+.evidenceMaterialWord .gapFocusWordOutline {
+  display: block !important;
+  width: max-content !important;
+  white-space: nowrap !important;
+}
+
+.evidenceMaterialLetters {
+  position: absolute !important;
+  inset: 0 auto auto 0 !important;
+  z-index: 3 !important;
+  display: inline-flex !important;
+  flex-direction: row !important;
+  align-items: baseline !important;
+  justify-content: flex-start !important;
+  width: max-content !important;
+  max-width: none !important;
+  white-space: nowrap !important;
+  overflow: visible !important;
+  color: #f0b28f !important;
+  -webkit-text-fill-color: #f0b28f !important;
+  -webkit-text-stroke: 0 !important;
+}
+
+.evidenceMaterialLetters span {
+  display: inline-block !important;
+  min-width: 0 !important;
+  opacity: 1;
+  transform: none;
+  transition: none !important;
+}
+
+.asymEvidence.visible .evidenceMaterialLetters span {
+  opacity: 1;
+  transform: none;
+}
+
+/* Evidence Material single-render fix */
+.evidenceMaterialWord .gapFocusWordOutline {
+  visibility: hidden !important;
+  opacity: 0 !important;
+}
+
+.evidenceMaterialLetters {
+  opacity: 1 !important;
 }

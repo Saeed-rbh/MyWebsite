@@ -2,7 +2,12 @@ import React, { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { motion, useScroll, useSpring, useTransform } from "motion/react";
 import {
+  TbCube,
+  TbDownload,
   TbHexagon,
+  TbMail,
+  TbMicroscope,
+  TbNetwork,
 } from "react-icons/tb";
 import SEO from "../../components/SEO/SEO";
 import styles from "./WorkStory.module.css";
@@ -112,6 +117,27 @@ const chain = [
   "Computational Modeling",
 ];
 
+const approachOrbitSteps = [
+  {
+    number: "01",
+    title: "Materials & Processes",
+    detail: "Scalable materials and process development.",
+    Icon: TbNetwork,
+  },
+  {
+    number: "02",
+    title: "Measurement & Metrology",
+    detail: "Precision characterization and accuracy.",
+    Icon: TbMicroscope,
+  },
+  {
+    number: "03",
+    title: "Modeling & Insights",
+    detail: "Predict and optimize with computational models.",
+    Icon: TbCube,
+  },
+];
+
 const navItems = [
   { id: "gap", label: "Gap" },
   { id: "process", label: "CFE" },
@@ -143,6 +169,24 @@ const variables = [
 
 const characterization = [
   {
+    id: "uv-vis",
+    name: "UV",
+    proof: "Optical response",
+    detail: "Batch consistency via excitonic absorption peaks.",
+  },
+  {
+    id: "sem",
+    name: "SEM",
+    proof: "Surface morphology",
+    detail: "Flake population, particle distribution, and agglomeration checks.",
+  },
+  {
+    id: "tem",
+    name: "TEM",
+    proof: "Lattice structure",
+    detail: "Layer contrast, nanosheet edges, and crystalline domains.",
+  },
+  {
     id: "raman",
     name: "RAMAN",
     proof: "Structural signature",
@@ -155,22 +199,10 @@ const characterization = [
     detail: "C1s dominance, minimal oxygen, non-oxidative proof.",
   },
   {
-    id: "sem-tem",
-    name: "SEM/TEM",
-    proof: "Morphology & structure",
-    detail: "Layered structure, flake size statistics, and hexagonal lattice symmetry.",
-  },
-  {
     id: "afm",
     name: "AFM",
     proof: "Topography",
     detail: "Sub-3nm flakes, 1-10 layers, high-resolution height mapping.",
-  },
-  {
-    id: "uv-vis",
-    name: "UV-VIS",
-    proof: "Optical response",
-    detail: "Batch consistency via excitonic absorption peaks.",
   }
 ];
 
@@ -415,6 +447,37 @@ const SpotlightTitle = ({ words, className = "" }) => {
   );
 };
 
+const EvidenceMaterialLetter = ({ letter, index, progress }) => {
+  const start = 0.08 + index * 0.035;
+  const opacity = useTransform(progress, [start, start + 0.075], [0.2, 1]);
+  const y = useTransform(progress, [start, start + 0.075], ["0.08em", "0em"]);
+
+  return (
+    <motion.span style={{ opacity, y }}>{letter}</motion.span>
+  );
+};
+
+const EvidenceProofTitle = ({ progress }) => {
+  const materialLetters = "Material".split("");
+
+  return (
+    <h2
+      className={`${styles.sectionTitleStacked} ${styles.spotlightTitle} ${styles.evidenceProofTitle}`}
+      aria-label="Proving the Material"
+    >
+      {renderFocusWord("Proving")}
+      {renderFocusWord("the")}
+      <span className={`${styles.gapFocusWord} ${styles.evidenceMaterialWord}`} data-text="Material">
+        <span className={styles.gapFocusWordOutline} aria-hidden="true">Material</span>
+        <span className={styles.evidenceMaterialLetters} aria-hidden="true">
+          {materialLetters.map((letter, index) => (
+            <EvidenceMaterialLetter key={`${letter}-${index}`} letter={letter} index={index} progress={progress} />
+          ))}
+        </span>
+      </span>
+    </h2>
+  );
+};
 const SystemSpotlightTitle = () => (
   <h2
     className={`${styles.sectionTitleStacked} ${styles.spotlightTitle} ${styles.systemTitle} ${styles.systemFilledTitle}`}
@@ -426,11 +489,16 @@ const SystemSpotlightTitle = () => (
   </h2>
 );
 
-const SectionShell = ({ id, kicker, title, children, className = "" }) => {
+const SectionShell = ({ id, kicker, title, children, className = "", eager = false }) => {
   const sectionRef = useRef(null);
-  const [shouldRenderContent, setShouldRenderContent] = useState(false);
+  const [shouldRenderContent, setShouldRenderContent] = useState(eager);
 
   useEffect(() => {
+    if (eager) {
+      setShouldRenderContent(true);
+      return undefined;
+    }
+
     const section = sectionRef.current;
     if (!section) return undefined;
 
@@ -446,7 +514,7 @@ const SectionShell = ({ id, kicker, title, children, className = "" }) => {
 
     observer.observe(section);
     return () => observer.disconnect();
-  }, []);
+  }, [eager]);
 
   return (
     <section
@@ -804,13 +872,9 @@ const HeroGraphene = () => (
 const GapSection = ({ scrollRef }) => {
   const sectionRef = useRef(null);
   const [activeIndex, setActiveIndex] = useState(1);
-  const [isPinReady, setIsPinReady] = useState(() => (
-    typeof window === "undefined" || !window.matchMedia("(max-width: 840px)").matches
-  ));
+  const [isPinReady, setIsPinReady] = useState(false);
   const activeIndexRef = useRef(1);
-  const pinReadyRef = useRef(
-    typeof window === "undefined" || !window.matchMedia("(max-width: 840px)").matches
-  );
+  const pinReadyRef = useRef(false);
   const rafRef = useRef(null);
   const metricsRef = useRef({ isMobile: false, sectionStart: 0, pinDistance: 1 });
 
@@ -837,9 +901,11 @@ const GapSection = ({ scrollRef }) => {
         rafRef.current = null;
         const { isMobile, sectionStart, pinDistance } = metricsRef.current;
         const scrollTop = root.scrollTop;
+        const clientHeight = root.clientHeight;
         const rawProgress = (scrollTop - sectionStart) / pinDistance;
         const latest = clamp(rawProgress, 0, 1);
-        const nextPinReady = !isMobile || scrollTop >= sectionStart - 1;
+        const readyOffset = 1;
+        const nextPinReady = scrollTop >= sectionStart - readyOffset;
 
         if (pinReadyRef.current !== nextPinReady) {
           pinReadyRef.current = nextPinReady;
@@ -866,6 +932,7 @@ const GapSection = ({ scrollRef }) => {
       updateGapState();
     };
 
+    section.setAttribute("data-active-slide", activeIndexRef.current);
     syncGapMetrics();
     updateGapState();
     root.addEventListener("scroll", updateGapState, { passive: true });
@@ -1314,7 +1381,8 @@ const UvVisChart = ({ isActive }) => (
 
 const SvgMap = {
   "uv-vis": UvVisChart,
-  "sem-tem": SemTemChart,
+  sem: SemTemChart,
+  tem: SemTemChart,
   raman: RamanChart,
   afm: AfmChart,
   xps: XpsChart
@@ -1365,67 +1433,153 @@ const XpsIcon = () => (
 
 const BadgeIconMap = {
   "uv-vis": WaveIcon,
-  "sem-tem": LatticeIcon,
+  sem: LatticeIcon,
+  tem: LatticeIcon,
   raman: RamanIcon,
   afm: ConcentricIcon,
   xps: XpsIcon
 };
 
-const TechniqueChain = ({ items }) => {
+const EvidenceCard = ({ item, index }) => {
+  const ChartComponent = SvgMap[item.id] || UvVisChart;
+  const BadgeIcon = BadgeIconMap[item.id] || WaveIcon;
+
   return (
-    <div className={styles.evidenceContainer}>
-      <svg className={styles.timelineCurveRail} viewBox="0 0 1000 420" preserveAspectRatio="none" aria-hidden="true">
-        <path d="M0 352 C245 330 450 306 612 266 C772 226 896 184 1000 112" />
-        <path d="M0 352 C245 330 450 306 612 266 C772 226 896 184 1000 112" />
-      </svg>
+    <article className={styles.evidenceRailCard} style={{ "--motion-delay": `${index * 86}ms` }}>
+      <div className={styles.evidenceRailFigure}>
+        <ChartComponent isActive={true} />
+      </div>
+      <div className={styles.evidenceRailCopy}>
+        <span className={styles.evidenceRailIcon} aria-hidden="true">
+          <BadgeIcon />
+        </span>
+        <span className={styles.evidenceRailMeta}>
+          <span className={styles.evidenceRailTitle}>{item.name}</span>
+          <span className={styles.evidenceRailProof}>{item.proof}</span>
+        </span>
+        <span className={styles.evidenceRailDetail}>{item.detail}</span>
+      </div>
+    </article>
+  );
+};
 
-      <div className={styles.evidenceGridStatic}>
-        {items.map((item, index) => {
-          const ChartComponent = SvgMap[item.id] || UvVisChart;
-          const BadgeIcon = BadgeIconMap[item.id] || WaveIcon;
-          const plot = [
-            { x: 11, bottom: 22, width: "15.8%" },
-            { x: 32, bottom: 50, width: "15.8%" },
-            { x: 52, bottom: 84, width: "15.8%" },
-            { x: 71, bottom: 128, width: "15.2%" },
-            { x: 88, bottom: 174, width: "15%" }
-          ][index] || { x: 50, bottom: 80, width: "16%" };
+const EvidenceShowcase = ({ items, scrollRef }) => {
+  const sceneRef = useRef(null);
+  const { scrollYProgress } = useScroll({
+    container: scrollRef,
+    target: sceneRef,
+    offset: ["start start", "end end"],
+  });
+  const railProgress = useSpring(scrollYProgress, {
+    stiffness: 72,
+    damping: 28,
+    mass: 0.8,
+    restDelta: 0.001,
+  });
+  const firstRailY = useTransform(railProgress, [0, 1], ["3vh", "-30vh"]);
+  const secondRailY = useTransform(railProgress, [0, 1], ["3vh", "-46vh"]);
+  const backgroundWordY = useTransform(railProgress, [0, 1], ["-8vh", "18vh"]);
+  const byId = Object.fromEntries(items.map((item) => [item.id, item]));
+  const firstRail = ["uv-vis", "sem", "tem"].map((id) => byId[id]).filter(Boolean);
+  const secondRail = ["raman", "xps", "afm"].map((id) => byId[id]).filter(Boolean);
 
-          return (
-            <div
-              key={item.id}
-              className={styles.evidenceColumnWrapper}
-              style={{ "--plot-x": `${plot.x}%`, "--plot-bottom": `${plot.bottom}px`, "--card-width": plot.width, "--motion-delay": `${index * 70}ms` }}
-            >
-              <div className={styles.evidenceColumnStatic}>
-                <div className={styles.evidenceCardImageContainer}>
-                  <ChartComponent isActive={true} />
-                </div>
+  return (
+    <div ref={sceneRef} className={styles.evidenceScrollScene}>
+      <div className={styles.evidenceScrollStage}>
+        <motion.span className={styles.evidenceBackgroundWord} style={{ y: backgroundWordY }} aria-hidden="true">EVIDENCE</motion.span>
+        <div className={styles.evidenceStickyCopy}>
+          <span className={styles.kicker}>EVIDENCE</span>
+          <EvidenceProofTitle progress={railProgress} />
+          <p className={styles.evidenceLeadText}>
+            The material is only useful when structure, chemistry, and morphology are verified.
+          </p>
+        </div>
 
-                <div className={styles.evidenceCardTextContainer}>
-                  <span className={styles.evidenceBadgeIcon}>
-                    <BadgeIcon />
-                  </span>
-                  <span className={styles.evidenceCardCopy}>
-                    <span className={styles.evidenceCardTitle}>{item.name}</span>
-                    <span className={styles.evidenceCardSubtitle}>{item.proof}</span>
-                  </span>
-                </div>
-              </div>
-
-              <div className={styles.timelineDotContainer}>
-                <div className={styles.timelineDot}></div>
-                <span className={styles.timelineIndex}>{String(index + 1).padStart(2, "0")}</span>
-                <span className={styles.timelineLabel}>{item.name}</span>
-              </div>
-            </div>
-          );
-        })}
+        <div className={styles.evidenceRails} aria-label="Material evidence methods">
+          <motion.div className={`${styles.evidenceRail} ${styles.evidenceRailPrimary}`} style={{ y: firstRailY }}>
+            {firstRail.map((item, index) => <EvidenceCard key={item.id} item={item} index={index} />)}
+          </motion.div>
+          <motion.div className={`${styles.evidenceRail} ${styles.evidenceRailSecondary}`} style={{ y: secondRailY }}>
+            {secondRail.map((item, index) => <EvidenceCard key={item.id} item={item} index={index + firstRail.length} />)}
+          </motion.div>
+        </div>
       </div>
     </div>
   );
 };
+const ApproachContent = ({ scrollRef }) => {
+  const stageRef = useRef(null);
+  const [isActive, setIsActive] = useState(false);
 
+  useEffect(() => {
+    const root = scrollRef.current;
+    const stage = stageRef.current;
+    if (!root || !stage) return undefined;
+
+    let activateTimer = null;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (activateTimer) window.clearTimeout(activateTimer);
+        if (entry.isIntersecting) {
+          setIsActive(false);
+          activateTimer = window.setTimeout(() => setIsActive(true), 80);
+        } else {
+          setIsActive(false);
+        }
+      },
+      { root, threshold: 0.24, rootMargin: "-6% 0px -12% 0px" }
+    );
+
+    observer.observe(stage);
+    return () => {
+      if (activateTimer) window.clearTimeout(activateTimer);
+      observer.disconnect();
+    };
+  }, [scrollRef]);
+
+  return (
+    <div
+      ref={stageRef}
+      className={`${styles.approachStage} ${isActive ? styles.approachStageActive : ""}`}
+    >
+      <div className={styles.approachCopy}>
+        <div className={styles.approachEyebrow}>
+          <span>MY R&amp;D APPROACH</span>
+          <i aria-hidden="true" />
+        </div>
+        <SpotlightTitle words={["From", "Idea", "To", "Impact."]} className={styles.splitLineLayout} />
+        <p className={styles.approachLead}>
+          I build the process, measure the output,<br />
+          and move research toward real-world use.
+        </p>
+        <div className={styles.heroActions}>
+          <Link to="/AcademicCV"><TbDownload aria-hidden="true" /><span>Download Resume</span></Link>
+          <a href="mailto:sarabha@yorku.ca"><TbMail aria-hidden="true" /><span>Contact Me</span></a>
+        </div>
+      </div>
+
+      <div className={styles.approachOrbit} aria-label="R&D framework focus areas">
+        <span className={`${styles.orbitRing} ${styles.orbitRingOuter}`} aria-hidden="true" />
+        <span className={`${styles.orbitRing} ${styles.orbitRingMiddle}`} aria-hidden="true" />
+        <span className={`${styles.orbitRing} ${styles.orbitRingInner}`} aria-hidden="true" />
+        <span className={styles.orbitPlanet} aria-hidden="true" />
+        {approachOrbitSteps.map(({ number, title, detail, Icon }, index) => (
+          <article
+            key={number}
+            className={`${styles.orbitStep} ${styles[`orbitStep${index + 1}`]}`}
+          >
+            <span className={styles.orbitIcon} aria-hidden="true"><Icon /></span>
+            <span className={styles.orbitCopy}>
+              <span className={styles.orbitNumber}>{number}</span>
+              <strong>{title}</strong>
+              <span>{detail}</span>
+            </span>
+          </article>
+        ))}
+      </div>
+    </div>
+  );
+};
 const WorkStory = () => {
   const scrollRef = useRef(null);
   const [isMounted, setIsMounted] = useState(false);
@@ -1541,24 +1695,13 @@ const WorkStory = () => {
             </div>
           </SectionShell>
 
-          <SectionShell 
-            id="evidence" 
-            kicker="EVIDENCE" 
-            title={
-              <SpotlightTitle words={["Proving The", "Material"]} />
-            } 
+          <SectionShell
+            id="evidence"
             className={styles.asymEvidence}
+            eager
           >
-            <div className={styles.sectionIntro}>
-              <div className={styles.evidenceIntroBlock}>
-                <p className={styles.evidenceLeadText}>
-                  The material is only useful when structure, chemistry, and morphology are verified.
-                </p>
-              </div>
-            </div>
-            <TechniqueChain items={characterization} />
+            <EvidenceShowcase items={characterization} scrollRef={scrollRef} />
           </SectionShell>
-
           <SectionShell 
             id="modeling" 
             kicker="MODELING" 
@@ -1609,57 +1752,11 @@ const WorkStory = () => {
             </div>
           </SectionShell>
 
-          <SectionShell 
-            id="approach" 
-            kicker="FRAMEWORK" 
-            title={
-              <h2
-                className={`${styles.sectionTitleStacked} ${styles.spotlightTitle}`}
-                aria-label="My R&D Approach"
-              >
-                <span
-                  className={`${styles.gapFocusWord} ${styles.forceNoWrap}`}
-                  data-spotlight-mode="focus"
-                  data-text="My R&D"
-                  onPointerEnter={handlePillarLensEnter}
-                  onPointerMove={handlePillarLensMove}
-                  onPointerLeave={handlePillarLensLeave}
-                >
-                  <span className={styles.gapFocusWordOutline} style={{ whiteSpace: "nowrap" }}>
-                    My&nbsp;<span className={styles.rdFocusText}>R&amp;D</span>
-                  </span>
-                  <span
-                    className={styles.gapFocusWordFill}
-                    aria-hidden="true"
-                    style={{ whiteSpace: "nowrap" }}
-                  >
-                    My&nbsp;<span className={styles.rdFocusText}>R&amp;D</span>
-                  </span>
-                </span>
-                {renderFocusWord("Approach")}
-              </h2>
-            }
+          <SectionShell
+            id="approach"
             className={styles.asymApproach}
           >
-            <div className={styles.finalChain}>
-              {chain.map((item) => (
-                <span key={item}>{item === "Metrology & Characterization" ? "Metrology" : item === "Nanoscale Thermal Transport" ? "Thermal Transport" : item}</span>
-              ))}
-            </div>
-            <p className={styles.lead}>
-              Build the route. Measure the output.<br />
-              Explain the mechanism. Connect it to use.
-            </p>
-            <div className={styles.closeCard}>
-              <p>
-                Focused on nanomanufacturing, characterization, process scale-up, and applied materials R&D.
-              </p>
-              <div className={styles.heroActions}>
-                <Link to="/AcademicCV">Download Resume</Link>
-                <a href="mailto:sarabha@yorku.ca">Contact Me</a>
-                <Link to="/research-progress">View CFE Case Study</Link>
-              </div>
-            </div>
+            <ApproachContent scrollRef={scrollRef} />
           </SectionShell>
         </div>
       </motion.main>
@@ -1668,3 +1765,10 @@ const WorkStory = () => {
 };
 
 export default WorkStory;
+
+
+
+
+
+
+

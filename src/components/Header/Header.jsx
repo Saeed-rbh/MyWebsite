@@ -77,6 +77,7 @@ const Header = () => {
     const isRDPage = location.pathname.toLowerCase() === "/r&d-portfolio";
     if (!isRDPage) {
       setActiveSection("");
+      setActiveGapSlide("1");
       return undefined;
     }
     const sectionIds = ["gap", "process", "system", "evidence", "modeling", "industry", "approach"];
@@ -90,9 +91,13 @@ const Header = () => {
         return;
       }
 
-      const viewportCenter = window.innerHeight / 2;
+      const containerRect = scrollContainer?.getBoundingClientRect();
+      const containerTop = containerRect?.top ?? 0;
+      const containerBottom = containerRect?.bottom ?? window.innerHeight;
+      const containerHeight = scrollContainer?.clientHeight ?? window.innerHeight;
+      const viewportCenter = containerTop + containerHeight / 2;
       let nextSection = "";
-      let gapRect = null;
+      let gapElement = null;
       let minDistance = Infinity;
 
       sectionIds.forEach((id) => {
@@ -100,19 +105,15 @@ const Header = () => {
         if (!element) return;
 
         const rect = element.getBoundingClientRect();
-        if (id === "gap") gapRect = rect;
+        if (id === "gap") gapElement = element;
 
-        // Check if the section spans the center of the viewport
         if (rect.top <= viewportCenter && rect.bottom >= viewportCenter) {
           nextSection = id;
         } else {
-          // Fallback: if no section spans the center (e.g., small elements or gaps),
-          // find the one closest to the center.
           const distance = Math.min(Math.abs(rect.top - viewportCenter), Math.abs(rect.bottom - viewportCenter));
           if (!nextSection && distance < minDistance) {
             minDistance = distance;
-            // Only use fallback if it's actually somewhat in view
-            if (rect.top < window.innerHeight && rect.bottom > 0) {
+            if (rect.top < containerBottom && rect.bottom > containerTop) {
               nextSection = id;
             }
           }
@@ -125,18 +126,21 @@ const Header = () => {
         setActiveSection("");
       }
 
-      if (nextSection === "gap" && gapRect) {
-        const pinDistance = Math.max(gapRect.height - window.innerHeight, 1);
-        const scrolledPastGapTop = -gapRect.top;
-        const rawProgress = scrolledPastGapTop / pinDistance;
-        const latest = Math.min(Math.max(rawProgress, 0), 1);
-        
-        let next = "6";
-        if (latest < 0.15) next = "1";
-        else if (latest < 0.31) next = "2";
-        else if (latest < 0.47) next = "3";
-        else if (latest < 0.63) next = "4";
-        else if (latest < 0.79) next = "5";
+      if (nextSection === "gap" && gapElement && scrollContainer) {
+        const slideFromStory = gapElement.getAttribute("data-active-slide");
+        let next = slideFromStory || "6";
+
+        if (!slideFromStory) {
+          const pinDistance = Math.max(gapElement.offsetHeight - scrollContainer.clientHeight, 1);
+          const rawProgress = (scrollContainer.scrollTop - gapElement.offsetTop) / pinDistance;
+          const latest = Math.min(Math.max(rawProgress, 0), 1);
+          next = "6";
+          if (latest < 0.15) next = "1";
+          else if (latest < 0.31) next = "2";
+          else if (latest < 0.47) next = "3";
+          else if (latest < 0.63) next = "4";
+          else if (latest < 0.79) next = "5";
+        }
 
         setActiveGapSlide((current) => (current === next ? current : next));
       }
