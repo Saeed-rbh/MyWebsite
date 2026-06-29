@@ -206,13 +206,42 @@ const characterization = [
   }
 ];
 
-const modelingNodes = [
-  "Experiment",
-  "Simulation",
-  "Data",
-  "Mechanism",
+const valueScholarships = [
+  { name: "Mitacs Globalink", place: "Germany", amount: "$6K" },
+  { name: "Lab2Market Validate", place: "Canada", amount: "$10K" },
+  { name: "Lab2Market Launch", place: "Canada", amount: "$10K" },
+  { name: "Inventor 2 Founder", place: "Canada", amount: "$10K" },
 ];
+const ModelingShowcase = () => {
+  const modelSteps = [
+    { label: "Experiment", code: "input", detail: "Measured response windows" },
+    { label: "Simulation", code: "solver", detail: "Physics-constrained parameter space" },
+    { label: "Data", code: "fit", detail: "Trend extraction and uncertainty" },
+    { label: "Mechanism", code: "why", detail: "Process decisions with cause" },
+  ];
 
+  return (
+    <div className={styles.modelingArena} aria-label="Modeling workflow">
+      <div className={styles.modelingEquationCore} aria-hidden="true">
+        <span>CFD</span>
+        <i />
+        <span>+</span>
+        <i />
+        <span>Data</span>
+        <strong>Mechanism</strong>
+      </div>
+      <div className={styles.modelPanel}>
+        {modelSteps.map((step, index) => (
+          <article key={step.label} className={styles.modelStepCard} style={{ "--delay": `${index * 100}ms` }}>
+            <span>{step.code}</span>
+            <h3>{step.label}</h3>
+            <p>{step.detail}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  );
+};
 const storySpring = {
   stiffness: 82,
   damping: 30,
@@ -278,28 +307,37 @@ const useWorkStoryEffects = (scrollRef) => {
     window.visualViewport?.addEventListener("resize", syncCachedLayout, { passive: true });
     mediaQuery.addEventListener?.("change", syncCachedLayout);
 
+    const applyRevealState = (entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add(styles.visible);
+        entry.target.classList.remove(styles.fadeOutUp);
+        entry.target.classList.remove(styles.fadeOutDown);
+      } else {
+        entry.target.classList.remove(styles.visible);
+        if (entry.boundingClientRect.top < 0) {
+          entry.target.classList.add(styles.fadeOutUp);
+        } else {
+          entry.target.classList.add(styles.fadeOutDown);
+        }
+      }
+    };
+
     const revealObserver = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add(styles.visible);
-            entry.target.classList.remove(styles.fadeOutUp);
-            entry.target.classList.remove(styles.fadeOutDown);
-          } else {
-            entry.target.classList.remove(styles.visible);
-            if (entry.boundingClientRect.top < 0) {
-              entry.target.classList.add(styles.fadeOutUp);
-            } else {
-              entry.target.classList.add(styles.fadeOutDown);
-            }
-          }
-        });
-      },
+      (entries) => entries.forEach(applyRevealState),
       { root, threshold: 0.1, rootMargin: "-5% 0px -5% 0px" }
     );
 
+    const approachRevealObserver = new IntersectionObserver(
+      (entries) => entries.forEach(applyRevealState),
+      { root, threshold: 0.42, rootMargin: "-16% 0px -18% 0px" }
+    );
+
     root.querySelectorAll("[data-reveal]").forEach((element) => {
-      revealObserver.observe(element);
+      if (element.id === "approach") {
+        approachRevealObserver.observe(element);
+      } else {
+        revealObserver.observe(element);
+      }
     });
 
     return () => {
@@ -308,6 +346,7 @@ const useWorkStoryEffects = (scrollRef) => {
       window.visualViewport?.removeEventListener("resize", syncCachedLayout);
       mediaQuery.removeEventListener?.("change", syncCachedLayout);
       revealObserver.disconnect();
+      approachRevealObserver.disconnect();
       if (rafRef.current) cancelAnimationFrame(rafRef.current);
     };
   }, [scrollRef]);
@@ -448,12 +487,13 @@ const SpotlightTitle = ({ words, className = "" }) => {
 };
 
 const EvidenceMaterialLetter = ({ letter, index, progress }) => {
-  const start = 0.08 + index * 0.035;
-  const opacity = useTransform(progress, [start, start + 0.075], [0.2, 1]);
-  const y = useTransform(progress, [start, start + 0.075], ["0.08em", "0em"]);
+  const start = 0.16 + index * 0.055;
+  const end = start + 0.12;
+  const opacity = useTransform(progress, [0, start, end], [0.2, 0.2, 1]);
+  const y = useTransform(progress, [0, start, end], ["0.07em", "0.07em", "0em"]);
 
   return (
-    <motion.span style={{ opacity, y }}>{letter}</motion.span>
+    <motion.span style={{ opacity, y, "--letter-index": index }}>{letter}</motion.span>
   );
 };
 
@@ -465,8 +505,8 @@ const EvidenceProofTitle = ({ progress }) => {
       className={`${styles.sectionTitleStacked} ${styles.spotlightTitle} ${styles.evidenceProofTitle}`}
       aria-label="Proving the Material"
     >
-      {renderFocusWord("Proving")}
-      {renderFocusWord("the")}
+      {renderFilledTitleWord("Proving", styles.evidenceTitleLight)}
+      {renderFilledTitleWord("the", styles.evidenceTitleLight)}
       <span className={`${styles.gapFocusWord} ${styles.evidenceMaterialWord}`} data-text="Material">
         <span className={styles.gapFocusWordOutline} aria-hidden="true">Material</span>
         <span className={styles.evidenceMaterialLetters} aria-hidden="true">
@@ -1516,66 +1556,69 @@ const ApproachContent = ({ scrollRef }) => {
     const stage = stageRef.current;
     if (!root || !stage) return undefined;
 
-    let activateTimer = null;
     const observer = new IntersectionObserver(
       ([entry]) => {
-        if (activateTimer) window.clearTimeout(activateTimer);
-        if (entry.isIntersecting) {
-          setIsActive(false);
-          activateTimer = window.setTimeout(() => setIsActive(true), 80);
-        } else {
-          setIsActive(false);
-        }
+        setIsActive(entry.isIntersecting);
       },
-      { root, threshold: 0.24, rootMargin: "-6% 0px -12% 0px" }
+      { root, threshold: 0.42, rootMargin: "-8% 0px -10% 0px" }
     );
 
     observer.observe(stage);
-    return () => {
-      if (activateTimer) window.clearTimeout(activateTimer);
-      observer.disconnect();
-    };
+    return () => observer.disconnect();
   }, [scrollRef]);
 
   return (
     <div
       ref={stageRef}
-      className={`${styles.approachStage} ${isActive ? styles.approachStageActive : ""}`}
+      className={`${styles.approachRebuildStage} ${isActive ? styles.approachRebuildActive : ""}`}
     >
-      <div className={styles.approachCopy}>
-        <div className={styles.approachEyebrow}>
+      <div className={styles.approachRebuildCopy}>
+        <div className={styles.approachRebuildEyebrow}>
           <span>MY R&amp;D APPROACH</span>
           <i aria-hidden="true" />
         </div>
-        <SpotlightTitle words={["From", "Idea", "To", "Impact."]} className={styles.splitLineLayout} />
-        <p className={styles.approachLead}>
+        <h2
+          className={`${styles.sectionTitleStacked} ${styles.spotlightTitle} ${styles.approachRebuildTitle}`}
+          aria-label="From Idea To Impact"
+        >
+          <span className={styles.approachTitleLine}>
+            {renderFilledTitleWord("From", styles.evidenceTitleLight)}
+            {renderFilledTitleWord("Idea", styles.evidenceTitleLight)}
+          </span>
+          <span className={styles.approachTitleLine}>
+            {renderFilledTitleWord("To", styles.evidenceTitleLight)}
+            {renderFilledTitleWord("Impact.", styles.spotlightTitleCopper)}
+          </span>
+        </h2>
+        <p className={styles.approachRebuildLead}>
           I build the process, measure the output,<br />
           and move research toward real-world use.
         </p>
-        <div className={styles.heroActions}>
+        <div className={styles.approachRebuildActions}>
           <Link to="/AcademicCV"><TbDownload aria-hidden="true" /><span>Download Resume</span></Link>
           <a href="mailto:sarabha@yorku.ca"><TbMail aria-hidden="true" /><span>Contact Me</span></a>
         </div>
       </div>
 
-      <div className={styles.approachOrbit} aria-label="R&D framework focus areas">
-        <span className={`${styles.orbitRing} ${styles.orbitRingOuter}`} aria-hidden="true" />
-        <span className={`${styles.orbitRing} ${styles.orbitRingMiddle}`} aria-hidden="true" />
-        <span className={`${styles.orbitRing} ${styles.orbitRingInner}`} aria-hidden="true" />
-        <span className={styles.orbitPlanet} aria-hidden="true" />
-        {approachOrbitSteps.map(({ number, title, detail, Icon }, index) => (
-          <article
-            key={number}
-            className={`${styles.orbitStep} ${styles[`orbitStep${index + 1}`]}`}
-          >
-            <span className={styles.orbitIcon} aria-hidden="true"><Icon /></span>
-            <span className={styles.orbitCopy}>
-              <span className={styles.orbitNumber}>{number}</span>
-              <strong>{title}</strong>
-              <span>{detail}</span>
-            </span>
-          </article>
-        ))}
+      <div className={styles.approachRebuildSystem} aria-label="R&D framework focus areas">
+        <span className={styles.approachRebuildAxis} aria-hidden="true" />
+        <span className={styles.approachRebuildCore} aria-hidden="true">R&amp;D</span>
+        <div className={styles.approachRebuildNodes}>
+          {approachOrbitSteps.map(({ number, title, detail, Icon }, index) => (
+            <article
+              key={number}
+              className={styles.approachRebuildNode}
+              style={{ "--delay": `${index * 110}ms` }}
+            >
+              <span className={styles.approachRebuildNodeIcon} aria-hidden="true"><Icon /></span>
+              <span className={styles.approachRebuildNodeCopy}>
+                <span>{number}</span>
+                <strong>{title}</strong>
+                <em>{detail}</em>
+              </span>
+            </article>
+          ))}
+        </div>
       </div>
     </div>
   );
@@ -1715,14 +1758,8 @@ const WorkStory = () => {
                 Experiments show what changed. Modeling explains why it changed.
               </p>
             </div>
-            <div className={styles.modelPanel}>
-              {modelingNodes.map((node, index) => (
-                <React.Fragment key={node}>
-                  <span style={{ "--delay": `${index * 100}ms` }}>{node}</span>
-                  {index < modelingNodes.length - 1 && <i aria-hidden="true" />}
-                </React.Fragment>
-              ))}
-            </div>
+
+            <ModelingShowcase />
           </SectionShell>
 
           <SectionShell 
@@ -1750,11 +1787,23 @@ const WorkStory = () => {
                 </p>
               </article>
             </div>
+            <div className={styles.valueScholarshipBand} aria-label="Scholarship and commercialization support">
+              <div className={styles.valueScholarshipTrack}>
+                {[...valueScholarships, ...valueScholarships].map((award, index) => (
+                  <span key={`${award.name}-${index}`}>
+                    <strong>{award.name}</strong>
+                    <em>{award.place}</em>
+                    <b>{award.amount}</b>
+                  </span>
+                ))}
+              </div>
+            </div>
           </SectionShell>
 
           <SectionShell
             id="approach"
             className={styles.asymApproach}
+            eager
           >
             <ApproachContent scrollRef={scrollRef} />
           </SectionShell>
@@ -1765,9 +1814,6 @@ const WorkStory = () => {
 };
 
 export default WorkStory;
-
-
-
 
 
 
