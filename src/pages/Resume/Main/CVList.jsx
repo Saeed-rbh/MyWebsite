@@ -17,7 +17,7 @@ import { useLocation } from "react-router-dom";
 import { useScrollableRef } from "../General/ScrollableRefContext";
 import useElementSize from "../Styles/useElementSize";
 import cvData from "../../../data/cvData.json";
-import DownloadButton from "./DownloadButton";
+const DownloadButton = React.lazy(() => import("./DownloadButton"));
 
 const MainStyleComponent = () => {
   // Interpolates between two values based on scroll position
@@ -185,7 +185,9 @@ const CVList = ({ isActive }) => {
               delay: resumeClicked === 1 ? 1000 : 0,
             })}
           >
-            <DownloadButton cvData={cvData} isMobile={true} />
+            <React.Suspense fallback={<span style={{fontSize: '11px', color: '#fff'}}>Loading PDF...</span>}>
+              <DownloadButton cvData={cvData} isMobile={true} />
+            </React.Suspense>
           </animated.div>
         )}
         {data.map((item, index) => (

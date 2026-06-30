@@ -214,7 +214,11 @@
   z-index: 1;
   max-width: 100%;
   margin: 10px 0 0;
-  color: #bfae9f;
+  color: #d49d81 !important;
+  background: linear-gradient(90deg, #d49d81 0%, #f0b07f 48%, #ffe0c8 100%) text !important;
+  -webkit-background-clip: text !important;
+  background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
   font-size: clamp(0.8rem, 2.4vw, 0.9rem);
   line-height: 1.38;
   font-weight: 400;
@@ -11269,6 +11273,19 @@ blockquote::before {
   mask-image: linear-gradient(90deg, transparent, #000 7%, #000 93%, transparent);
 }
 
+.gapPillarFrame {
+  flex: 0 0 100%;
+  width: 100%;
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  color: #d49d81 !important;
+  background: linear-gradient(90deg, #d49d81 0%, #f0b07f 48%, #ffe0c8 100%) text !important;
+  -webkit-background-clip: text !important;
+  background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+}
+
 .valueScholarshipTrack {
   display: flex;
   width: max-content;
@@ -12770,6 +12787,23 @@ blockquote::before {
   background: linear-gradient(90deg, #d49d81 0%, #f0b07f 48%, #ffe0c8 100%) !important;
   background-size: 7.2ch 100% !important;
   background-position: calc(var(--letter-index, 0) * -1ch) 0 !important;
+  -webkit-background-clip: text !important;
+  background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+}
+
+/* USER OVERRIDES */
+.gapLeadText strong > span:nth-child(2) {
+  color: #d49d81 !important;
+  background: linear-gradient(90deg, #d49d81 0%, #f0b07f 48%, #ffe0c8 100%) text !important;
+  -webkit-background-clip: text !important;
+  background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+}
+
+.gapPillarFrame {
+  color: #d49d81 !important;
+  background: linear-gradient(90deg, #d49d81 0%, #f0b07f 48%, #ffe0c8 100%) text !important;
   -webkit-background-clip: text !important;
   background-clip: text !important;
   -webkit-text-fill-color: transparent !important;

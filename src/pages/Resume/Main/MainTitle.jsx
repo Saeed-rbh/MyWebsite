@@ -88,7 +88,7 @@ const useTitleAnimation = ({
 };
 
 import cvData from "../../../data/cvData.json";
-import DownloadButton from "./DownloadButton";
+const DownloadButton = React.lazy(() => import("./DownloadButton"));
 
 // MainTitle component
 const MainTitle = ({ duration, initialDelay, delayIncrement, size }) => {
@@ -147,7 +147,11 @@ const MainTitle = ({ duration, initialDelay, delayIncrement, size }) => {
       </animated.div>
       <animated.p style={title2Style}>
         Academic CV
-        {elementSizeMain > 768 && <DownloadButton cvData={cvData} />}
+        {elementSizeMain > 768 && (
+          <React.Suspense fallback={<span style={{fontSize: '11px', padding: '5px 15px', color: '#000'}}>Loading PDF...</span>}>
+            <DownloadButton cvData={cvData} />
+          </React.Suspense>
+        )}
       </animated.p>
     </animated.div>
   );

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import gsap from "gsap";
+
 import { useNavigate, useLocation } from "react-router-dom";
 
 const ScrollToNavigate = () => {
@@ -10,15 +10,9 @@ const ScrollToNavigate = () => {
   useEffect(() => {
     const handleWheel = (event) => {
       if (event.deltaY > 50 && location.pathname === "/") {
-        gsap.to("body", {
-          duration: 0.5,
-          onComplete: () => navigate("/AcademicCV"),
-        });
+        setTimeout(() => navigate("/AcademicCV"), 500);
       } else if (event.deltaY < -50 && location.pathname === "/AcademicCV") {
-        gsap.to("body", {
-          duration: 0.5,
-          onComplete: () => navigate("/"),
-        });
+        setTimeout(() => navigate("/"), 500);
       }
     };
 
@@ -29,15 +23,9 @@ const ScrollToNavigate = () => {
     const handleTouchMove = (event) => {
       const endY = event.touches[0].clientY;
       if (startY - endY > 50 && location.pathname === "/") {
-        gsap.to("body", {
-          duration: 0.5,
-          onComplete: () => navigate("/AcademicCV"),
-        });
+        setTimeout(() => navigate("/AcademicCV"), 500);
       } else if (endY - startY > 50 && location.pathname === "/AcademicCV") {
-        gsap.to("body", {
-          duration: 0.5,
-          onComplete: () => navigate("/"),
-        });
+        setTimeout(() => navigate("/"), 500);
       }
     };
 

@@ -1,9 +1,10 @@
 import React, { useEffect, useState, useCallback, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useSpring, animated, easings } from "react-spring";
+import { useSpring, animated, useChain, easings, useTransition } from "react-spring";
 import { useLocation, useNavigate } from "react-router-dom";
 import { TbHomeMove } from "react-icons/tb";
 import { motion, AnimatePresence } from "motion/react";
+
 import { updateMenu } from "../../actions/Actions";
 import HomePage from "../../pages/Home/Home";
 import Logo from "./Logo";
@@ -159,19 +160,20 @@ const Header = () => {
 
     const setup = () => {
       const gapElement = document.getElementById("gap");
-      if (!gapElement) {
+      if (!gapElement && location.pathname.toLowerCase() === "/r&d-portfolio") {
         attempts++;
-        if (attempts < 30) {
+        if (attempts < 100) {
           setupTimer = setTimeout(setup, 100);
         }
         return;
+      } else if (!gapElement && location.pathname.toLowerCase() !== "/r&d-portfolio") {
+        // If we are not on WorkStory, we can just use main or window
       }
 
-      scrollContainer = gapElement.closest('main') || document.querySelector('main[class*="page"]') || document.querySelector("main");
-      if (!scrollContainer) return;
+      scrollContainer = gapElement?.closest('main') || document.querySelector('main[class*="page"]') || document.querySelector("main") || document.documentElement;
 
       updateActiveSection();
-      scrollContainer.addEventListener("scroll", requestUpdate, { passive: true });
+      window.addEventListener("scroll", requestUpdate, { capture: true, passive: true });
       window.addEventListener("resize", requestUpdate, { passive: true });
       window.addEventListener("orientationchange", requestUpdate, { passive: true });
       window.visualViewport?.addEventListener("resize", requestUpdate, { passive: true });
@@ -182,9 +184,7 @@ const Header = () => {
     return () => {
       if (setupTimer) clearTimeout(setupTimer);
       if (rafId) cancelAnimationFrame(rafId);
-      if (scrollContainer) {
-        scrollContainer.removeEventListener("scroll", requestUpdate);
-      }
+      window.removeEventListener("scroll", requestUpdate, { capture: true });
       window.removeEventListener("resize", requestUpdate);
       window.removeEventListener("orientationchange", requestUpdate);
       window.visualViewport?.removeEventListener("resize", requestUpdate);
@@ -269,13 +269,26 @@ const Header = () => {
   const currentLabel = getPageTitle();
   const isHomePage = location.pathname === "/";
 
+  const containerAnimation = useSpring({
+    opacity: 1,
+    transform: 'translate3d(0,0px,0)',
+    from: { opacity: 0, transform: 'translate3d(0,-30px,0)' },
+    config: { tension: 280, friction: 24 },
+    delay: 300,
+  });
+
+  const labelTransitions = useTransition(currentLabel, {
+    key: currentLabel,
+    from: { opacity: 0, transform: 'translate3d(-4px,0px,0)' },
+    enter: { opacity: 1, transform: 'translate3d(0,0px,0)' },
+    leave: { opacity: 0, display: 'none' },
+    config: { duration: 150, easing: easings.easeInOutQuad },
+  });
+
   return (
     visibility && (
-      <motion.div
-        key={visibility ? "visible" : "hidden"}
-        initial={{ opacity: 0, y: -30 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ type: "spring", stiffness: 280, damping: 24, delay: 0.3 }}
+      <animated.div
+        style={containerAnimation}
         className="HomePage-M-T-H"
       >
         <animated.div style={contactInfoAnimation1} className="MainHeader" />
@@ -317,27 +330,30 @@ const Header = () => {
               }}>/</span>
             )}
             
-            {!isHomePage && currentLabel && (
-              <motion.div
-                key={currentLabel}
-                initial={{ opacity: 0, x: -4 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.15, ease: "easeInOut" }}
-                style={{ display: "inline-flex", alignItems: "center" }}
-              >
-                <span style={{ 
-                  fontWeight: 300, 
-                  letterSpacing: "0.05em", 
-                  color: "#d49d81", 
-                  fontSize: "12px",
-                  fontFamily: "Rubik, sans-serif",
-                  lineHeight: "normal",
-                  textShadow: "0 0 8px rgba(212, 157, 129, 0.25)"
-                }}>
-                  {currentLabel}
-                </span>
-              </motion.div>
-            )}
+            <AnimatePresence mode="wait">
+              {!isHomePage && currentLabel && (
+                <motion.div
+                  key={currentLabel}
+                  initial={{ opacity: 0, x: -4 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0, x: 4, transition: { duration: 0.1 } }}
+                  transition={{ duration: 0.2, ease: "easeOut" }}
+                  style={{ display: "inline-flex", alignItems: "center" }}
+                >
+                  <span style={{ 
+                    fontWeight: 300, 
+                    letterSpacing: "0.05em", 
+                    color: "#d49d81", 
+                    fontSize: "12px",
+                    fontFamily: "Rubik, sans-serif",
+                    lineHeight: "normal",
+                    textShadow: "0 0 8px rgba(212, 157, 129, 0.25)"
+                  }}>
+                    {currentLabel}
+                  </span>
+                </motion.div>
+              )}
+            </AnimatePresence>
           </animated.div>
           
           <animated.div style={contactInfoAnimation3}>
@@ -358,7 +374,7 @@ const Header = () => {
           isMenuOpen={isMenuOpen}
           handleButtonClick={handleButtonClick}
         />
-      </motion.div>
+      </animated.div>
     )
   );
 };

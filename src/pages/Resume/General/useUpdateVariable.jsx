@@ -8,7 +8,7 @@ import {
 import useDataModify from "./DataModify";
 import { useEffect, useState, useMemo } from "react";
 import { useDispatch } from "react-redux";
-import { debounce } from "lodash";
+import debounce from "lodash.debounce";
 import localData from '../../../data/cvData.json';
 
 const useWindowSize = () => {

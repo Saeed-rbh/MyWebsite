@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { login } from '../../services/api';
 import { useNavigate } from 'react-router-dom';
 import styles from './Login.module.css';
-import { motion } from 'motion/react';
+import { useSpring, animated, easings } from 'react-spring';
 
 const Login = () => {
     const [credentials, setCredentials] = useState({ username: '', password: '' });
@@ -10,6 +10,16 @@ const Login = () => {
     const navigate = useNavigate();
     const [loading, setLoading] = useState(false);
 
+    const cardAnimation = useSpring({
+        from: { opacity: 0, transform: 'translate3d(0,30px,0)' },
+        to: { opacity: 1, transform: 'translate3d(0,0px,0)' },
+        config: { duration: 600, easing: easings.easeOutQuad }
+    });
+
+    const errorAnimation = useSpring({
+        opacity: error ? 1 : 0,
+        transform: error ? 'translate3d(0,0,0)' : 'translate3d(0,-10px,0)'
+    });
     const handleChange = (e) => {
         setCredentials({ ...credentials, [e.target.name]: e.target.value });
         setError(''); // Clear error on typing
@@ -33,22 +43,19 @@ const Login = () => {
     return (
         <div className={styles.container}>
             <div className={styles.background}></div>
-            <motion.div
+            <animated.div
                 className={styles.loginCard}
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, ease: "easeOut" }}
+                style={cardAnimation}
             >
                 <h2 className={styles.title}>Admin Access</h2>
 
                 {error && (
-                    <motion.div
+                    <animated.div
                         className={styles.error}
-                        initial={{ opacity: 0, height: 0 }}
-                        animate={{ opacity: 1, height: 'auto' }}
+                        style={errorAnimation}
                     >
                         {error}
-                    </motion.div>
+                    </animated.div>
                 )}
 
                 <form onSubmit={handleSubmit}>
@@ -72,17 +79,20 @@ const Login = () => {
                             placeholder="Enter password"
                         />
                     </div>
-                    <motion.button
+                    <button
                         type="submit"
                         className={styles.button}
-                        whileHover={{ scale: 1.02 }}
-                        whileTap={{ scale: 0.98 }}
                         disabled={loading}
+                        style={{ transition: 'transform 0.1s', cursor: 'pointer' }}
+                        onMouseDown={(e) => e.currentTarget.style.transform = 'scale(0.98)'}
+                        onMouseUp={(e) => e.currentTarget.style.transform = 'scale(1)'}
+                        onMouseEnter={(e) => e.currentTarget.style.transform = 'scale(1.02)'}
+                        onMouseLeave={(e) => e.currentTarget.style.transform = 'scale(1)'}
                     >
                         {loading ? 'Authenticating...' : 'Login'}
-                    </motion.button>
+                    </button>
                 </form>
-            </motion.div>
+            </animated.div>
         </div>
     );
 };

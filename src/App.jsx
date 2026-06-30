@@ -1,4 +1,3 @@
-
 import "./App.css";
 import React, { lazy, Suspense } from "react";
 import { AnimatePresence, motion } from "motion/react";
@@ -9,7 +8,7 @@ import useUpdateVariable from "./pages/Resume/General/useUpdateVariable";
 import Header from "./components/Header/Header";
 import Menu from "./components/Menu/Menu";
 import Footer from "./components/Footer/Footer";
-import Graphene from "./pages/Research/Research";
+const Graphene = lazy(() => import("./pages/Research/Research"));
 import Mouse from "./Mouse";
 import ScrollToNavigate from "./Helper/ScrollToNavigate"; // Import scroll detector
 import ErrorBoundary from "./components/ErrorBoundary/ErrorBoundary";
@@ -64,7 +63,7 @@ function AppContent() {
       {visibility && (
         <ErrorBoundary>
           <SiteMotionObserver />
-          <Suspense fallback={null}>
+          <Suspense fallback={<FallbackLoader />}>
             <AnimatePresence mode="wait">
               <motion.div
                 key={location.pathname}

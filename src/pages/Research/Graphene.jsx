@@ -15,7 +15,38 @@ import { CgArrowLongRight } from "react-icons/cg";
 import { useSelector } from "react-redux";
 // import removed - selectVisibility no longer used after Redux migration
 import { BsFillTriangleFill } from "react-icons/bs";
-import { motion } from "motion/react";
+import { useInView } from "react-intersection-observer";
+
+const ScrollAnimatedDiv = ({ children, className, delay = 0, style }) => {
+  const { ref, inView } = useInView({ triggerOnce: false, threshold: 0.1 });
+  const animProps = useSpring({
+    opacity: inView ? 1 : 0,
+    transform: inView ? "translate3d(0,0px,0)" : "translate3d(0,10px,0)",
+    config: { duration: 500 },
+    delay,
+  });
+  return (
+    <animated.div ref={ref} className={className} style={{ ...style, ...animProps }}>
+      {children}
+    </animated.div>
+  );
+};
+
+const ScrollAnimatedP0 = ({ children, className, delay = 0, style }) => {
+  const { ref, inView } = useInView({ triggerOnce: false, threshold: 0.1 });
+  const animProps = useSpring({
+    opacity: inView ? 1 : 0,
+    transform: inView ? "translate3d(20px,0px,0)" : "translate3d(20px,10px,0)",
+    config: { duration: 500 },
+    delay,
+  });
+  // Note: HTML doesn't have a p0 tag, but since original used motion.p0, we use a span with display: block, or just animated.p
+  return (
+    <animated.p ref={ref} className={className} style={{ ...style, ...animProps }}>
+      {children}
+    </animated.p>
+  );
+};
 import { HiArrowSmRight } from "react-icons/hi";
 import { SiGooglescholar } from "react-icons/si";
 import { RiDownloadCloudFill } from "react-icons/ri";
@@ -394,10 +425,8 @@ const Paper = ({ paper, isOpen, handleInfoClick }) => {
 
   return (
     <animated.div className="PaperAcademic" onClick={handleInfoClick}>
-      <motion.div
-        initial={{ opacity: 0, y: 10 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5, delay: 0.1 * paper.id }}
+      <ScrollAnimatedDiv
+        delay={100 * paper.id}
         className="PaperData"
       >
         <p1>{paper.title}</p1>
@@ -410,7 +439,7 @@ const Paper = ({ paper, isOpen, handleInfoClick }) => {
             </p2>
           </div>
         </div>
-      </motion.div>
+      </ScrollAnimatedDiv>
       <div className="MoreInfo">
         <animated.p
           style={OpenInfo}
@@ -516,10 +545,8 @@ const GrapheneDes = ({ Clicked, MenuHide, ClickedThick }) => {
       onClick={() => setInfoClicked([handleInfoClicked(Paper.id - 1)])}
       style={InfoClickedRef.current[Paper.id - 1] ? OpenInfoMain : OpenNothing}
     >
-      <motion.div
-        initial={{ opacity: 0, y: 10 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5, delay: 0.1 * Paper.id }}
+      <ScrollAnimatedDiv
+        delay={100 * Paper.id}
         className="PaperData"
       >
         <p1>{Paper.title}</p1>
@@ -532,7 +559,7 @@ const GrapheneDes = ({ Clicked, MenuHide, ClickedThick }) => {
             </p2>
           </div>
         </div>
-      </motion.div>
+      </ScrollAnimatedDiv>
 
       <div className="MoreInfo">
         <animated.p
@@ -684,39 +711,25 @@ const GrapheneDes = ({ Clicked, MenuHide, ClickedThick }) => {
           />
         </div>
       </animated.div>
-      <motion.div
+      <ScrollAnimatedDiv
         className="GrapheneTextMore"
-        initial={{ opacity: 0, y: 10 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5 }}
       >
         <animated.div
           className="GrapheneTextMoreT"
           style={{ ...propertiesProps4 }}
         >
-          <motion.p0
-            initial={{ opacity: 0, y: 10, x: 20 }}
-            whileInView={{ opacity: 1, y: 0, x: 20 }}
-            transition={{ duration: 0.5 }}
-          >
+          <ScrollAnimatedP0>
             My Related Papers
-          </motion.p0>
+          </ScrollAnimatedP0>
           {Papers}
         </animated.div>
 
-        <motion.div
+        <ScrollAnimatedDiv
           className="GrapheneTextMoreB"
-          initial={{ opacity: 0, y: 10 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
         >
-          <motion.p0
-            initial={{ opacity: 0, y: 10, x: 20 }}
-            whileInView={{ opacity: 1, y: 0, x: 20 }}
-            transition={{ duration: 0.5 }}
-          >
+          <ScrollAnimatedP0>
             Related Links
-          </motion.p0>
+          </ScrollAnimatedP0>
           <div className="RelatedLinks">
             <p1>Wikipedia</p1>
             <p2>General Information</p2>
@@ -727,8 +740,8 @@ const GrapheneDes = ({ Clicked, MenuHide, ClickedThick }) => {
             <p2>General Information</p2>
             <GoLinkExternal />
           </div>
-        </motion.div>
-      </motion.div>
+        </ScrollAnimatedDiv>
+      </ScrollAnimatedDiv>
       <div className="GrapheneTextMoreS">
         <p1>Scroll Down </p1>
 

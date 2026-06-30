@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { motion } from "motion/react";
+import { useSpring, animated, easings } from "react-spring";
 import "./Home.css";
 import styles from "./Home.module.css";
 import SEO from "../../components/SEO/SEO";
@@ -76,15 +76,18 @@ const HomePage = () => {
 
   const currentPopup = popupsData[currentPopupIndex] || { title: "", content: "" };
 
+  const containerAnimation = useSpring({
+    from: { opacity: 0 },
+    to: { opacity: 1 },
+    config: { duration: 600, easing: easings.easeInOutQuad }
+  });
+
   return (
     visibility && (
       <>
-        <motion.div
+        <animated.div
           className={styles.container}
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          transition={{ duration: 0.6, ease: "easeInOut" }}
+          style={containerAnimation}
         >
           <SEO
             title="Saeed Arabha | Home"
@@ -115,7 +118,7 @@ const HomePage = () => {
             nextTitle={currentPopupIndex < popupsData.length - 1 ? popupsData[currentPopupIndex + 1].shortTitle : null}
             prevTitle={currentPopupIndex > 0 ? popupsData[currentPopupIndex - 1].shortTitle : null}
           />
-        </motion.div>
+        </animated.div>
       </>
     )
   );
