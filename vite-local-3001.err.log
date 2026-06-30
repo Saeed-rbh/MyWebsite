@@ -1,0 +1,12 @@
+[31mfailed to load config from C:\Users\Saeed\Personal_Files\CodeDevelope\MyWebsite\vite.config.js[39m
+[31merror when starting dev server:
+Error: spawn EPERM
+    at ChildProcess.spawn (node:internal/child_process:440:11)
+    at Object.spawn (node:child_process:797:9)
+    at ensureServiceIsRunning (C:\Users\Saeed\Personal_Files\CodeDevelope\MyWebsite\node_modules\esbuild\lib\main.js:1981:29)
+    at build (C:\Users\Saeed\Personal_Files\CodeDevelope\MyWebsite\node_modules\esbuild\lib\main.js:1879:26)
+    at bundleConfigFile (file:///C:/Users/Saeed/Personal_Files/CodeDevelope/MyWebsite/node_modules/vite/dist/node/chunks/dep-C6qYk3zB.js:53420:24)
+    at async loadConfigFromFile (file:///C:/Users/Saeed/Personal_Files/CodeDevelope/MyWebsite/node_modules/vite/dist/node/chunks/dep-C6qYk3zB.js:53389:21)
+    at async resolveConfig (file:///C:/Users/Saeed/Personal_Files/CodeDevelope/MyWebsite/node_modules/vite/dist/node/chunks/dep-C6qYk3zB.js:52925:24)
+    at async _createServer (file:///C:/Users/Saeed/Personal_Files/CodeDevelope/MyWebsite/node_modules/vite/dist/node/chunks/dep-C6qYk3zB.js:43305:18)
+    at async CAC.<anonymous> (file:///C:/Users/Saeed/Personal_Files/CodeDevelope/MyWebsite/node_modules/vite/dist/node/cli.js:745:20)[39m
