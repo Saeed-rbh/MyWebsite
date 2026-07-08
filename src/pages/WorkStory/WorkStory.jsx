@@ -143,6 +143,7 @@ const navItems = [
   { id: "process", label: "CFE" },
   { id: "evidence", label: "Proof" },
   { id: "modeling", label: "Product" },
+  { id: "materials", label: "Materials" },
   { id: "industry", label: "Value" },
   { id: "approach", label: "Approach" },
 ];
@@ -245,6 +246,30 @@ const productQualityMetrics = [
   },
 ];
 
+
+const exfoliatedMaterialSamples = [
+  {
+    id: "hbn",
+    name: "h-BN",
+    concentration: "0.21",
+    image: "/rnd-materials/hbn-vial.png",
+    alt: "Pale h-BN dispersion vial with pink laser scattering",
+  },
+  {
+    id: "graphene",
+    name: "Graphene",
+    concentration: "0.15",
+    image: "/rnd-materials/graphene-vial.png",
+    alt: "Dark graphene dispersion vial with red laser scattering",
+  },
+  {
+    id: "mos2",
+    name: "MoS2",
+    concentration: "0.18",
+    image: "/rnd-materials/mos2-vial.png",
+    alt: "Dark MoS2 dispersion vial with red laser scattering",
+  },
+];
 const ProductMetricIcon = ({ type }) => {
   if (type === "layers") {
     return (
@@ -374,6 +399,50 @@ const ProductQualityShowcase = ({ items }) => {
     </div>
   );
 };
+const ExfoliatedMaterialsShowcase = ({ samples }) => (
+  <div className={styles.materialsShowcase}>
+    <img
+      className={styles.materialsReferenceTexture}
+      src="/rnd-materials/exfoliated-materials-reference.png"
+      alt=""
+      aria-hidden="true"
+      loading="lazy"
+    />
+
+    <div className={styles.materialsLayout}>
+      <div className={styles.materialsStage}>
+        <div className={styles.materialsSampleGrid} aria-label="Exfoliated material sample concentrations">
+          {samples.map((sample, index) => (
+            <article className={styles.materialSample} key={sample.id} style={{ "--sample-delay": `${index * 110}ms` }}>
+              <div className={styles.materialSampleName}>
+                <TbHexagon aria-hidden="true" />
+                {sample.id === "mos2" ? <span>MoS<sub>2</sub></span> : <span>{sample.name}</span>}
+              </div>
+              <div className={styles.materialVialFrame}>
+                <img className={styles.materialVialReflection} src={sample.image} alt="" aria-hidden="true" loading="lazy" />
+                <img className={styles.materialVialImage} src={sample.image} alt={sample.alt} loading="lazy" />
+              </div>
+              <div className={styles.materialConcentration}>
+                <span>Concentration</span>
+                <strong>{sample.concentration}</strong>
+                <em>g/L</em>
+              </div>
+            </article>
+          ))}
+        </div>
+      </div>
+
+      <aside className={styles.materialsProofPanel} aria-label="Measured and consistent material proof">
+        <div className={styles.materialCheckMark} aria-hidden="true" />
+        <h3>
+          <span>Measured.</span>
+          <strong>Consistent.</strong>
+        </h3>
+        <p className={styles.materialsProofSubhead}>Exfoliated materials.</p>
+      </aside>
+    </div>
+  </div>
+);
 const storySpring = {
   stiffness: 82,
   damping: 30,
@@ -1756,7 +1825,7 @@ const ApproachContent = ({ scrollRef }) => {
                 <em>{detail}</em>
               </span>
             </article>
-          ))}
+            ))}
         </div>
       </div>
     </div>
@@ -1892,6 +1961,13 @@ const WorkStory = () => {
           >
             <ProductQualityShowcase items={productQualityMetrics} />
           </SectionShell>
+          <SectionShell
+            id="materials"
+            className={styles.asymMaterials}
+            eager
+          >
+            <ExfoliatedMaterialsShowcase samples={exfoliatedMaterialSamples} />
+          </SectionShell>
 
           <SectionShell 
             id="industry" 
@@ -1945,84 +2021,3 @@ const WorkStory = () => {
 };
 
 export default WorkStory;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
