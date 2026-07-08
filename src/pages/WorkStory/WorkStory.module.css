@@ -16158,3 +16158,320 @@ blockquote::before {
 .page .asymApproach .approachRebuildActive .approachRebuildCore {
   transform: translate3d(0, -50%, 0) scale(1) !important;
 }
+
+/* Product title: Material/Quality stay white and keep the filled-word lens effect. */
+.page .asymModeling .productQualityTitle .spotlightTitleFilledWord[data-text="Material"],
+.page .asymModeling .productQualityTitle .spotlightTitleFilledWord[data-text="Quality"] {
+  color: var(--story-text) !important;
+  -webkit-text-fill-color: var(--story-text) !important;
+}
+
+.page .asymModeling .productQualityTitle .spotlightTitleFilledWord[data-text="Material"] .gapPillarWordFill,
+.page .asymModeling .productQualityTitle .spotlightTitleFilledWord[data-text="Quality"] .gapPillarWordFill {
+  color: var(--story-text) !important;
+  -webkit-text-fill-color: var(--story-text) !important;
+  -webkit-text-stroke: 0 !important;
+  background: transparent !important;
+}
+
+.page .asymModeling .productQualityTitle .spotlightTitleFilledWord[data-text="Material"] .gapPillarWordLens,
+.page .asymModeling .productQualityTitle .spotlightTitleFilledWord[data-text="Quality"] .gapPillarWordLens {
+  color: transparent !important;
+  background:
+    radial-gradient(circle 36px at var(--word-lens-x) var(--word-lens-y), rgba(8, 6, 5, 0.94) 0 98%, transparent 100%) !important;
+  -webkit-background-clip: border-box !important;
+  background-clip: border-box !important;
+  -webkit-text-fill-color: transparent !important;
+  -webkit-text-stroke: 1.15px var(--story-text) !important;
+  clip-path: circle(36px at var(--word-lens-x) var(--word-lens-y)) !important;
+  opacity: var(--word-lens-opacity) !important;
+  text-shadow:
+    0 0 18px rgba(255, 255, 255, 0.24),
+    0 18px 58px rgba(212, 157, 129, 0.18) !important;
+}
+
+.page .asymModeling .productQualityTitle .spotlightTitleFilledWord[data-text="Performance"] .gapPillarWordFill,
+.page .asymModeling .productQualityTitle .spotlightTitleFilledWord[data-text="Performance"] .gapPillarWordLens {
+  color: var(--story-accent) !important;
+  background: linear-gradient(90deg, #d49d81 0%, #f0b07f 48%, #ffe0c8 100%) text !important;
+  -webkit-background-clip: text !important;
+  background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+}
+
+/* Product cards: do not clip card internals or glow/lens edges. */
+.page .asymModeling .productRailCard,
+.page .asymModeling.visible .productRailCard,
+.page .asymModeling .productRailFigure,
+.page .asymModeling .productRailCopy,
+.page .asymModeling .productRailIcon {
+  overflow: visible !important;
+}
+
+/* Product title hover lens activation for Material and Quality. */
+.page .asymModeling .productQualityTitle .spotlightTitleFilledWord[data-text="Material"]:hover,
+.page .asymModeling .productQualityTitle .spotlightTitleFilledWord[data-text="Material"]:focus-within,
+.page .asymModeling .productQualityTitle .spotlightTitleFilledWord[data-text="Quality"]:hover,
+.page .asymModeling .productQualityTitle .spotlightTitleFilledWord[data-text="Quality"]:focus-within {
+  --word-lens-opacity: 1 !important;
+}
+
+.page .asymModeling .productQualityTitle .spotlightTitleFilledWord[data-text="Material"]:hover .gapPillarWordLens,
+.page .asymModeling .productQualityTitle .spotlightTitleFilledWord[data-text="Material"]:focus-within .gapPillarWordLens,
+.page .asymModeling .productQualityTitle .spotlightTitleFilledWord[data-text="Quality"]:hover .gapPillarWordLens,
+.page .asymModeling .productQualityTitle .spotlightTitleFilledWord[data-text="Quality"]:focus-within .gapPillarWordLens {
+  opacity: 1 !important;
+}
+
+/* Product copy vertical adjustment. */
+.page .asymModeling .productStickyCopy {
+  margin-top: -100px !important;
+}
+
+/* Product section title treatment: Evidence-style label plus outline-only background word. */
+.page .asymModeling .productBackgroundWord {
+  content: "PRODUCT" !important;
+  display: block !important;
+  position: absolute !important;
+  right: max(4vw, -34px) !important;
+  top: clamp(34px, 7vw, 120px) !important;
+  left: auto !important;
+  bottom: auto !important;
+  z-index: 0 !important;
+  color: transparent !important;
+  -webkit-text-fill-color: transparent !important;
+  -webkit-text-stroke: 1.4px rgba(212, 157, 129, 0.18) !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  filter: none !important;
+  opacity: 0.58 !important;
+  font-family: var(--story-font-sans) !important;
+  font-size: clamp(6.6rem, 14vw, 18rem) !important;
+  font-weight: 900 !important;
+  line-height: 0.78 !important;
+  letter-spacing: 0 !important;
+  pointer-events: none !important;
+  user-select: none !important;
+  white-space: nowrap !important;
+}
+
+.page .asymModeling .productStickyCopy .productKickerMotion,
+.page .asymModeling .productStickyCopy .kicker.productKickerMotion {
+  display: inline-flex !important;
+  position: relative !important;
+  z-index: 3 !important;
+  color: var(--story-accent) !important;
+  -webkit-text-fill-color: var(--story-accent) !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  font-family: var(--story-font-sans) !important;
+  font-size: clamp(0.78rem, 0.92vw, 1rem) !important;
+  font-weight: 800 !important;
+  line-height: 1 !important;
+  letter-spacing: 0.26em !important;
+  text-transform: uppercase !important;
+}
+
+/* Product title lens: match Evidence hover behavior for Material and Quality. */
+.page .asymModeling .productQualityTitle,
+.page .asymModeling .productQualityTitle .spotlightTitleFilledWord,
+.page .asymModeling .productQualityTitle .gapPillarWordFill {
+  pointer-events: auto !important;
+}
+
+.page .asymModeling .productQualityTitle:hover .spotlightTitleFilledWord[data-text="Material"],
+.page .asymModeling .productQualityTitle:focus-within .spotlightTitleFilledWord[data-text="Material"],
+.page .asymModeling .productQualityTitle:hover .spotlightTitleFilledWord[data-text="Quality"],
+.page .asymModeling .productQualityTitle:focus-within .spotlightTitleFilledWord[data-text="Quality"],
+.page .asymModeling .productQualityTitle .spotlightTitleFilledWord[data-text="Material"]:hover,
+.page .asymModeling .productQualityTitle .spotlightTitleFilledWord[data-text="Quality"]:hover {
+  --word-lens-opacity: 1 !important;
+}
+
+.page .asymModeling .productQualityTitle .spotlightTitleFilledWord[data-text="Material"] .gapPillarWordLens,
+.page .asymModeling .productQualityTitle .spotlightTitleFilledWord[data-text="Quality"] .gapPillarWordLens {
+  color: transparent !important;
+  background:
+    radial-gradient(circle 42px at var(--word-lens-x, 50%) var(--word-lens-y, 50%), rgba(8, 6, 5, 0.94) 0 98%, transparent 100%) !important;
+  -webkit-background-clip: border-box !important;
+  background-clip: border-box !important;
+  -webkit-text-fill-color: transparent !important;
+  -webkit-text-stroke: 1.15px rgb(201 164 144) !important;
+  clip-path: circle(42px at var(--word-lens-x, 50%) var(--word-lens-y, 50%)) !important;
+  opacity: var(--word-lens-opacity, 0) !important;
+  text-shadow:
+    0 0 18px rgba(212, 157, 129, 0.32),
+    0 18px 58px rgba(212, 157, 129, 0.22) !important;
+}
+
+.page .asymModeling .productQualityTitle:hover .spotlightTitleFilledWord[data-text="Material"] .gapPillarWordLens,
+.page .asymModeling .productQualityTitle:focus-within .spotlightTitleFilledWord[data-text="Material"] .gapPillarWordLens,
+.page .asymModeling .productQualityTitle:hover .spotlightTitleFilledWord[data-text="Quality"] .gapPillarWordLens,
+.page .asymModeling .productQualityTitle:focus-within .spotlightTitleFilledWord[data-text="Quality"] .gapPillarWordLens,
+.page .asymModeling .productQualityTitle .spotlightTitleFilledWord[data-text="Material"]:hover .gapPillarWordLens,
+.page .asymModeling .productQualityTitle .spotlightTitleFilledWord[data-text="Quality"]:hover .gapPillarWordLens {
+  opacity: 1 !important;
+}
+
+/* Product carousel viewport: keep the card area visible and unclipped. */
+.page .asymModeling .productMetricViewport {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  overflow: visible !important;
+  -webkit-mask-image: none !important;
+  mask-image: none !important;
+  clip-path: none !important;
+  min-height: calc((var(--product-rail-card-height, 220px) * 2) + var(--product-rail-gap, var(--spacing-md))) !important;
+  z-index: 3 !important;
+}
+
+.page .asymModeling .productHorizontalRails,
+.page .asymModeling .productHorizontalRail,
+.page .asymModeling .productRailCard {
+  visibility: visible !important;
+  opacity: 1 !important;
+  overflow: visible !important;
+  clip-path: none !important;
+}
+
+/* Product title lens: isolate hover to the exact word only. */
+.page .asymModeling .productQualityTitle:hover .spotlightTitleFilledWord[data-text="Material"],
+.page .asymModeling .productQualityTitle:focus-within .spotlightTitleFilledWord[data-text="Material"],
+.page .asymModeling .productQualityTitle:hover .spotlightTitleFilledWord[data-text="Quality"],
+.page .asymModeling .productQualityTitle:focus-within .spotlightTitleFilledWord[data-text="Quality"] {
+  --word-lens-opacity: 0 !important;
+}
+
+.page .asymModeling .productQualityTitle:hover .spotlightTitleFilledWord[data-text="Material"] .gapPillarWordLens,
+.page .asymModeling .productQualityTitle:focus-within .spotlightTitleFilledWord[data-text="Material"] .gapPillarWordLens,
+.page .asymModeling .productQualityTitle:hover .spotlightTitleFilledWord[data-text="Quality"] .gapPillarWordLens,
+.page .asymModeling .productQualityTitle:focus-within .spotlightTitleFilledWord[data-text="Quality"] .gapPillarWordLens {
+  opacity: 0 !important;
+}
+
+.page .asymModeling .productQualityTitle .spotlightTitleFilledWord[data-text="Material"]:hover,
+.page .asymModeling .productQualityTitle .spotlightTitleFilledWord[data-text="Material"]:focus-visible,
+.page .asymModeling .productQualityTitle .spotlightTitleFilledWord[data-text="Material"]:focus-within,
+.page .asymModeling .productQualityTitle .spotlightTitleFilledWord[data-text="Quality"]:hover,
+.page .asymModeling .productQualityTitle .spotlightTitleFilledWord[data-text="Quality"]:focus-visible,
+.page .asymModeling .productQualityTitle .spotlightTitleFilledWord[data-text="Quality"]:focus-within {
+  --word-lens-opacity: 1 !important;
+}
+
+.page .asymModeling .productQualityTitle .spotlightTitleFilledWord[data-text="Material"]:hover .gapPillarWordLens,
+.page .asymModeling .productQualityTitle .spotlightTitleFilledWord[data-text="Material"]:focus-visible .gapPillarWordLens,
+.page .asymModeling .productQualityTitle .spotlightTitleFilledWord[data-text="Material"]:focus-within .gapPillarWordLens,
+.page .asymModeling .productQualityTitle .spotlightTitleFilledWord[data-text="Quality"]:hover .gapPillarWordLens,
+.page .asymModeling .productQualityTitle .spotlightTitleFilledWord[data-text="Quality"]:focus-visible .gapPillarWordLens,
+.page .asymModeling .productQualityTitle .spotlightTitleFilledWord[data-text="Quality"]:focus-within .gapPillarWordLens {
+  opacity: 1 !important;
+}
+
+/* Product carousel: two visible cards per rail with card-level fades. */
+.page .asymModeling .productMetricViewport {
+  --product-rail-card-width: clamp(160px, 13vw, 198px);
+  --product-rail-card-height: clamp(185px, 23.4vh, 240px);
+  --product-rail-gap: var(--spacing-md);
+  display: block !important;
+  width: calc((var(--product-rail-card-width) * 2) + var(--product-rail-gap)) !important;
+  max-width: min(46vw, calc((var(--product-rail-card-width) * 2) + var(--product-rail-gap))) !important;
+  min-height: calc((var(--product-rail-card-height) * 2) + var(--product-rail-gap)) !important;
+  overflow: hidden !important;
+  -webkit-mask-image: none !important;
+  mask-image: none !important;
+  clip-path: none !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+.page .asymModeling .productHorizontalRails {
+  --product-rail-card-width: clamp(160px, 13vw, 198px);
+  --product-rail-card-height: clamp(185px, 23.4vh, 240px);
+  --product-rail-gap: var(--spacing-md);
+  width: calc((var(--product-rail-card-width) * 2) + var(--product-rail-gap)) !important;
+  min-height: calc((var(--product-rail-card-height) * 2) + var(--product-rail-gap)) !important;
+  gap: var(--product-rail-gap) !important;
+  overflow: visible !important;
+}
+
+.page .asymModeling .productHorizontalRail {
+  --product-card-step: calc(var(--product-rail-card-width) + var(--product-rail-gap));
+  --product-loop-start: 0px;
+  --product-loop-end: calc(0px - (var(--product-card-step) * 3));
+  gap: var(--product-rail-gap) !important;
+  animation: productHorizontalLoop 46s linear infinite !important;
+  transform: translate3d(var(--product-loop-start), 0, 0);
+  will-change: transform !important;
+}
+
+.page .asymModeling .productHorizontalRailSecondary {
+  --product-loop-start: calc(0px - (var(--product-card-step) * 0.5));
+  --product-loop-end: calc(var(--product-loop-start) - (var(--product-card-step) * 3));
+  animation-duration: 62s !important;
+}
+
+.page .asymModeling .productRailCard,
+.page .asymModeling.visible .productRailCard {
+  flex: 0 0 var(--product-rail-card-width) !important;
+  width: var(--product-rail-card-width) !important;
+  min-height: var(--product-rail-card-height) !important;
+  opacity: 0 !important;
+  visibility: visible !important;
+  filter: none !important;
+  transform: translate3d(0, 0, 0) scale(1) !important;
+  animation: productTwoCardFade 46s linear infinite !important;
+  pointer-events: none !important;
+  will-change: opacity, transform !important;
+}
+
+.page .asymModeling .productHorizontalRailSecondary .productRailCard,
+.page .asymModeling.visible .productHorizontalRailSecondary .productRailCard {
+  animation-duration: 62s !important;
+}
+
+.page .asymModeling .productHorizontalRailPrimary .productRailCard:nth-child(3n + 1) {
+  animation-delay: 0s !important;
+}
+
+.page .asymModeling .productHorizontalRailPrimary .productRailCard:nth-child(3n + 2) {
+  animation-delay: -15.333s !important;
+}
+
+.page .asymModeling .productHorizontalRailPrimary .productRailCard:nth-child(3n + 3) {
+  animation-delay: -30.666s !important;
+}
+
+.page .asymModeling .productHorizontalRailSecondary .productRailCard:nth-child(3n + 1) {
+  animation-delay: 0s !important;
+}
+
+.page .asymModeling .productHorizontalRailSecondary .productRailCard:nth-child(3n + 2) {
+  animation-delay: -20.666s !important;
+}
+
+.page .asymModeling .productHorizontalRailSecondary .productRailCard:nth-child(3n + 3) {
+  animation-delay: -41.333s !important;
+}
+
+@keyframes productTwoCardFade {
+  0%, 7% {
+    opacity: 0;
+    transform: translate3d(0, 0, 0) scale(0.985);
+  }
+  14%, 54% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  64%, 100% {
+    opacity: 0;
+    transform: translate3d(0, 0, 0) scale(0.985);
+  }
+}
+
+@media (max-width: 900px) {
+  .page .asymModeling .productMetricViewport,
+  .page .asymModeling .productHorizontalRails {
+    max-width: min(92vw, calc((var(--product-rail-card-width) * 2) + var(--product-rail-gap))) !important;
+  }
+}
