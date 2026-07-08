@@ -444,10 +444,10 @@ const ExfoliatedMaterialsShowcase = ({ samples }) => (
   </div>
 );
 const storySpring = {
-  stiffness: 82,
+  stiffness: 140,
   damping: 30,
   mass: 0.9,
-  restDelta: 0.001,
+  restDelta: 0.005,
 };
 
 const routeTransition = {
@@ -1719,10 +1719,10 @@ const EvidenceShowcase = ({ items, scrollRef }) => {
     offset: ["start start", "end end"],
   });
   const railProgress = useSpring(scrollYProgress, {
-    stiffness: 72,
+    stiffness: 140,
     damping: 28,
     mass: 0.8,
-    restDelta: 0.001,
+    restDelta: 0.005,
   });
   const firstRailY = useTransform(railProgress, [0, 1], ["3vh", "-30vh"]);
   const secondRailY = useTransform(railProgress, [0, 1], ["3vh", "-46vh"]);

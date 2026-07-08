@@ -87,7 +87,6 @@
   mask-image: linear-gradient(to bottom, transparent, black 12%, black 74%, transparent);
   opacity: 0.52;
   transform: translate3d(0, var(--scroll-shift), 0);
-  will-change: transform;
 }
 
 .page::after {
@@ -97,10 +96,8 @@
     radial-gradient(circle at 70% 58%, rgba(255, 255, 255, 0.12), transparent 2px),
     radial-gradient(circle at 86% 82%, rgba(212, 157, 129, 0.12), transparent 3px);
   background-size: 380px 380px;
-  filter: blur(1px);
   opacity: 0.42;
   transform: translate3d(0, var(--scroll-shift-alt), 0);
-  will-change: transform;
   animation: particleDrift 20s linear infinite;
 }
 
@@ -116,7 +113,6 @@
   z-index: -50;
   pointer-events: none;
   opacity: var(--bg-opacity);
-  will-change: opacity;
   transition: opacity 520ms cubic-bezier(0.23, 1, 0.32, 1);
 }
 
@@ -512,12 +508,10 @@
 .hero > * {
   opacity: 0;
   transform: translate3d(0, 32px, 0) scale(0.97);
-  filter: blur(6px);
   transition:
     opacity 0.72s cubic-bezier(0.22, 1, 0.36, 1),
-    transform 0.86s cubic-bezier(0.22, 1, 0.36, 1),
-    filter 0.68s cubic-bezier(0.22, 1, 0.36, 1);
-  will-change: opacity, transform, filter;
+    transform 0.86s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: opacity, transform;
 }
 
 /* ── Stagger delays — extended to 8 children ── */
@@ -531,35 +525,29 @@
 .section > *:nth-child(8), .hero > *:nth-child(8) { transition-delay: 525ms; }
 
 /* ── Per-child unique entrance personality ── */
-/* 1st child (kicker / eyebrow): slides up from further down + letterspace expand */
+/* 1st child (kicker / eyebrow): slides up from further down */
 .section > *:nth-child(1), .hero > *:nth-child(1) {
   transform: translate3d(0, 48px, 0) scale(0.94);
-  filter: blur(8px);
 }
 /* 2nd child (title h2): rises + gentle left drift */
 .section > *:nth-child(2), .hero > *:nth-child(2) {
   transform: translate3d(-18px, 36px, 0) scale(0.96);
-  filter: blur(10px);
 }
 /* 3rd child (intro / lead text): fades in from right */
 .section > *:nth-child(3), .hero > *:nth-child(3) {
   transform: translate3d(22px, 24px, 0) scale(0.97);
-  filter: blur(7px);
 }
 /* 4th child (main panel / interactive): scale pop from below */
 .section > *:nth-child(4), .hero > *:nth-child(4) {
   transform: translate3d(0, 40px, 0) scale(0.93);
-  filter: blur(8px);
 }
 /* 5th child: slide from left */
 .section > *:nth-child(5), .hero > *:nth-child(5) {
   transform: translate3d(-28px, 20px, 0) scale(0.97);
-  filter: blur(6px);
 }
 /* 6th+ children: gentle vertical only */
 .section > *:nth-child(n+6), .hero > *:nth-child(n+6) {
   transform: translate3d(0, 22px, 0) scale(0.98);
-  filter: blur(5px);
 }
 
 /* ── Visible state — all children settle to natural position ── */
@@ -567,16 +555,14 @@
 .hero.visible > * {
   opacity: 1;
   transform: translate3d(0, 0, 0) scale(1);
-  filter: blur(0);
 }
 
-/* ── Exit Up (section scrolled past) — compress upward, blur ── */
+/* ── Exit Up (section scrolled past) — compress upward ── */
 .section.fadeOutUp > *,
 .hero.fadeOutUp > * {
   opacity: 0;
   transform: translate3d(0, -22px, 0) scale(0.984);
-  filter: blur(6px);
-  transition-duration: 0.44s, 0.58s, 0.44s;
+  transition-duration: 0.44s, 0.58s;
   transition-delay: 0ms !important;
 }
 /* Stagger exit slightly for polish */
@@ -591,8 +577,7 @@
 .hero.fadeOutDown > * {
   opacity: 0;
   transform: translate3d(0, 28px, 0) scale(0.978);
-  filter: blur(7px);
-  transition-duration: 0.5s, 0.64s, 0.5s;
+  transition-duration: 0.5s, 0.64s;
   transition-delay: 0ms !important;
 }
 
@@ -600,18 +585,17 @@
 .asymApproach .approachCopy > * {
   opacity: 0;
   transform: translate3d(0, 32px, 0) scale(0.97);
-  filter: blur(6px);
-  transition: opacity 0.72s cubic-bezier(0.22, 1, 0.36, 1), transform 0.86s cubic-bezier(0.22, 1, 0.36, 1), filter 0.68s cubic-bezier(0.22, 1, 0.36, 1);
-  will-change: opacity, transform, filter;
+  transition: opacity 0.72s cubic-bezier(0.22, 1, 0.36, 1), transform 0.86s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: opacity, transform;
 }
-.asymApproach .approachCopy > *:nth-child(1) { transition-delay: 0ms; transform: translate3d(0, 48px, 0) scale(0.94); filter: blur(8px); }
-.asymApproach .approachCopy > *:nth-child(2) { transition-delay: 90ms; transform: translate3d(-18px, 36px, 0) scale(0.96); filter: blur(10px); }
-.asymApproach .approachCopy > *:nth-child(3) { transition-delay: 175ms; transform: translate3d(22px, 24px, 0) scale(0.97); filter: blur(7px); }
-.asymApproach .approachCopy > *:nth-child(4) { transition-delay: 255ms; transform: translate3d(0, 40px, 0) scale(0.93); filter: blur(8px); }
+.asymApproach .approachCopy > *:nth-child(1) { transition-delay: 0ms; transform: translate3d(0, 48px, 0) scale(0.94); }
+.asymApproach .approachCopy > *:nth-child(2) { transition-delay: 90ms; transform: translate3d(-18px, 36px, 0) scale(0.96); }
+.asymApproach .approachCopy > *:nth-child(3) { transition-delay: 175ms; transform: translate3d(22px, 24px, 0) scale(0.97); }
+.asymApproach .approachCopy > *:nth-child(4) { transition-delay: 255ms; transform: translate3d(0, 40px, 0) scale(0.93); }
 
-.asymApproach.visible .approachCopy > * { opacity: 1; transform: translate3d(0, 0, 0) scale(1); filter: blur(0); }
-.asymApproach.fadeOutUp .approachCopy > * { opacity: 0; transform: translate3d(0, -22px, 0) scale(0.984); filter: blur(6px); transition-duration: 0.44s, 0.58s, 0.44s; transition-delay: 0ms !important; }
-.asymApproach.fadeOutDown .approachCopy > * { opacity: 0; transform: translate3d(0, 28px, 0) scale(0.978); filter: blur(7px); transition-duration: 0.5s, 0.64s, 0.5s; transition-delay: 0ms !important; }
+.asymApproach.visible .approachCopy > * { opacity: 1; transform: translate3d(0, 0, 0) scale(1); }
+.asymApproach.fadeOutUp .approachCopy > * { opacity: 0; transform: translate3d(0, -22px, 0) scale(0.984); transition-duration: 0.44s, 0.58s; transition-delay: 0ms !important; }
+.asymApproach.fadeOutDown .approachCopy > * { opacity: 0; transform: translate3d(0, 28px, 0) scale(0.978); transition-duration: 0.5s, 0.64s; transition-delay: 0ms !important; }
 
 /* Ghost watermark text reveal */
 .section.visible::after {

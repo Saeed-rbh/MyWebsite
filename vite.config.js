@@ -10,7 +10,16 @@ export default defineConfig({
     },
     build: {
         outDir: 'dist',
-        sourcemap: true,
+        sourcemap: false,
+        rollupOptions: {
+            output: {
+                manualChunks: {
+                    'three':   ['three', '@react-three/fiber', '@react-three/drei'],
+                    'framer':  ['motion/react'],
+                    'emotion': ['@emotion/styled', '@emotion/react'],
+                },
+            },
+        },
     },
     resolve: {
         alias: {
