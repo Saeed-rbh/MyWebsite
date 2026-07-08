@@ -38,6 +38,14 @@ const useScrollOpacity = (isResumeClicked) => {
 const Header = () => {
   const dispatch = useDispatch();
   const location = useLocation();
+  const normalizedPath = (() => {
+    try {
+      return decodeURIComponent(location.pathname).toLowerCase();
+    } catch {
+      return location.pathname.toLowerCase();
+    }
+  })();
+
   const { isMenuOpen } = useSelector((state) => state.ui);
   const { visibility } = useSelector((state) => state.ui);
   const { stages } = useSelector((state) => state.data);
@@ -48,7 +56,7 @@ const Header = () => {
 
   useEffect(() => {
     setIsResumeClicked(location.pathname !== "/");
-  }, [location.pathname]);
+  }, [normalizedPath]);
 
   useEffect(() => {
     const handleUrlChange = () =>
@@ -73,9 +81,8 @@ const Header = () => {
 
   const [activeSection, setActiveSection] = useState("");
   const [activeGapSlide, setActiveGapSlide] = useState("1");
-
   useEffect(() => {
-    const isRDPage = location.pathname.toLowerCase() === "/r&d-portfolio";
+    const isRDPage = normalizedPath === "/r&d-portfolio";
     if (!isRDPage) {
       setActiveSection("");
       setActiveGapSlide("1");
@@ -86,7 +93,7 @@ const Header = () => {
     let scrollContainer = null;
 
     const updateActiveSection = () => {
-      const isRDPage = location.pathname.toLowerCase() === "/r&d-portfolio";
+      const isRDPage = normalizedPath === "/r&d-portfolio";
       if (!isRDPage) {
         setActiveSection("");
         return;
@@ -160,13 +167,13 @@ const Header = () => {
 
     const setup = () => {
       const gapElement = document.getElementById("gap");
-      if (!gapElement && location.pathname.toLowerCase() === "/r&d-portfolio") {
+      if (!gapElement && normalizedPath === "/r&d-portfolio") {
         attempts++;
         if (attempts < 100) {
           setupTimer = setTimeout(setup, 100);
         }
         return;
-      } else if (!gapElement && location.pathname.toLowerCase() !== "/r&d-portfolio") {
+      } else if (!gapElement && normalizedPath !== "/r&d-portfolio") {
         // If we are not on WorkStory, we can just use main or window
       }
 
@@ -189,14 +196,14 @@ const Header = () => {
       window.removeEventListener("orientationchange", requestUpdate);
       window.visualViewport?.removeEventListener("resize", requestUpdate);
     };
-  }, [location.pathname]);
+  }, [normalizedPath]);
 
   const sectionLabels = {
     gap: "The Gap",
     process: "The Answer",
     system: "The System",
     evidence: "Evidence",
-    modeling: "Modeling",
+    modeling: "Product",
     industry: "Industry demand",
     approach: "My Approach"
   };
@@ -249,7 +256,7 @@ const Header = () => {
   };
 
   const getPageTitle = () => {
-    const path = location.pathname.toLowerCase();
+    const path = normalizedPath;
     if (path === "/") return null;
     if (path === "/r&d-portfolio" || path === "/work-story") {
       if (activeSection === "gap") {
@@ -261,7 +268,7 @@ const Header = () => {
     if (path === "/graphene") return "Graphene";
     if (path === "/research-progress") return "Research Progress";
     
-    const formatted = location.pathname.replace(/^\//, '').replace(/-/g, ' ');
+    const formatted = normalizedPath.replace(/^\//, '').replace(/-/g, ' ');
     if (!formatted) return null;
     return formatted.replace(/\b\w/g, l => l.toUpperCase());
   };

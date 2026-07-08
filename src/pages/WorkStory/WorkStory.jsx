@@ -142,7 +142,7 @@ const navItems = [
   { id: "gap", label: "Gap" },
   { id: "process", label: "CFE" },
   { id: "evidence", label: "Proof" },
-  { id: "modeling", label: "Model" },
+  { id: "modeling", label: "Product" },
   { id: "industry", label: "Value" },
   { id: "approach", label: "Approach" },
 ];
@@ -212,32 +212,164 @@ const valueScholarships = [
   { name: "Lab2Market Launch", place: "Canada", amount: "$10K" },
   { name: "Inventor 2 Founder", place: "Canada", amount: "$10K" },
 ];
-const ModelingShowcase = () => {
-  const modelSteps = [
-    { label: "Experiment", code: "input", detail: "Measured response windows" },
-    { label: "Simulation", code: "solver", detail: "Physics-constrained parameter space" },
-    { label: "Data", code: "fit", detail: "Trend extraction and uncertainty" },
-    { label: "Mechanism", code: "why", detail: "Process decisions with cause" },
-  ];
+const productQualityMetrics = [
+  {
+    id: "layers",
+    value: "15-20",
+    label: "Layers",
+    detail: "Few-layer stacks in the useful process window.",
+  },
+  {
+    id: "defect",
+    value: "<5%",
+    label: "Defect",
+    detail: "Low damage signal for application-ready flakes.",
+  },
+  {
+    id: "oxidation",
+    value: "<10%",
+    label: "Oxidation",
+    detail: "Dry processing keeps oxygen content low.",
+  },
+  {
+    id: "lateral-size",
+    value: "400-600 nm",
+    label: "Lateral size",
+    detail: "A measured size range for usable 2D material populations.",
+  },
+  {
+    id: "quality",
+    value: "Exfoliated",
+    label: "Materials",
+    detail: "Measured output ready for the next processing step.",
+  },
+];
+
+const ProductMetricIcon = ({ type }) => {
+  if (type === "layers") {
+    return (
+      <svg viewBox="0 0 96 72" aria-hidden="true">
+        {[0, 1, 2].map((layer) => (
+          <g key={layer} transform={`translate(${layer * 3} ${layer * -8 + 20})`}>
+            <path d="M12 32 48 14l36 18-36 18Z" />
+            <path d="M12 32v8l36 18 36-18v-8" />
+          </g>
+        ))}
+      </svg>
+    );
+  }
+
+  if (type === "defect") {
+    return (
+      <svg viewBox="0 0 96 72" aria-hidden="true">
+        {Array.from({ length: 4 }).map((_, row) => (
+          Array.from({ length: 5 }).map((__, col) => {
+            const x = 18 + col * 14 + (row % 2 ? 7 : 0);
+            const y = 14 + row * 11;
+            return <path key={`${row}-${col}`} d={`M${x} ${y}l7 4v8l-7 4-7-4v-8Z`} />;
+          })
+        ))}
+        <path className={styles.productIconAlert} d="M52 30l10 9M62 30l-10 9" />
+      </svg>
+    );
+  }
+
+  if (type === "oxidation") {
+    return (
+      <svg viewBox="0 0 96 72" aria-hidden="true">
+        <path d="M46 18 66 30v24L46 66 26 54V30Z" />
+        <path d="M46 18v-8M66 30l8-6M66 54l8 6M26 54l-8 6M26 30l-8-6" />
+        <circle cx="46" cy="10" r="4" /><circle cx="78" cy="22" r="4" /><circle cx="78" cy="62" r="4" />
+        <circle cx="14" cy="22" r="4" /><circle cx="14" cy="62" r="4" />
+      </svg>
+    );
+  }
+
+  if (type === "lateral-size") {
+    return (
+      <svg viewBox="0 0 96 72" aria-hidden="true">
+        <path d="M14 30c10-14 54-18 68 0 6 8-6 22-34 22S8 39 14 30Z" />
+        <path d="M18 60h60M18 54v12M78 54v12" />
+        <path d="M26 60h44" className={styles.productIconAlert} />
+      </svg>
+    );
+  }
 
   return (
-    <div className={styles.modelingArena} aria-label="Modeling workflow">
-      <div className={styles.modelingEquationCore} aria-hidden="true">
-        <span>CFD</span>
-        <i />
-        <span>+</span>
-        <i />
-        <span>Data</span>
-        <strong>Mechanism</strong>
-      </div>
-      <div className={styles.modelPanel}>
-        {modelSteps.map((step, index) => (
-          <article key={step.label} className={styles.modelStepCard} style={{ "--delay": `${index * 100}ms` }}>
-            <span>{step.code}</span>
-            <h3>{step.label}</h3>
-            <p>{step.detail}</p>
-          </article>
-        ))}
+    <svg viewBox="0 0 96 72" aria-hidden="true">
+      <path d="M14 58h12V42H14Z" />
+      <path d="M34 58h12V32H34Z" />
+      <path d="M54 58h12V24H54Z" />
+      <path d="M14 30c16 0 28-8 42-22" />
+      <path d="M56 8h16v16" />
+    </svg>
+  );
+};
+
+const ProductQualityTitle = () => (
+  <h2
+    className={`${styles.sectionTitleStacked} ${styles.spotlightTitle} ${styles.evidenceProofTitle} ${styles.productQualityTitle}`}
+    aria-label="Material Quality. Performance."
+  >
+    {renderFilledTitleWord("Material", styles.evidenceTitleLight, "product-title-material")}
+    {renderFilledTitleWord("Quality", styles.evidenceTitleLight, "product-title-quality")}
+    {renderFilledTitleWord("Performance", styles.evidenceTitleLight, "product-title-performance")}
+  </h2>
+);
+
+const ProductRailCard = ({ item, index }) => (
+  <article className={styles.productRailCard} style={{ "--motion-delay": `${index * 86}ms` }}>
+    <div className={styles.productRailFigure}>
+      <ProductMetricIcon type={item.id} />
+    </div>
+    <div className={styles.productRailCopy}>
+      <span className={styles.productRailIcon} aria-hidden="true">
+        <ProductMetricIcon type={item.id} />
+      </span>
+      <span className={styles.productRailMeta}>
+        <span className={styles.productRailValue}>{item.value}</span>
+        <span className={styles.productRailLabel}>{item.label}</span>
+      </span>
+      <span className={styles.productRailDetail}>{item.detail}</span>
+    </div>
+  </article>
+);
+
+const ProductQualityShowcase = ({ items }) => {
+  const firstRail = items.slice(0, 3);
+  const secondRail = [items[3], items[4], items[1]].filter(Boolean);
+  const railLoopCount = 6;
+  const firstRailLoop = Array.from({ length: railLoopCount }, () => firstRail).flat();
+  const secondRailLoop = Array.from({ length: railLoopCount }, () => secondRail).flat();
+
+  return (
+    <div className={styles.productScrollScene}>
+      <div className={styles.productScrollStage}>
+        <span className={styles.productBackgroundWord} aria-hidden="true">PRODUCT</span>
+        <div className={styles.productStickyCopy}>
+          <span className={`${styles.kicker} ${styles.productKickerMotion}`}>PRODUCT</span>
+          <div className={styles.productTitleMotion}>
+            <ProductQualityTitle />
+          </div>
+          <p className={styles.productLeadText}>
+            Product readiness is defined by measured layer count, defect level, chemistry, and usable lateral size.
+          </p>
+        </div>
+
+        <div className={styles.productMetricViewport}>
+          <div className={styles.productHorizontalRails} aria-label="Material quality and performance metrics">
+            <div className={`${styles.productHorizontalRail} ${styles.productHorizontalRailPrimary}`}>
+              {firstRailLoop.map((item, index) => (
+                <ProductRailCard key={`${item.id}-primary-${index}`} item={item} index={index} />
+              ))}
+            </div>
+            <div className={`${styles.productHorizontalRail} ${styles.productHorizontalRailSecondary}`}>
+              {secondRailLoop.map((item, index) => (
+                <ProductRailCard key={`${item.id}-secondary-${index}`} item={item} index={index + firstRail.length} />
+              ))}
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );
@@ -284,7 +416,6 @@ const slideMotion = {
     past: { x: 0, y: "-4vh", scale: 1.015 },
   },
 };
-
 const useWorkStoryEffects = (scrollRef) => {
   const rafRef = useRef(null);
   const isMobileRef = useRef(false);
@@ -407,21 +538,27 @@ const handlePillarLensLeave = (event) => {
   event.currentTarget.style.setProperty("--word-lens-opacity", "0");
 };
 
+const getSpotlightText = (word, fallback = "") => (
+  typeof word === "string" || typeof word === "number" ? String(word) : fallback
+);
+
 const renderSpotlightWord = (
   word,
   {
     className = "",
     mode = "outline",
+    keyId,
   } = {}
 ) => {
   const isFilled = mode === "filled";
+  const textValue = getSpotlightText(word, keyId);
 
   return (
     <span
-      key={word}
+      key={keyId || textValue}
       className={className}
       data-spotlight-mode={mode}
-      data-text={word}
+      data-text={textValue}
       onPointerEnter={handlePillarLensEnter}
       onPointerMove={handlePillarLensMove}
       onPointerLeave={handlePillarLensLeave}
@@ -439,49 +576,51 @@ const renderSpotlightWord = (
   );
 };
 
-const renderPillarWord = (word) => renderSpotlightWord(word, {
+const renderPillarWord = (word, keyId) => renderSpotlightWord(word, {
   className: styles.gapPillarWord,
   mode: "filled",
+  keyId,
 });
 
-const renderFocusWord = (word, className = "") => renderSpotlightWord(word, {
+const renderFocusWord = (word, className = "", keyId) => renderSpotlightWord(word, {
   className: `${styles.gapFocusWord} ${className}`,
   mode: "outline",
+  keyId,
 });
 
-const renderFilledTitleWord = (word, className = "") => renderSpotlightWord(word, {
+const renderFilledTitleWord = (word, className = "", keyId) => renderSpotlightWord(word, {
   className: `${styles.gapPillarWord} ${styles.spotlightTitleFilledWord} ${className}`,
   mode: "filled",
+  keyId,
 });
 
 const SpotlightTitle = ({ words, className = "" }) => {
   const isSplit = className.includes(styles.splitLineLayout);
-  
+
   if (isSplit) {
-    // Force "From" & "Research" on line 1, and "To" & "Value" on line 2
     return (
       <h2
         className={`${styles.sectionTitleStacked} ${styles.spotlightTitle} ${className}`}
         aria-label={words.join(" ")}
       >
         <span style={{ display: "flex", gap: "0.24em" }}>
-          {renderFocusWord(words[0])}
-          {renderFocusWord(words[1])}
+          {renderFocusWord(words[0], "", `split-${words[0]}`)}
+          {renderFocusWord(words[1], "", `split-${words[1]}`)}
         </span>
         <span style={{ display: "flex", gap: "0.24em" }}>
-          {renderFocusWord(words[2])}
-          {renderFocusWord(words[3])}
+          {renderFocusWord(words[2], "", `split-${words[2]}`)}
+          {renderFocusWord(words[3], "", `split-${words[3]}`)}
         </span>
       </h2>
     );
   }
-  
+
   return (
     <h2
       className={`${styles.sectionTitleStacked} ${styles.spotlightTitle} ${className}`}
       aria-label={words.join(" ")}
     >
-      {words.map((word) => renderFocusWord(word))}
+      {words.map((word) => renderFocusWord(word, "", `title-${word}`))}
     </h2>
   );
 };
@@ -505,8 +644,8 @@ const EvidenceProofTitle = ({ progress }) => {
       className={`${styles.sectionTitleStacked} ${styles.spotlightTitle} ${styles.evidenceProofTitle}`}
       aria-label="Proving the Material"
     >
-      {renderFilledTitleWord("Proving", styles.evidenceTitleLight)}
-      {renderFilledTitleWord("the", styles.evidenceTitleLight)}
+      {renderFilledTitleWord("Proving", styles.evidenceTitleLight, "evidence-title-proving")}
+      {renderFilledTitleWord("the", styles.evidenceTitleLight, "evidence-title-the")}
       <span className={`${styles.gapFocusWord} ${styles.evidenceMaterialWord}`} data-text="Material">
         <span className={styles.gapFocusWordOutline} aria-hidden="true">Material</span>
         <span className={styles.evidenceMaterialLetters} aria-hidden="true">
@@ -1156,9 +1295,9 @@ const GapSection = ({ scrollRef }) => {
           <div className={styles.gapHighlight}>
             <span className={styles.gapHighlightSmall}>My Focus</span>
             <strong>
-              {renderFocusWord(<>Build <span className={styles.focusArrow}>{">>"}</span></>)}
-              {renderFocusWord(<>measure <span className={styles.focusArrow}>{">>"}</span></>)}
-              {renderFocusWord("Optimize")}
+              {renderFocusWord(<>Build <span className={styles.focusArrow}>{">"}</span></>, "", "focus-build")}
+              {renderFocusWord(<>measure <span className={styles.focusArrow}>{">"}</span></>, "", "focus-measure")}
+              {renderFocusWord("Optimize", "", "focus-optimize")}
             </strong>
             <span>
               I develop gas-driven exfoliation routes and build the rigorous metrology workflows required for <em>scalable, on-spec nanomaterial manufacturing</em>.
@@ -1640,7 +1779,7 @@ const WorkStory = () => {
     <>
       <SEO
         title="Saeed Arabha | R&D Journey"
-        description="A recruiter-focused R&D narrative of Saeed Arabha's materials approach across process development, characterization, modeling, and industrial value."
+        description="A recruiter-focused R&D narrative of Saeed Arabha's materials approach across process development, characterization, product quality, and industrial value."
         name="Saeed Arabha"
         type="website"
       />
@@ -1747,19 +1886,11 @@ const WorkStory = () => {
           </SectionShell>
           <SectionShell 
             id="modeling" 
-            kicker="MODELING" 
-            title={
-              <SpotlightTitle words={["Exposing The", "Mechanism"]} />
-            } 
+            title={null} 
             className={styles.asymModeling}
+            eager
           >
-            <div className={styles.sectionIntro}>
-              <p className={styles.lead}>
-                Experiments show what changed. Modeling explains why it changed.
-              </p>
-            </div>
-
-            <ModelingShowcase />
+            <ProductQualityShowcase items={productQualityMetrics} />
           </SectionShell>
 
           <SectionShell 
@@ -1814,6 +1945,83 @@ const WorkStory = () => {
 };
 
 export default WorkStory;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
