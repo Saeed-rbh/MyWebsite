@@ -306,14 +306,27 @@ const ProductMetricIcon = ({ type }) => {
   );
 };
 
-const ProductQualityTitle = () => (
+const ProductScrollWord = ({ label, opacity, y }) => (
+  <span className={styles.productScrollWord} data-text={label}>
+    <span className={styles.productScrollWordBase} aria-hidden="true">{label}</span>
+    <motion.span
+      className={styles.productScrollWordFill}
+      aria-hidden="true"
+      style={{ opacity, y }}
+    >
+      {label}
+    </motion.span>
+  </span>
+);
+
+const ProductQualityTitle = ({ wordMotion }) => (
   <h2
-    className={`${styles.sectionTitleStacked} ${styles.spotlightTitle} ${styles.evidenceProofTitle} ${styles.productQualityTitle}`}
+    className={`${styles.sectionTitleStacked} ${styles.productQualityTitle} ${styles.productScrollTitle}`}
     aria-label="Material Quality. Performance."
   >
-    {renderFilledTitleWord("Material", styles.evidenceTitleLight, "product-title-material")}
-    {renderFilledTitleWord("Quality", styles.evidenceTitleLight, "product-title-quality")}
-    {renderFilledTitleWord("Performance", styles.evidenceTitleLight, "product-title-performance")}
+    <ProductScrollWord label="MATERIAL" {...wordMotion.material} />
+    <ProductScrollWord label="QUALITY" {...wordMotion.quality} />
+    <ProductScrollWord label="PERFORMANCE" {...wordMotion.performance} />
   </h2>
 );
 
@@ -336,6 +349,26 @@ const ProductRailCard = ({ item, index }) => (
 );
 
 const ProductQualityShowcase = ({ items }) => {
+  const sceneRef = useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: sceneRef,
+    offset: ["start start", "end end"],
+  });
+  const easedProgress = useSpring(scrollYProgress, storySpring);
+  const wordMotion = {
+    material: {
+      opacity: useTransform(easedProgress, [0, 0.08, 0.3, 0.38], [0, 1, 1, 0]),
+      y: useTransform(easedProgress, [0, 0.12, 0.3, 0.38], [24, 0, 0, -16]),
+    },
+    quality: {
+      opacity: useTransform(easedProgress, [0.31, 0.41, 0.63, 0.72], [0, 1, 1, 0]),
+      y: useTransform(easedProgress, [0.31, 0.45, 0.63, 0.72], [24, 0, 0, -16]),
+    },
+    performance: {
+      opacity: useTransform(easedProgress, [0.64, 0.74, 0.96, 1], [0, 1, 1, 1]),
+      y: useTransform(easedProgress, [0.64, 0.78, 1], [24, 0, 0]),
+    },
+  };
   const firstRail = items.slice(0, 3);
   const secondRail = [items[3], items[4], items[1]].filter(Boolean);
   const railLoopCount = 6;
@@ -343,13 +376,13 @@ const ProductQualityShowcase = ({ items }) => {
   const secondRailLoop = Array.from({ length: railLoopCount }, () => secondRail).flat();
 
   return (
-    <div className={styles.productScrollScene}>
+    <div className={styles.productScrollScene} ref={sceneRef}>
       <div className={styles.productScrollStage}>
         <span className={styles.productBackgroundWord} aria-hidden="true">PRODUCT</span>
         <div className={styles.productStickyCopy}>
           <span className={`${styles.kicker} ${styles.productKickerMotion}`}>PRODUCT</span>
           <div className={styles.productTitleMotion}>
-            <ProductQualityTitle />
+            <ProductQualityTitle wordMotion={wordMotion} />
           </div>
           <p className={styles.productLeadText}>
             Product readiness is defined by measured layer count, defect level, chemistry, and usable lateral size.
