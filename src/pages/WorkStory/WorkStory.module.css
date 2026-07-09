@@ -17471,8 +17471,8 @@ blockquote::before {
 }
 
 .materialsProofPanel {
-  margin-left: -30px !important;
-  margin-top: 30px !important;
+  margin-left: -15px !important;
+  margin-top: 0px !important;
 }
 
 .materialsStage .materialConcentration {
@@ -17745,7 +17745,7 @@ blockquote::before {
 }
 
 .materialsStage::before {
-  bottom: clamp(118px, 13vh, 152px) !important;
+  bottom: clamp(180px, 13vh, 190px) !important;
   width: min(104%, 1060px) !important;
   height: clamp(190px, 22vh, 282px) !important;
 }
@@ -17841,32 +17841,221 @@ blockquote::before {
 
 .materialsStage .materialSampleName {
   position: absolute !important;
-  left: clamp(-18px, -1.4vw, -8px) !important;
+  left: clamp(-18px, 15.6vw, 35px) !important;
   top: auto !important;
-  bottom: clamp(360px, 39vh, 455px) !important;
+  bottom: clamp(285px, 31vh, 330px) !important;
   min-height: 0 !important;
+  gap: clamp(12px, 1.2vw, 18px) !important;
   justify-self: auto !important;
   align-self: auto !important;
   white-space: nowrap !important;
   transform: translate(-50%, 50%) rotate(-90deg) !important;
   transform-origin: center center !important;
-  font-size: clamp(1.16rem, 1.45vw, 1.72rem) !important;
+  color: rgb(217 155 118 / 16%) !important;
+  font-size: clamp(3rem, 1.45vw, 1.72rem) !important;
   letter-spacing: 0.01em !important;
   z-index: 4 !important;
 }
 
 .materialsStage .materialSample:nth-child(2) .materialSampleName {
-  left: clamp(-22px, -1.6vw, -10px) !important;
-  bottom: clamp(374px, 40vh, 475px) !important;
+  left: clamp(-13px, 15.4vw, 25px) !important;
+  bottom: clamp(350px, 40vh, 475px) !important;
 }
 
 .materialsStage .materialSample:nth-child(3) .materialSampleName {
-  left: clamp(-20px, -1.5vw, -9px) !important;
+  left: clamp(-20px, 12.5vw, 30px) !important;
 }
 
 .materialsStage .materialConcentration {
   position: absolute !important;
   left: 50% !important;
-  bottom: clamp(18px, 2vh, 28px) !important;
+  bottom: clamp(95px, 2vh, 28px) !important;
   transform: translateX(-50%) !important;
+}
+
+.materialsShowcase .materialsStage::before,
+.materialsShowcase .materialsStage::after,
+.materialsShowcase .materialSampleName,
+.materialsShowcase .materialVialImage,
+.materialsShowcase .materialVialReflection,
+.materialsShowcase .materialSample::before,
+.materialsShowcase .materialSample::after,
+.materialsShowcase .materialConcentration,
+.materialsShowcase .materialsProofPanel,
+.materialsShowcase .materialCheckMark {
+  transition-duration: 760ms !important;
+  transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1) !important;
+  transition-property: opacity, transform, filter, box-shadow !important;
+  transition-delay: 0ms !important;
+}
+
+.materialsShowcase .materialsStage::before,
+.materialsShowcase .materialsStage::after {
+  transition-duration: 920ms !important;
+}
+
+.materialsShowcaseActive .materialsStage::before {
+  transition-delay: 0ms !important;
+}
+
+.materialsShowcaseActive .materialsStage::after {
+  transition-delay: 90ms !important;
+}
+
+.materialsShowcaseActive .materialSample::before {
+  transition-delay: calc(140ms + var(--sample-delay, 0ms)) !important;
+}
+
+.materialsShowcaseActive .materialVialImage {
+  transition-delay: calc(220ms + var(--sample-delay, 0ms)) !important;
+}
+
+.materialsShowcaseActive .materialSample::after {
+  transition-delay: calc(320ms + var(--sample-delay, 0ms)) !important;
+}
+
+.materialsShowcaseActive .materialVialReflection {
+  transition-delay: calc(390ms + var(--sample-delay, 0ms)) !important;
+}
+
+.materialsShowcaseActive .materialSampleName {
+  transition-delay: calc(470ms + var(--sample-delay, 0ms)) !important;
+}
+
+.materialsShowcaseActive .materialConcentration {
+  transition-delay: calc(540ms + var(--sample-delay, 0ms)) !important;
+}
+
+.materialsShowcaseMotionReady:not(.materialsShowcaseActive) .materialsStage::before {
+  opacity: 0 !important;
+  transform: translateX(-50%) perspective(900px) rotateX(63deg) scaleX(0.78) scaleY(0.72) !important;
+  filter: blur(18px) !important;
+}
+
+.materialsShowcaseMotionReady:not(.materialsShowcaseActive) .materialsStage::after {
+  opacity: 0 !important;
+  transform: translateX(-50%) perspective(900px) rotateX(66deg) scaleX(0.62) scaleY(0.64) !important;
+  filter: blur(24px) !important;
+}
+
+.materialsShowcaseMotionReady:not(.materialsShowcaseActive) .materialVialImage {
+  opacity: 0 !important;
+  transform: translate3d(0, -54px, 0) scale(1.035) !important;
+  filter: blur(7px) sepia(0.08) saturate(0.86) contrast(1.04) brightness(0.78) drop-shadow(0 18px 28px rgba(0, 0, 0, 0.42)) !important;
+}
+
+.materialsShowcaseActive .materialVialImage {
+  opacity: 0.9 !important;
+  transform: translate3d(0, 0, 0) scale(1) !important;
+}
+
+.materialsShowcaseMotionReady:not(.materialsShowcaseActive) .materialVialReflection {
+  opacity: 0 !important;
+  transform: translateX(-50%) translateY(-12px) scaleY(-0.28) scaleX(0.64) !important;
+  filter: blur(8px) sepia(0.1) saturate(0.7) brightness(0.62) contrast(1.02) !important;
+}
+
+.materialsShowcaseActive .materialVialReflection {
+  transform: translateX(-50%) scaleY(-1) !important;
+}
+
+.materialsShowcaseMotionReady:not(.materialsShowcaseActive) .materialSample::before {
+  opacity: 0 !important;
+  transform: translateX(-50%) scale(0.52) !important;
+  filter: blur(12px) !important;
+}
+
+.materialsShowcaseMotionReady:not(.materialsShowcaseActive) .materialSample::after {
+  opacity: 0 !important;
+  transform: translateX(-50%) scaleX(0.48) !important;
+  filter: blur(14px) !important;
+}
+
+.materialsShowcaseMotionReady:not(.materialsShowcaseActive) .materialSampleName {
+  opacity: 0 !important;
+  transform: translate(-50%, 36%) rotate(-90deg) !important;
+  filter: blur(6px) !important;
+}
+
+.materialsShowcaseActive .materialSampleName {
+  opacity: 1 !important;
+  transform: translate(-50%, 50%) rotate(-90deg) !important;
+  filter: blur(0) !important;
+}
+
+.materialsShowcaseMotionReady:not(.materialsShowcaseActive) .materialConcentration {
+  opacity: 0 !important;
+  transform: translateX(-50%) translateY(12px) scale(0.96) !important;
+  filter: blur(6px) !important;
+}
+
+.materialsShowcaseActive .materialConcentration {
+  opacity: 1 !important;
+  transform: translateX(-50%) !important;
+  filter: blur(0) !important;
+}
+
+.materialsShowcaseMotionReady:not(.materialsShowcaseActive) .materialsProofPanel {
+  opacity: 0 !important;
+  transform: translate3d(26px, 18px, 0) !important;
+  filter: blur(9px) !important;
+}
+
+.materialsShowcaseActive .materialsProofPanel {
+  opacity: 1 !important;
+  transform: translate3d(0, 0, 0) !important;
+  filter: blur(0) !important;
+  transition-delay: 560ms !important;
+}
+
+.materialsShowcaseMotionReady:not(.materialsShowcaseActive) .materialCheckMark {
+  transform: scale(0.82) rotate(-8deg) !important;
+  opacity: 0 !important;
+}
+
+.materialsShowcaseActive .materialCheckMark {
+  transform: scale(1) rotate(0deg) !important;
+  opacity: 1 !important;
+  transition-delay: 690ms !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .materialsShowcase .materialsStage::before,
+  .materialsShowcase .materialsStage::after,
+  .materialsShowcase .materialSampleName,
+  .materialsShowcase .materialVialImage,
+  .materialsShowcase .materialVialReflection,
+  .materialsShowcase .materialSample::before,
+  .materialsShowcase .materialSample::after,
+  .materialsShowcase .materialConcentration,
+  .materialsShowcase .materialsProofPanel,
+  .materialsShowcase .materialCheckMark {
+    animation: none !important;
+    transition: none !important;
+    opacity: 1 !important;
+    filter: none !important;
+  }
+
+  .materialsShowcase .materialVialImage,
+  .materialsShowcase .materialsProofPanel,
+  .materialsShowcase .materialCheckMark {
+    transform: none !important;
+  }
+
+  .materialsShowcase .materialSampleName {
+    transform: translate(-50%, 50%) rotate(-90deg) !important;
+  }
+
+  .materialsShowcase .materialVialReflection {
+    transform: translateX(-50%) scaleY(-1) !important;
+  }
+
+  .materialsShowcase .materialSample::before,
+  .materialsShowcase .materialSample::after {
+    transform: translateX(-50%) !important;
+  }
+
+  .materialsShowcase .materialConcentration {
+    transform: translateX(-50%) !important;
+  }
 }

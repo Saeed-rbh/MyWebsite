@@ -399,73 +399,99 @@ const ProductQualityShowcase = ({ items }) => {
     </div>
   );
 };
-const ExfoliatedMaterialsShowcase = ({ samples }) => (
-  <div className={styles.materialsShowcase}>
-    <img
-      className={styles.materialsReferenceTexture}
-      src={`${import.meta.env.BASE_URL}rnd-materials/exfoliated-materials-reference.png`}
-      alt=""
-      aria-hidden="true"
-      loading="lazy"
-    />
+const ExfoliatedMaterialsShowcase = ({ samples, scrollRef }) => {
+  const stageRef = useRef(null);
+  const [isActive, setIsActive] = useState(false);
+  const [isMotionReady, setIsMotionReady] = useState(false);
 
-    <div className={styles.materialsLayout}>
-      <div className={styles.materialsStage}>
-        <div className={styles.materialsSampleGrid} aria-label="Exfoliated material sample concentrations">
-          {samples.map((sample, index) => (
-            <article className={styles.materialSample} key={sample.id} style={{ "--sample-delay": `${index * 110}ms` }}>
-              <div className={styles.materialSampleName}>
-                <TbHexagon aria-hidden="true" />
-                {sample.id === "mos2" ? <span>MoS<sub>2</sub></span> : <span>{sample.name}</span>}
-              </div>
-              <div className={styles.materialVialFrame}>
-                <img className={styles.materialVialReflection} src={sample.image} alt="" aria-hidden="true" loading="lazy" />
-                <img className={styles.materialVialImage} src={sample.image} alt={sample.alt} loading="lazy" />
-              </div>
-              <div className={styles.materialConcentration}>
-                <span>Concentration</span>
-                <strong>{sample.concentration}</strong>
-                <em>g/L</em>
-              </div>
-            </article>
-          ))}
+  useEffect(() => {
+    const root = scrollRef?.current ?? null;
+    const stage = stageRef.current;
+    if (!stage) return undefined;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIsActive(entry.isIntersecting);
+      },
+      { root, threshold: 0, rootMargin: "-34% 0px -34% 0px" }
+    );
+
+    const frameId = window.requestAnimationFrame(() => setIsMotionReady(true));
+    observer.observe(stage);
+
+    return () => {
+      window.cancelAnimationFrame(frameId);
+      observer.disconnect();
+    };
+  }, [scrollRef]);
+
+  return (
+    <div
+      ref={stageRef}
+      className={`${styles.materialsShowcase} ${isMotionReady ? styles.materialsShowcaseMotionReady : ""} ${isActive ? styles.materialsShowcaseActive : ""}`}
+    >
+      <img
+        className={styles.materialsReferenceTexture}
+        src={`${import.meta.env.BASE_URL}rnd-materials/exfoliated-materials-reference.png`}
+        alt=""
+        aria-hidden="true"
+        loading="lazy"
+      />
+
+      <div className={styles.materialsLayout}>
+        <div className={styles.materialsStage}>
+          <div className={styles.materialsSampleGrid} aria-label="Exfoliated material sample concentrations">
+            {samples.map((sample, index) => (
+              <article className={styles.materialSample} key={sample.id} style={{ "--sample-delay": `${index * 130}ms` }}>
+                <div className={styles.materialSampleName}>
+                  <TbHexagon aria-hidden="true" />
+                  {sample.id === "mos2" ? <span>MoS<sub>2</sub></span> : <span>{sample.name}</span>}
+                </div>
+                <div className={styles.materialVialFrame}>
+                  <img className={styles.materialVialReflection} src={sample.image} alt="" aria-hidden="true" loading="lazy" />
+                  <img className={styles.materialVialImage} src={sample.image} alt={sample.alt} loading="lazy" />
+                </div>
+                <div className={styles.materialConcentration}>
+                  <span>Concentration</span>
+                  <strong>{sample.concentration}</strong>
+                  <em>g/L</em>
+                </div>
+              </article>
+            ))}
+          </div>
         </div>
+
+        <aside className={styles.materialsProofPanel} aria-label="Measured and consistent material proof">
+          <div className={styles.materialCheckMark} aria-hidden="true">
+            <svg viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                <filter id="checkmarkGlow" x="-20%" y="-20%" width="140%" height="140%">
+                  <feGaussianBlur stdDeviation="3.5" result="blur" />
+                  <feComposite in="SourceGraphic" in2="blur" operator="over" />
+                </filter>
+              </defs>
+
+              <circle cx="60" cy="60" r="54" fill="#050608" stroke="rgba(212, 157, 129, 0.15)" strokeWidth="1" />
+              <circle cx="60" cy="60" r="44" stroke="rgba(212, 157, 129, 0.35)" strokeWidth="1.2" strokeDasharray="170 30 50 30" strokeDashoffset="110" strokeLinecap="round" />
+              <circle cx="91.1" cy="28.9" r="2.2" fill="rgba(222, 177, 149, 1)" filter="url(#checkmarkGlow)" />
+              <circle cx="98.1" cy="38.0" r="1.2" fill="rgba(212, 157, 129, 0.6)" />
+              <circle cx="102.5" cy="48.6" r="1.8" fill="rgba(222, 177, 149, 0.8)" filter="url(#checkmarkGlow)" />
+              <circle cx="93.7" cy="88.2" r="1.2" fill="rgba(212, 157, 129, 0.6)" />
+              <path d="M42 62 L54 74 L82 42" stroke="rgba(222, 177, 149, 0.95)" strokeWidth="4.5" strokeLinecap="round" strokeLinejoin="round" filter="url(#checkmarkGlow)" />
+              <ellipse cx="82" cy="42" rx="14" ry="0.8" fill="#fff" transform="rotate(-45 82 42)" filter="url(#checkmarkGlow)" opacity="0.9" />
+              <ellipse cx="82" cy="42" rx="3.5" ry="3.5" fill="#fff" filter="url(#checkmarkGlow)" />
+            </svg>
+          </div>
+          <h3>
+            <span>Measured.</span>
+            <strong>Consistent.</strong>
+          </h3>
+          <p className={styles.materialsProofSubhead}>Exfoliated materials.</p>
+        </aside>
       </div>
-
-      <aside className={styles.materialsProofPanel} aria-label="Measured and consistent material proof">
-        <div className={styles.materialCheckMark} aria-hidden="true">
-          <svg viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <defs>
-              <filter id="checkmarkGlow" x="-20%" y="-20%" width="140%" height="140%">
-                <feGaussianBlur stdDeviation="3.5" result="blur" />
-                <feComposite in="SourceGraphic" in2="blur" operator="over" />
-              </filter>
-            </defs>
-
-            <circle cx="60" cy="60" r="54" fill="#050608" stroke="rgba(212, 157, 129, 0.15)" strokeWidth="1" />
-
-            <circle cx="60" cy="60" r="44" stroke="rgba(212, 157, 129, 0.35)" strokeWidth="1.2" strokeDasharray="170 30 50 30" strokeDashoffset="110" strokeLinecap="round" />
-
-            <circle cx="91.1" cy="28.9" r="2.2" fill="rgba(222, 177, 149, 1)" filter="url(#checkmarkGlow)" />
-            <circle cx="98.1" cy="38.0" r="1.2" fill="rgba(212, 157, 129, 0.6)" />
-            <circle cx="102.5" cy="48.6" r="1.8" fill="rgba(222, 177, 149, 0.8)" filter="url(#checkmarkGlow)" />
-            <circle cx="93.7" cy="88.2" r="1.2" fill="rgba(212, 157, 129, 0.6)" />
-
-            <path d="M42 62 L54 74 L82 42" stroke="rgba(222, 177, 149, 0.95)" strokeWidth="4.5" strokeLinecap="round" strokeLinejoin="round" filter="url(#checkmarkGlow)" />
-
-            <ellipse cx="82" cy="42" rx="14" ry="0.8" fill="#fff" transform="rotate(-45 82 42)" filter="url(#checkmarkGlow)" opacity="0.9" />
-            <ellipse cx="82" cy="42" rx="3.5" ry="3.5" fill="#fff" filter="url(#checkmarkGlow)" />
-          </svg>
-        </div>
-        <h3>
-          <span>Measured.</span>
-          <strong>Consistent.</strong>
-        </h3>
-        <p className={styles.materialsProofSubhead}>Exfoliated materials.</p>
-      </aside>
     </div>
-  </div>
-);
+  );
+};
 const storySpring = {
   stiffness: 140,
   damping: 30,
@@ -1989,7 +2015,7 @@ const WorkStory = () => {
             className={styles.asymMaterials}
             eager
           >
-            <ExfoliatedMaterialsShowcase samples={exfoliatedMaterialSamples} />
+            <ExfoliatedMaterialsShowcase samples={exfoliatedMaterialSamples} scrollRef={scrollRef} />
           </SectionShell>
 
           <SectionShell
