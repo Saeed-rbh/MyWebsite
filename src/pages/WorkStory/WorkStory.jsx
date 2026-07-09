@@ -252,21 +252,21 @@ const exfoliatedMaterialSamples = [
     id: "hbn",
     name: "h-BN",
     concentration: "0.21",
-    image: "/rnd-materials/hbn-vial.png",
+    image: `${import.meta.env.BASE_URL}rnd-materials/hbn-vial.png`,
     alt: "Pale h-BN dispersion vial with pink laser scattering",
   },
   {
     id: "graphene",
     name: "Graphene",
     concentration: "0.15",
-    image: "/rnd-materials/graphene-vial.png",
+    image: `${import.meta.env.BASE_URL}rnd-materials/graphene-vial.png`,
     alt: "Dark graphene dispersion vial with red laser scattering",
   },
   {
     id: "mos2",
     name: "MoS2",
     concentration: "0.18",
-    image: "/rnd-materials/mos2-vial.png",
+    image: `${import.meta.env.BASE_URL}rnd-materials/mos2-vial.png`,
     alt: "Dark MoS2 dispersion vial with red laser scattering",
   },
 ];
@@ -403,7 +403,7 @@ const ExfoliatedMaterialsShowcase = ({ samples }) => (
   <div className={styles.materialsShowcase}>
     <img
       className={styles.materialsReferenceTexture}
-      src="/rnd-materials/exfoliated-materials-reference.png"
+      src={`${import.meta.env.BASE_URL}rnd-materials/exfoliated-materials-reference.png`}
       alt=""
       aria-hidden="true"
       loading="lazy"
@@ -433,7 +433,30 @@ const ExfoliatedMaterialsShowcase = ({ samples }) => (
       </div>
 
       <aside className={styles.materialsProofPanel} aria-label="Measured and consistent material proof">
-        <div className={styles.materialCheckMark} aria-hidden="true" />
+        <div className={styles.materialCheckMark} aria-hidden="true">
+          <svg viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <filter id="checkmarkGlow" x="-20%" y="-20%" width="140%" height="140%">
+                <feGaussianBlur stdDeviation="3.5" result="blur" />
+                <feComposite in="SourceGraphic" in2="blur" operator="over" />
+              </filter>
+            </defs>
+
+            <circle cx="60" cy="60" r="54" fill="#050608" stroke="rgba(212, 157, 129, 0.15)" strokeWidth="1" />
+
+            <circle cx="60" cy="60" r="44" stroke="rgba(212, 157, 129, 0.35)" strokeWidth="1.2" strokeDasharray="170 30 50 30" strokeDashoffset="110" strokeLinecap="round" />
+
+            <circle cx="91.1" cy="28.9" r="2.2" fill="rgba(222, 177, 149, 1)" filter="url(#checkmarkGlow)" />
+            <circle cx="98.1" cy="38.0" r="1.2" fill="rgba(212, 157, 129, 0.6)" />
+            <circle cx="102.5" cy="48.6" r="1.8" fill="rgba(222, 177, 149, 0.8)" filter="url(#checkmarkGlow)" />
+            <circle cx="93.7" cy="88.2" r="1.2" fill="rgba(212, 157, 129, 0.6)" />
+
+            <path d="M42 62 L54 74 L82 42" stroke="rgba(222, 177, 149, 0.95)" strokeWidth="4.5" strokeLinecap="round" strokeLinejoin="round" filter="url(#checkmarkGlow)" />
+
+            <ellipse cx="82" cy="42" rx="14" ry="0.8" fill="#fff" transform="rotate(-45 82 42)" filter="url(#checkmarkGlow)" opacity="0.9" />
+            <ellipse cx="82" cy="42" rx="3.5" ry="3.5" fill="#fff" filter="url(#checkmarkGlow)" />
+          </svg>
+        </div>
         <h3>
           <span>Measured.</span>
           <strong>Consistent.</strong>
@@ -1395,9 +1418,9 @@ const InteractiveProcessMap = ({ steps }) => {
           const isActive = activeStepId === step.id;
           const toneClass = step.tone === "metrology" ? styles.processStepMetrology : "";
           return (
-            <div 
-              key={step.id} 
-              className={`${styles.processStep} ${toneClass} ${isActive ? styles.processStepActive : ''}`} 
+            <div
+              key={step.id}
+              className={`${styles.processStep} ${toneClass} ${isActive ? styles.processStepActive : ''}`}
               style={{ "--delay": `${index * 80}ms` }}
               onPointerEnter={() => setActiveStepId(step.id)}
               onPointerLeave={() => setActiveStepId(null)}
@@ -1425,12 +1448,12 @@ const RamanChart = ({ isActive }) => (
     <line x1="220" y1="20" x2="220" y2="110" stroke="rgba(255,255,255,0.05)" strokeWidth="1" />
 
     {/* Spectral line */}
-    <path 
-      d="M 20,110 Q 30,110 40,108 T 50,103 T 58,80 T 66,106 T 75,108 T 92,108 T 100,20 T 108,108 T 135,108 T 150,108 Q 165,95 178,55 Q 185,55 190,75 Q 198,104 205,108 Q 212,110 220,110" 
-      stroke={isActive ? "url(#ramanGlow)" : "rgba(255,255,255,0.4)"} 
-      strokeWidth="1.5" 
+    <path
+      d="M 20,110 Q 30,110 40,108 T 50,103 T 58,80 T 66,106 T 75,108 T 92,108 T 100,20 T 108,108 T 135,108 T 150,108 Q 165,95 178,55 Q 185,55 190,75 Q 198,104 205,108 Q 212,110 220,110"
+      stroke={isActive ? "url(#ramanGlow)" : "rgba(255,255,255,0.4)"}
+      strokeWidth="1.5"
       strokeLinecap="round"
-      strokeLinejoin="round" 
+      strokeLinejoin="round"
     />
 
     <defs>
@@ -1453,12 +1476,12 @@ const XpsChart = ({ isActive }) => (
     <line x1="25" y1="20" x2="25" y2="110" stroke="rgba(255,255,255,0.05)" strokeWidth="1" />
 
     {/* XPS Spectral line (White/Grayish to match mockup) */}
-    <path 
-      d="M 25,108 L 75,108 L 82,108 L 90,30 L 98,108 L 165,108 L 172,108 L 178,92 L 183,108 L 220,108" 
-      stroke={isActive ? "rgba(255,255,255,0.85)" : "rgba(255,255,255,0.4)"} 
-      strokeWidth="1.2" 
+    <path
+      d="M 25,108 L 75,108 L 82,108 L 90,30 L 98,108 L 165,108 L 172,108 L 178,92 L 183,108 L 220,108"
+      stroke={isActive ? "rgba(255,255,255,0.85)" : "rgba(255,255,255,0.4)"}
+      strokeWidth="1.2"
       strokeLinecap="round"
-      strokeLinejoin="round" 
+      strokeLinejoin="round"
     />
 
     {/* C 1s and O 1s Annotations matching mockup */}
@@ -1500,18 +1523,18 @@ const SemTemChart = ({ isActive }) => (
     <g opacity={isActive ? "0.85" : "0.45"}>
       {/* Background box for diffraction pattern */}
       <rect x="130" y="20" width="80" height="80" rx="4" fill="rgba(0,0,0,0.4)" stroke="rgba(255,255,255,0.1)" strokeWidth="0.5" />
-      
+
       {/* Hexagonal dot pattern */}
       <circle cx="170" cy="60" r="3" fill="#ffffff" filter="blur(1px)" />
       <circle cx="170" cy="60" r="1.5" fill="#ffffff" />
-      
+
       <circle cx="150" cy="48" r="1.5" fill="rgba(255,255,255,0.6)" filter="blur(0.5px)" />
       <circle cx="190" cy="48" r="1.5" fill="rgba(255,255,255,0.6)" filter="blur(0.5px)" />
       <circle cx="150" cy="72" r="1.5" fill="rgba(255,255,255,0.6)" filter="blur(0.5px)" />
       <circle cx="190" cy="72" r="1.5" fill="rgba(255,255,255,0.6)" filter="blur(0.5px)" />
       <circle cx="170" cy="36" r="1.5" fill="rgba(255,255,255,0.6)" filter="blur(0.5px)" />
       <circle cx="170" cy="84" r="1.5" fill="rgba(255,255,255,0.6)" filter="blur(0.5px)" />
-      
+
       <circle cx="130" cy="60" r="1" fill="rgba(255,255,255,0.4)" />
       <circle cx="210" cy="60" r="1" fill="rgba(255,255,255,0.4)" />
       <circle cx="150" cy="24" r="1" fill="rgba(255,255,255,0.4)" />
@@ -1535,32 +1558,32 @@ const AfmChart = ({ isActive }) => (
 
       {/* Contour lines (copper color levels) */}
       {/* Level 1 (deepest layer) */}
-      <path 
-        d="M 25,45 Q 60,30 110,40 T 170,80 T 130,110 T 60,95 Q 30,75 25,45 Z" 
-        fill="rgba(63, 33, 19, 0.25)" 
-        stroke="rgba(212,157,129,0.18)" 
-        strokeWidth="1" 
+      <path
+        d="M 25,45 Q 60,30 110,40 T 170,80 T 130,110 T 60,95 Q 30,75 25,45 Z"
+        fill="rgba(63, 33, 19, 0.25)"
+        stroke="rgba(212,157,129,0.18)"
+        strokeWidth="1"
       />
       {/* Level 2 */}
-      <path 
-        d="M 40,55 Q 70,42 105,50 T 150,82 T 120,100 T 65,90 Q 45,75 40,55 Z" 
-        fill="rgba(110, 60, 36, 0.35)" 
-        stroke="rgba(212,157,129,0.3)" 
-        strokeWidth="1" 
+      <path
+        d="M 40,55 Q 70,42 105,50 T 150,82 T 120,100 T 65,90 Q 45,75 40,55 Z"
+        fill="rgba(110, 60, 36, 0.35)"
+        stroke="rgba(212,157,129,0.3)"
+        strokeWidth="1"
       />
       {/* Level 3 */}
-      <path 
-        d="M 60,65 Q 85,55 110,60 T 135,82 T 110,92 T 75,85 Q 65,75 60,65 Z" 
-        fill="rgba(180, 105, 68, 0.45)" 
-        stroke="rgba(212,157,129,0.5)" 
-        strokeWidth="1" 
+      <path
+        d="M 60,65 Q 85,55 110,60 T 135,82 T 110,92 T 75,85 Q 65,75 60,65 Z"
+        fill="rgba(180, 105, 68, 0.45)"
+        stroke="rgba(212,157,129,0.5)"
+        strokeWidth="1"
       />
       {/* Level 4 (Highest/Thickest point) */}
-      <path 
-        d="M 80,72 Q 95,65 110,68 T 120,80 T 110,87 T 88,83 Q 82,78 80,72 Z" 
-        fill="rgba(242, 165, 110, 0.55)" 
-        stroke="rgba(242, 165, 110, 0.8)" 
-        strokeWidth="1.2" 
+      <path
+        d="M 80,72 Q 95,65 110,68 T 120,80 T 110,87 T 88,83 Q 82,78 80,72 Z"
+        fill="rgba(242, 165, 110, 0.55)"
+        stroke="rgba(242, 165, 110, 0.8)"
+        strokeWidth="1.2"
       />
 
       {/* Scale bar (200 nm matching mockup) */}
@@ -1572,10 +1595,10 @@ const AfmChart = ({ isActive }) => (
     <g opacity={isActive ? "0.9" : "0.5"}>
       {/* 10 nm top label */}
       <text x="214" y="20" fill="rgba(255,255,255,0.7)" fontSize="6" fontFamily="Rubik, sans-serif" alignmentBaseline="middle">10 nm</text>
-      
+
       {/* Scale Gradient Bar */}
       <rect x="200" y="25" width="8" height="80" fill="url(#afmScaleGradient)" rx="1" stroke="rgba(255,255,255,0.15)" strokeWidth="0.5" />
-      
+
       {/* -10 nm bottom label */}
       <text x="214" y="110" fill="rgba(255,255,255,0.7)" fontSize="6" fontFamily="Rubik, sans-serif" alignmentBaseline="middle">-10 nm</text>
     </g>
@@ -1600,12 +1623,12 @@ const UvVisChart = ({ isActive }) => (
     <line x1="25" y1="20" x2="25" y2="110" stroke="rgba(255,255,255,0.05)" strokeWidth="1" />
 
     {/* Spectral line */}
-    <path 
-      d="M 25,108 Q 50,108 60,70 Q 70,25 80,48 Q 98,90 120,90 Q 155,90 175,102 T 220,108" 
-      stroke={isActive ? "url(#uvvisGlow)" : "rgba(255,255,255,0.4)"} 
-      strokeWidth="1.5" 
+    <path
+      d="M 25,108 Q 50,108 60,70 Q 70,25 80,48 Q 98,90 120,90 Q 155,90 175,102 T 220,108"
+      stroke={isActive ? "url(#uvvisGlow)" : "rgba(255,255,255,0.4)"}
+      strokeWidth="1.5"
       strokeLinecap="round"
-      strokeLinejoin="round" 
+      strokeLinejoin="round"
     />
 
     {/* Axes Labels */}
@@ -1899,12 +1922,12 @@ const WorkStory = () => {
         <div className={styles.storyGrid}>
           {isMounted && <GapSection scrollRef={scrollRef} />}
 
-          <SectionShell 
-            id="process" 
-            kicker="The Answer" 
+          <SectionShell
+            id="process"
+            kicker="The Answer"
             title={
               <SpotlightTitle words={["Compressible", "Flow", "Exfoliation"]} />
-            } 
+            }
             className={styles.asymProcess}
           >
             <div className={styles.cfeProcessImage} aria-hidden="true" />
@@ -1918,8 +1941,8 @@ const WorkStory = () => {
             <InteractiveProcessMap steps={processSteps} />
           </SectionShell>
 
-          <SectionShell 
-            id="system" 
+          <SectionShell
+            id="system"
             className={`${styles.splitSection} ${styles.asymSystem}`}
           >
             <div className={styles.systemCopy}>
@@ -1953,9 +1976,9 @@ const WorkStory = () => {
           >
             <EvidenceShowcase items={characterization} scrollRef={scrollRef} />
           </SectionShell>
-          <SectionShell 
-            id="modeling" 
-            title={null} 
+          <SectionShell
+            id="modeling"
+            title={null}
             className={styles.asymModeling}
             eager
           >
@@ -1969,12 +1992,12 @@ const WorkStory = () => {
             <ExfoliatedMaterialsShowcase samples={exfoliatedMaterialSamples} />
           </SectionShell>
 
-          <SectionShell 
-            id="industry" 
-            kicker="INDUSTRY" 
+          <SectionShell
+            id="industry"
+            kicker="INDUSTRY"
             title={
               <SpotlightTitle words={["From", "Research", "To", "Value"]} className={styles.splitLineLayout} />
-            } 
+            }
             className={styles.asymIndustry}
           >
             <p className={styles.lead}>
