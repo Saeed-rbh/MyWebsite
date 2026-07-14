@@ -1,0 +1,55 @@
+  return (
+    <div className={styles.materialsShowcase}>
+      <img
+        className={styles.materialsReferenceTexture}
+        src="/rnd-materials/exfoliated-materials-reference.png"
+        alt=""
+        aria-hidden="true"
+        loading="lazy"
+      />
+
+      <div className={styles.materialsLayout}>
+        <div className={styles.materialsStage}>
+          <div className={styles.materialsSampleGrid} aria-label="Exfoliated material sample concentrations">
+            {samples.map((sample, index) => (
+              <article className={styles.materialSample} key={sample.id} style={{ "--sample-delay": `${index * 110}ms` }}>
+                <div className={styles.materialVialFrame}>
+                  <div className={styles.vialOrbit} aria-hidden="true">
+                    <div className={styles.vialOrbitRing} />
+                    <div className={styles.vialOrbitDot} />
+                  </div>
+                  <img className={styles.materialVialReflection} src={sample.image} alt="" aria-hidden="true" loading="lazy" />
+                  <img className={styles.materialVialImage} src={sample.image} alt={sample.alt} loading="lazy" />
+                </div>
+                <div className={styles.materialConcentration}>
+                  <div className={styles.materialSampleName}>
+                    {getMaterialIcon(sample.id)}
+                    {sample.id === "mos2" ? <span>MoS<sub>2</sub></span> : <span>{sample.name}</span>}
+                  </div>
+                  <span>CONCENTRATION</span>
+                  <strong>{sample.concentration}</strong>
+                  <em>g/L</em>
+                  <div className={styles.concentrationIndicator} aria-hidden="true" />
+                </div>
+              </article>
+            ))}
+          </div>
+        </div>
+
+        <aside className={styles.materialsProofPanel} aria-label="Measured and consistent material proof">
+          <div className={styles.materialCheckMark} aria-hidden="true">
+            <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="32" cy="32" r="30" stroke="currentColor" strokeWidth="1" strokeDasharray="3 3" opacity="0.3" />
+              <circle cx="32" cy="32" r="25" stroke="var(--story-accent)" strokeWidth="1.2" opacity="0.75" />
+              <path d="M22 32 L29 39 L43 21" stroke="var(--story-accent)" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
+            </svg>
+          </div>
+          <h3>
+            <span>MEASURED.</span>
+            <strong>CONSISTENT.</strong>
+          </h3>
+          <p className={styles.materialsProofSubhead}>EXFOLIATED MATERIALS.</p>
+        </aside>
+      </div>
+    </div>
+  );

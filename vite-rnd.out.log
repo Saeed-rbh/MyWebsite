@@ -1,0 +1,24 @@
+
+> instagram@0.1.0 dev
+> vite --host 127.0.0.1 --port 5173
+
+
+  [32m[1mVITE[22m v6.0.0[39m  [2mready in [0m[1m279[22m[2m[0m ms[22m
+
+  [32m➜[39m  [1mLocal[22m:   [36mhttp://127.0.0.1:[1m5173[22m/[39m
+[2m7:18:24 PM[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/pages/WorkStory/WorkStory.jsx[22m
+[2m7:29:07 PM[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/pages/WorkStory/WorkStory.jsx[22m
+[2m7:30:27 PM[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/pages/WorkStory/WorkStory.jsx[22m
+[2m7:32:55 PM[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/pages/WorkStory/WorkStory.jsx[22m
+[2m7:45:49 PM[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/pages/WorkStory/WorkStory.jsx[22m
+[2m7:49:14 PM[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/pages/WorkStory/WorkStory.jsx[22m
+[2m7:50:51 PM[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/pages/WorkStory/WorkStory.jsx[22m
+[2m9:22:32 PM[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/pages/WorkStory/WorkStory.jsx[22m
+[2m9:34:07 PM[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/pages/WorkStory/WorkStory.jsx[22m
+[2m9:38:06 PM[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/pages/WorkStory/WorkStory.jsx[22m
+[2m9:41:16 PM[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/pages/WorkStory/WorkStory.jsx[22m
+[2m9:43:35 PM[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/pages/WorkStory/WorkStory.jsx[22m
+[2m9:45:46 PM[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/pages/WorkStory/WorkStory.jsx[22m
+[2m9:49:26 PM[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/pages/WorkStory/WorkStory.jsx[22m
+[2m10:09:04 PM[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/pages/WorkStory/WorkStory.jsx[22m
+[2m10:23:40 PM[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/pages/WorkStory/WorkStory.jsx[22m

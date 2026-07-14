@@ -216,36 +216,29 @@ const valueScholarships = [
 const productQualityMetrics = [
   {
     id: "layers",
-    value: "15-20",
-    label: "Layers",
-    detail: "Few-layer stacks in the useful process window.",
+    value: "15-20 Layers",
+    label: "Layer & Thickness",
+    detail: "An optimal balance of performance and processability.",
   },
   {
     id: "defect",
-    value: "<5%",
+    value: "<5% Defect",
     label: "Defect",
-    detail: "Low damage signal for application-ready flakes.",
-  },
-  {
-    id: "oxidation",
-    value: "<10%",
-    label: "Oxidation",
-    detail: "Dry processing keeps oxygen content low.",
+    detail: "Reliable performance in application-ready flakes.",
   },
   {
     id: "lateral-size",
     value: "400-600 nm",
-    label: "Lateral size",
-    detail: "A measured size range for usable 2D material populations.",
+    label: "Laterial size",
+    detail: "A consistent size range for 2D material usability.",
   },
   {
-    id: "quality",
-    value: "Exfoliated",
-    label: "Materials",
-    detail: "Measured output ready for the next processing step.",
+    id: "oxidation",
+    value: "<10% Oxidation",
+    label: "Chemistry",
+    detail: "Low oxygen content for high performance and stability.",
   },
 ];
-
 
 const exfoliatedMaterialSamples = [
   {
@@ -273,64 +266,127 @@ const exfoliatedMaterialSamples = [
 const ProductMetricIcon = ({ type }) => {
   if (type === "layers") {
     return (
-      <svg viewBox="0 0 96 72" aria-hidden="true">
-        {[0, 1, 2].map((layer) => (
-          <g key={layer} transform={`translate(${layer * 3} ${layer * -8 + 20})`}>
-            <path d="M12 32 48 14l36 18-36 18Z" />
-            <path d="M12 32v8l36 18 36-18v-8" />
-          </g>
-        ))}
+      <svg viewBox="0 0 120 96" aria-hidden="true">
+        <defs>
+          <clipPath id="product-layer-grid">
+            <path d="M16 31 60 10l44 21-44 21Z" />
+          </clipPath>
+        </defs>
+        <path d="M16 49 60 28l44 21-44 21Z" opacity="0.24" />
+        <path d="M16 61 60 40l44 21-44 21Z" opacity="0.16" />
+        <g clipPath="url(#product-layer-grid)">
+          {Array.from({ length: 5 }).map((_, row) => (
+            Array.from({ length: 7 }).map((__, col) => {
+              const x = 17 + col * 14 + (row % 2 ? 7 : 0);
+              const y = 8 + row * 12;
+              return <path key={row + "-" + col} d={"M" + x + " " + y + "l7 4v8l-7 4-7-4v-8Z"} />;
+            })
+          ))}
+        </g>
+        <path d="M16 31 60 10l44 21-44 21Z" className={styles.productIconAlert} />
       </svg>
     );
   }
 
   if (type === "defect") {
     return (
-      <svg viewBox="0 0 96 72" aria-hidden="true">
+      <svg viewBox="0 0 120 96" aria-hidden="true">
         {Array.from({ length: 4 }).map((_, row) => (
           Array.from({ length: 5 }).map((__, col) => {
-            const x = 18 + col * 14 + (row % 2 ? 7 : 0);
-            const y = 14 + row * 11;
-            return <path key={`${row}-${col}`} d={`M${x} ${y}l7 4v8l-7 4-7-4v-8Z`} />;
+            const x = 26 + col * 17 + (row % 2 ? 8.5 : 0);
+            const y = 18 + row * 15;
+            const isDefect = row === 1 && col === 3;
+            return (
+              <path
+                key={row + "-" + col}
+                className={isDefect ? styles.productIconAlert : undefined}
+                d={"M" + x + " " + y + "l8.5 5v10l-8.5 5-8.5-5V" + (y + 5) + "Z"}
+              />
+            );
           })
         ))}
-        <path className={styles.productIconAlert} d="M52 30l10 9M62 30l-10 9" />
-      </svg>
-    );
-  }
-
-  if (type === "oxidation") {
-    return (
-      <svg viewBox="0 0 96 72" aria-hidden="true">
-        <path d="M46 18 66 30v24L46 66 26 54V30Z" />
-        <path d="M46 18v-8M66 30l8-6M66 54l8 6M26 54l-8 6M26 30l-8-6" />
-        <circle cx="46" cy="10" r="4" /><circle cx="78" cy="22" r="4" /><circle cx="78" cy="62" r="4" />
-        <circle cx="14" cy="22" r="4" /><circle cx="14" cy="62" r="4" />
+        <path d="M79 38 91 51M91 38 79 51" className={styles.productIconAlert} />
       </svg>
     );
   }
 
   if (type === "lateral-size") {
     return (
-      <svg viewBox="0 0 96 72" aria-hidden="true">
-        <path d="M14 30c10-14 54-18 68 0 6 8-6 22-34 22S8 39 14 30Z" />
-        <path d="M18 60h60M18 54v12M78 54v12" />
-        <path d="M26 60h44" className={styles.productIconAlert} />
+      <svg viewBox="0 0 120 96" aria-hidden="true">
+        <defs>
+          <clipPath id="product-flake-grid">
+            <path d="M23 24c13-12 51-15 74 2 9 7 3 22-12 29-18 8-47 5-60-4-12-8-13-18-2-27Z" />
+          </clipPath>
+        </defs>
+        <path d="M23 24c13-12 51-15 74 2 9 7 3 22-12 29-18 8-47 5-60-4-12-8-13-18-2-27Z" />
+        <g clipPath="url(#product-flake-grid)" opacity="0.64">
+          {Array.from({ length: 4 }).map((_, row) => (
+            Array.from({ length: 7 }).map((__, col) => {
+              const x = 18 + col * 14 + (row % 2 ? 7 : 0);
+              const y = 10 + row * 12;
+              return <path key={row + "-" + col} d={"M" + x + " " + y + "l7 4v8l-7 4-7-4v-8Z"} />;
+            })
+          ))}
+        </g>
+        <path d="M20 73h80M20 66v14M100 66v14M20 73l8-5M20 73l8 5M100 73l-8-5M100 73l-8 5" className={styles.productIconAlert} />
       </svg>
     );
   }
 
   return (
-    <svg viewBox="0 0 96 72" aria-hidden="true">
-      <path d="M14 58h12V42H14Z" />
-      <path d="M34 58h12V32H34Z" />
-      <path d="M54 58h12V24H54Z" />
-      <path d="M14 30c16 0 28-8 42-22" />
-      <path d="M56 8h16v16" />
+    <svg viewBox="0 0 120 96" aria-hidden="true">
+      <path d="M27 58 40 25l30-8 27 23-8 34-34 8Z" />
+      <path d="m40 25 15 57m15-65 19 57M27 58l70-18M55 82 70 17M27 58l62 16M40 25l57 15" opacity="0.72" />
+      <circle cx="40" cy="25" r="3.4" />
+      <circle cx="70" cy="17" r="3.4" />
+      <circle cx="97" cy="40" r="3.4" />
+      <circle cx="89" cy="74" r="3.4" />
+      <circle cx="55" cy="82" r="3.4" />
+      <circle cx="27" cy="58" r="3.4" />
+      <circle cx="61" cy="49" r="4" className={styles.productIconAlert} />
+      <circle cx="18" cy="29" r="3" />
+      <circle cx="108" cy="63" r="3" />
+      <path d="M18 29 40 25M97 40l11 23" />
+      <text x="8" y="24">O</text>
+      <text x="108" y="59">O</text>
     </svg>
   );
 };
+const ProductMetricBadgeIcon = ({ type }) => {
+  if (type === "layers") {
+    return (
+      <svg viewBox="0 0 32 32" aria-hidden="true">
+        <path d="m7 10 9 5 9-5" />
+        <path d="m7 15 9 5 9-5" />
+        <path d="m7 20 9 5 9-5" />
+      </svg>
+    );
+  }
 
+  if (type === "defect") {
+    return (
+      <svg viewBox="0 0 32 32" aria-hidden="true">
+        <path d="m16 6 8 3v7c0 5-3.2 8-8 10-4.8-2-8-5-8-10V9Z" />
+        <path d="m12 16 3 3 5-6" />
+      </svg>
+    );
+  }
+
+  if (type === "lateral-size") {
+    return (
+      <svg viewBox="0 0 32 32" aria-hidden="true">
+        <path d="M7 20 20 7l5 5-13 13Z" />
+        <path d="m15 12 2 2m1-5 2 2m-8 4 2 2m-5 1 2 2" />
+      </svg>
+    );
+  }
+
+  return (
+    <svg viewBox="0 0 32 32" aria-hidden="true">
+      <text x="16" y="20" textAnchor="middle">O2</text>
+    </svg>
+  );
+};
 const ProductQualityTitle = () => (
   <h2
     className={`${styles.sectionTitleStacked} ${styles.spotlightTitle} ${styles.evidenceProofTitle} ${styles.productQualityTitle}`}
@@ -341,36 +397,97 @@ const ProductQualityTitle = () => (
     {renderFilledTitleWord("Performance", styles.evidenceTitleLight, "product-title-performance")}
   </h2>
 );
+const ProcessQualityTitle = () => (
+  <h2
+    className={`${styles.sectionTitleStacked} ${styles.spotlightTitle} ${styles.evidenceProofTitle} ${styles.processQualityTitle}`}
+    aria-label="Compressible Flow Exfoliation"
+  >
+    {renderFilledTitleWord("Compressible", styles.evidenceTitleLight, "process-title-compressible")}
+    {renderFilledTitleWord("Flow", styles.evidenceTitleLight, "process-title-flow")}
+    {renderFilledTitleWord("Exfoliation", styles.spotlightTitleCopper, "process-title-exfoliation")}
+  </h2>
+);
 
-const ProductRailCard = ({ item, index }) => (
-  <article className={styles.productRailCard} style={{ "--motion-delay": `${index * 86}ms` }}>
+const ProductRailCard = ({ item, index, isRevealed }) => (
+  <article
+    className={styles.productRailCard}
+    data-card-index={index + 1}
+    data-card-type={item.id}
+    data-product-revealed={isRevealed ? "true" : "false"}
+  >
+    <span className={styles.productRailIndex} aria-hidden="true">
+      {String(index + 1).padStart(2, "0")}
+    </span>
     <div className={styles.productRailFigure}>
       <ProductMetricIcon type={item.id} />
     </div>
     <div className={styles.productRailCopy}>
-      <span className={styles.productRailIcon} aria-hidden="true">
-        <ProductMetricIcon type={item.id} />
-      </span>
-      <span className={styles.productRailMeta}>
-        <span className={styles.productRailValue}>{item.value}</span>
-        <span className={styles.productRailLabel}>{item.label}</span>
-      </span>
+      <span className={styles.productRailValue}>{item.value}</span>
+      <span className={styles.productRailLabel}>{item.label}</span>
+      <span className={styles.productRailRule} aria-hidden="true" />
       <span className={styles.productRailDetail}>{item.detail}</span>
     </div>
   </article>
 );
+const ProductQualityShowcase = ({ items, scrollRef }) => {
+  const sceneRef = useRef(null);
+  const [activeProductStep, setActiveProductStep] = useState(0);
+  const { scrollYProgress } = useScroll({
+    container: scrollRef,
+    target: sceneRef,
+    offset: ["start start", "end end"],
+  });
+  const productWordProgress = useSpring(scrollYProgress, {
+    stiffness: 140,
+    damping: 28,
+    mass: 0.8,
+    restDelta: 0.005,
+  });
+  const productWordTop = useTransform(productWordProgress, [0, 1], ["7%", "55%"]);
 
-const ProductQualityShowcase = ({ items }) => {
-  const firstRail = items.slice(0, 3);
-  const secondRail = [items[3], items[4], items[1]].filter(Boolean);
-  const railLoopCount = 6;
-  const firstRailLoop = Array.from({ length: railLoopCount }, () => firstRail).flat();
-  const secondRailLoop = Array.from({ length: railLoopCount }, () => secondRail).flat();
+  useEffect(() => {
+    const root = scrollRef?.current;
+    const scene = sceneRef.current;
+    if (!root || !scene) return undefined;
+
+    let rafId = null;
+    const updateProductStep = () => {
+      rafId = null;
+      const rootRect = root.getBoundingClientRect();
+      const sceneRect = scene.getBoundingClientRect();
+      const travel = Math.max(scene.offsetHeight - root.clientHeight, 1);
+      const progress = Math.max(0, Math.min(1, (rootRect.top - sceneRect.top) / travel));
+      const nextStep = Math.min(items.length - 1, Math.floor(progress * items.length));
+
+      setActiveProductStep((currentStep) => (
+        currentStep === nextStep ? currentStep : nextStep
+      ));
+    };
+    const handleScroll = () => {
+      if (rafId === null) rafId = requestAnimationFrame(updateProductStep);
+    };
+
+    updateProductStep();
+    root.addEventListener('scroll', handleScroll, { passive: true });
+    window.addEventListener('resize', handleScroll, { passive: true });
+
+    return () => {
+      root.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('resize', handleScroll);
+      if (rafId !== null) cancelAnimationFrame(rafId);
+    };
+  }, [scrollRef]);
 
   return (
-    <div className={styles.productScrollScene}>
+    <div
+      ref={sceneRef}
+      className={styles.productScrollScene}
+      data-product-step={activeProductStep + 1}
+    >
+
+
       <div className={styles.productScrollStage}>
-        <span className={styles.productBackgroundWord} aria-hidden="true">PRODUCT</span>
+        <motion.span className={styles.productBackgroundWord} style={{ "--product-word-top": productWordTop }} aria-hidden="true">PRODUCT</motion.span>
         <div className={styles.productStickyCopy}>
           <span className={`${styles.kicker} ${styles.productKickerMotion}`}>PRODUCT</span>
           <div className={styles.productTitleMotion}>
@@ -383,16 +500,14 @@ const ProductQualityShowcase = ({ items }) => {
 
         <div className={styles.productMetricViewport}>
           <div className={styles.productHorizontalRails} aria-label="Material quality and performance metrics">
-            <div className={`${styles.productHorizontalRail} ${styles.productHorizontalRailPrimary}`}>
-              {firstRailLoop.map((item, index) => (
-                <ProductRailCard key={`${item.id}-primary-${index}`} item={item} index={index} />
-              ))}
-            </div>
-            <div className={`${styles.productHorizontalRail} ${styles.productHorizontalRailSecondary}`}>
-              {secondRailLoop.map((item, index) => (
-                <ProductRailCard key={`${item.id}-secondary-${index}`} item={item} index={index + firstRail.length} />
-              ))}
-            </div>
+            {items.map((item, index) => (
+              <ProductRailCard
+                key={item.id}
+                item={item}
+                index={index}
+                isRevealed={index <= activeProductStep}
+              />
+            ))}
           </div>
         </div>
       </div>
@@ -1290,6 +1405,15 @@ const GapSection = ({ scrollRef }) => {
       id="gap"
       data-parallax-section
     >
+      <div className={styles.mobileGapSnapPoints} aria-hidden="true">
+        {Array.from({ length: 6 }, (_, index) => (
+          <span
+            key={index}
+            className={styles.mobileGapSnapPoint}
+            style={{ "--mobile-snap-index": index }}
+          />
+        ))}
+      </div>
       <div
         className={styles.storyPinInner}
         style={{
@@ -1301,7 +1425,6 @@ const GapSection = ({ scrollRef }) => {
         }}
       >
         <div className={styles.gapAmbient} aria-hidden="true" />
-
         <div className={styles.gapSvgContainer}>
           <GapSvg />
         </div>
@@ -1952,7 +2075,7 @@ const WorkStory = () => {
             id="process"
             kicker="The Answer"
             title={
-              <SpotlightTitle words={["Compressible", "Flow", "Exfoliation"]} />
+              <ProcessQualityTitle />
             }
             className={styles.asymProcess}
           >
@@ -2008,7 +2131,7 @@ const WorkStory = () => {
             className={styles.asymModeling}
             eager
           >
-            <ProductQualityShowcase items={productQualityMetrics} />
+            <ProductQualityShowcase items={productQualityMetrics} scrollRef={scrollRef} />
           </SectionShell>
           <SectionShell
             id="materials"
