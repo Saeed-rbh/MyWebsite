@@ -22002,3 +22002,384 @@ blockquote::before {
     -webkit-text-stroke: 0 !important;
   }
 }
+
+/* Narrow-screen layout repairs. Keep the existing chapter art and typography. */
+@media (max-width: 600px) {
+  .page .asymProcess .processQualityTitle > .gapPillarWord,
+  .page .asymProcess .processQualityTitle .gapPillarWordFill,
+  .page .asymProcess .processQualityTitle .gapPillarWordLens {
+    font-size: clamp(1.75rem, 8.5vw, 2.3rem) !important;
+    max-width: 100%;
+  }
+
+  .page .asymProcess .processQualityTitle {
+    margin-top: 14px !important;
+  }
+
+  .page .asymSystem .systemCopy {
+    align-self: start !important;
+  }
+
+  .page .asymSystem .systemLead {
+    margin-bottom: 18px !important;
+  }
+
+  .page .asymSystem .variablePanel {
+    align-self: end !important;
+    margin-top: 20px !important;
+  }
+}
+
+/* The metric timeline uses a two-column card grid at phone widths. */
+@media (max-width: 840px) {
+  .page .section.asymModeling .productScrollStage,
+  .page .asymModeling .productScrollStage {
+    grid-template-columns: minmax(0, 1fr) !important;
+    grid-template-rows: auto minmax(0, 1fr) !important;
+    gap: clamp(12px, 2vh, 20px) !important;
+    padding: max(72px, env(safe-area-inset-top)) clamp(18px, 5vw, 28px) max(24px, env(safe-area-inset-bottom)) !important;
+  }
+
+  .page .asymModeling .productStickyCopy,
+  .page .asymModeling .productMetricViewport {
+    width: 100% !important;
+    min-width: 0 !important;
+    max-width: 100% !important;
+    height: auto !important;
+    min-height: 0 !important;
+    margin: 0 !important;
+    justify-self: stretch !important;
+    align-self: stretch !important;
+  }
+
+  .page .asymModeling .productStickyCopy {
+    padding: 0 !important;
+  }
+
+  .page .asymModeling .productStickyCopy .productQualityTitle {
+    max-width: 100% !important;
+    font-size: clamp(2rem, 9vw, 3rem) !important;
+  }
+
+  .page .section.asymModeling .productHorizontalRails,
+  .page .asymModeling .productScrollStage .productHorizontalRails {
+    width: 100% !important;
+    height: 100% !important;
+    min-height: 0 !important;
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    grid-template-rows: repeat(2, minmax(0, 1fr)) !important;
+    gap: 10px !important;
+    padding: 0 !important;
+  }
+
+  .page .asymModeling .productHorizontalRails::before,
+  .page .asymModeling .productHorizontalRails::after,
+  .page .asymModeling .productRailCard::after {
+    display: none !important;
+  }
+
+  .page .section.asymModeling .productHorizontalRails .productRailCard[data-card-index] {
+    width: 100% !important;
+    height: 100% !important;
+    min-width: 0 !important;
+    min-height: 0 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 4px !important;
+    grid-template-columns: none !important;
+    grid-template-rows: none !important;
+    padding: 12px 8px !important;
+    opacity: 1 !important;
+    filter: none !important;
+    transform: none !important;
+    transition: border-color 300ms ease, box-shadow 300ms ease !important;
+  }
+
+  .page .section.asymModeling .productRailIndex {
+    position: absolute !important;
+    top: 10px !important;
+    left: 12px !important;
+    margin: 0 !important;
+    font-size: 0.75rem !important;
+    transform: none !important;
+  }
+
+  .page .section.asymModeling .productRailFigure {
+    width: 64px !important;
+    height: 64px !important;
+    min-height: 64px !important;
+    margin: 0 auto 4px !important;
+    transform: none !important;
+  }
+
+  .page .section.asymModeling .productRailCopy {
+    width: 100% !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    gap: 4px !important;
+    padding: 0 !important;
+    text-align: center !important;
+    transform: none !important;
+  }
+
+  .page .section.asymModeling .productRailValue,
+  .page .section.asymModeling .productRailLabel {
+    display: block !important;
+    white-space: normal !important;
+    line-height: 1.12 !important;
+  }
+
+  .page .section.asymModeling .productRailValue {
+    font-size: clamp(0.92rem, 3.6vw, 1.18rem) !important;
+  }
+
+  .page .section.asymModeling .productRailLabel {
+    font-size: clamp(0.58rem, 2.4vw, 0.72rem) !important;
+  }
+}
+
+/* Keep the three existing sample vials distinct on touch-sized screens. */
+@media (max-width: 840px) {
+  .page .asymMaterials .materialsLayout {
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    gap: 20px !important;
+    height: 100% !important;
+    padding: 68px 16px 24px !important;
+  }
+
+  .page .asymMaterials .materialsStage {
+    width: 100% !important;
+    height: auto !important;
+    min-height: 0 !important;
+    padding: 0 !important;
+  }
+
+  .page .asymMaterials .materialsStage::before,
+  .page .asymMaterials .materialsStage::after { display: none !important; }
+
+  .page .asymMaterials .materialsSampleGrid {
+    width: 100% !important;
+    height: auto !important;
+    min-height: 0 !important;
+    display: grid !important;
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+    align-items: start !important;
+    gap: 8px !important;
+    padding: 0 !important;
+  }
+
+  .page .asymMaterials .materialsStage .materialSample {
+    width: 100% !important;
+    min-width: 0 !important;
+    height: auto !important;
+    min-height: 0 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    gap: 6px !important;
+    padding: 0 !important;
+  }
+
+  .page .asymMaterials .materialsStage .materialSample::before,
+  .page .asymMaterials .materialsStage .materialSample::after { display: none !important; }
+
+  .page .asymMaterials .materialsStage .materialSampleName {
+    position: relative !important;
+    display: inline-flex !important;
+    font-size: 0.8rem !important;
+    gap: 4px !important;
+  }
+
+  .page .asymMaterials .materialSampleName svg { width: 14px !important; height: 14px !important; }
+
+  .page .asymMaterials .materialsStage .materialVialFrame {
+    position: relative !important;
+    inset: auto !important;
+    width: 100% !important;
+    height: clamp(150px, 26vh, 230px) !important;
+    min-height: 0 !important;
+    display: grid !important;
+    place-items: center !important;
+    margin: 0 !important;
+  }
+
+  .page .asymMaterials .materialsStage .materialVialImage {
+    width: 100% !important;
+    max-width: 110px !important;
+    max-height: 100% !important;
+    object-fit: contain !important;
+  }
+
+  .page .asymMaterials .materialsStage .materialVialReflection { display: none !important; }
+
+  .page .asymMaterials .materialsStage .materialConcentration {
+    position: relative !important;
+    inset: auto !important;
+    width: 100% !important;
+    display: flex !important;
+    flex-wrap: wrap !important;
+    justify-content: center !important;
+    align-items: baseline !important;
+    gap: 2px 4px !important;
+    margin: 0 !important;
+    padding: 8px 0 0 !important;
+    transform: none !important;
+    text-align: center !important;
+  }
+
+  .page .asymMaterials .materialConcentration span {
+    flex: 0 0 100%;
+    font-size: 0.55rem !important;
+    letter-spacing: 0.05em !important;
+  }
+
+  .page .asymMaterials .materialConcentration strong { font-size: 1.5rem !important; }
+  .page .asymMaterials .materialConcentration em { font-size: 0.75rem !important; }
+
+  .page .asymMaterials .materialsProofPanel {
+    width: 100% !important;
+    height: auto !important;
+    min-height: 0 !important;
+    margin: 0 !important;
+    padding: 16px 0 0 !important;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .page .section > *, .page .hero > *, .page .storySlide,
+  .page .productRailCard, .page .materialSample {
+    animation: none !important;
+    transition: none !important;
+    filter: none !important;
+  }
+}
+
+@media (max-width: 840px) {
+  /* The chapter's internal animation remains; outer fades no longer blank the screen between snap points. */
+  .page .storyGrid > .section > * {
+    opacity: 1 !important;
+    filter: none !important;
+    transform: none !important;
+    transition-delay: 0ms !important;
+  }
+
+  .page .section.asymModeling .productMetricViewport {
+    min-height: 0 !important;
+    height: 100% !important;
+  }
+
+  .page .section.asymModeling .productHorizontalRails {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    grid-template-rows: repeat(2, minmax(0, 1fr)) !important;
+  }
+
+  .page .section.asymModeling .productHorizontalRails .productRailCard[data-card-index] {
+    box-sizing: border-box !important;
+    overflow: hidden !important;
+  }
+
+  .page .section.asymModeling .productHorizontalRails .productRailCard .productRailIndex,
+  .page .section.asymModeling .productHorizontalRails .productRailCard .productRailFigure,
+  .page .section.asymModeling .productHorizontalRails .productRailCard .productRailCopy {
+    transform: none !important;
+  }
+
+  .page .section.asymModeling .productHorizontalRails .productRailCard .productRailDetail,
+  .page .section.asymModeling .productHorizontalRails .productRailCard .productRailRule {
+    display: none !important;
+  }
+}
+
+@media (max-width: 840px) {
+  .page .asymMaterials .materialsStage .materialSampleName {
+    box-sizing: border-box !important;
+    width: 100% !important;
+    min-height: 24px !important;
+    height: auto !important;
+    justify-content: center !important;
+    text-align: center !important;
+    white-space: nowrap !important;
+    transform: none !important;
+    inset: auto !important;
+    color: #eddfd4 !important;
+  }
+
+  .page .asymMaterials .materialsStage .materialVialImage {
+    height: clamp(150px, 26vh, 230px) !important;
+    max-height: clamp(150px, 26vh, 230px) !important;
+    object-fit: contain !important;
+  }
+}
+
+@media (min-width: 601px) and (max-width: 840px) {
+  .page .asymMaterials .materialsStage .materialVialFrame {
+    height: clamp(240px, 30vh, 310px) !important;
+  }
+
+  .page .asymMaterials .materialsStage .materialVialImage {
+    max-width: 185px !important;
+    height: clamp(240px, 30vh, 310px) !important;
+    max-height: clamp(240px, 30vh, 310px) !important;
+  }
+
+  .page .asymMaterials .materialsStage .materialSampleName {
+    font-size: 1rem !important;
+  }
+
+  .page .asymMaterials .materialConcentration strong {
+    font-size: 2rem !important;
+  }
+}
+
+@media (max-width: 600px) {
+  .page .storyGrid > .section.asymSystem {
+    box-sizing: border-box;
+    height: auto !important;
+    min-height: var(--story-frame-height) !important;
+    max-height: none !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    gap: 22px !important;
+    overflow: visible !important;
+    padding: max(74px, env(safe-area-inset-top)) clamp(20px, 5vw, 30px) max(34px, env(safe-area-inset-bottom)) !important;
+  }
+
+  .page .asymSystem .systemCopy,
+  .page .asymSystem .variablePanel {
+    position: relative !important;
+    inset: auto !important;
+    width: 100% !important;
+    height: auto !important;
+    transform: none !important;
+    margin: 0 !important;
+  }
+
+  .page .asymSystem .systemLead { margin: 16px 0 0 !important; }
+
+  .page .asymProcess .sectionIntro {
+    left: 50% !important;
+    width: min(310px, calc(100% - 44px)) !important;
+    transform: translateX(-50%) !important;
+  }
+
+  .page .asymProcess .lead {
+    max-width: 30ch !important;
+    margin: 0 !important;
+    transform: none !important;
+  }
+}
+
+@media (max-width: 600px) and (max-height: 700px) {
+  .page .storyGrid > .section.asymProcess {
+    height: 740px !important;
+    min-height: 740px !important;
+    max-height: none !important;
+  }
+}

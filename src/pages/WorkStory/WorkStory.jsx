@@ -677,6 +677,10 @@ const useWorkStoryEffects = (scrollRef) => {
         entry.target.classList.remove(styles.fadeOutUp);
         entry.target.classList.remove(styles.fadeOutDown);
       } else {
+        // Keep chapters readable after they enter the narrow viewport. The
+        // mobile snap transition otherwise fades one chapter out before the
+        // next one has appeared, leaving an empty screen while scrolling.
+        if (isMobileRef.current && entry.target.classList.contains(styles.visible)) return;
         entry.target.classList.remove(styles.visible);
         if (entry.boundingClientRect.top < 0) {
           entry.target.classList.add(styles.fadeOutUp);
@@ -688,7 +692,7 @@ const useWorkStoryEffects = (scrollRef) => {
 
     const revealObserver = new IntersectionObserver(
       (entries) => entries.forEach(applyRevealState),
-      { root, threshold: 0.1, rootMargin: "-5% 0px -5% 0px" }
+      { root, threshold: 0.01, rootMargin: "12% 0px 12% 0px" }
     );
 
     const approachRevealObserver = new IntersectionObserver(
