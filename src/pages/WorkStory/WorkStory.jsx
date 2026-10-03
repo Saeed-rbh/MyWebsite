@@ -1561,12 +1561,54 @@ const GapSection = ({ scrollRef }) => {
   );
 };
 
-const InteractiveProcessMap = ({ steps }) => {
-  const [activeStepId, setActiveStepId] = useState(null);
+const InteractiveProcessMap = ({ steps, scrollRef }) => {
+  const mapRef = useRef(null);
+  const [isFlowRunning, setIsFlowRunning] = useState(false);
+  const [flowStepIndex, setFlowStepIndex] = useState(-1);
+  const [focusedStepId, setFocusedStepId] = useState(null);
+
+  useEffect(() => {
+    const map = mapRef.current;
+    const root = scrollRef.current;
+    if (!map || !root) return undefined;
+
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+    let isVisible = false;
+    const syncFlow = () => setIsFlowRunning(isVisible && !reducedMotion.matches);
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        isVisible = entry.isIntersecting;
+        syncFlow();
+      },
+      { root, threshold: 0.55 }
+    );
+
+    observer.observe(map);
+    reducedMotion.addEventListener?.("change", syncFlow);
+    return () => {
+      observer.disconnect();
+      reducedMotion.removeEventListener?.("change", syncFlow);
+    };
+  }, [scrollRef]);
+
+  useEffect(() => {
+    if (!isFlowRunning) {
+      setFlowStepIndex(-1);
+      return undefined;
+    }
+
+    setFlowStepIndex(0);
+    const timer = window.setInterval(() => {
+      if (!document.hidden) setFlowStepIndex((index) => (index + 1) % steps.length);
+    }, 1200);
+    return () => window.clearInterval(timer);
+  }, [isFlowRunning, steps.length]);
+
+  const activeStepId = focusedStepId ?? steps[flowStepIndex]?.id ?? null;
 
   return (
     <div className={styles.interactiveProcessWrapper}>
-      <div className={styles.processMap}>
+      <div ref={mapRef} className={styles.processMap} data-flow-running={isFlowRunning}>
         {steps.map((step, index) => {
           const isActive = activeStepId === step.id;
           const toneClass = step.tone === "metrology" ? styles.processStepMetrology : "";
@@ -1575,8 +1617,13 @@ const InteractiveProcessMap = ({ steps }) => {
               key={step.id}
               className={`${styles.processStep} ${toneClass} ${isActive ? styles.processStepActive : ''}`}
               style={{ "--delay": `${index * 80}ms` }}
-              onPointerEnter={() => setActiveStepId(step.id)}
-              onPointerLeave={() => setActiveStepId(null)}
+              tabIndex={0}
+              onPointerEnter={(event) => {
+                if (event.pointerType !== "touch") setFocusedStepId(step.id);
+              }}
+              onPointerLeave={() => setFocusedStepId(null)}
+              onFocus={() => setFocusedStepId(step.id)}
+              onBlur={() => setFocusedStepId(null)}
             >
               <span className={styles.processStepNode} />
               <p>{step.title}</p>
@@ -2091,7 +2138,7 @@ const WorkStory = () => {
                 </p>
               </div>
             </div>
-            <InteractiveProcessMap steps={processSteps} />
+            <InteractiveProcessMap steps={processSteps} scrollRef={scrollRef} />
           </SectionShell>
 
           <SectionShell

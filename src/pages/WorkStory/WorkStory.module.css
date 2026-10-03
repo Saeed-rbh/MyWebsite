@@ -22383,3 +22383,83 @@ blockquote::before {
     max-height: none !important;
   }
 }
+
+@media (min-width: 601px) and (max-width: 700px) {
+  .page .asymProcess .sectionIntro {
+    left: 50% !important;
+    width: min(310px, calc(100% - 44px)) !important;
+    transform: translateX(-50%) !important;
+  }
+
+  .page .asymProcess .lead {
+    max-width: 30ch !important;
+    margin: 0 !important;
+    transform: none !important;
+  }
+}
+
+/* A quiet, sequential signal carries the existing process diagram from feedstock to metrology. */
+.page .asymProcess .processMap[data-flow-running="true"]::before {
+  background-image: linear-gradient(90deg, rgba(212, 157, 129, 0.2) 0%, rgba(255, 225, 196, 0.25) 35%, rgba(255, 234, 210, 0.95) 50%, rgba(255, 225, 196, 0.25) 65%, rgba(212, 157, 129, 0.2) 100%);
+  background-size: 220% 100%;
+  animation: processFlowRail 7.2s linear infinite;
+}
+
+.page .asymProcess.visible .processStepActive .processStepNode {
+  animation: processFlowNode 1.2s ease-in-out both !important;
+}
+
+.page .asymProcess.visible .processStepActive p {
+  color: #fff1e5;
+  text-shadow: 0 0 18px rgba(232, 161, 114, 0.42);
+}
+
+.page .asymProcess .processStep:focus-visible {
+  outline: 1px solid rgba(255, 225, 196, 0.9);
+  outline-offset: 6px;
+}
+
+@keyframes processFlowRail {
+  from { background-position: 100% 0; }
+  to { background-position: 0 0; }
+}
+
+@keyframes processFlowTopRail {
+  0% { background-position: 100% 0; }
+  50%, 100% { background-position: 0 0; }
+}
+
+@keyframes processFlowBottomRail {
+  0%, 50% { background-position: 100% 0; }
+  100% { background-position: 0 0; }
+}
+
+@keyframes processFlowNode {
+  0% { box-shadow: 0 0 0 5px rgba(212, 157, 129, 0.05), 0 0 0 rgba(255, 226, 205, 0); }
+  35% { box-shadow: 0 0 0 10px rgba(212, 157, 129, 0.12), 0 0 26px rgba(255, 226, 205, 0.52); }
+  100% { box-shadow: 0 0 0 6px rgba(212, 157, 129, 0.06), 0 0 12px rgba(255, 226, 205, 0.18); }
+}
+
+@media (max-width: 840px) {
+  .page .asymProcess .processMap[data-flow-running="true"]::before,
+  .page .asymProcess .processMap[data-flow-running="true"]::after {
+    background-image: linear-gradient(90deg, rgba(212, 157, 129, 0.18) 0%, rgba(255, 225, 196, 0.2) 35%, rgba(255, 234, 210, 0.95) 50%, rgba(255, 225, 196, 0.2) 65%, rgba(212, 157, 129, 0.18) 100%);
+    background-size: 220% 100%;
+  }
+
+  .page .asymProcess .processMap[data-flow-running="true"]::before {
+    animation: processFlowTopRail 7.2s linear infinite;
+  }
+
+  .page .asymProcess .processMap[data-flow-running="true"]::after {
+    animation: processFlowBottomRail 7.2s linear infinite;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .page .asymProcess .processMap[data-flow-running="true"]::before,
+  .page .asymProcess .processMap[data-flow-running="true"]::after,
+  .page .asymProcess.visible .processStepActive .processStepNode {
+    animation: none !important;
+  }
+}
