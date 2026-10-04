@@ -1,18 +1,29 @@
-import React, { useState, useRef, useEffect } from "react";
-import { useSpring, animated, to } from "@react-spring/web";
+import React, { useEffect, useRef, useState } from "react";
+import { animated, to, useSpring } from "@react-spring/web";
 import { useSelector } from "react-redux";
 import "./Mouse.css";
-import { use } from "react";
 
-const isMobile = () => /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+const CLICKABLE_SELECTOR =
+  'a[href], button, input:not([type="hidden"]), select, textarea, summary, [role="button"], [role="link"], [role="tab"], [role="menuitem"]';
+
+const isClickable = (target) => {
+  if (!(target instanceof Element)) return false;
+
+  const control = target.closest(CLICKABLE_SELECTOR);
+  if (target.closest('[inert], :disabled, [aria-disabled="true"]')) {
+    return false;
+  }
+
+  return Boolean(control) || window.getComputedStyle(target).cursor === "pointer";
+};
 
 const Mouse = () => {
   const [mouseClicked, setMouseClicked] = useState(false);
-  const [hoveringClickableElement, setHoveringClickableElement] =
-    useState(false);
-  const [hoveringTitle, setHoveringTitle] = useState(false);
-  const domTarget = useRef(null);
-
+  const [hoveringClickableElement, setHoveringClickableElement] = useState(false);
+  const frame = useRef(null);
+  const lastPointer = useRef({ x: 0, y: 0 });
+  const lastTarget = useRef(null);
+  const isHoveringClickable = useRef(false);
   const { stages } = useSelector((state) => state.data);
 
   const [{ ringX, ringY }, ringApi] = useSpring(() => ({
@@ -28,161 +39,113 @@ const Mouse = () => {
   }));
 
   useEffect(() => {
-    if (!isMobile()) {
-      const handleMouseMove = (event) => {
-        const px = event.clientX;
-        const py = event.clientY;
-        const target = event.target;
+    const updateHover = (target) => {
+      const clickable = isClickable(target);
+      if (clickable !== isHoveringClickable.current) {
+        isHoveringClickable.current = clickable;
+        setHoveringClickableElement(clickable);
+      }
+    };
 
-        if (target) {
-          // Detect if hovering over a title
-          const isTitle = target.closest("h1, h2, h3, [class*='Title'], [class*='title']");
-          setHoveringTitle(!!isTitle);
+    const handlePointerMove = (event) => {
+      if (event.pointerType !== "mouse") return;
+      lastPointer.current = { x: event.clientX, y: event.clientY };
+      lastTarget.current = event.target;
 
-          // Detect if hovering over a clickable element
-          if (window.getComputedStyle(target).cursor === "pointer") {
-            setHoveringClickableElement(true);
-          } else {
-            setHoveringClickableElement(false);
-          }
-        }
-
-        ringApi.start({
-          ringX: px,
-          ringY: py,
+      if (frame.current === null) {
+        frame.current = requestAnimationFrame(() => {
+          frame.current = null;
+          const { x, y } = lastPointer.current;
+          updateHover(lastTarget.current);
+          ringApi.start({ ringX: x, ringY: y });
+          dotApi.start({ dotX: x, dotY: y });
         });
+      }
+    };
 
-        dotApi.start({
-          dotX: px,
-          dotY: py,
-        });
-      };
+    const handleScroll = () => {
+      const { x, y } = lastPointer.current;
+      lastTarget.current = document.elementFromPoint(x, y);
+      updateHover(lastTarget.current);
+    };
 
-      window.addEventListener("mousemove", handleMouseMove);
+    const handlePointerDown = (event) => {
+      if (event.pointerType === "mouse" && event.button === 0) {
+        setMouseClicked(true);
+      }
+    };
+    const handlePointerUp = () => setMouseClicked(false);
+    const handlePointerLeave = () => {
+      if (frame.current !== null) {
+        cancelAnimationFrame(frame.current);
+        frame.current = null;
+      }
+      lastTarget.current = null;
+      updateHover(null);
+      setMouseClicked(false);
+    };
 
-      return () => {
-        window.removeEventListener("mousemove", handleMouseMove);
-      };
-    }
-  }, [ringApi, dotApi, hoveringClickableElement, hoveringTitle, mouseClicked]);
-
-  const handleMouseDown = (event) => {
-    if (event.button === 0) {
-      setMouseClicked(true);
-    }
-  };
-
-  const handleMouseUp = () => {
-    setMouseClicked(false);
-  };
-
-  useEffect(() => {
-    document.addEventListener("mousedown", handleMouseDown);
-    document.addEventListener("mouseup", handleMouseUp);
+    window.addEventListener("pointermove", handlePointerMove, { passive: true });
+    window.addEventListener("scroll", handleScroll, { passive: true, capture: true });
+    window.addEventListener("pointerdown", handlePointerDown);
+    window.addEventListener("pointerup", handlePointerUp);
+    window.addEventListener("pointercancel", handlePointerUp);
+    document.addEventListener("pointerleave", handlePointerLeave);
 
     return () => {
-      document.removeEventListener("mousedown", handleMouseDown);
-      document.removeEventListener("mouseup", handleMouseUp);
+      window.removeEventListener("pointermove", handlePointerMove);
+      window.removeEventListener("scroll", handleScroll, true);
+      window.removeEventListener("pointerdown", handlePointerDown);
+      window.removeEventListener("pointerup", handlePointerUp);
+      window.removeEventListener("pointercancel", handlePointerUp);
+      document.removeEventListener("pointerleave", handlePointerLeave);
+      if (frame.current !== null) cancelAnimationFrame(frame.current);
     };
-  }, []);
+  }, [ringApi, dotApi]);
 
+  const ringSize = hoveringClickableElement ? 50 : mouseClicked ? 6 : 30;
+  const dotSize = hoveringClickableElement ? 50 : 10;
   const ringStyle = useSpring({
-    opacity: hoveringTitle ? 1 : hoveringClickableElement ? 0.5 : 1,
-    width: hoveringTitle
-      ? "60px"
-      : hoveringClickableElement
-      ? "50px"
-      : !mouseClicked
-      ? "30px"
-      : "6px",
-    height: hoveringTitle
-      ? "60px"
-      : hoveringClickableElement
-      ? "50px"
-      : !mouseClicked
-      ? "30px"
-      : "6px",
-    top: hoveringTitle
-      ? "-32px"
-      : hoveringClickableElement
-      ? "-27px"
-      : !mouseClicked
-      ? "-17px"
-      : "-5px",
-    left: hoveringTitle
-      ? "-32px"
-      : hoveringClickableElement
-      ? "-27px"
-      : !mouseClicked
-      ? "-17px"
-      : "-5px",
-    backgroundColor: hoveringTitle
-      ? "rgba(212, 157, 129, 0)"
-      : hoveringClickableElement
+    width: ringSize,
+    height: ringSize,
+    opacity: hoveringClickableElement ? 0.5 : 1,
+    backgroundColor: hoveringClickableElement
       ? "rgba(212, 157, 129, 0.1)"
       : "rgba(212, 157, 129, 0)",
   });
-
   const dotStyle = useSpring({
-    opacity: hoveringTitle ? 0 : 1,
-    width: hoveringTitle
-      ? "0px"
-      : hoveringClickableElement
-      ? "50px"
-      : !mouseClicked
-      ? "10px"
-      : "12px",
-    height: hoveringTitle
-      ? "0px"
-      : hoveringClickableElement
-      ? "50px"
-      : !mouseClicked
-      ? "10px"
-      : "12px",
-    top: hoveringTitle
-      ? "0px"
-      : hoveringClickableElement
-      ? "-25px"
-      : !mouseClicked
-      ? "-5px"
-      : "-6px",
-    left: hoveringTitle
-      ? "0px"
-      : hoveringClickableElement
-      ? "-25px"
-      : !mouseClicked
-      ? "-5px"
-      : "-6px",
+    width: dotSize,
+    height: dotSize,
+    opacity: hoveringClickableElement ? 0.05 : 1,
   });
 
   return (
     <div
-      className="container"
-      style={{ display: !stages[1] ? "flex" : "none" }}
+      className="mouse-tracker"
+      style={{ display: !stages[1] ? "block" : "none" }}
+      aria-hidden="true"
     >
       <animated.div
-        ref={domTarget}
         className="ring"
         style={{
           ...ringStyle,
           transform: to(
             [ringX, ringY],
-            (rx, ry) => `translate(${rx}px, ${ry}px)`
+            (x, y) => `translate3d(${x}px, ${y}px, 0) translate(-50%, -50%)`
           ),
         }}
-      ></animated.div>
-
+      />
       <animated.div
         className="dot"
         style={{
           ...dotStyle,
           transform: to(
             [dotX, dotY],
-            (dx, dy) => `translate(${dx}px, ${dy}px)`
+            (x, y) => `translate3d(${x}px, ${y}px, 0) translate(-50%, -50%)`
           ),
           mixBlendMode: hoveringClickableElement ? "darken" : "normal",
         }}
-      ></animated.div>
+      />
     </div>
   );
 };

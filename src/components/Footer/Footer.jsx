@@ -1,14 +1,16 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useSpring, animated } from "react-spring";
 
 import { useSelector } from "react-redux";
 import "../../pages/Home/Home.css";
+import "./Footer.css";
 import ContactInfo from "./ContactInfo";
 import ResumeInfo from "./ResumeInfo";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { updateMenu, updateCurrentPage } from "../../actions/Actions";
 import FooterLattice from "./FooterLattice";
+import { PopupModal } from "react-calendly";
 
 const Footer = () => {
   const location = useLocation();
@@ -19,165 +21,139 @@ const Footer = () => {
   const { visibility } = useSelector((state) => state.ui);
 
   const [screenWidth, setScreenWidth] = useState(window.innerWidth);
-  const [resumeClicked, setResumeClicked] = useState(
-    window.location.pathname.toLowerCase() === "/academiccv"
+  const [isCalendlyOpen, setIsCalendlyOpen] = useState(false);
+  const [reducedMotion, setReducedMotion] = useState(
+    () => window.matchMedia("(prefers-reduced-motion: reduce)").matches
   );
-  const [researchClicked, setResearchClicked] = useState(
-    window.location.pathname.toLowerCase() === "/r&d-portfolio"
-  );
+  useEffect(() => {
+    const preference = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const updateMotion = () => setReducedMotion(preference.matches);
+    preference.addEventListener("change", updateMotion);
+    return () => preference.removeEventListener("change", updateMotion);
+  }, []);
+  const mobileFooter = screenWidth <= 640;
+  const separateContactPill = screenWidth >= 940;
+  const footerWidth = mobileFooter
+    ? Math.min(520, screenWidth - 36)
+    : separateContactPill ? 490 : Math.min(820, screenWidth - 48);
+  const footerHeight = mobileFooter ? 56 : 60;
+  const isHomePage = location.pathname === "/";
+  const introComplete = useRef(false);
   const [isMouseHover, setMouseHover] = useState([false, null, null]);
-  const [disapear, setDisapear] = useState(resumeClicked ? false : true);
 
-  useEffect(() => {
-    if (location.pathname === "/") {
-      setResumeClicked(false);
-    } else {
-      setResumeClicked(true);
-      setResearchClicked(true);
-    }
-  }, [location.pathname]);
-
-  // useEffect(() => {
-  //   const handleResize = () => setScreenWidth(window.innerWidth);
-  //   const handleUrlChange = () =>
-  //     setResumeClicked(window.location.pathname === "/AcademicCV");
-
-  //   window.addEventListener("resize", handleResize);
-  //   window.addEventListener("click", handleUrlChange);
-
-  //   return () => {
-  //     window.removeEventListener("resize", handleResize);
-  //     window.removeEventListener("click", handleUrlChange);
-  //   };
-  // }, []);
-  const handleButtonClick = (value) => updateMenu(value);
-  const handleClickCV = () => {
-    dispatch(updateCurrentPage("/AcademicCV"));
-
-    handleButtonClick(false);
-
-    setTimeout(() => {
-      navigate("/AcademicCV");
-    }, 1000);
-    setResumeClicked(true);
+  const navigateTo = (path) => {
+    dispatch(updateCurrentPage(path));
+    dispatch(updateMenu(false));
+    navigate(path);
   };
-  const handleClickResearch = () => {
-    dispatch(updateCurrentPage("/R&D-Portfolio"));
+  const handleClickCV = () => navigateTo("/AcademicCV");
+  const handleClickResearch = () => navigateTo("/R&D-Portfolio");
 
-    handleButtonClick(false);
-
-    setTimeout(() => {
-      navigate("/R&D-Portfolio");
-    }, 1000);
-    setResearchClicked(true);
-  };
-
-  useEffect(() => {
-    if (!disapear && !resumeClicked) {
-      setDisapear(true);
-    } else if (resumeClicked && disapear) {
-      setTimeout(() => {
-        setDisapear(false);
-      }, 1000);
-    }
-  }, [resumeClicked, disapear]);
-
-  const [width, setWidth] = useState(window.innerWidth < 1120 ? window.innerWidth * 0.9 : 760);
   useEffect(() => {
     const updateWidth = () => {
-      const calculatedWidth = window.innerWidth < 1120 ? window.innerWidth * 0.9 : 760;
-      setWidth(calculatedWidth);
       setScreenWidth(window.innerWidth);
     };
     updateWidth();
     window.addEventListener("resize", updateWidth);
     return () => window.removeEventListener("resize", updateWidth);
   }, []);
-  const [isDone, setIsDone] = useState(false);
-  const [step, setStep] = useState(0);
+  useEffect(() => {
+    document.body.classList.toggle("calendly-open-bg", isCalendlyOpen);
+    return () => document.body.classList.remove("calendly-open-bg");
+  }, [isCalendlyOpen]);
   const contactInfoOpenSpring = useSpring({
-    from: { opacity: 0, width: "5px", height: "5px", y: 100 },
-    to:
-      step === 0
-        ? { y: 0, opacity: 1 }
-        : step === 1
-          ? { width: "70px", height: screenWidth < 640 ? "60px" : "80px" }
-          : step === 2
-            ? { width: screenWidth < 640 ? "48px" : "60px", height: screenWidth < 640 ? "48px" : "60px" }
-            : step === 3
-              ? {
-                opacity: resumeClicked ? 0 : 1,
-                width: `${width}px`,
-                height: screenWidth < 640 ? "48px" : "60px",
-                y: isMenuOpen ? -10 : resumeClicked ? 10 : 0,
-              }
-              : {},
-    config:
-      step === 0
-        ? { tension: 280, friction: 120, duration: 300 }
-        : step === 1
-          ? { tension: 280, friction: 120, duration: 500 }
-          : step === 2
-            ? { tension: 280, friction: 120, duration: 500 }
-            : step === 3
-              ? { tension: 280, friction: 120, duration: isDone ? 300 : 600 }
-              : {},
-    onRest: () => {
-      if (step < 3) {
-        setStep(step + 1);
-      } else {
-        if (!isDone) {
-          setIsDone(true);
-        }
-      }
-    },
+    from: { opacity: 0, y: 18, width: 72, height: 38 },
+    opacity: 1,
+    y: 0,
+    width: footerWidth,
+    height: footerHeight,
+    config: { mass: .85, tension: 240, friction: 28 },
+    delay: introComplete.current || reducedMotion ? 0 : 950,
+    onRest: () => { introComplete.current = true; },
+    immediate: reducedMotion,
   });
 
-  useEffect(() => {
-    if (step === 0) {
-      setStep(1);
-    }
-  }, [step]);
-
   const TextOpenSpring = useSpring({
-    from: { opacity: !isDone ? 0 : 1, y: !isDone ? 0 : 5 },
-    to: {
-      opacity: isDone ? 1 : 0,
-      y: isDone ? 0 : 5,
-      width: width,
-      display: "flex",
-      height: "100%",
-      alignItems: "center",
-      justifyContent: "center",
-    },
-    config: { tension: 280, friction: 120, duration: 300, delay: 100 },
+    from: { opacity: 0, y: 7 },
+    opacity: 1,
+    y: 0,
+    config: { mass: .8, tension: 180, friction: 25 },
+    delay: introComplete.current || reducedMotion ? 0 : 1320,
+    immediate: reducedMotion,
+  });
+
+  const actionPillSpring = useSpring({
+    from: { separation: 0 },
+    separation: separateContactPill ? 1 : 0,
+    config: { mass: 1, tension: 220, friction: 20 },
+    delay: introComplete.current || reducedMotion ? 0 : 1500,
+    immediate: reducedMotion,
   });
 
   return (
     visibility &&
-    disapear && (
-      <div className="HomePage-M-T-F">
-        <animated.div style={contactInfoOpenSpring} className="HomeConsole">
+    isHomePage && (
+      <div className="HomePage-M-T-F HomeLandingFooter" inert={isMenuOpen ? true : undefined}>
+        <PopupModal
+          url="https://calendly.com/arabha-yorku/30min"
+          onModalClose={() => setIsCalendlyOpen(false)}
+          open={isCalendlyOpen}
+          rootElement={document.getElementById("root")}
+          pageSettings={{
+            backgroundColor: "020201",
+            textColor: "faf9f1",
+            primaryColor: "d49d81",
+          }}
+        />
+        <animated.div
+          style={{
+            ...contactInfoOpenSpring,
+            "--footer-pill-width": contactInfoOpenSpring.width.to(value => `${value}px`),
+            "--footer-pill-height": contactInfoOpenSpring.height.to(value => `${value}px`),
+          }}
+          className="HomeConsole"
+        >
           <FooterLattice />
-          <animated.div style={TextOpenSpring}>
+          <animated.div style={{ ...TextOpenSpring, "--footer-content-width": `${footerWidth - (mobileFooter ? 6 : 48)}px` }} className="home-footer-content">
             <ResumeInfo
               handleClickCV={handleClickCV}
               handleClickResearch={handleClickResearch}
-              resumeClicked={resumeClicked}
+              resumeClicked={false}
               MenuHide={visibility}
               screenWidth={screenWidth}
             />
-            <div
-              className="b-hr-2"
-              style={{ display: screenWidth < 1120 ? "none" : "flex" }}
-            ></div>
             <ContactInfo
               isMouseHover={isMouseHover}
               setMouseHover={setMouseHover}
+              onBookCall={() => setIsCalendlyOpen(true)}
             />
 
           </animated.div>
         </animated.div>
+        {separateContactPill && (
+          <>
+            <animated.span
+              className="footer-liquid-bridge"
+              aria-hidden="true"
+              style={{
+                left: contactInfoOpenSpring.width.to(width => `calc(50% + ${(width - 250) / 2}px)`),
+                opacity: actionPillSpring.separation.to(value => Math.max(0, Math.sin(Math.PI * Math.min(1, value))) * .42),
+                transform: actionPillSpring.separation.to(value => `translateY(-50%) scaleX(${Math.max(0, 1 - value) * 1.2})`),
+              }}
+            />
+            <animated.div
+              className="HomeConsole footer-action-pill"
+              style={{
+                opacity: actionPillSpring.separation.to(value => Math.min(1, value * 1.7)),
+                transform: actionPillSpring.separation.to(value => `translate3d(${-46 * (1 - value)}px, 0, 0) scale(${.82 + .18 * value}, ${.78 + .22 * value})`),
+              }}
+            >
+              <button type="button" onClick={() => setIsCalendlyOpen(true)}>BOOK A CALL</button>
+              <span className="footer-action-divider" aria-hidden="true" />
+              <a href="mailto:saeedarabha@outlook.com">EMAIL ME</a>
+            </animated.div>
+          </>
+        )}
       </div>
     )
   );

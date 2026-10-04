@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import GrapheneCell from "./GrapheneCell";
 import "./Loader.css";
 
@@ -26,11 +26,10 @@ const FallbackLoader = () => {
     }, []);
 
     return (
-        <div className="Intro" id="IntroFallback">
+        <div className="Intro Intro--entered" id="IntroFallback" role="status" aria-label="Loading Saeed Arabha's portfolio">
             <GrapheneCell
-                fade={false}
-                text="Welcome To My Personal Website"
-                subtext="LOADING"
+                text="Saeed Arabha"
+                subtext="MATERIALS · RESEARCH · ENGINEERING"
             />
         </div>
     );

@@ -1,0 +1,162 @@
+.HomeLandingFooter.HomePage-M-T-F .HomeConsole {
+  margin: 0;
+  background:
+    linear-gradient(165deg, rgba(255, 245, 239, .075), rgba(212, 157, 129, .025) 32%, rgba(17, 15, 14, .34)),
+    rgba(25, 22, 20, .28);
+  border: 1px solid rgba(212, 157, 129, .3);
+  -webkit-backdrop-filter: blur(28px) saturate(125%);
+  backdrop-filter: blur(28px) saturate(125%);
+  box-shadow:
+    0 14px 34px rgba(0, 0, 0, .26),
+    0 2px 8px rgba(0, 0, 0, .12),
+    inset 0 1px 0 rgba(255, 246, 236, .18),
+    inset 0 -1px 0 rgba(212, 157, 129, .04);
+  transition: none;
+}
+
+.HomeLandingFooter.HomePage-M-T-F .HomeConsole::before {
+  background:
+    radial-gradient(ellipse 55% 95% at 18% -30%, rgba(255, 238, 225, .1), transparent 78%),
+    linear-gradient(180deg, rgba(255, 248, 241, .035), transparent 42%);
+}
+
+.HomeLandingFooter.HomePage-M-T-F .HomeConsole:hover {
+  border: 1px solid rgba(212, 157, 129, .3);
+  box-shadow:
+    0 14px 34px rgba(0, 0, 0, .26),
+    0 2px 8px rgba(0, 0, 0, .12),
+    inset 0 1px 0 rgba(255, 246, 236, .18),
+    inset 0 -1px 0 rgba(212, 157, 129, .04);
+}
+
+.HomeLandingFooter .bookCallBtn {
+  background: rgba(212, 157, 129, .035) !important;
+  border: 1px solid rgba(212, 157, 129, .14) !important;
+  box-shadow: none !important;
+  color: #bd9d8b !important;
+}
+
+.HomeLandingFooter .bookCallBtn:hover {
+  background: rgba(212, 157, 129, .035) !important;
+  border: 1px solid rgba(212, 157, 129, .14) !important;
+  box-shadow: none !important;
+  transform: none !important;
+  color: #e4c7b6 !important;
+  text-shadow: none !important;
+}
+
+@media (min-width: 940px) {
+  .HomeLandingFooter.HomePage-M-T-F { gap: 8px; }
+
+  .HomeLandingFooter.HomePage-M-T-F .home-footer-content {
+    display: grid;
+    grid-template-columns: repeat(3, max-content);
+    column-gap: 20px;
+    align-items: center;
+    justify-items: center;
+    justify-content: center;
+    padding-left: 20px;
+  }
+
+  .HomeLandingFooter .home-footer-content .social button,
+  .HomeLandingFooter .home-footer-content .social a { justify-content: center; }
+
+  .HomeLandingFooter .contact-1 .bookCallBtn { display: none !important; }
+
+  .HomeLandingFooter .footer-liquid-bridge {
+    position: absolute;
+    z-index: 0;
+    top: 50%;
+    left: calc(50% + 120px);
+    width: 40px;
+    height: 26px;
+    border-radius: 50%;
+    transform-origin: center;
+    pointer-events: none;
+    background: radial-gradient(ellipse, rgba(211, 183, 165, .26), rgba(57, 46, 40, .22) 65%, transparent);
+    filter: blur(6px);
+  }
+
+  .HomeLandingFooter.HomePage-M-T-F .footer-action-pill {
+    width: 230px !important;
+    flex: 0 0 230px;
+    padding: 0 8px;
+    gap: 0;
+    background:
+      linear-gradient(165deg, rgba(255, 255, 255, .09), rgba(255, 255, 255, .025) 38%, rgba(14, 14, 14, .24)),
+      rgba(20, 19, 18, .18);
+    border-color: rgba(212, 157, 129, .2);
+    -webkit-backdrop-filter: blur(32px) saturate(130%);
+    backdrop-filter: blur(32px) saturate(130%);
+    box-shadow:
+      0 14px 32px rgba(0, 0, 0, .24),
+      inset 0 1px 0 rgba(255, 255, 255, .22),
+      inset 0 0 14px rgba(255, 255, 255, .035);
+  }
+
+  .HomeLandingFooter.HomePage-M-T-F .footer-action-pill::before {
+    background:
+      radial-gradient(ellipse 70% 85% at 28% -20%, rgba(255, 255, 255, .14), transparent 78%),
+      linear-gradient(180deg, rgba(255, 255, 255, .055), transparent 45%);
+  }
+
+  .HomeLandingFooter.HomePage-M-T-F .footer-action-pill:hover {
+    border-color: rgba(212, 157, 129, .2);
+    box-shadow:
+      0 14px 32px rgba(0, 0, 0, .24),
+      inset 0 1px 0 rgba(255, 255, 255, .22),
+      inset 0 0 14px rgba(255, 255, 255, .035);
+  }
+
+  .HomeLandingFooter .footer-action-pill button,
+  .HomeLandingFooter .footer-action-pill a {
+    flex: 1 1 0;
+    height: 44px;
+    min-width: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 8px;
+    border-radius: 100px;
+    color: rgba(235, 218, 206, .78);
+    font: 600 9px/1.2 Poppins, sans-serif;
+    letter-spacing: .1em;
+    white-space: nowrap;
+    text-decoration: none;
+    transition: color 250ms ease;
+  }
+
+  .HomeLandingFooter .footer-action-pill button { color: rgba(235, 218, 206, .62); }
+  .HomeLandingFooter .footer-action-pill button:hover,
+  .HomeLandingFooter .footer-action-pill a:hover { color: #f0e5dd; }
+
+  .HomeLandingFooter .footer-action-pill button:focus-visible,
+  .HomeLandingFooter .footer-action-pill a:focus-visible {
+    outline: 1px solid rgba(240, 229, 221, .55);
+    outline-offset: -3px;
+  }
+
+  .HomeLandingFooter .footer-action-divider {
+    flex: 0 0 1px;
+    height: 22px;
+    background: rgba(235, 220, 209, .16);
+  }
+}
+
+@media (min-width: 641px) and (max-width: 1120px) {
+  .HomeLandingFooter .social a svg { display: none; }
+}
+
+@media (max-width: 640px) {
+  .HomeLandingFooter .social a svg { display: none; }
+  .HomeLandingFooter .social { background: rgba(255, 255, 255, .035); }
+  .HomeLandingFooter .HomeConsole > canvas { display: none; }
+  .HomeLandingFooter .resumee { width: 66% !important; flex: 2 1 0; }
+  .HomeLandingFooter .contact-1 { width: 33% !important; flex: 1 1 0; }
+  .HomeLandingFooter .resumee .social button { width: 50% !important; flex: 1 1 50%; }
+  .HomeLandingFooter .resumee .social button:first-child { display: flex !important; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .HomeLandingFooter .footer-liquid-bridge { display: none; }
+}

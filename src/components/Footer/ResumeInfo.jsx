@@ -1,9 +1,8 @@
 import React, { useState, useRef } from "react";
-import { Link } from "react-router-dom";
 import { useSpring, animated, easings } from "react-spring";
-import useDelayedClickEffect from "./useDelayedClickEffect";
 import useHoverMoveEffect from "../../Helper/useHoverMoveEffect";
 import ResearchStoryIcon from "./ResearchStoryIcon";
+import FooterHoverIcon from "./FooterHoverIcon";
 
 const ResumeInfo = ({
   handleClickCV,
@@ -18,10 +17,8 @@ const ResumeInfo = ({
   const Ref_2 = useRef(null);
   const Style_2 = useHoverMoveEffect(Ref_2, 50, 0.2);
 
-  const [delayedResumeClicked, setDelayedResumeClicked] = useState(true);
   const [isHoveredResearch, setIsHoveredResearch] = useState(false);
   const [isHoveredResume, setIsHoveredResume] = useState(false);
-  useDelayedClickEffect(setDelayedResumeClicked, resumeClicked, 2000);
   const resumeInfoOpenSpring = useSpring({
     opacity: resumeClicked && MenuHide ? "0" : "1",
     transform: !resumeClicked
@@ -38,9 +35,8 @@ const ResumeInfo = ({
   });
   return (
     <animated.div className="resumee" style={resumeInfoOpenSpring}>
-      <animated.p className="Social-Media">PORTFOLIO</animated.p>
       <div className="social">
-        {!delayedResumeClicked && (
+        {!resumeClicked && (
           <>
             <animated.button
               onClick={handleClickCV}
@@ -48,8 +44,11 @@ const ResumeInfo = ({
               ref={Ref_1}
               onMouseEnter={() => setIsHoveredResume(true)}
               onMouseLeave={() => setIsHoveredResume(false)}
+              onFocus={() => setIsHoveredResume(true)}
+              onBlur={() => setIsHoveredResume(false)}
             >
-              <span>RESUME</span>
+              <FooterHoverIcon kind="cv" isHovered={isHoveredResume} />
+              <span>ACADEMIC CV</span>
             </animated.button>
             <animated.button
               onClick={handleClickResearch}
@@ -57,9 +56,11 @@ const ResumeInfo = ({
               ref={Ref_2}
               onMouseEnter={() => setIsHoveredResearch(true)}
               onMouseLeave={() => setIsHoveredResearch(false)}
+              onFocus={() => setIsHoveredResearch(true)}
+              onBlur={() => setIsHoveredResearch(false)}
             >
               <ResearchStoryIcon isHovered={isHoveredResearch} />
-              <span>R&D PORTFOLIO</span>
+              <span>R&amp;D WORK</span>
             </animated.button>
           </>
         )}

@@ -29,7 +29,7 @@ const FooterLattice = () => {
 
     let animId;
 
-    const W = 110;
+    const W = isMobile ? 110 : 72;
     const H = isMobile ? 56 : 60;
     const dpr = window.devicePixelRatio || 1;
     canvas.width = W * dpr;
@@ -96,7 +96,7 @@ const FooterLattice = () => {
         position: "absolute",
         left: 0,
         top: 0,
-        width: "110px",
+        width: isMobile ? "110px" : "72px",
         height: isMobile ? "56px" : "60px",
         pointerEvents: "none",
         borderRadius: "100px 0 0 100px",

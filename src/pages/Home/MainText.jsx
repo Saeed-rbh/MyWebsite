@@ -1,20 +1,12 @@
-import React, { useEffect, useState } from "react";
+import React, { useMemo } from "react";
 import { useSelector } from "react-redux";
-import { useSpring, animated } from "react-spring";
-import AnimationConstants from "./AnimationConstants";
-import SvgComponent from "./SvgComponent";
 import AnimatedWord from "./AnimatedWord";
 import styles from "./MainText.module.css";
 
-const MainText = ({ MenuHide, delay, onWordClick }) => {
-  const [words, setWords] = useState([]);
-  const springProps = useSpring(AnimationConstants(MenuHide, delay));
+const MainText = ({ onWordClick }) => {
   const { homeData } = useSelector((state) => state.data);
 
-  useEffect(() => {
-    const rawText = homeData?.list?.[0]?.text ||
-      "Situated at the <PICSSL-Lab> at <York-University>, I apply my <mechanical-engineering> prowess to delve into the complexities of nanomaterials and molecular phenomena. My professional focus lies in <2D-Nanomaterials>, <Molecular-Dynamics>, and <Heat-Transfer>. The success of my research approach significantly stems from interdisciplinary <collaborations> that amplify the potential of my innovative explorations.";
-
+  const tokenize = (rawText) => {
     // Parse logic:
     // Split the text alternating between special tags and standard text segments
     const parts = rawText.split(/(\$\([^)]+\)|<[^>]+>)/g);
@@ -61,27 +53,30 @@ const MainText = ({ MenuHide, delay, onWordClick }) => {
       return token;
     });
 
-    setWords(processedWords);
-  }, [homeData]);
+    return processedWords;
+  };
+
+  const words = useMemo(() => tokenize(homeData?.list?.[0]?.text ||
+    "I connect process decisions with material quality in my R&D work. In my $(graphene and 2D materials) research, I combine $(process development), $(metrology), $(characterization), and $(computational modeling) to understand how processing shapes structure and quality. My work on $(Compressible Flow Exfoliation) explores scalable production, while $(commercialization) connects the research with industry needs."), [homeData]);
+  const mobileWords = tokenize("I develop $(graphene) processes, then use $(metrology), $(characterization), and $(modeling) to assess material quality.");
 
   return (
-    <animated.div style={springProps} className={styles.container}>
-      <SvgComponent />
-      <p className={styles.paragraph}>
+    <div className={styles.container}>
+      <p className={`${styles.paragraph} ${styles.desktopParagraph}`}>
         {words.map((word, index) => (
           <AnimatedWord
             key={index}
             word={word}
-            index={index}
-            MenuHide={MenuHide}
-            length={words.length}
-            animateFrom={MenuHide === 1 ? "#d49d81" : "white"}
-            animateTo={MenuHide === 1 ? "white" : "#d49d81"}
             onClick={onWordClick}
           />
         ))}
       </p>
-    </animated.div>
+      <p className={`${styles.paragraph} ${styles.mobileParagraph}`}>
+        {mobileWords.map((word, index) => (
+          <AnimatedWord key={index} word={word} onClick={onWordClick} />
+        ))}
+      </p>
+    </div>
   );
 };
 

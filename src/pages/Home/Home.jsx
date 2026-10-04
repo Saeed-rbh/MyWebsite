@@ -1,29 +1,63 @@
-import React, { useEffect, useState } from "react";
-import { useSpring, animated, easings } from "react-spring";
+import React, { useEffect, useRef, useState } from "react";
 import "./Home.css";
 import styles from "./Home.module.css";
 import SEO from "../../components/SEO/SEO";
-import WelcomeMessage from "./WelcomeMessage";
-import NameMessage from "./NameMessage";
 import MainText from "./MainText";
-import HobbyProfession from "./HobbyProfession";
 import Popup from "../../components/Popup/Popup";
 import { popupsData } from "../../data/homePopupsData";
 
 import { useSelector } from "react-redux";
-import { useLocation } from "react-router-dom";
 
 const HomePage = () => {
   const { visibility } = useSelector((state) => state.ui);
-  const { currentPage } = useSelector((state) => state.ui);
-
-  const location = useLocation();
-  const [resumeClicked, setResumeClicked] = useState(0);
   const [popupOpen, setPopupOpen] = useState(false);
   
   // Now we just track the current index in the popup journey
   const [currentPopupIndex, setCurrentPopupIndex] = useState(0);
   const [originRect, setOriginRect] = useState(null);
+  const nameRef = useRef(null);
+
+  useEffect(() => {
+    if (!visibility || !nameRef.current) return;
+
+    const name = nameRef.current;
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+    let timer;
+    let previousX = 0;
+
+    const drift = () => {
+      if (reducedMotion.matches) return;
+
+      let x;
+      do {
+        x = Math.random() * 100;
+      } while (Math.abs(x - previousX) < 35);
+
+      const duration = 8000 + Math.random() * 5000;
+      name.style.transition = `background-position ${duration}ms ease-in-out`;
+      name.style.backgroundPosition = `${x}% 50%`;
+      previousX = x;
+      timer = window.setTimeout(drift, duration);
+    };
+
+    const handleMotionChange = () => {
+      window.clearTimeout(timer);
+      name.style.transition = "";
+      name.style.backgroundPosition = "";
+      previousX = 0;
+      if (!reducedMotion.matches) timer = window.setTimeout(drift, 1200);
+    };
+
+    reducedMotion.addEventListener("change", handleMotionChange);
+    handleMotionChange();
+
+    return () => {
+      window.clearTimeout(timer);
+      reducedMotion.removeEventListener("change", handleMotionChange);
+      name.style.transition = "";
+      name.style.backgroundPosition = "";
+    };
+  }, [visibility]);
 
   const handleWordClick = (word, e) => {
     const normalizedWord = word.replace(/-/g, " ").toLowerCase();
@@ -60,56 +94,58 @@ const HomePage = () => {
     }
   };
 
-  useEffect(() => {
-    if (visibility && location.pathname === "/" && currentPage === "/") {
-      setResumeClicked(1);
-    } else if (
-      visibility &&
-      location.pathname === "/" &&
-      currentPage === "/AcademicCV"
-    ) {
-      setResumeClicked(2);
-    } else {
-      setResumeClicked(3);
-    }
-  }, [location.pathname, currentPage, visibility]);
-
-  const currentPopup = popupsData[currentPopupIndex] || { title: "", content: "" };
-
-  const containerAnimation = useSpring({
-    from: { opacity: 0 },
-    to: { opacity: 1 },
-    config: { duration: 600, easing: easings.easeInOutQuad }
-  });
+  const currentPopup = popupsData[currentPopupIndex];
 
   return (
     visibility && (
       <>
-        <animated.div
+        <div
           className={styles.container}
-          style={containerAnimation}
+          data-site-motion-ignore="true"
         >
           <SEO
-            title="Saeed Arabha | Home"
-            description="Personal website of Saeed Arabha, featuring academic CV, research, and portfolio."
+            title="Saeed Arabha | Materials Scientist & Researcher"
+            description="Saeed Arabha connects materials science, process development, and metrology through graphene research, experimental characterization, and computational modeling. Explore his R&D work and academic CV."
             name="Saeed Arabha"
             type="website"
           />
-          <WelcomeMessage MenuHide={resumeClicked} delay={100} />
-          <NameMessage MenuHide={resumeClicked} delay={300} />
-          <MainText MenuHide={resumeClicked} delay={400} onWordClick={handleWordClick} />
-          <HobbyProfession
-            MenuHide={resumeClicked}
-            delay={resumeClicked === 1 ? 1400 : 200}
-          />
+          <main className={styles.homeMain}>
+            <div className={styles.heroGrid}>
+              <div className={styles.heroTitle}>
+                <div className={styles.heroMark}>
+                  <span className={styles.greeting} aria-hidden="true">Hello.</span>
+                  <h1><span className={styles.namePrefix}>I'm</span> <em ref={nameRef}>Saeed Arabha.</em></h1>
+                </div>
+                <p className={styles.heroRole}><span className={styles.desktopCopy}>Materials scientist</span><span className={`${styles.roleSeparator} ${styles.desktopCopy}`} aria-hidden="true" /><span className={styles.desktopCopy}>Process &amp; metrology engineer</span><span className={styles.mobileCopy}>Materials · Process · Metrology</span></p>
+              </div>
+              <div className={styles.heroAside}>
+                <span className={styles.asideLabel}>MATERIALS · PROCESS · METROLOGY</span>
+                <ol className={styles.asideStatement} aria-label="Materials, process, and metrology">
+                  <li><span className={styles.progressCue} aria-hidden="true"><i /><i /><i /></span><span className={styles.progressWord}><span className={styles.desktopCopy}>develop materials</span><span className={styles.mobileCopy}>develop</span></span></li>
+                  <li><span className={styles.progressCue} aria-hidden="true"><i /><i /><i /></span><span className={styles.progressWord}><span className={styles.desktopCopy}>engineer processes</span><span className={styles.mobileCopy}>refine</span></span></li>
+                  <li><span className={styles.progressCue} aria-hidden="true"><i /><i /><i /></span><span className={styles.progressWord}><span className={styles.desktopCopy}>measure quality</span><span className={styles.mobileCopy}>measure</span></span></li>
+                </ol>
+              </div>
+            </div>
+            <div className={styles.storyGrid}>
+              <span className={styles.sectionLabel}><span className={styles.sectionMarker} aria-hidden="true" />A closer look at the work</span>
+              <div className={styles.storyBody}>
+                <MainText onWordClick={handleWordClick} />
+                <p className={styles.interactionHint}>
+                  <span className={styles.hintDot} aria-hidden="true" />
+                  <span className={styles.desktopCopy}>Need materials, process, or metrology expertise?</span><span className={styles.mobileCopy}>Building your R&amp;D team?</span>
+                  <a href="mailto:saeedarabha@outlook.com">Let’s talk.</a>
+                </p>
+              </div>
+            </div>
+          </main>
           <Popup
             isOpen={popupOpen}
             onClose={() => {
               setPopupOpen(false);
               window.history.pushState("", document.title, window.location.pathname + window.location.search);
             }}
-            title={currentPopup.title}
-            content={<div key={`${currentPopupIndex}-${popupOpen}`}>{currentPopup.content}</div>}
+            topic={currentPopup}
             originRect={originRect}
             onNext={handleNextPopup}
             onPrev={handlePrevPopup}
@@ -118,7 +154,7 @@ const HomePage = () => {
             nextTitle={currentPopupIndex < popupsData.length - 1 ? popupsData[currentPopupIndex + 1].shortTitle : null}
             prevTitle={currentPopupIndex > 0 ? popupsData[currentPopupIndex - 1].shortTitle : null}
           />
-        </animated.div>
+        </div>
       </>
     )
   );

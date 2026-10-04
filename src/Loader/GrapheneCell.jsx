@@ -1,5 +1,4 @@
-import React, { useEffect } from "react";
-import { useSpring, animated, easings } from "react-spring";
+import React from "react";
 
 const Atom = ({ cx, cy, index }) => (
   <circle className="loader-atom" cx={cx} cy={cy} r="8" style={{ "--delay": `${index * 0.12}s` }} />
@@ -41,7 +40,7 @@ const GrapheneSVG = ({ points, className }) => (
     ))}
   </svg>
 );
-const GrapheneCell = ({ text, subtext, fade }) => {
+const GrapheneCell = ({ text, subtext }) => {
   const radius = 50;
   const cx = 100;
   const cy = 100;
@@ -53,36 +52,8 @@ const GrapheneCell = ({ text, subtext, fade }) => {
     };
   });
 
-  const [springProps, setSpringProps] = useSpring(() => ({
-    opacity: 0,
-    y: 20,
-    duration: 1000,
-    easing: easings.easeOutCubic,
-    delay: 200,
-  }));
-
-  useEffect(() => {
-    if (!fade) {
-      setSpringProps({ opacity: 1, y: 0 });
-    }
-  }, [setSpringProps, fade]);
-
-  useEffect(() => {
-    if (fade) {
-      setSpringProps({ opacity: 0, y: 20, delay: 100 });
-    }
-  }, [setSpringProps, fade]);
-
   return (
-    <animated.div
-      className="GrapheneIntro"
-      style={{
-        opacity: springProps.opacity,
-        transform: springProps.y.interpolate(
-          (y) => `translate3d(0, ${y}px, 0)`
-        ),
-      }}
-    >
+    <div className="GrapheneIntro">
       <div className="loader-grapheneCluster">
         <GrapheneSVG points={points} className="loader-grapheneCell loader-grapheneCellMain" />
         <GrapheneSVG points={points} className="loader-grapheneCell loader-grapheneCellTop" />
@@ -92,7 +63,7 @@ const GrapheneCell = ({ text, subtext, fade }) => {
         <p>{text}</p>
         <b className="Intro-b">{subtext}</b>
       </div>
-    </animated.div>
+    </div>
   );
 };
 

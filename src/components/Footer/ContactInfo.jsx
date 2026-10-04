@@ -1,72 +1,42 @@
-import React, { useRef, useState, useEffect } from "react";
+import React, { useRef, useState } from "react";
 import { animated } from "react-spring";
 import useHoverMoveEffect from "../../Helper/useHoverMoveEffect";
-import { PopupModal } from "react-calendly";
+import FooterHoverIcon from "./FooterHoverIcon";
 
 const ContactInfo = ({
   isMouseHover,
   setMouseHover,
   contactInfoOpenSpring,
+  onBookCall,
 }) => {
   const Ref_1 = useRef(null);
   const Style_1 = useHoverMoveEffect(Ref_1, 50, 0.2);
 
   const Ref_2 = useRef(null);
   const Style_2 = useHoverMoveEffect(Ref_2, 50, 0.2);
-
-  const Ref_3 = useRef(null);
-  const Style_3 = useHoverMoveEffect(Ref_3, 50, 0.2);
-
-  const [hoverWA, setHoverWA] = useState(false);
-  const [hoverE, setHoverE] = useState(false);
-  const [isCalendlyOpen, setIsCalendlyOpen] = useState(false);
-
-  useEffect(() => {
-    if (isCalendlyOpen) {
-      document.body.classList.add('calendly-open-bg');
-    } else {
-      document.body.classList.remove('calendly-open-bg');
-    }
-    return () => {
-      document.body.classList.remove('calendly-open-bg');
-    };
-  }, [isCalendlyOpen]);
+  const [isHoveredLinkedIn, setIsHoveredLinkedIn] = useState(false);
 
   return (
     <div className="contact-1">
-      <PopupModal
-        url="https://calendly.com/arabha-yorku/30min"
-        onModalClose={() => setIsCalendlyOpen(false)}
-        open={isCalendlyOpen}
-        rootElement={document.getElementById("root")}
-        pageSettings={{
-          backgroundColor: '020201',
-          textColor: 'faf9f1',
-          primaryColor: 'd49d81'
-        }}
-      />
-      <animated.p
-        className="Social-Media"
-        style={isMouseHover[1] === "CONTACT" ? contactInfoOpenSpring : {}}
-      >
-        CONTACT ME
-      </animated.p>
       <div className="social">
         <animated.a
           href="https://www.linkedin.com/in/saeedarabha/"
           target="_blank"
           rel="noreferrer"
           ref={Ref_1}
-          style={{ ...Style_1, display: 'flex', alignItems: 'center' }}
+          style={{ ...Style_1, display: 'flex', alignItems: 'center', gap: '8px' }}
           onMouseEnter={() => {
-            setHoverWA(true);
+            setIsHoveredLinkedIn(true);
             setMouseHover([!isMouseHover[0], "CONTACT", "WA"]);
           }}
           onMouseLeave={() => {
-            setHoverWA(false);
+            setIsHoveredLinkedIn(false);
             setMouseHover([!isMouseHover[0], "CONTACT", "WA"]);
           }}
+          onFocus={() => setIsHoveredLinkedIn(true)}
+          onBlur={() => setIsHoveredLinkedIn(false)}
         >
+          <FooterHoverIcon kind="linkedin" isHovered={isHoveredLinkedIn} />
           <animated.p
             style={
               isMouseHover[1] === "CONTACT" && isMouseHover[2] === "WA"
@@ -78,7 +48,8 @@ const ContactInfo = ({
           </animated.p>
         </animated.a>
         <animated.button
-          onClick={(e) => { e.preventDefault(); setIsCalendlyOpen(true); }}
+          type="button"
+          onClick={onBookCall}
           ref={Ref_2}
           className="bookCallBtn"
           style={{
@@ -87,11 +58,9 @@ const ContactInfo = ({
             alignItems: 'center'
           }}
           onMouseEnter={() => {
-            setHoverE(true);
             setMouseHover([!isMouseHover[0], "CONTACT", "E"]);
           }}
           onMouseLeave={() => {
-            setHoverE(false);
             setMouseHover([!isMouseHover[0], "CONTACT", "E"]);
           }}
         >

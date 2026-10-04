@@ -195,4 +195,5 @@ body {
     transition: none !important;
     animation: none !important;
   }
+  .RouteMotionFrame { transform: none !important; }
 }

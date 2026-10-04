@@ -169,6 +169,13 @@ const CVList = ({ isActive }) => {
     }
   }, [location.pathname, currentPage, visibility]);
 
+  const downloadSpring = useSpring({
+    opacity: resumeClicked === 1 ? (visibility ? 1 : 0) : 0,
+    x: resumeClicked === 1 ? (visibility ? 0 : 30) : 10,
+    config: { duration: 500 },
+    delay: resumeClicked === 1 ? 1000 : 0,
+  });
+
   return (
     <animated.div style={mainStyle}>
       <ScrollControls
@@ -177,14 +184,7 @@ const CVList = ({ isActive }) => {
       />
       <div ref={CVListRef} className="CVList">
         {isMobile && (
-          <animated.div
-            style={useSpring({
-              opacity: resumeClicked === 1 ? (visibility ? 1 : 0) : 0,
-              x: resumeClicked === 1 ? (visibility ? 0 : 30) : 10,
-              config: { duration: 500 },
-              delay: resumeClicked === 1 ? 1000 : 0,
-            })}
-          >
+          <animated.div style={downloadSpring}>
             <React.Suspense fallback={<span style={{fontSize: '11px', color: '#fff'}}>Loading PDF...</span>}>
               <DownloadButton cvData={cvData} isMobile={true} />
             </React.Suspense>

@@ -1,248 +1,174 @@
 import React, { useEffect, useRef } from "react";
 
+// A connected honeycomb lattice with gentle membrane ripples.
 const BackgroundLattice = () => {
   const canvasRef = useRef(null);
 
   useEffect(() => {
     const canvas = canvasRef.current;
-    if (!canvas) return;
-    const ctx = canvas.getContext("2d");
+    const ctx = canvas?.getContext("2d");
     if (!ctx) return;
 
-    let animationFrameId;
-    let width = window.innerWidth;
-    let height = window.innerHeight;
+    const motionPreference = window.matchMedia("(prefers-reduced-motion: reduce)");
+    let width = 0;
+    let height = 0;
+    let frameId;
+    let lastFrame = 0;
+    let activeTime = 0;
+    let pointer = { x: 0, y: 0 };
+    let targetPointer = { x: 0, y: 0 };
 
-    // High-DPI setup
-    const resizeCanvas = () => {
-      width = window.innerWidth;
-      height = window.innerHeight;
-      const dpr = window.devicePixelRatio || 1;
-      canvas.width = width * dpr;
-      canvas.height = height * dpr;
-      canvas.style.width = `${width}px`;
-      canvas.style.height = `${height}px`;
-      ctx.scale(dpr, dpr);
-    };
-    resizeCanvas();
-    window.addEventListener("resize", resizeCanvas);
+    let bonds = [];
+    let atoms = [];
 
-    // --- Throttled mouse: update target on events, lerp in render loop ---
-    let mouseTarget = { x: null, y: null };
-    let mouse = { x: null, y: null };
-    const handleMouseMove = (e) => {
-      mouseTarget.x = e.clientX;
-      mouseTarget.y = e.clientY;
-    };
-    const handleMouseLeave = () => {
-      mouseTarget.x = null;
-      mouseTarget.y = null;
-    };
-    window.addEventListener("mousemove", handleMouseMove, { passive: true });
-    window.addEventListener("mouseleave", handleMouseLeave, { passive: true });
-
-    // --- Particles: fewer, with staggered spawn ---
-    const particleCount = width < 768 ? 14 : 25;
-    const SPAWN_INTERVAL = 220; // ms between each dot appearing
-    const FADE_DURATION = 1200; // ms to fade in fully
-    const startTime = performance.now();
-
-    const particles = [];
-    for (let i = 0; i < particleCount; i++) {
-      particles.push({
-        x: Math.random() * width,
-        y: Math.random() * height,
-        vx: (Math.random() - 0.5) * 0.055,
-        vy: (Math.random() - 0.5) * 0.055,
-        radius: 1.8,
-        spawnAt: i * SPAWN_INTERVAL, // stagger each dot
-        opacity: 0,
-      });
-    }
-
-    // --- 3D Graphene Lattice (right side, desktop only) ---
-    const hexRadius = width < 1400 ? 38 : 46;
-    const points = [];
-    const connections = [];
-    const rows = 5;
-    const cols = 6;
-    for (let r = 0; r < rows; r++) {
-      for (let c = 0; c < cols; c++) {
-        let px = c * hexRadius * 1.5;
-        let py = r * hexRadius * Math.sqrt(3);
-        if (c % 2 === 1) py += (hexRadius * Math.sqrt(3)) / 2;
-        px -= ((cols - 1) * hexRadius * 1.5) / 2;
-        py -= ((rows - 1) * hexRadius * Math.sqrt(3)) / 2;
-        const pz = Math.sin(c * 0.5) * Math.cos(r * 0.5) * 15;
-        points.push({ x: px, y: py, z: pz });
-      }
-    }
-    // Pre-compute connections once
-    for (let i = 0; i < points.length; i++) {
-      for (let j = i + 1; j < points.length; j++) {
-        const dx = points[i].x - points[j].x;
-        const dy = points[i].y - points[j].y;
-        const dz = points[i].z - points[j].z;
-        const d = Math.sqrt(dx * dx + dy * dy + dz * dz);
-        if (d > hexRadius - 2 && d < hexRadius + 2) connections.push([i, j]);
-      }
-    }
-    let angleX = 0.22;
-    let angleY = 0.35;
-
-    // --- Connection distance threshold (use squared to avoid sqrt) ---
-    const CONNECT_DIST = 190;
-    const CONNECT_DIST_SQ = CONNECT_DIST * CONNECT_DIST;
-    const MOUSE_DIST = 220;
-    const MOUSE_DIST_SQ = MOUSE_DIST * MOUSE_DIST;
-
-    // Alternate frame flag — draw connections every other frame
-    let frameCount = 0;
-
-    const render = () => {
-      const now = performance.now();
-      const elapsed = now - startTime;
-      frameCount++;
-
-      // Smooth mouse position (lerp) — no jank from direct event writes
-      if (mouseTarget.x !== null) {
-        if (mouse.x === null) { mouse.x = mouseTarget.x; mouse.y = mouseTarget.y; }
-        mouse.x += (mouseTarget.x - mouse.x) * 0.12;
-        mouse.y += (mouseTarget.y - mouse.y) * 0.12;
-      } else {
-        mouse.x = null;
-        mouse.y = null;
-      }
-
-      ctx.clearRect(0, 0, width, height);
-
-      // --- Active particles (only those whose spawn time has arrived) ---
-      const active = [];
-      particles.forEach((p) => {
-        if (elapsed < p.spawnAt) return; // not yet born
-
-        // Fade in opacity
-        const age = elapsed - p.spawnAt;
-        p.opacity = Math.min(0.45, (age / FADE_DURATION) * 0.45);
-
-        // Move
-        p.x += p.vx;
-        p.y += p.vy;
-        if (p.x < 0 || p.x > width)  p.vx *= -1;
-        if (p.y < 0 || p.y > height) p.vy *= -1;
-
-        active.push(p);
-      });
-
-      // Draw dots
-      active.forEach((p) => {
-        ctx.beginPath();
-        ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(212, 157, 129, ${p.opacity})`;
-        ctx.fill();
-      });
-
-      // Draw connecting lines — every other frame to cut work in half
-      if (frameCount % 2 === 0) {
-        for (let i = 0; i < active.length; i++) {
-          for (let j = i + 1; j < active.length; j++) {
-            const dx = active[i].x - active[j].x;
-            const dy = active[i].y - active[j].y;
-            const distSq = dx * dx + dy * dy;
-
-            if (distSq < CONNECT_DIST_SQ) {
-              const pairOpacity = Math.min(active[i].opacity, active[j].opacity);
-              const alpha = (1 - Math.sqrt(distSq) / CONNECT_DIST) * 0.10 * (pairOpacity / 0.45);
-              ctx.beginPath();
-              ctx.moveTo(active[i].x, active[i].y);
-              ctx.lineTo(active[j].x, active[j].y);
-              ctx.strokeStyle = `rgba(212, 157, 129, ${alpha})`;
-              ctx.lineWidth = 0.6;
-              ctx.stroke();
-            }
-          }
+    const buildLattice = () => {
+      const radius = width < 640 ? 31 : 43;
+      const rowHeight = Math.sqrt(3) * radius;
+      const uniqueBonds = new Map();
+      const uniqueAtoms = new Map();
+      const pointKey = p => `${Math.round(p.x * 100)},${Math.round(p.y * 100)}`;
+      for (let column = -3; column < width / (radius * 1.5) + 3; column++) {
+        for (let row = -3; row < height / rowHeight + 3; row++) {
+          const cx = column * radius * 1.5;
+          const cy = (row + (column % 2) / 2) * rowHeight;
+          const vertices = Array.from({ length: 6 }, (_, i) => ({
+            x: cx + Math.cos(i * Math.PI / 3) * radius,
+            y: cy + Math.sin(i * Math.PI / 3) * radius,
+          }));
+          vertices.forEach((start, i) => {
+            const end = vertices[(i + 1) % 6];
+            const key = [start, end].map(pointKey).sort().join("|");
+            if (!uniqueAtoms.has(pointKey(start))) uniqueAtoms.set(pointKey(start), start);
+            if (!uniqueBonds.has(key)) uniqueBonds.set(key, { start, end });
+          });
         }
       }
-
-      // Mouse lines — only when cursor is on screen
-      if (mouse.x !== null) {
-        active.forEach((p) => {
-          const dx = p.x - mouse.x;
-          const dy = p.y - mouse.y;
-          const distSq = dx * dx + dy * dy;
-          if (distSq < MOUSE_DIST_SQ) {
-            const alpha = (1 - Math.sqrt(distSq) / MOUSE_DIST) * 0.07 * (p.opacity / 0.45);
-            ctx.beginPath();
-            ctx.moveTo(p.x, p.y);
-            ctx.lineTo(mouse.x, mouse.y);
-            ctx.strokeStyle = `rgba(212, 157, 129, ${alpha})`;
-            ctx.lineWidth = 0.5;
-            ctx.stroke();
-          }
-        });
-      }
-
-      // --- 3D Graphene Lattice (desktop only) ---
-      if (width >= 1120) {
-        angleX += 0.00015;
-        angleY += 0.0001;
-
-        const latX = width * 0.77;
-        const latY = height * 0.46;
-
-        const projected = points.map((p) => {
-          const x1 = p.x * Math.cos(angleY) - p.z * Math.sin(angleY);
-          const z1 = p.x * Math.sin(angleY) + p.z * Math.cos(angleY);
-          const y2 = p.y * Math.cos(angleX) - z1 * Math.sin(angleX);
-          const z2 = p.y * Math.sin(angleX) + z1 * Math.cos(angleX);
-          const scale = 500 / (500 + z2);
-          return { x: latX + x1 * scale, y: latY + y2 * scale, scale };
-        });
-
-        connections.forEach(([i, j]) => {
-          const p1 = projected[i];
-          const p2 = projected[j];
-          const meanScale = (p1.scale + p2.scale) / 2;
-          const alpha = Math.max(0.04, (meanScale - 0.8) * 0.27);
-          ctx.beginPath();
-          ctx.moveTo(p1.x, p1.y);
-          ctx.lineTo(p2.x, p2.y);
-          ctx.strokeStyle = `rgba(212, 157, 129, ${alpha})`;
-          ctx.lineWidth = 0.9;
-          ctx.stroke();
-        });
-
-        projected.forEach((p) => {
-          const alpha = Math.max(0.06, (p.scale - 0.8) * 0.28);
-          ctx.beginPath();
-          ctx.arc(p.x, p.y, p.scale * 2.5, 0, Math.PI * 2);
-          ctx.fillStyle = `rgba(212, 157, 129, ${alpha})`;
-          ctx.fill();
-        });
-      }
-
-      animationFrameId = requestAnimationFrame(render);
+      bonds = [...uniqueBonds.values()];
+      atoms = [...uniqueAtoms.values()];
     };
 
-    render();
+    const membranePoint = (point, time) => {
+      // Neighboring bonds share the same displacement, so the lattice stays connected.
+      const phase = point.x * .005 + point.y * .006;
+      return {
+        x: point.x + Math.sin(phase - time * .22) * 2 + pointer.x,
+        y: point.y + Math.sin(phase - time * .3) * 5 + pointer.y,
+      };
+    };
+
+    const draw = (time) => {
+      ctx.clearRect(0, 0, width, height);
+      const atmosphere = ctx.createRadialGradient(width * .85, height * .12, 0, width * .6, height * .4, Math.max(width, height));
+      atmosphere.addColorStop(0, "#19130f");
+      atmosphere.addColorStop(.45, "#100e0c");
+      atmosphere.addColorStop(1, "#100e0c");
+      ctx.fillStyle = atmosphere;
+      ctx.fillRect(0, 0, width, height);
+      ctx.lineWidth = .65;
+      const patches = [
+        { x: .86 + Math.sin(time * .09) * .06, y: .18 + Math.cos(time * .11) * .09, phase: 0 },
+        { x: .10 + Math.cos(time * .08) * .05, y: .62 + Math.sin(time * .10) * .12, phase: 2.1 },
+        { x: .72 + Math.sin(time * .07 + 1) * .12, y: .88 + Math.cos(time * .09) * .05, phase: 4.2 },
+      ];
+      const visibilityAt = (point) => {
+        const x = point.x / width;
+        const y = point.y / height;
+        const distance = Math.hypot((x - .5) / .55, (y - .48) / .62);
+        const quietCenter = .12 + .88 * Math.min(1, Math.max(0, (distance - .28) / .65));
+        // Soft spatial fades reveal connected patches, rather than the whole grid.
+        const reveal = patches.reduce((sum, patch) => {
+          const field = Math.exp(-2 * (((x - patch.x) / .23) ** 2 + ((y - patch.y) / .28) ** 2));
+          const fade = ((Math.cos(time * .28 + patch.phase) + 1) * .5) ** 2;
+          return sum + field * fade;
+        }, 0);
+        return { reveal: Math.min(1, reveal), quietCenter };
+      };
+      bonds.forEach(({ start, end }) => {
+        const a = membranePoint(start, time);
+        const b = membranePoint(end, time);
+        const { reveal, quietCenter } = visibilityAt({ x: (start.x + end.x) * .5, y: (start.y + end.y) * .5 });
+        ctx.strokeStyle = `rgba(212,157,129,${(.006 + .22 * reveal) * quietCenter})`;
+        ctx.beginPath();
+        ctx.moveTo(a.x, a.y);
+        ctx.lineTo(b.x, b.y);
+        ctx.stroke();
+      });
+      atoms.forEach(atom => {
+        const point = membranePoint(atom, time);
+        const { reveal, quietCenter } = visibilityAt(atom);
+        const opacity = (.008 + .42 * reveal) * quietCenter;
+        ctx.fillStyle = `rgba(225,174,144,${opacity})`;
+        ctx.beginPath();
+        ctx.arc(point.x, point.y, width < 640 ? 1.15 : 1.4, 0, Math.PI * 2);
+        ctx.fill();
+      });
+    };
+
+    const tick = (now) => {
+      frameId = requestAnimationFrame(tick);
+      if (now - lastFrame < 1000 / 30) return;
+      const elapsed = lastFrame ? Math.min((now - lastFrame) / 1000, .1) : 0;
+      lastFrame = now;
+      activeTime += elapsed;
+      pointer.x += (targetPointer.x - pointer.x) * .05;
+      pointer.y += (targetPointer.y - pointer.y) * .05;
+      draw(activeTime);
+    };
+
+    const syncAnimation = () => {
+      cancelAnimationFrame(frameId);
+      lastFrame = 0;
+      if (motionPreference.matches || document.hidden) {
+        pointer = { x: 0, y: 0 };
+        draw(0);
+      } else {
+        frameId = requestAnimationFrame(tick);
+      }
+    };
+
+    const resize = () => {
+      width = window.innerWidth;
+      height = window.innerHeight;
+      const dpr = Math.min(window.devicePixelRatio || 1, 2);
+      canvas.width = Math.round(width * dpr);
+      canvas.height = Math.round(height * dpr);
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      buildLattice();
+      draw(motionPreference.matches ? 0 : activeTime);
+    };
+    const movePointer = (event) => {
+      if (motionPreference.matches || event.pointerType === "touch") return;
+      targetPointer = { x: (event.clientX / width - .5) * 6, y: (event.clientY / height - .5) * 6 };
+    };
+    const resetPointer = () => { targetPointer = { x: 0, y: 0 }; };
+
+    resize();
+    syncAnimation();
+    window.addEventListener("resize", resize);
+    window.addEventListener("pointermove", movePointer, { passive: true });
+    document.addEventListener("pointerleave", resetPointer);
+    document.addEventListener("visibilitychange", syncAnimation);
+    motionPreference.addEventListener("change", syncAnimation);
 
     return () => {
-      cancelAnimationFrame(animationFrameId);
-      window.removeEventListener("resize", resizeCanvas);
-      window.removeEventListener("mousemove", handleMouseMove);
-      window.removeEventListener("mouseleave", handleMouseLeave);
+      cancelAnimationFrame(frameId);
+      window.removeEventListener("resize", resize);
+      window.removeEventListener("pointermove", movePointer);
+      document.removeEventListener("pointerleave", resetPointer);
+      document.removeEventListener("visibilitychange", syncAnimation);
+      motionPreference.removeEventListener("change", syncAnimation);
     };
   }, []);
 
   return (
     <canvas
       ref={canvasRef}
+      aria-hidden="true"
       style={{
         position: "fixed",
-        top: 0,
-        left: 0,
+        inset: 0,
         width: "100vw",
-        height: "100vh",
+        height: "100dvh",
         zIndex: -90,
         pointerEvents: "none",
       }}

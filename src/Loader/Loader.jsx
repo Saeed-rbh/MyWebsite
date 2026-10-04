@@ -1,39 +1,46 @@
 import React, { useState, useEffect } from "react";
-import { useSpring, animated, easings } from "react-spring";
 import { useDispatch, useSelector } from "react-redux";
 import GrapheneCell from "./GrapheneCell";
 import "./Loader.css";
 import { updateVisibility } from "../actions/Actions";
 
-const LOADING_TIME = 2000;
+const LOADING_TIME = 1000;
 
 const Loader = () => {
-  const { visibility } = useSelector((state) => state.ui);
   const dispatch = useDispatch();
+  const [entered, setEntered] = useState(false);
   const [fade, setFade] = useState(false);
+  const [showLoader, setShowLoader] = useState(true);
+  const [reducedMotion] = useState(() => window.matchMedia("(prefers-reduced-motion: reduce)").matches);
 
   const academicData = useSelector((state) => state.data.academicData);
 
   useEffect(() => {
-    if (academicData.length > 0) {
-      setTimeout(() => {
-        setFade(true);
-      }, LOADING_TIME);
-    }
-  }, [dispatch, academicData]);
+    let secondFrame;
+    const firstFrame = requestAnimationFrame(() => {
+      secondFrame = requestAnimationFrame(() => setEntered(true));
+    });
+    return () => {
+      cancelAnimationFrame(firstFrame);
+      cancelAnimationFrame(secondFrame);
+    };
+  }, []);
 
-  const closeIntroAnimation = useSpring({
-    opacity: fade ? 0 : 1,
-    borderRadius: "50px",
-    config: { duration: 500 },
-    easing: easings.easeOutCubic,
-    // Only update visibility when fade animation completes (opacity reaches 0)
-    onRest: () => {
-      if (fade) {
+  useEffect(() => {
+    if (academicData.length > 0) {
+      const timer = setTimeout(() => {
+        setFade(true);
         dispatch(updateVisibility(true));
-      }
-    },
-  });
+      }, reducedMotion ? 0 : LOADING_TIME);
+      return () => clearTimeout(timer);
+    }
+  }, [academicData, dispatch, reducedMotion]);
+
+  useEffect(() => {
+    if (!fade) return undefined;
+    const timer = setTimeout(() => setShowLoader(false), reducedMotion ? 0 : 700);
+    return () => clearTimeout(timer);
+  }, [fade, reducedMotion]);
 
   useEffect(() => {
     const updateLayout = () => {
@@ -56,14 +63,13 @@ const Loader = () => {
   }, []);
 
   return (
-    !visibility && (
-      <animated.div style={closeIntroAnimation} className="Intro" id="Intro">
+    showLoader && (
+      <div className={`Intro${entered ? " Intro--entered" : ""}${fade ? " Intro--exiting" : ""}`} id="Intro" role="status" aria-label="Loading Saeed Arabha's portfolio">
         <GrapheneCell
-          fade={fade}
-          text="Welcome To My Personal Website"
-          subtext="LOADING"
+          text="Saeed Arabha"
+          subtext="MATERIALS · RESEARCH · ENGINEERING"
         />
-      </animated.div>
+      </div>
     )
   );
 };

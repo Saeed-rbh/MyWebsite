@@ -1,96 +1,53 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import { animated, easings, useTrail, useSpring } from "react-spring";
+import styles from "./Menu.module.css";
+import WordReveal from "./WordReveal";
 
-const ContactItem = ({ isMenuOpen, props }) => {
+const categoryLabels = {
+  Emails: "EMAIL",
+  "Phone Numbers": "PHONE",
+  "Social Media": "ELSEWHERE",
+  "Research Gate": "RESEARCH",
+};
+
+const contactHref = (item) => {
+  const value = (item.link || item.info || "").trim();
+  if (item.category === "Phone Numbers") return `tel:${value.replace(/^tel:/i, "").replace(/\s/g, "")}`;
+  if (item.category === "Emails") return `mailto:${value.replace(/^mailto:/i, "")}`;
+  return /^(https?:\/\/)/i.test(value) ? value : `https://${value}`;
+};
+
+const ContactItem = () => {
   const { contactData } = useSelector((state) => state.data);
-
-  // Parse contactSection similar to how it was before but from dedicated state
-  // contactData is the section object itself
-  const contactItems = contactData?.list || [];
-
-  // Derive unique categories from items
-  const uniqueCategories = [
-    ...new Set(contactItems.map((item) => item.category)),
-  ];
-  const contactCategories = uniqueCategories.map((cat, index) => ({
-    id: index + 1,
-    category: cat,
-  }));
-
-  const ContactInfoTrail = useTrail(contactItems.length, {
-    from: { opacity: 0, transform: "translate3d(0,0,0)" },
-    to: {
-      opacity: isMenuOpen ? 1 : 0,
-      transform: isMenuOpen ? "translate3d(0,0,0)" : "translate3d(0,0,0)",
-    },
-    easing: easings.easeOutCubic,
+  const items = contactData?.list || [];
+  const preferredOrder = ["Emails", "Phone Numbers", "Research Gate", "Social Media"];
+  const categories = [...new Set(items.map(item => item.category))].sort((a, b) => {
+    const indexA = preferredOrder.indexOf(a);
+    const indexB = preferredOrder.indexOf(b);
+    return (indexA < 0 ? 99 : indexA) - (indexB < 0 ? 99 : indexB);
   });
 
-  const menuBackgroundAnimation = useSpring({
-    opacity: isMenuOpen ? 1 : 0,
-    config: { duration: 200 },
-    delay: isMenuOpen ? 0 : 300,
-    easing: easings.easeOutCubic,
-  });
   return (
-    <animated.div className="MenuInsideN" style={menuBackgroundAnimation}>
-      <animated.div className="ContactInfo" style={props}>
-        Contact Information
-      </animated.div>
-      <div className="ContactInfos">
-        {contactCategories.map((contactCategory, index) => (
-          <div key={contactCategory.id}>
-            <animated.div
-              style={ContactInfoTrail[index]}
-              className="ContactCategory"
-            >
-              {contactCategory.category}
-            </animated.div>
-            {ContactInfoTrail[index] && (
-              <>
-                {contactItems.map((contactItem) => {
-                  if (contactItem.category !== contactCategory.category)
-                    return null;
-                  const itemIndex = contactItems.findIndex(
-                    (item) => item.id === contactItem.id
-                  );
-                  let href = contactItem.link || "";
-                  let target = "_blank";
-                  let rel = "noopener noreferrer";
-
-                  if (contactItem.category === "Phone Numbers") {
-                    // Strip non-digits for tel link if using info, but we expect link to be clean or use logic
-                    // If link is provided, use it directly with prefix if missing
-                    const number = contactItem.link || contactItem.info || "";
-                    href = `tel:${number.replace(/\s+/g, '')}`;
-                    target = "_self";
-                    rel = undefined;
-                  } else if (contactItem.category === "Emails") {
-                    href = `mailto:${contactItem.link || contactItem.info}`;
-                    target = "_self";
-                    rel = undefined;
-                  }
-
-                  return (
-                    <animated.a
-                      key={contactItem.id}
-                      style={ContactInfoTrail[itemIndex]}
-                      className="ContactInfo-In"
-                      href={href}
-                      target={target}
-                      rel={rel}
-                    >
-                      <animated.b>{contactItem.info}</animated.b>
-                    </animated.a>
-                  );
-                })}
-              </>
-            )}
+    <section className={styles.contacts} aria-labelledby="menu-contact-title">
+      <p className={styles.eyebrow}>LET’S TALK</p>
+      <h3 id="menu-contact-title"><WordReveal text="What are you" delay={540} /><br /> <WordReveal text="working on?" delay={670} /></h3>
+      <div className={styles.contactGroups}>
+        {categories.map((category, index) => (
+          <div className={styles.contactGroup} key={category} style={{ "--item-delay": `${240 + index * 65}ms` }}>
+            <h4>{categoryLabels[category] || category}</h4>
+            {items.filter(item => item.category === category).map((item, itemIndex) => {
+              const href = contactHref(item);
+              const external = /^https?:/i.test(href);
+              return (
+                <a key={item.id || `${category}-${itemIndex}`} href={href} target={external ? "_blank" : undefined} rel={external ? "noopener noreferrer" : undefined}>
+                  {item.info}
+                </a>
+              );
+            })}
           </div>
         ))}
       </div>
-    </animated.div>
+    </section>
   );
 };
 

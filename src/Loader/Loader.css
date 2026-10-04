@@ -5,25 +5,28 @@
   width: 100%;
   height: 100vh;
   background:
-    radial-gradient(circle at 50% 44%, rgba(212, 157, 129, 0.12), transparent 34%),
-    radial-gradient(circle at 20% 80%, rgba(185, 96, 50, 0.08), transparent 28%),
-    #020201;
-  z-index: 100;
+    radial-gradient(circle at 50% 45%, rgba(184, 103, 66, 0.16), transparent 38%),
+    radial-gradient(circle at 50% 100%, rgba(212, 157, 129, 0.05), transparent 36%),
+    #050403;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
   z-index: 99999;
   overflow: hidden;
+  opacity: 1;
+  transition: opacity 700ms cubic-bezier(0.35, 0, 0.2, 1);
 }
+
+#Intro { z-index: 100000; }
+.Intro--exiting { opacity: 0; pointer-events: none; }
 
 .Intro p {
   font-size: clamp(15px, 2.8vw, 19px);
   text-align: center;
   margin: 0;
-  color: #d49d81;
-  font-weight: 700;
-  opacity: 0.9;
+  color: #e8b397;
+  font-weight: 400;
   z-index: 100;
   font-family: "DM Serif Display", serif;
   letter-spacing: 0.02em;
@@ -31,50 +34,19 @@
 
 .Intro-b {
   font-family: "Poppins", sans-serif;
-  color: rgb(245, 244, 244);
+  color: #d8c6bb;
   font-size: 0.72rem;
   text-align: center;
   margin: 8px 0 0;
-  opacity: 0.36;
-  font-weight: 800;
-  animation-name: Intro;
-  -webkit-animation-name: Intro;
-  animation-iteration-count: infinite;
-  -webkit-animation-iteration-count: infinite;
-  animation-duration: 2s;
-  -webkit-animation-duration: 2s;
-  animation-timing-function: ease-in-out;
-  -webkit-animation-timing-function: ease-in-out;
+  opacity: 0.72;
+  font-weight: 600;
   z-index: 100;
   letter-spacing: 0.42em;
 }
 
-@keyframes Intro {
-  0% {
-    opacity: 0.1;
-  }
-
-  50% {
-    opacity: 0.3;
-  }
-
-  100% {
-    opacity: 0.1;
-  }
-}
-
-@keyframes fadeIn {
-  0% {
-    opacity: 0.12;
-  }
-
-  50% {
-    opacity: 0.75;
-  }
-
-  100% {
-    opacity: 0.12;
-  }
+@keyframes loaderBreathe {
+  0%, 100% { opacity: 0.65; }
+  50% { opacity: 1; }
 }
 
 .GrapheneIntro {
@@ -85,6 +57,20 @@
   justify-content: center;
   min-height: min(520px, 82vh);
   width: min(520px, calc(100vw - 40px));
+  opacity: 0;
+  transform: translate3d(0, 16px, 0) scale(0.97);
+  transition: opacity 680ms cubic-bezier(0.22, 1, 0.36, 1),
+    transform 680ms cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: opacity, transform;
+}
+
+.Intro--entered .GrapheneIntro {
+  opacity: 1;
+  transform: translate3d(0, 0, 0) scale(1);
+}
+
+.Intro--exiting .GrapheneIntro {
+  transform: translate3d(0, -10px, 0) scale(1.015);
 }
 
 .centered-text {
@@ -111,56 +97,67 @@
   width: 200px;
   height: 200px;
   overflow: visible;
-  filter: drop-shadow(0 0 18px rgba(212, 157, 129, 0.18));
+  filter: drop-shadow(0 0 16px rgba(232, 179, 151, 0.24));
   transform: var(--cell-transform);
   transform-origin: center;
 }
 
 .loader-grapheneCellMain {
   --cell-transform: scale(0.9);
-  animation: loaderRotate 6.5s linear infinite;
+  animation: loaderSway 5.5s ease-in-out infinite alternate;
 }
 
 .loader-grapheneCellTop {
   --cell-transform: translate(82px, -62px) scale(0.42);
-  opacity: 0.55;
-  animation: loaderRotateReverse 8s linear infinite;
+  opacity: 0.58;
+  animation: loaderSwayReverse 6.5s ease-in-out infinite alternate;
 }
 
 .loader-grapheneCellBottom {
   --cell-transform: translate(-82px, 58px) scale(0.38);
-  opacity: 0.42;
-  animation: loaderRotate 7.5s linear infinite;
+  opacity: 0.46;
+  animation: loaderSway 7s ease-in-out infinite alternate-reverse;
 }
 
 .loader-atom {
-  fill: rgba(250, 249, 241, 0.92);
-  animation: fadeIn 1.9s ease-in-out var(--delay) infinite;
+  fill: #f7e7d9;
+  animation: loaderBreathe 2.8s ease-in-out var(--delay) infinite;
 }
 
 .loader-bond {
-  stroke: rgba(212, 157, 129, 0.9);
+  stroke: #d89b7a;
   stroke-linecap: round;
-  animation: fadeIn 1.9s ease-in-out var(--delay) infinite;
+  animation: loaderBreathe 2.8s ease-in-out var(--delay) infinite;
 }
 
-@keyframes loaderRotate {
+@keyframes loaderSway {
   from {
-    transform: var(--cell-transform) rotate(0deg);
+    transform: var(--cell-transform) rotate(-10deg) translateY(2px);
   }
 
   to {
-    transform: var(--cell-transform) rotate(360deg);
+    transform: var(--cell-transform) rotate(10deg) translateY(-2px);
   }
 }
 
-@keyframes loaderRotateReverse {
+@keyframes loaderSwayReverse {
   from {
-    transform: var(--cell-transform) rotate(360deg);
+    transform: var(--cell-transform) rotate(12deg) translateY(-2px);
   }
 
   to {
-    transform: var(--cell-transform) rotate(0deg);
+    transform: var(--cell-transform) rotate(-12deg) translateY(2px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .Intro,
+  .GrapheneIntro { transition: none; }
+  .GrapheneIntro { opacity: 1; transform: none; }
+  .loader-grapheneCell,
+  .loader-atom,
+  .loader-bond {
+    animation: none;
   }
 }
 

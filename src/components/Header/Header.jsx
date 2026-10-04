@@ -49,6 +49,15 @@ const Header = () => {
   const { isMenuOpen } = useSelector((state) => state.ui);
   const { visibility } = useSelector((state) => state.ui);
   const { stages } = useSelector((state) => state.data);
+  const [reducedMotion, setReducedMotion] = useState(
+    () => window.matchMedia("(prefers-reduced-motion: reduce)").matches
+  );
+  useEffect(() => {
+    const preference = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const updateMotion = () => setReducedMotion(preference.matches);
+    preference.addEventListener("change", updateMotion);
+    return () => preference.removeEventListener("change", updateMotion);
+  }, []);
 
   const [isResumeClicked, setIsResumeClicked] = useState(
     location.pathname !== "/"
@@ -250,9 +259,7 @@ const Header = () => {
   const handleHomeClcik = () => {
     dispatch(updateCurrentPage("/"));
     handleButtonClick(false);
-    setTimeout(() => {
-      navigate("/");
-    }, 1000);
+    navigate("/");
   };
 
   const getPageTitle = () => {
@@ -279,9 +286,10 @@ const Header = () => {
   const containerAnimation = useSpring({
     opacity: 1,
     transform: 'translate3d(0,0px,0)',
-    from: { opacity: 0, transform: 'translate3d(0,-30px,0)' },
-    config: { tension: 280, friction: 24 },
-    delay: 300,
+    from: { opacity: 0, transform: 'translate3d(0,-12px,0)' },
+    config: { mass: .85, tension: 220, friction: 29 },
+    delay: reducedMotion ? 0 : 180,
+    immediate: reducedMotion,
   });
 
   const labelTransitions = useTransition(currentLabel, {
@@ -296,7 +304,8 @@ const Header = () => {
     visibility && (
       <animated.div
         style={containerAnimation}
-        className="HomePage-M-T-H"
+        inert={isMenuOpen ? true : undefined}
+        className={`HomePage-M-T-H${isHomePage ? " HomeLandingHeader" : ""}${isMenuOpen ? " NavigationOpen" : ""}`}
       >
         <animated.div style={contactInfoAnimation1} className="MainHeader" />
 
@@ -364,17 +373,18 @@ const Header = () => {
           </animated.div>
           
           <animated.div style={contactInfoAnimation3}>
-            <animated.div ref={MainRef} style={MainStyle}>
+            <animated.div ref={MainRef} style={isHomePage ? {} : MainStyle}>
               <button onClick={handleHomeClcik}>
-                <Logo className="Logo" size="20" />
+                <Logo className="Logo" size={isHomePage ? "26" : "20"} />
                 <p>Saeed</p>
                 <b>Arabha</b>
               </button>
             </animated.div>
           </animated.div>
         </animated.div>
-        
         <MenuButton
+          isHomePage={isHomePage}
+          reducedMotion={reducedMotion}
           contactInfoAnimation={contactInfoAnimation1}
           MenuRef={MenuRef}
           MenuStyle={MenuStyle}

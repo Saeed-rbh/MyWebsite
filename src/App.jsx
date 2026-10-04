@@ -1,6 +1,6 @@
 import "./App.css";
-import React, { lazy, Suspense } from "react";
-import { AnimatePresence, motion } from "motion/react";
+import React, { lazy, Suspense, useEffect, useRef } from "react";
+import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import { useSelector } from "react-redux";
 import { BrowserRouter as Router, Navigate, Route, Routes, useLocation } from "react-router-dom";
 import store from "./store/configureStore";
@@ -29,8 +29,23 @@ import { HelmetProvider } from "react-helmet-async";
 
 function AppContent() {
   useUpdateVariable();
-  const { visibility } = useSelector((state) => state.ui);
+  const { visibility, isMenuOpen } = useSelector((state) => state.ui);
   const location = useLocation();
+  const previousPath = useRef(location.pathname);
+  const transitionDirection = useRef(0);
+  const reducedMotion = useReducedMotion();
+  const isAcademicCV = (path) => path.toLowerCase() === "/academiccv";
+  if (previousPath.current !== location.pathname) {
+    const cvTransition =
+      (previousPath.current === "/" && isAcademicCV(location.pathname)) ||
+      (isAcademicCV(previousPath.current) && location.pathname === "/");
+    transitionDirection.current = cvTransition ? (location.pathname === "/" ? -1 : 1) : 0;
+  }
+  const direction = transitionDirection.current;
+
+  useEffect(() => {
+    previousPath.current = location.pathname;
+  }, [location.pathname]);
   const normalizedPath = (() => {
     try {
       return decodeURIComponent(location.pathname);
@@ -58,21 +73,35 @@ function AppContent() {
       {/* Show Header, Menu, Footer ONLY if NOT in dashboard AND NOT in story pages AND NOT Mafia */}
       {visibility && !isDashboard && (!isStoryPage || isWorkStoryPage) && !isMafia && <Header />}
       {visibility && !isDashboard && (!isStoryPage || isWorkStoryPage) && !isMafia && <Menu />}
-      {visibility && !isDashboard && !isStoryPage && !isMafia && <Footer />}
+      {visibility && !isDashboard && !isMafia && <Footer />}
 
       {visibility && (
         <ErrorBoundary>
           <SiteMotionObserver />
           <Suspense fallback={<FallbackLoader />}>
-            <AnimatePresence mode="wait">
+            <AnimatePresence mode="wait" initial={false} custom={{ direction, reducedMotion }}>
               <motion.div
                 key={location.pathname}
+                custom={{ direction, reducedMotion }}
                 className="RouteMotionFrame"
                 data-route-motion-root
-                initial={{ opacity: 0, transform: "translate3d(0, 18px, 0) scale(0.985)", filter: "blur(10px)" }}
-                animate={{ opacity: 1, transform: "translate3d(0, 0, 0) scale(1)", filter: "blur(0px)" }}
-                exit={{ opacity: 0, transform: "translate3d(0, -16px, 0) scale(0.988)", filter: "blur(8px)" }}
-                transition={{ duration: 0.48, ease: [0.23, 1, 0.32, 1] }}
+                inert={isMenuOpen ? true : undefined}
+                variants={{
+                  initial: ({ direction: routeDirection, reducedMotion: reduce }) => reduce
+                    ? { opacity: 1, x: 0, y: 0, filter: "none" }
+                    : { opacity: 0, x: routeDirection * 36, y: routeDirection ? 0 : 18, filter: "blur(3px)" },
+                  animate: ({ reducedMotion: reduce }) => ({
+                    opacity: 1, x: 0, y: 0, filter: "blur(0px)",
+                    transition: { duration: reduce ? 0 : 0.42, ease: [0.23, 1, 0.32, 1] },
+                  }),
+                  exit: ({ direction: routeDirection, reducedMotion: reduce }) => ({
+                    opacity: 0, x: routeDirection * -24, y: routeDirection ? 0 : -16, filter: reduce ? "none" : "blur(2px)",
+                    transition: { duration: reduce ? 0 : 0.24, ease: [0.4, 0, 0.7, 1] },
+                  }),
+                }}
+                initial="initial"
+                animate="animate"
+                exit="exit"
               >
                 <Routes location={location}>
                   <Route exact path="/" element={<HomePage />} />
