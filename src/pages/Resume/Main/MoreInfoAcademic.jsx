@@ -3,11 +3,11 @@ import { animated, useSpring } from "react-spring";
 import RenderComponent from "../General/RenderComponent";
 import Sections from "../General/Sections";
 
-const MoreInfoAcademic = ({ lastValue }) => {
+const MoreInfoAcademic = ({ lastSectionTop }) => {
   const { renderSection } = RenderComponent();
 
   const closeOpenStyleBlur = useSpring({
-    height: useMemo(() => `${lastValue + 30}px`, [lastValue]),
+    height: useMemo(() => `calc(${Math.max(0, lastSectionTop - 100)}px + 100vh)`, [lastSectionTop]),
   });
 
   return (

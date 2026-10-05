@@ -2,63 +2,46 @@ import { useEffect, useRef, useCallback } from "react";
 
 const useScrollHandler = ({
   scollableRef,
-  normalizeScroll,
   selected,
   cvListElement,
   isActive,
   data,
   executeSmoothScroll,
+  isMobile,
 }) => {
   const lastIndexRef = useRef(-1);
-  const calculateScroll = useCallback(
-    ({ normalizeScroll, cvListElement }) => {
-      if (!normalizeScroll || !normalizeScroll[0] || !normalizeScroll[0].length)
-        return;
-      const scrollDownPosition = scollableRef.current.scrollTop;
-      const sectionTops = data.map(
-        (section) => section.top + section.height - data[0].top
-      );
-      const GreaterThanScroll = sectionTops.map(
-        (Tops) => Tops * 0.8 <= scrollDownPosition - 80
-      );
-      const highestTrueIndex = GreaterThanScroll.reduce(
-        (maxIndex, currentValue, currentIndex) =>
-          currentValue ? currentIndex : maxIndex,
-        -1
-      );
+  const calculateScroll = useCallback(() => {
+    const panel = scollableRef.current;
+    if (!panel || !cvListElement || isActive) return;
 
-      const newIndex = highestTrueIndex + 1;
-      if (
-        newIndex >= 0 &&
-        newIndex < normalizeScroll[0].length &&
-        newIndex !== lastIndexRef.current
-      ) {
-        lastIndexRef.current = newIndex;
-        const [cvListScroll, divScroll] = normalizeScroll;
-        newIndex !== selected &&
-          !isActive &&
-          executeSmoothScroll(
-            cvListElement,
-            cvListScroll[newIndex] - cvListScroll[0],
-            "Left",
-            newIndex,
-            300 // Faster duration (was 500)
-          );
+    const threshold = panel.getBoundingClientRect().top + 120;
+    let newIndex = 0;
+    data.forEach((section, index) => {
+      const element = document.getElementById(section.name);
+      if (element && element.getBoundingClientRect().top <= threshold) {
+        newIndex = index;
       }
-    },
-    [selected, isActive, data, executeSmoothScroll, scollableRef]
-  );
+    });
+
+    if (newIndex === lastIndexRef.current || newIndex === selected) return;
+    lastIndexRef.current = newIndex;
+    const button = cvListElement.children[newIndex + (isMobile ? 1 : 0)];
+    if (!button) return;
+    const target = button.offsetLeft -
+      (cvListElement.clientWidth - button.offsetWidth) / 2;
+    executeSmoothScroll(cvListElement, target, "Left", newIndex, 300);
+  }, [scollableRef, selected, cvListElement, isActive, data, executeSmoothScroll, isMobile]);
   const scrollTimeoutRef = useRef(null);
   useEffect(() => {
     const div = scollableRef.current;
-    if (!div || !normalizeScroll) return;
+    if (!div) return;
     const handleScroll = () => {
       if (scrollTimeoutRef.current) {
         clearTimeout(scrollTimeoutRef.current);
       }
       scrollTimeoutRef.current = setTimeout(() => {
-        calculateScroll({ normalizeScroll, cvListElement });
-      }, 50); // Faster check (was 150)
+        calculateScroll();
+      }, 50);
     };
     div.addEventListener("scroll", handleScroll);
     return () => {
@@ -67,7 +50,7 @@ const useScrollHandler = ({
         clearTimeout(scrollTimeoutRef.current);
       }
     };
-  }, [cvListElement, scollableRef, normalizeScroll, calculateScroll]);
+  }, [scollableRef, calculateScroll]);
 };
 
 export default useScrollHandler;

@@ -133,18 +133,19 @@ const CVList = ({ isActive }) => {
 
   useScrollHandler({
     scollableRef: scrollableRef,
-    normalizeScroll,
     selected,
     cvListElement,
     isActive,
     data,
     executeSmoothScroll,
+    isMobile,
   });
   const menuClicked = useMenuClick({
-    normalizeScroll,
     cvListElement,
     scollableRef: scrollableRef,
     executeSmoothScroll,
+    data,
+    isMobile,
   });
 
   const { currentPage } = useSelector((state) => state.ui);

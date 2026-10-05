@@ -1,36 +1,44 @@
 import { useCallback } from "react";
 
 const useMenuClick = ({
-  normalizeScroll,
   cvListElement,
   scollableRef,
   executeSmoothScroll,
+  data,
+  isMobile,
 }) => {
   const menuClicked = useCallback(
     (index) => {
-      if (!normalizeScroll) return;
       const scrollableDivElement = scollableRef.current;
-      if (!cvListElement || !scrollableDivElement) {
+      const button = cvListElement?.children[index + (isMobile ? 1 : 0)];
+      const section = document.getElementById(data[index]?.name);
+      if (!button || !section || !scrollableDivElement) {
         return;
       }
-      const [cvListScroll, divScroll] = normalizeScroll;
+
+      const menuTarget = button.offsetLeft -
+        (cvListElement.clientWidth - button.offsetWidth) / 2;
+      const sectionTop = section.getBoundingClientRect().top -
+        scrollableDivElement.getBoundingClientRect().top +
+        scrollableDivElement.scrollTop;
+      const sectionTarget = Math.max(0, sectionTop - 100);
 
       executeSmoothScroll(
         cvListElement,
-        cvListScroll[index] - cvListScroll[0],
+        menuTarget,
         "Left",
         index,
-        1000
+        400
       );
       executeSmoothScroll(
         scrollableDivElement,
-        divScroll[index] - divScroll[0] + 80,
+        sectionTarget,
         "Top",
         index,
-        1000
+        500
       );
     },
-    [normalizeScroll, cvListElement, scollableRef, executeSmoothScroll]
+    [cvListElement, scollableRef, executeSmoothScroll, data, isMobile]
   );
 
   return menuClicked;

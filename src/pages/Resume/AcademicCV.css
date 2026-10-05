@@ -604,6 +604,38 @@
   overflow: hidden;
 }
 
+.ResearchInterests,
+.Conference,
+.Awards,
+.Teaching,
+.Skills,
+.Qualifications,
+.Papers {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(212, 157, 129, 0.6) transparent;
+}
+
+.ResearchInterests::-webkit-scrollbar,
+.Conference::-webkit-scrollbar,
+.Awards::-webkit-scrollbar,
+.Teaching::-webkit-scrollbar,
+.Skills::-webkit-scrollbar,
+.Qualifications::-webkit-scrollbar,
+.Papers::-webkit-scrollbar {
+  width: 4px;
+}
+
+.ResearchInterests::-webkit-scrollbar-thumb,
+.Conference::-webkit-scrollbar-thumb,
+.Awards::-webkit-scrollbar-thumb,
+.Teaching::-webkit-scrollbar-thumb,
+.Skills::-webkit-scrollbar-thumb,
+.Qualifications::-webkit-scrollbar-thumb,
+.Papers::-webkit-scrollbar-thumb {
+  background: rgba(212, 157, 129, 0.6);
+  border-radius: 4px;
+}
+
 /* 
 .Qualifications {
   -webkit-backdrop-filter: blur(5px);
@@ -1425,11 +1457,10 @@
 
 .MoreInfoBlur {
   position: absolute;
-  width: 100vw;
-  height: 270vh;
+  width: 1px;
   left: 0;
   top: 0;
-  display: none;
+  pointer-events: none;
 }
 
 .More-Paper-Info {
@@ -1480,4 +1511,3 @@
     padding-bottom: 10px;
   }
 }
-

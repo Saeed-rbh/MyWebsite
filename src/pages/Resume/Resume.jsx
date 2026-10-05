@@ -15,7 +15,6 @@ import SEO from "../../components/SEO/SEO";
 
 // Inner component that uses the scrollable ref
 const AcademicCVContent = () => {
-  const EXTRA_SPACE = 120;
   const elementSize = useElementSize("AcademicCV-M");
   const dispatch = useDispatch();
   const scrollableRef = useScrollableRef();
@@ -34,12 +33,10 @@ const AcademicCVContent = () => {
   const conditionData = data.length > 0;
   const conditionStage = stages.length > 0 && elementSize.width > 10;
 
-  const lastValue = useMemo(() => {
+  const lastSectionTop = useMemo(() => {
     const lastElement = data.length ? data[data.length - 1] : null;
 
-    return lastElement
-      ? lastElement.top + lastElement.height + EXTRA_SPACE
-      : 1000;
+    return lastElement ? lastElement.top : 1000;
   }, [data]);
 
   const moreAcademicInfoStyle = useSpring({
@@ -97,7 +94,7 @@ const AcademicCVContent = () => {
                 <MainTitle size={data[0]?.size[1]} />
               </>
             )}
-            {conditionStage && <MoreInfoAcademic lastValue={lastValue} />}
+            {conditionStage && <MoreInfoAcademic lastSectionTop={lastSectionTop} />}
           </animated.div>
         </div>
       )}

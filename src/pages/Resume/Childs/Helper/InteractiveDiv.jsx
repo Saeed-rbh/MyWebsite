@@ -98,7 +98,7 @@ const InteractiveDiv = (props) => {
   const [adjustedTop, setAdjustedTop] = useState(
     top + (!stages[1] ? adjustTop : !stages[2] ? -60 : 0)
   );
-  const element = document.getElementById("MoreInfoAcademic");
+  const element = scollableRef.current;
   const elementSize = useElementSize("MoreInfoAcademic").width;
   const windowHeight = useElementSize("AcademicCV-M").height;
   const marginTop =
@@ -107,6 +107,7 @@ const InteractiveDiv = (props) => {
       : 0;
 
   const ModifyTop = 90; // Define locally or import constant
+  const bottomClearance = 80;
 
   const [activeHeight, setActiveHeight] = useState(size[0]);
   const [fullView, setFullView] = useState(false);
@@ -121,17 +122,10 @@ const InteractiveDiv = (props) => {
       const marginOffset = ParentRef.current.offsetTop + 25;
       const totalContentHeight = parentScrollHeight + marginOffset;
 
-      const maxAvailableSpace = viewportHeight - (ModifyTop + 10) - 15;
+      const maxAvailableSpace = Math.max(100, viewportHeight - ModifyTop - 10 - bottomClearance);
 
-      if (maxAvailableSpace > totalContentHeight) {
-        // Fits entirely within the screen without scrolling
-        setActiveHeight(totalContentHeight);
-        setFullView(false);
-      } else {
-        // Doesn't fit, clamp to maximum available space
-        setActiveHeight(maxAvailableSpace > 150 ? maxAvailableSpace : Math.max(150, viewportHeight - ModifyTop - 15));
-        setFullView(true);
-      }
+      setActiveHeight(Math.min(totalContentHeight, maxAvailableSpace));
+      setFullView(totalContentHeight > maxAvailableSpace);
     };
 
     // Calculate immediately
@@ -144,6 +138,7 @@ const InteractiveDiv = (props) => {
 
     // Also observe the element's children if possible, as spring might animate them
     resizeObserver.observe(ParentRef.current);
+    if (element) resizeObserver.observe(element);
     Array.from(ParentRef.current.children).forEach(child => {
       resizeObserver.observe(child);
     });
@@ -151,7 +146,7 @@ const InteractiveDiv = (props) => {
     return () => {
       resizeObserver.disconnect();
     };
-  }, [size, ParentRef, element, isActive, marginTop, ModifyTop]);
+  }, [size, ParentRef, element, isActive, marginTop, ModifyTop, bottomClearance]);
 
   // Calculate dynamic blur
   // Starts blurring when component is 50px from the top (offset by menu height approx)
@@ -170,7 +165,8 @@ const InteractiveDiv = (props) => {
     scale: scale,
     border: "2px solid rgba(212, 157, 129, 0.2)",
     marginBottom: stages[1] ? "10px" : "0px",
-    overflow: "hidden",
+    overflowX: "hidden",
+    overflowY: isActive ? "auto" : "hidden",
     zIndex: isActive ? 11 : 10,
   };
 
@@ -192,35 +188,19 @@ const InteractiveDiv = (props) => {
 
   useEffect(() => {
     if (!initial) return;
-    const viewportHeight = window.innerHeight;
+    const viewportHeight = element ? element.clientHeight : window.innerHeight;
+    const visibleTop = scrollTop + ModifyTop + 10;
+    const visibleBottom = scrollTop + viewportHeight - bottomClearance;
     let newAdjustedTop = top + (!stages[1] ? adjustTop : !stages[2] ? -60 : 0);
 
     if (isActive) {
-      if (!fullView) {
-        // Component is short enough to fit on screen.
-        // It wants to be at `newAdjustedTop`.
-        // However, if `newAdjustedTop + activeHeight` > `scrollTop + viewportHeight - 15px`, it should slide UP to fit.
-        // Also, it should NEVER slide higher than just below the menu (`scrollTop + ModifyTop + 10`).
-
-        const idealBottom = newAdjustedTop + activeHeight;
-        const maxBottom = scrollTop + viewportHeight - 15;
-
-        if (idealBottom > maxBottom) {
-          // Slide it up so its bottom matches the viewport bottom margin
-          newAdjustedTop -= (idealBottom - maxBottom);
-        }
-
-        // Clamp top to never overlap the menu
-        newAdjustedTop = Math.max(newAdjustedTop, scrollTop + ModifyTop + 10);
-      } else {
-        // Align to just below the header (ModifyTop) + 10px padding
-        newAdjustedTop = scrollTop + ModifyTop + 10;
-      }
+      newAdjustedTop = fullView
+        ? visibleTop
+        : Math.max(visibleTop, Math.min(newAdjustedTop, visibleBottom - activeHeight));
     }
 
-    console.log("InteractiveDiv Debug:", { name, isActive, fullView, activeHeight, newAdjustedTop });
     setAdjustedTop(newAdjustedTop);
-  }, [isActive, size, top, scrollTop, stages, activeHeight, fullView, name]); // Added fullView
+  }, [isActive, size, top, scrollTop, stages, activeHeight, fullView, element, adjustTop, bottomClearance]);
 
   // NEW: Calculate dynamic top/height strings
   const dynamicHeight = isActive
