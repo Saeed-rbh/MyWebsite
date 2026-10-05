@@ -46,6 +46,7 @@
   },
   "scripts": {
     "prebuild": "node scripts/generate-journal.mjs",
+    "postbuild": "node scripts/generate-seo-pages.mjs",
     "dev": "vite",
     "cms": "node server/cms.js",
     "start": "vite",

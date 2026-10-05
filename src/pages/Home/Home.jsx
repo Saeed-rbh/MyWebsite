@@ -97,7 +97,6 @@ const HomePage = () => {
   const currentPopup = popupsData[currentPopupIndex];
 
   return (
-    visibility && (
       <>
         <div
           className={styles.container}
@@ -156,7 +155,6 @@ const HomePage = () => {
           />
         </div>
       </>
-    )
   );
 };
 export default HomePage;

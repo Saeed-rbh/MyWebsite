@@ -1,5 +1,21 @@
 {
+    "redirects": [
+        { "source": "/journal", "destination": "/journal/", "permanent": true },
+        { "source": "/work-story", "destination": "/R&D-Portfolio", "permanent": true },
+        { "source": "/academiccv", "destination": "/AcademicCV", "permanent": true }
+    ],
+    "headers": [
+        { "source": "/admin", "headers": [{ "key": "X-Robots-Tag", "value": "noindex" }] },
+        { "source": "/login", "headers": [{ "key": "X-Robots-Tag", "value": "noindex" }] },
+        { "source": "/Mafia", "headers": [{ "key": "X-Robots-Tag", "value": "noindex" }] }
+    ],
     "rewrites": [
+        { "source": "/R&D-Portfolio", "destination": "/R&D-Portfolio/index.html" },
+        { "source": "/AcademicCV", "destination": "/AcademicCV/index.html" },
+        { "source": "/Graphene", "destination": "/Graphene/index.html" },
+        { "source": "/research-progress", "destination": "/research-progress/index.html" },
+        { "source": "/journal/", "destination": "/journal/index.html" },
+        { "source": "/journal/:slug/", "destination": "/journal/:slug/index.html" },
         {
             "source": "/(.*)",
             "destination": "/index.html"

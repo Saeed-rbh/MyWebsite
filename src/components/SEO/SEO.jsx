@@ -1,21 +1,26 @@
 import React from "react";
 import { Helmet } from "react-helmet-async";
+import { useLocation } from "react-router-dom";
 
-const SEO = ({ title, description, name, type }) => {
+const SEO = ({ title, description, type }) => {
+    const { pathname } = useLocation();
+    const canonicalPath = pathname.toLowerCase() === "/academiccv" ? "/AcademicCV"
+        : pathname === "/journal" ? "/journal/"
+        : pathname.startsWith("/journal/") && !pathname.endsWith("/") ? `${pathname}/`
+        : pathname;
+    const canonical = `https://saeedarabha.com${canonicalPath}`;
+
     return (
         <Helmet>
-            {/* Standard metadata tags */}
             <title>{title}</title>
             <meta name="description" content={description} />
-
-            {/* Facebook tags */}
+            <link rel="canonical" href={canonical} />
             <meta property="og:type" content={type} />
+            <meta property="og:site_name" content="Saeed Arabha" />
+            <meta property="og:url" content={canonical} />
             <meta property="og:title" content={title} />
             <meta property="og:description" content={description} />
-
-            {/* Twitter tags */}
-            <meta name="twitter:creator" content={name} />
-            <meta name="twitter:card" content={type} />
+            <meta name="twitter:card" content="summary" />
             <meta name="twitter:title" content={title} />
             <meta name="twitter:description" content={description} />
         </Helmet>

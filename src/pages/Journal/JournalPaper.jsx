@@ -83,13 +83,19 @@ export default function JournalPaper() {
   const readingMinutes = Math.max(1, Math.ceil(narrative.split(/\s+/).length / 180));
   const articleSchema = {
     "@context": "https://schema.org",
-    "@type": "ScholarlyArticle",
-    headline: paper.title,
-    author: paper.authors.map((name) => ({ "@type": "Person", name })),
-    datePublished: String(paper.year),
-    isPartOf: { "@type": "Periodical", name: paper.journal },
-    url: paper.url,
-    abstract: paper.summary,
+    "@type": "Article",
+    headline: editorial.headline,
+    description: paper.summary,
+    author: { "@type": "Person", name: "Saeed Arabha" },
+    mainEntityOfPage: `https://saeedarabha.com/journal/${paper.slug}/`,
+    about: {
+      "@type": "ScholarlyArticle",
+      headline: paper.title,
+      author: paper.authors.map((name) => ({ "@type": "Person", name })),
+      datePublished: String(paper.year),
+      isPartOf: { "@type": "Periodical", name: paper.journal },
+      url: paper.url,
+    },
   };
 
   return (

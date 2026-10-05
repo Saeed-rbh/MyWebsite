@@ -83,8 +83,7 @@ function AppContent({ onRouteReady }) {
       {visibility && !isDashboard && <Menu />}
       {visibility && !isDashboard && <Footer />}
 
-      {visibility && (
-        <ErrorBoundary>
+      <ErrorBoundary>
           <SiteMotionObserver />
           <Suspense fallback={null}>
             <AnimatePresence mode="wait" initial={false} custom={{ direction, reducedMotion }}>
@@ -131,8 +130,7 @@ function AppContent({ onRouteReady }) {
               </motion.div>
             </AnimatePresence>
           </Suspense>
-        </ErrorBoundary>
-      )}
+      </ErrorBoundary>
     </div>
   );
 }
