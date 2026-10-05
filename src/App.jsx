@@ -1,5 +1,5 @@
 import "./App.css";
-import React, { lazy, Suspense, useEffect, useRef } from "react";
+import React, { lazy, Suspense, useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import { useSelector } from "react-redux";
 import { BrowserRouter as Router, Navigate, Route, Routes, useLocation } from "react-router-dom";
@@ -15,10 +15,11 @@ import ErrorBoundary from "./components/ErrorBoundary/ErrorBoundary";
 import BackgroundLattice from "./components/BackgroundLattice/BackgroundLattice";
 import SiteMotionObserver from "./components/SiteMotion/SiteMotionObserver";
 
-import FallbackLoader from "./Loader/FallbackLoader";
 const AcademicCV = lazy(() => import("./pages/Resume/Resume"));
 const HomePage = lazy(() => import("./pages/Home/Home"));
 const WorkStory = lazy(() => import("./pages/WorkStory/WorkStory"));
+const Journal = lazy(() => import("./pages/Journal/Journal"));
+const JournalPaper = lazy(() => import("./pages/Journal/JournalPaper"));
 import Loader from "./Loader/Loader";
 const AdminDashboard = lazy(() => import("./pages/Admin/AdminDashboard"));
 const Login = lazy(() => import("./pages/Admin/Login"));
@@ -27,7 +28,14 @@ const Mafia = lazy(() => import("./pages/Mafia/Mafia"));
 
 import { HelmetProvider } from "react-helmet-async";
 
-function AppContent() {
+function RouteReady({ onReady }) {
+  useEffect(() => {
+    onReady(true);
+  }, [onReady]);
+  return null;
+}
+
+function AppContent({ onRouteReady }) {
   useUpdateVariable();
   const { visibility, isMenuOpen } = useSelector((state) => state.ui);
   const location = useLocation();
@@ -70,15 +78,15 @@ function AppContent() {
       {/* Show Mouse everywhere except Admin/Login */}
       {visibility && !isDashboard && <Mouse />}
 
-      {/* Show Header, Menu, Footer ONLY if NOT in dashboard AND NOT in story pages AND NOT Mafia */}
-      {visibility && !isDashboard && (!isStoryPage || isWorkStoryPage) && !isMafia && <Header />}
-      {visibility && !isDashboard && (!isStoryPage || isWorkStoryPage) && !isMafia && <Menu />}
-      {visibility && !isDashboard && !isMafia && <Footer />}
+      {/* Use one shared header and menu across the public portfolio pages. */}
+      {visibility && !isDashboard && <Header />}
+      {visibility && !isDashboard && <Menu />}
+      {visibility && !isDashboard && <Footer />}
 
       {visibility && (
         <ErrorBoundary>
           <SiteMotionObserver />
-          <Suspense fallback={<FallbackLoader />}>
+          <Suspense fallback={null}>
             <AnimatePresence mode="wait" initial={false} custom={{ direction, reducedMotion }}>
               <motion.div
                 key={location.pathname}
@@ -106,6 +114,9 @@ function AppContent() {
                 <Routes location={location}>
                   <Route exact path="/" element={<HomePage />} />
                   <Route path="/R&D-Portfolio" element={<WorkStory />} />
+                  <Route path="/journal/:slug/" element={<JournalPaper />} />
+                  <Route path="/journal/" element={<Journal />} />
+                  <Route path="/journal" element={<Navigate to="/journal/" replace />} />
                   <Route path="/R%26D-Portfolio" element={<Navigate to="/R&D-Portfolio" replace />} />
                   <Route path="/work-story" element={<Navigate to="/R&D-Portfolio" replace />} />
                   <Route path="/AcademicCV" element={<AcademicCV />} />
@@ -116,6 +127,7 @@ function AppContent() {
                   <Route exact path="/admin" element={<AdminDashboard />} />
                   <Route exact path="/login" element={<Login />} />
                 </Routes>
+                <RouteReady onReady={onRouteReady} />
               </motion.div>
             </AnimatePresence>
           </Suspense>
@@ -126,12 +138,14 @@ function AppContent() {
 }
 
 function App() {
+  const [routeReady, setRouteReady] = useState(false);
+
   return (
     <HelmetProvider>
       <Router store={store}>
-        <Loader />
+        <Loader routeReady={routeReady} />
         {/*<ScrollToNavigate /> {/* Scroll/Drag Detector */}
-        <AppContent />
+        <AppContent onRouteReady={setRouteReady} />
       </Router>
     </HelmetProvider>
   );

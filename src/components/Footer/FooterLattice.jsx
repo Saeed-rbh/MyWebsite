@@ -10,12 +10,12 @@ import React, { useEffect, useRef, useState } from "react";
 const FooterLattice = () => {
   const canvasRef = useRef(null);
   const [isMobile, setIsMobile] = useState(
-    typeof window !== "undefined" ? window.innerWidth < 640 : false
+    typeof window !== "undefined" ? window.innerWidth <= 640 : false
   );
 
   useEffect(() => {
     const handleResize = () => {
-      setIsMobile(window.innerWidth < 640);
+      setIsMobile(window.innerWidth <= 640);
     };
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
@@ -28,8 +28,9 @@ const FooterLattice = () => {
     if (!ctx) return;
 
     let animId;
+    const motionPreference = window.matchMedia("(prefers-reduced-motion: reduce)");
 
-    const W = isMobile ? 110 : 72;
+    const W = isMobile ? 64 : 72;
     const H = isMobile ? 56 : 60;
     const dpr = window.devicePixelRatio || 1;
     canvas.width = W * dpr;
@@ -38,11 +39,11 @@ const FooterLattice = () => {
 
     const rings = [
       // Main ring — centered, full opacity
-      { x: W * 0.42, y: H * 0.5, radius: 18, opacity: 0.55, angle: 0, vAngle: 0.004 },
+      { x: W * 0.42, y: H * 0.5, radius: isMobile ? 15 : 18, opacity: 0.55, angle: 0, vAngle: 0.004 },
       // Small ghost ring — upper right
-      { x: W * 0.82, y: H * 0.22, radius: 9, opacity: 0.2, angle: 1.0, vAngle: 0.006 },
+      { x: W * 0.82, y: H * 0.22, radius: isMobile ? 7 : 9, opacity: 0.2, angle: 1.0, vAngle: 0.006 },
       // Small ghost ring — lower left, partially off-screen
-      { x: W * 0.08, y: H * 0.78, radius: 8, opacity: 0.15, angle: 2.5, vAngle: 0.005 },
+      { x: W * 0.08, y: H * 0.78, radius: isMobile ? 6 : 8, opacity: 0.15, angle: 2.5, vAngle: 0.005 },
     ];
 
     const drawRing = (r) => {
@@ -78,15 +79,24 @@ const FooterLattice = () => {
       ctx.clearRect(0, 0, W, H);
 
       rings.forEach((r) => {
-        r.angle += r.vAngle;
+        if (!motionPreference.matches) r.angle += r.vAngle;
         drawRing(r);
       });
 
-      animId = requestAnimationFrame(render);
+      if (!motionPreference.matches) animId = requestAnimationFrame(render);
+    };
+
+    const handleMotionChange = () => {
+      cancelAnimationFrame(animId);
+      render();
     };
 
     render();
-    return () => cancelAnimationFrame(animId);
+    motionPreference.addEventListener("change", handleMotionChange);
+    return () => {
+      cancelAnimationFrame(animId);
+      motionPreference.removeEventListener("change", handleMotionChange);
+    };
   }, [isMobile]);
 
   return (
@@ -96,7 +106,7 @@ const FooterLattice = () => {
         position: "absolute",
         left: 0,
         top: 0,
-        width: isMobile ? "110px" : "72px",
+        width: isMobile ? "64px" : "72px",
         height: isMobile ? "56px" : "60px",
         pointerEvents: "none",
         borderRadius: "100px 0 0 100px",

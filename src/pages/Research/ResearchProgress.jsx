@@ -2,7 +2,6 @@ import React, { useState, useEffect, useRef, useCallback } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import styled from "@emotion/styled";
 import { useWheel, useDrag } from "@use-gesture/react";
-import Header from "../../components/Header/Header";
 
 // --- Data ---
 const timelineData = [
@@ -921,7 +920,6 @@ export default function ResearchProgress() {
             exit={{ opacity: 0, y: -100, scale: 0.9, filter: "blur(10px)", transition: { duration: 0.5 } }}
             transition={{ type: "spring", stiffness: 50, damping: 15, mass: 1 }}
         >
-            <Header />
             <AnimatePresence>
                 {activeSection === 0 && (
                     <motion.div

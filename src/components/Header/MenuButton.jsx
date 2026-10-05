@@ -3,17 +3,11 @@ import { animated, useSpring } from "react-spring";
 import { useDispatch } from "react-redux";
 import { updateMenuOrigin } from "../../features/ui/uiSlice";
 
-const useMenuAnimation = (isMenuOpen, isMenuIconHovered, TB, isHomePage, reducedMotion) => {
+const useMenuAnimation = (isMenuOpen, isMenuIconHovered, topBar, reducedMotion) => {
   return useSpring({
-    width: isHomePage
-      ? isMenuOpen ? 22 : isMenuIconHovered ? 26 : TB ? 26 : 17
-      : !isMenuOpen ? (isMenuIconHovered ? 30 : 15) : 15,
-    transform: isHomePage
-      ? `translate3d(-50%, ${isMenuOpen ? 0 : TB ? -5 : 5}px, 0) rotate(${isMenuOpen ? TB ? 45 : -45 : 0}deg)`
-      : isMenuOpen
-        ? TB ? "translateY(6.5px) rotate(45deg)" : "translateY(-6.5px) rotate(-45deg)"
-        : "translateY(0px) rotate(0deg)",
-    height: isHomePage ? 1.5 : !isMenuOpen ? 2 : 3,
+    width: isMenuOpen ? 22 : isMenuIconHovered ? 26 : topBar ? 26 : 17,
+    transform: `translate3d(-50%, ${isMenuOpen ? 0 : topBar ? -5 : 5}px, 0) rotate(${isMenuOpen ? topBar ? 45 : -45 : 0}deg)`,
+    height: 1.5,
     config: { mass: .7, tension: 230, friction: 25 },
     immediate: reducedMotion,
   });
@@ -21,22 +15,19 @@ const useMenuAnimation = (isMenuOpen, isMenuIconHovered, TB, isHomePage, reduced
 
 const MenuButton = ({
   isMenuOpen,
-  isHomePage,
   reducedMotion,
   handleButtonClick,
   MenuRef,
   MenuStyle,
-  contactInfoAnimation,
 }) => {
   const dispatch = useDispatch();
   const [isMenuIconHovered, setIsMenuIconHovered] = useState(false);
 
-  const topBarAnimation = useMenuAnimation(isMenuOpen, isMenuIconHovered, true, isHomePage, reducedMotion);
+  const topBarAnimation = useMenuAnimation(isMenuOpen, isMenuIconHovered, true, reducedMotion);
   const bottomBarAnimation = useMenuAnimation(
     isMenuOpen,
-    isHomePage ? isMenuIconHovered : !isMenuIconHovered,
+    isMenuIconHovered,
     false,
-    isHomePage,
     reducedMotion
   );
 
@@ -54,7 +45,7 @@ const MenuButton = ({
       aria-label={isMenuOpen ? "Close navigation" : "Open navigation"}
       aria-expanded={isMenuOpen}
       ref={MenuRef}
-      style={isHomePage ? entrance : { ...MenuStyle, ...contactInfoAnimation }}
+      style={{ ...MenuStyle, ...entrance }}
       className="HomePage-M-T-R"
       onClick={(event) => {
         if (!isMenuOpen) {

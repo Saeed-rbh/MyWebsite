@@ -122,7 +122,7 @@ const HomePage = () => {
                 <span className={styles.asideLabel}>MATERIALS · PROCESS · METROLOGY</span>
                 <ol className={styles.asideStatement} aria-label="Materials, process, and metrology">
                   <li><span className={styles.progressCue} aria-hidden="true"><i /><i /><i /></span><span className={styles.progressWord}><span className={styles.desktopCopy}>develop materials</span><span className={styles.mobileCopy}>develop</span></span></li>
-                  <li><span className={styles.progressCue} aria-hidden="true"><i /><i /><i /></span><span className={styles.progressWord}><span className={styles.desktopCopy}>engineer processes</span><span className={styles.mobileCopy}>refine</span></span></li>
+                  <li><span className={styles.progressCue} aria-hidden="true"><i /><i /><i /></span><span className={styles.progressWord}><span className={styles.desktopCopy}>engineer processes</span><span className={styles.mobileCopy}>engineer</span></span></li>
                   <li><span className={styles.progressCue} aria-hidden="true"><i /><i /><i /></span><span className={styles.progressWord}><span className={styles.desktopCopy}>measure quality</span><span className={styles.mobileCopy}>measure</span></span></li>
                 </ol>
               </div>

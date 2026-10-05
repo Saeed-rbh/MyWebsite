@@ -103,6 +103,16 @@ body {
   -webkit-tap-highlight-color: transparent;
 }
 
+html.site-document-exit .App {
+  opacity: 0;
+  transform: translate3d(0, -16px, 0);
+  filter: blur(2px);
+  pointer-events: none;
+  transition: opacity 240ms cubic-bezier(.4, 0, .7, 1),
+    transform 240ms cubic-bezier(.4, 0, .7, 1),
+    filter 240ms cubic-bezier(.4, 0, .7, 1);
+}
+
 .RouteMotionFrame {
   position: absolute;
   inset: 0;

@@ -1,0 +1,145 @@
+/* Shared portfolio header: the approved home-page treatment on every public route. */
+.HomeLandingHeader .HomePage-M-T-L button,
+.HomeLandingHeader .HomePage-M-T-R {
+  display: flex;
+  align-items: center;
+  background: none;
+  border: 0;
+  color: #faf9f1;
+  cursor: pointer;
+}
+.HomeLandingHeader .HomePage-M-T-L button p,
+.HomeLandingHeader .HomePage-M-T-L button b { color: #fff; }
+.HomeLandingHeader .MenuIcon-T,
+.HomeLandingHeader .MenuIcon-B { border-radius: 15px; }
+
+/* Landing header: balanced size and restrained entrance motion. */
+.HomePage-M-T-H.HomeLandingHeader {
+  position: fixed;
+  display: flex;
+  justify-content: space-between;
+  z-index: 132;
+  opacity: .9;
+  inset: 20px clamp(24px, 5.7vw, 90px) auto;
+  width: auto;
+  height: 44px;
+  padding: 0;
+  align-items: center;
+  pointer-events: none;
+}
+.HomeLandingHeader > .MainHeader { display: none; }
+.HomeLandingHeader .HomePage-M-T-L {
+  flex: 0 0 auto;
+  position: relative;
+  top: auto;
+  left: auto;
+  align-items: flex-start;
+  pointer-events: auto;
+}
+.HomeLandingHeader .HomePage-M-T-L > div:last-child { transform: none !important; }
+.HomeLandingHeader .HomePage-M-T-L button {
+  gap: 4px;
+  font-family: Rubik, sans-serif;
+  min-height: 44px;
+  padding: 0;
+  border-radius: 5px;
+}
+.HomeLandingHeader .HomePage-M-T-L button p,
+.HomeLandingHeader .HomePage-M-T-L button b {
+  margin: 0;
+  font-size: 15px;
+  line-height: 1;
+  letter-spacing: -.025em;
+  transition: color 420ms ease;
+  animation: headerNameArrives 900ms cubic-bezier(.19, 1, .22, 1) both;
+}
+.HomeLandingHeader .HomePage-M-T-L button p { font-weight: 500; animation-delay: 280ms; }
+.HomeLandingHeader .HomePage-M-T-L button b { font-weight: 300; animation-delay: 370ms; }
+.HomeLandingHeader .HomePage-M-T-L button svg { margin-right: 8px; transition: transform 420ms cubic-bezier(.22, 1, .36, 1); }
+.HomeLandingHeader .animated-logo-path { animation: landingLogoDraws 1800ms cubic-bezier(.22, 1, .36, 1) 120ms both; }
+.HomeLandingHeader .HomePage-M-T-L button:hover svg { transform: rotate(-4deg) scale(1.04); }
+.HomeLandingHeader .HomePage-M-T-L button:hover p,
+.HomeLandingHeader .HomePage-M-T-L button:hover b { color: #d49d81; }
+.HomeLandingHeader .HomePage-M-T-R {
+  flex: 0 0 44px;
+  position: relative;
+  top: auto;
+  right: -9px;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  pointer-events: auto;
+  border-radius: 50%;
+  transition: background-color 420ms ease;
+}
+.HomeLandingHeader .HomePage-M-T-R:hover { background: rgba(212, 157, 129, .06); }
+.HomeLandingHeader .MenuIcon-T,
+.HomeLandingHeader .MenuIcon-B {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  margin: -1px 0 0;
+  background: #edc7af;
+  transform-origin: center;
+}
+.HomeLandingHeader button:focus-visible,
+.HomePage-M-T-R:focus-visible { outline: 1px solid #d49d81; outline-offset: 4px; }
+@keyframes headerNameArrives {
+  from { opacity: 0; translate: 0 4px; }
+  to { opacity: 1; translate: 0 0; }
+}
+@keyframes landingLogoDraws {
+  from { stroke-dashoffset: 2500; fill: transparent; stroke: #d49d81; }
+  to { stroke-dashoffset: 0; fill: rgba(212, 157, 129, .12); stroke: #d49d81; }
+}
+@media (max-width: 640px) {
+  .HomePage-M-T-H.HomeLandingHeader { top: 16px; }
+  .HomeLandingHeader .HomePage-M-T-L button svg { width: 24px; height: 24px; margin-right: 6px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .HomeLandingHeader .animated-logo-path { animation: none; stroke-dashoffset: 0; fill: rgba(212, 157, 129, .12); }
+  .HomeLandingHeader .HomePage-M-T-L button p,
+  .HomeLandingHeader .HomePage-M-T-L button b { animation: none; }
+  .HomeLandingHeader button,
+  .HomeLandingHeader svg { transition: none !important; }
+}
+
+@media (max-width: 640px) {
+  .HomeLandingHeader .HomePage-M-T-L button p,
+  .HomeLandingHeader .HomePage-M-T-L button b { font-size: 14px; }
+}
+
+/* Keep the original identity above the menu reveal. */
+.HomeLandingHeader .HomePage-M-T-L {
+  translate: 0 0;
+  transition: translate 600ms cubic-bezier(.22, 1, .36, 1);
+}
+.HomeLandingHeader.NavigationOpen .HomePage-M-T-L { translate: 0 6px; }
+.HomeLandingHeader.NavigationOpen .HomePage-M-T-R { opacity: 0 !important; pointer-events: none !important; }
+.HomeLandingHeader .header-identity {
+  display: flex;
+  align-items: center;
+  min-width: 0;
+}
+.HomeLandingHeader .header-section-label {
+  display: inline-flex;
+  align-items: center;
+  min-width: 0;
+  margin-left: 12px;
+  color: #d49d81;
+  font: 300 12px/1.2 Rubik, sans-serif;
+  letter-spacing: .05em;
+  white-space: nowrap;
+}
+.HomeLandingHeader .header-section-divider {
+  margin-right: 12px;
+  color: rgba(250, 249, 241, .55);
+  font-size: 17px;
+}
+@media (max-width: 640px) {
+  .HomeLandingHeader .header-section-label { margin-left: 7px; font-size: 10px; letter-spacing: 0; }
+  .HomeLandingHeader .header-section-divider { margin-right: 7px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .HomeLandingHeader .HomePage-M-T-L { transition: none; }
+}

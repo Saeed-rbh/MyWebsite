@@ -1,0 +1,282 @@
+{
+  "cfe-shock-test": {
+    "src": "/journal-figures/cfe-shock-test.jpg",
+    "width": 1365,
+    "height": 639,
+    "source": "Figure 3",
+    "page": 4,
+    "sourceFile": "Adv Eng Mater - 2026 - Islam - Compressible Flow Exfoliation of Two\u2010Dimensional Nanomaterials  Insights Into Layer.pdf"
+  },
+  "cfe-nozzle-speed": {
+    "src": "/journal-figures/cfe-nozzle-speed.jpg",
+    "width": 1398,
+    "height": 591,
+    "source": "Figure 4",
+    "page": 5,
+    "sourceFile": "Adv Eng Mater - 2026 - Islam - Compressible Flow Exfoliation of Two\u2010Dimensional Nanomaterials  Insights Into Layer.pdf"
+  },
+  "cfe-throat-force": {
+    "src": "/journal-figures/cfe-throat-force.jpg",
+    "width": 624,
+    "height": 618,
+    "source": "Figure 9",
+    "page": 9,
+    "sourceFile": "Adv Eng Mater - 2026 - Islam - Compressible Flow Exfoliation of Two\u2010Dimensional Nanomaterials  Insights Into Layer.pdf"
+  },
+  "cold-to-hot-setup": {
+    "src": "/journal-figures/cold-to-hot-setup.jpg",
+    "width": 726,
+    "height": 501,
+    "source": "Figure 1",
+    "page": 2,
+    "sourceFile": "s41598-023-31583-y.pdf"
+  },
+  "cold-to-hot-reversal": {
+    "src": "/journal-figures/cold-to-hot-reversal.jpg",
+    "width": 1278,
+    "height": 912,
+    "source": "Figure 2",
+    "page": 3,
+    "sourceFile": "s41598-023-31583-y.pdf"
+  },
+  "cold-to-hot-fluxes": {
+    "src": "/journal-figures/cold-to-hot-fluxes.jpg",
+    "width": 1479,
+    "height": 420,
+    "source": "Figure 3",
+    "page": 5,
+    "sourceFile": "s41598-023-31583-y.pdf"
+  },
+  "cold-to-hot-uncertainty": {
+    "src": "/journal-figures/cold-to-hot-uncertainty.jpg",
+    "width": 717,
+    "height": 489,
+    "source": "Figure 6",
+    "page": 8,
+    "sourceFile": "s41598-023-31583-y.pdf"
+  },
+  "xn4-conductivity": {
+    "src": "/journal-figures/xn4-conductivity.jpg",
+    "width": 1104,
+    "height": 999,
+    "source": "Figure 6",
+    "page": 6,
+    "sourceFile": "d3cp00746d.pdf"
+  },
+  "xn4-phonons": {
+    "src": "/journal-figures/xn4-phonons.jpg",
+    "width": 1032,
+    "height": 945,
+    "source": "Figure 7",
+    "page": 7,
+    "sourceFile": "d3cp00746d.pdf"
+  },
+  "xn4-tension": {
+    "src": "/journal-figures/xn4-tension.jpg",
+    "width": 1104,
+    "height": 987,
+    "source": "Figure 8",
+    "page": 7,
+    "sourceFile": "d3cp00746d.pdf"
+  },
+  "xn4-stiffness": {
+    "src": "/journal-figures/xn4-stiffness.jpg",
+    "width": 726,
+    "height": 324,
+    "source": "Figure 10",
+    "page": 8,
+    "sourceFile": "d3cp00746d.pdf"
+  },
+  "tio2-diameter": {
+    "src": "/journal-figures/tio2-diameter.jpg",
+    "width": 720,
+    "height": 606,
+    "source": "Figure 6",
+    "page": 5,
+    "sourceFile": "1-s2.0-S0167732221027781-main.pdf"
+  },
+  "tio2-vibrations": {
+    "src": "/journal-figures/tio2-vibrations.jpg",
+    "width": 1383,
+    "height": 765,
+    "source": "Figure 9",
+    "page": 6,
+    "sourceFile": "1-s2.0-S0167732221027781-main.pdf"
+  },
+  "tio2-electrostatics": {
+    "src": "/journal-figures/tio2-electrostatics.jpg",
+    "width": 720,
+    "height": 573,
+    "source": "Figure 10",
+    "page": 6,
+    "sourceFile": "1-s2.0-S0167732221027781-main.pdf"
+  },
+  "graphene-flow-speed": {
+    "src": "/journal-figures/graphene-flow-speed.jpg",
+    "width": 993,
+    "height": 525,
+    "source": "Figure 4",
+    "page": 4,
+    "sourceFile": "jp2c00425.pdf"
+  },
+  "graphene-sliding": {
+    "src": "/journal-figures/graphene-sliding.jpg",
+    "width": 741,
+    "height": 489,
+    "source": "Figure 6",
+    "page": 5,
+    "sourceFile": "jp2c00425.pdf"
+  },
+  "graphene-pressure": {
+    "src": "/journal-figures/graphene-pressure.jpg",
+    "width": 579,
+    "height": 441,
+    "source": "Figure 7",
+    "page": 6,
+    "sourceFile": "jp2c00425.pdf"
+  },
+  "mlip-training": {
+    "src": "/journal-figures/mlip-training.jpg",
+    "width": 924,
+    "height": 918,
+    "source": "Figure 1",
+    "page": 5,
+    "sourceFile": "210903_1_5.0069443.pdf"
+  },
+  "mlip-bulk-comparison": {
+    "src": "/journal-figures/mlip-bulk-comparison.jpg",
+    "width": 1536,
+    "height": 909,
+    "source": "Figure 7",
+    "page": 10,
+    "sourceFile": "210903_1_5.0069443.pdf"
+  },
+  "c2n-phonons": {
+    "src": "/journal-figures/c2n-phonons.jpg",
+    "width": 759,
+    "height": 648,
+    "source": "Figure 4",
+    "page": 4,
+    "sourceFile": "1-s2.0-S001793102100692X-main.pdf"
+  },
+  "c2n-vacancies": {
+    "src": "/journal-figures/c2n-vacancies.jpg",
+    "width": 1569,
+    "height": 1074,
+    "source": "Figure 9",
+    "page": 6,
+    "sourceFile": "1-s2.0-S001793102100692X-main.pdf"
+  },
+  "silicon-temperature": {
+    "src": "/journal-figures/silicon-temperature.jpg",
+    "width": 753,
+    "height": 657,
+    "source": "Figure 6",
+    "page": 4,
+    "sourceFile": "1-s2.0-S0927025621005437-main.pdf"
+  },
+  "silicon-temperature-mechanics": {
+    "src": "/journal-figures/silicon-temperature-mechanics.jpg",
+    "width": 1467,
+    "height": 1200,
+    "source": "Figure 11",
+    "page": 6,
+    "sourceFile": "1-s2.0-S0927025621005437-main.pdf"
+  },
+  "borophene-porosity": {
+    "src": "/journal-figures/borophene-porosity.jpg",
+    "width": 759,
+    "height": 729,
+    "source": "Figure 4",
+    "page": 5,
+    "sourceFile": "1-s2.0-S1359836820333102-main.pdf"
+  },
+  "borophene-rupture": {
+    "src": "/journal-figures/borophene-rupture.jpg",
+    "width": 1218,
+    "height": 1524,
+    "source": "Figure 5",
+    "page": 6,
+    "sourceFile": "1-s2.0-S1359836820333102-main.pdf"
+  },
+  "borophene-stiffness-design": {
+    "src": "/journal-figures/borophene-stiffness-design.jpg",
+    "width": 1569,
+    "height": 663,
+    "source": "Figure 10",
+    "page": 8,
+    "sourceFile": "1-s2.0-S1359836820333102-main.pdf"
+  },
+  "torsion-morphology": {
+    "src": "/journal-figures/torsion-morphology.jpg",
+    "width": 1098,
+    "height": 870,
+    "source": "Figure 3",
+    "page": 3,
+    "sourceFile": "1-s2.0-S2352492819308992-main.pdf"
+  },
+  "torsion-material-comparison": {
+    "src": "/journal-figures/torsion-material-comparison.jpg",
+    "width": 597,
+    "height": 1131,
+    "source": "Figure 4",
+    "page": 4,
+    "sourceFile": "1-s2.0-S2352492819308992-main.pdf"
+  },
+  "torsion-phonons": {
+    "src": "/journal-figures/torsion-phonons.jpg",
+    "width": 594,
+    "height": 579,
+    "source": "Figure 6",
+    "page": 4,
+    "sourceFile": "1-s2.0-S2352492819308992-main.pdf"
+  },
+  "silver-cooling": {
+    "src": "/journal-figures/silver-cooling.jpg",
+    "width": 705,
+    "height": 630,
+    "source": "Figure 2",
+    "page": 5,
+    "sourceFile": "114701_1_online.pdf"
+  },
+  "silver-continuum": {
+    "src": "/journal-figures/silver-continuum.jpg",
+    "width": 948,
+    "height": 735,
+    "source": "Figure 6",
+    "page": 8,
+    "sourceFile": "114701_1_online.pdf"
+  },
+  "silver-shell-fit": {
+    "src": "/journal-figures/silver-shell-fit.jpg",
+    "width": 645,
+    "height": 405,
+    "source": "Figure 7",
+    "page": 9,
+    "sourceFile": "114701_1_online.pdf"
+  },
+  "nanolayer-density-profile": {
+    "src": "/journal-figures/nanolayer-density-profile.jpg",
+    "width": 714,
+    "height": 603,
+    "source": "Figure 4",
+    "page": 4,
+    "sourceFile": "1-s2.0-S0167732218300084-main.pdf"
+  },
+  "nanolayer-model-comparison": {
+    "src": "/journal-figures/nanolayer-model-comparison.jpg",
+    "width": 711,
+    "height": 606,
+    "source": "Figure 8",
+    "page": 6,
+    "sourceFile": "1-s2.0-S0167732218300084-main.pdf"
+  },
+  "nanolayer-viscosity": {
+    "src": "/journal-figures/nanolayer-viscosity.jpg",
+    "width": 708,
+    "height": 606,
+    "source": "Figure 10",
+    "page": 7,
+    "sourceFile": "1-s2.0-S0167732218300084-main.pdf"
+  }
+}

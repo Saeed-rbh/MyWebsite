@@ -10,6 +10,7 @@ import styles from "./Menu.module.css";
 const destinations = [
   { path: "/", title: "Home", detail: "The introduction" },
   { path: "/R&D-Portfolio", title: "R&D portfolio", detail: "Process, evidence, application" },
+  { path: "/journal/", title: "Journal", detail: "Papers and research explained" },
   { path: "/AcademicCV", title: "Academic CV", detail: "Experience, publications, skills" },
 ];
 

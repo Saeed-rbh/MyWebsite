@@ -58,7 +58,7 @@ const MainText = ({ onWordClick }) => {
 
   const words = useMemo(() => tokenize(homeData?.list?.[0]?.text ||
     "I connect process decisions with material quality in my R&D work. In my $(graphene and 2D materials) research, I combine $(process development), $(metrology), $(characterization), and $(computational modeling) to understand how processing shapes structure and quality. My work on $(Compressible Flow Exfoliation) explores scalable production, while $(commercialization) connects the research with industry needs."), [homeData]);
-  const mobileWords = tokenize("I develop $(graphene) processes, then use $(metrology), $(characterization), and $(modeling) to assess material quality.");
+  const mobileWords = tokenize("I work across $(2D materials), $(process development), and $(metrology). I combine experiments, $(characterization), and $(computational modeling) to understand how processing affects material structure and quality. I use those findings to improve scalable production and connect research with industry needs.");
 
   return (
     <div className={styles.container}>

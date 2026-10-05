@@ -6,14 +6,14 @@ import "../../pages/Home/Home.css";
 import "./Footer.css";
 import ContactInfo from "./ContactInfo";
 import ResumeInfo from "./ResumeInfo";
-import { useLocation, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { updateMenu, updateCurrentPage } from "../../actions/Actions";
 import FooterLattice from "./FooterLattice";
+import FooterHoverIcon from "./FooterHoverIcon";
 import { PopupModal } from "react-calendly";
 
 const Footer = () => {
-  const location = useLocation();
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -35,11 +35,11 @@ const Footer = () => {
   const separateContactPill = screenWidth >= 940;
   const footerWidth = mobileFooter
     ? Math.min(520, screenWidth - 36)
-    : separateContactPill ? 490 : Math.min(820, screenWidth - 48);
+    : separateContactPill ? 600 : Math.min(820, screenWidth - 24);
   const footerHeight = mobileFooter ? 56 : 60;
-  const isHomePage = location.pathname === "/";
   const introComplete = useRef(false);
   const [isMouseHover, setMouseHover] = useState([false, null, null]);
+  const [isHoveredJournal, setIsHoveredJournal] = useState(false);
 
   const navigateTo = (path) => {
     dispatch(updateCurrentPage(path));
@@ -91,8 +91,7 @@ const Footer = () => {
   });
 
   return (
-    visibility &&
-    isHomePage && (
+    visibility && (
       <div className="HomePage-M-T-F HomeLandingFooter" inert={isMenuOpen ? true : undefined}>
         <PopupModal
           url="https://calendly.com/arabha-yorku/30min"
@@ -114,7 +113,7 @@ const Footer = () => {
           className="HomeConsole"
         >
           <FooterLattice />
-          <animated.div style={{ ...TextOpenSpring, "--footer-content-width": `${footerWidth - (mobileFooter ? 6 : 48)}px` }} className="home-footer-content">
+          <animated.div style={{ ...TextOpenSpring, "--footer-content-width": `${footerWidth - (mobileFooter ? 6 : separateContactPill ? 48 : 24)}px` }} className="home-footer-content">
             <ResumeInfo
               handleClickCV={handleClickCV}
               handleClickResearch={handleClickResearch}
@@ -122,6 +121,18 @@ const Footer = () => {
               MenuHide={visibility}
               screenWidth={screenWidth}
             />
+            <Link
+              className="footer-journal-link"
+              to="/journal/"
+              onClick={() => { dispatch(updateCurrentPage("/journal/")); dispatch(updateMenu(false)); }}
+              onMouseEnter={() => setIsHoveredJournal(true)}
+              onMouseLeave={() => setIsHoveredJournal(false)}
+              onFocus={() => setIsHoveredJournal(true)}
+              onBlur={() => setIsHoveredJournal(false)}
+            >
+              <FooterHoverIcon kind="journal" isHovered={isHoveredJournal} />
+              <span>JOURNAL</span>
+            </Link>
             <ContactInfo
               isMouseHover={isMouseHover}
               setMouseHover={setMouseHover}

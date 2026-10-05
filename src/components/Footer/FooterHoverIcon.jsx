@@ -33,6 +33,12 @@ const FooterHoverIcon = ({ kind, isHovered }) => {
           <path d="M14.5 3.5V8H19" pathLength="1" style={draw(0.25)} />
           <path d="M9 11h6M9 14h7M9 17h5" pathLength="1" style={draw(0.5)} />
         </>
+      ) : kind === "journal" ? (
+        <>
+          <path d="M6 3.5h8l4 4V20H6a2 2 0 0 1-2-2V5.5a2 2 0 0 1 2-2Z" pathLength="1" style={draw(0)} />
+          <path d="M14 3.5V8h4" pathLength="1" style={draw(0.25)} />
+          <path d="M8 11.5h6M8 14.5h6M8 17.5h4" pathLength="1" style={draw(0.5)} />
+        </>
       ) : (
         <>
           <rect x="3.5" y="3.5" width="17" height="17" rx="3" pathLength="1" style={draw(0)} />

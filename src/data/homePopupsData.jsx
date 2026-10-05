@@ -14,7 +14,7 @@ export const popupsData = [
   {
     id: "2d-nanomaterials",
     shortTitle: "2D Nanomaterials",
-    keywordMatches: ["2d nanomaterials", "graphene and 2d materials", "graphene"],
+    keywordMatches: ["2d materials", "2d nanomaterials", "graphene and 2d materials", "graphene"],
     hash: "2DNanomaterials",
     title: "2D nanomaterials",
     lead: "Material quality starts with understanding the layers.",

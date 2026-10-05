@@ -2,15 +2,13 @@ import React, { useEffect, useState, useCallback, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useSpring, animated, useChain, easings, useTransition } from "react-spring";
 import { useLocation, useNavigate } from "react-router-dom";
-import { TbHomeMove } from "react-icons/tb";
-import { motion, AnimatePresence } from "motion/react";
 
 import { updateMenu } from "../../actions/Actions";
-import HomePage from "../../pages/Home/Home";
 import Logo from "./Logo";
 import MenuButton from "./MenuButton";
 import useHoverMoveEffect from "../../Helper/useHoverMoveEffect";
 import { updateCurrentPage } from "../../actions/Actions";
+import "./Header.css";
 
 const useScrollOpacity = (isResumeClicked) => {
   const [scrollOpacity, setScrollOpacity] = useState(false);
@@ -80,13 +78,10 @@ const Header = () => {
   );
   const scrollOpacity = useScrollOpacity(isResumeClicked);
   const MainRef = useRef(null);
-  const MainStyle = useHoverMoveEffect(MainRef, 100, 0.2);
-
-  const HomeRef = useRef(null);
-  const HomeStyle = useHoverMoveEffect(HomeRef, 100, 0.2);
+  const MainStyle = useHoverMoveEffect(MainRef, 50, 0.2);
 
   const MenuRef = useRef(null);
-  const MenuStyle = useHoverMoveEffect(MenuRef, 100, 0.2);
+  const MenuStyle = useHoverMoveEffect(MenuRef, 50, 0.2);
 
   const [activeSection, setActiveSection] = useState("");
   const [activeGapSlide, setActiveGapSlide] = useState("1");
@@ -237,17 +232,8 @@ const Header = () => {
     config: { duration: 500, delay: 5 },
   });
 
-  const contactInfoAnimation2 = useSpring({
-    display: "flex",
-    opacity: isResumeClicked ? "1" : "0",
-    transform: `translate3d(${isResumeClicked ? (stages[1] ? -30 : 0) : -80
-      }px,${stages[1] ? (isMenuOpen ? 35 : 10) : isMenuOpen ? 45 : 35}px,0)`,
-    config: { duration: 500 },
-    delay: 5,
-  });
-
   const contactInfoAnimation3 = useSpring({
-    opacity: isResumeClicked ? "0" : "1",
+    opacity: "1",
     transform: `translate3d(${isResumeClicked ? 55 : 0}px,${stages[1] ? (isMenuOpen ? -5 : -25) : isMenuOpen ? 15 : 0
       }px,0)`,
     config: { duration: 500 },
@@ -269,9 +255,10 @@ const Header = () => {
       if (activeSection === "gap") {
         return gapSubLabels[activeGapSlide] || "The Gap";
       }
-      return (activeSection && sectionLabels[activeSection]) ? sectionLabels[activeSection] : "R&D journey";
+      return (activeSection && sectionLabels[activeSection]) ? sectionLabels[activeSection] : "R&D Journey";
     }
     if (path === "/academiccv") return "Academic CV";
+    if (path === "/journal" || path.startsWith("/journal/")) return "Journal";
     if (path === "/graphene") return "Graphene";
     if (path === "/research-progress") return "Research Progress";
     
@@ -305,87 +292,29 @@ const Header = () => {
       <animated.div
         style={containerAnimation}
         inert={isMenuOpen ? true : undefined}
-        className={`HomePage-M-T-H${isHomePage ? " HomeLandingHeader" : ""}${isMenuOpen ? " NavigationOpen" : ""}`}
+        className={`HomePage-M-T-H HomeLandingHeader${isMenuOpen ? " NavigationOpen" : ""}`}
       >
         <animated.div style={contactInfoAnimation1} className="MainHeader" />
 
         <animated.div className="HomePage-M-T-L">
-          <animated.div
-            className="HomePage-M-T-B"
-            style={{ ...HomeStyle, ...contactInfoAnimation2, display: "flex", alignItems: "center", gap: "2px" }}
-            ref={HomeRef}
-          >
-            <TbHomeMove style={{ display: "block", marginRight: "12px" }} />
-            <button 
-              onClick={handleHomeClcik} 
-              style={{ 
-                display: "inline-block",
-                padding: 0, 
-                background: "none",
-                border: "none",
-                cursor: "pointer",
-                lineHeight: "normal",
-                fontFamily: "Rubik, sans-serif",
-                fontSize: "13px",
-                fontWeight: 300,
-                color: "#faf9f1"
-              }}
-            >
-              {isHomePage ? "Home Page" : "Home"}
-            </button>
-            
-            {!isHomePage && currentLabel && (
-              <span style={{ 
-                margin: "0 16px 0 16px", 
-                opacity: 0.4, 
-                userSelect: "none", 
-                fontFamily: "Rubik, sans-serif",
-                fontSize: "13px",
-                lineHeight: "normal",
-                color: "#faf9f1"
-              }}>/</span>
-            )}
-            
-            <AnimatePresence mode="wait">
-              {!isHomePage && currentLabel && (
-                <motion.div
-                  key={currentLabel}
-                  initial={{ opacity: 0, x: -4 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  exit={{ opacity: 0, x: 4, transition: { duration: 0.1 } }}
-                  transition={{ duration: 0.2, ease: "easeOut" }}
-                  style={{ display: "inline-flex", alignItems: "center" }}
-                >
-                  <span style={{ 
-                    fontWeight: 300, 
-                    letterSpacing: "0.05em", 
-                    color: "#d49d81", 
-                    fontSize: "12px",
-                    fontFamily: "Rubik, sans-serif",
-                    lineHeight: "normal",
-                    textShadow: "0 0 8px rgba(212, 157, 129, 0.25)"
-                  }}>
-                    {currentLabel}
-                  </span>
-                </motion.div>
-              )}
-            </AnimatePresence>
-          </animated.div>
-          
           <animated.div style={contactInfoAnimation3}>
-            <animated.div ref={MainRef} style={isHomePage ? {} : MainStyle}>
+            <animated.div ref={MainRef} style={MainStyle} className="header-identity">
               <button onClick={handleHomeClcik}>
-                <Logo className="Logo" size={isHomePage ? "26" : "20"} />
+                <Logo className="Logo" size="26" />
                 <p>Saeed</p>
                 <b>Arabha</b>
               </button>
+              {!isHomePage && currentLabel && (
+                <span className="header-section-label" aria-label={`Current section: ${currentLabel}`}>
+                  <span className="header-section-divider" aria-hidden="true">·</span>
+                  <span>{currentLabel}</span>
+                </span>
+              )}
             </animated.div>
           </animated.div>
         </animated.div>
         <MenuButton
-          isHomePage={isHomePage}
           reducedMotion={reducedMotion}
-          contactInfoAnimation={contactInfoAnimation1}
           MenuRef={MenuRef}
           MenuStyle={MenuStyle}
           isMenuOpen={isMenuOpen}

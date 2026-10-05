@@ -45,6 +45,7 @@
     "web-vitals": "^5.3.0"
   },
   "scripts": {
+    "prebuild": "node scripts/generate-journal.mjs",
     "dev": "vite",
     "cms": "node server/cms.js",
     "start": "vite",

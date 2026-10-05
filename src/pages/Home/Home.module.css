@@ -111,7 +111,6 @@
     background: #c28c6d;
     opacity: .75;
 }
-
 .heroAside {
     position: absolute;
     z-index: 2;
@@ -332,7 +331,7 @@
     .asideLabel { display: none; }
     .heroGrid { gap: 24px; }
     .asideStatement { margin-top: 0; }
-    .heroAside { margin-left: 18%; }
+    .heroAside { margin-left: 52%; }
     .storyGrid { padding-top: 28px; }
-    .storyBody > div p { font-size: 15px; line-height: 1.8; }
+    .storyBody > div p { font-size: 14px; line-height: 1.75; }
 }
