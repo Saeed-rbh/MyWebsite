@@ -240,7 +240,7 @@ const ResumePDF = ({ cvData }) => {
                                     <Text style={styles.pubAuthors}>
                                         {`${index + 1}. `}
                                         {(paper.AuthorsList || paper.Authors.split(', ')).map((author, i, arr) => (
-                                            <Text key={i} style={author.includes('S Arabha') || author.includes('S. Arabha') ? { fontFamily: 'Helvetica-Bold' } : {}}>
+                                            <Text key={i} style={author.includes('S Arabha') || author.includes('S. Arabha') || author === 'Saeed Arabha' ? { fontFamily: 'Helvetica-Bold' } : {}}>
                                                 {author}{i < arr.length - 1 ? ', ' : ''}
                                             </Text>
                                         ))}

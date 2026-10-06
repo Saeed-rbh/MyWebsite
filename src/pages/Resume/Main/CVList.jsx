@@ -16,7 +16,7 @@ import useScrollPosition from "../General/useScrollPosition";
 import { useLocation } from "react-router-dom";
 import { useScrollableRef } from "../General/ScrollableRefContext";
 import useElementSize from "../Styles/useElementSize";
-import cvData from "../../../data/cvData.json";
+import { academicCV as cvData } from "../../../data/academicCV";
 const DownloadButton = React.lazy(() => import("./DownloadButton"));
 
 const MainStyleComponent = () => {

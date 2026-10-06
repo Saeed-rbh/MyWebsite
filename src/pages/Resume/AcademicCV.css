@@ -275,6 +275,8 @@
 
 .ReferMoreInfo {
   display: flex;
+  color: inherit;
+  text-decoration: none;
   align-items: center;
   justify-content: center;
   width: 30%;
@@ -1300,6 +1302,12 @@
   font-size: 13px;
   display: flex;
   text-align: initial;
+}
+
+.Paper-Data a {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 3px;
 }
 
 .More-Circle {

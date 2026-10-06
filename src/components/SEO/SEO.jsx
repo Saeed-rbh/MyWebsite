@@ -8,7 +8,7 @@ const SEO = ({ title, description, type }) => {
         : pathname === "/journal" ? "/journal/"
         : pathname.startsWith("/journal/") && !pathname.endsWith("/") ? `${pathname}/`
         : pathname;
-    const canonical = `https://saeedarabha.com${canonicalPath}`;
+    const canonical = `https://www.saeedarabha.com${canonicalPath}`;
 
     return (
         <Helmet>

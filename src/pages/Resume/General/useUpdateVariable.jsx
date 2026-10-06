@@ -9,7 +9,7 @@ import useDataModify from "./DataModify";
 import { useEffect, useState, useMemo } from "react";
 import { useDispatch } from "react-redux";
 import debounce from "lodash.debounce";
-import localData from '../../../data/cvData.json';
+import { academicCV as localData } from '../../../data/academicCV';
 
 const useWindowSize = () => {
   const [size, setSize] = useState({
@@ -69,6 +69,8 @@ const useUpdateVariable = () => {
             return {
               ...serverItem,
               column: localItem?.column ?? 0,
+              // The journal is the maintained publication source, including new papers.
+              list: serverItem.name === "Published Papers" ? localItem.list : serverItem.list,
             };
           });
           setDbData(mergedData);

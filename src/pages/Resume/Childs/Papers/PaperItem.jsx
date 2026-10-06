@@ -6,10 +6,6 @@ import { useSpring, animated, easings } from "react-spring";
 import { useInView } from "react-intersection-observer";
 import { Stage } from "@react-three/drei";
 
-const openInNewTab = (url) => {
-  window.open(url, "_blank", "noopener,noreferrer");
-};
-
 const PaperItem = ({
   paper,
   ChildRefs,
@@ -143,7 +139,7 @@ const PaperItem = ({
             </span>
             {paper.Year}
           </p>
-          <p
+          {paper.Citations != null && <p
             style={{
               display: "flex",
               alignItems: "center",
@@ -163,24 +159,30 @@ const PaperItem = ({
               Citations:
             </span>
             {paper.Citations}
-          </p>
+          </p>}
         </div>
       </div>
       <div className="MoreInfo">
-        <animated.p
+        <animated.a
           className="ReferMoreInfo"
           style={openInfoStyle}
-          onClick={() => openInNewTab(paper.Link)}
+          href={paper.Link}
+          target="_blank"
+          rel="noopener noreferrer"
+          onClick={(event) => event.stopPropagation()}
         >
-          Online Version <SiGooglescholar />
-        </animated.p>
-        <animated.p
+          Published paper <SiGooglescholar />
+        </animated.a>
+        {paper.pdf && <animated.a
           className="ReferMoreInfo"
           style={openInfoStyle}
-          onClick={() => openInNewTab(paper.pdf)}
+          href={paper.pdf}
+          target="_blank"
+          rel="noopener noreferrer"
+          onClick={(event) => event.stopPropagation()}
         >
-          Download PDF <RiDownloadCloudFill />
-        </animated.p>
+          Open PDF <RiDownloadCloudFill />
+        </animated.a>}
       </div>
     </animated.div>
   );

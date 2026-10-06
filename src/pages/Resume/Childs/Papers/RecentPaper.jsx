@@ -21,7 +21,7 @@ const RecentPaper = ({ isActive, stages, list }) => {
   return (
     <>
       {list.map((paper, index) => {
-        if (index === list.length - 1) {
+        if (index === 0) {
           return (
             <React.Fragment key={paper.id}>
               <animated.p

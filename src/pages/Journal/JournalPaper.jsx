@@ -87,7 +87,7 @@ export default function JournalPaper() {
     headline: editorial.headline,
     description: paper.summary,
     author: { "@type": "Person", name: "Saeed Arabha" },
-    mainEntityOfPage: `https://saeedarabha.com/journal/${paper.slug}/`,
+    mainEntityOfPage: `https://www.saeedarabha.com/journal/${paper.slug}/`,
     about: {
       "@type": "ScholarlyArticle",
       headline: paper.title,

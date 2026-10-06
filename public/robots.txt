@@ -2,4 +2,4 @@
 User-agent: *
 Disallow:
 
-Sitemap: https://saeedarabha.com/sitemap.xml
+Sitemap: https://www.saeedarabha.com/sitemap.xml

@@ -1,11 +1,13 @@
 import { readFileSync, writeFileSync, mkdirSync } from "node:fs";
-import { join } from "node:path";
+import { join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 
 // Give each public SPA route useful HTML before JavaScript runs. React replaces
 // this snapshot on mount; the content is drawn from the same editorial data.
-const site = "https://saeedarabha.com";
-const dist = fileURLToPath(new URL("../dist/", import.meta.url));
+const site = "https://www.saeedarabha.com";
+const dist = process.env.SEO_DIST_DIR
+  ? resolve(process.env.SEO_DIST_DIR)
+  : fileURLToPath(new URL("../dist/", import.meta.url));
 const template = readFileSync(join(dist, "index.html"), "utf8");
 const papers = JSON.parse(readFileSync(new URL("../src/data/journalPapers.json", import.meta.url), "utf8"));
 const escape = (value) => String(value ?? "").replaceAll("&", "&amp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll('"', "&quot;").replaceAll("'", "&#39;");

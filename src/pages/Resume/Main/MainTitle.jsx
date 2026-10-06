@@ -87,7 +87,7 @@ const useTitleAnimation = ({
   });
 };
 
-import cvData from "../../../data/cvData.json";
+import { academicCV as cvData } from "../../../data/academicCV";
 const DownloadButton = React.lazy(() => import("./DownloadButton"));
 
 // MainTitle component

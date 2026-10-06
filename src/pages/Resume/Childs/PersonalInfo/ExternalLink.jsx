@@ -31,7 +31,7 @@ const PersonalDetails = ({ MainStyle, info }) => (
   <animated.div style={{ ...MainStyle, maxWidth: "390px" }}>
     <h1>
       <strong>Name:</strong>
-      <ExternalLink href="https://www.example.com/">{info?.name || "Saeed Arabha"}</ExternalLink>
+      <ExternalLink href="https://www.saeedarabha.com/">{info?.name || "Saeed Arabha"}</ExternalLink>
     </h1>
     <BirthdayLink date={info?.dateOfBirth} />
   </animated.div>

@@ -1,7 +1,7 @@
 import { List as QualificationsList } from "../Childs/Qualifications/List";
 import { List as AwardsList } from "../Childs/Awards/List";
 import { List as ConferenceList } from "../Childs/Conference/List";
-import { List as PapersList } from "../Childs/Papers/List";
+import { publications as PapersList } from "../../../data/academicCV";
 import { List as ResearchInterestsList } from "../Childs/ResearchInterests/List";
 import { List as SkillsList } from "../Childs/Skills/List";
 import { List as TeachingList } from "../Childs/Teaching/List";

@@ -21,7 +21,7 @@ const schema = {
       item: {
         "@type": "Article",
         headline: paper.editorial.headline,
-        url: `https://saeedarabha.com/journal/${paper.slug}/`,
+        url: `https://www.saeedarabha.com/journal/${paper.slug}/`,
         description: paper.summary,
         about: { "@type": "ScholarlyArticle", headline: paper.title, url: paper.url },
       },

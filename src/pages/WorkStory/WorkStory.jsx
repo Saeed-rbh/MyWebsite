@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { motion, useScroll, useSpring, useTransform } from "motion/react";
 import {
   TbCube,
-  TbDownload,
+  TbArrowUpRight,
   TbHexagon,
   TbMail,
   TbMicroscope,
@@ -2026,8 +2026,8 @@ const ApproachContent = ({ scrollRef }) => {
           and move research toward real-world use.
         </p>
         <div className={styles.approachRebuildActions}>
-          <Link to="/AcademicCV"><TbDownload aria-hidden="true" /><span>Download Resume</span></Link>
-          <a href="mailto:sarabha@yorku.ca"><TbMail aria-hidden="true" /><span>Contact Me</span></a>
+          <Link to="/AcademicCV"><TbArrowUpRight aria-hidden="true" /><span>View Academic CV</span></Link>
+          <a href="mailto:saeedarabha@outlook.com"><TbMail aria-hidden="true" /><span>Contact Me</span></a>
         </div>
       </div>
 

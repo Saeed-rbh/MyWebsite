@@ -1,29 +1,6 @@
 import React from "react";
 import { animated, useSpring, easings } from "react-spring";
 const PaperData = ({ isActive, stages, size, adjustHeight, list = [] }) => {
-  // Calculate Stats
-  const TotalCitations = list.reduce((sum, paper) => {
-    let rawCite = paper.citations !== undefined ? paper.citations : paper.Citations;
-    if (rawCite === undefined || rawCite === null) rawCite = '0';
-    return sum + parseInt(rawCite.toString().replace(/\D/g, '') || '0', 10);
-  }, 0);
-
-  const citationsArray = list.map(p => {
-    let rawCite = p.citations !== undefined ? p.citations : p.Citations;
-    if (rawCite === undefined || rawCite === null) rawCite = '0';
-    return parseInt(rawCite.toString().replace(/\D/g, '') || '0', 10);
-  });
-  citationsArray.sort((a, b) => b - a);
-
-  let HIndex = 0;
-  for (let i = 0; i < citationsArray.length; i++) {
-    if (citationsArray[i] >= i + 1) {
-      HIndex = i + 1;
-    } else {
-      break;
-    }
-  }
-
   const CloseOpenStyleInfo = useSpring({
     position: "absolute",
     top: isActive
@@ -63,21 +40,13 @@ const PaperData = ({ isActive, stages, size, adjustHeight, list = [] }) => {
         <p>{list.length}</p>
       </animated.div>
       <animated.div style={Scale}>
-        <p>Citations</p>
-        <p>{TotalCitations}</p>
+        <p>Latest</p>
+        <p>{list[0]?.Year || "—"}</p>
       </animated.div>
       <animated.div style={Scale}>
-        <p>
-          H- <span>index</span>
-        </p>
-        <p>{HIndex}</p>
+        <p>Full list</p>
+        <p><a href="/journal/" onClick={(event) => event.stopPropagation()}>Journal</a></p>
       </animated.div>
-      {/* <animated.div style={Scale}>
-        <p>
-          i10- <span>index</span>
-        </p>
-        <p>7</p>
-      </animated.div> */}
     </animated.div>
   );
 };
