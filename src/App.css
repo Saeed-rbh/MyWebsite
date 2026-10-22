@@ -207,3 +207,196 @@ html.site-document-exit .App {
   }
   .RouteMotionFrame { transform: none !important; }
 }
+
+/* Shared navigation adopts the active page palette. */
+.App { transition: background-color 480ms ease; }
+.App[data-site-theme="cfe"] {
+  --menu-surface: rgba(246, 249, 255, .97);
+  --menu-text: #071337;
+  --menu-accent: #0645ee;
+  --menu-heading: #183b82;
+  --menu-label: #315aa5;
+  --menu-muted: #566783;
+  --menu-note: #566783;
+  --menu-contact: #263f6c;
+  --menu-glow: rgba(6, 69, 238, .07);
+  --menu-hover: rgba(6, 69, 238, .07);
+  --chrome-text: #071337;
+  --chrome-accent: #0645ee;
+  --chrome-divider: #a2b0cc;
+  --chrome-logo-fill: rgba(6, 69, 238, .08);
+  background-color: #f6f8fc;
+}
+.App .HomeLandingHeader .MenuIcon-T,
+.App .HomeLandingHeader .MenuIcon-B {
+  transition: background-color 480ms ease;
+}
+.App .HomeLandingHeader .header-section-label,
+.App .HomeLandingHeader .header-section-divider,
+.App .HomeLandingHeader .animated-logo-path {
+  transition: color 480ms ease, stroke 480ms ease, fill 480ms ease;
+}
+.App .HomeLandingFooter .HomeConsole,
+.App .HomeLandingFooter .HomeConsole::before {
+  transition: background-color 480ms ease, border-color 480ms ease, box-shadow 480ms ease;
+}
+.App[data-site-theme="cfe"] .HomeLandingFooter .HomeConsole,
+.App[data-site-theme="cfe"] .HomeLandingFooter .HomeConsole:hover {
+  background:
+    linear-gradient(165deg, rgba(239, 245, 255, .075), rgba(6, 69, 238, .025) 32%, rgba(6, 69, 238, .034)),
+    transparent;
+  border-color: rgba(6, 69, 238, .3);
+  box-shadow:
+    0 14px 34px rgba(12, 35, 86, .26),
+    0 2px 8px rgba(12, 35, 86, .12),
+    inset 0 1px 0 rgba(239, 246, 255, .18),
+    inset 0 -1px 0 rgba(6, 69, 238, .04);
+}
+.App[data-site-theme="cfe"] .HomeLandingFooter .HomeConsole::before {
+  background:
+    radial-gradient(ellipse 55% 95% at 18% -30%, rgba(225, 238, 255, .1), transparent 78%),
+    linear-gradient(180deg, rgba(241, 248, 255, .035), transparent 42%);
+}
+.App[data-site-theme="cfe"] .HomeLandingFooter .social button,
+.App[data-site-theme="cfe"] .HomeLandingFooter .social a,
+.App[data-site-theme="cfe"] .HomeLandingFooter .footer-journal-link,
+.App[data-site-theme="cfe"] .HomeLandingFooter .footer-action-pill button,
+.App[data-site-theme="cfe"] .HomeLandingFooter .footer-action-pill a {
+  color: #162d59;
+}
+.App[data-site-theme="cfe"] .HomeLandingFooter .social button:hover,
+.App[data-site-theme="cfe"] .HomeLandingFooter .social a:hover,
+.App[data-site-theme="cfe"] .HomeLandingFooter .footer-journal-link:hover,
+.App[data-site-theme="cfe"] .HomeLandingFooter .footer-action-pill button:hover,
+.App[data-site-theme="cfe"] .HomeLandingFooter .footer-action-pill a:hover {
+  color: #0645ee;
+}
+.App[data-site-theme="cfe"] .HomeLandingFooter .social button::after,
+.App[data-site-theme="cfe"] .HomeLandingFooter .social a::after {
+  background-color: #0645ee;
+  box-shadow: none;
+}
+.App[data-site-theme="cfe"] .HomeLandingFooter .bookCallBtn {
+  color: #0645ee !important;
+  border-color: rgba(6, 69, 238, .2) !important;
+  background: rgba(6, 69, 238, .04) !important;
+}
+.App[data-site-theme="cfe"] .HomeLandingFooter .footer-action-divider {
+  background-color: rgba(6, 69, 238, .15);
+}
+.App[data-site-theme="cfe"] .HomeLandingFooter .footer-liquid-bridge {
+  background: radial-gradient(ellipse, rgba(6, 69, 238, .12), rgba(220, 231, 255, .2) 65%, transparent);
+}
+.App[data-site-theme="cfe"] .HomeLandingHeader button:focus-visible,
+.App[data-site-theme="cfe"] .HomeLandingFooter a:focus-visible,
+.App[data-site-theme="cfe"] .HomeLandingFooter button:focus-visible {
+  outline-color: #0645ee;
+}
+@media (prefers-reduced-motion: reduce) {
+  .App,
+  .App .HomeLandingHeader *,
+  .App .HomeLandingFooter .HomeConsole,
+  .App .HomeLandingFooter .HomeConsole::before { transition: none; }
+}
+.App .MainBackground { transition: background-color 480ms ease, opacity 480ms ease; }
+.App[data-site-theme="cfe"] .MainBackground { background-color: #f6f8fc; opacity: 1; }
+.App[data-site-theme="cfe"] .HomeLandingHeader .HomePage-M-T-R:hover { background-color: rgba(6, 69, 238, .06); }
+.App[data-site-theme="cfe"] .HomeLandingFooter .social button:nth-of-type(2) span {
+  background: linear-gradient(to right, rgba(6, 69, 238, .82), rgba(68, 112, 217, .8));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+@media (prefers-reduced-motion: reduce) {
+  .App .MainBackground { transition: none; }
+}
+
+/* Preserve the shared glass layers, blur, highlights, and depth. */
+@media (min-width: 940px) {
+  .App[data-site-theme="cfe"] .HomeLandingFooter .footer-action-pill,
+  .App[data-site-theme="cfe"] .HomeLandingFooter .footer-action-pill:hover {
+    background:
+      linear-gradient(165deg, rgba(255, 255, 255, .09), rgba(255, 255, 255, .025) 38%, rgba(6, 69, 238, .024)),
+      transparent;
+    border-color: rgba(6, 69, 238, .2);
+    box-shadow:
+      0 14px 32px rgba(12, 35, 86, .24),
+      inset 0 1px 0 rgba(255, 255, 255, .22),
+      inset 0 0 14px rgba(255, 255, 255, .035);
+  }
+  .App[data-site-theme="cfe"] .HomeLandingFooter .footer-action-pill::before {
+    background:
+      radial-gradient(ellipse 70% 85% at 28% -20%, rgba(255, 255, 255, .14), transparent 78%),
+      linear-gradient(180deg, rgba(255, 255, 255, .055), transparent 45%);
+  }
+}
+.App[data-site-theme="cfe"] .HomeLandingFooter .social button:hover,
+.App[data-site-theme="cfe"] .HomeLandingFooter .social a:hover {
+  text-shadow: 0 0 10px rgba(6, 69, 238, .35);
+}
+.App[data-site-theme="cfe"] .HomeLandingFooter .social button::after,
+.App[data-site-theme="cfe"] .HomeLandingFooter .social a::after {
+  box-shadow: 0 0 8px #0645ee;
+}
+
+/* White glass stays fixed; control text is chosen for contrast. */
+.App .HomeLandingFooter :is(.HomeConsole, .footer-action-pill) {
+  background: linear-gradient(165deg, rgba(255,255,255,.12), rgba(255,255,255,.025) 55%), rgba(255,255,255,.08) !important;
+  border-color: rgba(180,198,229,.4) !important;
+  box-shadow: 0 10px 30px rgba(7,22,48,.16), inset 0 1px 0 rgba(255,255,255,.3) !important;
+}
+.App .HomeLandingFooter :is(.HomeConsole, .footer-action-pill)::before {
+  background: linear-gradient(180deg, rgba(255,255,255,.12), transparent 60%);
+}
+/* Keep the existing glass and foreground layers independent. */
+.App .HomeLandingFooter.footer-glass-layer { z-index: 99; pointer-events: none; }
+.App .HomeLandingFooter.footer-glass-layer * { pointer-events: none !important; }
+.App .HomeLandingFooter.footer-ink-layer { mix-blend-mode: normal; }
+.App .HomeLandingFooter.footer-ink-layer :is(.HomeConsole, .footer-action-pill) {
+  background: transparent !important;
+  border-color: transparent !important;
+  box-shadow: none !important;
+  -webkit-backdrop-filter: none !important;
+  backdrop-filter: none !important;
+}
+.App .HomeLandingFooter.footer-ink-layer :is(.HomeConsole, .footer-action-pill)::before { content: none; }
+.App .HomeLandingFooter.footer-ink-layer .footer-liquid-bridge { display: none; }
+.App .HomeLandingFooter :is(a,button),
+.App .HomeLandingFooter :is(a,button):is(:hover,:focus-visible),
+.App .HomeLandingFooter :is(a,button) span {
+  color: var(--footer-text, #102648) !important;
+  -webkit-text-fill-color: currentColor !important;
+  text-shadow: none !important;
+  opacity: 1;
+}
+.App .HomeLandingFooter :is(a,button) span { background: none !important; color: inherit !important; }
+.App .HomeLandingFooter .bookCallBtn { background: transparent !important; border-color: rgba(255,255,255,.3) !important; }
+.App .HomeLandingFooter .footer-action-divider { background: rgba(127,127,127,.3); }
+.App .HomeLandingFooter .social :is(a,button)::after { background: currentColor; box-shadow: none; }
+
+/* Preserve the original header layout with a softly frosted background. */
+.App[data-site-theme="cfe"] .HomeLandingHeader::before {
+  content: "";
+  position: fixed;
+  top: -20px;
+  left: calc(-1 * clamp(24px, 5.7vw, 90px));
+  width: 100vw;
+  height: 84px;
+  z-index: -1;
+  pointer-events: none;
+  background: linear-gradient(180deg, rgba(239, 245, 255, .3), rgba(246, 249, 255, .12));
+  -webkit-backdrop-filter: blur(20px) saturate(125%);
+  backdrop-filter: blur(20px) saturate(125%);
+  mask-image: linear-gradient(to bottom, #000 65%, transparent);
+  transition: opacity 300ms ease;
+}
+.App[data-site-theme="cfe"] .HomeLandingHeader.NavigationOpen::before { opacity: 0; }
+@media (max-width: 640px) {
+  .App[data-site-theme="cfe"] .HomeLandingHeader::before {
+    top: -16px;
+    height: 76px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .App[data-site-theme="cfe"] .HomeLandingHeader::before { transition: none; }
+}

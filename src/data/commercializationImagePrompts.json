@@ -1,0 +1,23 @@
+[
+  {
+    "tool": "Built-in image generation",
+    "reference": "I2F.pptx — cover slide",
+    "asset": "public/images/commercialization/graphene-concept-v2.webp",
+    "prompt": "Use case: stylized-concept. Asset type: transparent website hero illustration. Reference image: the supplied I2F cover slide, used only as visual inspiration for layered graphite and a peeling graphene sheet. Create a polished scientific 3D illustration: a precise stack of 5 thin dark graphite plates seen in three-quarter perspective, one delicate cobalt-blue hexagonal carbon lattice sheet lifting and curling upward from the top, with a few fine luminous blue flow lines following it. Restrained navy, graphite silver and cobalt blue, beautiful physically grounded metallic surfaces and studio lighting. Wide landscape composition, whole object entirely visible with generous padding on every side. Isolate the object on a genuinely transparent background. No typography, no CFE letters, no logos, no labels, no symbols, no charts, no background scenery. This is a conceptual visual, not a claim of a real device.",
+    "transparent_background": true
+  },
+  {
+    "tool": "Built-in image generation",
+    "reference": "I2F.pptx — CFE solution slide",
+    "asset": "public/images/commercialization/cfe-process-concept-v2.webp",
+    "prompt": "Use case: scientific-educational. Asset type: transparent website process illustration. Reference image: supplied I2F solution slide, as concept and design reference only. Create a clean high-end 3D cutaway concept of a compressible flow exfoliation nozzle: one horizontal silver metallic pressure nozzle with a clear cutaway upper section showing a converging-diverging internal passage. Fine cobalt-blue gas flow lines pass through a small stack of dark layered feedstock near the inlet; a few thin separated dark carbon lattice sheets emerge on the right. Elegant simplified geometry, mechanically credible, navy interior, restrained blue energy paths, studio product render, whole nozzle and emerging sheets fully visible, generous padding, wide landscape composition. Genuine transparent background. No text, labels, letters, CFE logo, arrows, icons, charts or slide furniture. Illustrative concept, not a fabrication drawing or real device photograph.",
+    "transparent_background": true
+  },
+  {
+    "tool": "Built-in image generation",
+    "reference": "I2F.pptx — industry-validation slide",
+    "asset": "public/images/commercialization/pilot-concept-v2.webp",
+    "prompt": "Use case: stylized-concept. Asset type: transparent website industrial pilot illustration. Reference image: the supplied I2F industry-validation slide, used only as a style and conceptual reference. Re-create a complete high-end 3D illustration of a compact industrial pilot processing skid: brushed silver rectangular equipment enclosure with a dark-blue cutaway revealing pipes and a pressure vessel, full upper tank, guard rails, a small control panel, and a small access stair. A modest pile of graphite rock on the left, fine cobalt blue flow lines through the equipment, and a few separated carbon lattice sheets on the right communicate feedstock to output. All machinery, upper tanks and peripheral objects fully inside the frame, with generous clear padding. Navy, brushed metal and restrained cobalt blue palette. Genuine transparent background. No text, letters, labels, logos, icons, chart boxes, ticks, or captions. Wide landscape composition. Illustration only, not a photograph or assertion of a built pilot plant.",
+    "transparent_background": true
+  }
+]

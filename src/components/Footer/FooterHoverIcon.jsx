@@ -27,7 +27,12 @@ const FooterHoverIcon = ({ kind, isHovered }) => {
         transition: "transform 0.5s ease",
       }}
     >
-      {kind === "cv" ? (
+      {kind === "commercialization" ? (
+        <>
+          <path d="M4 19V5M4 19h16" pathLength="1" style={draw(0)} />
+          <path d="m7 15 4-4 3 2 6-8M15 5h5v5" pathLength="1" style={draw(0.25)} />
+        </>
+      ) : kind === "cv" ? (
         <>
           <path d="M6 3.5h8.5L19 8v12H6z" pathLength="1" style={draw(0)} />
           <path d="M14.5 3.5V8H19" pathLength="1" style={draw(0.25)} />

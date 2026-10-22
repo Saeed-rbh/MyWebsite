@@ -1,6 +1,8 @@
 import { readFileSync, writeFileSync, mkdirSync } from "node:fs";
 import { join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
+import { commercializationSeo, schemaFor } from '../src/data/siteSeo.mjs';
+import { renderCommercialization } from './render-commercialization.mjs';
 
 // Give each public SPA route useful HTML before JavaScript runs. React replaces
 // this snapshot on mount; the content is drawn from the same editorial data.
@@ -16,24 +18,31 @@ const link = (href, label) => `<a href="${escape(href)}">${escape(label)}</a>`;
 const json = (value) => JSON.stringify(value).replaceAll("<", "\\u003c");
 const nav = `<nav aria-label="Main navigation">${[
   ["/", "Home"], ["/R&D-Portfolio", "R&D portfolio"], ["/AcademicCV", "Academic CV"],
-  ["/journal/", "Journal"], ["/research-progress", "Research journey"],
+  ["/venture", "Venture"], ["/journal/", "Journal"], ["/research-progress", "Research journey"],
 ].map(([url, label]) => link(url, label)).join("")}</nav>`;
 
 const pages = [
+  {
+    path: "/venture",
+    ...commercializationSeo,
+    schema: schemaFor('/venture'),
+    body: await renderCommercialization(),
+    isFullPage: true,
+  },
   {
     path: "/",
     title: "Saeed Arabha | Materials Scientist & Researcher",
     description: "Saeed Arabha connects materials science, process development, and metrology through graphene research, experimental characterization, and computational modeling. Explore his R&D work and academic CV.",
     body: `<h1>Saeed Arabha</h1><p class="lead">Materials scientist · Process and metrology engineer</p>
       <p>I develop materials, engineer processes, and measure quality, connecting experiments with computational models.</p>
-      <section><h2>Research and development</h2><p>My work focuses on graphene and other two-dimensional materials, compressible flow exfoliation, characterization, and thermal transport.</p>${link("/R&D-Portfolio", "Explore the R&D portfolio")}</section>
+      <section><h2>Research and development</h2><p>My work focuses on graphene and other two-dimensional materials, compressible flow exfoliation, characterization, and thermal transport.</p>${link("/R&D-Portfolio", "Explore the R&D portfolio")}${link("/venture", "Research commercialization: from materials science to market")}</section>
       <section><h2>Selected research areas</h2><ul>
       <li>Compressible flow exfoliation and scalable production of 2D nanomaterials</li>
       <li>Metrology using microscopy, spectroscopy, and Raman measurements</li>
       <li>Molecular dynamics, fluid dynamics, and machine learning models</li></ul>
       ${link("/journal/", "Read the journal and publication stories")}</section>
       <section><h2>Background</h2><p>See my education, publications, teaching, and research experience in the academic CV.</p>${link("/AcademicCV", "View the academic CV")}</section>`,
-    schema: { "@context": "https://schema.org", "@type": "WebSite", name: "Saeed Arabha", url: `${site}/` },
+    schema: schemaFor('/'),
   },
   {
     path: "/R&D-Portfolio",
@@ -43,7 +52,7 @@ const pages = [
       <p>My research connects how two-dimensional materials are produced with their structure, quality, and possible uses. I study graphene, hexagonal boron nitride, and molybdenum disulfide through experiments and modeling.</p>
       <section><h2>Compressible flow exfoliation</h2><p>High-pressure gas flow can separate layered feedstocks into thinner nanoplatelets. I investigate pressure, temperature, carrier gas, and flow conditions to understand material quality and production behavior.</p></section>
       <section><h2>Characterization and process feedback</h2><p>Microscopy and spectroscopy reveal morphology, chemistry, structure, and defects. These measurements help connect a change in processing conditions with the material produced.</p></section>
-      <section><h2>Modeling and scale-up</h2><p>Computational fluid dynamics and molecular simulations help test mechanisms and guide experiments. I also explore industry needs and adoption barriers for scalable nanomaterial production.</p>${link("/journal/", "Read the related research papers")}</section>`,
+      <section><h2>Modeling and scale-up</h2><p>Computational fluid dynamics and molecular simulations help test mechanisms and guide experiments. I also explore industry needs and adoption barriers for scalable nanomaterial production.</p>${link("/journal/", "Read the related research papers")}${link("/venture", "Explore customer discovery and the CFE commercialization strategy")}</section>`,
   },
   {
     path: "/AcademicCV",
@@ -96,21 +105,22 @@ for (const paper of papers) {
       <section><h2>${escape(paper.editorial.methodsTitle || "Approach")}</h2>${paragraph(paper.story.approach)}${paragraph(paper.editorial.methodNote)}</section>
       <section><h2>Key findings</h2>${paper.story.results.map((result) => `<h3>${escape(result.label)}</h3>${paragraph(result.detail)}`).join("")}</section>
       <section><h2>${escape(paper.editorial.endingTitle || "What this means")}</h2>${paragraph(paper.story.takeaway)}${paragraph(paper.editorial.endingNote)}</section>
-      <p>${link(paper.url, "Read the original published paper")}</p></article>`,
+      <p>${link(paper.url, "Read the original published paper")}</p>${papers.slice(0,2).some(item=>item.slug===paper.slug) ? `<p>${link("/venture", "From this research to customer discovery: the CFE commercialization case")}</p>` : ""}</article>`,
     schema: { "@context": "https://schema.org", "@type": "Article", headline: paper.editorial.headline, description: paper.summary, author: { "@type": "Person", name: "Saeed Arabha" }, mainEntityOfPage: `${site}${path}`, about: { "@type": "ScholarlyArticle", headline: paper.title, url: paper.url, datePublished: String(paper.year) } },
   });
 }
 
-const snapshotStyle = `<style id="seo-snapshot-style">#root>.seo-snapshot{box-sizing:border-box;min-height:100vh;background:#020201;color:#f5f1e9;padding:36px max(24px,calc((100vw - 900px)/2));font:400 17px/1.7 Arial,sans-serif}#root>.seo-snapshot a{color:#edbd9d}#root>.seo-snapshot nav{display:flex;flex-wrap:wrap;gap:12px 22px;margin-bottom:70px}#root>.seo-snapshot h1{font:400 clamp(42px,7vw,76px)/1.1 Georgia,serif}#root>.seo-snapshot h2{font:400 34px/1.2 Georgia,serif;margin-top:64px}#root>.seo-snapshot h3{font-size:21px}#root>.seo-snapshot article{margin:32px 0}#root>.seo-snapshot .lead{font-size:21px;color:#dccbbd}</style>`;
+const snapshotStyle = `<style id="seo-snapshot-style">#root>.seo-snapshot{box-sizing:border-box;min-height:100vh;background:#020201;color:#f5f1e9;padding:36px max(24px,calc((100vw - 900px)/2));font:400 17px/1.7 Arial,sans-serif}#root>.seo-snapshot img{max-width:100%;height:auto}#root>.seo-snapshot svg{max-width:100%;height:auto}#root>.seo-snapshot section{margin:48px 0}#root>.seo-snapshot button{padding:10px;margin:5px}#root>.seo-snapshot details{margin:18px 0}#root>.seo-snapshot a{color:#edbd9d}#root>.seo-snapshot nav{display:flex;flex-wrap:wrap;gap:12px 22px;margin-bottom:70px}#root>.seo-snapshot h1{font:400 clamp(42px,7vw,76px)/1.1 Georgia,serif}#root>.seo-snapshot h2{font:400 34px/1.2 Georgia,serif;margin-top:64px}#root>.seo-snapshot h3{font-size:21px}#root>.seo-snapshot article{margin:32px 0}#root>.seo-snapshot .lead{font-size:21px;color:#dccbbd}</style>`;
 
 for (const page of pages) {
   const canonical = `${site}${page.path}`;
-  const meta = `<title>${escape(page.title)}</title><meta name="description" content="${escape(page.description)}"><link rel="canonical" href="${escape(canonical)}"><meta property="og:type" content="${page.type || "website"}"><meta property="og:site_name" content="Saeed Arabha"><meta property="og:url" content="${escape(canonical)}"><meta property="og:title" content="${escape(page.title)}"><meta property="og:description" content="${escape(page.description)}"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="${escape(page.title)}"><meta name="twitter:description" content="${escape(page.description)}">${page.schema ? `<script type="application/ld+json">${json(page.schema)}</script>` : ""}`;
+  const imageUrl = page.image ? new URL(page.image, site).href : null;
+  const meta = `<title>${escape(page.title)}</title><meta name="description" content="${escape(page.description)}"><link rel="canonical" href="${escape(canonical)}"><meta property="og:type" content="${page.type || "website"}"><meta property="og:site_name" content="Saeed Arabha"><meta property="og:url" content="${escape(canonical)}"><meta property="og:title" content="${escape(page.title)}"><meta property="og:description" content="${escape(page.description)}"><meta property="og:locale" content="en_US"><meta name="twitter:card" content="${imageUrl ? 'summary_large_image' : 'summary'}"><meta name="twitter:title" content="${escape(page.title)}"><meta name="twitter:description" content="${escape(page.description)}">${imageUrl ? `<meta property="og:image" content="${escape(imageUrl)}"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="og:image:alt" content="${escape(page.imageAlt)}"><meta name="twitter:image" content="${escape(imageUrl)}"><meta name="twitter:image:alt" content="${escape(page.imageAlt)}">` : ''}${page.schema ? `<script id="site-structured-data" type="application/ld+json">${json(page.schema)}</script>` : ""}`;
   const html = template
     .replace(/<meta name="description"[\s\S]*?>/, "")
     .replace(/<title>[\s\S]*?<\/title>/, "")
-    .replace("</head>", `${meta}${snapshotStyle}</head>`)
-    .replace('<div id="root"></div>', `<div id="root"><div class="seo-snapshot">${nav}<main>${page.body}</main></div></div>`)
+    .replace("</head>", `${meta.replace(/<(title|meta|link|script)\b/g, '<$1 data-rh="true" data-seo-snapshot="true"')}${snapshotStyle}</head>`)
+    .replace('<div id="root"></div>', `<div id="root"><div class="seo-snapshot">${nav}${page.isFullPage ? page.body : `<main>${page.body}</main>`}</div></div>`)
     .replace(/^[ \t]+$/gm, "");
   const output = page.path === "/" ? join(dist, "index.html") : join(dist, page.path.slice(1), "index.html");
   mkdirSync(join(output, ".."), { recursive: true });

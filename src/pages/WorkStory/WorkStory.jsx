@@ -2027,6 +2027,7 @@ const ApproachContent = ({ scrollRef }) => {
         </p>
         <div className={styles.approachRebuildActions}>
           <Link to="/AcademicCV"><TbArrowUpRight aria-hidden="true" /><span>View Academic CV</span></Link>
+          <Link to="/venture">Explore the CFE commercialization case <TbArrowUpRight aria-hidden="true" /></Link>
           <a href="mailto:saeedarabha@outlook.com"><TbMail aria-hidden="true" /><span>Contact Me</span></a>
         </div>
       </div>

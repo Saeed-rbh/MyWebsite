@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+<defs><linearGradient id="bg" x2="1" y2="1"><stop stop-color="#f8faff"/><stop offset="1" stop-color="#e1ebff"/></linearGradient><linearGradient id="sheet"><stop stop-color="#0c234c"/><stop offset="1" stop-color="#477ff0"/></linearGradient></defs>
+<rect width="1200" height="630" fill="url(#bg)"/><circle cx="1050" cy="240" r="310" fill="#0645ee" opacity=".035"/>
+<path d="M64 55H1136" stroke="#afc4eb"/><text x="64" y="96" fill="#234878" font-family="Arial,sans-serif" font-size="19" letter-spacing="3">SAEED ARABHA / COMMERCIALIZATION</text>
+<text x="60" y="220" fill="#0b1935" font-family="Georgia,serif" font-size="72" letter-spacing="-3">Research.</text><text x="60" y="302" fill="#0645ee" font-family="Georgia,serif" font-size="72" letter-spacing="-3">Meet the market.</text>
+<text x="64" y="367" fill="#52627b" font-family="Arial,sans-serif" font-size="23">From materials science to commercial decisions.</text>
+<g stroke="#89a9e4" stroke-width="2" fill="url(#sheet)"><path d="M810 395l130-51 130 51-130 54Z" opacity=".5"/><path d="M810 371l130-51 130 51-130 54Z" opacity=".65"/><path d="M810 347l130-51 130 51-130 54Z" opacity=".8"/><path d="M810 323l130-51 130 51-130 54Z"/><path d="M810 248l130-51 130 51-130 54Z" fill="#94b6fa" fill-opacity=".4"/></g>
+<path d="M940 300V230M930 240l10-10 10 10" stroke="#0645ee" stroke-width="2" fill="none"/>
+<path d="M64 466H1136" stroke="#afc4eb"/><text x="64" y="511" fill="#31588f" font-family="Arial,sans-serif" font-size="17">CUSTOMER DISCOVERY</text><text x="370" y="511" fill="#31588f" font-family="Arial,sans-serif" font-size="17">MARKET STRATEGY</text><text x="660" y="511" fill="#31588f" font-family="Arial,sans-serif" font-size="17">SCALE-UP</text>
+<text x="64" y="580" fill="#0645ee" font-family="Arial,sans-serif" font-size="21">saeedarabha.com/commercialization</text></svg>

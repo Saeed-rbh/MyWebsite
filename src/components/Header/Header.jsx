@@ -258,6 +258,7 @@ const Header = () => {
       return (activeSection && sectionLabels[activeSection]) ? sectionLabels[activeSection] : "R&D Journey";
     }
     if (path === "/academiccv") return "Academic CV";
+    if (path.replace(/\/$/, "") === "/venture") return "Venture";
     if (path === "/journal" || path.startsWith("/journal/")) return "Journal";
     if (path === "/graphene") return "Graphene";
     if (path === "/research-progress") return "Research Progress";

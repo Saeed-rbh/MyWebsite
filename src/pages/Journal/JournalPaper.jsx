@@ -104,6 +104,7 @@ export default function JournalPaper() {
       <Helmet><script type="application/ld+json">{JSON.stringify(articleSchema)}</script></Helmet>
       <main className={styles.main}>
         <Link className={styles.backLink} to="/journal/">← The journal</Link>
+        {papers.slice(0,2).some(item => item.slug === paper.slug) && <p className={styles.commercializationLink}><Link to="/venture">From this research to customer discovery: explore the CFE commercialization case ↗</Link></p>}
         <article>
           <header className={styles.hero}>
             <div className={styles.topline}>
@@ -125,38 +126,11 @@ export default function JournalPaper() {
             <div className={styles.publicationLine}>
               <div><strong>{paper.journal}</strong><span>{paper.authors.join(", ")}</span></div>
               <div className={styles.heroActions}>
-                <a href={paper.figures.length ? "#result-figures" : "#story"}>{paper.figures.length ? "See the figures" : "Follow the story"} <span aria-hidden="true">↓</span></a>
+                <a href={paper.figures.length ? `#${figureAnchor(paper.figures[0])}` : "#story"}>{paper.figures.length ? "See the figures" : "Follow the story"} <span aria-hidden="true">↓</span></a>
                 <a href="#original-paper">Full paper <span aria-hidden="true">↘</span></a>
               </div>
             </div>
           </header>
-
-          {paper.figures.length > 0 && (
-            <section className={styles.figurePreview} id="result-figures" aria-labelledby="figure-preview-title">
-              <div className={styles.figurePreviewHeading}>
-                <span className={styles.eyebrow}>Figures from the paper</span>
-                <h2 id="figure-preview-title">See the results.</h2>
-                <p>{paper.figures.length} selected figures{paper.tables.length > 0 ? ` and ${paper.tables.length} evidence ${paper.tables.length === 1 ? "table" : "tables"}` : ""}. Follow the comparisons through the story.</p>
-              </div>
-              <div>
-              <div className={styles.figurePreviewGrid}>
-                {paper.figures.slice(0, 2).map((figure) => (
-                  <a className={styles.figurePreviewLink} href={`#${figureAnchor(figure)}`} key={figure.src} aria-label={`See ${figure.source} in the story: ${paper.story.results[figure.resultIndex].label}`}>
-                    <div className={`${styles.figurePreviewImage} ${figure.originalColors ? styles.sourceColors : ""}`}>
-                      <img src={figure.src} alt={figure.alt} width={figure.width} height={figure.height} />
-                    </div>
-                    <div className={styles.figurePreviewCaption}>
-                      <span>{figure.source}</span>
-                      <strong>{paper.story.results[figure.resultIndex].label}</strong>
-                      <span className={styles.figurePreviewArrow} aria-hidden="true">↘</span>
-                    </div>
-                  </a>
-                ))}
-              </div>
-              <nav className={styles.figureIndex} aria-label="All figures in this story">{paper.figures.map((figure) => <a href={`#${figureAnchor(figure)}`} key={figure.src}>{figure.source} <span aria-hidden="true">↘</span></a>)}</nav>
-              </div>
-            </section>
-          )}
 
           {!paper.pdf && <section className={styles.publisherPreview} id="story">
             <aside className={styles.sourceNotice}><strong>Publisher abstract preview</strong><p>This summary uses the publisher’s abstract. The full PDF is needed for the detailed story and source figures.</p><a href={paper.url} target="_blank" rel="noopener noreferrer">Read the publisher abstract ↗</a></aside>
@@ -168,7 +142,7 @@ export default function JournalPaper() {
               <nav className={styles.contents} aria-label="In this story">
                 <span className={styles.eyebrow}>In this story</span>
                 <span className={styles.evidenceCount}>{paper.figures.length} figures · {paper.tables.length} {paper.tables.length === 1 ? "table" : "tables"}</span>
-                {paper.figures.length > 0 && <a href="#result-figures">Figures from the paper</a>}
+                {paper.figures.length > 0 && <a href={`#${figureAnchor(paper.figures[0])}`}>Figures from the paper</a>}
                 {paper.tables.length > 0 && <a href={`#table-${paper.tables[0].resultIndex}-0`}>Data comparisons</a>}
                 <a href="#story">The starting question</a>
                 <a href="#investigation">The investigation</a>

@@ -17,6 +17,7 @@ import SiteMotionObserver from "./components/SiteMotion/SiteMotionObserver";
 
 const AcademicCV = lazy(() => import("./pages/Resume/Resume"));
 const HomePage = lazy(() => import("./pages/Home/Home"));
+const Commercialization = lazy(() => import("./pages/Commercialization/Commercialization"));
 const WorkStory = lazy(() => import("./pages/WorkStory/WorkStory"));
 const Journal = lazy(() => import("./pages/Journal/Journal"));
 const JournalPaper = lazy(() => import("./pages/Journal/JournalPaper"));
@@ -63,25 +64,26 @@ function AppContent({ onRouteReady }) {
   })();
 
   // Hide global elements on Admin Dashboard, Login page
+  const isCommercialization = normalizedPath.replace(/\/$/, '') === '/venture';
   const isDashboard = normalizedPath.startsWith('/admin') || normalizedPath === '/login';
   const isWorkStoryPage = normalizedPath === '/R&D-Portfolio' || normalizedPath === '/work-story';
   const isStoryPage = normalizedPath === '/research-progress' || isWorkStoryPage;
   const isMafia = normalizedPath === '/Mafia';
 
   return (
-    <div className="App">
+    <div className="App" data-site-theme={isCommercialization ? "cfe" : "dark"}>
       <div className="MainBackground">
         <div className="BackgroundColor1"></div>
       </div>
       {/* Floating carbon lattice — root-level so z-index works correctly */}
-      {visibility && !isDashboard && !isStoryPage && !isMafia && <BackgroundLattice />}
+      {visibility && !isDashboard && !isStoryPage && !isMafia && <BackgroundLattice theme={isCommercialization ? "light" : "dark"} />}
       {/* Show Mouse everywhere except Admin/Login */}
-      {visibility && !isDashboard && <Mouse />}
+      {visibility && !isDashboard && !isCommercialization && <Mouse />}
 
       {/* Use one shared header and menu across the public portfolio pages. */}
       {visibility && !isDashboard && <Header />}
       {visibility && !isDashboard && <Menu />}
-      {visibility && !isDashboard && <Footer />}
+      {visibility && !isDashboard && <Footer accent={isCommercialization ? "#0645ee" : "#d49d81"} />}
 
       <ErrorBoundary>
           <SiteMotionObserver />
@@ -112,6 +114,8 @@ function AppContent({ onRouteReady }) {
               >
                 <Routes location={location}>
                   <Route exact path="/" element={<HomePage />} />
+                  <Route path="/venture" element={<Commercialization />} />
+                  <Route path="/commercialization" element={<Navigate to={`/venture${location.search}${location.hash}`} replace />} />
                   <Route path="/R&D-Portfolio" element={<WorkStory />} />
                   <Route path="/journal/:slug/" element={<JournalPaper />} />
                   <Route path="/journal/" element={<Journal />} />

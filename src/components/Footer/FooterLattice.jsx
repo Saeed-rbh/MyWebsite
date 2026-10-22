@@ -7,7 +7,7 @@ import React, { useEffect, useRef, useState } from "react";
  * Rendered on a canvas clipped into the left end of the footer pill.
  * Fully responsive: keeps the same three-ring composition on mobile.
  */
-const FooterLattice = () => {
+const FooterLattice = ({ accent = "#d49d81" }) => {
   const canvasRef = useRef(null);
   const [isMobile, setIsMobile] = useState(
     typeof window !== "undefined" ? window.innerWidth <= 640 : false
@@ -48,7 +48,8 @@ const FooterLattice = () => {
 
     const drawRing = (r) => {
       const sides = 6;
-      const color = `rgba(212, 157, 129, ${r.opacity})`;
+      const color = accent;
+      ctx.globalAlpha = r.opacity;
 
       // Bond hexagon outline
       ctx.beginPath();
@@ -97,7 +98,7 @@ const FooterLattice = () => {
       cancelAnimationFrame(animId);
       motionPreference.removeEventListener("change", handleMotionChange);
     };
-  }, [isMobile]);
+  }, [isMobile, accent]);
 
   return (
     <canvas

@@ -17,7 +17,7 @@ function Logo(props) {
           {`
             .animated-logo-path {
               fill: transparent;
-              stroke: #d49d81;
+              stroke: var(--chrome-accent, #d49d81);
               stroke-width: 4px;
               stroke-dasharray: 2500;
               stroke-dashoffset: 2500;
@@ -28,16 +28,16 @@ function Logo(props) {
               0%, 10% {
                 stroke-dashoffset: 2500;
                 fill: transparent;
-                stroke: #d49d81;
+                stroke: var(--chrome-accent, #d49d81);
               }
               50%, 70% {
                 stroke-dashoffset: 0;
                 fill: transparent;
-                stroke: #d49d81;
+                stroke: var(--chrome-accent, #d49d81);
               }
               100% {
                 stroke-dashoffset: 0;
-                fill: #d49d81;
+                fill: var(--chrome-accent, #d49d81);
                 stroke: #fff;
               }
             }

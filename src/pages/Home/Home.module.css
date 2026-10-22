@@ -335,3 +335,5 @@
     .storyGrid { padding-top: 28px; }
     .storyBody > div p { font-size: 14px; line-height: 1.75; }
 }
+.commercializationLink { display: inline-flex; align-items: center; gap: 16px; margin-top: 18px; color: #d49d81; font: 400 12px/1.7 Rubik,sans-serif; text-decoration: none; }
+.commercializationLink:hover { color: #f3d6c0; }.commercializationLink:focus-visible { outline: 1px solid currentColor; outline-offset: 5px; }

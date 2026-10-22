@@ -6,19 +6,23 @@ import "../../pages/Home/Home.css";
 import "./Footer.css";
 import ContactInfo from "./ContactInfo";
 import ResumeInfo from "./ResumeInfo";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { updateMenu, updateCurrentPage } from "../../actions/Actions";
 import FooterLattice from "./FooterLattice";
 import FooterHoverIcon from "./FooterHoverIcon";
 import { PopupModal } from "react-calendly";
+import { backgroundBehind, throughGlass, readableText } from "./footerContrast";
 
-const Footer = () => {
+const Footer = ({ accent = "#d49d81" }) => {
   const navigate = useNavigate();
+  const location = useLocation();
+  const inkRef = useRef(null);
+  const glassRef = useRef(null);
+  const { visibility } = useSelector((state) => state.ui);
   const dispatch = useDispatch();
 
   const { isMenuOpen } = useSelector((state) => state.ui);
-  const { visibility } = useSelector((state) => state.ui);
 
   const [screenWidth, setScreenWidth] = useState(window.innerWidth);
   const [isCalendlyOpen, setIsCalendlyOpen] = useState(false);
@@ -46,7 +50,7 @@ const Footer = () => {
     dispatch(updateMenu(false));
     navigate(path);
   };
-  const handleClickCV = () => navigateTo("/AcademicCV");
+  const handleClickCommercialization = () => navigateTo("/venture");
   const handleClickResearch = () => navigateTo("/R&D-Portfolio");
 
   useEffect(() => {
@@ -90,9 +94,55 @@ const Footer = () => {
     immediate: reducedMotion,
   });
 
+  useEffect(() => {
+    if (!visibility || isMenuOpen) return;
+    let frame;
+    const update = () => {
+      frame = null;
+      const ink = inkRef.current, glass = glassRef.current;
+      if (!ink || !glass) return;
+      ink.querySelectorAll('a, button').forEach(control => {
+        const rect = control.getBoundingClientRect();
+        if (!rect.width || !rect.height) return;
+        const x = rect.left + rect.width / 2, y = rect.top + rect.height / 2;
+        const action = control.closest('.footer-action-pill');
+        const pane = glass.querySelector(action ? '.footer-action-pill' : '.HomeConsole');
+        const text = readableText(throughGlass(backgroundBehind(x, y), pane, x, y));
+        control.style.setProperty('--footer-text', text.color);
+        control.dataset.footerContrastRatio = text.contrast.toFixed(2);
+      });
+    };
+    const schedule = () => { if (!frame) frame = requestAnimationFrame(update); };
+    document.addEventListener('scroll', schedule, true);
+    window.addEventListener('resize', schedule);
+    const observer = new ResizeObserver(schedule);
+    if (inkRef.current) observer.observe(inkRef.current);
+    if (glassRef.current) observer.observe(glassRef.current);
+    // Recheck after the existing entrance and route animations settle.
+    const timers = [0, 450, 1200, 1900].map(delay => window.setTimeout(schedule, delay));
+    return () => {
+      cancelAnimationFrame(frame);
+      timers.forEach(window.clearTimeout);
+      observer.disconnect();
+      document.removeEventListener('scroll', schedule, true);
+      window.removeEventListener('resize', schedule);
+    };
+  }, [location.pathname, visibility, isMenuOpen]);
+
   return (
     visibility && (
-      <div className="HomePage-M-T-F HomeLandingFooter" inert={isMenuOpen ? true : undefined}>
+      <>
+      <div ref={glassRef} className="HomePage-M-T-F HomeLandingFooter footer-glass-layer" aria-hidden="true">
+        <animated.div className="HomeConsole" style={{ ...contactInfoOpenSpring,
+          "--footer-pill-width": contactInfoOpenSpring.width.to(value => `${value}px`),
+          "--footer-pill-height": contactInfoOpenSpring.height.to(value => `${value}px`),
+        }}><FooterLattice accent={accent} /></animated.div>
+        {separateContactPill && <animated.div className="HomeConsole footer-action-pill" style={{
+          opacity: actionPillSpring.separation.to(value => Math.min(1, value * 1.7)),
+          transform: actionPillSpring.separation.to(value => `translate3d(${-46 * (1 - value)}px, 0, 0) scale(${.82 + .18 * value}, ${.78 + .22 * value})`),
+        }} />}
+      </div>
+      <div ref={inkRef} className="HomePage-M-T-F HomeLandingFooter footer-ink-layer" inert={isMenuOpen ? true : undefined}>
         <PopupModal
           url="https://calendly.com/arabha-yorku/30min"
           onModalClose={() => setIsCalendlyOpen(false)}
@@ -112,10 +162,9 @@ const Footer = () => {
           }}
           className="HomeConsole"
         >
-          <FooterLattice />
           <animated.div style={{ ...TextOpenSpring, "--footer-content-width": `${footerWidth - (mobileFooter ? 6 : separateContactPill ? 48 : 24)}px` }} className="home-footer-content">
             <ResumeInfo
-              handleClickCV={handleClickCV}
+              handleClickCommercialization={handleClickCommercialization}
               handleClickResearch={handleClickResearch}
               resumeClicked={false}
               MenuHide={visibility}
@@ -166,6 +215,7 @@ const Footer = () => {
           </>
         )}
       </div>
+      </>
     )
   );
 };

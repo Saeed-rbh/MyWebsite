@@ -5,7 +5,7 @@ import ResearchStoryIcon from "./ResearchStoryIcon";
 import FooterHoverIcon from "./FooterHoverIcon";
 
 const ResumeInfo = ({
-  handleClickCV,
+  handleClickCommercialization,
   handleClickResearch,
   resumeClicked,
   MenuHide,
@@ -39,7 +39,7 @@ const ResumeInfo = ({
         {!resumeClicked && (
           <>
             <animated.button
-              onClick={handleClickCV}
+              onClick={handleClickCommercialization}
               style={{ ...Style_1, display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px', background: 'none', border: 'none', cursor: 'pointer', padding: 0 }}
               ref={Ref_1}
               onMouseEnter={() => setIsHoveredResume(true)}
@@ -47,8 +47,8 @@ const ResumeInfo = ({
               onFocus={() => setIsHoveredResume(true)}
               onBlur={() => setIsHoveredResume(false)}
             >
-              <FooterHoverIcon kind="cv" isHovered={isHoveredResume} />
-              <span>ACADEMIC CV</span>
+              <FooterHoverIcon kind="commercialization" isHovered={isHoveredResume} />
+              <span>VENTURE</span>
             </animated.button>
             <animated.button
               onClick={handleClickResearch}

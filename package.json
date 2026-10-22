@@ -51,7 +51,8 @@
     "cms": "node server/cms.js",
     "start": "vite",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "check:seo": "node scripts/check-seo.mjs"
   },
   "browserslist": {
     "production": [
@@ -70,6 +71,7 @@
     "@types/react-dom": "^19.0.0",
     "@vitejs/plugin-react": "^5.0.0",
     "tailwindcss": "^3.4.1",
-    "vite": "^6.0.0"
+    "vite": "^6.0.0",
+    "esbuild": "^0.24.2"
   }
 }

@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from "react";
 
 // A connected honeycomb lattice with gentle membrane ripples.
-const BackgroundLattice = () => {
+const BackgroundLattice = ({ theme = "dark" }) => {
   const canvasRef = useRef(null);
 
   useEffect(() => {
@@ -9,6 +9,9 @@ const BackgroundLattice = () => {
     const ctx = canvas?.getContext("2d");
     if (!ctx) return;
 
+    const light = theme === "light";
+    const bondColor = light ? "6,69,238" : "212,157,129";
+    const atomColor = light ? "44,95,204" : "225,174,144";
     const motionPreference = window.matchMedia("(prefers-reduced-motion: reduce)");
     let width = 0;
     let height = 0;
@@ -59,12 +62,12 @@ const BackgroundLattice = () => {
     const draw = (time) => {
       ctx.clearRect(0, 0, width, height);
       const atmosphere = ctx.createRadialGradient(width * .85, height * .12, 0, width * .6, height * .4, Math.max(width, height));
-      atmosphere.addColorStop(0, "#19130f");
-      atmosphere.addColorStop(.45, "#100e0c");
-      atmosphere.addColorStop(1, "#100e0c");
+      atmosphere.addColorStop(0, light ? "#eef3fc" : "#19130f");
+      atmosphere.addColorStop(.45, light ? "#f7f9fd" : "#100e0c");
+      atmosphere.addColorStop(1, light ? "#f7f9fd" : "#100e0c");
       ctx.fillStyle = atmosphere;
       ctx.fillRect(0, 0, width, height);
-      ctx.lineWidth = .65;
+      ctx.lineWidth = light ? .5 : .65;
       const patches = [
         { x: .86 + Math.sin(time * .09) * .06, y: .18 + Math.cos(time * .11) * .09, phase: 0 },
         { x: .10 + Math.cos(time * .08) * .05, y: .62 + Math.sin(time * .10) * .12, phase: 2.1 },
@@ -87,7 +90,7 @@ const BackgroundLattice = () => {
         const a = membranePoint(start, time);
         const b = membranePoint(end, time);
         const { reveal, quietCenter } = visibilityAt({ x: (start.x + end.x) * .5, y: (start.y + end.y) * .5 });
-        ctx.strokeStyle = `rgba(212,157,129,${(.006 + .22 * reveal) * quietCenter})`;
+        ctx.strokeStyle = `rgba(${bondColor},${(.006 + .22 * reveal) * quietCenter * (light ? .45 : 1)})`;
         ctx.beginPath();
         ctx.moveTo(a.x, a.y);
         ctx.lineTo(b.x, b.y);
@@ -96,8 +99,8 @@ const BackgroundLattice = () => {
       atoms.forEach(atom => {
         const point = membranePoint(atom, time);
         const { reveal, quietCenter } = visibilityAt(atom);
-        const opacity = (.008 + .42 * reveal) * quietCenter;
-        ctx.fillStyle = `rgba(225,174,144,${opacity})`;
+        const opacity = (.008 + .42 * reveal) * quietCenter * (light ? .5 : 1);
+        ctx.fillStyle = `rgba(${atomColor},${opacity})`;
         ctx.beginPath();
         ctx.arc(point.x, point.y, width < 640 ? 1.15 : 1.4, 0, Math.PI * 2);
         ctx.fill();
@@ -158,12 +161,13 @@ const BackgroundLattice = () => {
       document.removeEventListener("visibilitychange", syncAnimation);
       motionPreference.removeEventListener("change", syncAnimation);
     };
-  }, []);
+  }, [theme]);
 
   return (
     <canvas
       ref={canvasRef}
       aria-hidden="true"
+      data-lattice-theme={theme}
       style={{
         position: "fixed",
         inset: 0,
