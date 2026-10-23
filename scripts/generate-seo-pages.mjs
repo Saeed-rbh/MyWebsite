@@ -10,7 +10,13 @@ const site = "https://www.saeedarabha.com";
 const dist = process.env.SEO_DIST_DIR
   ? resolve(process.env.SEO_DIST_DIR)
   : fileURLToPath(new URL("../dist/", import.meta.url));
-const template = readFileSync(join(dist, "index.html"), "utf8");
+// The generator can run again against an existing build. Remove the previous
+// snapshot and its owned metadata before adding current route-specific content.
+const template = readFileSync(join(dist, "index.html"), "utf8")
+  .replace(/<(title|script)\b[^>]*data-seo-snapshot="true"[^>]*>[\s\S]*?<\/\1>/g, '')
+  .replace(/<(?:meta|link)\b[^>]*data-seo-snapshot="true"[^>]*>/g, '')
+  .replace(/<style id="seo-snapshot-style">[\s\S]*?<\/style>/g, '')
+  .replace(/<div id="root">[\s\S]*<\/div>(?=\s*(?:<script\b|<\/body>))/g, '<div id="root"></div>');
 const papers = JSON.parse(readFileSync(new URL("../src/data/journalPapers.json", import.meta.url), "utf8"));
 const escape = (value) => String(value ?? "").replaceAll("&", "&amp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll('"', "&quot;").replaceAll("'", "&#39;");
 const paragraph = (value) => `<p>${escape(value)}</p>`;
