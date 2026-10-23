@@ -1,7 +1,30 @@
 export const atomsArticle = {
   "title": "Matter, atom by atom: a guide to atomistic simulation",
   "description": "An illustrated introduction to atomistic simulation: representing materials as atoms, choosing molecular dynamics or electronic-structure methods, and predicting structure, motion, and properties.",
-  "intro": "Why does a material wrinkle, resist heat flow, or separate into thinner layers? The answer often begins with interactions we cannot directly watch. Atomistic simulation builds a model of those atoms so we can test a mechanism, understand a measurement, and decide what to investigate next.",
+  "intro": "Why does a crystal vibrate, a gas spread, or heat cross an interface? The answer begins with atomic structure and interactions we cannot directly watch. Atomistic simulation builds a model of those atoms so we can test a mechanism, understand a measurement, and decide what to investigate next.",
+  "simulationExamples": [
+    {
+      "id": "solid",
+      "label": "Solid",
+      "subtitle": "Lattice motion & defects",
+      "explanation": "Atoms oscillate around an ordered arrangement. A missing atom changes the local environment and how neighbours move.",
+      "measure": "Atomic displacements, local structure and, with suitable methods, mechanical or thermal response."
+    },
+    {
+      "id": "gas",
+      "label": "Gas",
+      "subtitle": "Encounters & transport",
+      "explanation": "Separated atoms travel through space and exchange momentum in close encounters. Changing density changes how often they meet.",
+      "measure": "Velocity statistics, collision behaviour and transport over sufficiently long trajectories."
+    },
+    {
+      "id": "water",
+      "label": "Water",
+      "subtitle": "Molecules & interactions",
+      "explanation": "Molecules translate and rotate while their internal geometry stays fixed. Partial charges produce orientation-dependent interactions.",
+      "measure": "Molecular orientation, intermolecular structure and hydrogen-bond contact statistics."
+    }
+  ],
   "sections": [
     {
       "id": "what-is-atomistic",
@@ -113,6 +136,14 @@ export const atomsArticle = {
     {
       "label": "Quantum ESPRESSO: electronic structure and atomic forces",
       "url": "https://www.quantum-espresso.org/Doc/pw_user_guide/node3.html"
+    },
+    {
+      "label": "LAMMPS: Lennard–Jones pair interactions",
+      "url": "https://docs.lammps.org/pair_lj.html"
+    },
+    {
+      "label": "LAMMPS: reduced units and physical units",
+      "url": "https://docs.lammps.org/units.html"
     }
   ],
   "diagrams": [

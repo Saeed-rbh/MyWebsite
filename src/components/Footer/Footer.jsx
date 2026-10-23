@@ -6,7 +6,8 @@ import "../../pages/Home/Home.css";
 import "./Footer.css";
 import ContactInfo from "./ContactInfo";
 import ResumeInfo from "./ResumeInfo";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import ArticlesMenu from "./ArticlesMenu";
+import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { updateMenu, updateCurrentPage } from "../../actions/Actions";
 import FooterLattice from "./FooterLattice";
@@ -39,7 +40,7 @@ const Footer = ({ accent = "#d49d81" }) => {
   const separateContactPill = screenWidth >= 940;
   const footerWidth = mobileFooter
     ? Math.min(520, screenWidth - 36)
-    : separateContactPill ? 600 : Math.min(820, screenWidth - 24);
+    : separateContactPill ? Math.min(700, screenWidth - 280) : Math.min(820, screenWidth - 24);
   const footerHeight = mobileFooter ? 56 : 60;
   const introComplete = useRef(false);
   const [isMouseHover, setMouseHover] = useState([false, null, null]);
@@ -102,6 +103,7 @@ const Footer = ({ accent = "#d49d81" }) => {
       const ink = inkRef.current, glass = glassRef.current;
       if (!ink || !glass) return;
       ink.querySelectorAll('a, button').forEach(control => {
+        if (control.closest('.footer-articles-panel')) return;
         const rect = control.getBoundingClientRect();
         if (!rect.width || !rect.height) return;
         const x = rect.left + rect.width / 2, y = rect.top + rect.height / 2;
@@ -170,7 +172,8 @@ const Footer = ({ accent = "#d49d81" }) => {
               MenuHide={visibility}
               screenWidth={screenWidth}
             />
-            <Link
+            <ArticlesMenu reducedMotion={reducedMotion} onNavigate={path => { dispatch(updateCurrentPage(path)); dispatch(updateMenu(false)); }} />
+            <NavLink
               className="footer-journal-link"
               to="/journal/"
               onClick={() => { dispatch(updateCurrentPage("/journal/")); dispatch(updateMenu(false)); }}
@@ -180,8 +183,8 @@ const Footer = ({ accent = "#d49d81" }) => {
               onBlur={() => setIsHoveredJournal(false)}
             >
               <FooterHoverIcon kind="journal" isHovered={isHoveredJournal} />
-              <span>JOURNAL</span>
-            </Link>
+              <span className="footer-page-label">JOURNAL</span>
+            </NavLink>
             <ContactInfo
               isMouseHover={isMouseHover}
               setMouseHover={setMouseHover}

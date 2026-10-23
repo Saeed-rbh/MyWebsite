@@ -25,7 +25,6 @@ const JournalPaper = lazy(() => import("./pages/Journal/JournalPaper"));
 import Loader from "./Loader/Loader";
 const AdminDashboard = lazy(() => import("./pages/Admin/AdminDashboard"));
 const Login = lazy(() => import("./pages/Admin/Login"));
-const ResearchProgress = lazy(() => import("./pages/Research/ResearchProgress"));
 const Mafia = lazy(() => import("./pages/Mafia/Mafia"));
 
 import { HelmetProvider } from "react-helmet-async";
@@ -53,7 +52,6 @@ function AppContent({ onRouteReady }) {
   const isCommercialization = normalizedPath.replace(/\/$/, '') === '/venture';
   const isDashboard = normalizedPath.startsWith('/admin') || normalizedPath === '/login';
   const isWorkStoryPage = normalizedPath === '/R&D-Portfolio' || normalizedPath === '/work-story';
-  const isStoryPage = normalizedPath === '/research-progress' || isWorkStoryPage;
   const isMafia = normalizedPath === '/Mafia';
 
   return (
@@ -62,7 +60,7 @@ function AppContent({ onRouteReady }) {
         <div className="BackgroundColor1"></div>
       </div>
       {/* Floating carbon lattice — root-level so z-index works correctly */}
-      {visibility && !isDashboard && !isStoryPage && !isMafia && <BackgroundLattice theme={isCommercialization ? "light" : "dark"} />}
+      {visibility && !isDashboard && !isWorkStoryPage && !isMafia && <BackgroundLattice theme={isCommercialization ? "light" : "dark"} />}
       {/* Show Mouse everywhere except Admin/Login */}
       {visibility && !isDashboard && !isCommercialization && <Mouse />}
 
@@ -89,7 +87,6 @@ function AppContent({ onRouteReady }) {
                   <Route path="/academiccv" element={<AcademicCV />} />
                   <Route path="/simulate-atoms" element={<Atoms />} />
                   <Route exact path="/Graphene" element={<Graphene />} />
-                  <Route path="/research-progress" element={<ResearchProgress />} />
                   <Route path="/Mafia" element={<Mafia />} />
                   <Route exact path="/admin" element={<AdminDashboard />} />
                   <Route exact path="/login" element={<Login />} />

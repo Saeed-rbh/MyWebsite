@@ -130,7 +130,6 @@ const HomePage = () => {
               <span className={styles.sectionLabel}><span className={styles.sectionMarker} aria-hidden="true" />A closer look at the work</span>
               <div className={styles.storyBody}>
                 <MainText onWordClick={handleWordClick} />
-                <a className={styles.commercializationLink} href="/venture">Research commercialization: from materials science to market <span aria-hidden="true">↗</span></a>
                 <p className={styles.interactionHint}>
                   <span className={styles.hintDot} aria-hidden="true" />
                   <span className={styles.desktopCopy}>Need materials, process, or metrology expertise?</span><span className={styles.mobileCopy}>Building your R&amp;D team?</span>

@@ -26,7 +26,7 @@ const link = (href, label) => `<a href="${escape(href)}">${escape(label)}</a>`;
 const json = (value) => JSON.stringify(value).replaceAll("<", "\\u003c");
 const nav = `<nav aria-label="Main navigation">${[
   ["/", "Home"], ["/R&D-Portfolio", "R&D portfolio"], ["/AcademicCV", "Academic CV"],
-  ["/venture", "Venture"], ["/journal/", "Journal"], ["/research-progress", "Research journey"],
+  ["/venture", "Venture"], ["/journal/", "Journal"],
 ].map(([url, label]) => link(url, label)).join("")}</nav>`;
 
 const pages = [
@@ -35,6 +35,7 @@ const pages = [
     type: 'article', schema: schemaFor('/simulate-atoms'),
     body: `<h1>${escape(atomsArticle.title)}</h1>${paragraph(atomsArticle.intro)}
       ${atomsArticle.sections.map(s => `<section id="${s.id}"><h2>${escape(s.title)}</h2>${s.paragraphs.map(paragraph).join('')}${link(atomsArticle.sources[s.source].url, 'Source')}${atomsArticle.diagrams.filter(d => d.chapter === s.id).map(d => `<figure><img src="${d.src}" width="960" height="540" alt="${escape(d.alt)}"><figcaption>${escape(d.title)} ${escape(d.caption)}</figcaption></figure>`).join('')}</section>`).join('')}
+      <section id="atoms-explorer"><h2>Compare solid, gas and molecular simulations</h2><p>Three interactive teaching models connect atomic structure, interactions and motion.</p>${atomsArticle.simulationExamples.map(e => `<h3>${escape(e.label)}: ${escape(e.subtitle)}</h3>${paragraph(e.explanation)}${paragraph(e.measure)}`).join('')}</section>
       <section id="simulation-software"><h2>Which software does what?</h2>${atomsArticle.software.map(t => `<h3>${escape(t.name)}: ${escape(t.role)}</h3>${paragraph(t.text)}${paragraph(t.detail)}${link(t.url, 'Official documentation')}`).join('')}</section>
       <section id="simulation-papers"><h2>Real problems: from atomic questions to practical decisions</h2>${atomsArticle.research.map(r => `<h3>${escape(r.title)}</h3>${paragraph(r.problem)}${paragraph(r.text)}${paragraph(r.implication)}<figure><img src="${r.figure.src}" alt="${escape(r.figure.alt)}"><figcaption>${escape(r.figure.source)}. ${escape(r.paperTitle)}</figcaption></figure>${link(r.url,'Original paper')}`).join('')}</section>
       <section><h2>Key takeaways</h2>${atomsArticle.takeaways.map(paragraph).join('')}</section>
@@ -101,15 +102,7 @@ const pages = [
       <section><h2>Continue exploring</h2>${link('/R&D-Portfolio', 'Explore my R&D work')}${link('/journal/', 'Read the research')}</section>
       <section><h2>Sources and further reading</h2>${grapheneArticle.sources.map(source => link(source.url, source.label)).join('')}</section>`,
   },
-  {
-    path: "/research-progress",
-    title: "Research Journey | Saeed Arabha",
-    description: "Follow Saeed Arabha's research from nanofluid interfaces and thermal transport to 2D materials, machine learning models, and scalable nanomanufacturing.",
-    body: `<h1>Research journey</h1><p class="lead">From interfaces to scalable nanomanufacturing</p>
-      <section><h2>Nanofluid interfaces</h2><p>My earlier research examined thermal resistance and molecular ordering where nanoparticles meet water.</p></section>
-      <section><h2>Two-dimensional materials</h2><p>I studied how geometry, defects, and mechanical deformation affect the performance of graphene and related materials.</p></section>
-      <section><h2>Machine learning and manufacturing</h2><p>More recent work uses machine learning interatomic potentials and investigates gas-driven exfoliation as a route to larger-scale production.</p>${link("/journal/", "Explore the research archive")}</section>`,
-  },
+
 ];
 
 pages.push({

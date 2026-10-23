@@ -7,7 +7,7 @@ const SCALE = 330 / BOX.height;
 const LEFT = (600 - BOX.width * SCALE) / 2;
 const COPIES = [-1, 0, 1].flatMap(x => [-1, 0, 1].map(y => [x * BOX.width, y * BOX.height]));
 
-export default function WaterExplorer() {
+export default function WaterExplorer({embedded = false}) {
   const [running, setRunning] = useState(false);
   const [rate, setRate] = useState(1);
   const [initialTemperature, setInitialTemperature] = useState(300);
@@ -54,7 +54,7 @@ export default function WaterExplorer() {
   const u = [h1.x - oxygen.x, h1.y - oxygen.y], v = [h2.x - oxygen.x, h2.y - oxygen.y];
   const angle = Math.acos(Math.max(-1, Math.min(1, (u[0] * v[0] + u[1] * v[1]) / (Math.hypot(...u) * Math.hypot(...v))))) * 180 / Math.PI;
 
-  return <section id="atoms-explorer" className={styles.experience} aria-labelledby="explorer-title">
+  return <section id={embedded ? undefined : "atoms-explorer"} className={styles.experience} aria-labelledby="explorer-title">
     <div className={styles.explorerHeading}>
       <div><span className={styles.eyebrow}>Example / Molecular dynamics of water</span><h2 id="explorer-title">A closer look at molecular motion.</h2></div>
       <span className={styles.liveLabel}>Live molecular model</span>

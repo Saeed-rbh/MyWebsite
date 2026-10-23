@@ -82,10 +82,6 @@
             "destination": "/Graphene/index.html"
         },
         {
-            "source": "/research-progress",
-            "destination": "/research-progress/index.html"
-        },
-        {
             "source": "/journal/",
             "destination": "/journal/index.html"
         },

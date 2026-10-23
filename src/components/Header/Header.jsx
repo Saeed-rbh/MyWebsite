@@ -266,7 +266,6 @@ const Header = () => {
     if (path === "/journal" || path.startsWith("/journal/")) return "Journal";
     if (path === "/simulate-atoms") return "Atomic simulation";
     if (path === "/graphene") return "Graphene";
-    if (path === "/research-progress") return "Research Progress";
     
     const formatted = normalizedPath.replace(/^\//, '').replace(/-/g, ' ');
     if (!formatted) return null;

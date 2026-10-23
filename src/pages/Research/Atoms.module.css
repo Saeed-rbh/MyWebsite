@@ -108,3 +108,21 @@
  .tool{padding:24px;}
  .exampleDetails{padding:18px;}
 }
+
+.materialExplorer {scroll-margin-top:100px;}
+.phaseSelector {display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin:8px 0 24px;}
+.phaseSelector button {display:flex;align-items:center;text-align:left;gap:14px;padding:18px;border-radius:14px;background:#211a145e;border:1px solid #d49d813b;min-width:0;}
+.phaseSelector button[aria-pressed=true] {background:#c3977224;border-color:#d6a17e;color:#f1d7c3;}
+.phaseSelector button > svg {width:64px;flex:0 0 64px;}
+.phaseSelector button > span:last-child {margin-left:auto;color:#d6a17e;}
+.phaseSelector strong {display:block;font:400 24px/1.3 'DM Serif Display',serif;color:#f1d7c3;}
+.phaseSelector small {display:block;font:10px/1.6 'Rubik',sans-serif;color:#bfae9d;margin-top:5px;}
+.modelComparison {padding:32px 0 20px;}
+.modelComparison > div {display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:30px;margin-top:20px;}
+.modelComparison article {border-top:1px solid #d49d8130;padding-top:20px;}
+.modelComparison h3 {font:400 27px/1.3 'DM Serif Display',serif;margin:0 0 12px;color:#edddcc;}
+.modelComparison p {font-size:12px;line-height:1.9;color:#c9bfb5;}
+.modelComparison strong {font-weight:500;color:#e4bfa9;}
+.modelComparison .comparisonNote {font-size:10px;line-height:1.9;max-width:950px;color:#ad9f93;margin:24px 0 0;}
+@media(max-width:1100px){.phaseSelector button > svg{width:44px;flex-basis:44px;}.phaseSelector button{gap:10px;padding:16px;}.phaseSelector small{font-size:9px;}}
+@media(max-width:700px){.phaseSelector{gap:8px;}.phaseSelector button{flex-direction:column;align-items:flex-start;padding:14px 12px;gap:8px;}.phaseSelector button > svg{width:55px;flex-basis:auto;}.phaseSelector button > span:last-child{display:none;}.phaseSelector strong{font-size:23px;}.phaseSelector small{font-size:9px;line-height:1.7;}.modelComparison > div{grid-template-columns:1fr;gap:14px;}.modelComparison article{padding-top:16px;}.modelComparison h3{font-size:25px;}.modelComparison p{font-size:13px;}}
