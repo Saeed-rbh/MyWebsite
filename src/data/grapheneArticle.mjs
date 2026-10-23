@@ -437,104 +437,99 @@ export const grapheneArticle = {
   "diagrams": [
     {
       "chapter": "graphene-discovery",
-      "src": "/images/graphene/exfoliation.svg",
+      "src": "/images/graphene/learning-discovery-illustration.png",
       "title": "How does graphite become graphene?",
-      "alt": "Schematic of exfoliation: stacked graphite sheets on the left, an isolated graphene sheet on the right.",
-      "caption": "Peeling separates neighbouring layers rather than changing carbon into a different element. This schematic illustrates the idea, not the experimental apparatus.",
+      "alt": "Illustration of exfoliation: stacked graphite sheets on the left, an isolated graphene sheet on the right.",
+      "caption": "Peeling separates neighbouring layers rather than changing carbon into a different element. This illustration illustrates the idea, not the experimental apparatus.",
       "source": 0,
-      "width": 900,
-      "height": 640,
+      "width": 1536,
+      "height": 1024,
       "layout": "sequence",
       "steps": [
         {
-          "src": "/images/graphene/learn-stack.svg",
           "title": "Start with a stack",
           "text": "Graphite contains many carbon sheets, one above another."
         },
         {
-          "src": "/images/graphene/learn-single.svg",
           "title": "Separate one sheet",
           "text": "An isolated carbon sheet is graphene. Its atoms are still carbon."
         }
       ],
-      "takeaway": "Dots represent carbon atoms; lines represent bonds. Each honeycomb network is one sheet. Layer gaps and atom sizes are exaggerated for clarity."
+      "takeaway": "Dots represent carbon atoms; lines represent bonds. Each honeycomb network is one sheet. Layer gaps and atom sizes are exaggerated for clarity.",
+      "generated": true
     },
     {
       "chapter": "why-it-matters",
-      "src": "/images/graphene/mechanics.svg",
+      "src": "/images/graphene/learning-mechanics-illustration.png",
       "title": "How can a sheet be strong and flexible?",
-      "alt": "Schematic comparing in-plane stretching with out-of-plane bending of a sheet.",
+      "alt": "Illustration comparing in-plane stretching with out-of-plane bending of a sheet.",
       "caption": "Pulling within the sheet and bending it out of plane test different mechanical responses. Deformations are exaggerated; arrows do not encode a measured force.",
       "source": 4,
-      "width": 900,
-      "height": 640,
+      "width": 1536,
+      "height": 1024,
       "layout": "compare",
       "steps": [
         {
-          "src": "/images/graphene/learn-stretch.svg",
           "title": "Pull along the sheet",
           "text": "Stretching loads the strong bonds between carbon atoms."
         },
         {
-          "src": "/images/graphene/learn-bend.svg",
           "title": "Curve the sheet",
           "text": "Bending changes its shape out of the plane. This is a different kind of deformation."
         }
       ],
-      "takeaway": "The arrows show the direction of deformation. They do not show a measured force."
+      "takeaway": "The arrows show the direction of deformation. They do not show a measured force.",
+      "generated": true
     },
     {
       "chapter": "electrical-and-thermal-properties",
-      "src": "/images/graphene/charge-heat.svg",
+      "src": "/images/graphene/learning-transport-illustration.png",
       "title": "What carries electricity—and what carries heat?",
       "alt": "Conceptual comparison of moving charge carriers and a wave representing lattice vibrations.",
       "caption": "The two panels distinguish electrical transport from phonon-mediated heat transport. They are teaching illustrations, not simulated paths or measured signals.",
       "source": 6,
-      "width": 900,
-      "height": 640,
+      "width": 1536,
+      "height": 1024,
       "layout": "compare",
       "steps": [
         {
-          "src": "/images/graphene/learn-charge.svg",
           "title": "Electricity: moving charge",
-          "text": "The teal dots represent charge carriers moving through the material."
+          "text": "Teal charge symbols show moving carriers; the carbon network remains in place."
         },
         {
-          "src": "/images/graphene/learn-vibration.svg",
           "title": "Heat: lattice vibrations",
-          "text": "The wave represents vibrations passing energy through the carbon lattice."
+          "text": "The displaced atom positions illustrate vibrations transferring energy through the sheet."
         }
       ],
-      "takeaway": "Dots and waves are explanatory symbols, not measured paths. This comparison highlights two different mechanisms."
+      "takeaway": "Dots and waves are explanatory symbols, not measured paths. This comparison highlights two different mechanisms.",
+      "generated": true
     },
     {
       "chapter": "graphene-family",
-      "src": "/images/graphene/material-family.svg",
+      "src": "/images/graphene/learning-family-illustration.png",
       "title": "Why are these materials different?",
       "alt": "Comparison of monolayer graphene, a few-layer stack and graphene oxide with coloured markers for oxygen-containing groups.",
-      "caption": "Layer count and chemical modification are separate distinctions. Markers indicate chemical groups schematically; they do not specify an atomic configuration or oxygen concentration.",
+      "caption": "Layer count and chemical modification are separate distinctions. Markers indicate chemical groups illustrationally; they do not specify an atomic configuration or oxygen concentration.",
       "source": 2,
-      "width": 900,
-      "height": 640,
+      "width": 1536,
+      "height": 1024,
       "layout": "compare",
       "steps": [
         {
-          "src": "/images/graphene/learn-single.svg",
           "title": "Graphene",
           "text": "One carbon sheet."
         },
         {
-          "src": "/images/graphene/learn-stack.svg",
           "title": "Few-layer graphene",
           "text": "A small stack of sheets."
         },
         {
-          "src": "/images/graphene/learn-oxide.svg",
           "title": "Graphene oxide",
           "text": "A chemically modified sheet with oxygen-containing groups."
         }
       ],
-      "takeaway": "Teal markers represent oxygen-containing groups. Layer count and chemical composition are different properties."
+      "takeaway": "Teal markers represent oxygen-containing groups. Layer count and chemical composition are different properties.",
+      "generated": true
     },
     {
       "chapter": "making-it-useful",
@@ -632,32 +627,30 @@ export const grapheneArticle = {
     },
     {
       "chapter": "measuring-graphene",
-      "src": "/images/graphene/raman.svg",
+      "src": "/images/graphene/learning-raman-illustration.png",
       "title": "How does Raman spectroscopy work?",
-      "alt": "Raman measurement schematic with incident laser light, a graphene sample and scattered light.",
+      "alt": "Raman measurement illustration with incident laser light, a graphene sample and scattered light.",
       "caption": "Raman spectroscopy examines energy shifts in scattered light. The spectrum provides clues about vibrations, defects, strain and layer structure. Beam directions are illustrative.",
       "source": 5,
-      "width": 900,
-      "height": 640,
+      "width": 1536,
+      "height": 1024,
       "layout": "sequence",
       "steps": [
         {
-          "src": "/images/graphene/learn-laser.svg",
           "title": "1. Shine light",
           "text": "A laser illuminates the graphene sample."
         },
         {
-          "src": "/images/graphene/learn-detector.svg",
           "title": "2. Collect scattered light",
           "text": "An instrument measures the light leaving the sample."
         },
         {
-          "src": "/images/graphene/learn-spectrum.svg",
           "title": "3. Read energy changes",
           "text": "Shifts in the light’s energy reveal information about atomic vibrations."
         }
       ],
-      "takeaway": "The drawn spectrum is illustrative, not data. Compare it with the published measurements below."
+      "takeaway": "The apparatus, beam paths and colours are simplified. The colours distinguish light energies; they are not measured wavelengths. Compare this teaching illustration with the published measurements below.",
+      "generated": true
     }
   ],
   "literatureFigures": [
