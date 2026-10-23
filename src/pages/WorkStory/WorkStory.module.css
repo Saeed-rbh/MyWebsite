@@ -22463,3 +22463,505 @@ blockquote::before {
     animation: none !important;
   }
 }
+
+/* Responsive reading layout: content determines chapter height on small screens. */
+.page .evidenceRailFigure > svg {
+  display: block;
+  max-width: 100%;
+  overflow: hidden;
+}
+
+@media (max-width: 840px) {
+  .page { scroll-snap-type: y proximity; }
+
+  .page .storyGrid > .section.asymEvidence,
+  .page .asymEvidence .evidenceScrollScene,
+  .page .asymEvidence .evidenceScrollStage,
+  .page .storyGrid > .section.asymApproach,
+  .page .asymApproach .approachRebuildStage {
+    height: auto !important;
+    min-height: var(--story-frame-height) !important;
+    max-height: none !important;
+    overflow: visible !important;
+  }
+
+  .page .asymEvidence .evidenceScrollStage {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 28px !important;
+    padding: 84px clamp(20px, 5vw, 36px) 108px !important;
+  }
+
+  .page .asymEvidence .evidenceRails {
+    position: relative !important;
+    inset: auto !important;
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    grid-template-rows: none !important;
+    grid-auto-rows: auto !important;
+    gap: 14px !important;
+    height: auto !important;
+    overflow: visible !important;
+    transform: none !important;
+  }
+
+  .page .asymEvidence .evidenceRailCard {
+    display: flex !important;
+    flex-direction: column !important;
+    align-self: stretch !important;
+    height: auto !important;
+    padding: 8px !important;
+    transform: none !important;
+  }
+
+  .page .asymEvidence .evidenceRailFigure {
+    width: 100% !important;
+    height: auto !important;
+    aspect-ratio: 240 / 150;
+    flex: none !important;
+    margin: 0 !important;
+  }
+
+  .page .asymEvidence .evidenceRailCopy {
+    padding: 10px 2px 6px !important;
+    gap: 6px !important;
+  }
+
+  .page .asymEvidence .evidenceRailTitle { font-size: 0.8rem !important; }
+  .page .asymEvidence .evidenceRailProof {
+    display: block !important;
+    font-size: 0.72rem !important;
+    line-height: 1.35 !important;
+    white-space: normal !important;
+  }
+
+  .page .asymEvidence .evidenceLeadText {
+    display: block !important;
+    max-width: 38ch !important;
+    margin: 18px 0 0 !important;
+    font-size: 0.94rem !important;
+    line-height: 1.5 !important;
+  }
+
+  .page .asymApproach .approachRebuildStage {
+    padding: 84px 24px 108px !important;
+  }
+
+  .page .asymApproach .approachRebuildCopy,
+  .page .asymApproach .approachRebuildSystem {
+    min-width: 0 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  .page .asymApproach .approachRebuildLead {
+    width: auto !important;
+    max-width: 100% !important;
+    white-space: normal !important;
+    font-size: 1rem !important;
+    line-height: 1.5 !important;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .page { scroll-behavior: auto !important; scroll-snap-type: none !important; }
+  .page *, .page *::before, .page *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+  .page .evidenceMaterialLetters > span { opacity: 1 !important; transform: none !important; }
+  .page .evidenceRail { transform: none !important; }
+}
+
+@media (max-width: 840px) {
+  .page .storyGrid > .section.asymApproach { padding: 0 !important; }
+  .page .asymApproach .approachRebuildCopy {
+    grid-template-columns: minmax(0, 1fr) !important;
+  }
+  .page .asymApproach .approachRebuildCopy > * { min-width: 0; }
+  .page .asymApproach .approachRebuildActions {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    width: 100% !important;
+    gap: 10px !important;
+  }
+  .page .asymApproach .approachRebuildActions a {
+    box-sizing: border-box;
+    max-width: 100%;
+    min-height: 44px;
+  }
+  .page .asymEvidence .evidenceMaterialLetters > span {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
+
+@media (max-width: 840px) and (max-height: 700px) {
+  .page .storyGrid > .section.asymModeling,
+  .page .asymModeling .productScrollScene,
+  .page .asymModeling .productScrollStage {
+    height: 800px !important;
+    min-height: 800px !important;
+    max-height: none !important;
+  }
+  .page .asymModeling .productScrollStage { padding-bottom: 100px !important; }
+}
+
+@media (max-width: 840px) {
+  .page .asymApproach .approachRebuildSystem,
+  .page .asymApproach .approachRebuildNodes {
+    min-width: 0 !important;
+    width: 100% !important;
+    min-height: 0 !important;
+    transform: none !important;
+  }
+  .page .asymApproach .approachRebuildStage .approachRebuildNode {
+    box-sizing: border-box;
+    width: 100% !important;
+    min-width: 0 !important;
+    grid-template-columns: 28px minmax(0, 1fr) !important;
+    gap: 10px !important;
+    transform: none !important;
+  }
+  .page .asymApproach .approachRebuildNodeCopy {
+    min-width: 0 !important;
+    padding: 0 !important;
+  }
+  .page .asymApproach .approachRebuildNodeCopy strong,
+  .page .asymApproach .approachRebuildNodeCopy em {
+    width: auto !important;
+    margin-left: 64px !important;
+    overflow-wrap: anywhere;
+  }
+  .page .asymApproach .approachRebuildNodeCopy > span { font-size: 3.8rem !important; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .page .section > *,
+  .page .asymApproach .approachRebuildStage .approachRebuildCopy > *,
+  .page .asymApproach .approachRebuildStage .approachRebuildActions a,
+  .page .asymApproach .approachRebuildStage .approachRebuildSystem,
+  .page .asymApproach .approachRebuildStage .approachRebuildNode {
+    opacity: 1 !important;
+    filter: none !important;
+    transform: none !important;
+  }
+}
+
+/* Opening chapters share a vertical page handoff; internal sketch reveals stay intact. */
+.page .storyPin .storySlide {
+  visibility: visible;
+  will-change: transform, opacity;
+}
+.page .storyPin .storySlide[aria-hidden="true"] {
+  pointer-events: none !important;
+}
+.page .storyPin .storySlide[aria-hidden="true"] * {
+  animation-play-state: paused !important;
+}
+@media (prefers-reduced-motion: reduce) {
+  .page .storyPin .storySlide { will-change: auto; }
+}
+
+/* Normal document-flow chapters, matching the CFE section's scrolling behavior. */
+.page .storyPin.flowChapters {
+  height: auto !important;
+  min-height: 0 !important;
+  max-height: none !important;
+  overflow: visible !important;
+  scroll-snap-align: none;
+  scroll-snap-stop: normal;
+}
+.page .flowChapters .flowChapter {
+  position: relative !important;
+  inset: auto !important;
+  box-sizing: border-box;
+  width: 100% !important;
+  height: auto !important;
+  min-height: var(--story-frame-height, 100svh) !important;
+  max-height: none !important;
+  padding: 100px 0 110px !important;
+  opacity: 1 !important;
+  scroll-snap-align: start;
+  scroll-snap-stop: normal;
+}
+.page .flowChapters .flowChapter .storySlide {
+  position: relative !important;
+  inset: auto !important;
+  box-sizing: border-box;
+  height: auto !important;
+  min-height: 0 !important;
+  max-height: none !important;
+  grid-area: auto !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  transform: none !important;
+  filter: none !important;
+  will-change: auto;
+  pointer-events: auto !important;
+}
+@media (max-width: 840px) {
+  .page .flowChapters .flowChapter { padding-block: 84px 108px !important; }
+}
+
+/* Scroll-linked depth stays inside each normal-flow chapter. */
+.page .flowChapters .flowChapter { --chapter-motion-factor: 1; }
+.page .flowChapters .flowChapter .storySlide {
+  transform: translate3d(0, calc(var(--chapter-copy-drift, 0px) * var(--chapter-motion-factor)), 0) !important;
+}
+.page .flowChapters .flowChapter .grapheneScaleWrap,
+.page .flowChapters .flowChapter .gapSvgContainer {
+  translate: 0 calc(var(--chapter-sketch-drift, 0px) * var(--chapter-motion-factor));
+}
+.page .flowChapters .flowChapter::before {
+  rotate: var(--chapter-ring-rotation, 0deg);
+  transition: none;
+}
+.page .flowChapters .flowChapter .storySlide :is(.gapPillarTitle, .gapPillarFrame, .gapPillarDesc, .pillarMetrics, .gapLeadData, .gapLeadEyebrow, .gapLeadText strong, .gapLeadConnector, .gapHighlightSmall, .gapHighlight strong, .gapHighlightMeta) {
+  transition-duration: 800ms, 1000ms, 700ms;
+  transition-timing-function: cubic-bezier(.16, 1, .3, 1);
+}
+.page .flowChapters .flowChapter .storySlide:not(.activeStorySlide) :is(.gapPillarTitle, .gapPillarDesc, .gapLeadText strong, .gapHighlight strong) {
+  filter: blur(3px);
+}
+.page .flowChapters .flowChapter[data-chapter-in-view="false"] * {
+  animation-play-state: paused !important;
+}
+.chapterScrollRule {
+  position: absolute;
+  bottom: 40px;
+  left: 8%;
+  right: 8%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(212,157,129,.55), rgba(255,226,205,.85));
+  transform-origin: left center;
+  pointer-events: none;
+}
+@media (max-width: 840px) {
+  .page .flowChapters .flowChapter { --chapter-motion-factor: .55; }
+  .chapterScrollRule { bottom: 72px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .page .flowChapters .flowChapter { --chapter-motion-factor: 0; }
+  .page .flowChapters .flowChapter .storySlide * { transition: none !important; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .page .flowChapters .flowChapter {
+    --chapter-copy-drift: 0px !important;
+    --chapter-sketch-drift: 0px !important;
+    --chapter-ring-rotation: 0deg !important;
+    --gap-atmosphere-scale: 1 !important;
+    --gap-ring-opacity: .7 !important;
+  }
+  .page .flowChapters .chapterScrollRule { transform: none !important; }
+}
+
+/* The remaining chapters use the same spring-driven depth, without pinning. */
+.page .flowingSection { --section-motion-factor: 1; }
+.page .flowingSection :is(.processQualityTitle, .systemCopy, .evidenceStickyCopy, .productStickyCopy, .materialsProofPanel, .approachRebuildCopy) {
+  translate: 0 calc(var(--section-copy-drift, 0px) * var(--section-motion-factor));
+}
+.page .flowingSection :is(.cfeProcessImage, .materialVialImage, .evidenceRailFigure, .productRailFigure, .variablePanel, .approachRebuildSystem) {
+  translate: 0 calc(var(--section-art-drift, 0px) * var(--section-motion-factor));
+}
+.page .flowingSection .cfeProcessImage { scale: var(--section-art-scale, 1); }
+.page .flowingSection[data-chapter-in-view="false"] * { animation-play-state: paused !important; }
+.page .flowingSection :is(.evidenceRailCard, .productRailCard, .beforeAfter article) {
+  transition: opacity 800ms cubic-bezier(.16,1,.3,1), filter 800ms cubic-bezier(.16,1,.3,1), border-color 300ms ease;
+}
+
+.page .storyGrid > .flowingSection:is(.asymEvidence, .asymModeling),
+.page .flowingSection :is(.evidenceScrollScene, .productScrollScene, .evidenceScrollStage, .productScrollStage) {
+  position: relative !important;
+  inset: auto !important;
+  height: auto !important;
+  min-height: var(--story-frame-height, 100svh) !important;
+  max-height: none !important;
+  overflow: visible !important;
+}
+.page .flowingSection :is(.evidenceScrollStage, .productScrollStage) {
+  box-sizing: border-box;
+  display: grid !important;
+  grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr) !important;
+  grid-template-rows: auto !important;
+  align-items: center !important;
+  gap: 48px !important;
+  padding: 110px clamp(24px, 6vw, 100px) 120px !important;
+}
+.page .flowingSection :is(.evidenceStickyCopy, .productStickyCopy, .evidenceRails, .productMetricViewport) {
+  position: relative !important;
+  inset: auto !important;
+  width: 100% !important;
+  min-width: 0 !important;
+  height: auto !important;
+  min-height: 0 !important;
+  max-height: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  transform: none !important;
+  overflow: visible !important;
+}
+.page .flowingSection .evidenceRails,
+.page .section.flowingSection.asymModeling .productHorizontalRails {
+  display: grid !important;
+  grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  grid-template-rows: none !important;
+  grid-auto-rows: auto !important;
+  height: auto !important;
+  width: 100% !important;
+  gap: 20px !important;
+  padding: 0 !important;
+  transform: none !important;
+}
+.page .flowingSection .evidenceRail { display: contents !important; }
+.page .flowingSection .evidenceRailCard,
+.page .section.flowingSection.asymModeling .productHorizontalRails .productRailCard[data-card-index] {
+  box-sizing: border-box;
+  position: relative !important;
+  inset: auto !important;
+  width: 100% !important;
+  min-width: 0 !important;
+  height: auto !important;
+  min-height: 220px !important;
+  max-height: none !important;
+  transform: none !important;
+  opacity: 1 !important;
+  filter: none !important;
+  margin: 0 !important;
+}
+.page .section.flowingSection.asymModeling .productHorizontalRails .productRailCard[data-card-index] {
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: center !important;
+  align-items: center !important;
+  gap: 18px !important;
+  padding: 36px 16px !important;
+}
+.page .section.flowingSection.asymModeling .productRailFigure { width: 100px !important; height: 80px !important; margin: 0 !important; }
+.page .section.flowingSection.asymModeling .productRailCopy {
+  width: 100% !important;
+  position: relative !important;
+  inset: auto !important;
+  transform: none !important;
+  text-align: center !important;
+}
+.page .section.flowingSection.asymModeling :is(.productRailValue, .productRailLabel) { white-space: normal !important; }
+.page .section.flowingSection.asymModeling .productHorizontalRails::before,
+.page .section.flowingSection.asymModeling .productHorizontalRails::after,
+.page .section.flowingSection.asymModeling .productRailCard::after { display: none !important; }
+.page .flowingSection .evidenceMaterialLetters > span { opacity: 1 !important; transform: none !important; }
+@media (max-width: 840px) {
+  .page .flowingSection { --section-motion-factor: .55; }
+  .page .flowingSection :is(.evidenceScrollStage, .productScrollStage) {
+    grid-template-columns: minmax(0, 1fr) !important;
+    gap: 32px !important;
+    padding: 84px 20px 108px !important;
+  }
+  .page .flowingSection .evidenceRailCard { min-height: 0 !important; }
+  .page .section.flowingSection.asymModeling .productHorizontalRails .productRailCard[data-card-index] { min-height: 220px !important; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .page .flowingSection {
+    --section-motion-factor: 0;
+    --section-art-scale: 1 !important;
+  }
+  .page .flowingSection .chapterScrollRule { transform: none !important; }
+  .page .flowingSection :is(.evidenceBackgroundWord, .productBackgroundWord) { transform: none !important; }
+}
+
+/* Retire timeline-specific fixed heights and per-card offsets. */
+.page :global(#modeling).flowingSection,
+.page :global(#modeling).flowingSection :is(.productScrollScene, .productScrollStage, .productMetricViewport) {
+  height: auto !important;
+  min-height: 0 !important;
+  max-height: none !important;
+  overflow: visible !important;
+}
+.page :global(#modeling).flowingSection .productScrollStage {
+  min-height: var(--story-frame-height, 100svh) !important;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) !important;
+  grid-template-rows: auto !important;
+  gap: 48px !important;
+  padding: 110px 6vw 120px !important;
+}
+.page :global(#modeling).flowingSection :is(.productRailCopy, .productRailFigure, .productRailIndex) { transform: none !important; }
+.page :global(#modeling).flowingSection .productRailIndex {
+  position: absolute !important;
+  top: 12px !important;
+  left: 16px !important;
+  font-size: 1rem !important;
+}
+.page :global(#modeling).flowingSection .productQualityTitle,
+.page :global(#modeling).flowingSection .productQualityTitle .gapPillarWordFill,
+.page :global(#modeling).flowingSection .productQualityTitle .gapPillarWordLens { font-size: clamp(36px, 4.5vw, 72px) !important; }
+.page .flowingSection.asymIndustry > h2 { translate: 0 calc(var(--section-copy-drift, 0px) * var(--section-motion-factor)); }
+.page .flowingSection.asymIndustry .beforeAfter article { translate: 0 calc(var(--section-art-drift, 0px) * var(--section-motion-factor)); }
+@media (max-width: 840px) {
+  .page :global(#modeling).flowingSection .productScrollStage {
+    grid-template-columns: minmax(0, 1fr) !important;
+    padding: 84px 20px 108px !important;
+    gap: 32px !important;
+  }
+  .page :global(#modeling).flowingSection .productQualityTitle,
+  .page :global(#modeling).flowingSection .productQualityTitle .gapPillarWordFill,
+  .page :global(#modeling).flowingSection .productQualityTitle .gapPillarWordLens { font-size: clamp(30px, 8.7vw, 48px) !important; }
+  .page .storyGrid > .section.flowingSection:is(.asymMaterials, .asymIndustry) {
+    height: auto !important;
+    min-height: var(--story-frame-height) !important;
+    max-height: none !important;
+    overflow: visible !important;
+  }
+  .page .flowingSection.asymMaterials .materialsLayout { box-sizing: border-box; max-width: 100% !important; height: auto !important; }
+  .page .flowingSection.asymMaterials .materialsProofPanel { box-sizing: border-box; max-width: 100% !important; transform: none !important; }
+  .page .flowingSection.asymIndustry > h2 { width: 100% !important; max-width: 100% !important; transform: none !important; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .page .flowingSection .productBackgroundWord { --product-word-top: 20% !important; }
+}
+/* Allow content-sized chapters to shrink inside the single-column story grid. */
+.page .storyGrid { grid-template-columns: minmax(0, 1fr); }
+.page .storyGrid > .flowingSection { min-width: 0 !important; }
+@media (max-width: 840px) {
+  .page .storyGrid > .flowingSection { max-width: 100% !important; }
+  .page .flowingSection.asymIndustry > h2 { margin-inline: 0 !important; inset: auto !important; }
+  .page .flowingSection.asymMaterials .materialsProofPanel h3 {
+    width: 100% !important;
+    max-width: 100% !important;
+    font-size: clamp(1.6rem, 8vw, 3rem) !important;
+  }
+  .page .flowingSection.asymMaterials .materialsProofPanel h3 > * { font-size: inherit !important; }
+}
+.page .flowingSection .valueScholarshipBand { min-width: 0; max-width: 100%; overflow: hidden; }
+
+/* Gentle per-card reveals, independent of normal-flow section movement. */
+.page :is(:global(#evidence), :global(#modeling)) .scrollRevealCard {
+  opacity: var(--card-entry-opacity, 1) !important;
+  translate: 0 var(--card-entry-y, 0px) !important;
+  transition: box-shadow 320ms ease !important;
+}
+@media (hover: hover) and (pointer: fine) {
+  .page .flowingSection .evidenceRailCard:hover {
+    box-shadow: inset 0 1px 0 rgba(255, 250, 242, .12), 0 20px 48px rgba(0, 0, 0, .45), 0 0 28px rgba(212, 157, 129, .18) !important;
+  }
+}
+.page .asymProcess .processMap[data-flow-running="true"]::before,
+.page .asymProcess .processMap[data-flow-running="true"]::after { animation-duration: 10.8s; }
+.page .asymProcess.visible .processStepActive .processStepNode { animation-duration: 1.8s !important; }
+@media (max-width: 840px) {
+  .page .flowingSection .evidenceRailDetail {
+    display: block !important;
+    grid-column: 1 / -1;
+    font-size: .72rem !important;
+    line-height: 1.45 !important;
+    color: rgba(237, 223, 212, .78);
+  }
+  .page .flowingSection .evidenceRailCard { aspect-ratio: auto !important; }
+  .page .flowingSection .evidenceRailCopy { flex: none !important; padding-bottom: 12px !important; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .page :is(:global(#evidence), :global(#modeling)) .scrollRevealCard {
+    opacity: 1 !important;
+    translate: none !important;
+    transition: none !important;
+  }
+}

@@ -5,10 +5,10 @@ import "./Loader.css";
 import { updateVisibility } from "../actions/Actions";
 import { hasSeenIntro, markIntroSeen } from "./introSession";
 
-const PREPARE_TIME = 750;
+const PREPARE_TIME = 300;
 const MINIMUM_DISPLAY_TIME = 1150;
-const CONTENT_EXIT_TIME = 300;
-const EXIT_TIME = 800;
+const CONTENT_EXIT_TIME = 220;
+const EXIT_TIME = 500;
 
 const Loader = ({ routeReady }) => {
   const dispatch = useDispatch();
@@ -71,25 +71,6 @@ const Loader = ({ routeReady }) => {
     return () => clearTimeout(timer);
   }, [fade, reducedMotion]);
 
-  useEffect(() => {
-    const updateLayout = () => {
-      const element = document.getElementById("Intro");
-      if (element) {
-        const computedStyle = window.getComputedStyle(document.body);
-        const safeAreaInsetBottom = computedStyle.getPropertyValue(
-          "--safe-area-inset-bottom"
-        );
-        element.style.paddingBottom = `calc(${safeAreaInsetBottom} + 20px)`;
-      }
-    };
-    updateLayout();
-    window.addEventListener("resize", updateLayout);
-    window.addEventListener("orientationchange", updateLayout);
-    return () => {
-      window.removeEventListener("resize", updateLayout);
-      window.removeEventListener("orientationchange", updateLayout);
-    };
-  }, []);
 
   return (
     showLoader && (
@@ -108,6 +89,7 @@ const Loader = ({ routeReady }) => {
         <GrapheneCell
           text="Saeed Arabha"
           subtext="MATERIALS · RESEARCH · ENGINEERING"
+          ready={visibility && routeReady}
         />
       </div>
     )

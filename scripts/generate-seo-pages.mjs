@@ -3,6 +3,7 @@ import { join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 import { commercializationSeo, schemaFor } from '../src/data/siteSeo.mjs';
 import { renderCommercialization } from './render-commercialization.mjs';
+import { grapheneArticle } from '../src/data/grapheneArticle.mjs';
 
 // Give each public SPA route useful HTML before JavaScript runs. React replaces
 // this snapshot on mount; the content is drawn from the same editorial data.
@@ -10,7 +11,13 @@ const site = "https://www.saeedarabha.com";
 const dist = process.env.SEO_DIST_DIR
   ? resolve(process.env.SEO_DIST_DIR)
   : fileURLToPath(new URL("../dist/", import.meta.url));
-const template = readFileSync(join(dist, "index.html"), "utf8");
+// The generator can run again against an existing build. Remove the previous
+// snapshot and its owned metadata before adding current route-specific content.
+const template = readFileSync(join(dist, "index.html"), "utf8")
+  .replace(/<(title|script)\b[^>]*data-seo-snapshot="true"[^>]*>[\s\S]*?<\/\1>/g, '')
+  .replace(/<(?:meta|link)\b[^>]*data-seo-snapshot="true"[^>]*>/g, '')
+  .replace(/<style id="seo-snapshot-style">[\s\S]*?<\/style>/g, '')
+  .replace(/<div id="root">[\s\S]*<\/div>(?=\s*(?:<script\b|<\/body>))/g, '<div id="root"></div>');
 const papers = JSON.parse(readFileSync(new URL("../src/data/journalPapers.json", import.meta.url), "utf8"));
 const escape = (value) => String(value ?? "").replaceAll("&", "&amp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll('"', "&quot;").replaceAll("'", "&#39;");
 const paragraph = (value) => `<p>${escape(value)}</p>`;
@@ -65,10 +72,14 @@ const pages = [
   },
   {
     path: "/Graphene",
-    title: "Graphene Research | Saeed Arabha",
-    description: "Explore Saeed Arabha's graphene research, from layered graphite to graphene and related two-dimensional materials.",
-    body: `<h1>Graphene research</h1><p class="lead">From graphite to two-dimensional materials</p>
-      <p>Graphene is a single layer of carbon atoms. My work investigates how gas-driven processing separates layered materials, and how structure and defects affect the resulting nanoplatelets.</p>${link("/journal/", "Read the research papers")}`,
+    title: `${grapheneArticle.title} | Saeed Arabha`,
+    description: grapheneArticle.description,
+    body: `<h1>${escape(grapheneArticle.title)}</h1>${paragraph(grapheneArticle.intro)}
+      <section><h2>Explore the carbon lattice in 3D</h2><p>Rotate the model, separate its layers, and isolate one graphene sheet. The illustration uses exaggerated atom sizes and spacing for clarity.</p></section>
+      ${grapheneArticle.sections.map(section => `<section id="${section.id}"><h2>${escape(section.title)}</h2>${section.paragraphs.map(paragraph).join('')}</section>`).join('')}
+      <section><h2>Possibilities</h2>${grapheneArticle.applications.map(item => `<h3>${escape(item.title)}</h3>${paragraph(item.text)}`).join('')}</section>
+      <section><h2>Continue exploring</h2>${link('/R&D-Portfolio', 'Explore my R&D work')}${link('/journal/', 'Read the research')}</section>
+      <section><h2>Sources and further reading</h2>${grapheneArticle.sources.map(source => link(source.url, source.label)).join('')}</section>`,
   },
   {
     path: "/research-progress",

@@ -47,7 +47,7 @@ const GrapheneSVG = ({ points, className }) => {
   );
 };
 
-const GrapheneCell = ({ text, subtext }) => {
+const GrapheneCell = ({ text, subtext, ready = false }) => {
   const points = Array.from({ length: 6 }, (_, index) => {
     const angle = (Math.PI / 3) * index - Math.PI / 2;
     return {
@@ -59,6 +59,7 @@ const GrapheneCell = ({ text, subtext }) => {
   return (
     <div className="GrapheneIntro">
       <div className="loader-grapheneCluster">
+        <div className="loader-orbit" aria-hidden="true"><span /></div>
         <GrapheneSVG points={points} className="loader-grapheneCell loader-grapheneCellMain" />
         <GrapheneSVG points={points} className="loader-grapheneCell loader-grapheneCellTop" />
         <GrapheneSVG points={points} className="loader-grapheneCell loader-grapheneCellBottom" />
@@ -66,6 +67,10 @@ const GrapheneCell = ({ text, subtext }) => {
       <div className="centered-text">
         <p>{text}</p>
         <b className="Intro-b">{subtext}</b>
+      </div>
+      <div className={`loader-status${ready ? " loader-status--ready" : ""}`}>
+        <span className="loader-statusLabel">{ready ? "Ready to explore" : "Preparing portfolio"}</span>
+        <span className="loader-track" aria-hidden="true"><span /></span>
       </div>
     </div>
   );

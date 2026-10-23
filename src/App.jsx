@@ -1,6 +1,5 @@
 import "./App.css";
-import React, { lazy, Suspense, useEffect, useRef, useState } from "react";
-import { AnimatePresence, motion, useReducedMotion } from "motion/react";
+import React, { lazy, Suspense, useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { BrowserRouter as Router, Navigate, Route, Routes, useLocation } from "react-router-dom";
 import store from "./store/configureStore";
@@ -14,6 +13,7 @@ import ScrollToNavigate from "./Helper/ScrollToNavigate"; // Import scroll detec
 import ErrorBoundary from "./components/ErrorBoundary/ErrorBoundary";
 import BackgroundLattice from "./components/BackgroundLattice/BackgroundLattice";
 import SiteMotionObserver from "./components/SiteMotion/SiteMotionObserver";
+import PageTransition from "./components/SiteMotion/PageTransition";
 
 const AcademicCV = lazy(() => import("./pages/Resume/Resume"));
 const HomePage = lazy(() => import("./pages/Home/Home"));
@@ -40,21 +40,6 @@ function AppContent({ onRouteReady }) {
   useUpdateVariable();
   const { visibility, isMenuOpen } = useSelector((state) => state.ui);
   const location = useLocation();
-  const previousPath = useRef(location.pathname);
-  const transitionDirection = useRef(0);
-  const reducedMotion = useReducedMotion();
-  const isAcademicCV = (path) => path.toLowerCase() === "/academiccv";
-  if (previousPath.current !== location.pathname) {
-    const cvTransition =
-      (previousPath.current === "/" && isAcademicCV(location.pathname)) ||
-      (isAcademicCV(previousPath.current) && location.pathname === "/");
-    transitionDirection.current = cvTransition ? (location.pathname === "/" ? -1 : 1) : 0;
-  }
-  const direction = transitionDirection.current;
-
-  useEffect(() => {
-    previousPath.current = location.pathname;
-  }, [location.pathname]);
   const normalizedPath = (() => {
     try {
       return decodeURIComponent(location.pathname);
@@ -85,33 +70,10 @@ function AppContent({ onRouteReady }) {
       {visibility && !isDashboard && <Menu />}
       {visibility && !isDashboard && <Footer accent={isCommercialization ? "#0645ee" : "#d49d81"} />}
 
-      <ErrorBoundary>
+      <ErrorBoundary key={location.pathname} onError={onRouteReady}>
           <SiteMotionObserver />
           <Suspense fallback={null}>
-            <AnimatePresence mode="wait" initial={false} custom={{ direction, reducedMotion }}>
-              <motion.div
-                key={location.pathname}
-                custom={{ direction, reducedMotion }}
-                className="RouteMotionFrame"
-                data-route-motion-root
-                inert={isMenuOpen ? true : undefined}
-                variants={{
-                  initial: ({ direction: routeDirection, reducedMotion: reduce }) => reduce
-                    ? { opacity: 1, x: 0, y: 0, filter: "none" }
-                    : { opacity: 0, x: routeDirection * 36, y: routeDirection ? 0 : 18, filter: "blur(3px)" },
-                  animate: ({ reducedMotion: reduce }) => ({
-                    opacity: 1, x: 0, y: 0, filter: "blur(0px)",
-                    transition: { duration: reduce ? 0 : 0.42, ease: [0.23, 1, 0.32, 1] },
-                  }),
-                  exit: ({ direction: routeDirection, reducedMotion: reduce }) => ({
-                    opacity: 0, x: routeDirection * -24, y: routeDirection ? 0 : -16, filter: reduce ? "none" : "blur(2px)",
-                    transition: { duration: reduce ? 0 : 0.24, ease: [0.4, 0, 0.7, 1] },
-                  }),
-                }}
-                initial="initial"
-                animate="animate"
-                exit="exit"
-              >
+            <div key={location.pathname} className="RouteMotionFrame" data-route-motion-root inert={isMenuOpen ? true : undefined}>
                 <Routes location={location}>
                   <Route exact path="/" element={<HomePage />} />
                   <Route path="/venture" element={<Commercialization />} />
@@ -131,8 +93,7 @@ function AppContent({ onRouteReady }) {
                   <Route exact path="/login" element={<Login />} />
                 </Routes>
                 <RouteReady onReady={onRouteReady} />
-              </motion.div>
-            </AnimatePresence>
+            </div>
           </Suspense>
       </ErrorBoundary>
     </div>
@@ -147,7 +108,9 @@ function App() {
       <Router store={store}>
         <Loader routeReady={routeReady} />
         {/*<ScrollToNavigate /> {/* Scroll/Drag Detector */}
-        <AppContent onRouteReady={setRouteReady} />
+        <PageTransition onInitialReady={setRouteReady}>
+          {(onReady) => <AppContent onRouteReady={onReady} />}
+        </PageTransition>
       </Router>
     </HelmetProvider>
   );

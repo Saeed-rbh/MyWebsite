@@ -1,5 +1,10 @@
-# https://www.robotstxt.org/robotstxt.html
+# Public pages may be crawled by search engines and AI search services.
+# Search access is separate from model-training permissions.
 User-agent: *
 Disallow:
+
+# Explicitly retain ChatGPT search access if the default policy changes later.
+User-agent: OAI-SearchBot
+Allow: /
 
 Sitemap: https://www.saeedarabha.com/sitemap.xml

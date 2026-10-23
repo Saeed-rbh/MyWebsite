@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useRef } from "react";
+import { ScrollFade } from "../Commercialization/StoryMotion";
 import { Helmet } from "react-helmet-async";
 import { Link, useParams } from "react-router-dom";
 import SEO from "../../components/SEO/SEO";
@@ -7,9 +8,9 @@ import styles from "./JournalPaper.module.css";
 
 const figureAnchor = (figure) => `paper-${figure.source.toLowerCase().replace(/\s+/g, "-")}`;
 
-function ResearchFigure({ figure, pdf }) {
+function ResearchFigure({ figure, pdf, root }) {
   return (
-    <figure className={styles.figure} id={figureAnchor(figure)}>
+    <ScrollFade root={root} as="figure" className={styles.figure} id={figureAnchor(figure)}>
       <div className={styles.figureTopline}>
         <span>{figure.source} · From the paper{figure.page && pdf && <> · <a href={`${pdf}#page=${figure.page}`} target="_blank" rel="noopener noreferrer">PDF p. {figure.page}</a></>}</span>
         <a href={figure.src} target="_blank" rel="noopener noreferrer" aria-label={`Open original figure: ${figure.alt}`}>
@@ -23,14 +24,14 @@ function ResearchFigure({ figure, pdf }) {
         <p>{figure.caption}</p>
         <p className={styles.figureReading}><strong>What to look for</strong>{figure.reading}</p>
       </figcaption>
-    </figure>
+    </ScrollFade>
   );
 }
 
-function EvidenceTable({ table, pdf, index }) {
+function EvidenceTable({ table, pdf, index, root }) {
   const titleId = `evidence-table-${index}`;
   return (
-    <section className={styles.evidenceTable} id={`table-${index}`} aria-labelledby={titleId}>
+    <ScrollFade root={root} as="section" className={styles.evidenceTable} id={`table-${index}`} aria-labelledby={titleId}>
       <span className={styles.eyebrow}>The evidence in numbers and comparisons</span>
       <h3 id={titleId}>{table.title}</h3>
       <div className={styles.tableScroll} tabIndex={0} role="region" aria-label={`${table.title}: scroll to see all columns`}>
@@ -42,12 +43,13 @@ function EvidenceTable({ table, pdf, index }) {
       </div>
       <p className={styles.evidenceSource}>Source: <a href={table.url || (pdf ? `${pdf}#page=${table.source.match(/PDF pp?\. (\d+)/)?.[1] || 1}` : "#original-paper")} target={(pdf || table.url) ? "_blank" : undefined} rel="noopener noreferrer">{table.source}</a></p>
       <p className={styles.evidenceNote}>{table.note}</p>
-    </section>
+    </ScrollFade>
   );
 }
 
 export default function JournalPaper() {
   const { slug } = useParams();
+  const pageRef = useRef(null);
   const paper = papers.find((item) => item.slug === slug);
 
   React.useEffect(() => {
@@ -99,29 +101,29 @@ export default function JournalPaper() {
   };
 
   return (
-    <div className={styles.page} key={paper.slug}>
+    <div className={styles.page} key={paper.slug} ref={pageRef} data-site-motion-ignore="true">
       <SEO title={`${paper.title} | Journal | Saeed Arabha`} description={paper.summary} name="Saeed Arabha" type="article" />
       <Helmet><script type="application/ld+json">{JSON.stringify(articleSchema)}</script></Helmet>
       <main className={styles.main}>
         <Link className={styles.backLink} to="/journal/">← The journal</Link>
-        {papers.slice(0,2).some(item => item.slug === paper.slug) && <p className={styles.commercializationLink}><Link to="/venture">From this research to customer discovery: explore the CFE commercialization case ↗</Link></p>}
         <article>
           <header className={styles.hero}>
+            <div className={styles.noteLabel}>Research notes <span aria-hidden="true">/</span> Behind the paper</div>
             <div className={styles.topline}>
               <span className={styles.eyebrow}>{paper.topic}</span>
               <span>{paper.year} <span aria-hidden="true">/</span> {paper.pdf ? readingMinutes : 1} min read</span>
             </div>
             <div className={styles.heroGrid}>
-              <div>
+              <ScrollFade root={pageRef}>
                 <h1>{editorial.headline}</h1>
                 <p className={styles.standfirst}>{editorial.standfirst}</p>
-              </div>
-              <aside className={styles.highlight} aria-label="A finding from this paper">
+              </ScrollFade>
+              <ScrollFade root={pageRef} as="aside" stagger={1} className={styles.highlight} aria-label="A finding from this paper">
                 <span className={styles.highlightEyebrow}>{"The main finding"}</span>
                 <strong>{editorial.highlight.value}</strong>
                 {editorial.highlight.unit && <span className={styles.highlightUnit}>{editorial.highlight.unit}</span>}
                 <p>{editorial.highlight.label}</p>
-              </aside>
+              </ScrollFade>
             </div>
             <div className={styles.publicationLine}>
               <div><strong>{paper.journal}</strong><span>{paper.authors.join(", ")}</span></div>
@@ -131,11 +133,12 @@ export default function JournalPaper() {
               </div>
             </div>
           </header>
+        {papers.slice(0,2).some(item => item.slug === paper.slug) && <p className={styles.commercializationLink}><Link to="/venture">From this research to customer discovery: explore the CFE commercialization case ↗</Link></p>}
 
           {!paper.pdf && <section className={styles.publisherPreview} id="story">
-            <aside className={styles.sourceNotice}><strong>Publisher abstract preview</strong><p>This summary uses the publisher’s abstract. The full PDF is needed for the detailed story and source figures.</p><a href={paper.url} target="_blank" rel="noopener noreferrer">Read the publisher abstract ↗</a></aside>
-            {(editorial.publisherPreview || []).map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
-            {paper.tables.map((table, index) => <EvidenceTable table={{ ...table, url: paper.url }} pdf={null} index={`preview-${index}`} key={table.title} />)}
+            <aside className={styles.sourceNotice}><strong>Publisher abstract preview</strong><ScrollFade root={pageRef} as="p">This summary uses the publisher’s abstract. The full PDF is needed for the detailed story and source figures.</ScrollFade><a href={paper.url} target="_blank" rel="noopener noreferrer">Read the publisher abstract ↗</a></aside>
+            {(editorial.publisherPreview || []).map((paragraph) => <ScrollFade root={pageRef} as="p" key={paragraph}>{paragraph}</ScrollFade>)}
+            {paper.tables.map((table, index) => <EvidenceTable root={pageRef} table={{ ...table, url: paper.url }} pdf={null} index={`preview-${index}`} key={table.title} />)}
           </section>}
           {paper.pdf && <div className={styles.readingLayout}>
             <aside className={styles.readingRail}>
@@ -155,49 +158,49 @@ export default function JournalPaper() {
             <div className={styles.narrative}>
               <section className={`${styles.chapter} ${styles.opening}`} id="story" aria-labelledby="opening-title">
                 <span className={styles.eyebrow}>The starting point</span>
-                <h2 id="opening-title">{editorial.openingTitle}</h2>
-                <p className={styles.dropCap}>{story.context}</p>
-                <p>{editorial.bridge}</p>
-                <blockquote className={styles.question}>
+                <ScrollFade root={pageRef} as="h2" id="opening-title">{editorial.openingTitle}</ScrollFade>
+                <ScrollFade root={pageRef} as="p" className={styles.dropCap}>{story.context}</ScrollFade>
+                <ScrollFade root={pageRef} as="p">{editorial.bridge}</ScrollFade>
+                <ScrollFade root={pageRef} as="blockquote" className={styles.question}>
                   <span>The question</span>
                   <p>{story.question}</p>
-                </blockquote>
+                </ScrollFade>
               </section>
 
               <section className={styles.chapter} id="investigation" aria-labelledby="investigation-title">
                 <span className={styles.eyebrow}>Inside the investigation</span>
-                <h2 id="investigation-title">{editorial.methodsTitle}</h2>
-                <p>{story.approach}</p>
-                <p>{editorial.methodNote}</p>
+                <ScrollFade root={pageRef} as="h2" id="investigation-title">{editorial.methodsTitle}</ScrollFade>
+                <ScrollFade root={pageRef} as="p">{story.approach}</ScrollFade>
+                <ScrollFade root={pageRef} as="p">{editorial.methodNote}</ScrollFade>
               </section>
 
               {story.results.map((result, index) => (
                 <section className={styles.resultChapter} id={`finding-${index}`} aria-labelledby={`finding-title-${index}`} key={result.label}>
                   {index === 0 && <span className={styles.eyebrow}>What emerged</span>}
-                  <h2 id={`finding-title-${index}`}>{editorial.scenes[index].title}</h2>
-                  <dl className={styles.resultFact}>
+                  <ScrollFade root={pageRef} as="h2" id={`finding-title-${index}`}>{editorial.scenes[index].title}</ScrollFade>
+                  <ScrollFade root={pageRef} as="dl" className={styles.resultFact}>
                     <dt>{result.label}</dt>
                     <dd>{result.value}</dd>
-                  </dl>
-                  <p>{result.detail}</p>
-                  <p>{editorial.scenes[index].explanation.split("\n\n")[0]}</p>
-                  {paper.figures.filter((figure) => figure.resultIndex === index).map((figure) => <ResearchFigure figure={figure} pdf={paper.pdf} key={figure.src} />)}
-                  {(paper.tables || []).filter((table) => table.resultIndex === index).map((table, tableIndex) => <EvidenceTable table={table} pdf={paper.pdf} index={`${index}-${tableIndex}`} key={table.title} />)}
-                  {editorial.scenes[index].explanation.split("\n\n").slice(1).map((paragraph, paragraphIndex) => <p key={paragraphIndex}>{paragraph}</p>)}
+                  </ScrollFade>
+                  <ScrollFade root={pageRef} as="p">{result.detail}</ScrollFade>
+                  <ScrollFade root={pageRef} as="p">{editorial.scenes[index].explanation.split("\n\n")[0]}</ScrollFade>
+                  {paper.figures.filter((figure) => figure.resultIndex === index).map((figure) => <ResearchFigure root={pageRef} figure={figure} pdf={paper.pdf} key={figure.src} />)}
+                  {(paper.tables || []).filter((table) => table.resultIndex === index).map((table, tableIndex) => <EvidenceTable root={pageRef} table={table} pdf={paper.pdf} index={`${index}-${tableIndex}`} key={table.title} />)}
+                  {editorial.scenes[index].explanation.split("\n\n").slice(1).map((paragraph, paragraphIndex) => <ScrollFade root={pageRef} as="p" key={paragraphIndex}>{paragraph}</ScrollFade>)}
                 </section>
               ))}
 
               <section className={`${styles.chapter} ${styles.ending}`} id="meaning" aria-labelledby="meaning-title">
                 <span className={styles.eyebrow}>The larger picture</span>
-                <h2 id="meaning-title">{editorial.endingTitle}</h2>
-                <p className={styles.takeaway}>{story.takeaway}</p>
-                <p>{editorial.endingNote}</p>
+                <ScrollFade root={pageRef} as="h2" id="meaning-title">{editorial.endingTitle}</ScrollFade>
+                <ScrollFade root={pageRef} as="p" className={styles.takeaway}>{story.takeaway}</ScrollFade>
+                <ScrollFade root={pageRef} as="p">{editorial.endingNote}</ScrollFade>
               </section>
             </div>
           </div>}
 
           <section className={styles.readPaper} id="original-paper" aria-labelledby="read-paper-title">
-            <div className={styles.readPaperIntro}>
+            <ScrollFade root={pageRef} className={styles.readPaperIntro}>
               <span className={styles.eyebrow}>Continue into the research</span>
               <h2 id="read-paper-title">The full paper.</h2>
               <p>The complete methods, all figures, and the detailed results are in the original publication.</p>
@@ -205,13 +208,13 @@ export default function JournalPaper() {
                 {paper.pdf && <a className={styles.primaryLink} href={paper.pdf} download>Download PDF <span aria-hidden="true">↓</span></a>}
                 <a className={styles.secondaryLink} href={paper.url} target="_blank" rel="noopener noreferrer">Read online <span aria-hidden="true">↗</span></a>
               </div>
-            </div>
-            <div className={styles.citation}>
+            </ScrollFade>
+            <ScrollFade root={pageRef} className={styles.citation}>
               <span className={styles.citationLabel}>Original publication</span>
               <h3>{paper.title}</h3>
               <p>{paper.authors.join(", ")}</p>
               <span>{paper.journal} · {paper.year}</span>
-            </div>
+            </ScrollFade>
           </section>
         </article>
         <footer className={styles.footerNav}>

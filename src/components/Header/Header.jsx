@@ -139,7 +139,11 @@ const Header = () => {
       }
 
       if (nextSection === "gap" && gapElement && scrollContainer) {
-        const slideFromStory = gapElement.getAttribute("data-active-slide");
+        const currentChapter = Array.from(gapElement.querySelectorAll("[data-chapter]")).find((chapter) => {
+          const rect = chapter.getBoundingClientRect();
+          return rect.top <= viewportCenter && rect.bottom >= viewportCenter;
+        });
+        const slideFromStory = currentChapter?.getAttribute("data-chapter") || gapElement.getAttribute("data-active-slide");
         let next = slideFromStory || "6";
 
         if (!slideFromStory) {

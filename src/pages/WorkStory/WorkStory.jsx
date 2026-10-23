@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
-import { motion, useScroll, useSpring, useTransform } from "motion/react";
+import { motion, useReducedMotion, useScroll, useSpring, useTransform } from "motion/react";
 import {
   TbCube,
   TbArrowUpRight,
@@ -408,8 +408,28 @@ const ProcessQualityTitle = () => (
   </h2>
 );
 
-const ProductRailCard = ({ item, index, isRevealed }) => (
-  <article
+// Reveal each card as it enters view instead of animating the entire grid at once.
+const ScrollRevealCard = ({ scrollRef, index, className, children, style, ...props }) => {
+  const reducedMotion = useReducedMotion();
+  return (
+    <motion.article
+      {...props}
+      className={`${className} ${styles.scrollRevealCard}`}
+      style={style}
+      initial={reducedMotion ? false : { "--card-entry-opacity": 0.35, "--card-entry-y": "22px" }}
+      whileInView={{ "--card-entry-opacity": 1, "--card-entry-y": "0px" }}
+      viewport={{ root: scrollRef, amount: 0.1, once: true }}
+      transition={{ duration: reducedMotion ? 0 : 0.85, delay: reducedMotion ? 0 : (index % 2) * 0.08, ease: [0.16, 1, 0.3, 1] }}
+    >
+      {children}
+    </motion.article>
+  );
+};
+
+const ProductRailCard = ({ item, index, isRevealed, scrollRef }) => (
+  <ScrollRevealCard
+    scrollRef={scrollRef}
+    index={index}
     className={styles.productRailCard}
     data-card-index={index + 1}
     data-card-type={item.id}
@@ -427,15 +447,14 @@ const ProductRailCard = ({ item, index, isRevealed }) => (
       <span className={styles.productRailRule} aria-hidden="true" />
       <span className={styles.productRailDetail}>{item.detail}</span>
     </div>
-  </article>
+  </ScrollRevealCard>
 );
 const ProductQualityShowcase = ({ items, scrollRef }) => {
   const sceneRef = useRef(null);
-  const [activeProductStep, setActiveProductStep] = useState(0);
   const { scrollYProgress } = useScroll({
     container: scrollRef,
     target: sceneRef,
-    offset: ["start start", "end end"],
+    offset: ["start end", "end start"],
   });
   const productWordProgress = useSpring(scrollYProgress, {
     stiffness: 140,
@@ -445,44 +464,12 @@ const ProductQualityShowcase = ({ items, scrollRef }) => {
   });
   const productWordTop = useTransform(productWordProgress, [0, 1], ["7%", "55%"]);
 
-  useEffect(() => {
-    const root = scrollRef?.current;
-    const scene = sceneRef.current;
-    if (!root || !scene) return undefined;
-
-    let rafId = null;
-    const updateProductStep = () => {
-      rafId = null;
-      const rootRect = root.getBoundingClientRect();
-      const sceneRect = scene.getBoundingClientRect();
-      const travel = Math.max(scene.offsetHeight - root.clientHeight, 1);
-      const progress = Math.max(0, Math.min(1, (rootRect.top - sceneRect.top) / travel));
-      const nextStep = Math.min(items.length - 1, Math.floor(progress * items.length));
-
-      setActiveProductStep((currentStep) => (
-        currentStep === nextStep ? currentStep : nextStep
-      ));
-    };
-    const handleScroll = () => {
-      if (rafId === null) rafId = requestAnimationFrame(updateProductStep);
-    };
-
-    updateProductStep();
-    root.addEventListener('scroll', handleScroll, { passive: true });
-    window.addEventListener('resize', handleScroll, { passive: true });
-
-    return () => {
-      root.removeEventListener('scroll', handleScroll);
-      window.removeEventListener('resize', handleScroll);
-      if (rafId !== null) cancelAnimationFrame(rafId);
-    };
-  }, [scrollRef]);
 
   return (
     <div
       ref={sceneRef}
       className={styles.productScrollScene}
-      data-product-step={activeProductStep + 1}
+      data-product-step={items.length}
     >
 
 
@@ -505,7 +492,8 @@ const ProductQualityShowcase = ({ items, scrollRef }) => {
                 key={item.id}
                 item={item}
                 index={index}
-                isRevealed={index <= activeProductStep}
+                isRevealed={true}
+                scrollRef={scrollRef}
               />
             ))}
           </div>
@@ -526,7 +514,10 @@ const ExfoliatedMaterialsShowcase = ({ samples, scrollRef }) => {
 
     const observer = new IntersectionObserver(
       ([entry]) => {
-        setIsActive(entry.isIntersecting);
+        if (entry.isIntersecting) {
+          setIsActive(true);
+          observer.disconnect();
+        }
       },
       { root, threshold: 0, rootMargin: "-34% 0px -34% 0px" }
     );
@@ -619,39 +610,10 @@ const routeTransition = {
   ease: [0.22, 1, 0.36, 1],
 };
 
-const slideTransition = {
-  opacity: { duration: 0.52, ease: [0.22, 1, 0.36, 1] },
-  x: { duration: 0.72, ease: [0.22, 1, 0.36, 1] },
-  y: { duration: 0.72, ease: [0.22, 1, 0.36, 1] },
-  scale: { duration: 0.72, ease: [0.22, 1, 0.36, 1] },
-  filter: { duration: 0.62, ease: [0.22, 1, 0.36, 1] },
-};
-
-const slideMotion = {
-  title: {
-    future: { x: 0, y: "8vh", scale: 0.985 },
-    past: { x: 0, y: "-7vh", scale: 0.985 },
-  },
-  lead: {
-    future: { x: 0, y: "9vh", scale: 0.99 },
-    past: { x: 0, y: "-6vh", scale: 0.975 },
-  },
-  pillarLeft: {
-    future: { x: "-5vw", y: "5vh", scale: 0.985 },
-    past: { x: "4vw", y: "-5vh", scale: 0.975 },
-  },
-  pillarRight: {
-    future: { x: "5vw", y: "5vh", scale: 0.985 },
-    past: { x: "-4vw", y: "-5vh", scale: 0.975 },
-  },
-  close: {
-    future: { x: 0, y: "7vh", scale: 0.96 },
-    past: { x: 0, y: "-4vh", scale: 1.015 },
-  },
-};
 const useWorkStoryEffects = (scrollRef) => {
   const rafRef = useRef(null);
   const isMobileRef = useRef(false);
+  const reducedMotion = useReducedMotion();
   const parallaxSectionsRef = useRef([]);
 
   useEffect(() => {
@@ -676,17 +638,7 @@ const useWorkStoryEffects = (scrollRef) => {
         entry.target.classList.add(styles.visible);
         entry.target.classList.remove(styles.fadeOutUp);
         entry.target.classList.remove(styles.fadeOutDown);
-      } else {
-        // Keep chapters readable after they enter the narrow viewport. The
-        // mobile snap transition otherwise fades one chapter out before the
-        // next one has appeared, leaving an empty screen while scrolling.
-        if (isMobileRef.current && entry.target.classList.contains(styles.visible)) return;
-        entry.target.classList.remove(styles.visible);
-        if (entry.boundingClientRect.top < 0) {
-          entry.target.classList.add(styles.fadeOutUp);
-        } else {
-          entry.target.classList.add(styles.fadeOutDown);
-        }
+
       }
     };
 
@@ -697,7 +649,7 @@ const useWorkStoryEffects = (scrollRef) => {
 
     const approachRevealObserver = new IntersectionObserver(
       (entries) => entries.forEach(applyRevealState),
-      { root, threshold: 0.42, rootMargin: "-16% 0px -18% 0px" }
+      { root, threshold: 0.01, rootMargin: "0px 0px -8% 0px" }
     );
 
     root.querySelectorAll("[data-reveal]").forEach((element) => {
@@ -736,7 +688,7 @@ const useWorkStoryEffects = (scrollRef) => {
         : Math.max(0.2, 0.8 - ((scrollRatio - 0.05) * 1.08));
       root.style.setProperty("--bg-opacity", bgOpacity.toFixed(3));
 
-      if (isMobileRef.current) return;
+      if (isMobileRef.current || reducedMotion) return;
 
       root.style.setProperty("--scroll-progress", progressRatio.toFixed(4));
       root.style.setProperty("--scroll-shift", `${scrollTop * -0.05}px`);
@@ -905,9 +857,16 @@ const SystemSpotlightTitle = () => (
   </h2>
 );
 
-const SectionShell = ({ id, kicker, title, children, className = "", eager = false }) => {
+const SectionShell = ({ id, kicker, title, children, scrollRef, className = "", eager = false }) => {
   const sectionRef = useRef(null);
   const [shouldRenderContent, setShouldRenderContent] = useState(eager);
+  const reducedMotion = useReducedMotion();
+  const [inView, setInView] = useState(false);
+  const { scrollYProgress } = useScroll({ container: scrollRef, target: sectionRef, offset: ["start end", "end start"] });
+  const progress = useSpring(scrollYProgress, { stiffness: 110, damping: 28, mass: 0.6 });
+  const copyDrift = useTransform(progress, [0, 0.35, 0.65, 1], ["24px", "0px", "0px", "-24px"]);
+  const artDrift = useTransform(progress, [0, 1], ["42px", "-42px"]);
+  const artScale = useTransform(progress, [0, 0.5, 1], [0.98, 1, 1.02]);
 
   useEffect(() => {
     if (eager) {
@@ -925,7 +884,7 @@ const SectionShell = ({ id, kicker, title, children, className = "", eager = fal
           observer.disconnect();
         }
       },
-      { root: null, rootMargin: "85% 0px", threshold: 0 }
+      { root: section.closest("main"), rootMargin: "85% 0px", threshold: 0 }
     );
 
     observer.observe(section);
@@ -933,18 +892,28 @@ const SectionShell = ({ id, kicker, title, children, className = "", eager = fal
   }, [eager]);
 
   return (
-    <section
+    <motion.section
       ref={sectionRef}
       id={id}
-      className={`${styles.section} ${className}`}
-      data-parallax-section
+      className={`${styles.section} ${styles.flowingSection} ${className}`}
+      data-site-motion-ignore="true"
+      data-chapter-in-view={inView}
+      viewport={{ root: scrollRef, amount: 0.05 }}
+      onViewportEnter={() => setInView(true)}
+      onViewportLeave={() => setInView(false)}
+      style={{
+        "--section-copy-drift": reducedMotion ? "0px" : copyDrift,
+        "--section-art-drift": reducedMotion ? "0px" : artDrift,
+        "--section-art-scale": reducedMotion ? 1 : artScale,
+      }}
       data-reveal
       data-section-ready={shouldRenderContent ? "true" : "false"}
     >
       {kicker && <span className={styles.kicker}>{kicker}</span>}
       {typeof title === 'string' ? <h2>{title}</h2> : title}
       {shouldRenderContent ? children : <div className={styles.sectionPlaceholder} aria-hidden="true" />}
-    </section>
+      <motion.span className={styles.chapterScrollRule} aria-hidden="true" style={{ scaleX: reducedMotion ? 1 : progress }} />
+    </motion.section>
   );
 };
 
@@ -1285,159 +1254,56 @@ const HeroGraphene = () => (
   </div>
 );
 
-const GapSection = ({ scrollRef }) => {
-  const sectionRef = useRef(null);
-  const [activeIndex, setActiveIndex] = useState(1);
-  const [isPinReady, setIsPinReady] = useState(false);
-  const activeIndexRef = useRef(1);
-  const pinReadyRef = useRef(false);
-  const rafRef = useRef(null);
-  const metricsRef = useRef({ isMobile: false, sectionStart: 0, pinDistance: 1 });
-
-  useEffect(() => {
-    const root = scrollRef.current;
-    const section = sectionRef.current;
-    if (!root || !section) return undefined;
-
-    const clamp = (value, min, max) => Math.min(Math.max(value, min), max);
-    const mediaQuery = window.matchMedia("(max-width: 840px)");
-
-    const syncGapMetrics = () => {
-      metricsRef.current = {
-        isMobile: mediaQuery.matches,
-        sectionStart: section.offsetTop,
-        pinDistance: Math.max(section.offsetHeight - root.clientHeight, 1),
-      };
-    };
-
-    const updateGapState = () => {
-      if (rafRef.current) return;
-
-      rafRef.current = requestAnimationFrame(() => {
-        rafRef.current = null;
-        const { isMobile, sectionStart, pinDistance } = metricsRef.current;
-        const scrollTop = root.scrollTop;
-        const clientHeight = root.clientHeight;
-        const rawProgress = (scrollTop - sectionStart) / pinDistance;
-        const latest = clamp(rawProgress, 0, 1);
-        const readyOffset = 1;
-        const nextPinReady = scrollTop >= sectionStart - readyOffset;
-
-        if (pinReadyRef.current !== nextPinReady) {
-          pinReadyRef.current = nextPinReady;
-          setIsPinReady(nextPinReady);
-        }
-
-        let next = 6;
-        if (latest < 0.15) next = 1;
-        else if (latest < 0.31) next = 2;
-        else if (latest < 0.47) next = 3;
-        else if (latest < 0.63) next = 4;
-        else if (latest < 0.79) next = 5;
-
-        if (activeIndexRef.current !== next) {
-          activeIndexRef.current = next;
-          setActiveIndex(next);
-          document.getElementById("gap")?.setAttribute("data-active-slide", next);
-        }
-      });
-    };
-
-    const handleMetricChange = () => {
-      syncGapMetrics();
-      updateGapState();
-    };
-
-    section.setAttribute("data-active-slide", activeIndexRef.current);
-    syncGapMetrics();
-    updateGapState();
-    root.addEventListener("scroll", updateGapState, { passive: true });
-    window.addEventListener("resize", handleMetricChange, { passive: true });
-    window.addEventListener("orientationchange", handleMetricChange, { passive: true });
-    window.visualViewport?.addEventListener("resize", handleMetricChange, { passive: true });
-    mediaQuery.addEventListener?.("change", handleMetricChange);
-
-    return () => {
-      root.removeEventListener("scroll", updateGapState);
-      window.removeEventListener("resize", handleMetricChange);
-      window.removeEventListener("orientationchange", handleMetricChange);
-      window.visualViewport?.removeEventListener("resize", handleMetricChange);
-      mediaQuery.removeEventListener?.("change", handleMetricChange);
-      if (rafRef.current) cancelAnimationFrame(rafRef.current);
-    };
-  }, [scrollRef]);
-
-  const getSlideProps = (index, preset = "title") => ({
-    initial: { opacity: 0, ...slideMotion[preset].future },
-    animate: {
-      opacity: isPinReady && activeIndex === index ? 1 : 0,
-      ...(activeIndex === index
-        ? { x: 0, y: 0, scale: 1 }
-        : activeIndex > index
-          ? slideMotion[preset].past
-          : slideMotion[preset].future),
-      filter: isPinReady && activeIndex === index ? "blur(0px)" : "blur(10px)",
-      pointerEvents: isPinReady && activeIndex === index ? "auto" : "none"
-    },
-    transition: slideTransition,
-    "aria-hidden": activeIndex !== index
+// Chapters occupy real document space; only their contents animate into view.
+const StoryChapter = ({ index, preset, scrollRef, children }) => {
+  const reducedMotion = useReducedMotion();
+  const [revealed, setRevealed] = useState(false);
+  const [inView, setInView] = useState(false);
+  const chapterRef = useRef(null);
+  const { scrollYProgress } = useScroll({
+    container: scrollRef,
+    target: chapterRef,
+    offset: ["start end", "end start"],
   });
-
-  const slideClassName = (index, preset) =>
-    `${styles.storySlide} ${styles[`storySlide${preset[0].toUpperCase()}${preset.slice(1)}`]} ${
-      activeIndex === index ? styles.activeStorySlide : ""
-    }`;
-
-  const slideProgress = (activeIndex - 1) / 5;
-  const atmosphere = [
-    { ring: 0.78, halo: 0.9, line: 0.28, svg: 0.16, scale: 1 },
-    { ring: 0.62, halo: 0.74, line: 0.18, svg: 0.12, scale: 1.03 },
-    { ring: 0.82, halo: 0.94, line: 0.34, svg: 0.18, scale: 1.06 },
-    { ring: 0.58, halo: 0.7, line: 0.16, svg: 0.11, scale: 0.98 },
-    { ring: 0.74, halo: 0.86, line: 0.3, svg: 0.15, scale: 1.04 },
-    { ring: 0.66, halo: 0.8, line: 0.22, svg: 0.13, scale: 1.01 },
-  ][activeIndex - 1];
-
-  const renderSkills = (skills) => skills.map((skill) => (
-    <span key={skill}>{skill}</span>
-  ));
-
+  const progress = useSpring(scrollYProgress, { stiffness: 110, damping: 28, mass: 0.6 });
+  const copyDrift = useTransform(progress, [0, 0.35, 0.65, 1], ["24px", "0px", "0px", "-24px"]);
+  const sketchDrift = useTransform(progress, [0, 1], ["42px", "-42px"]);
+  const ringScale = useTransform(progress, [0, 0.5, 1], [0.91, 1.04, 1.12]);
+  const ringOpacity = useTransform(progress, [0, 0.4, 0.7, 1], [0.25, 0.85, 0.85, 0.25]);
+  const ringRotation = useTransform(progress, [0, 1], ["-8deg", "8deg"]);
   return (
-    <div
-      ref={sectionRef}
-      className={`${styles.storyPin} ${isPinReady ? styles.storyPinReady : styles.storyPinWaiting}`}
-      id="gap"
-      data-parallax-section
+    <motion.section
+      ref={chapterRef}
+      className={`${styles.storyPinInner} ${styles.flowChapter}`}
+      data-chapter-in-view={inView}
+      style={{
+        "--chapter-copy-drift": reducedMotion ? "0px" : copyDrift,
+        "--chapter-sketch-drift": reducedMotion ? "0px" : sketchDrift,
+        "--gap-atmosphere-scale": reducedMotion ? 1 : ringScale,
+        "--gap-ring-opacity": reducedMotion ? 0.7 : ringOpacity,
+        "--chapter-ring-rotation": reducedMotion ? "0deg" : ringRotation,
+      }}
+      data-chapter={index}
+      aria-label={["The Manufacturing Gap", "Industry Demand", "Scale and Throughput", "Process Economics", "Consistency and Specifications", "My Focus"][index - 1]}
+      viewport={{ root: scrollRef, amount: 0.05 }}
+      onViewportEnter={() => { setRevealed(true); setInView(true); }}
+      onViewportLeave={() => setInView(false)}
     >
-      <div className={styles.mobileGapSnapPoints} aria-hidden="true">
-        {Array.from({ length: 6 }, (_, index) => (
-          <span
-            key={index}
-            className={styles.mobileGapSnapPoint}
-            style={{ "--mobile-snap-index": index }}
-          />
-        ))}
+      <div className={styles.gapAmbient} aria-hidden="true" />
+      <div className={styles.gapSvgContainer} aria-hidden="true"><GapSvg /></div>
+      <div className={`${styles.storySlide} ${styles[`storySlide${preset[0].toUpperCase()}${preset.slice(1)}`]} ${revealed || reducedMotion ? styles.activeStorySlide : ""}`}>
+        {children}
       </div>
-      <div
-        className={styles.storyPinInner}
-        style={{
-          "--gap-ring-opacity": atmosphere.ring,
-          "--gap-halo-opacity": atmosphere.halo,
-          "--gap-line-opacity": atmosphere.line,
-          "--gap-svg-opacity": atmosphere.svg,
-          "--gap-atmosphere-scale": atmosphere.scale,
-        }}
-      >
-        <div className={styles.gapAmbient} aria-hidden="true" />
-        <div className={styles.gapSvgContainer}>
-          <GapSvg />
-        </div>
+      <motion.span className={styles.chapterScrollRule} aria-hidden="true" style={{ scaleX: reducedMotion ? 1 : progress }} />
+    </motion.section>
+  );
+};
 
-        <div className={styles.storyProgress} aria-hidden="true">
-          <span style={{ transform: `scaleY(${slideProgress})` }} />
-        </div>
-
-        <motion.div className={slideClassName(1, "title")} {...getSlideProps(1, "title")}>
+const GapSection = ({ scrollRef }) => {
+  const renderSkills = (skills) => skills.map((skill) => <span key={skill}>{skill}</span>);
+  return (
+    <div className={`${styles.storyPin} ${styles.flowChapters}`} id="gap" data-site-motion-ignore="true">
+      <StoryChapter index={1} preset="title" scrollRef={scrollRef}>
           <div className={styles.gapTitleWrapper}>
             <span className={styles.gapTitleAccent}>2D</span>
             <h2 className={styles.gapTitleMain}>
@@ -1455,9 +1321,8 @@ const GapSection = ({ scrollRef }) => {
               </span>
             </h2>
           </div>
-        </motion.div>
-
-        <motion.div className={slideClassName(2, "lead")} {...getSlideProps(2, "lead")}>
+      </StoryChapter>
+      <StoryChapter index={2} preset="lead" scrollRef={scrollRef}>
           <div className={styles.gapLeadBlock}>
              <div className={styles.gapLeadData}>
                 <span className={styles.dataLabel}>INDUSTRY DEMAND</span>
@@ -1478,12 +1343,11 @@ const GapSection = ({ scrollRef }) => {
                 </em>
              </div>
           </div>
-        </motion.div>
-
-        <motion.div className={slideClassName(3, "pillarLeft")} {...getSlideProps(3, "pillarLeft")}>
+      </StoryChapter>
+      <StoryChapter index={3} preset="pillarLeft" scrollRef={scrollRef}>
           <div className={`${styles.gapPillarBlock} ${styles.staggerLeft}`}>
             <div className={styles.grapheneScaleWrap}>
-              {activeIndex === 3 && <GrapheneScaleSvg />}
+              <GrapheneScaleSvg />
             </div>
             <div className={styles.pillarContent}>
               <h3 className={styles.gapPillarTitle}>
@@ -1497,9 +1361,8 @@ const GapSection = ({ scrollRef }) => {
               </div>
             </div>
           </div>
-        </motion.div>
-
-        <motion.div className={slideClassName(4, "pillarRight")} {...getSlideProps(4, "pillarRight")}>
+      </StoryChapter>
+      <StoryChapter index={4} preset="pillarRight" scrollRef={scrollRef}>
           <div className={`${styles.gapPillarBlock} ${styles.staggerRight}`}>
             <div className={styles.pillarContent}>
               <h3 className={styles.gapPillarTitle}>
@@ -1514,12 +1377,11 @@ const GapSection = ({ scrollRef }) => {
               </div>
             </div>
           </div>
-        </motion.div>
-
-        <motion.div className={slideClassName(5, "pillarLeft")} {...getSlideProps(5, "pillarLeft")}>
+      </StoryChapter>
+      <StoryChapter index={5} preset="pillarLeft" scrollRef={scrollRef}>
           <div className={`${styles.gapPillarBlock} ${styles.staggerLeft}`}>
             <div className={`${styles.grapheneScaleWrap} ${styles.consistencyCheckWrap}`}>
-              {activeIndex === 5 && <ConsistencyCheckSvg />}
+              <ConsistencyCheckSvg />
             </div>
             <div className={styles.pillarContent}>
               <h3 className={styles.gapPillarTitle}>
@@ -1534,9 +1396,8 @@ const GapSection = ({ scrollRef }) => {
               </div>
             </div>
           </div>
-        </motion.div>
-
-        <motion.div className={slideClassName(6, "close")} {...getSlideProps(6, "close")}>
+      </StoryChapter>
+      <StoryChapter index={6} preset="close" scrollRef={scrollRef}>
           <div className={styles.gapHighlight}>
             <span className={styles.gapHighlightSmall}>My Focus</span>
             <strong>
@@ -1554,9 +1415,7 @@ const GapSection = ({ scrollRef }) => {
               <span>Thermal Transport</span>
             </span>
           </div>
-        </motion.div>
-
-      </div>
+      </StoryChapter>
     </div>
   );
 };
@@ -1600,7 +1459,7 @@ const InteractiveProcessMap = ({ steps, scrollRef }) => {
     setFlowStepIndex(0);
     const timer = window.setInterval(() => {
       if (!document.hidden) setFlowStepIndex((index) => (index + 1) % steps.length);
-    }, 1200);
+    }, 1800);
     return () => window.clearInterval(timer);
   }, [isFlowRunning, steps.length]);
 
@@ -1649,7 +1508,7 @@ const RamanChart = ({ isActive }) => (
 
     {/* Spectral line */}
     <path
-      d="M 20,110 Q 30,110 40,108 T 50,103 T 58,80 T 66,106 T 75,108 T 92,108 T 100,20 T 108,108 T 135,108 T 150,108 Q 165,95 178,55 Q 185,55 190,75 Q 198,104 205,108 Q 212,110 220,110"
+      d="M20 110 C36 110 44 109 50 107 C54 105 55 82 58 80 C61 82 62 105 68 108 C78 110 88 109 92 107 C97 104 97 22 100 20 C103 22 103 104 110 108 C124 110 143 110 152 105 C164 99 169 57 178 55 C188 53 191 91 201 104 C207 109 214 110 220 110"
       stroke={isActive ? "url(#ramanGlow)" : "rgba(255,255,255,0.4)"}
       strokeWidth="1.5"
       strokeLinecap="round"
@@ -1703,10 +1562,10 @@ const XpsChart = ({ isActive }) => (
   </svg>
 );
 
-const SemTemChart = ({ isActive }) => (
-  <svg viewBox="0 0 240 130" style={{ width: "100%", height: "100%" }} fill="none" xmlns="http://www.w3.org/2000/svg">
+const SemTemChart = ({ isActive, type }) => (
+  <svg viewBox={type === "tem" ? "120 10 100 115" : "10 15 100 110"} style={{ width: "100%", height: "100%" }} fill="none" xmlns="http://www.w3.org/2000/svg">
     {/* Left Side: 3D layered SEM flake */}
-    <g opacity={isActive ? "0.95" : "0.55"}>
+    <g display={type === "tem" ? "none" : undefined} opacity={isActive ? "0.95" : "0.55"}>
       {/* Shaded facets to make it look 3D and premium */}
       <path d="M 20,55 L 60,30 L 95,50 L 85,85 L 40,95 Z" fill="rgba(255, 255, 255, 0.08)" stroke="rgba(255, 255, 255, 0.25)" strokeWidth="1" />
       <path d="M 20,55 L 60,30 L 60,65 L 40,95 Z" fill="rgba(212, 157, 129, 0.08)" stroke="rgba(212, 157, 129, 0.25)" strokeWidth="0.8" />
@@ -1720,7 +1579,7 @@ const SemTemChart = ({ isActive }) => (
     </g>
 
     {/* Right Side: Simulated Diffraction Pattern (matching mockup) */}
-    <g opacity={isActive ? "0.85" : "0.45"}>
+    <g display={type === "sem" ? "none" : undefined} opacity={isActive ? "0.85" : "0.45"}>
       {/* Background box for diffraction pattern */}
       <rect x="130" y="20" width="80" height="80" rx="4" fill="rgba(0,0,0,0.4)" stroke="rgba(255,255,255,0.1)" strokeWidth="0.5" />
 
@@ -1911,14 +1770,14 @@ const BadgeIconMap = {
   xps: XpsIcon
 };
 
-const EvidenceCard = ({ item, index }) => {
+const EvidenceCard = ({ item, index, scrollRef }) => {
   const ChartComponent = SvgMap[item.id] || UvVisChart;
   const BadgeIcon = BadgeIconMap[item.id] || WaveIcon;
 
   return (
-    <article className={styles.evidenceRailCard} style={{ "--motion-delay": `${index * 86}ms` }}>
+    <ScrollRevealCard scrollRef={scrollRef} index={index} className={styles.evidenceRailCard} style={{ "--motion-delay": `${index * 86}ms` }}>
       <div className={styles.evidenceRailFigure}>
-        <ChartComponent isActive={true} />
+        <ChartComponent isActive={true} type={item.id} />
       </div>
       <div className={styles.evidenceRailCopy}>
         <span className={styles.evidenceRailIcon} aria-hidden="true">
@@ -1930,7 +1789,7 @@ const EvidenceCard = ({ item, index }) => {
         </span>
         <span className={styles.evidenceRailDetail}>{item.detail}</span>
       </div>
-    </article>
+    </ScrollRevealCard>
   );
 };
 
@@ -1939,7 +1798,7 @@ const EvidenceShowcase = ({ items, scrollRef }) => {
   const { scrollYProgress } = useScroll({
     container: scrollRef,
     target: sceneRef,
-    offset: ["start start", "end end"],
+    offset: ["start end", "end start"],
   });
   const railProgress = useSpring(scrollYProgress, {
     stiffness: 140,
@@ -1947,9 +1806,9 @@ const EvidenceShowcase = ({ items, scrollRef }) => {
     mass: 0.8,
     restDelta: 0.005,
   });
-  const firstRailY = useTransform(railProgress, [0, 1], ["3vh", "-30vh"]);
-  const secondRailY = useTransform(railProgress, [0, 1], ["3vh", "-46vh"]);
-  const backgroundWordY = useTransform(railProgress, [0, 1], ["-8vh", "18vh"]);
+  const firstRailY = useTransform(railProgress, [0, 1], ["16px", "-16px"]);
+  const secondRailY = useTransform(railProgress, [0, 1], ["24px", "-24px"]);
+  const backgroundWordY = useTransform(railProgress, [0, 1], ["-24px", "24px"]);
   const byId = Object.fromEntries(items.map((item) => [item.id, item]));
   const firstRail = ["uv-vis", "sem", "tem"].map((id) => byId[id]).filter(Boolean);
   const secondRail = ["raman", "xps", "afm"].map((id) => byId[id]).filter(Boolean);
@@ -1968,10 +1827,10 @@ const EvidenceShowcase = ({ items, scrollRef }) => {
 
         <div className={styles.evidenceRails} aria-label="Material evidence methods">
           <motion.div className={`${styles.evidenceRail} ${styles.evidenceRailPrimary}`} style={{ y: firstRailY }}>
-            {firstRail.map((item, index) => <EvidenceCard key={item.id} item={item} index={index} />)}
+            {firstRail.map((item, index) => <EvidenceCard key={item.id} item={item} index={index} scrollRef={scrollRef} />)}
           </motion.div>
           <motion.div className={`${styles.evidenceRail} ${styles.evidenceRailSecondary}`} style={{ y: secondRailY }}>
-            {secondRail.map((item, index) => <EvidenceCard key={item.id} item={item} index={index + firstRail.length} />)}
+            {secondRail.map((item, index) => <EvidenceCard key={item.id} item={item} index={index + firstRail.length} scrollRef={scrollRef} />)}
           </motion.div>
         </div>
       </div>
@@ -1989,9 +1848,12 @@ const ApproachContent = ({ scrollRef }) => {
 
     const observer = new IntersectionObserver(
       ([entry]) => {
-        setIsActive(entry.isIntersecting);
+        if (entry.isIntersecting) {
+          setIsActive(true);
+          observer.disconnect();
+        }
       },
-      { root, threshold: 0.42, rootMargin: "-8% 0px -10% 0px" }
+      { root, threshold: 0.01, rootMargin: "0px 0px -8% 0px" }
     );
 
     observer.observe(stage);
@@ -2124,6 +1986,7 @@ const WorkStory = () => {
           {isMounted && <GapSection scrollRef={scrollRef} />}
 
           <SectionShell
+            scrollRef={scrollRef}
             id="process"
             kicker="The Answer"
             title={
@@ -2143,6 +2006,7 @@ const WorkStory = () => {
           </SectionShell>
 
           <SectionShell
+            scrollRef={scrollRef}
             id="system"
             className={`${styles.splitSection} ${styles.asymSystem}`}
           >
@@ -2171,6 +2035,7 @@ const WorkStory = () => {
           </SectionShell>
 
           <SectionShell
+            scrollRef={scrollRef}
             id="evidence"
             className={styles.asymEvidence}
             eager
@@ -2178,6 +2043,7 @@ const WorkStory = () => {
             <EvidenceShowcase items={characterization} scrollRef={scrollRef} />
           </SectionShell>
           <SectionShell
+            scrollRef={scrollRef}
             id="modeling"
             title={null}
             className={styles.asymModeling}
@@ -2186,6 +2052,7 @@ const WorkStory = () => {
             <ProductQualityShowcase items={productQualityMetrics} scrollRef={scrollRef} />
           </SectionShell>
           <SectionShell
+            scrollRef={scrollRef}
             id="materials"
             className={styles.asymMaterials}
             eager
@@ -2194,6 +2061,7 @@ const WorkStory = () => {
           </SectionShell>
 
           <SectionShell
+            scrollRef={scrollRef}
             id="industry"
             kicker="INDUSTRY"
             title={
@@ -2232,6 +2100,7 @@ const WorkStory = () => {
           </SectionShell>
 
           <SectionShell
+            scrollRef={scrollRef}
             id="approach"
             className={styles.asymApproach}
             eager

@@ -4,6 +4,9 @@
   left: 0;
   width: 100%;
   height: 100vh;
+  height: 100dvh;
+  box-sizing: border-box;
+  padding: env(safe-area-inset-top, 0px) 20px env(safe-area-inset-bottom, 0px);
   background:
     radial-gradient(circle at 50% 43%, rgba(174, 88, 58, 0.17), transparent 37%),
     radial-gradient(circle at 50% 100%, rgba(226, 163, 123, 0.055), transparent 38%),
@@ -15,14 +18,14 @@
   z-index: 99999;
   overflow: hidden;
   opacity: 1;
-  transition: opacity 800ms cubic-bezier(0.4, 0, 0.2, 1);
+  transition: opacity 500ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 #Intro { z-index: 100000; }
 .Intro--exiting { opacity: 0; pointer-events: none; }
 
 .Intro p {
-  font-size: clamp(15px, 2.8vw, 19px);
+  font-size: clamp(32px, 5vw, 46px);
   text-align: center;
   margin: 0;
   color: #f0d5c3;
@@ -35,13 +38,14 @@
 .Intro-b {
   font-family: "Poppins", sans-serif;
   color: #c7b2a5;
-  font-size: 0.72rem;
+  display: block;
+  font-size: 0.6rem;
   text-align: center;
   margin: 8px 0 0;
   opacity: 0.72;
-  font-weight: 600;
+  font-weight: 400;
   z-index: 100;
-  letter-spacing: 0.42em;
+  letter-spacing: 0.3em;
 }
 
 .GrapheneIntro {
@@ -67,7 +71,7 @@
 .Intro--retiring .GrapheneIntro {
   opacity: 0;
   transform: translate3d(0, -10px, 0) scale(1.015);
-  transition-duration: 300ms;
+  transition-duration: 220ms;
   transition-timing-function: cubic-bezier(0.4, 0, 1, 1);
 }
 
@@ -194,7 +198,7 @@
 
 @media only screen and (max-width: 640px) {
   .Intro-b {
-    font-size: 0.64rem;
+    font-size: 0.55rem;
     letter-spacing: 0.18em;
   }
 
@@ -222,4 +226,84 @@
   .centered-text {
     margin-top: 8px;
   }
+}
+
+/* An instrument-like frame keeps the molecular motif quiet and precise. */
+.loader-orbit {
+  position: absolute;
+  inset: 13%;
+  border: 1px solid rgba(226, 159, 121, 0.12);
+  border-radius: 50%;
+}
+.loader-orbit::before,
+.loader-orbit::after {
+  content: "";
+  position: absolute;
+  inset: -12px;
+  border: 1px dashed rgba(226, 159, 121, 0.08);
+  border-radius: inherit;
+}
+.loader-orbit::after {
+  inset: 18px;
+  border-style: solid;
+  border-color: rgba(226, 159, 121, 0.04);
+}
+.loader-orbit > span {
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  animation: loaderOrbit 9s linear infinite;
+}
+.loader-orbit > span::before {
+  content: "";
+  position: absolute;
+  top: -2px;
+  left: calc(50% - 2px);
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: #e8b491;
+  box-shadow: 0 0 12px rgba(232, 180, 145, 0.6);
+}
+.loader-status {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  margin-top: 40px;
+}
+.loader-statusLabel {
+  color: #ae9485;
+  font: 400 10px/1.5 "Poppins", sans-serif;
+  letter-spacing: 0.12em;
+}
+.loader-track {
+  width: 112px;
+  height: 1px;
+  overflow: hidden;
+  background: rgba(226, 159, 121, 0.16);
+}
+.loader-track > span {
+  display: block;
+  width: 100%;
+  height: 100%;
+  background: #ddb092;
+  transform: translateX(-100%);
+  animation: loaderTravel 1.6s ease-in-out infinite;
+}
+.loader-status--ready .loader-track > span {
+  animation: none;
+  transform: none;
+}
+@keyframes loaderOrbit { to { transform: rotate(360deg); } }
+@keyframes loaderTravel { to { transform: translateX(100%); } }
+@media (max-height: 600px) {
+  .GrapheneIntro { min-height: 0; }
+  .loader-grapheneCluster { width: min(210px, 42vh); }
+  .loader-status { margin-top: 24px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .loader-orbit > span,
+  .loader-track > span { animation: none; transform: none; }
+  .loader-track > span { opacity: 0.65; }
 }
