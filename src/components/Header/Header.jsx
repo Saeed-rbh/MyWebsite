@@ -264,6 +264,7 @@ const Header = () => {
     if (path === "/academiccv") return "Academic CV";
     if (path.replace(/\/$/, "") === "/venture") return "Venture";
     if (path === "/journal" || path.startsWith("/journal/")) return "Journal";
+    if (path === "/simulate-atoms") return "Atomic simulation";
     if (path === "/graphene") return "Graphene";
     if (path === "/research-progress") return "Research Progress";
     

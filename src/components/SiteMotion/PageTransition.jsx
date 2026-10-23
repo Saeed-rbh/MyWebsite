@@ -19,6 +19,7 @@ export function pageIdentity(path) {
     "/venture": ["Venture", "From materials research to market"],
     "/journal": ["Journal", "Papers and research explained"],
     "/academiccv": ["Academic CV", "Experience, publications, skills"],
+    "/simulate-atoms": ["Atomic simulation", "Following atoms, one step at a time"],
     "/graphene": ["Research", "Exploring materials at the nanoscale"],
     "/research-progress": ["Research journey", "Ideas, experiments, discoveries"],
     "/mafia": ["Mafia", "Let the game begin"],

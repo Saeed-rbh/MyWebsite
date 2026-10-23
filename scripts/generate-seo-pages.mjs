@@ -1,3 +1,4 @@
+import { atomsArticle } from '../src/data/atomsArticle.mjs';
 import { readFileSync, writeFileSync, mkdirSync } from "node:fs";
 import { join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
@@ -29,6 +30,18 @@ const nav = `<nav aria-label="Main navigation">${[
 ].map(([url, label]) => link(url, label)).join("")}</nav>`;
 
 const pages = [
+  {
+    path: '/simulate-atoms', title: `${atomsArticle.title} | Saeed Arabha`, description: atomsArticle.description,
+    type: 'article', schema: schemaFor('/simulate-atoms'),
+    body: `<h1>${escape(atomsArticle.title)}</h1>${paragraph(atomsArticle.intro)}
+      ${atomsArticle.sections.map(s => `<section id="${s.id}"><h2>${escape(s.title)}</h2>${s.paragraphs.map(paragraph).join('')}${link(atomsArticle.sources[s.source].url, 'Source')}${atomsArticle.diagrams.filter(d => d.chapter === s.id).map(d => `<figure><img src="${d.src}" width="960" height="540" alt="${escape(d.alt)}"><figcaption>${escape(d.title)} ${escape(d.caption)}</figcaption></figure>`).join('')}</section>`).join('')}
+      <section id="simulation-software"><h2>Which software does what?</h2>${atomsArticle.software.map(t => `<h3>${escape(t.name)}: ${escape(t.role)}</h3>${paragraph(t.text)}${paragraph(t.detail)}${link(t.url, 'Official documentation')}`).join('')}</section>
+      <section id="simulation-papers"><h2>Real problems: from atomic questions to practical decisions</h2>${atomsArticle.research.map(r => `<h3>${escape(r.title)}</h3>${paragraph(r.problem)}${paragraph(r.text)}${paragraph(r.implication)}<figure><img src="${r.figure.src}" alt="${escape(r.figure.alt)}"><figcaption>${escape(r.figure.source)}. ${escape(r.paperTitle)}</figcaption></figure>${link(r.url,'Original paper')}`).join('')}</section>
+      <section><h2>Key takeaways</h2>${atomsArticle.takeaways.map(paragraph).join('')}</section>
+      <section><h2>Common questions</h2>${atomsArticle.faq.map(s => `<h3>${escape(s.question)}</h3>${paragraph(s.answer)}`).join('')}</section>
+      <section><h2>Sources and further reading</h2>${atomsArticle.sources.map(s => link(s.url, s.label)).join('')}</section>
+      ${link('/Graphene', 'Explore graphene')}${link('/journal/', 'Read the research')}`,
+  },
   {
     path: "/venture",
     ...commercializationSeo,
@@ -74,10 +87,17 @@ const pages = [
     path: "/Graphene",
     title: `${grapheneArticle.title} | Saeed Arabha`,
     description: grapheneArticle.description,
+    type: 'article',
+    schema: schemaFor('/Graphene'),
     body: `<h1>${escape(grapheneArticle.title)}</h1>${paragraph(grapheneArticle.intro)}
       <section><h2>Explore the carbon lattice in 3D</h2><p>Rotate the model, separate its layers, and isolate one graphene sheet. The illustration uses exaggerated atom sizes and spacing for clarity.</p></section>
-      ${grapheneArticle.sections.map(section => `<section id="${section.id}"><h2>${escape(section.title)}</h2>${section.paragraphs.map(paragraph).join('')}</section>`).join('')}
-      <section><h2>Possibilities</h2>${grapheneArticle.applications.map(item => `<h3>${escape(item.title)}</h3>${paragraph(item.text)}`).join('')}</section>
+      <section><h2>See the bigger picture</h2>${grapheneArticle.gallery.map(item => `<figure><img src="${item.src}" width="${item.width}" height="${item.height}" alt="${escape(item.alt)}" loading="lazy"><figcaption>${escape(item.title)}. ${escape(item.caption)}</figcaption></figure>`).join('')}</section>
+      <section><h2>Measured properties</h2>${grapheneArticle.measurements.map(item => `<h3>${escape(item.value)}: ${escape(item.label)}</h3>${paragraph(item.detail)}`).join('')}</section>
+      <section><h2>Production routes</h2>${grapheneArticle.methods.map(row => `<h3>${escape(row[0])}</h3>${paragraph(row[1] + ' ' + row[2])}`).join('')}</section>
+      ${grapheneArticle.sections.map(section => `<section id="${section.id}"><h2>${escape(section.title)}</h2>${section.paragraphs.map((text, i) => paragraph(text) + ((section.paragraphSources || i === section.paragraphs.length - 1) ? link(grapheneArticle.sources[section.paragraphSources?.[i] ?? section.source].url, 'Source') : '')).join('')}${grapheneArticle.diagrams.filter(item => item.chapter === section.id).map(item => `<figure><h3>${escape(item.title)}</h3>${item.steps.map(step => `<img src="${step.src}" width="${step.width || 320}" height="${step.height || 180}" alt="${escape(step.alt || "")}" loading="lazy"><h4>${escape(step.title)}</h4>${paragraph(step.text)}${step.generated ? paragraph("AI-generated conceptual illustration; not to scale.") : ""}${step.stages ? paragraph(step.stages.join(" → ")) : ""}${step.result ? paragraph(step.result) : ""}`).join('')}<figcaption>${escape(item.takeaway)}</figcaption></figure>`).join('')}${grapheneArticle.literatureFigures.filter(item => item.chapter === section.id).map(item => `<figure><h3>${escape(item.title)}</h3>${paragraph(item.takeaway)}${paragraph(item.startHere)}<img src="${item.src}" alt="${escape(item.alt)}" loading="lazy"><figcaption>${paragraph(item.caption)}${paragraph(item.reading)}${paragraph(item.credit)}${link(item.url, 'Original paper / DOI')}${link(item.figureUrl, 'Publisher figure')}${link(item.licenseUrl, item.license)}${paragraph(item.changes)}</figcaption></figure>`).join('')}</section>`).join('')}
+      <section><h2>Graphene applications</h2>${grapheneArticle.applications.map(item => `<section id="${item.id}"><h3>${escape(item.title)}</h3>${paragraph(item.text)}<figure><img src="${item.figure.src}" alt="${escape(item.figure.alt)}" loading="lazy"><figcaption>${paragraph(item.figure.caption)}${paragraph(item.figure.credit)}${link(item.figure.url,"Research behind this idea")}</figcaption></figure><h4>Where does it go?</h4>${paragraph(item.form)}<h4>How can it help?</h4>${paragraph(item.contribution)}<h4>What must work?</h4>${paragraph(item.challenge)}${link(grapheneArticle.sources[item.source].url, 'Source')}</section>`).join('')}</section>
+      <section><h2>Key takeaways</h2>${grapheneArticle.takeaways.map(paragraph).join('')}</section>
+      <section><h2>Common questions about graphene</h2>${grapheneArticle.faq.map(item => `<h3>${escape(item.question)}</h3>${paragraph(item.answer)}`).join('')}</section>
       <section><h2>Continue exploring</h2>${link('/R&D-Portfolio', 'Explore my R&D work')}${link('/journal/', 'Read the research')}</section>
       <section><h2>Sources and further reading</h2>${grapheneArticle.sources.map(source => link(source.url, source.label)).join('')}</section>`,
   },

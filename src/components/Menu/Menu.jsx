@@ -11,6 +11,9 @@ const destinations = [
   { path: "/", title: "Home", detail: "The introduction" },
   { path: "/R&D-Portfolio", title: "R&D portfolio", detail: "Process, evidence, application" },
   { path: "/venture", title: "Venture", detail: "From materials research to market" },
+  { path: "/simulate-atoms", title: "Atomic simulation", detail: "Explore materials at the atomic scale" },
+  { path: "/Graphene", title: "Graphene", detail: "Structure, properties, and simulation" },
+  { path: "/research-progress", title: "Research Progress", detail: "Research milestones and ongoing work" },
   { path: "/journal/", title: "Journal", detail: "Papers and research explained" },
   { path: "/AcademicCV", title: "Academic CV", detail: "Experience, publications, skills" },
 ];

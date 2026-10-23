@@ -1,0 +1,21 @@
+{
+  "tool": "Built-in image_gen",
+  "prompts": [
+    [
+      "mechanical",
+      "Use case: scientific-educational. Create a polished landscape 1536x1024 educational illustration for a dark graphene science website. Dark warm charcoal background, copper honeycomb carbon sheets, restrained teal arrows, cream readable labels. Three left-to-right stages, ample spacing, realistic dimensional scientific illustration, not a chart. Carbon sheets must be hexagonal honeycomb networks, never square grids. Short labels only, no other text. Conceptual, not operating instructions. Show mechanical exfoliation. Left: thick graphite stack made of many honeycomb sheets. Middle: translucent adhesive tape curls upward lifting a thin top sheet from that stack, a clear peeling front. Right: a small thin honeycomb flake resting on a flat substrate. Exact stage labels: \"Graphite\", \"Peel with tape\", \"Thin flake\". No liquid."
+    ],
+    [
+      "liquid",
+      "Use case: scientific-educational. Create a polished landscape 1536x1024 educational illustration for a dark graphene science website. Dark warm charcoal background, copper honeycomb carbon sheets, restrained teal arrows, cream readable labels. Three left-to-right stages, ample spacing, realistic dimensional scientific illustration, not a chart. Carbon sheets must be hexagonal honeycomb networks, never square grids. Short labels only, no other text. Conceptual, not operating instructions. Show liquid-phase exfoliation. Left: layered graphite particles entering a transparent beaker containing liquid. Middle: immersed mixing rotor and curved flow arrows shear layered particles apart; magnified inset clearly shows sideways sliding of honeycomb layers in liquid. Right: beaker containing dispersed thin honeycomb flakes of varying sizes and layer counts. Exact labels: \"Graphite + liquid\", \"Shear mixing\", \"Dispersed flakes\". Do not imply every particle is monolayer."
+    ],
+    [
+      "chemical",
+      "Use case: scientific-educational. Create a polished landscape 1536x1024 educational illustration for a dark graphene science website. Dark warm charcoal background, copper honeycomb carbon sheets, restrained teal arrows, cream readable labels. Three left-to-right stages, ample spacing, realistic dimensional scientific illustration, not a chart. Carbon sheets must be hexagonal honeycomb networks, never square grids. Short labels only, no other text. Conceptual, not operating instructions. Show oxidation-assisted exfoliation then reduction. Left: stacked graphite honeycomb layers. Middle: separated honeycomb sheets with teal oxygen-containing group markers attached, with a small label \"Oxidise + exfoliate\" above connecting arrow. Right: sheet with fewer teal markers and a few irregular holes, conveying reduced graphene oxide retains defects. Exact main labels: \"Graphite\", \"Graphene oxide\", \"Reduced graphene oxide\". Small arrow label between middle and right: \"Reduce\". Preserve copper carbon network; teal markers represent oxygen groups, not extra carbon."
+    ],
+    [
+      "cfe",
+      "Use case: scientific-educational. Create a polished landscape 1536x1024 educational illustration for a dark graphene science website. Dark warm charcoal background, copper honeycomb carbon sheets, restrained teal arrows, cream readable labels. Three left-to-right stages, ample spacing, realistic dimensional scientific illustration, not a chart. Carbon sheets must be hexagonal honeycomb networks, never square grids. Short labels only, no other text. Conceptual, not operating instructions. Show compressible-flow exfoliation (CFE). Left: carrier gas teal streamlines with small stacked graphite particles entering a wide inlet. Middle: cutaway converging-diverging nozzle with narrow throat and widening outlet; streamlines travel left to right, stacked particles carried through. Above nozzle show a large circular magnified conceptual inset of gas pushing copper honeycomb layers sideways with one separating, thin teal arrows along sheet surfaces. Right: collection chamber containing processed flakes with varying layer counts. Exact labels: \"Gas + graphite\", \"Flow through nozzle\", \"Collect flakes\". Inset label: \"Sliding + separation\". No liquid, no fire, no guaranteed single-layer output."
+    ]
+  ]
+}

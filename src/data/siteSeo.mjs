@@ -1,3 +1,5 @@
+import { atomsArticle } from './atomsArticle.mjs';
+import { grapheneArticle } from './grapheneArticle.mjs';
 export const siteUrl = 'https://www.saeedarabha.com';
 export const person = {
   '@type': 'Person', '@id': `${siteUrl}/#person`, name: 'Saeed Arabha',
@@ -13,6 +15,8 @@ export const commercializationSeo = {
   imageAlt: 'Saeed Arabha — Research commercialization, from materials science to market. Customer discovery, market strategy, and scale-up.',
 };
 export function canonicalPath(path) {
+  if (path.toLowerCase().replace(/\/$/, '') === '/simulate-atoms') return '/simulate-atoms';
+  if (path.toLowerCase().replace(/\/$/, '') === '/graphene') return '/Graphene';
   if (path.toLowerCase().replace(/\/$/, '') === '/academiccv') return '/AcademicCV';
   if (['/commercialization', '/commercialization/', '/venture/'].includes(path)) return '/venture';
   if (path === '/journal' || (path.startsWith('/journal/') && !path.endsWith('/'))) return `${path}/`;
@@ -22,6 +26,14 @@ export function schemaFor(path) {
   if (path === '/') return { '@context': 'https://schema.org', '@graph': [person, website,
     { '@type': 'ProfilePage', '@id': `${siteUrl}/#profile`, url: `${siteUrl}/`, name: 'Saeed Arabha | Materials Scientist & Researcher', mainEntity: { '@id': person['@id'] }, isPartOf: { '@id': website['@id'] } },
   ] };
+  if (canonicalPath(path) === '/simulate-atoms') return { '@context': 'https://schema.org', '@type': 'Article', headline: atomsArticle.title, description: atomsArticle.description, author: person, mainEntityOfPage: `${siteUrl}/simulate-atoms`, citation: atomsArticle.sources.map(s => s.url) };
+  if (canonicalPath(path) === '/Graphene') {
+    const url = `${siteUrl}/Graphene`;
+    return { '@context': 'https://schema.org', '@graph': [website,
+      { '@type': 'Article', '@id': `${url}#article`, headline: grapheneArticle.title, description: grapheneArticle.description, mainEntityOfPage: url, publisher: person, inLanguage: 'en', isAccessibleForFree: true, image: `${siteUrl}/images/commercialization/graphite.webp`, about: { '@type': 'Thing', name: 'Graphene' }, citation: grapheneArticle.sources.map(source => source.url) },
+      { '@type': 'BreadcrumbList', itemListElement: [{ '@type': 'ListItem', position: 1, name: 'Home', item: `${siteUrl}/` }, { '@type': 'ListItem', position: 2, name: 'Graphene', item: url }] },
+    ] };
+  }
   if (canonicalPath(path) !== '/venture') return null;
   const url = `${siteUrl}/venture`;
   return { '@context': 'https://schema.org', '@graph': [person, website,

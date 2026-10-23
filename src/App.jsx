@@ -7,6 +7,7 @@ import useUpdateVariable from "./pages/Resume/General/useUpdateVariable";
 import Header from "./components/Header/Header";
 import Menu from "./components/Menu/Menu";
 import Footer from "./components/Footer/Footer";
+const Atoms = lazy(() => import("./pages/Research/Atoms"));
 const Graphene = lazy(() => import("./pages/Research/Research"));
 import Mouse from "./Mouse";
 import ScrollToNavigate from "./Helper/ScrollToNavigate"; // Import scroll detector
@@ -86,6 +87,7 @@ function AppContent({ onRouteReady }) {
                   <Route path="/work-story" element={<Navigate to="/R&D-Portfolio" replace />} />
                   <Route path="/AcademicCV" element={<AcademicCV />} />
                   <Route path="/academiccv" element={<AcademicCV />} />
+                  <Route path="/simulate-atoms" element={<Atoms />} />
                   <Route exact path="/Graphene" element={<Graphene />} />
                   <Route path="/research-progress" element={<ResearchProgress />} />
                   <Route path="/Mafia" element={<Mafia />} />

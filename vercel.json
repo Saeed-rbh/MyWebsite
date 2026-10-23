@@ -62,6 +62,10 @@
     ],
     "rewrites": [
         {
+            "source": "/simulate-atoms",
+            "destination": "/simulate-atoms/index.html"
+        },
+        {
             "source": "/venture",
             "destination": "/venture/index.html"
         },
