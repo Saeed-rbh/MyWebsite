@@ -229,6 +229,8 @@ const InteractiveDiv = (props) => {
     <animated.div
       className={name}
       id={name}
+      data-page-entrance="intro"
+      data-entrance-order={seqId}
       style={{
         ...Style,
         ...combinedStyle,

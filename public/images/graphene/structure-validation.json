@@ -1,0 +1,207 @@
+{
+  "method": "Deterministic rendering from ideal crystal coordinates; no generated-image atom placement.",
+  "units": "angstrom",
+  "limitations": "Finite patches of unrelaxed periodic crystals. Cut edges have missing neighbours. Spheres are display radii, not atomic boundaries. Colours are illustrative.",
+  "materials": [
+    {
+      "id": "hbn",
+      "description": "Ideal planar BN honeycomb; representative a=2.50 angstrom. B and N alternate on the two sublattices.",
+      "sources": [
+        "https://ase.gitlab.io/ase/_modules/ase/build/surface.html",
+        "https://arxiv.org/abs/1005.4917"
+      ],
+      "lattice_vectors": [
+        [
+          2.5,
+          0.0,
+          0.0
+        ],
+        [
+          -1.25,
+          2.1650635094610964,
+          0.0
+        ]
+      ],
+      "unit_cell_basis": [
+        [
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          1.25,
+          0.7216878364870322,
+          0.0
+        ]
+      ],
+      "unit_cell_elements": [
+        "B",
+        "N"
+      ],
+      "validation": {
+        "periodic_neighbours": [
+          {
+            "element": "B",
+            "neighbours": 3
+          },
+          {
+            "element": "N",
+            "neighbours": 3
+          }
+        ],
+        "nearest_bond_lengths_angstrom": [
+          1.4434
+        ],
+        "atomic_planes_angstrom": [
+          0.0
+        ]
+      },
+      "rendered_atoms": 54,
+      "rendered_bonds": 72
+    },
+    {
+      "id": "mos2",
+      "description": "Trigonal-prismatic 1H monolayer, the monolayer used by ASE mx2(kind='2H'). a=3.18 angstrom; S-plane separation=3.19 angstrom. Top/bottom S sites align in projection.",
+      "sources": [
+        "https://ase.gitlab.io/ase/_modules/ase/build/surface.html"
+      ],
+      "lattice_vectors": [
+        [
+          3.18,
+          0.0,
+          0.0
+        ],
+        [
+          -1.59,
+          2.753960784034515,
+          0.0
+        ]
+      ],
+      "unit_cell_basis": [
+        [
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          1.59,
+          0.9179869280115049,
+          1.595
+        ],
+        [
+          1.59,
+          0.9179869280115049,
+          -1.595
+        ]
+      ],
+      "unit_cell_elements": [
+        "Mo",
+        "S",
+        "S"
+      ],
+      "validation": {
+        "periodic_neighbours": [
+          {
+            "element": "Mo",
+            "neighbours": 6
+          },
+          {
+            "element": "S",
+            "neighbours": 3
+          },
+          {
+            "element": "S",
+            "neighbours": 3
+          }
+        ],
+        "nearest_bond_lengths_angstrom": [
+          2.432
+        ],
+        "atomic_planes_angstrom": [
+          -1.595,
+          0.0,
+          1.595
+        ]
+      },
+      "rendered_atoms": 45,
+      "rendered_bonds": 70
+    },
+    {
+      "id": "phosphorene",
+      "description": "Black-phosphorus monolayer. Four-atom basis and constants from Paez et al., PRB 94, 165419 (2016), section II and table I. Two heights form a puckered honeycomb, not a flat graphene lattice.",
+      "sources": [
+        "https://doi.org/10.1103/PhysRevB.94.165419"
+      ],
+      "lattice_vectors": [
+        [
+          4.376,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          3.314,
+          0.0
+        ]
+      ],
+      "unit_cell_basis": [
+        [
+          0.35253056000000005,
+          0.0,
+          1.0656064
+        ],
+        [
+          1.83546944,
+          1.657,
+          1.0656064
+        ],
+        [
+          4.02346944,
+          0.0,
+          -1.0656064
+        ],
+        [
+          2.5405305600000005,
+          1.657,
+          -1.0656064
+        ]
+      ],
+      "unit_cell_elements": [
+        "P",
+        "P",
+        "P",
+        "P"
+      ],
+      "validation": {
+        "periodic_neighbours": [
+          {
+            "element": "P",
+            "neighbours": 3
+          },
+          {
+            "element": "P",
+            "neighbours": 3
+          },
+          {
+            "element": "P",
+            "neighbours": 3
+          },
+          {
+            "element": "P",
+            "neighbours": 3
+          }
+        ],
+        "nearest_bond_lengths_angstrom": [
+          2.2237,
+          2.2448
+        ],
+        "atomic_planes_angstrom": [
+          -1.0656064,
+          1.0656064
+        ]
+      },
+      "rendered_atoms": 112,
+      "rendered_bonds": 153
+    }
+  ]
+}

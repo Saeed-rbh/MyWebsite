@@ -1,0 +1,30 @@
+{
+  "logos": [
+    {
+      "file": "packmol.png",
+      "source": "https://m3g.github.io/packmol/logo200px.png",
+      "bytes": 69163
+    },
+    {
+      "file": "lammps.jpg",
+      "source": "https://www.lammps.org/images/logo.jpg",
+      "bytes": 68588
+    },
+    {
+      "file": "gromacs.png",
+      "source": "https://www.gromacs.org/_static/gmx_logo_blue.png",
+      "bytes": 80203
+    },
+    {
+      "file": "openmm.svg",
+      "source": "https://openmm.org/images/logo.svg",
+      "bytes": 17592
+    },
+    {
+      "file": "ovito.png",
+      "source": "https://www.ovito.org/_astro/ovito_logo_256.BAk4uGrH.png",
+      "bytes": 47239
+    }
+  ],
+  "note": "Official project logos displayed in their original colours. Quantum ESPRESSO uses a generic wavefunction symbol instead of its restricted logo."
+}

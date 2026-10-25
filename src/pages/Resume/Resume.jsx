@@ -11,6 +11,7 @@ import useScrollPosition from "./General/useScrollPosition";
 import { useDispatch } from "react-redux";
 import { updateCurrentPage } from "../../actions/Actions";
 import { ScrollableRefProvider, useScrollableRef } from "./General/ScrollableRefContext";
+import usePageReveals from "../../components/SiteMotion/usePageReveals";
 import SEO from "../../components/SEO/SEO";
 
 // Inner component that uses the scrollable ref
@@ -32,6 +33,7 @@ const AcademicCVContent = () => {
   const scrollPosition = useScrollPosition(scrollableRef);
   const conditionData = data.length > 0;
   const conditionStage = stages.length > 0 && elementSize.width > 10;
+  usePageReveals(scrollableRef, conditionData && conditionStage);
 
   const lastSectionTop = useMemo(() => {
     const lastElement = data.length ? data[data.length - 1] : null;
@@ -73,6 +75,7 @@ const AcademicCVContent = () => {
     <ScrollProvider scrollPosition={scrollPosition}>
       {conditionData && (
         <div
+          data-site-motion-ignore="true"
           id="AcademicCV-M"
           className="AcademicCV-M"
           style={{

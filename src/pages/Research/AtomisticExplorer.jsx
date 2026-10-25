@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import ParticleExplorer from './ParticleExplorer';
 import WaterExplorer from './WaterExplorer';
 import {atomsArticle} from '../../data/atomsArticle.mjs';
@@ -11,12 +11,14 @@ function SystemSketch({kind}) {
   </svg>;
 }
 
-export default function AtomisticExplorer() {
-  const [system, setSystem] = useState('solid');
+export default function AtomisticExplorer({ system, setSystem, onResearch }) {
+  const selected = atomsArticle.simulationExamples.find(example => example.id === system);
   return <section id="atoms-explorer" className={s.materialExplorer} aria-labelledby="materials-explorer-title">
-    <div className={s.exampleIntro}><span className={styles.eyebrow}>Three systems / One atomistic workflow</span><h2 id="materials-explorer-title">Different matter. The same atomic perspective.</h2><p>Start with a structure, calculate its interactions, and follow the motion. Compare an ordered solid, a dilute gas, and water molecules to see how the model changes with the question.</p></div>
-    <div className={s.phaseSelector} role="group" aria-label="Choose an atomistic simulation">{atomsArticle.simulationExamples.map(example => <button key={example.id} aria-pressed={system === example.id} aria-controls="material-simulation" onClick={() => setSystem(example.id)}><SystemSketch kind={example.id}/><span><strong>{example.label}</strong><small>{example.subtitle}</small></span><span aria-hidden="true">↗</span></button>)}</div>
-    <div id="material-simulation" key={system}>{system === 'water' ? <WaterExplorer embedded/> : <ParticleExplorer kind={system}/>}</div>
-    <div className={s.modelComparison}><span className={styles.eyebrow}>From motion to a research question</span><div>{atomsArticle.simulationExamples.map(example => <article key={example.id}><h3>{example.label}</h3><p>{example.explanation}</p><p><strong>Measure:</strong> {example.measure}</p></article>)}</div><p className={s.comparisonNote}>These are small, planar teaching models. The solid and gas share a generic pair interaction; water adds fixed molecular geometry and partial charges. Each example uses its own conditions and units. A research calculation needs a model, system size and sampling strategy validated for the material and question.</p></div>
+    <header className={s.simulationHeader}>
+      <div><span className={styles.eyebrow}>Live simulation</span><h2 id="materials-explorer-title">Atoms in motion.</h2></div>
+      <div className={s.phaseSelector} role="group" aria-label="Choose an atomistic simulation">{atomsArticle.simulationExamples.map(example => <button type="button" key={example.id} aria-pressed={system === example.id} aria-controls="material-simulation" onClick={() => setSystem(example.id)}><SystemSketch kind={example.id}/><span>{example.label}</span></button>)}</div>
+    </header>
+    <div id="material-simulation" key={system}>{system === 'water' ? <WaterExplorer/> : <ParticleExplorer kind={system}/>}</div>
+    <div className={s.simulationFootnote}><span>Illustrative 2D models · Motion calculated from forces</span><a href="#simulation-papers" onClick={() => onResearch(selected.researchIndex)}>Related research ↗</a></div>
   </section>;
 }

@@ -1,7 +1,9 @@
 import React, { useEffect, useRef, useState } from 'react';
+import { Link } from 'react-router-dom';
 import { motion, useReducedMotion, useScroll, useSpring, useTransform, AnimatePresence } from 'motion/react';
 import { InterviewCount, ScrollFade } from './StoryMotion';
 import InterviewCards from './InterviewCards';
+import usePageReveals from "../../components/SiteMotion/usePageReveals";
 import SEO from '../../components/SEO/SEO';
 import { commercializationSeo } from '../../data/siteSeo.mjs';
 import papers from '../../data/journalPapers.json';
@@ -22,6 +24,7 @@ export default function Commercialization() {
   const [market, setMarket] = useState(2);
   const [slide, setSlide] = useState(0);
   const page = useRef(null);
+  usePageReveals(page);
   const [chapter, setChapter] = useState('my-role');
   const [processStage, setProcessStage] = useState(0);
   const reducedMotion = useReducedMotion();
@@ -62,37 +65,37 @@ export default function Commercialization() {
     <main id="cfe-main">
       <section className={s.hero}>
         <div className={s.heroTop}>
-          <ScrollFade root={page}><motion.div className={s.heroTitle} initial={reducedMotion ? false : { opacity: 1, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}>
-            <span className={s.ghostWord} aria-hidden="true">From lab.</span>
-            <p className={s.eyebrow}>VENTURE / SAEED ARABHA</p>
-            <h1>Research.<br/><em>Meet the market.</em></h1>
-            <p className={s.heroRole}>MATERIALS COMMERCIALIZATION <span/> CUSTOMER DISCOVERY <span/> SCALE-UP</p>
-          </motion.div></ScrollFade>
+          <ScrollFade root={page}><div className={s.heroTitle}>
+            <span className={s.ghostWord} data-page-entrance="atmosphere" aria-hidden="true">From lab.</span>
+            <p className={s.eyebrow} data-page-entrance="eyebrow">VENTURE / SAEED ARABHA</p>
+            <h1 data-page-entrance="title">Research.<br/><em>Meet the market.</em></h1>
+            <p className={s.heroRole} data-page-entrance="kicker">MATERIALS COMMERCIALIZATION <span/> CUSTOMER DISCOVERY <span/> SCALE-UP</p>
+          </div></ScrollFade>
 
         </div>
         <div className={s.heroVisual}>
-          <ScrollFade root={page}><motion.figure className={s.heroObject} style={{ y: imageDrift }} initial={reducedMotion?false:{opacity:1,scale:0.94,rotate:-2}} animate={{opacity:1,scale:1,rotate:0}} transition={{delay:0.2,type:'spring',stiffness:80,damping:22}}>
-            <img className={s.heroArt} src={`${assets}cfe-hero-lettering.webp`} alt="Blue CFE lettering on stacked graphite layers, with a lifting graphene sheet and blue gas flow." fetchPriority="high" width="1672" height="940" />
+          <ScrollFade root={page}><motion.figure className={s.heroObject} style={{ y: imageDrift }}>
+            <img className={s.heroArt} data-page-entrance="journey" src={`${assets}cfe-hero-lettering.webp`} alt="Blue CFE lettering on stacked graphite layers, with a lifting graphene sheet and blue gas flow." fetchPriority="high" width="1672" height="940" />
           </motion.figure></ScrollFade>
 
         </div>
         <ScrollFade root={page} as="aside" className={s.heroCombined}>
           <div className={s.heroAside}>
-            <p className={s.eyebrow}>FROM INVENTOR TO FOUNDER</p>
-            <p>CFE uses compressed gas to separate layered materials into thinner sheets. As entrepreneurial lead, I turn customer discovery into market choices and a pilot plan.</p>
-            <a className={s.textLink} href="#discovery">Explore the CFE case <Arrow/></a>
+            <p className={s.eyebrow} data-page-entrance="eyebrow">FROM INVENTOR TO FOUNDER</p>
+            <p data-page-entrance="intro">CFE uses compressed gas to separate layered materials into thinner sheets. As entrepreneurial lead, I turn customer discovery into market choices and a pilot plan.</p>
+            <a className={s.textLink} data-page-entrance="actions" href="#discovery">Explore the CFE case <Arrow/></a>
           </div>
           <div className={s.heroProof}>
-            <span className={s.materialTag}><i/> COMPRESSIBLE FLOW EXFOLIATION</span>
-            <h2 className={s.pathHeading}>A customer-led direction.</h2>
+            <span className={s.materialTag} data-page-entrance="eyebrow"><i/> COMPRESSIBLE FLOW EXFOLIATION</span>
+            <h2 className={s.pathHeading} data-page-entrance="kicker">A customer-led direction.</h2>
             <ol className={s.venturePath} aria-label="From research to market">
-              {['Understand the need', 'Choose the market', 'Prove the process'].map((step, index) => <li key={step}><span className={s.pathCue} aria-hidden="true">{[0, 1, 2].map(dot => <i key={dot} data-lit={dot <= index}/>)}</span><span>{step}</span></li>)}
+              {['Understand the need', 'Choose the market', 'Prove the process'].map((step, index) => <li key={step} data-page-entrance="journey" data-entrance-order={index}><span className={s.pathCue} aria-hidden="true">{[0, 1, 2].map(dot => <i key={dot} data-lit={dot <= index}/>)}</span><span>{step}</span></li>)}
             </ol>
-            <p>Materials research, customer discovery, and a practical path to pilot validation.</p>
-            <a href="#market">Explore the market choices <Arrow/></a>
+            <p data-page-entrance="intro" data-entrance-order="1">Materials research, customer discovery, and a practical path to pilot validation.</p>
+            <a href="#market" data-page-entrance="actions">Explore the market choices <Arrow/></a>
           </div>
         </ScrollFade>
-        <ScrollFade root={page} className={s.credits}><div className={s.heroLeads}><div><small>ENTREPRENEURIAL LEAD</small><strong>Saeed Arabha</strong></div><div><small>TECHNICAL LEAD</small><strong>Reza Rizvi</strong></div></div><div><small>THE JOURNEY</small><strong>Lab2Market / Inventor to Founder</strong></div></ScrollFade>
+        <ScrollFade root={page} className={s.credits} data-page-entrance="guide"><div className={s.heroLeads}><div><small>ENTREPRENEURIAL LEAD</small><strong>Saeed Arabha</strong></div><div><small>TECHNICAL LEAD</small><strong>Reza Rizvi</strong></div></div><div><small>THE JOURNEY</small><strong>Lab2Market / Inventor to Founder</strong></div></ScrollFade>
       </section>
       <ul className={s.evidenceRow} aria-label="Project at a glance">
         <li><a href="#discovery"><strong>40+</strong><span>Customer interviews<small>Across the project</small></span></a></li>
@@ -179,7 +182,7 @@ export default function Commercialization() {
       <section className={`${s.section} ${s.pitchArchive}`} id="pitch"><details><summary><div className={s.pitchSummary}><div><p className={s.eyebrow}>SUPPORTING MATERIAL / I2F PITCH</p><h2>Explore the <em>investment story.</em></h2></div><p>Review the material, market, and scale-up proposal in the original pitch.</p><span className={s.pitchToggle} aria-hidden="true">+</span></div></summary>
         <div className={s.slideViewer}><div className={s.slideCanvas}><AnimatePresence mode="wait" initial={false}><motion.img key={slide} initial={reducedMotion?false:{opacity:0,scale:0.985}} animate={{opacity:1,scale:1}} exit={reducedMotion?{opacity:1,scale:1}:{opacity:0,scale:1.015}} transition={{duration:reducedMotion?0:0.32}} src={`${assets}slide-${slide+1}.webp`} alt={`Original pitch slide ${slide+1}: ${slides[slide]}`} loading="lazy" decoding="async" width="1672" height="941"/></AnimatePresence></div><div className={s.slideControls}><button onClick={()=>setSlide(x=>(x+8)%9)} aria-label="Previous slide">←</button><p aria-live="polite"><span>{String(slide+1).padStart(2,'0')} / 09</span> {slides[slide]}</p><button onClick={()=>setSlide(x=>(x+1)%9)} aria-label="Next slide">→</button></div></div>
       </details></section>
-      <section className={`${s.section} ${s.relatedWork}`} aria-labelledby="related-work-title"><p className={s.eyebrow}>The research behind the commercial case</p><h2 id="related-work-title">Explore the <em>underlying work.</em></h2><nav aria-label="Related research"><a href="/R&D-Portfolio">Materials research and process development <Arrow/></a><a href="/AcademicCV">Saeed Arabha’s academic CV <Arrow/></a>{papers.slice(0,2).map(paper=><a href={`/journal/${paper.slug}/`} key={paper.slug}>{paper.title}<Arrow/></a>)}</nav></section>
+      <section className={`${s.section} ${s.relatedWork}`} aria-labelledby="related-work-title"><p className={s.eyebrow}>The research behind the commercial case</p><h2 id="related-work-title">Explore the <em>underlying work.</em></h2><nav aria-label="Related research"><Link to="/R&D-Portfolio">Materials research and process development <Arrow/></Link><Link to="/AcademicCV">Saeed Arabha’s academic CV <Arrow/></Link>{papers.slice(0,2).map(paper=><Link to={`/journal/${paper.slug}/`} key={paper.slug}>{paper.title}<Arrow/></Link>)}</nav></section>
       <section className={`${s.section} ${s.teamSection}`}>
         <ScrollFade root={page} as="section" className={s.teamPanel} id="project-team" aria-labelledby="project-team-title">
           <figure className={s.teamFigure}><svg className={s.teamFilter} width="0" height="0" aria-hidden="true" focusable="false"><defs><clipPath id="cfe-team-silhouette" clipPathUnits="objectBoundingBox"><path transform="scale(0.0010449321 0.0018691589)" d="M 89 242 C 87 229 89 210 93 199 C 99 180 115 174 128 174 C 148 175 161 186 168 201 C 173 212 172 230 172 243 L 174 246 L 170 263 L 164 286 L 169 295 C 183 299 216 304 230 314 C 237 322 239 332 242 344 L 258 332 L 253 314 C 249 306 247 288 251 276 L 256 269 C 254 247 257 228 266 217 C 283 198 309 193 331 201 C 353 207 364 225 368 246 L 368 266 L 365 288 C 362 311 351 336 340 350 C 356 359 393 374 405 383 C 415 390 416 404 417 422 L 423 535 L 0 535 L 0 504 L 4 482 C 2 470 2 461 7 451 L 11 438 L 15 427 L 19 416 L 20 405 L 26 394 L 30 378 L 36 359 C 42 341 45 329 53 319 L 96 303 L 104 294 L 101 281 L 95 265 L 91 256 Z"/></clipPath><filter id="cfe-team-background" x="0" y="0" width="100%" height="100%" colorInterpolationFilters="sRGB"><feColorMatrix type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  -8 0 8 0 1"/></filter></defs></svg><div className={s.teamPortrait}>

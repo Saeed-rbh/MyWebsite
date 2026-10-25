@@ -136,7 +136,7 @@ const MainTitle = ({ duration, initialDelay, delayIncrement, size }) => {
   });
 
   return (
-    <animated.div style={CVHeader} className="CVHeader">
+    <animated.div style={CVHeader} className="CVHeader" data-page-entrance="title">
       <animated.div style={title1Style}>
         <AnimatedSpan letter="M" delay={initialDelay} duration={duration} />
         <AnimatedSpan

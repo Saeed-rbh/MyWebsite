@@ -220,7 +220,7 @@ const notes = [
     story: {
       context: 'Water near a silver nanoparticle forms an ordered interfacial layer. If that layer occupies a meaningful fraction of the fluid, treating a nanofluid as only “particles plus bulk water” can misstate its density and viscosity.',
       question: 'Does explicitly accounting for the interfacial nanolayer improve predictions of silver–water nanofluid properties?',
-      approach: 'Equilibrium molecular dynamics was used to study silver particles dispersed in water. The authors represented the mixture as three components—the nanoparticle, its ordered water nanolayer, and the remaining base fluid—and compared this model with simulation data and conventional mixture relations.',
+      approach: 'Equilibrium molecular dynamics was used to study silver particles dispersed in water. The authors represented the mixture as three components, the nanoparticle, its ordered water nanolayer, and the remaining base fluid, and compared this model with simulation data and conventional mixture relations.',
       results: [
         { label: 'Density mechanism', value: 'The nanolayer contracts the base fluid', detail: 'The ordered interfacial water changes the volume available to the remaining liquid. The resulting density depends on nanoparticle size and the assumed thickness of the nanolayer.' },
         { label: 'Three-component relation', value: 'Closer to molecular-dynamics values', detail: 'Including the nanolayer brings the proposed density relation much closer to the MD results than the traditional binary mixture relation, which misses the interfacial contribution.' },
@@ -270,7 +270,7 @@ const papers = [
         { label: 'Threshold in tested conditions', value: 'About 30 μN', detail: 'A cutoff force near 30 μN aligns with the measured absorbance ratios and is sufficient to initiate exfoliation in the tested setup.' },
         { label: 'Gas choice and yield', value: 'Helium gives the strongest absorbance', detail: 'Helium at 5.6 MPa produced the highest measured absorbance. Even at 1.4 MPa, helium outperformed nitrogen at 5.6 MPa in the comparison, showing that carrier gas matters alongside supply pressure.' },
       ],
-      takeaway: 'The combined flow analysis and experiments identify gas-driven thrust—not the shock by itself—as the practical trigger to tune when designing this exfoliation process.',
+      takeaway: 'The combined flow analysis and experiments identify gas-driven thrust, not the shock by itself, as the practical trigger to tune when designing this exfoliation process.',
     },
     figures: [{ src: '/journal-figures/cfe-exfoliation-yield.jpg', alt: 'UV–visible absorbance spectra and 300-nanometre absorbance comparison for h-BN exfoliation with helium and nitrogen at two supply pressures.', caption: 'The absorbance comparison shows the strongest exfoliation signal for helium at 5.6 MPa and a higher signal for helium at 1.4 MPa than nitrogen at 5.6 MPa.', source: 'Figure 5' }],
   },

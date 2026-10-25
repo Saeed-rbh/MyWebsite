@@ -7813,9 +7813,6 @@ blockquote::before {
   animation: storyProgressSweep 2.8s var(--motion-ease-out) infinite;
 }
 
-.heroFrame {
-  animation: storyHeroSettle 1200ms var(--motion-ease-out) both;
-}
 
 .hero h1 span {
   animation: storyTitleGlow 7.2s ease-in-out infinite;

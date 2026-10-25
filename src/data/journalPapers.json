@@ -138,7 +138,7 @@
           "detail": "The lower-pressure helium dispersion has the stronger 300 nm absorbance signal in the tested nozzle comparison."
         }
       ],
-      "takeaway": "The combined flow analysis and experiments identify gas-driven thrust—not the shock by itself—as the practical trigger to tune when designing this exfoliation process."
+      "takeaway": "The combined flow analysis and experiments identify gas-driven thrust, not the shock by itself, as the practical trigger to tune when designing this exfoliation process."
     },
     "figures": [
       {
@@ -388,7 +388,7 @@
         },
         {
           "title": "A nanoscale refrigerator also has a noise budget",
-          "explanation": "At these scales, a mean power hides a fluctuating time series. The paper derives distributions of work and efficiency and compares them with the molecular trajectories. The uncertainty in total power has a minimum near a coupling ratio of 3.3, close to—but distinct from—the strongest-cooling setting.\n\nA thermodynamic uncertainty relation connects the precision of the output to entropy production. Reaching the reversible point reduces dissipation, but the relative uncertainty becomes large as the mean current vanishes. The design problem therefore has three axes: efficiency, cooling power, and fluctuations. The figures make clear why they cannot be replaced by one headline efficiency."
+          "explanation": "At these scales, a mean power hides a fluctuating time series. The paper derives distributions of work and efficiency and compares them with the molecular trajectories. The uncertainty in total power has a minimum near a coupling ratio of 3.3, close to, but distinct from, the strongest-cooling setting.\n\nA thermodynamic uncertainty relation connects the precision of the output to entropy production. Reaching the reversible point reduces dissipation, but the relative uncertainty becomes large as the mean current vanishes. The design problem therefore has three axes: efficiency, cooling power, and fluctuations. The figures make clear why they cannot be replaced by one headline efficiency."
         }
       ],
       "endingTitle": "Control the current and understand its cost",
@@ -555,7 +555,7 @@
         },
         {
           "title": "Stretch the same family and the ranking changes",
-          "explanation": "Along armchair, BeN₄ has the highest Young’s modulus, followed by PtN₄ and MgN₄. Along zigzag, PtN₄ takes the lead, followed by BeN₄ and MgN₄. Stiffness and heat transport therefore answer different selection questions even within the same material family.\n\nFailure strength adds a useful clue. The armchair ultimate strengths are fairly close—about 70, 76, and 76 GPa for BeN₄, MgN₄, and PtN₄. In zigzag, BeN₄ and MgN₄ are around 40 GPa while PtN₄ is about 70 GPa. The paper relates that change to the bonds stressed by each orientation: aligned N–N bonds dominate armchair failure, while the metal–nitrogen bonds matter more along zigzag."
+          "explanation": "Along armchair, BeN₄ has the highest Young’s modulus, followed by PtN₄ and MgN₄. Along zigzag, PtN₄ takes the lead, followed by BeN₄ and MgN₄. Stiffness and heat transport therefore answer different selection questions even within the same material family.\n\nFailure strength adds a useful clue. The armchair ultimate strengths are fairly close, about 70, 76, and 76 GPa for BeN₄, MgN₄, and PtN₄. In zigzag, BeN₄ and MgN₄ are around 40 GPa while PtN₄ is about 70 GPa. The paper relates that change to the bonds stressed by each orientation: aligned N–N bonds dominate armchair failure, while the metal–nitrogen bonds matter more along zigzag."
         },
         {
           "title": "Heating erases one directional contrast but preserves another",
@@ -622,7 +622,7 @@
       "A Rajabpour"
     ],
     "topic": "Thermal interfaces",
-    "summary": "A TiO₂ particle cools rapidly in water—until electrostatic interactions are removed from the model. That comparison reveals a much larger effect than the changes caused by particle size or surface wettability.",
+    "summary": "A TiO₂ particle cools rapidly in water, until electrostatic interactions are removed from the model. That comparison reveals a much larger effect than the changes caused by particle size or surface wettability.",
     "story": {
       "context": "A nanoparticle can transfer heat only as fast as energy crosses its boundary into the surrounding liquid. At that scale, particle size and the strength of contact with water can both change the cooling response.",
       "question": "Which particle and surface conditions most strongly control heat transfer across a TiO₂–water interface?",
@@ -697,7 +697,7 @@
     ],
     "editorial": {
       "headline": "Electrical interactions dominate this cooling interface.",
-      "standfirst": "A TiO₂ particle cools rapidly in water—until electrostatic interactions are removed from the model. That comparison reveals a much larger effect than the changes caused by particle size or surface wettability.",
+      "standfirst": "A TiO₂ particle cools rapidly in water, until electrostatic interactions are removed from the model. That comparison reveals a much larger effect than the changes caused by particle size or surface wettability.",
       "highlight": {
         "value": "≈95×",
         "label": "Conductance with electrostatics versus Lennard–Jones interactions alone: 1620 / 17 MW/m²K"
@@ -861,7 +861,7 @@
         "label": "In-plane fluctuations exceed vertical fluctuations in the modeled exfoliation pathway"
       },
       "openingTitle": "From a moving gas to a moving sheet",
-      "bridge": "Layer separation is often pictured as lifting one sheet away from another. Under the directional flow modeled here, the stronger response is lateral: one graphene layer fluctuates and slides over the other. That distinction gives the gas-driven process a more specific mechanism. The study then follows how changing gas collisions affects the layer’s displacement, temperature, and energy—not just whether the final sheets look separated.",
+      "bridge": "Layer separation is often pictured as lifting one sheet away from another. Under the directional flow modeled here, the stronger response is lateral: one graphene layer fluctuates and slides over the other. That distinction gives the gas-driven process a more specific mechanism. The study then follows how changing gas collisions affects the layer’s displacement, temperature, and energy, not just whether the final sheets look separated.",
       "methodsTitle": "Resolving the collisions that drive exfoliation",
       "methodNote": "The molecular model uses a graphene bilayer with one layer constrained, helium or argon as the carrier gas, and imposed flow along the sheet. An AIREBO-M carbon interaction model and gas–carbon interactions resolve the collisions. The authors restrict interpretation to temperatures below 3000 K because of the model’s stability limits. Root-mean-square displacement includes motion and deformation; it is not a direct measurement of the vertical gap or a macroscopic exfoliation yield.",
       "scenes": [
@@ -934,7 +934,7 @@
       "A Rajabpour"
     ],
     "topic": "Computational materials",
-    "summary": "Machine learning can bring first-principles information into much larger heat-transport calculations. This perspective shows where the agreement is convincing—and why no single success validates every material or condition.",
+    "summary": "Machine learning can bring first-principles information into much larger heat-transport calculations. This perspective shows where the agreement is convincing, and why no single success validates every material or condition.",
     "story": {
       "context": "First-principles calculations can describe atomic bonding accurately but become expensive for large or complex systems. Classical potentials scale well, yet may miss important details of a material’s energy landscape.",
       "question": "Where can machine-learning interatomic potentials bridge the gap between first-principles accuracy and large-scale thermal-transport simulation, and where do they still need careful validation?",
@@ -997,7 +997,7 @@
     ],
     "editorial": {
       "headline": "A learned force model earns trust one material at a time.",
-      "standfirst": "Machine learning can bring first-principles information into much larger heat-transport calculations. This perspective shows where the agreement is convincing—and why no single success validates every material or condition.",
+      "standfirst": "Machine learning can bring first-principles information into much larger heat-transport calculations. This perspective shows where the agreement is convincing, and why no single success validates every material or condition.",
       "highlight": {
         "value": "Accuracy at scale",
         "label": "Learned potentials bridge reference calculations and larger simulations, with validation tied to the target system"
@@ -1016,7 +1016,7 @@
           "explanation": "C₂N offers a compact example: the reviewed MLIP estimate is about 85.5 W/m·K, beside a DFT-BTE value near 82.2 and a Tersoff value around 63.3. Silicene is another case where the MLIP value near 26–27 is closer to the cited DFT estimates than classical values around 40–41. The aim is agreement with an appropriate reference, not simply a larger conductivity.\n\nThe broader 2D plot also contains materials where method differences remain substantial. Transport depends on vibrational behavior and scattering, so matching energy and force data is part of validation rather than its endpoint. Phonon dispersions and conductivity trends provide additional tests of whether the learned interactions reproduce the physics needed for heat flow."
         },
         {
-          "title": "Bulk materials widen the evidence—and the validation problem",
+          "title": "Bulk materials widen the evidence, and the validation problem",
           "explanation": "The reviewed MTP-based bulk results are around 2500 W/m·K for diamond, 145 for silicon, 2500 for BAs, and 30 for InAs at room temperature. Their agreement with cited first-principles or experimental results varies by system and reference. The perspective also reports a learned-potential calculation of crystalline and amorphous silicon, where conductivity changes from 121 to 1.4 W/m·K.\n\nThose successes broaden the possible applications, but chemical complexity, long-range interactions, and extrapolation remain limitations. A model trained on a pristine crystal is not automatically validated for defects or interfaces. The practical story ends with a loop: choose relevant configurations, train, test the transport-relevant behavior, and expand the dataset when the intended simulation enters new territory."
         }
       ],
@@ -1429,7 +1429,7 @@
       "A Rajabpour"
     ],
     "topic": "Nanomaterial mechanics",
-    "summary": "Borophene starts with unequal directional properties. Elliptical pores can bring heat flow or stiffness into balance—but the pore shape that balances one property does not necessarily balance the other.",
+    "summary": "Borophene starts with unequal directional properties. Elliptical pores can bring heat flow or stiffness into balance, but the pore shape that balances one property does not necessarily balance the other.",
     "story": {
       "context": "Borophene is intrinsically anisotropic: its stiffness and heat conduction depend on whether the sheet is loaded or heated along armchair or zigzag directions. That can be useful, but it also limits predictable performance when a sheet is used in multiple directions.",
       "question": "Can engineered elliptical pores tune the directional difference in borophene’s thermal and mechanical behaviour?",
@@ -1505,7 +1505,7 @@
     ],
     "editorial": {
       "headline": "A carefully shaped hole can balance two directions.",
-      "standfirst": "Borophene starts with unequal directional properties. Elliptical pores can bring heat flow or stiffness into balance—but the pore shape that balances one property does not necessarily balance the other.",
+      "standfirst": "Borophene starts with unequal directional properties. Elliptical pores can bring heat flow or stiffness into balance, but the pore shape that balances one property does not necessarily balance the other.",
       "highlight": {
         "value": "Shape tunes anisotropy",
         "label": "At 8% porosity, reported isotropy occurs near aspect ratio 4 for heat transport and 5 for stiffness"
@@ -1903,7 +1903,7 @@
     "story": {
       "context": "Water near a silver nanoparticle forms an ordered interfacial layer. If that layer occupies a meaningful fraction of the fluid, treating a nanofluid as only “particles plus bulk water” can misstate its density and viscosity.",
       "question": "Does explicitly accounting for the interfacial nanolayer improve predictions of silver–water nanofluid properties?",
-      "approach": "Equilibrium molecular dynamics was used to study silver particles dispersed in water. The authors represented the mixture as three components—the nanoparticle, its ordered water nanolayer, and the remaining base fluid—and compared this model with simulation data and conventional mixture relations.",
+      "approach": "Equilibrium molecular dynamics was used to study silver particles dispersed in water. The authors represented the mixture as three components, the nanoparticle, its ordered water nanolayer, and the remaining base fluid, and compared this model with simulation data and conventional mixture relations.",
       "results": [
         {
           "label": "Interfacial structure",

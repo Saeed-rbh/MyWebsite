@@ -1,28 +1,79 @@
 export const atomsArticle = {
   "title": "Matter, atom by atom: a guide to atomistic simulation",
-  "description": "An illustrated introduction to atomistic simulation: representing materials as atoms, choosing molecular dynamics or electronic-structure methods, and predicting structure, motion, and properties.",
-  "intro": "Why does a crystal vibrate, a gas spread, or heat cross an interface? The answer begins with atomic structure and interactions we cannot directly watch. Atomistic simulation builds a model of those atoms so we can test a mechanism, understand a measurement, and decide what to investigate next.",
+  "description": "Explore atomistic simulation through a missing atom, a denser gas, and moving water molecules. Learn to make a fair comparison, read a trajectory, and connect atomic motion to research evidence.",
+  "intro": "A solid can look perfectly still while its atoms move. Remove one atom and its neighbours feel a different environment. Atomistic simulation lets us follow that change, test an explanation, and work out what we would need to measure before making a claim about the material.",
   "simulationExamples": [
     {
       "id": "solid",
       "label": "Solid",
-      "subtitle": "Lattice motion & defects",
-      "explanation": "Atoms oscillate around an ordered arrangement. A missing atom changes the local environment and how neighbours move.",
-      "measure": "Atomic displacements, local structure and, with suitable methods, mechanical or thermal response."
+      "subtitle": "One missing atom",
+      "explanation": "The rings mark starting positions; the dashed teal ring marks the vacancy. Local motion helps you ask how a changed atomic environment affects the material.",
+      "measure": "RMS displacement averages motion over all atoms. Compare similar simulated times. Reset repeats the same starting conditions here; research comparisons also need runs with independent starting velocities.",
+      "question": "What changes when one atom is missing?",
+      "steps": [
+        {
+          "label": "Start",
+          "text": "Keep Perfect lattice and T* = 0.08. Press Play and watch the atoms move around their starting sites."
+        },
+        {
+          "label": "Change",
+          "text": "Choose Add a vacancy, leaving the initial temperature unchanged. The model restarts with one atom removed."
+        },
+        {
+          "label": "Observe",
+          "text": "Find the dashed empty site. Watch its neighbours; use Pause and One step to inspect their motion."
+        }
+      ],
+      "boundary": "This example does not measure heat flow or strength. A change in motion is a reason to investigate those properties, not a result for them.",
+      "researchIndex": 0
     },
     {
       "id": "gas",
       "label": "Gas",
-      "subtitle": "Encounters & transport",
-      "explanation": "Separated atoms travel through space and exchange momentum in close encounters. Changing density changes how often they meet.",
-      "measure": "Velocity statistics, collision behaviour and transport over sufficiently long trajectories."
+      "subtitle": "Same atoms, less space",
+      "explanation": "A sudden change in an arrow shows a change in velocity during an encounter. Compare the patterns over time, rather than judging a single frame.",
+      "measure": "The displayed number density is atoms divided by box area. A collision rate or diffusion coefficient would need a separate calculation over sufficiently long trajectories.",
+      "question": "What changes when the same gas has less room?",
+      "steps": [
+        {
+          "label": "Start",
+          "text": "Run Roomy box at T* = 1.50. Leave Velocity arrows on so you can follow changes in direction."
+        },
+        {
+          "label": "Change",
+          "text": "Choose Denser gas. The same 24 atoms now occupy a smaller area, at the same initial temperature."
+        },
+        {
+          "label": "Observe",
+          "text": "Watch the arrows turn during encounters. Compare similar simulated times; the view refits each box, so use the density readout."
+        }
+      ],
+      "boundary": "This is a repeating, two-dimensional gas with no walls. Switching boxes creates a new starting system; it is not a simulation of a moving piston.",
+      "researchIndex": 1
     },
     {
       "id": "water",
       "label": "Water",
-      "subtitle": "Molecules & interactions",
-      "explanation": "Molecules translate and rotate while their internal geometry stays fixed. Partial charges produce orientation-dependent interactions.",
-      "measure": "Molecular orientation, intermolecular structure and hydrogen-bond contact statistics."
+      "subtitle": "Inside a molecule, between molecules",
+      "explanation": "Each molecule keeps its internal shape because this model constrains it. Dashed contacts can appear and disappear as neighbouring molecules move and reorient.",
+      "measure": "H-bond candidates counts contacts that meet the chosen distance and angle rules. It does not count new covalent bonds or chemical reactions.",
+      "question": "Which connections stay, and which can change?",
+      "steps": [
+        {
+          "label": "Inspect",
+          "text": "Choose Inspect H₂O before pressing Play. Notice the bent shape and the two solid O–H connections."
+        },
+        {
+          "label": "Follow",
+          "text": "Switch to Water box, then press Play. Keep Hydrogen-bond guides on and watch neighbouring molecules turn and move."
+        },
+        {
+          "label": "Distinguish",
+          "text": "Compare the solid connections within each molecule with the dashed contacts between molecules. Watch the H-bond candidates count."
+        }
+      ],
+      "boundary": "The starting grid is not an equilibrated liquid, and it may warm as it relaxes. These small planar models do not reproduce quantitative bulk-water properties.",
+      "researchIndex": 3
     }
   ],
   "sections": [
@@ -30,10 +81,10 @@ export const atomsArticle = {
       "id": "what-is-atomistic",
       "number": "01",
       "nav": "What",
-      "title": "What is atomistic simulation?",
+      "title": "What did we put in the model?",
       "paragraphs": [
-        "It is a way to study matter by representing individual atoms and calculating their behaviour from a physical model. We specify the structure and interactions, then ask how the system responds: which arrangement is stable, how atoms move, or how energy travels through a material.",
-        "Think of it as a numerical experiment. The input is a model of a material; the output is evidence about that model. A colourful animation helps us see the mechanism, but the useful result is a quantity we can compare—an energy, a force, a diffusion rate, or a thermal response."
+        "The moving spheres above represent individual atoms. The computer stores their positions, masses, and velocities, then uses a physical model to calculate how they interact. In the solid example, removing one atom creates a vacancy: an empty site in an otherwise ordered arrangement.",
+        "This is a numerical experiment. We choose a small system, specify its rules, and calculate what follows. The same idea extends to molecules, gases, and interfaces, but each needs an interaction model suited to its chemistry and the question being asked."
       ],
       "source": 8
     },
@@ -41,10 +92,10 @@ export const atomsArticle = {
       "id": "why-simulate",
       "number": "02",
       "nav": "Why",
-      "title": "Why look at individual atoms?",
+      "title": "A useful explanation starts with a fair comparison.",
       "paragraphs": [
-        "An experiment can tell us that a material changes. It may not show which atomic mechanism caused the change. A lower heat-transfer rate, for example, could involve structure, bonding, or the way neighbouring materials interact.",
-        "Simulation lets us change one model ingredient at a time, inspect the response, and test competing explanations. That helps narrow the next experiment. The benefit is not certainty: predictions still depend on the interaction model, the system size, the sampled time, and comparison with independent evidence."
+        "Suppose a material with defects carries heat differently. A measurement can reveal the difference without showing exactly which atomic mechanism caused it. The vacancy model gives us a way to investigate a candidate explanation: changing the local environment changes the forces and motion nearby.",
+        "To test that explanation, change one model ingredient at a time. Compare the complete and defective crystals under matched conditions, then repeat the calculation. A different-looking trajectory is a clue. A claim about heat transport needs a defined measurement, enough sampling, and independent evidence."
       ],
       "source": 0
     },
@@ -52,10 +103,10 @@ export const atomsArticle = {
       "id": "how-it-works",
       "number": "03",
       "nav": "How",
-      "title": "How do we turn a question into a calculation?",
+      "title": "How does the computer move the atoms?",
       "paragraphs": [
-        "Start with a question and a measurable comparison. Build the relevant structure, choose an energy-and-force model, and set the boundaries and conditions. Then select the method: relax the structure, follow motion with molecular dynamics, sample configurations with Monte Carlo, or calculate electronic structure.",
-        "For molecular dynamics, forces give accelerations, a numerical integrator advances the atoms, and the calculation repeats. After equilibration, collect enough data to measure the property and its uncertainty. Check that the conclusion survives reasonable changes in time step, box size, and sampling."
+        "For the vacancy question, begin with two structures: a complete lattice and the same lattice with one site empty. Choose an energy-and-force model and matching boundary conditions. Molecular dynamics then follows how each system moves; the explorer gives you a small example of that calculation.",
+        "At each time step, forces give accelerations and a numerical integrator updates positions and velocities. The sequence of configurations is a trajectory. A research study then allows equilibration, collects measurements, estimates uncertainty, and checks that the answer survives changes in time step, box size, and sampling."
       ],
       "source": 8
     },
@@ -63,20 +114,19 @@ export const atomsArticle = {
       "id": "where-it-helps",
       "number": "04",
       "nav": "Where",
-      "title": "Where does this approach help?",
+      "title": "What turns motion into a material property?",
       "paragraphs": [
-        "Use an atomic description when local structure and interactions are central to the question: defects and deformation in solids, molecular motion in liquids, adhesion between surfaces, or energy transfer across an interface. The same workflow serves many materials, but the model must change with the physics.",
-        "A component-scale temperature field may be better described by a continuum model. Atomistic results can supply a mechanism or an interface property for that larger calculation. The two scales complement one another: resolving every atom is not necessary for every engineering question."
+        "The missing atom is a starting point, not the final engineering answer. If we want to know how defects affect heat transport, we need a suitable thermal-transport calculation. If we want strength, we need an appropriate mechanical test. The quantity we measure must match the question.",
+        "An atomic mechanism or a validated interface property can then inform a larger continuum model, such as a calculation of temperature across a component. The studies below show this progression: a specific question, an atomic comparison, and a conclusion with limits."
       ],
       "source": 8
     }
   ],
   "takeaways": [
-    "What: represent a material through individual atoms and their interactions.",
-    "Why: test the microscopic mechanisms behind an observed response.",
-    "How: build, calculate, measure, and validate a model matched to the question.",
-    "Where: use atomic detail when structure and interactions matter, and connect it to larger-scale models when needed.",
-    "Real problems: turn trajectories and energies into evidence that can guide the next research or engineering decision."
+    "A missing atom changes the local environment. The motion helps us identify a question worth testing.",
+    "A useful comparison changes the intended variable while matching the relevant conditions.",
+    "A trajectory records motion. A material property requires a defined measurement and enough sampling.",
+    "Validation connects a result for the model to a claim about a real material."
   ],
   "faq": [
     {
@@ -167,6 +217,7 @@ export const atomsArticle = {
   "software": [
     {
       "name": "PACKMOL",
+      "logo": "/images/atoms/software/packmol.png",
       "role": "Prepare the system",
       "text": "Packs molecules into a specified region to create initial coordinates without severe overlaps.",
       "detail": "Output: a starting configuration. You still need a compatible force field and topology.",
@@ -174,6 +225,7 @@ export const atomsArticle = {
     },
     {
       "name": "LAMMPS",
+      "logo": "/images/atoms/software/lammps.jpg",
       "role": "Run molecular dynamics",
       "text": "An atomistic simulation engine used for materials, interfaces, liquids, and many other particle systems. Input scripts define the interactions, boundaries, integration, and outputs.",
       "detail": "Output: trajectories, energies, temperatures, stresses, and user-defined measurements.",
@@ -181,6 +233,7 @@ export const atomsArticle = {
     },
     {
       "name": "GROMACS",
+      "logo": "/images/atoms/software/gromacs.png",
       "role": "Run molecular dynamics",
       "text": "A molecular-dynamics suite widely used for molecular systems, including solvated biomolecules. It provides simulation and trajectory-analysis tools.",
       "detail": "Coordinates and topology must agree with the selected force field and water model.",
@@ -188,6 +241,7 @@ export const atomsArticle = {
     },
     {
       "name": "OpenMM",
+      "logo": "/images/atoms/software/openmm.svg",
       "role": "Build a simulation in Python",
       "text": "A molecular-simulation toolkit with a Python interface and GPU acceleration. Useful when a workflow needs programmable forces and integration.",
       "detail": "A toolkit for calculating motion; the scientific model still needs validation.",
@@ -195,6 +249,7 @@ export const atomsArticle = {
     },
     {
       "name": "OVITO",
+      "logo": "/images/atoms/software/ovito.png",
       "role": "Inspect and analyse",
       "text": "Visualises particle trajectories and extracts structural information from simulation output. Colour atoms by a property, inspect local structure, and build analysis pipelines.",
       "detail": "A visualisation and analysis tool; it does not replace the force-field calculation.",
@@ -230,7 +285,8 @@ export const atomsArticle = {
         "originalColors": true
       },
       "problem": "Thin materials can wrinkle under mechanical deformation. We need to understand how that structural change affects their ability to carry heat.",
-      "implication": "Relate a controllable deformation to material response, then test the trend for the intended geometry and conditions."
+      "implication": "Relate a controllable deformation to material response, then test the trend for the intended geometry and conditions.",
+      "connection": "In the solid experiment, you changed local structure. This study asks how a different structural change—twisting a sheet—relates to heat transport."
     },
     {
       "title": "How does gas flow separate layered materials?",
@@ -252,7 +308,8 @@ export const atomsArticle = {
         "alt": "Sliding and vertical-distance distributions reveal different magnitudes of layer motion under parallel gas flow."
       },
       "problem": "Producing thinner sheets requires understanding how momentum from a gas stream moves neighbouring layers.",
-      "implication": "Identify the motion involved in exfoliation and use it to guide processing questions; an atomic trajectory alone does not establish manufacturing performance."
+      "implication": "Identify the motion involved in exfoliation and use it to guide processing questions; an atomic trajectory alone does not establish manufacturing performance.",
+      "connection": "The gas experiment makes momentum exchange visible. This study adds layered sheets and a driven gas flow to investigate their motion."
     },
     {
       "title": "How can we study more atoms without losing useful accuracy?",
@@ -274,7 +331,8 @@ export const atomsArticle = {
         "alt": "The perspective’s training workflow connects first-principles configurations, fitting, and a deployable interatomic potential."
       },
       "problem": "Electronic-structure calculations can provide valuable forces, but their cost limits the systems and times we can explore.",
-      "implication": "Learn an interatomic potential from reference data, then validate it before using it for larger calculations. Speed does not guarantee transferability."
+      "implication": "Learn an interatomic potential from reference data, then validate it before using it for larger calculations. Speed does not guarantee transferability.",
+      "connection": "Every example above needs a rule for energy and forces. This perspective examines how researchers learn such rules from reference calculations."
     },
     {
       "title": "What controls heat crossing a material–liquid interface?",
@@ -296,7 +354,8 @@ export const atomsArticle = {
       },
       "category": "Interfaces / Heat transfer",
       "problem": "A hot nanoparticle must release energy through its contact with the surrounding liquid. The interface can limit that transfer.",
-      "implication": "Test how the interaction model changes the predicted cooling mechanism, and use the result to motivate better interface measurements and models."
+      "implication": "Test how the interaction model changes the predicted cooling mechanism, and use the result to motivate better interface measurements and models.",
+      "connection": "The water experiment separates molecular geometry from interactions between molecules. This study asks how electrostatic interactions influence cooling at a solid–water interface."
     }
   ],
   "exampleDiagrams": [

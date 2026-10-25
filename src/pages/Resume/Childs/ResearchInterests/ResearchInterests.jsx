@@ -113,6 +113,8 @@ const ResearchInterests = () => {
       style={{ ...style, ...combinedStyle }}
       className={name}
       id={name}
+      data-page-entrance="intro"
+      data-entrance-order="2"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >

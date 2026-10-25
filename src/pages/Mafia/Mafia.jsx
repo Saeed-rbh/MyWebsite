@@ -1,9 +1,12 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import "./Mafia.css";
+import usePageReveals from "../../components/SiteMotion/usePageReveals";
 // Absolute import or relative depending on config, usually relative in create-react-app
 import mafiaLogo from "../../assets/mafia_logo.jpg";
 
 const Mafia = () => {
+    const pageRef = useRef(null);
+    usePageReveals(pageRef);
     const [gameState, setGameState] = useState("setup"); // setup, playing, dashboard
 
     // Specific roles configuration
@@ -185,15 +188,15 @@ const Mafia = () => {
     };
 
     const renderSetup = () => (
-        <div className="mafia-container setup-mode fade-in">
+        <div className="mafia-container setup-mode">
             <div className="setup-top-section">
-                <div className="logo-container">
+                <div className="logo-container" data-page-entrance="journey">
                     <img src={mafiaLogo} alt="Mafia" className="mafia-logo" />
                 </div>
 
                 <div className="setup-header">
-                    <h1>GAME SETUP</h1>
-                    <div className="total-players-badge">
+                    <h1 data-page-entrance="title">GAME SETUP</h1>
+                    <div className="total-players-badge" data-page-entrance="kicker">
                         <span className="label">PLAYERS</span>
                         <span className="value">{getTotalPlayers()}</span>
                     </div>
@@ -201,14 +204,14 @@ const Mafia = () => {
             </div>
 
             <div className="roles-grid">
-                <div className="role-group mafia-group">
+                <div className="role-group mafia-group" data-page-entrance="intro">
                     <div className="group-header">MAFIA TEAM</div>
                     {renderCounter('godfather', 'Godfather')}
                     {renderCounter('drLecter', 'Dr. Lecter')}
                     {renderCounter('simpleMafia', 'Simple Mafia')}
                 </div>
 
-                <div className="role-group town-group">
+                <div className="role-group town-group" data-page-entrance="intro" data-entrance-order="1">
                     <div className="group-header">TOWN TEAM</div>
                     {renderCounter('doctor', 'Doctor')}
                     {renderCounter('detective', 'Detective')}
@@ -218,7 +221,7 @@ const Mafia = () => {
                 </div>
             </div>
 
-            <div className="action-area">
+            <div className="action-area" data-page-entrance="actions">
                 <button
                     className="start-button"
                     onClick={startGame}
@@ -332,7 +335,7 @@ const Mafia = () => {
     };
 
     return (
-        <div className="mafia-wrapper">
+        <div className="mafia-wrapper" ref={pageRef} data-site-motion-ignore="true">
             {gameState === "setup" && renderSetup()}
             {gameState === "playing" && !isRoleRevealed && renderPassToPlayer()}
             {gameState === "playing" && isRoleRevealed && renderRoleReveal()}

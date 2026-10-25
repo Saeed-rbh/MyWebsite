@@ -1,0 +1,17 @@
+/* Entrance timing belongs to the shared sequence, not mount-time CSS animations. */
+[data-page-entrance] {
+  animation: none !important;
+}
+
+[data-page-entrance]:focus-within {
+  opacity: 1 !important;
+  translate: none !important;
+  clip-path: none !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-page-entrance] {
+    translate: none !important;
+    clip-path: none !important;
+  }
+}

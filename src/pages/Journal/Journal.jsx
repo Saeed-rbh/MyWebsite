@@ -2,6 +2,7 @@ import React, { useRef } from "react";
 import { ScrollFade } from "../Commercialization/StoryMotion";
 import { Helmet } from "react-helmet-async";
 import { Link } from "react-router-dom";
+import usePageReveals from "../../components/SiteMotion/usePageReveals";
 import SEO from "../../components/SEO/SEO";
 import papers from "../../data/journalPapers.json";
 import styles from "./Journal.module.css";
@@ -36,6 +37,7 @@ const schema = {
 
 export default function Journal() {
   const pageRef = useRef(null);
+  usePageReveals(pageRef);
   return (
     <div className={styles.page} ref={pageRef} data-site-motion-ignore="true">
       <SEO
@@ -50,20 +52,20 @@ export default function Journal() {
       <main className={styles.main}>
         <section className={styles.hero} aria-labelledby="journal-title">
           <ScrollFade root={pageRef} className={styles.heroIntro}>
-            <div className={styles.eyebrow}>Research / Peer-reviewed publications</div>
-            <div className={styles.heroMark}><span className={styles.heroBackdrop} aria-hidden="true">Research.</span><h1 id="journal-title"><span>The</span> <em>Journal.</em></h1></div>
-            <p className={styles.heroLead}>Research papers on how materials move heat, respond to forces, and separate into useful two-dimensional sheets.</p>
+            <div className={styles.eyebrow} data-page-entrance="eyebrow">Research / Peer-reviewed publications</div>
+            <div className={styles.heroMark}><span className={styles.heroBackdrop} data-page-entrance="atmosphere" aria-hidden="true">Research.</span><h1 id="journal-title" data-page-entrance="title"><span>The</span> <em>Journal.</em></h1></div>
+            <p className={styles.heroLead} data-page-entrance="intro">Research papers on how materials move heat, respond to forces, and separate into useful two-dimensional sheets.</p>
           </ScrollFade>
           <ScrollFade root={pageRef} stagger={1} className={styles.heroAside}>
-            <div className={styles.label}>From atom to application</div>
-            <ol className={styles.researchSteps}><li>understand materials</li><li>explore mechanisms</li><li>inform applications</li></ol>
-            <p>My work uses molecular dynamics, physical modeling, and machine learning methods to understand materials at small scales—and to make those insights useful for real processes.</p>
-            <a className={styles.textLink} href={scholar} target="_blank" rel="noopener noreferrer">View Google Scholar <DirectionIcon /></a>
+            <div className={styles.label} data-page-entrance="eyebrow">From atom to application</div>
+            <ol className={styles.researchSteps}><li data-page-entrance="journey" data-entrance-order="0">understand materials</li><li data-page-entrance="journey" data-entrance-order="1">explore mechanisms</li><li data-page-entrance="journey" data-entrance-order="2">inform applications</li></ol>
+            <p data-page-entrance="intro" data-entrance-order="1">My work uses molecular dynamics, physical modeling, and machine learning methods to understand materials at small scales, and to make those insights useful for real processes.</p>
+            <a className={styles.textLink} data-page-entrance="actions" href={scholar} target="_blank" rel="noopener noreferrer">View Google Scholar <DirectionIcon /></a>
           </ScrollFade>
         </section>
 
         <section className={styles.archive} aria-labelledby="archive-title">
-          <ScrollFade root={pageRef} className={styles.archiveHeading}>
+          <ScrollFade root={pageRef} className={styles.archiveHeading} data-page-entrance="guide">
             <div><div className={styles.label}>Selected journal papers</div><h2 id="archive-title">Publication archive</h2></div>
             <span className={styles.archiveCount}>{papers.length} papers</span>
           </ScrollFade>

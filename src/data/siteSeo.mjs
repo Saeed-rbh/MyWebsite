@@ -12,7 +12,7 @@ export const commercializationSeo = {
   description: 'Explore Saeed Arabha’s materials commercialization case study: 40+ reported customer interviews, graphene market choices, business models, and pilot planning.',
   type: 'article',
   image: '/images/commercialization/commercialization-social.png',
-  imageAlt: 'Saeed Arabha — Research commercialization, from materials science to market. Customer discovery, market strategy, and scale-up.',
+  imageAlt: 'Saeed Arabha, Research commercialization, from materials science to market. Customer discovery, market strategy, and scale-up.',
 };
 export function canonicalPath(path) {
   if (path.toLowerCase().replace(/\/$/, '') === '/simulate-atoms') return '/simulate-atoms';

@@ -120,12 +120,20 @@ const Footer = ({ accent = "#d49d81" }) => {
     const observer = new ResizeObserver(schedule);
     if (inkRef.current) observer.observe(inkRef.current);
     if (glassRef.current) observer.observe(glassRef.current);
+    // The curtain and inert content affect hit testing. Sample again as soon as
+    // the transition releases the page, independent of loading/animation duration.
+    const transitionRoot = inkRef.current?.closest('.PageTransitionContent');
+    const transitionObserver = new MutationObserver(() => {
+      if (transitionRoot?.getAttribute('aria-busy') !== 'true') schedule();
+    });
+    if (transitionRoot) transitionObserver.observe(transitionRoot, { attributes: true, attributeFilter: ['aria-busy'] });
     // Recheck after the existing entrance and route animations settle.
     const timers = [0, 450, 1200, 1900].map(delay => window.setTimeout(schedule, delay));
     return () => {
       cancelAnimationFrame(frame);
       timers.forEach(window.clearTimeout);
       observer.disconnect();
+      transitionObserver.disconnect();
       document.removeEventListener('scroll', schedule, true);
       window.removeEventListener('resize', schedule);
     };

@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import "./Home.css";
 import styles from "./Home.module.css";
 import SEO from "../../components/SEO/SEO";
+import usePageReveals from "../../components/SiteMotion/usePageReveals";
 import MainText from "./MainText";
 import Popup from "../../components/Popup/Popup";
 import { popupsData } from "../../data/homePopupsData";
@@ -16,6 +17,8 @@ const HomePage = () => {
   const [currentPopupIndex, setCurrentPopupIndex] = useState(0);
   const [originRect, setOriginRect] = useState(null);
   const nameRef = useRef(null);
+  const pageRef = useRef(null);
+  usePageReveals(pageRef);
 
   useEffect(() => {
     if (!visibility || !nameRef.current) return;
@@ -99,6 +102,7 @@ const HomePage = () => {
   return (
       <>
         <div
+          ref={pageRef}
           className={styles.container}
           data-site-motion-ignore="true"
         >
@@ -112,25 +116,25 @@ const HomePage = () => {
             <div className={styles.heroGrid}>
               <div className={styles.heroTitle}>
                 <div className={styles.heroMark}>
-                  <span className={styles.greeting} aria-hidden="true">Hello.</span>
-                  <h1><span className={styles.namePrefix}>I'm</span> <em ref={nameRef}>Saeed Arabha.</em></h1>
+                  <span className={styles.greeting} data-page-entrance="atmosphere" aria-hidden="true">Hello.</span>
+                  <h1 data-page-entrance="title"><span className={styles.namePrefix}>I'm</span> <em ref={nameRef}>Saeed Arabha.</em></h1>
                 </div>
-                <p className={styles.heroRole}><span className={styles.desktopCopy}>Materials scientist</span><span className={`${styles.roleSeparator} ${styles.desktopCopy}`} aria-hidden="true" /><span className={styles.desktopCopy}>Process &amp; metrology engineer</span><span className={styles.mobileCopy}>Materials · Process · Metrology</span></p>
+                <p className={styles.heroRole} data-page-entrance="kicker"><span className={styles.desktopCopy}>Materials scientist</span><span className={`${styles.roleSeparator} ${styles.desktopCopy}`} aria-hidden="true" /><span className={styles.desktopCopy}>Process &amp; metrology engineer</span><span className={styles.mobileCopy}>Materials · Process · Metrology</span></p>
               </div>
               <div className={styles.heroAside}>
-                <span className={styles.asideLabel}>MATERIALS · PROCESS · METROLOGY</span>
+                <span className={styles.asideLabel} data-page-entrance="eyebrow">MATERIALS · PROCESS · METROLOGY</span>
                 <ol className={styles.asideStatement} aria-label="Materials, process, and metrology">
-                  <li><span className={styles.progressCue} aria-hidden="true"><i /><i /><i /></span><span className={styles.progressWord}><span className={styles.desktopCopy}>develop materials</span><span className={styles.mobileCopy}>develop</span></span></li>
-                  <li><span className={styles.progressCue} aria-hidden="true"><i /><i /><i /></span><span className={styles.progressWord}><span className={styles.desktopCopy}>engineer processes</span><span className={styles.mobileCopy}>engineer</span></span></li>
-                  <li><span className={styles.progressCue} aria-hidden="true"><i /><i /><i /></span><span className={styles.progressWord}><span className={styles.desktopCopy}>measure quality</span><span className={styles.mobileCopy}>measure</span></span></li>
+                  <li data-page-entrance="journey" data-entrance-order="0"><span className={styles.progressCue} aria-hidden="true"><i /><i /><i /></span><span className={styles.progressWord}><span className={styles.desktopCopy}>develop materials</span><span className={styles.mobileCopy}>develop</span></span></li>
+                  <li data-page-entrance="journey" data-entrance-order="1"><span className={styles.progressCue} aria-hidden="true"><i /><i /><i /></span><span className={styles.progressWord}><span className={styles.desktopCopy}>engineer processes</span><span className={styles.mobileCopy}>engineer</span></span></li>
+                  <li data-page-entrance="journey" data-entrance-order="2"><span className={styles.progressCue} aria-hidden="true"><i /><i /><i /></span><span className={styles.progressWord}><span className={styles.desktopCopy}>measure quality</span><span className={styles.mobileCopy}>measure</span></span></li>
                 </ol>
               </div>
             </div>
             <div className={styles.storyGrid}>
-              <span className={styles.sectionLabel}><span className={styles.sectionMarker} aria-hidden="true" />A closer look at the work</span>
+              <span className={styles.sectionLabel} data-page-entrance="intro"><span className={styles.sectionMarker} aria-hidden="true" />A closer look at the work</span>
               <div className={styles.storyBody}>
-                <MainText onWordClick={handleWordClick} />
-                <p className={styles.interactionHint}>
+                <MainText onWordClick={handleWordClick} entrance="intro" />
+                <p className={styles.interactionHint} data-page-entrance="actions">
                   <span className={styles.hintDot} aria-hidden="true" />
                   <span className={styles.desktopCopy}>Need materials, process, or metrology expertise?</span><span className={styles.mobileCopy}>Building your R&amp;D team?</span>
                   <a href="mailto:saeedarabha@outlook.com">Let’s talk.</a>

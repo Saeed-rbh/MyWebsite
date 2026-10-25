@@ -1,6 +1,6 @@
 export const grapheneArticle = {
   "title": "What is graphene, and why does it matter?",
-  "description": "Learn what graphene is, how its atomic structure shapes its properties, how it is made, and where it is useful—with interactive 3D, evidence and explanations.",
+  "description": "Follow graphite from an ordinary pencil to a single graphene sheet, its properties, the challenge of production, my research, real uses and the wider world of 2D materials.",
   "intro": "Start with the graphite in a pencil. Follow one carbon sheet through its discovery, remarkable properties, and the practical work of turning a scientific idea into a useful material.",
   "sections": [
     {
@@ -8,12 +8,16 @@ export const grapheneArticle = {
       "number": "01",
       "title": "What is graphene? A single page from graphite.",
       "paragraphs": [
-        "Imagine following a single carbon sheet inside the graphite in a pencil. It is surrounded by other sheets, like one page inside a book. Within each page, carbon atoms are joined in a repeating honeycomb. One page on its own is graphene.",
-        "Our sheet has length and width, but it is only one atom thick. That is why researchers call it two-dimensional, or 2D. It is a real material, not a perfectly flat mathematical surface: it can bend and ripple.",
-        "In the explorer, choose “Isolate graphene” and then “Top view.” You have removed the neighbouring layers while keeping the honeycomb. Now we have a name for our sheet. But how did researchers get one out of the stack?"
+        "Start with the graphite in a pencil. It looks solid, but inside it are stacks of carbon sheets, like pages in a book. Within each page, carbon atoms are joined in a repeating honeycomb.",
+        "Take just one of those pages and you have graphene. The sheet has length and width, but it is only one atom thick. That is why researchers call it two-dimensional, or 2D. It can still bend and ripple.",
+        "The three images below follow the journey we are about to take: an everyday material, the structure hidden inside it, and the possibility of putting that structure to work."
       ],
       "source": 0,
-      "nav": "The starting point"
+      "nav": "The starting point",
+      "handoff": {
+        "text": "But how do you get one page out of the stack?",
+        "to": "graphene-discovery"
+      }
     },
     {
       "id": "graphene-discovery",
@@ -21,23 +25,31 @@ export const grapheneArticle = {
       "title": "The discovery: making the invisible measurable.",
       "source": 0,
       "paragraphs": [
-        "In 2004, Andre Geim and Konstantin Novoselov used adhesive tape to peel graphite into thinner flakes. Among those flakes were sheets just one atom thick. A familiar material had become something researchers could investigate one layer at a time.",
-        "The breakthrough was not simply peeling a small piece of graphite. Their experiments showed the unusual behaviour of an isolated sheet, including how it carries electric charge. The work earned them the 2010 Nobel Prize in Physics.",
-        "Keep that isolated sheet in mind as we move from making it to testing it. First, imagine holding its edges: would something so thin tear easily, or could it bend without breaking?"
+        "In 2004, Andre Geim and Konstantin Novoselov used adhesive tape to peel graphite into thinner flakes. Among those flakes were sheets just one atom thick. A familiar material could now be investigated one layer at a time.",
+        "The breakthrough went beyond peeling a small piece of graphite. Their experiments revealed the unusual behaviour of an isolated sheet, including how it carries electric charge. The work earned them the 2010 Nobel Prize in Physics.",
+        "Follow the peeling sequence below, then try the idea with the 3D model. Separate the layers, choose Graphene, and look down on the honeycomb. You have changed the number of sheets while keeping the carbon network."
       ],
-      "number": "02"
+      "number": "02",
+      "handoff": {
+        "text": "Now separate a sheet yourself.",
+        "to": "graphene-explorer"
+      }
     },
     {
       "id": "why-it-matters",
       "number": "03",
       "title": "Why is graphene strong, yet flexible?",
       "paragraphs": [
-        "Picture a fishing net. Pulling its edges stretches the connections; folding it changes its shape. Our carbon sheet has a similar distinction. Strong bonds between its atoms resist stretching, while the thin sheet can still bend and wrinkle.",
-        "To test this, researchers suspended graphene over small openings and pressed it with a tiny probe. They measured its elastic stiffness—how strongly it resists being stretched—and its breaking strength—the load it can withstand before it fails. The results below use N/m, or newtons of force per metre of sheet width.",
-        "Those measurements came from particular membranes, meaning thin sheets spanning an opening. Cracks can weaken a real sample. Still, the result gives us our first clue: being thin does not mean being weak. Next, let us send charge and heat through the same honeycomb."
+        "We have isolated something only one atom thick. Would it tear easily? Picture a fishing net: pulling its edges stretches the connections, while folding it changes its shape. Strong bonds between carbon atoms resist stretching, while the thin sheet can still bend and wrinkle.",
+        "Researchers tested graphene by suspending sheets over small openings and pressing them with a tiny probe. They measured elastic stiffness, how strongly a sheet resists stretching, and breaking strength, the load it can withstand before it fails.",
+        "Cracks can weaken a real sample, and the measurements depend on the membrane being tested. Still, the first surprise is clear: being thin does not mean being weak."
       ],
       "source": 4,
-      "nav": "Strength & flexibility"
+      "nav": "Strength & flexibility",
+      "handoff": {
+        "text": "What else can travel through that honeycomb?",
+        "to": "electrical-and-thermal-properties"
+      }
     },
     {
       "id": "electrical-and-thermal-properties",
@@ -45,16 +57,20 @@ export const grapheneArticle = {
       "title": "How does graphene carry electricity and heat?",
       "source": 1,
       "paragraphs": [
-        "An electric current is moving charge. The honeycomb gives electrons, the negatively charged particles in atoms, unusual ways to move through the sheet. In ideal single-layer graphene, there is no conventional band gap: an energy interval separating the electron states called the valence and conduction bands.",
-        "Why does that gap matter? A transistor is an electronic switch, and a useful switch must turn current off as well as on. Graphene’s missing conventional gap makes that harder. Carrying current well does not, by itself, make our sheet a replacement for silicon in computer logic.",
-        "Now warm one side of the sheet. Its atoms vibrate, and those vibrations transfer energy through the lattice—the repeating network of atoms. Physicists describe these vibrational excitations as phonons. They carry much of graphene’s heat. A support beneath the sheet or defects in its network can change that flow. What happens if we shine light on it instead?"
+        "Send an electric current through our sheet. Current is moving charge, and the honeycomb gives electrons unusual ways to move. Ideal single-layer graphene has no conventional band gap: an energy interval separating the electron states called the valence and conduction bands.",
+        "That brings a useful limitation into view. A transistor is an electronic switch, so it must turn current off as well as on. Graphene’s missing conventional gap makes that harder. Carrying charge well is only one part of the job.",
+        "Now warm one side. The atoms vibrate, and those vibrations transfer energy through the lattice. Physicists call these vibrational excitations phonons; they carry much of graphene’s heat. A supporting surface or defects in the network can change that flow."
       ],
       "paragraphSources": [
         1,
         1,
         6
       ],
-      "number": "04"
+      "number": "04",
+      "handoff": {
+        "text": "It carries charge and heat. What happens when light reaches it?",
+        "to": "graphene-transparency"
+      }
     },
     {
       "id": "graphene-transparency",
@@ -62,11 +78,15 @@ export const grapheneArticle = {
       "title": "Why is graphene almost transparent?",
       "source": 3,
       "paragraphs": [
-        "Hold our single sheet in the path of a beam of light. Most of the light passes through. In experiments on suspended graphene, one layer absorbed about 2.3% of incoming white light, leaving approximately 97.7% transmitted.",
-        "A material that lets light through and also carries charge is interesting for transparent electrodes: surfaces that make an electrical connection while remaining see-through. The sheet would still need reliable contacts and sufficient durability to work in a device.",
-        "Use the slider below to place more sheets in the light’s path. Each layer receives only the light that made it through the previous one, so the percentages multiply. This simple experiment is also a reminder that one sheet and a stack are different materials. The graphene family has more variations still."
+        "Hold the same sheet in a beam of light. Most of the light passes through. In experiments on suspended graphene, one layer absorbed about 2.3% of incoming white light, leaving approximately 97.7% transmitted.",
+        "Combine that transparency with electrical conduction and you can see why researchers study transparent electrodes: surfaces that make an electrical connection while remaining see-through.",
+        "Add sheets with the slider below. Each receives only the light that passed through the previous layer, so the percentages multiply. Layer count is already changing the behaviour of our material."
       ],
-      "number": "05"
+      "number": "05",
+      "handoff": {
+        "text": "If graphene can do all this, why isn’t it everywhere?",
+        "to": "graphene-challenge"
+      }
     },
     {
       "id": "graphene-family",
@@ -74,35 +94,41 @@ export const grapheneArticle = {
       "title": "Graphene, graphite and graphene oxide are different.",
       "source": 2,
       "paragraphs": [
-        "We began with one clean sheet. Researchers call that a monolayer: “mono” means one. Keep a small stack instead and you have few-layer graphene. A flake is simply a small piece of such material.",
-        "Chemistry can change the sheet too. In graphene oxide, oxygen-containing groups attach to the carbon network and change its behaviour. A process called reduction removes some of that oxygen. The resulting reduced graphene oxide, or rGO, is not automatically restored to an ideal clean honeycomb.",
-        "The microscope images below show another variation: nitrogen-doped graphene. Here, doping means introducing nitrogen into the material to change its properties. These are stacked, processed sheets. Before choosing a production method, we must decide which version of the material we actually need."
+        "The first decision is what we mean by graphene. Our isolated sheet is a monolayer: “mono” means one. Keep a small stack and you have few-layer graphene. A flake is simply a small piece of the material.",
+        "Chemistry changes the choice too. In graphene oxide, oxygen-containing groups attach to the carbon network. Reduction removes some oxygen, producing reduced graphene oxide, or rGO. It does not automatically restore an ideal clean honeycomb.",
+        "The microscope images below show nitrogen-doped graphene: processed sheets containing nitrogen that changes their properties. Layer count, chemistry and structure all become part of the material we must choose."
       ],
       "number": "06",
       "paragraphSources": [
         2,
         2,
         9
-      ]
+      ],
+      "handoff": {
+        "text": "Which route will make the form we actually need?",
+        "to": "making-it-useful"
+      }
     },
     {
       "id": "making-it-useful",
       "number": "07",
       "title": "How is graphene made? Choose the route for the job.",
       "paragraphs": [
-        "Our one sheet has become a manufacturing question. Do we want a film covering a surface, or many small flakes mixed into another material? Making those two products calls for different approaches.",
-        "Exfoliation means separating layers that already exist in graphite—like taking pages out of our book. Chemical vapour deposition, shortened to CVD, takes another route: carbon supplied through a gas forms a film on a suitable surface. That supporting surface is called a substrate.",
-        "One route connects directly to my research: compressible-flow exfoliation, or CFE. “Compressible” means the gas can change density as it flows. As gas interacts with layered particles, it can transfer momentum—giving the sheets a push that helps them slide and separate. The nozzle diagram below shows the basic idea.",
-        "After separation or growth, the material must reach its intended home. A film may need to be moved to another surface; flakes may need to be spread evenly through a mixture. Now the next question becomes essential: how do we check what we actually made?"
+        "Start with the job. A film covering a surface and small flakes mixed into another material require different production routes. Making one remarkable sheet is the beginning of that manufacturing problem.",
+        "Exfoliation separates layers already present in graphite. Chemical vapour deposition, or CVD, builds a film from carbon supplied through a gas on a suitable supporting surface, called a substrate. The routes below show what each approach does to the carbon.",
+        "The final route connects directly to my research: compressible-flow exfoliation. A fast gas stream can transfer momentum to layered particles, helping sheets slide and separate. That raises a question we can investigate atom by atom: how does the gas make the layers move?"
       ],
       "source": 8,
       "nav": "Making graphene",
       "paragraphSources": [
         8,
         8,
-        11,
-        8
-      ]
+        11
+      ],
+      "handoff": {
+        "text": "Follow that question inside my research.",
+        "to": "graphene-research"
+      }
     },
     {
       "id": "measuring-graphene",
@@ -110,33 +136,39 @@ export const grapheneArticle = {
       "title": "How do researchers know what they have made?",
       "source": 5,
       "paragraphs": [
-        "Bring our newly made sheet back to the laboratory and shine a laser on it. Some scattered light exchanges energy with vibrations in the material. Raman spectroscopy measures those energy changes. Its spectrum—a graph of light intensity against energy shift—contains features that offer clues about the sheet.",
-        "Those clues can reveal strain, meaning stretching or compression; defects, meaning disruptions in the atomic pattern; and doping, meaning a change in the population of charge carriers. Peaks are raised features in the graph. Several effects can change them, so one peak alone is not a complete diagnosis.",
-        "A microscope adds another view. It can reveal the shape of a sheet and features such as grain boundaries, where regions with different lattice orientations meet. Combining measurements is like checking a traveller’s photograph, fingerprints and history: each answers a different question. With that evidence, we can finally ask what the material can do."
+        "A production route gives us material. A simulation suggests a mechanism. We still need evidence of what was actually made. Shine a laser on the sample: some scattered light exchanges energy with atomic vibrations. Raman spectroscopy measures those energy changes.",
+        "Features in the spectrum can offer clues about strain, defects and doping. Several effects can alter the same peak, so a single feature is not a complete diagnosis. The question we ask determines which measurements we need.",
+        "Microscopy adds a view of the sheet’s shape and features such as grain boundaries, where regions with different lattice orientations meet. Combining measurements connects the structure we intended to make with the material we have in hand."
       ],
       "paragraphSources": [
         5,
         5,
         7
       ],
-      "number": "08"
+      "number": "08",
+      "handoff": {
+        "text": "Now give the measured material a real job.",
+        "to": "graphene-applications"
+      }
     },
     {
       "id": "graphene-applications",
       "nav": "Uses & limitations",
-      "title": "What is graphene used for—and what still gets in the way?",
+      "title": "What is graphene used for, and what still gets in the way?",
       "source": 2,
       "paragraphs": [
-        "Our journey began with a page inside a graphite book. We have separated it, pulled it, warmed it, shone light through it and checked its structure. Each step suggests a different use: a sensor that responds electrically, a transparent conducting surface, or a filler added to a composite—a material made by combining ingredients.",
-        "One research example below takes a different member of the family, graphene oxide in a polymer, and uses laser processing to help form holographic images. A polymer is a material built from long molecular chains. A hologram controls light so that an image can appear to have depth. This example connects a specific material and process to a visible result.",
-        "The final test is the finished system. Does it perform better for the job, can it be made consistently, and will it last? “Contains graphene” is the beginning of those questions. The value lies in choosing the right form of carbon and showing what it contributes."
+        "Our sheet has been separated, tested and measured. Now choose a job for it. A flexible conductor needs a connected film. A composite needs flakes distributed through a host material. The useful form depends on the task.",
+        "Each example below connects a property to a material choice and a practical hurdle. The finished system is the test: does it perform better, can it be made consistently, and will it last?"
       ],
       "number": "09",
       "paragraphSources": [
         2,
-        10,
         2
-      ]
+      ],
+      "handoff": {
+        "text": "From a pencil’s graphite to a material with a purpose.",
+        "to": "graphene-takeaways"
+      }
     }
   ],
   "applications": [
@@ -153,7 +185,6 @@ export const grapheneArticle = {
         "src": "/images/graphene/application-sensor-illustration.png",
         "alt": "A wearable sensor. Molecules reaching a specially prepared graphene surface can change its electrical response. The device reads that change as a signal.",
         "caption": "Molecules reaching a specially prepared graphene surface can change its electrical response. The device reads that change as a signal.",
-        "credit": "AI-generated concept illustration · structures and layers enlarged; not a product photograph.",
         "url": "https://doi.org/10.1038/ncomms14997",
         "width": 1536,
         "height": 1024
@@ -172,7 +203,6 @@ export const grapheneArticle = {
         "src": "/images/graphene/application-flexible-illustration.png",
         "alt": "A bendable electronic film. A supported graphene film can carry current while bending with a device. The film is one layer in a larger electronic system.",
         "caption": "A supported graphene film can carry current while bending with a device. The film is one layer in a larger electronic system.",
-        "credit": "AI-generated concept illustration · structures and layers enlarged; not a product photograph.",
         "url": "https://doi.org/10.1038/ncomms14997",
         "width": 1536,
         "height": 1024
@@ -191,7 +221,6 @@ export const grapheneArticle = {
         "src": "/images/graphene/application-battery-illustration.png",
         "alt": "Inside a battery electrode. Graphene-containing networks can help connect the particles that store charge. They are part of the electrode, not the whole battery.",
         "caption": "Graphene-containing networks can help connect the particles that store charge. They are part of the electrode, not the whole battery.",
-        "credit": "AI-generated concept illustration · structures and layers enlarged; not a product photograph.",
         "url": "https://doi.org/10.1038/srep26146",
         "width": 1536,
         "height": 1024
@@ -210,7 +239,6 @@ export const grapheneArticle = {
         "src": "/images/graphene/application-coating-illustration.png",
         "alt": "Graphene flakes inside a coating. Overlapping flakes can make water or gas take a longer path through a coating. Protection depends on the coating, its defects and how well the flakes are dispersed.",
         "caption": "Overlapping flakes can make water or gas take a longer path through a coating. Protection depends on the coating, its defects and how well the flakes are dispersed.",
-        "credit": "AI-generated concept illustration · structures and layers enlarged; not a product photograph.",
         "url": "https://doi.org/10.1039/C7RA08536B",
         "width": 1536,
         "height": 1024
@@ -229,7 +257,6 @@ export const grapheneArticle = {
         "src": "/images/graphene/application-heat-illustration.png",
         "alt": "A heat-spreading layer above a chip. A graphene-based layer can spread heat away from a small hot spot. Other parts of the device must then carry that heat to the surroundings.",
         "caption": "A graphene-based layer can spread heat away from a small hot spot. Other parts of the device must then carry that heat to the surroundings. Layers are shown separated so you can see them; a working heat spreader needs thermal contact with the chip and surrounding assembly.",
-        "credit": "AI-generated concept illustration · structures and layers enlarged; not a product photograph.",
         "url": "https://doi.org/10.1038/ncomms11281",
         "width": 1536,
         "height": 1024
@@ -248,7 +275,6 @@ export const grapheneArticle = {
         "src": "/images/graphene/application-optics-illustration.png",
         "alt": "A patterned film shapes light. A patterned graphene-oxide composite changes how light passes through it. In research demonstrations, this can reconstruct an image.",
         "caption": "A patterned graphene-oxide composite changes how light passes through it. In research demonstrations, this can reconstruct an image.",
-        "credit": "AI-generated concept illustration · structures and layers enlarged; not a product photograph.",
         "url": "https://doi.org/10.1038/ncomms7984",
         "width": 1536,
         "height": 1024
@@ -330,39 +356,39 @@ export const grapheneArticle = {
   ],
   "sources": [
     {
-      "label": "University of Manchester — graphene, properties and discovery",
+      "label": "University of Manchester, graphene, properties and discovery",
       "url": "https://www.graphene.manchester.ac.uk/about/history/index.htm"
     },
     {
-      "label": "NIST — graphene and its electronic properties",
+      "label": "NIST, graphene and its electronic properties",
       "url": "https://www.nist.gov/programs-projects/graphene"
     },
     {
-      "label": "Soldano, Mahmood & Dujardin — Production, properties and potential of graphene",
+      "label": "Soldano, Mahmood & Dujardin, Production, properties and potential of graphene",
       "url": "https://arxiv.org/abs/1002.0370"
     },
     {
-      "label": "Nair et al. — optical transparency of suspended graphene (2008)",
+      "label": "Nair et al., optical transparency of suspended graphene (2008)",
       "url": "https://arxiv.org/abs/0803.3718"
     },
     {
-      "label": "Lee et al. — elastic properties and intrinsic strength (2008)",
+      "label": "Lee et al., elastic properties and intrinsic strength (2008)",
       "url": "https://doi.org/10.1126/science.1157996"
     },
     {
-      "label": "Reichardt & Wirtz — Raman spectroscopy of graphene",
+      "label": "Reichardt & Wirtz, Raman spectroscopy of graphene",
       "url": "https://arxiv.org/abs/1703.06909"
     },
     {
-      "label": "Nika & Balandin — phonons and thermal transport",
+      "label": "Nika & Balandin, phonons and thermal transport",
       "url": "https://arxiv.org/abs/1606.00488"
     },
     {
-      "label": "NIST — structure, defects and scattering in graphene",
+      "label": "NIST, structure, defects and scattering in graphene",
       "url": "https://www.nist.gov/programs-projects/structure-defects-and-scattering-graphene"
     },
     {
-      "label": "Graphene Flagship — production routes",
+      "label": "Graphene Flagship, production routes",
       "url": "https://graphene-flagship.eu/materials/uses/production"
     },
     {
@@ -374,19 +400,19 @@ export const grapheneArticle = {
       "url": "https://doi.org/10.1038/ncomms7984"
     },
     {
-      "label": "Ahmed, Arabha, Gonzalez & Rizvi (2022) — gas–graphene interactions during compressible-flow exfoliation",
+      "label": "Ahmed, Arabha, Gonzalez & Rizvi (2022), gas–graphene interactions during compressible-flow exfoliation",
       "url": "https://doi.org/10.1021/acs.jpcc.2c00425"
     },
     {
-      "label": "Graphene Flagship — energy-storage research",
+      "label": "Graphene Flagship, energy-storage research",
       "url": "https://graphene-flagship.eu/focus/energy"
     },
     {
-      "label": "Graphene Flagship — composites and coatings",
+      "label": "Graphene Flagship, composites and coatings",
       "url": "https://graphene-flagship.eu/focus/composites"
     },
     {
-      "label": "Graphene Flagship — electronics and photonics",
+      "label": "Graphene Flagship, electronics and photonics",
       "url": "https://graphene-flagship.eu/focus/electronics-plus-photonics"
     },
     {
@@ -400,6 +426,18 @@ export const grapheneArticle = {
     {
       "label": "Han, H. et al. (2016). Functionalization mediates heat transport in graphene nanoflakes. Nature Communications 7, 11281.",
       "url": "https://doi.org/10.1038/ncomms11281"
+    },
+    {
+      "label": "Dean et al. (2010), boron nitride substrates for high-quality graphene electronics",
+      "url": "https://arxiv.org/abs/1005.4917"
+    },
+    {
+      "label": "Radisavljevic et al. (2011), single-layer MoS₂ transistors",
+      "url": "https://www.nature.com/articles/nnano.2010.279"
+    },
+    {
+      "label": "University of Tokyo, bulk and edge states in the atomic-layer semiconductor phosphorene",
+      "url": "https://www.issp.u-tokyo.ac.jp/maincontents/highlight/2014/18_en.html"
     }
   ],
   "faq": [
@@ -430,9 +468,9 @@ export const grapheneArticle = {
     }
   ],
   "takeaways": [
-    "Structure comes first: graphene is one honeycomb layer of carbon.",
-    "Properties need context: sample quality and measurement conditions matter.",
-    "A useful product needs the right material, integration and evidence."
+    "Separate a sheet: graphene is one honeycomb layer of carbon inside graphite.",
+    "Follow its structure: bonds, layers, chemistry and defects shape how it behaves.",
+    "Give it a job: choose a production route, check the evidence and test the finished system."
   ],
   "diagrams": [
     {
@@ -484,7 +522,7 @@ export const grapheneArticle = {
     {
       "chapter": "electrical-and-thermal-properties",
       "src": "/images/graphene/learning-transport-illustration.png",
-      "title": "What carries electricity—and what carries heat?",
+      "title": "What carries electricity, and what carries heat?",
       "alt": "Conceptual comparison of moving charge carriers and a wave representing lattice vibrations.",
       "caption": "The two panels distinguish electrical transport from phonon-mediated heat transport. They are teaching illustrations, not simulated paths or measured signals.",
       "source": 6,
@@ -680,7 +718,7 @@ export const grapheneArticle = {
       "kind": "Raman & XPS · Experimental",
       "alt": "Published four-panel figure with fluorescence measurements, Raman spectra and X-ray photoelectron spectra before and after graphene-oxide photoreduction.",
       "caption": "Li and colleagues used light and chemical measurements to study how laser treatment changes graphene oxide. You do not need to interpret every peak to follow the main point: different methods test different parts of the same change.",
-      "reading": "Panel (a) uses fluorescence—light emitted by a probe—to track temperature. Panel (b) shows Raman measurements of vibrations. Panels (c–d) use X-ray photoelectron spectroscopy (XPS), a method that helps identify chemical bonding by measuring electrons released by X-rays. Small inset images show the surface under an electron microscope.",
+      "reading": "Panel (a) uses fluorescence, light emitted by a probe, to track temperature. Panel (b) shows Raman measurements of vibrations. Panels (c–d) use X-ray photoelectron spectroscopy (XPS), a method that helps identify chemical bonding by measuring electrons released by X-rays. Small inset images show the surface under an electron microscope.",
       "credit": "Li, X., Ren, H., Chen, X. et al. (2015). Athermally photoreduced graphene oxides for three-dimensional holographic images. Nature Communications 6, 6984. Figure 2.",
       "url": "https://doi.org/10.1038/ncomms7984",
       "figureUrl": "https://www.nature.com/articles/ncomms7984/figures/2",
@@ -691,6 +729,38 @@ export const grapheneArticle = {
       "height": 1344,
       "takeaway": "Researchers check a chemical change with several measurements, rather than relying on one graph.",
       "startHere": "Start with the two bottom plots, (c) and (d). The contributions from different carbon–oxygen bonds change after laser treatment."
+    }
+  ],
+  "beyondGraphene": [
+    {
+      "id": "hbn",
+      "formula": "hBN",
+      "name": "Hexagonal boron nitride",
+      "text": "An insulating honeycomb of alternating boron and nitrogen atoms.",
+      "source": 18,
+      "src": "/images/graphene/beyond-hbn-v2.png",
+      "alt": "Atomic-coordinate render of planar hBN: copper boron and cream nitrogen alternate around each hexagonal ring.",
+      "legend": "B · copper / N · cream"
+    },
+    {
+      "id": "mos2",
+      "formula": "MoS₂",
+      "name": "Molybdenum disulfide",
+      "text": "A semiconducting monolayer with molybdenum between two sulfur planes.",
+      "source": 19,
+      "src": "/images/graphene/beyond-mos2-v2.png",
+      "alt": "Atomic-coordinate render of a trigonal-prismatic MoS₂ monolayer: silver molybdenum lies between two aligned gold sulfur planes, with only Mo–S bonds shown.",
+      "legend": "Mo · silver / S · gold"
+    },
+    {
+      "id": "phosphorene",
+      "formula": "P",
+      "name": "Phosphorene",
+      "text": "A puckered phosphorus sheet with direction-dependent electronic properties.",
+      "source": 20,
+      "src": "/images/graphene/beyond-phosphorene-v2.png",
+      "alt": "Atomic-coordinate render of black phosphorene with phosphorus atoms at two heights, joined into a puckered honeycomb with three neighbours per interior atom.",
+      "legend": "P · copper"
     }
   ]
 };

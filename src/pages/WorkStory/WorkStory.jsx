@@ -9,6 +9,7 @@ import {
   TbMicroscope,
   TbNetwork,
 } from "react-icons/tb";
+import usePageReveals from "../../components/SiteMotion/usePageReveals";
 import SEO from "../../components/SEO/SEO";
 import styles from "./WorkStory.module.css";
 
@@ -605,11 +606,6 @@ const storySpring = {
   restDelta: 0.005,
 };
 
-const routeTransition = {
-  duration: 0.62,
-  ease: [0.22, 1, 0.36, 1],
-};
-
 const useWorkStoryEffects = (scrollRef) => {
   const rafRef = useRef(null);
   const isMobileRef = useRef(false);
@@ -1167,7 +1163,7 @@ const ModelingSvg = () => (
 );
 
 const HeroGraphene = () => (
-  <div className={styles.heroGraphene} aria-hidden="true">
+  <div className={styles.heroGraphene} data-page-entrance="atmosphere" aria-hidden="true">
     <svg
       className={styles.grapheneSvg}
       xmlns="http://www.w3.org/2000/svg"
@@ -1919,6 +1915,7 @@ const ApproachContent = ({ scrollRef }) => {
 };
 const WorkStory = () => {
   const scrollRef = useRef(null);
+  usePageReveals(scrollRef);
   const [isMounted, setIsMounted] = useState(false);
   const { scrollYProgress } = useScroll({ container: scrollRef });
   const smoothProgress = useSpring(scrollYProgress, storySpring);
@@ -1942,10 +1939,7 @@ const WorkStory = () => {
         className={styles.page}
         ref={scrollRef}
         onScroll={handleScroll}
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        exit={{ opacity: 0 }}
-        transition={routeTransition}
+        data-site-motion-ignore="true"
       >
         <div className={styles.glowingBg} aria-hidden="true" />
         <div className={styles.progressTrack} aria-hidden="true">
@@ -1962,21 +1956,21 @@ const WorkStory = () => {
           <div className={styles.heroFrame}>
             <div className={styles.heroCopy}>
               <HeroGraphene />
-              <h1>
+              <h1 data-page-entrance="title">
                 <span>R<span className={styles.regularAmp}>&</span>D JOURNEY</span>
               </h1>
-              <p>Process & Metrology Engineer</p>
+              <p data-page-entrance="kicker">Process & Metrology Engineer</p>
 
               <div className={styles.chain} aria-label="R&D skills">
                 {chain.map((item, index) => (
-                  <span key={item} style={{ "--delay": `${index * 90}ms` }}>
+                  <span key={item} data-page-entrance="journey" data-entrance-order={index}>
                     {item}
                   </span>
                 ))}
               </div>
             </div>
           </div>
-          <a className={styles.heroScrollCue} href="#gap" aria-label="Scroll to the story">
+          <a className={styles.heroScrollCue} data-page-entrance="guide" href="#gap" aria-label="Scroll to the story">
             <i />
             <span>Scroll</span>
           </a>

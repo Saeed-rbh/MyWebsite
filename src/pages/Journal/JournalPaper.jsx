@@ -2,6 +2,7 @@ import React, { useRef } from "react";
 import { ScrollFade } from "../Commercialization/StoryMotion";
 import { Helmet } from "react-helmet-async";
 import { Link, useParams } from "react-router-dom";
+import usePageReveals from "../../components/SiteMotion/usePageReveals";
 import SEO from "../../components/SEO/SEO";
 import papers from "../../data/journalPapers.json";
 import styles from "./JournalPaper.module.css";
@@ -50,6 +51,7 @@ function EvidenceTable({ table, pdf, index, root }) {
 export default function JournalPaper() {
   const { slug } = useParams();
   const pageRef = useRef(null);
+  usePageReveals(pageRef);
   const paper = papers.find((item) => item.slug === slug);
 
   React.useEffect(() => {
@@ -60,15 +62,15 @@ export default function JournalPaper() {
 
   if (!paper) {
     return (
-      <div className={styles.page}>
+      <div className={styles.page} ref={pageRef} data-site-motion-ignore="true">
         <SEO title="Paper not found | Saeed Arabha Journal" description="This paper page could not be found." name="Saeed Arabha" type="website" />
         <main className={styles.main}>
           <Link className={styles.backLink} to="/journal/">← All journal papers</Link>
           <section className={styles.notFound}>
-            <div className={styles.eyebrow}>Publication archive</div>
-            <h1>Paper not found.</h1>
-            <p>The page may have moved. Browse the full publication list to find the paper.</p>
-            <Link className={styles.primaryLink} to="/journal/">Go to the paper list <span aria-hidden="true">→</span></Link>
+            <div className={styles.eyebrow} data-page-entrance="eyebrow">Publication archive</div>
+            <h1 data-page-entrance="title">Paper not found.</h1>
+            <p data-page-entrance="intro">The page may have moved. Browse the full publication list to find the paper.</p>
+            <Link className={styles.primaryLink} data-page-entrance="actions" to="/journal/">Go to the paper list <span aria-hidden="true">→</span></Link>
           </section>
         </main>
       </div>
@@ -105,20 +107,20 @@ export default function JournalPaper() {
       <SEO title={`${paper.title} | Journal | Saeed Arabha`} description={paper.summary} name="Saeed Arabha" type="article" />
       <Helmet><script type="application/ld+json">{JSON.stringify(articleSchema)}</script></Helmet>
       <main className={styles.main}>
-        <Link className={styles.backLink} to="/journal/">← The journal</Link>
+        <Link className={styles.backLink} data-page-entrance="eyebrow" to="/journal/">← The journal</Link>
         <article>
           <header className={styles.hero}>
-            <div className={styles.noteLabel}>Research notes <span aria-hidden="true">/</span> Behind the paper</div>
-            <div className={styles.topline}>
+            <div className={styles.noteLabel} data-page-entrance="eyebrow">Research notes <span aria-hidden="true">/</span> Behind the paper</div>
+            <div className={styles.topline} data-page-entrance="kicker">
               <span className={styles.eyebrow}>{paper.topic}</span>
               <span>{paper.year} <span aria-hidden="true">/</span> {paper.pdf ? readingMinutes : 1} min read</span>
             </div>
             <div className={styles.heroGrid}>
               <ScrollFade root={pageRef}>
-                <h1>{editorial.headline}</h1>
-                <p className={styles.standfirst}>{editorial.standfirst}</p>
+                <h1 data-page-entrance="title">{editorial.headline}</h1>
+                <p className={styles.standfirst} data-page-entrance="intro">{editorial.standfirst}</p>
               </ScrollFade>
-              <ScrollFade root={pageRef} as="aside" stagger={1} className={styles.highlight} aria-label="A finding from this paper">
+              <ScrollFade root={pageRef} as="aside" stagger={1} className={styles.highlight} data-page-entrance="journey" aria-label="A finding from this paper">
                 <span className={styles.highlightEyebrow}>{"The main finding"}</span>
                 <strong>{editorial.highlight.value}</strong>
                 {editorial.highlight.unit && <span className={styles.highlightUnit}>{editorial.highlight.unit}</span>}
@@ -126,8 +128,8 @@ export default function JournalPaper() {
               </ScrollFade>
             </div>
             <div className={styles.publicationLine}>
-              <div><strong>{paper.journal}</strong><span>{paper.authors.join(", ")}</span></div>
-              <div className={styles.heroActions}>
+              <div data-page-entrance="intro" data-entrance-order="1"><strong>{paper.journal}</strong><span>{paper.authors.join(", ")}</span></div>
+              <div className={styles.heroActions} data-page-entrance="actions">
                 <a href={paper.figures.length ? `#${figureAnchor(paper.figures[0])}` : "#story"}>{paper.figures.length ? "See the figures" : "Follow the story"} <span aria-hidden="true">↓</span></a>
                 <a href="#original-paper">Full paper <span aria-hidden="true">↘</span></a>
               </div>

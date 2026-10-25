@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { animated, useSpring, easings } from "react-spring";
 const PaperData = ({ isActive, stages, size, adjustHeight, list = [] }) => {
   const CloseOpenStyleInfo = useSpring({
@@ -41,11 +42,11 @@ const PaperData = ({ isActive, stages, size, adjustHeight, list = [] }) => {
       </animated.div>
       <animated.div style={Scale}>
         <p>Latest</p>
-        <p>{list[0]?.Year || "—"}</p>
+        <p>{list[0]?.Year || "-"}</p>
       </animated.div>
       <animated.div style={Scale}>
         <p>Full list</p>
-        <p><a href="/journal/" onClick={(event) => event.stopPropagation()}>Journal</a></p>
+        <p><Link to="/journal/" onClick={(event) => event.stopPropagation()}>Journal</Link></p>
       </animated.div>
     </animated.div>
   );

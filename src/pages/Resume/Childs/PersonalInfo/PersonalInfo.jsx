@@ -102,6 +102,8 @@ export const PersonalInfo = () => {
       style={{ ...Style, ...combinedStyle }}
       className={name}
       id={name}
+      data-page-entrance="intro"
+      data-entrance-order="0"
     >
       {memoizedTitle}
       <PersonalDetails MainStyle={{ ...Main }} info={list ? list[0] : null} />

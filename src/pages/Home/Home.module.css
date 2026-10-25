@@ -158,7 +158,6 @@
     align-self: center;
     gap: 4px;
     margin-top: 0;
-    animation: cueArrives 950ms var(--landing-ease) both;
 }
 .progressCue i {
     display: block;

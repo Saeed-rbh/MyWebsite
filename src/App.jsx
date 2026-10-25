@@ -70,7 +70,6 @@ function AppContent({ onRouteReady }) {
       {visibility && !isDashboard && <Footer accent={isCommercialization ? "#0645ee" : "#d49d81"} />}
 
       <ErrorBoundary key={location.pathname} onError={onRouteReady}>
-          <SiteMotionObserver />
           <Suspense fallback={null}>
             <div key={location.pathname} className="RouteMotionFrame" data-route-motion-root inert={isMenuOpen ? true : undefined}>
                 <Routes location={location}>
@@ -91,6 +90,7 @@ function AppContent({ onRouteReady }) {
                   <Route exact path="/admin" element={<AdminDashboard />} />
                   <Route exact path="/login" element={<Login />} />
                 </Routes>
+                <SiteMotionObserver />
                 <RouteReady onReady={onRouteReady} />
             </div>
           </Suspense>

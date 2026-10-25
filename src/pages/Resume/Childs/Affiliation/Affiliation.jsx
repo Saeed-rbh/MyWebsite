@@ -157,6 +157,8 @@ export const Affiliation = () => {
       }}
       className={name}
       id={name}
+      data-page-entrance="intro"
+      data-entrance-order="1"
     >
       <ImageDiv
         animatedStyle={animatedImgDiv}

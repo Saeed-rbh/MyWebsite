@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import AnimatedWord from "./AnimatedWord";
 import styles from "./MainText.module.css";
 
-const MainText = ({ onWordClick }) => {
+const MainText = ({ onWordClick, entrance }) => {
   const { homeData } = useSelector((state) => state.data);
 
   const tokenize = (rawText) => {
@@ -61,7 +61,7 @@ const MainText = ({ onWordClick }) => {
   const mobileWords = tokenize("I work across $(2D materials), $(process development), and $(metrology). I combine experiments, $(characterization), and $(computational modeling) to understand how processing affects material structure and quality. I use those findings to improve scalable production and connect research with industry needs.");
 
   return (
-    <div className={styles.container}>
+    <div className={styles.container} data-page-entrance={entrance} data-entrance-order="1">
       <p className={`${styles.paragraph} ${styles.desktopParagraph}`}>
         {words.map((word, index) => (
           <AnimatedWord
