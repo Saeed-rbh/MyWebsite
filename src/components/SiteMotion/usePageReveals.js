@@ -12,7 +12,40 @@ const entrances = {
   intro: { delay: 500, duration: 800, y: 18 },
   actions: { delay: 680, duration: 750, y: 12 },
   guide: { delay: 760, duration: 650, y: 8 },
+  component: { delay: 480, duration: 750, y: 18 },
 };
+
+const entranceSelector = '[data-page-entrance], [data-graphene-entrance]';
+const componentSelector = 'section, article, aside, header, footer, nav, form, table, figure, div, ul, ol, li, h1, h2, h3, h4, h5, h6, p, img, canvas, svg, button, a, [role="tablist"]';
+
+// Cover the rest of the opening viewport without animating a component and its
+// children twice. Explicit hero sequences and below-the-fold scroll effects win.
+export function openingComponents(page) {
+  const bounds = page.getBoundingClientRect();
+  const viewport = {
+    top: Math.max(0, bounds.top), left: Math.max(0, bounds.left),
+    bottom: Math.min(window.innerHeight, bounds.bottom),
+    right: Math.min(window.innerWidth, bounds.right),
+  };
+  const selected = [];
+  page.querySelectorAll(componentSelector).forEach(target => {
+    if (target.closest(entranceSelector) || target.querySelector(entranceSelector)) return;
+    if (target.closest('[hidden], [aria-hidden="true"], [data-page-entrance-ignore="true"]')) return;
+    const inertParent = target.closest('[inert]');
+    if (inertParent && page.contains(inertParent)) return;
+    if (selected.some(parent => parent.contains(target))) return;
+    const rect = target.getBoundingClientRect();
+    if (rect.width < 2 || rect.height < 2 || rect.bottom <= viewport.top ||
+        rect.top >= viewport.bottom || rect.right <= viewport.left || rect.left >= viewport.right) return;
+    if (getComputedStyle(target).visibility === 'hidden') return;
+    // Large sections are layout scaffolding; reveal their visible components.
+    if (rect.height > window.innerHeight * .85) return;
+    if (!target.textContent.trim() && !target.matches('img, canvas, svg') &&
+        !target.querySelector('img, canvas, svg')) return;
+    selected.push(target);
+  });
+  return selected;
+}
 
 export default function usePageReveals(root, enabled = true) {
   useLayoutEffect(() => {
@@ -22,6 +55,7 @@ export default function usePageReveals(root, enabled = true) {
     const preference = window.matchMedia('(prefers-reduced-motion: reduce)');
     const animations = new Set();
     const opening = [];
+    const automatic = [];
     const isGraphene = !!page.querySelector('[data-graphene-entrance]');
     let observer;
     let curtainObserver;
@@ -68,7 +102,11 @@ export default function usePageReveals(root, enabled = true) {
     // Hold the first frame until the incoming page is actually visible.
     // Fragment links go straight to their content without replaying the hero.
     if (!preference.matches && !window.location.hash) {
-      page.querySelectorAll('[data-page-entrance], [data-graphene-entrance]').forEach(target => {
+      openingComponents(page).forEach(target => {
+        target.dataset.pageEntrance = 'component';
+        automatic.push(target);
+      });
+      page.querySelectorAll(entranceSelector).forEach(target => {
         const timing = entrances[target.dataset.pageEntrance || target.dataset.grapheneEntrance];
         if (!timing) return;
         const from = { opacity: 0 };
@@ -87,7 +125,8 @@ export default function usePageReveals(root, enabled = true) {
         }
         const animation = target.animate([from, to], {
           duration: timing.duration,
-          delay: timing.delay + (Number(target.dataset.entranceOrder) || 0) * 110,
+          delay: timing.delay + (Number(target.dataset.entranceOrder) || 0) * 110 +
+            Math.min(Math.max(automatic.indexOf(target), 0), 4) * 65,
           easing: 'cubic-bezier(0.22, 1, 0.36, 1)',
           fill: 'backwards',
         });
@@ -141,6 +180,7 @@ export default function usePageReveals(root, enabled = true) {
       preference.removeEventListener('change', onPreferenceChange);
       delete page.dataset.pageOpening;
       delete page.dataset.grapheneOpening;
+      automatic.forEach(target => delete target.dataset.pageEntrance);
       page.querySelectorAll('[data-graphene-revealed]')
         .forEach(element => delete element.dataset.grapheneRevealed);
     };

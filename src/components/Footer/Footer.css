@@ -1,3 +1,8 @@
+/* Keep the shared footer horizontal across the legacy Home.css breakpoints. */
+.HomeLandingFooter.HomePage-M-T-F {
+  flex-direction: row;
+}
+
 .HomeLandingFooter.HomePage-M-T-F .HomeConsole {
   margin: 0;
   background:

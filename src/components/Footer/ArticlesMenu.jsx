@@ -40,7 +40,11 @@ export default function ArticlesMenu({ onNavigate, reducedMotion = false }) {
       ref={root}
       className="footer-articles"
       onPointerEnter={event => { if (event.pointerType === "mouse") setOpen(true); }}
-      onPointerLeave={() => { if (!root.current?.contains(document.activeElement)) setOpen(false); }}
+      onPointerLeave={event => {
+        // Touch pointers leave after lifting a finger, before the link's click.
+        // Only mouse hover should dismiss the panel here.
+        if (event.pointerType === "mouse" && !root.current?.contains(document.activeElement)) setOpen(false);
+      }}
       onBlur={event => { if (!event.currentTarget.contains(event.relatedTarget)) setOpen(false); }}
       onKeyDown={event => {
         if (event.key === "Escape") {
