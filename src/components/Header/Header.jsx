@@ -296,12 +296,11 @@ const Header = () => {
     visibility && (
       <animated.div
         style={containerAnimation}
-        inert={isMenuOpen ? true : undefined}
         className={`HomePage-M-T-H HomeLandingHeader${isMenuOpen ? " NavigationOpen" : ""}`}
       >
         <animated.div style={contactInfoAnimation1} className="MainHeader" />
 
-        <animated.div className="HomePage-M-T-L">
+        <animated.div className="HomePage-M-T-L" inert={isMenuOpen ? true : undefined}>
           <animated.div style={contactInfoAnimation3}>
             <animated.div ref={MainRef} style={MainStyle} className="header-identity">
               <button onClick={handleHomeClcik}>

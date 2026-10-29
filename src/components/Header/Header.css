@@ -115,7 +115,8 @@
   transition: translate 600ms cubic-bezier(.22, 1, .36, 1);
 }
 .HomeLandingHeader.NavigationOpen .HomePage-M-T-L { translate: 0 6px; }
-.HomeLandingHeader.NavigationOpen .HomePage-M-T-R { opacity: 0 !important; pointer-events: none !important; }
+.HomeLandingHeader.NavigationOpen .MenuIcon-T,
+.HomeLandingHeader.NavigationOpen .MenuIcon-B { background: var(--menu-accent, #edc7af); }
 .HomeLandingHeader .header-identity {
   display: flex;
   align-items: center;

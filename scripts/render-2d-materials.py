@@ -2,18 +2,17 @@
 
 Requires numpy and Pillow. Run from any directory with Python 3.
 These are finite, unrelaxed patches of periodic crystals, not molecular clusters.
-Displayed radii/colours are illustrative. Coordinates and bonds are not AI-inferred.
+Displayed radii/colours are illustrative. Coordinates and bonds are not AI-inferred. The MXene core is an illustrative unrelaxed model.
 """
 
 import json
 from pathlib import Path
 
 import numpy as np
-from PIL import Image
+from PIL import Image, ImageDraw, ImageFont
 
 OUTPUT = Path(__file__).resolve().parents[1] / "public/images/graphene"
 ASE = "https://ase.gitlab.io/ase/_modules/ase/build/surface.html"
-PHOSPHORENE = "https://doi.org/10.1103/PhysRevB.94.165419"
 
 
 def hexagonal(a):
@@ -22,7 +21,7 @@ def hexagonal(a):
 
 def crystals():
     cell = hexagonal(2.50)
-    yield dict(id="hbn", cell=cell, elements=["B", "N"],
+    yield dict(id="hbn", version=4, cell=cell, elements=["B", "N"],
                basis=np.array([[0, 0, 0], (2 * cell[0] + cell[1]) / 3]),
                cutoff=1.50, coordination={"B": 3, "N": 3}, repeat=(7, 7),
                elevation=76, azimuth=90, radii={"B": .32, "N": .32},
@@ -31,23 +30,27 @@ def crystals():
                description="Ideal planar BN honeycomb; representative a=2.50 angstrom. B and N alternate on the two sublattices.")
     cell = hexagonal(3.18)
     s = (2 * cell[0] + cell[1]) / 3
-    yield dict(id="mos2", cell=cell, elements=["Mo", "S", "S"],
+    yield dict(id="mos2", version=4, cell=cell, elements=["Mo", "S", "S"],
                basis=np.array([[0, 0, 0], s + [0, 0, 1.595], s - [0, 0, 1.595]]),
-               cutoff=2.50, coordination={"Mo": 6, "S": 3}, repeat=(5, 3),
-               elevation=5, azimuth=90, radii={"Mo": .43, "S": .38},
-               colours={"Mo": [132, 145, 154], "S": [212, 153, 94]},
+               cutoff=2.50, coordination={"Mo": 6, "S": 3}, repeat=(6, 5),
+               elevation=25, azimuth=28, radii={"Mo": .43, "S": .38},
+               colours={"Mo": [76, 171, 194], "S": [225, 190, 76]},
                sources=[ASE],
                description="Trigonal-prismatic 1H monolayer, the monolayer used by ASE mx2(kind='2H'). a=3.18 angstrom; S-plane separation=3.19 angstrom. Top/bottom S sites align in projection.")
-    a, c, b, u, v = 3.314, 4.376, 10.48, .08056, .10168
-    A, B = np.array([u * c, 0, v * b]), np.array([(.5 - u) * c, a / 2, v * b])
-    basis = np.array([A, B, -A, -B])
-    basis[:, :2] %= [c, a]
-    yield dict(id="phosphorene", cell=np.array([[c, 0, 0], [0, a, 0]]),
-               elements=["P"] * 4, basis=basis, cutoff=2.30,
-               coordination={"P": 3}, repeat=(4, 7), elevation=29, azimuth=4,
-               radii={"P": .40}, colours={"P": [196, 127, 88]},
-               sources=[PHOSPHORENE],
-               description="Black-phosphorus monolayer. Four-atom basis and constants from Paez et al., PRB 94, 165419 (2016), section II and table I. Two heights form a puckered honeycomb, not a flat graphene lattice.")
+    cell = hexagonal(3.05)
+    shift = (2 * cell[0] + cell[1]) / 3
+    # Five alternating close-packed Ti/C planes; a schematic unrelaxed bare core.
+    # Successive planes cycle through A/B/C sites; the central Ti is octahedral.
+    basis = np.array([[0, 0, -2.30], shift + [0, 0, -1.15],
+                      2 * shift, [0, 0, 1.15], shift + [0, 0, 2.30]])
+    yield dict(id="mxene", version=4, cell=cell, elements=["Ti", "C", "Ti", "C", "Ti"],
+               basis=basis, cutoff=2.25, coordination={"Ti": 3, "C": 6},
+               basis_coordination=[3, 6, 6, 6, 3], repeat=(6, 5),
+               elevation=21, azimuth=28, radii={"Ti": .43, "C": .29},
+               colours={"Ti": [76, 171, 194], "C": [192, 122, 81]},
+               sources=["https://doi.org/10.1002/adma.201102306"],
+               description="Illustrative unrelaxed Ti3C2 MXene core: alternating Ti-C-Ti-C-Ti atomic planes, a=3.05 angstrom and representative plane spacing=1.15 angstrom. Surface terminations omitted to expose the carbide core. Not a relaxed structure or measured atomic coordinates.")
+
 
 
 def validate(spec):
@@ -62,7 +65,7 @@ def validate(spec):
                     if 1e-7 < d < spec["cutoff"]:
                         neighbours.append((m, d))
         element = spec["elements"][n]
-        assert len(neighbours) == spec["coordination"][element], (spec["id"], n, neighbours)
+        assert len(neighbours) == spec.get("basis_coordination", [spec["coordination"][e] for e in spec["elements"]])[n], (spec["id"], n, neighbours)
         if spec["id"] != "phosphorene":
             assert all(spec["elements"][m] != element for m, _ in neighbours)
         counts.append({"element": element, "neighbours": len(neighbours)})
@@ -74,8 +77,8 @@ def validate(spec):
         assert np.allclose(basis[1, :2], basis[2, :2])
         assert np.allclose(basis[:, 2], [0, 1.595, -1.595])
     else:
-        assert np.allclose(lengths, [2.224, 2.244], atol=.001)
-        assert len(set(basis[:, 2])) == 2
+        assert spec["elements"] == ["Ti", "C", "Ti", "C", "Ti"]
+        assert len(set(basis[:, 2])) == 5
     return dict(periodic_neighbours=counts, nearest_bond_lengths_angstrom=lengths,
                 atomic_planes_angstrom=sorted(set(basis[:, 2].tolist())))
 
@@ -106,7 +109,7 @@ def patch(spec):
 def render(spec, positions, elements, bonds):
     # Orthographic, z-buffered ball-and-stick rendering with directional lighting.
     # Rendering changes only camera projection, never the relative atomic positions.
-    w, h = 1800, 1200
+    w, h = spec.get("canvas", (1800, 1050))
     yy, xx = np.mgrid[:h, :w]
     glow = np.exp(-(((xx - w * .48) / (w * .36)) ** 2 + ((yy - h * .5) / (h * .34)) ** 2))
     pixels = np.array([16, 14, 12], float) + glow[..., None] * np.array([13, 8, 4])
@@ -173,7 +176,7 @@ def render(spec, positions, elements, bonds):
         cylinder(camera[i], camera[j], scale * .065)
     for element, pos in zip(elements, camera):
         sphere(pos, spec["radii"][element] * scale, spec["colours"][element])
-    Image.fromarray(pixels.astype(np.uint8)).resize((1200, 800), Image.Resampling.LANCZOS).save(OUTPUT / f"beyond-{spec['id']}-v2.png", optimize=True)
+    return Image.fromarray(pixels.astype(np.uint8))
 
 
 def main():
@@ -182,9 +185,19 @@ def main():
     for spec in crystals():
         checks = validate(spec)
         positions, elements, bonds = patch(spec)
-        render(spec, positions, elements, bonds)
+        angled = render(spec, positions, elements, bonds).resize((1200, 700), Image.Resampling.LANCZOS)
+        side_spec = dict(spec, elevation=0, azimuth=90, canvas=(1800, 390))
+        side = render(side_spec, positions, elements, bonds).resize((1200, 260), Image.Resampling.LANCZOS)
+        composite = Image.new("RGB", (1200, 1000), (16, 14, 12))
+        composite.paste(angled, (0, 0)); composite.paste(side, (0, 740))
+        draw = ImageDraw.Draw(composite)
+        font = ImageFont.truetype("/System/Library/Fonts/Supplemental/Arial.ttf", 20)
+        draw.text((36, 20), "TOP VIEW" if spec["id"] == "hbn" else "ANGLED VIEW", fill=(188, 169, 148), font=font)
+        draw.line((36, 724, 1164, 724), fill=(54, 44, 35), width=1)
+        draw.text((36, 746), "SIDE VIEW", fill=(188, 169, 148), font=font)
+        composite.save(OUTPUT / f"beyond-{spec['id']}-v{spec.get('version', 2)}.png", optimize=True)
         xyz = [str(len(positions)), spec["description"]] + [f"{e} {p[0]:.7f} {p[1]:.7f} {p[2]:.7f}" for e, p in zip(elements, positions)]
-        (OUTPUT / f"beyond-{spec['id']}-v2.xyz").write_text("\n".join(xyz) + "\n")
+        (OUTPUT / f"beyond-{spec['id']}-v{spec.get('version', 2)}.xyz").write_text("\n".join(xyz) + "\n")
         report["materials"].append(dict(id=spec["id"], description=spec["description"], sources=spec["sources"],
             lattice_vectors=spec["cell"].tolist(), unit_cell_basis=spec["basis"].tolist(), unit_cell_elements=spec["elements"],
             validation=checks, rendered_atoms=len(positions), rendered_bonds=len(bonds)))

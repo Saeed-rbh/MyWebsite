@@ -65,8 +65,16 @@ function AppContent({ onRouteReady }) {
       {visibility && !isDashboard && !isCommercialization && <Mouse />}
 
       {/* Use one shared header and menu across the public portfolio pages. */}
-      {visibility && !isDashboard && <Header />}
-      {visibility && !isDashboard && <Menu />}
+      {visibility && !isDashboard && (
+        <div
+          role={isMenuOpen ? "dialog" : undefined}
+          aria-modal={isMenuOpen ? true : undefined}
+          aria-labelledby={isMenuOpen ? "portfolio-menu-title" : undefined}
+        >
+          <Header />
+          <Menu />
+        </div>
+      )}
       {visibility && !isDashboard && <Footer accent={isCommercialization ? "#0645ee" : "#d49d81"} />}
 
       <ErrorBoundary key={location.pathname} onError={onRouteReady}>

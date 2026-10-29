@@ -41,9 +41,11 @@ const MenuButton = ({
 
   return (
     <animated.button
+      id="portfolio-menu-toggle"
       type="button"
       aria-label={isMenuOpen ? "Close navigation" : "Open navigation"}
       aria-expanded={isMenuOpen}
+      aria-controls={isMenuOpen ? "portfolio-menu-panel" : undefined}
       ref={MenuRef}
       style={{ ...MenuStyle, ...entrance }}
       className="HomePage-M-T-R"

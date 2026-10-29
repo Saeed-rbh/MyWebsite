@@ -123,85 +123,97 @@
           1.595
         ]
       },
-      "rendered_atoms": 45,
-      "rendered_bonds": 70
+      "rendered_atoms": 90,
+      "rendered_bonds": 150
     },
     {
-      "id": "phosphorene",
-      "description": "Black-phosphorus monolayer. Four-atom basis and constants from Paez et al., PRB 94, 165419 (2016), section II and table I. Two heights form a puckered honeycomb, not a flat graphene lattice.",
+      "id": "mxene",
+      "description": "Illustrative unrelaxed Ti3C2 MXene core: alternating Ti-C-Ti-C-Ti atomic planes, a=3.05 angstrom and representative plane spacing=1.15 angstrom. Surface terminations omitted to expose the carbide core. Not a relaxed structure or measured atomic coordinates.",
       "sources": [
-        "https://doi.org/10.1103/PhysRevB.94.165419"
+        "https://doi.org/10.1002/adma.201102306"
       ],
       "lattice_vectors": [
         [
-          4.376,
+          3.05,
           0.0,
           0.0
         ],
         [
-          0.0,
-          3.314,
+          -1.525,
+          2.6413774815425377,
           0.0
         ]
       ],
       "unit_cell_basis": [
         [
-          0.35253056000000005,
           0.0,
-          1.0656064
-        ],
-        [
-          1.83546944,
-          1.657,
-          1.0656064
-        ],
-        [
-          4.02346944,
           0.0,
-          -1.0656064
+          -2.3
         ],
         [
-          2.5405305600000005,
-          1.657,
-          -1.0656064
+          1.5249999999999997,
+          0.8804591605141793,
+          -1.15
+        ],
+        [
+          3.0499999999999994,
+          1.7609183210283585,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.15
+        ],
+        [
+          1.5249999999999997,
+          0.8804591605141793,
+          2.3
         ]
       ],
       "unit_cell_elements": [
-        "P",
-        "P",
-        "P",
-        "P"
+        "Ti",
+        "C",
+        "Ti",
+        "C",
+        "Ti"
       ],
       "validation": {
         "periodic_neighbours": [
           {
-            "element": "P",
+            "element": "Ti",
             "neighbours": 3
           },
           {
-            "element": "P",
-            "neighbours": 3
+            "element": "C",
+            "neighbours": 6
           },
           {
-            "element": "P",
-            "neighbours": 3
+            "element": "Ti",
+            "neighbours": 6
           },
           {
-            "element": "P",
+            "element": "C",
+            "neighbours": 6
+          },
+          {
+            "element": "Ti",
             "neighbours": 3
           }
         ],
         "nearest_bond_lengths_angstrom": [
-          2.2237,
-          2.2448
+          2.1032
         ],
         "atomic_planes_angstrom": [
-          -1.0656064,
-          1.0656064
+          -2.3,
+          -1.15,
+          0.0,
+          1.15,
+          2.3
         ]
       },
-      "rendered_atoms": 112,
-      "rendered_bonds": 153
+      "rendered_atoms": 150,
+      "rendered_bonds": 286
     }
   ]
 }

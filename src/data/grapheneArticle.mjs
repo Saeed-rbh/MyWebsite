@@ -68,7 +68,7 @@ export const grapheneArticle = {
       ],
       "number": "04",
       "handoff": {
-        "text": "It carries charge and heat. What happens when light reaches it?",
+        "text": "What happens when light reaches the sheet?",
         "to": "graphene-transparency"
       }
     },
@@ -166,8 +166,8 @@ export const grapheneArticle = {
         2
       ],
       "handoff": {
-        "text": "From a pencil’s graphite to a material with a purpose.",
-        "to": "graphene-takeaways"
+        "text": "What if the job calls for a different kind of sheet?",
+        "to": "beyond-graphene"
       }
     }
   ],
@@ -335,7 +335,7 @@ export const grapheneArticle = {
     ],
     [
       "Liquid-phase exfoliation (LPE)",
-      "Liquid-phase exfoliation (LPE) starts by mixing graphite into a liquid. Shear from mixing, or ultrasound, helps separate the layers. The flakes remain dispersed in the liquid.",
+      "In this liquid-phase exfoliation (LPE) route, an immersed ultrasonic probe creates cavitation in a graphite suspension, helping separate the layers. The flakes remain dispersed in the liquid.",
       "Flakes for inks and mixtures; size, thickness and dispersion need control."
     ],
     [
@@ -356,88 +356,104 @@ export const grapheneArticle = {
   ],
   "sources": [
     {
-      "label": "University of Manchester, graphene, properties and discovery",
+      "label": "University of Manchester. Graphene: properties and discovery.",
       "url": "https://www.graphene.manchester.ac.uk/about/history/index.htm"
     },
     {
-      "label": "NIST, graphene and its electronic properties",
+      "label": "NIST. Graphene and its electronic properties.",
       "url": "https://www.nist.gov/programs-projects/graphene"
     },
     {
-      "label": "Soldano, Mahmood & Dujardin, Production, properties and potential of graphene",
+      "label": "Soldano, C., Mahmood, A. & Dujardin, E. (2010). Production, properties and potential of graphene. Carbon, 48, 2127–2150.",
       "url": "https://arxiv.org/abs/1002.0370"
     },
     {
-      "label": "Nair et al., optical transparency of suspended graphene (2008)",
+      "label": "Nair, R. R. et al. (2008). Universal dynamic conductivity and quantized visible opacity of suspended graphene. arXiv:0803.3718.",
       "url": "https://arxiv.org/abs/0803.3718"
     },
     {
-      "label": "Lee et al., elastic properties and intrinsic strength (2008)",
+      "label": "Lee, C. et al. (2008). Measurement of the elastic properties and intrinsic strength of monolayer graphene. Science, 321, 385–388.",
       "url": "https://doi.org/10.1126/science.1157996"
     },
     {
-      "label": "Reichardt & Wirtz, Raman spectroscopy of graphene",
+      "label": "Reichardt, S. & Wirtz, L. (2017). Raman spectroscopy of graphene. In Optical Properties of Graphene.",
       "url": "https://arxiv.org/abs/1703.06909"
     },
     {
-      "label": "Nika & Balandin, phonons and thermal transport",
+      "label": "Nika, D. L. & Balandin, A. A. (2017). Phonons and thermal transport in graphene and graphene-based materials. Reports on Progress in Physics, 80, 036502.",
       "url": "https://arxiv.org/abs/1606.00488"
     },
     {
-      "label": "NIST, structure, defects and scattering in graphene",
+      "label": "NIST. Structure, defects and scattering in graphene.",
       "url": "https://www.nist.gov/programs-projects/structure-defects-and-scattering-graphene"
     },
     {
-      "label": "Graphene Flagship, production routes",
+      "label": "Graphene Flagship. Production routes.",
       "url": "https://graphene-flagship.eu/materials/uses/production"
     },
     {
-      "label": "Xing, Z., Ju, Z., Zhao, Y. et al. (2016). One-pot hydrothermal synthesis of Nitrogen-doped graphene as high-performance anode materials for lithium ion batteries. Scientific Reports 6, 26146.",
+      "label": "Xing, Z. et al. (2016). One-pot hydrothermal synthesis of Nitrogen-doped graphene as high-performance anode materials for lithium ion batteries. Scientific Reports, 6, 26146.",
       "url": "https://doi.org/10.1038/srep26146"
     },
     {
-      "label": "Li, X., Ren, H., Chen, X. et al. (2015). Athermally photoreduced graphene oxides for three-dimensional holographic images. Nature Communications 6, 6984.",
+      "label": "Li, X. et al. (2015). Athermally photoreduced graphene oxides for three-dimensional holographic images. Nature Communications, 6, 6984.",
       "url": "https://doi.org/10.1038/ncomms7984"
     },
     {
-      "label": "Ahmed, Arabha, Gonzalez & Rizvi (2022), gas–graphene interactions during compressible-flow exfoliation",
+      "label": "Ahmed, S. et al. (2022). Interactions of gas particles with graphene during high-throughput compressible flow exfoliation: A Molecular Dynamics simulations study. The Journal of Physical Chemistry C.",
       "url": "https://doi.org/10.1021/acs.jpcc.2c00425"
     },
     {
-      "label": "Graphene Flagship, energy-storage research",
+      "label": "Graphene Flagship. Energy-storage research.",
       "url": "https://graphene-flagship.eu/focus/energy"
     },
     {
-      "label": "Graphene Flagship, composites and coatings",
+      "label": "Graphene Flagship. Composites and coatings.",
       "url": "https://graphene-flagship.eu/focus/composites"
     },
     {
-      "label": "Graphene Flagship, electronics and photonics",
+      "label": "Graphene Flagship. Electronics and photonics.",
       "url": "https://graphene-flagship.eu/focus/electronics-plus-photonics"
     },
     {
-      "label": "Kim, J. et al. (2017). Wearable smart sensor systems integrated on soft contact lenses for wireless ocular diagnostics. Nature Communications 8, 14997.",
+      "label": "Kim, J. et al. (2017). Wearable smart sensor systems integrated on soft contact lenses for wireless ocular diagnostics. Nature Communications, 8, 14997.",
       "url": "https://doi.org/10.1038/ncomms14997"
     },
     {
-      "label": "Kim, H. S. et al. (2016). Thermal conductivity of polymer composites with the geometrical characteristics of graphene nanoplatelets. Scientific Reports 6, 26825.",
+      "label": "Kim, H. S. et al. (2016). Thermal conductivity of polymer composites with the geometrical characteristics of graphene nanoplatelets. Scientific Reports, 6, 26825.",
       "url": "https://doi.org/10.1038/srep26825"
     },
     {
-      "label": "Han, H. et al. (2016). Functionalization mediates heat transport in graphene nanoflakes. Nature Communications 7, 11281.",
+      "label": "Han, H. et al. (2016). Functionalization mediates heat transport in graphene nanoflakes. Nature Communications, 7, 11281.",
       "url": "https://doi.org/10.1038/ncomms11281"
     },
     {
-      "label": "Dean et al. (2010), boron nitride substrates for high-quality graphene electronics",
+      "label": "Dean, C. R. et al. (2010). Boron nitride substrates for high-quality graphene electronics. Nature Nanotechnology, 5, 722–726.",
       "url": "https://arxiv.org/abs/1005.4917"
     },
     {
-      "label": "Radisavljevic et al. (2011), single-layer MoS₂ transistors",
+      "label": "Radisavljevic, B. et al. (2011). Single-layer MoS₂ transistors. Nature Nanotechnology, 6, 147–150.",
       "url": "https://www.nature.com/articles/nnano.2010.279"
     },
     {
-      "label": "University of Tokyo, bulk and edge states in the atomic-layer semiconductor phosphorene",
-      "url": "https://www.issp.u-tokyo.ac.jp/maincontents/highlight/2014/18_en.html"
+      "label": "Naguib, M. et al. (2011). Two-dimensional nanocrystals produced by exfoliation of Ti₃AlC₂. Advanced Materials, 23, 4248–4253.",
+      "url": "https://doi.org/10.1002/adma.201102306"
+    },
+    {
+      "label": "Arabha, S. et al. (2026). Free-Energy Mapping of Gas-Assisted Exfoliation Pathways for Graphene under Compressible Flow: Implications for High-Volume Nanocomposite Applications. ACS Applied Nano Materials.",
+      "url": "https://doi.org/10.1021/acsanm.6c01419"
+    },
+    {
+      "label": "Arabha, S. & Rajabpour, A. (2021). Thermo-mechanical properties of nitrogenated holey graphene (C2N): A comparison of machine-learning-based and classical interatomic potentials. International Journal of Heat and Mass Transfer.",
+      "url": "https://doi.org/10.1016/j.ijheatmasstransfer.2021.121589"
+    },
+    {
+      "label": "Arabha, S. & Rajabpour, A. (2020). Effect of planar torsional deformation on the thermal conductivity of 2D nanomaterials: A molecular dynamics study. Materials Today Communications.",
+      "url": "https://doi.org/10.1016/j.mtcomm.2019.100706"
+    },
+    {
+      "label": "Deng, Y. et al. (2017). Bio-inspired electrochemical corrosion coatings derived from graphene/natural lacquer composites. RSC Advances, 7, 45034–45044.",
+      "url": "https://doi.org/10.1039/C7RA08536B"
     }
   ],
   "faq": [
@@ -597,12 +613,12 @@ export const grapheneArticle = {
           "alt": "Mechanical exfoliation: Graphite stack → Peel with tape → Thin flake"
         },
         {
-          "src": "/images/graphene/exfoliation-liquid.png",
+          "src": "/images/graphene/exfoliation-liquid-tip-sonication.png",
           "title": "Liquid-phase exfoliation (LPE)",
-          "text": "Liquid-phase exfoliation (LPE) starts by mixing graphite into a liquid. Shear from mixing, or ultrasound, helps separate the layers. The flakes remain dispersed in the liquid.",
+          "text": "In this liquid-phase exfoliation (LPE) route, an immersed ultrasonic probe creates cavitation in a graphite suspension, helping separate the layers. The flakes remain dispersed in the liquid.",
           "stages": [
             "Graphite + liquid",
-            "Shear mixing (shown) or ultrasound",
+            "Tip sonication",
             "Dispersed flakes"
           ],
           "result": "Flakes for inks and mixtures; size, thickness and dispersion need control.",
@@ -610,7 +626,7 @@ export const grapheneArticle = {
           "width": 1536,
           "height": 1024,
           "generated": true,
-          "alt": "Liquid-phase exfoliation (LPE): Graphite + liquid → Mix or sonicate → Dispersed flakes"
+          "alt": "Liquid-phase exfoliation (LPE): Graphite + liquid → Tip sonication → Dispersed flakes"
         },
         {
           "src": "/images/graphene/exfoliation-chemical.png",
@@ -645,20 +661,20 @@ export const grapheneArticle = {
           "alt": "Chemical vapour deposition: carbon-containing gas enters a furnace, graphene grows on copper, and the film is transferred to a support."
         },
         {
-          "src": "/images/graphene/exfoliation-cfe.png",
+          "src": "/images/graphene/exfoliation-cfe-open-outlet.png",
           "title": "Compressible-flow exfoliation (CFE)",
           "text": "A fast gas stream interacts with layered particles in a nozzle. Gas–sheet interactions can drive sliding and separation of the layers.",
           "stages": [
             "Gas + layered particles",
             "Accelerate through nozzle",
-            "Collect processed flakes"
+            "Processed flakes"
           ],
           "result": "A route studied for processing layered powders. Gas conditions and particle behaviour matter; the output must be measured to establish its thickness and quality.",
           "source": 11,
           "width": 1536,
           "height": 1024,
           "generated": true,
-          "alt": "Compressible-flow exfoliation (CFE): Gas + layered particles → Accelerate through nozzle → Collect processed flakes"
+          "alt": "Compressible-flow exfoliation (CFE): gas carries layered particles through a nozzle; processed flakes leave the open nozzle outlet with the gas."
         }
       ],
       "takeaway": "Read each route from left to right. CFE and liquid-phase exfoliation separate existing layers; CVD grows a film. These schematics show mechanisms, not operating recipes or guaranteed monolayer output. The generated illustrations simplify equipment and atomic structures; they are not experimental images. In CFE, the inset illustrates a possible separation mechanism, not a measured location inside the nozzle."
@@ -698,7 +714,8 @@ export const grapheneArticle = {
       "title": "What processed graphene sheets look like under a microscope",
       "kind": "Electron microscopy · Experimental",
       "alt": "TEM images of crumpled nitrogen-doped graphene nanosheets and a high-resolution view of stacked layers.",
-      "caption": "These electron-microscope images show nitrogen-doped graphene made by Xing and colleagues. The pictured material contains several stacked layers.",
+      "caption": "Nitrogen-doped graphene: folded sheets (left) and stacked layers (right).",
+      "source": 9,
       "reading": "Panel (a) shows sheet shape; panel (b) shows layer spacing. The scale bars are in nanometres (nm), where one nanometre is one billionth of a metre. The paper describes approximately ten layers in the imaged stack.",
       "credit": "Xing, Z., Ju, Z., Zhao, Y. et al. (2016). One-pot hydrothermal synthesis of Nitrogen-doped graphene as high-performance anode materials for lithium ion batteries. Scientific Reports 6, 26146. Figure 3.",
       "url": "https://doi.org/10.1038/srep26146",
@@ -713,6 +730,7 @@ export const grapheneArticle = {
     },
     {
       "chapter": "measuring-graphene",
+      "source": 10,
       "src": "/images/graphene/literature/li-2015-characterization.jpg",
       "title": "Different measurements tell different parts of the story",
       "kind": "Raman & XPS · Experimental",
@@ -738,9 +756,10 @@ export const grapheneArticle = {
       "name": "Hexagonal boron nitride",
       "text": "An insulating honeycomb of alternating boron and nitrogen atoms.",
       "source": 18,
-      "src": "/images/graphene/beyond-hbn-v2.png",
+      "src": "/images/graphene/beyond-hbn-v4.png",
       "alt": "Atomic-coordinate render of planar hBN: copper boron and cream nitrogen alternate around each hexagonal ring.",
-      "legend": "B · copper / N · cream"
+      "legend": "A flat honeycomb, seen from above and from the side.",
+      "elements": [{"symbol":"B","name":"Boron","color":"#bd734b","colorName":"Copper"},{"symbol":"N","name":"Nitrogen","color":"#e5d1b2","colorName":"Cream"}]
     },
     {
       "id": "mos2",
@@ -748,19 +767,21 @@ export const grapheneArticle = {
       "name": "Molybdenum disulfide",
       "text": "A semiconducting monolayer with molybdenum between two sulfur planes.",
       "source": 19,
-      "src": "/images/graphene/beyond-mos2-v2.png",
-      "alt": "Atomic-coordinate render of a trigonal-prismatic MoS₂ monolayer: silver molybdenum lies between two aligned gold sulfur planes, with only Mo–S bonds shown.",
-      "legend": "Mo · silver / S · gold"
+      "src": "/images/graphene/beyond-mos2-v4.png",
+      "alt": "Angled and side views of a trigonal-prismatic MoS₂ monolayer: blue molybdenum lies between two aligned gold sulfur planes, with only Mo–S bonds shown.",
+      "legend": "One S–Mo–S sheet: sulfur above and below molybdenum.",
+      "elements": [{"symbol":"Mo","name":"Molybdenum","color":"#4cabc2","colorName":"Blue"},{"symbol":"S","name":"Sulfur","color":"#e1be4c","colorName":"Gold"}]
     },
     {
-      "id": "phosphorene",
-      "formula": "P",
-      "name": "Phosphorene",
-      "text": "A puckered phosphorus sheet with direction-dependent electronic properties.",
+      "id": "mxene",
+      "formula": "Ti₃C₂Tₓ",
+      "name": "MXene",
+      "text": "A family of 2D carbides and nitrides. Titanium carbide (Ti₃C₂Tₓ) is one example; surface groups influence its properties.",
       "source": 20,
-      "src": "/images/graphene/beyond-phosphorene-v2.png",
-      "alt": "Atomic-coordinate render of black phosphorene with phosphorus atoms at two heights, joined into a puckered honeycomb with three neighbours per interior atom.",
-      "legend": "P · copper"
+      "src": "/images/graphene/beyond-mxene-v4.png",
+      "alt": "Angled and side views of an illustrative Ti3C2 MXene core: blue titanium and copper carbon form five alternating atomic planes; surface terminations are omitted.",
+      "legend": "Ti₃C₂ core: five atomic planes. Surface groups omitted.",
+      "elements": [{"symbol":"Ti","name":"Titanium","color":"#4cabc2","colorName":"Blue"},{"symbol":"C","name":"Carbon","color":"#c07a51","colorName":"Copper"}]
     }
   ]
 };

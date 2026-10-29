@@ -47,7 +47,7 @@ export function openingComponents(page) {
   return selected;
 }
 
-export default function usePageReveals(root, enabled = true) {
+export default function usePageReveals(root, enabled = true, profile = null) {
   useLayoutEffect(() => {
     const page = root.current;
     if (!enabled || !page || !Element.prototype.animate) return;
@@ -82,12 +82,12 @@ export default function usePageReveals(root, enabled = true) {
           if (!isIntersecting) return;
           observer.unobserve(target);
           target.dataset.grapheneRevealed = 'true';
-          const animation = target.animate([
-            { opacity: 0.25, transform: 'translateY(18px)' },
-            { opacity: 1, transform: 'translateY(0)' },
-          ], {
-            duration: 650,
-            delay: Math.min(Number(target.dataset.grapheneReveal) || 0, 4) * 75,
+          const frames = profile?.distance === 0
+            ? [{ opacity: profile.opacity }, { opacity: 1 }]
+            : [{ opacity: profile?.opacity ?? .25, transform: `translateY(${profile?.distance ?? 18}px)` }, { opacity: 1, transform: 'translateY(0)' }];
+          const animation = target.animate(frames, {
+            duration: profile?.duration ?? 650,
+            delay: Math.min(Number(target.dataset.grapheneReveal) || 0, profile ? 3 : 4) * (profile?.stagger ?? 75),
             easing: 'cubic-bezier(0.22, 1, 0.36, 1)',
             fill: 'backwards',
           });
@@ -103,6 +103,7 @@ export default function usePageReveals(root, enabled = true) {
     // Fragment links go straight to their content without replaying the hero.
     if (!preference.matches && !window.location.hash) {
       openingComponents(page).forEach(target => {
+        if (profile && (target.closest('[data-graphene-reveal], [data-scroll-fade]') || target.querySelector('[data-graphene-reveal], [data-scroll-fade]'))) return;
         target.dataset.pageEntrance = 'component';
         automatic.push(target);
       });
@@ -184,5 +185,5 @@ export default function usePageReveals(root, enabled = true) {
       page.querySelectorAll('[data-graphene-revealed]')
         .forEach(element => delete element.dataset.grapheneRevealed);
     };
-  }, [root, enabled]);
+  }, [root, enabled, profile]);
 }

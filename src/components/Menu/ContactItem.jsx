@@ -29,18 +29,18 @@ const ContactItem = () => {
 
   return (
     <section className={styles.contacts} aria-labelledby="menu-contact-title">
-      <p className={styles.eyebrow}>LET’S TALK</p>
+      <p className={styles.eyebrow}><WordReveal text="LET’S TALK" delay={460} /></p>
       <h3 id="menu-contact-title"><WordReveal text="What are you" delay={540} /><br /> <WordReveal text="working on?" delay={670} /></h3>
       <div className={styles.contactGroups}>
         {categories.map((category, index) => (
-          <div className={styles.contactGroup} key={category} style={{ "--item-delay": `${240 + index * 65}ms` }}>
-            <h4>{categoryLabels[category] || category}</h4>
+          <div className={styles.contactGroup} key={category} style={{ "--item-delay": `${540 + Math.min(index, 4) * 65}ms` }}>
+            <h4><WordReveal text={categoryLabels[category] || category} delay={540 + Math.min(index, 4) * 65} /></h4>
             {items.filter(item => item.category === category).map((item, itemIndex) => {
               const href = contactHref(item);
               const external = /^https?:/i.test(href);
               return (
                 <a key={item.id || `${category}-${itemIndex}`} href={href} target={external ? "_blank" : undefined} rel={external ? "noopener noreferrer" : undefined}>
-                  {item.info}
+                  <WordReveal text={item.info || ""} delay={640 + Math.min(index, 4) * 65 + Math.min(itemIndex, 4) * 60} />
                 </a>
               );
             })}

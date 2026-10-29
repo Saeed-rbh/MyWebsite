@@ -27,6 +27,7 @@ const Footer = ({ accent = "#d49d81" }) => {
 
   const [screenWidth, setScreenWidth] = useState(window.innerWidth);
   const [isCalendlyOpen, setIsCalendlyOpen] = useState(false);
+  const [isScrollHidden, setIsScrollHidden] = useState(false);
   const [reducedMotion, setReducedMotion] = useState(
     () => window.matchMedia("(prefers-reduced-motion: reduce)").matches
   );
@@ -45,6 +46,30 @@ const Footer = ({ accent = "#d49d81" }) => {
   const introComplete = useRef(false);
   const [isMouseHover, setMouseHover] = useState([false, null, null]);
   const [isHoveredJournal, setIsHoveredJournal] = useState(false);
+
+  useEffect(() => {
+    setIsScrollHidden(false);
+    const positions = new WeakMap();
+    const handleScroll = (event) => {
+      const container = event.target === document ? document.scrollingElement : event.target;
+      // Ignore horizontal strips, menus, and small independently scrolling panels.
+      if (!(container instanceof HTMLElement) ||
+          !container.closest('[data-route-motion-root]') ||
+          container.clientHeight < window.innerHeight * .5) return;
+      const top = Math.max(0, Math.min(container.scrollTop, container.scrollHeight - container.clientHeight));
+      const previous = positions.get(container) ?? { top: 0, travel: 0 };
+      const delta = top - previous.top;
+      const travel = Math.sign(delta) === Math.sign(previous.travel) ? previous.travel + delta : delta;
+      positions.set(container, { top, travel });
+      if (isMenuOpen || isCalendlyOpen || inkRef.current?.contains(document.activeElement)) return;
+      if (top <= 24 || travel <= -10) setIsScrollHidden(false);
+      else if (top > 80 && travel >= 10) setIsScrollHidden(true);
+    };
+    document.addEventListener('scroll', handleScroll, { capture: true, passive: true });
+    return () => document.removeEventListener('scroll', handleScroll, true);
+  }, [location.pathname, isMenuOpen, isCalendlyOpen, visibility]);
+
+  const footerHiddenClass = isScrollHidden ? ' footer-scroll-hidden' : '';
 
   const navigateTo = (path) => {
     dispatch(updateCurrentPage(path));
@@ -142,7 +167,7 @@ const Footer = ({ accent = "#d49d81" }) => {
   return (
     visibility && (
       <>
-      <div ref={glassRef} className="HomePage-M-T-F HomeLandingFooter footer-glass-layer" aria-hidden="true">
+      <div ref={glassRef} className={`HomePage-M-T-F HomeLandingFooter footer-glass-layer${footerHiddenClass}`} aria-hidden="true">
         <animated.div className="HomeConsole" style={{ ...contactInfoOpenSpring,
           "--footer-pill-width": contactInfoOpenSpring.width.to(value => `${value}px`),
           "--footer-pill-height": contactInfoOpenSpring.height.to(value => `${value}px`),
@@ -152,7 +177,7 @@ const Footer = ({ accent = "#d49d81" }) => {
           transform: actionPillSpring.separation.to(value => `translate3d(${-46 * (1 - value)}px, 0, 0) scale(${.82 + .18 * value}, ${.78 + .22 * value})`),
         }} />}
       </div>
-      <div ref={inkRef} className="HomePage-M-T-F HomeLandingFooter footer-ink-layer" inert={isMenuOpen ? true : undefined}>
+      <div ref={inkRef} className={`HomePage-M-T-F HomeLandingFooter footer-ink-layer${footerHiddenClass}`} inert={isMenuOpen || isScrollHidden ? true : undefined} aria-hidden={isScrollHidden || undefined}>
         <PopupModal
           url="https://calendly.com/arabha-yorku/30min"
           onModalClose={() => setIsCalendlyOpen(false)}
