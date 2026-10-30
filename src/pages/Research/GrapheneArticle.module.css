@@ -1495,3 +1495,32 @@
 @media(forced-colors:active) {
  .headingAccent { background:none; color:CanvasText; }
 }
+
+/* Our route: an open feature, with the mechanism beside its advantages. */
+.productionMethod[data-featured] { grid-column:1/-1; border-top-color:#d49d8180; padding-top:32px; }
+.productionMethod[data-featured] .productionVisual { width:100%; }
+.productionMethod[data-featured] header { margin-bottom:24px; }
+.productionMethod[data-featured] h4 { text-wrap:balance; }
+.routeMechanism { max-width:62ch; margin:18px 0 0; font-size:13px; line-height:1.85; color:#bfb1a4; }
+.routeBenefits { margin:0 0 28px; }
+.routeBenefits h5 { margin:0 0 22px; color:#e9b594; font:500 11px/1.6 'Rubik',sans-serif; letter-spacing:.12em; text-transform:uppercase; }
+.routeBenefits dl { margin:0; display:grid; gap:24px; }
+.routeBenefits dl > div { border-top:1px solid #d49d8130; padding-top:16px; }
+.routeBenefits dt { margin-bottom:9px; color:#f2dfcd; font:400 23px/1.2 'DM Serif Display',serif; text-wrap:balance; }
+.routeBenefits dd { margin:0; color:#c9bfb5; font-size:13px; line-height:1.85; }
+.productionMethod[data-featured] .routeResult { margin-top:0; padding-top:18px; }
+@media(min-width:901px) {
+ .productionMethod[data-featured] { grid-template-columns:minmax(0,1.2fr) minmax(0,1fr); align-items:start; gap:40px; }
+ .productionMethod[data-featured] .productionBody { padding-top:8px; }
+ .productionMethod[data-featured] .productionVisual { margin-bottom:0; }
+}
+@media(min-width:601px) and (max-width:900px) {
+ .productionMethod[data-featured] .routeBenefits dl { grid-template-columns:repeat(3,minmax(0,1fr)); gap:22px; }
+ .productionMethod[data-featured] .routeBenefits dt { font-size:21px; }
+ .productionMethod[data-featured] .productionVisual { margin-bottom:32px; }
+}
+@media(max-width:600px) {
+ .productionMethod[data-featured] { padding-top:24px; }
+ .routeBenefits dl { gap:20px; }
+ .routeBenefits dt { font-size:22px; }
+}

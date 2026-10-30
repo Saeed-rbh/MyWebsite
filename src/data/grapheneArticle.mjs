@@ -454,6 +454,10 @@ export const grapheneArticle = {
     {
       "label": "Deng, Y. et al. (2017). Bio-inspired electrochemical corrosion coatings derived from graphene/natural lacquer composites. RSC Advances, 7, 45034–45044.",
       "url": "https://doi.org/10.1039/C7RA08536B"
+    },
+    {
+      "label": "Rizvi, R. et al. (2018). High-Throughput Continuous Production of Shear-Exfoliated 2D Layered Materials using Compressible Flows. Advanced Materials, 30, 1800200.",
+      "url": "https://doi.org/10.1002/adma.201800200"
     }
   ],
   "faq": [
@@ -663,13 +667,19 @@ export const grapheneArticle = {
         {
           "src": "/images/graphene/exfoliation-cfe-open-outlet.png",
           "title": "Compressible-flow exfoliation (CFE)",
+          "featured": true,
+          "benefits": [
+            { "title": "Fast, continuous processing", "text": "A flowing gas carries layered particles through the process, making CFE attractive for high-throughput production.", "source": 25 },
+            { "title": "Potential for fewer defects", "text": "The original study reports reduced defect formation as an advantage over some existing exfoliation routes.", "source": 25 },
+            { "title": "A route beyond graphene", "text": "CFE has also exfoliated hexagonal boron nitride, showing its potential for a wider family of layered materials.", "source": 25 }
+          ],
           "text": "A fast gas stream interacts with layered particles in a nozzle. Gas–sheet interactions can drive sliding and separation of the layers.",
           "stages": [
             "Gas + layered particles",
             "Accelerate through nozzle",
             "Processed flakes"
           ],
-          "result": "A route studied for processing layered powders. Gas conditions and particle behaviour matter; the output must be measured to establish its thickness and quality.",
+          "result": "Yield, layer thickness and flake quality still depend on the feedstock and gas conditions. These must be measured for the intended application.",
           "source": 11,
           "width": 1536,
           "height": 1024,
