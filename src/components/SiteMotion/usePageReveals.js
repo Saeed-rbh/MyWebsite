@@ -47,7 +47,7 @@ export function openingComponents(page) {
   return selected;
 }
 
-export default function usePageReveals(root, enabled = true, profile = null) {
+export default function usePageReveals(root, enabled = true, profile = null, readyToEnter = true) {
   useLayoutEffect(() => {
     const page = root.current;
     if (!enabled || !page || !Element.prototype.animate) return;
@@ -153,7 +153,9 @@ export default function usePageReveals(root, enabled = true, profile = null) {
     };
     const curtain = page.closest('.PageTransitionContent');
     const loader = document.getElementById('Intro');
-    const entranceReady = () => !document.getElementById('Intro') &&
+    // The initial landing sequence also waits for React's loader handoff. DOM
+    // observers alone can miss a loader mounted in the same commit as the page.
+    const entranceReady = () => readyToEnter && !document.getElementById('Intro') &&
       (!curtain || ['idle', 'entering'].includes(curtain.dataset.transitionPhase));
     if (opening.length && !entranceReady()) {
       setOpening('waiting');
@@ -185,5 +187,5 @@ export default function usePageReveals(root, enabled = true, profile = null) {
       page.querySelectorAll('[data-graphene-revealed]')
         .forEach(element => delete element.dataset.grapheneRevealed);
     };
-  }, [root, enabled, profile]);
+  }, [root, enabled, profile, readyToEnter]);
 }

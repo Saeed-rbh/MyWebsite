@@ -9,7 +9,7 @@ import { popupsData } from "../../data/homePopupsData";
 
 import { useSelector } from "react-redux";
 
-const HomePage = () => {
+const HomePage = ({ entranceReady = true }) => {
   const { visibility } = useSelector((state) => state.ui);
   const [popupOpen, setPopupOpen] = useState(false);
   
@@ -18,7 +18,7 @@ const HomePage = () => {
   const [originRect, setOriginRect] = useState(null);
   const nameRef = useRef(null);
   const pageRef = useRef(null);
-  usePageReveals(pageRef);
+  usePageReveals(pageRef, true, null, entranceReady);
 
   useEffect(() => {
     if (!visibility || !nameRef.current) return;

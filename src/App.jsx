@@ -1,5 +1,5 @@
 import "./App.css";
-import React, { lazy, Suspense, useEffect, useState } from "react";
+import React, { lazy, Suspense, useCallback, useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { BrowserRouter as Router, Navigate, Route, Routes, useLocation } from "react-router-dom";
 import store from "./store/configureStore";
@@ -36,7 +36,7 @@ function RouteReady({ onReady }) {
   return null;
 }
 
-function AppContent({ onRouteReady }) {
+function AppContent({ onRouteReady, introComplete }) {
   useUpdateVariable();
   const { visibility, isMenuOpen } = useSelector((state) => state.ui);
   const location = useLocation();
@@ -65,7 +65,7 @@ function AppContent({ onRouteReady }) {
       {visibility && !isDashboard && !isCommercialization && <Mouse />}
 
       {/* Use one shared header and menu across the public portfolio pages. */}
-      {visibility && !isDashboard && (
+      {visibility && introComplete && !isDashboard && (
         <div
           role={isMenuOpen ? "dialog" : undefined}
           aria-modal={isMenuOpen ? true : undefined}
@@ -75,13 +75,13 @@ function AppContent({ onRouteReady }) {
           <Menu />
         </div>
       )}
-      {visibility && !isDashboard && <Footer accent={isCommercialization ? "#0645ee" : "#d49d81"} />}
+      {visibility && introComplete && !isDashboard && <Footer accent={isCommercialization ? "#0645ee" : "#d49d81"} />}
 
       <ErrorBoundary key={location.pathname} onError={onRouteReady}>
           <Suspense fallback={null}>
             <div key={location.pathname} className="RouteMotionFrame" data-route-motion-root inert={isMenuOpen ? true : undefined}>
                 <Routes location={location}>
-                  <Route exact path="/" element={<HomePage />} />
+                  <Route exact path="/" element={<HomePage entranceReady={introComplete} />} />
                   <Route path="/venture" element={<Commercialization />} />
                   <Route path="/commercialization" element={<Navigate to={`/venture${location.search}${location.hash}`} replace />} />
                   <Route path="/R&D-Portfolio" element={<WorkStory />} />
@@ -109,14 +109,16 @@ function AppContent({ onRouteReady }) {
 
 function App() {
   const [routeReady, setRouteReady] = useState(false);
+  const [introComplete, setIntroComplete] = useState(false);
+  const completeIntro = useCallback(() => setIntroComplete(true), []);
 
   return (
     <HelmetProvider>
       <Router store={store}>
-        <Loader routeReady={routeReady} />
+        <Loader routeReady={routeReady} onComplete={completeIntro} />
         {/*<ScrollToNavigate /> {/* Scroll/Drag Detector */}
         <PageTransition onInitialReady={setRouteReady}>
-          {(onReady) => <AppContent onRouteReady={onReady} />}
+          {(onReady) => <AppContent onRouteReady={onReady} introComplete={introComplete} />}
         </PageTransition>
       </Router>
     </HelmetProvider>

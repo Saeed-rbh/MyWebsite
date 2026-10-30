@@ -10,7 +10,7 @@ const MINIMUM_DISPLAY_TIME = 1150;
 const CONTENT_EXIT_TIME = 220;
 const EXIT_TIME = 500;
 
-const Loader = ({ routeReady }) => {
+const Loader = ({ routeReady, onComplete }) => {
   const dispatch = useDispatch();
   const visibility = useSelector((state) => state.ui.visibility);
   const [introSeen] = useState(() => hasSeenIntro() || window.location.pathname !== "/");
@@ -22,6 +22,10 @@ const Loader = ({ routeReady }) => {
   const [reducedMotion] = useState(() => window.matchMedia("(prefers-reduced-motion: reduce)").matches);
 
   const dataReady = useSelector((state) => state.data.academicData.length > 0);
+
+  useEffect(() => {
+    if (!showLoader) onComplete?.();
+  }, [showLoader, onComplete]);
 
   useEffect(() => {
     if (introSeen) markIntroSeen();
