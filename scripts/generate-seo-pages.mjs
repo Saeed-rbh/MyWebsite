@@ -1,3 +1,4 @@
+import { metrologyArticle } from '../src/data/metrologyArticle.mjs';
 import { atomsArticle } from '../src/data/atomsArticle.mjs';
 import { readFileSync, writeFileSync, mkdirSync } from "node:fs";
 import { join, resolve } from "node:path";
@@ -26,10 +27,25 @@ const link = (href, label) => `<a href="${escape(href)}">${escape(label)}</a>`;
 const json = (value) => JSON.stringify(value).replaceAll("<", "\\u003c");
 const nav = `<nav aria-label="Main navigation">${[
   ["/", "Home"], ["/R&D-Portfolio", "R&D portfolio"], ["/AcademicCV", "Academic CV"],
-  ["/venture", "Venture"], ["/journal/", "Journal"],
+  ["/venture", "Venture"], ["/journal/", "Journal"], ["/metrology", "Metrology"],
 ].map(([url, label]) => link(url, label)).join("")}</nav>`;
 
 const pages = [
+  {
+    path: '/metrology',
+    title: `${metrologyArticle.title} | Saeed Arabha`,
+    description: metrologyArticle.description,
+    type: 'article',
+    schema: schemaFor('/metrology'),
+    body: `<h1>${escape(metrologyArticle.title)}</h1>${paragraph(metrologyArticle.intro)}
+      ${metrologyArticle.sections.map(s => `<section id="${s.id}"><h2>${escape(s.title)}</h2>${s.paragraphs.map(paragraph).join('')}${s.resultParagraphs?.length ? '<h3>My thesis results</h3>' + s.resultParagraphs.map(paragraph).join('') + (s.technicalDetails?.length ? '<details><summary>Go deeper: measurements and scientific details</summary>' + s.technicalDetails.map(paragraph).join('') + '</details>' : '') : s.method ? paragraph('No original thesis result is presented here for this method.') : ''}</section>`).join('')}
+      <section><h2>The instruments</h2>${metrologyArticle.instruments.map(i => `<h3>${escape(i.name)}</h3>${i.illustration ? `<figure><img src="${i.illustration.src}" width="${i.illustration.width}" height="${i.illustration.height}" alt="${escape(i.illustration.alt)}" loading="lazy"><figcaption>${escape(i.illustration.caption)}</figcaption></figure>` : ''}${paragraph(i.question)}${paragraph(i.howItWorks)}${paragraph(i.output)}${paragraph(i.limitation)}${paragraph(i.thesisRole)}`).join('')}</section>
+      <section><h2>Measured MoS₂ Raman peak separation</h2><table><thead><tr><th>Sample</th><th>Δ (cm⁻¹)</th></tr></thead><tbody>${metrologyArticle.results[0].data.map(d => `<tr><th>${escape(d.sample)}</th><td>${d.value}</td></tr>`).join('')}</tbody></table>${paragraph(metrologyArticle.results[0].interpretation)}</section>
+      <section><h2>Original thesis figures</h2>${['graphene-tem','hbn-tem','mos2-tem','uv-vis-calibration','mos2-xps','graphene-raman','hbn-raman','mos2-raman'].map(name => `<figure><img src="/images/metrology/${name}.png" alt="${escape(name.replaceAll('-',' '))}: original dissertation figure" loading="lazy"></figure>`).join('')}</section>
+      <section><h2>Key takeaways</h2>${paragraph(metrologyArticle.conclusion)}${metrologyArticle.takeaways.map(paragraph).join('')}</section>
+      <section><h2>Sources</h2>${metrologyArticle.sources.slice(1).map(s => s.url ? link(s.url,s.title) : paragraph(s.title + '. ' + s.detail)).join('')}</section>
+      ${link('/Graphene','Meet graphene')}${link('/journal/','Read my research')}`,
+  },
   {
     path: '/simulate-atoms', title: `${atomsArticle.title} | Saeed Arabha`, description: atomsArticle.description,
     type: 'article', schema: schemaFor('/simulate-atoms'),

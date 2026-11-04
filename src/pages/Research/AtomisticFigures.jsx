@@ -1,3 +1,4 @@
+import ReferenceLink from './ReferenceLink';
 import React, { useState } from 'react';
 import { motion, useReducedMotion } from 'motion/react';
 import { atomsArticle } from '../../data/atomsArticle.mjs';
@@ -51,7 +52,7 @@ export function AtomisticIllustration({ chapter }) {
       <a className={styles.imageLink} data-graphene-reveal="0" href={`/images/atoms/${item.image}.jpg`} target="_blank" rel="noopener noreferrer" aria-label={`Enlarge illustration: ${item.title}`}><img src={`/images/atoms/${item.image}.jpg`} width="1536" height="1024" alt={item.alt} loading="lazy" decoding="async"/><span className={styles.imageHint} aria-hidden="true">View illustration ↗</span></a>
       <ol className={styles.imageExplanations}>{item.steps.map((step,index) => <li key={step.title} data-graphene-reveal={index + 1}><span className={styles.eyebrow}>Follow 0{index + 1}</span><h4>{step.title}</h4><p>{step.text}</p></li>)}</ol>
     </div>
-    <figcaption>{item.caption} <a href={atomsArticle.sources[item.source].url} aria-label={`Source: ${atomsArticle.sources[item.source].label}`}>[{item.source + 1}]</a></figcaption>
+    <figcaption>{item.caption} <ReferenceLink number={item.source + 1} aria-label={`Reference ${item.source + 1}: ${atomsArticle.sources[item.source].label}`} /></figcaption>
   </figure>;
 }
 

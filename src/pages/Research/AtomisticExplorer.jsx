@@ -1,6 +1,7 @@
 import React from 'react';
 import ParticleExplorer from './ParticleExplorer';
 import WaterExplorer from './WaterExplorer';
+import SimulationScenario from './SimulationScenario';
 import {atomsArticle} from '../../data/atomsArticle.mjs';
 import styles from './GrapheneArticle.module.css';
 import s from './Atoms.module.css';
@@ -18,7 +19,9 @@ export default function AtomisticExplorer({ system, setSystem, onResearch }) {
       <div><span className={styles.eyebrow}>Live simulation</span><h2 id="materials-explorer-title">Atoms in motion.</h2></div>
       <div className={s.phaseSelector} role="group" aria-label="Choose an atomistic simulation">{atomsArticle.simulationExamples.map(example => <button type="button" key={example.id} aria-pressed={system === example.id} aria-controls="material-simulation" onClick={() => setSystem(example.id)}><SystemSketch kind={example.id}/><span>{example.label}</span></button>)}</div>
     </header>
+    <p className={s.experimentQuestion}>{selected.question}</p>
     <div id="material-simulation" key={system}>{system === 'water' ? <WaterExplorer/> : <ParticleExplorer kind={system}/>}</div>
+    <details className={s.experimentGuide}><summary>Try this comparison</summary><SimulationScenario example={selected} /><p>{selected.boundary}</p></details>
     <div className={s.simulationFootnote}><span>Illustrative 2D models · Motion calculated from forces</span><a href="#simulation-papers" onClick={() => onResearch(selected.researchIndex)}>Related research ↗</a></div>
   </section>;
 }

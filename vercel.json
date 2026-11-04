@@ -62,6 +62,10 @@
     ],
     "rewrites": [
         {
+            "source": "/metrology",
+            "destination": "/metrology/index.html"
+        },
+        {
             "source": "/simulate-atoms",
             "destination": "/simulate-atoms/index.html"
         },

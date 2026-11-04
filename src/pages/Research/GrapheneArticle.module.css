@@ -1524,3 +1524,10 @@
  .routeBenefits dl { gap:20px; }
  .routeBenefits dt { font-size:22px; }
 }
+
+.sources li[id] { scroll-margin-top:164px; }
+.sources li[id]:focus { outline:1px solid #d49d8166; outline-offset:5px; }
+
+.sources .backToText { display:inline-block; margin-left:8px; font-size:10px; color:#ad9f93; text-decoration:none; white-space:nowrap; }
+.sources .backToText:hover,.sources .backToText:focus-visible { color:#f6dfc5; text-decoration:underline; }
+a[id^="citation-"] { scroll-margin-top:180px; }

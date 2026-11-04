@@ -1,3 +1,4 @@
+import { metrologyArticle } from './metrologyArticle.mjs';
 import { atomsArticle } from './atomsArticle.mjs';
 import { grapheneArticle } from './grapheneArticle.mjs';
 export const siteUrl = 'https://www.saeedarabha.com';
@@ -16,6 +17,7 @@ export const commercializationSeo = {
 };
 export function canonicalPath(path) {
   if (path.toLowerCase().replace(/\/$/, '') === '/simulate-atoms') return '/simulate-atoms';
+  if (path.toLowerCase().replace(/\/$/, '') === '/metrology') return '/metrology';
   if (path.toLowerCase().replace(/\/$/, '') === '/graphene') return '/Graphene';
   if (path.toLowerCase().replace(/\/$/, '') === '/academiccv') return '/AcademicCV';
   if (['/commercialization', '/commercialization/', '/venture/'].includes(path)) return '/venture';
@@ -27,6 +29,7 @@ export function schemaFor(path) {
     { '@type': 'ProfilePage', '@id': `${siteUrl}/#profile`, url: `${siteUrl}/`, name: 'Saeed Arabha | Materials Scientist & Researcher', mainEntity: { '@id': person['@id'] }, isPartOf: { '@id': website['@id'] } },
   ] };
   if (canonicalPath(path) === '/simulate-atoms') return { '@context': 'https://schema.org', '@type': 'Article', headline: atomsArticle.title, description: atomsArticle.description, author: person, mainEntityOfPage: `${siteUrl}/simulate-atoms`, citation: atomsArticle.sources.map(s => s.url) };
+  if (canonicalPath(path) === '/metrology') return { '@context': 'https://schema.org', '@type': 'Article', headline: metrologyArticle.title, description: metrologyArticle.description, author: person, mainEntityOfPage: `${siteUrl}/metrology`, inLanguage: 'en', isAccessibleForFree: true, about: ['Metrology', 'Two-dimensional materials', 'Materials characterization'], citation: metrologyArticle.sources.filter(s => s.url).map(s => s.url) };
   if (canonicalPath(path) === '/Graphene') {
     const url = `${siteUrl}/Graphene`;
     return { '@context': 'https://schema.org', '@graph': [website,

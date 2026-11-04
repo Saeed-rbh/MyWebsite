@@ -13,11 +13,11 @@ export const atomsArticle = {
       "steps": [
         {
           "label": "Start",
-          "text": "Keep Perfect lattice and T* = 0.08. Press Play and watch the atoms move around their starting sites."
+          "text": "Start with the complete lattice. Press Play and watch atoms move around their starting sites."
         },
         {
           "label": "Change",
-          "text": "Choose Add a vacancy, leaving the initial temperature unchanged. The model restarts with one atom removed."
+          "text": "Choose Add a vacancy. The model restarts with one atom removed and the same initial temperature."
         },
         {
           "label": "Observe",
@@ -37,15 +37,15 @@ export const atomsArticle = {
       "steps": [
         {
           "label": "Start",
-          "text": "Run Roomy box at T* = 1.50. Leave Velocity arrows on so you can follow changes in direction."
+          "text": "Run the roomy box. Open Settings & model to turn on velocity arrows if needed."
         },
         {
           "label": "Change",
-          "text": "Choose Denser gas. The same 24 atoms now occupy a smaller area, at the same initial temperature."
+          "text": "Choose Compress box. The same 24 atoms restart in a smaller area at the same initial temperature."
         },
         {
           "label": "Observe",
-          "text": "Watch the arrows turn during encounters. Compare similar simulated times; the view refits each box, so use the density readout."
+          "text": "Watch encounters and the displacement curve. The picture refits the box; compare the number-density readout."
         }
       ],
       "boundary": "This is a repeating, two-dimensional gas with no walls. Switching boxes creates a new starting system; it is not a simulation of a moving piston.",
@@ -80,46 +80,50 @@ export const atomsArticle = {
     {
       "id": "what-is-atomistic",
       "number": "01",
-      "nav": "What",
+      "nav": "The atomic model",
       "title": "What did we put in the model?",
       "paragraphs": [
-        "The moving spheres above represent individual atoms. The computer stores their positions, masses, and velocities, then uses a physical model to calculate how they interact. In the solid example, removing one atom creates a vacancy: an empty site in an otherwise ordered arrangement.",
-        "This is a numerical experiment. We choose a small system, specify its rules, and calculate what follows. The same idea extends to molecules, gases, and interfaces, but each needs an interaction model suited to its chemistry and the question being asked."
+        "Imagine trying to explain why a solid holds its shape while a gas fills its container. Both contain moving particles. The difference lies in their arrangement, their interactions and the conditions around them. Atomistic simulation follows individual atoms to explore how these ingredients produce material behaviour.",
+        "A model begins with a list: which atoms are present, where they are, how much mass they have and how they interact. Molecular dynamics adds velocities and follows their motion. The coloured spheres are a way to display those coordinates; their size and colour are choices we make to read the model.",
+        "Water adds another level of structure. Two hydrogens are bonded to each oxygen, while neighbouring molecules interact with one another. In the water explorer, the molecules keep a fixed bent shape but can translate and rotate. Choosing what stays fixed is part of defining the model."
       ],
       "source": 8
     },
     {
       "id": "why-simulate",
       "number": "02",
-      "nav": "Why",
+      "nav": "A fair comparison",
       "title": "A useful explanation starts with a fair comparison.",
       "paragraphs": [
-        "Suppose a material with defects carries heat differently. A measurement can reveal the difference without showing exactly which atomic mechanism caused it. The vacancy model gives us a way to investigate a candidate explanation: changing the local environment changes the forces and motion nearby.",
-        "To test that explanation, change one model ingredient at a time. Compare the complete and defective crystals under matched conditions, then repeat the calculation. A different-looking trajectory is a clue. A claim about heat transport needs a defined measurement, enough sampling, and independent evidence."
+        "An experiment may show that a deformed sheet carries heat differently. It is harder to see which atomic changes caused that difference. Simulation lets us inspect a candidate mechanism and make a controlled comparison: what changes when we alter the structure while keeping the interaction model and relevant conditions matched?",
+        "Try the complete crystal and the crystal with a vacancy. Keep the initial temperature the same and compare the same quantity at the same simulated time. Removing an atom changes its neighbours’ environment. It also changes the atom count, so a raw total is not always a fair quantity to compare.",
+        "Repeating Reset here reproduces the same starting velocities. That makes the demonstration reproducible, but it does not provide independent evidence. Research comparisons also use independent starting conditions and enough samples to distinguish a consistent effect from fluctuations."
       ],
       "source": 0
     },
     {
       "id": "how-it-works",
       "number": "03",
-      "nav": "How",
+      "nav": "Energy, forces and motion",
       "title": "How does the computer move the atoms?",
       "paragraphs": [
-        "For the vacancy question, begin with two structures: a complete lattice and the same lattice with one site empty. Choose an energy-and-force model and matching boundary conditions. Molecular dynamics then follows how each system moves; the explorer gives you a small example of that calculation.",
-        "At each time step, forces give accelerations and a numerical integrator updates positions and velocities. The sequence of configurations is a trajectory. A research study then allows equilibration, collects measurements, estimates uncertainty, and checks that the answer survives changes in time step, box size, and sampling."
+        "The computer needs a rule for energy before it can calculate motion. An interatomic potential assigns an energy to an arrangement of atoms. The slope of that energy tells us the force: a steep slope produces a large force, while a flat minimum gives zero net radial force for an isolated pair.",
+        "The solid and gas explorers use a Lennard–Jones interaction: strong repulsion at short separation and attraction farther out. Move the separation slider below to see both regimes. This simple model teaches the calculation; the bonding in a real metal, semiconductor or molecule may need a different description.",
+        "Newton’s law turns the force on each atom into acceleration. A numerical integrator advances positions and velocities by a small time step, calculates new forces and repeats. Molecular dynamics produces a trajectory this way. The calculation uses forces from all relevant neighbours, rather than telling each atom to follow a drawn path."
       ],
-      "source": 8
+      "source": 10
     },
     {
       "id": "where-it-helps",
       "number": "04",
-      "nav": "Where",
+      "nav": "Reading a trajectory",
       "title": "What turns motion into a material property?",
       "paragraphs": [
-        "The missing atom is a starting point, not the final engineering answer. If we want to know how defects affect heat transport, we need a suitable thermal-transport calculation. If we want strength, we need an appropriate mechanical test. The quantity we measure must match the question.",
-        "An atomic mechanism or a validated interface property can then inform a larger continuum model, such as a calculation of temperature across a component. The studies below show this progression: a specific question, an atomic comparison, and a conclusion with limits."
+        "A trajectory is a record of positions through time. To measure displacement, compare each atom with its starting position. Square those distances and average over the atoms to obtain mean-squared displacement, or MSD. The live explorer plots its square root, the RMS displacement, in units of the model’s length scale.",
+        "In a vibrating solid, atoms can move back and forth without travelling far from their sites. A gas atom can move across the box repeatedly. Periodic boundaries wrap the picture at each edge; the displacement calculation keeps track of the crossings so an atom does not appear to jump backwards.",
+        "The property determines the analysis. Diffusion requires the long-time behaviour of MSD in a suitable regime; thermal conductivity needs a heat-transport calculation; strength needs a mechanical test. A short displacement curve does not supply all three. After equilibration, researchers collect sufficient samples, estimate uncertainty and check the result against independent evidence."
       ],
-      "source": 8
+      "source": 12
     }
   ],
   "takeaways": [
@@ -194,6 +198,10 @@ export const atomsArticle = {
     {
       "label": "LAMMPS: reduced units and physical units",
       "url": "https://docs.lammps.org/units.html"
+    },
+    {
+      "label": "LAMMPS: mean-squared displacement and periodic boundaries",
+      "url": "https://docs.lammps.org/compute_msd.html"
     }
   ],
   "diagrams": [

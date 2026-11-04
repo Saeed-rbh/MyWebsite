@@ -1,0 +1,72 @@
+/* Editorial design comes from GrapheneArticle.module.css. Only metrology-specific layouts live here. */
+.page { --accent:#e9b594; --line:#d49d8128; --muted:#c9bfb5; }
+.page h2:focus { outline:none; }
+.skip { position:absolute; top:-100px; left:24px; z-index:10; background:#211a15; padding:15px; }
+.skip:focus { top:85px; }
+.fullWidth,.ramanResults,.methodEvidence,.scientificDetails { grid-column:1/-1; min-width:0; }
+.deviceIllustration { margin:0; align-self:start; }
+.methodLayout { align-items:start; }
+.methodOverview { grid-column:1/-1; display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:28px; margin-top:24px; }
+.methodOverview > a { padding:18px 0; border-top:1px solid var(--line); text-decoration:none; }
+.methodOverview h3 { font:400 clamp(22px,2vw,27px)/1.2 'DM Serif Display',serif; color:#edddcc; margin:14px 0 18px; text-wrap:balance; }
+.methodOverview > a > span:last-child { font:11px/1.8 'Rubik',sans-serif; color:#c5afa0; }
+.methodOverview > a:hover { color:#eed4bc; }
+.methodOverview > a:focus-visible { outline:1px solid var(--accent); outline-offset:6px; }
+.methodEvidence { border-top:1px solid var(--line); padding-top:28px; }
+.methodEvidence h3 { font:400 clamp(26px,3vw,36px)/1.2 'DM Serif Display',serif; color:#edddcc; margin:12px 0 24px; text-wrap:balance; }
+.methodEvidence p { max-width:68ch; color:var(--muted); font-size:14px; line-height:1.95; margin:0 0 20px; text-wrap:pretty; }
+.materialSwitch { display:flex; gap:8px; margin-bottom:24px; flex-wrap:wrap; }
+.materialSwitch button { min-width:90px; min-height:44px; }
+.note { max-width:72ch; color:#bcae9f; font:12px/1.9 'Rubik',sans-serif; margin-top:20px; }
+.scientificDetails { margin:0; }
+.scientificDetails p { max-width:72ch; font:12px/1.9 'Rubik',sans-serif; color:#bcae9f; margin:16px 0; }
+.related { display:flex; gap:16px 28px; flex-wrap:wrap; margin:28px 0; font-size:12px; }
+.page :is(section[id],li[id]) { scroll-margin-top:164px; }
+.calibration { display:grid; grid-template-columns:1fr 1fr; gap:8%; padding:36px 0 0; margin-top:32px; border-top:1px solid var(--line); }
+.calibration h3 { font-size:28px; }
+.calibration label { display:flex; justify-content:space-between; font:12px/1.8 'Rubik',sans-serif; color:var(--muted); }
+.calibration input { width:100%; min-height:44px; accent-color:var(--accent); cursor:pointer; }
+.calibration output { display:block; font:42px/1.3 'DM Serif Display',serif; color:var(--accent); }
+.calibration output small { display:block; font:11px/1.8 'Rubik',sans-serif; color:var(--muted); }
+.ramanResults { margin:8px 0 32px; border-block:1px solid var(--line); padding:32px 0; }
+.ramanResults h3 em { font-style:normal; color:var(--accent); }
+.dotPlot { margin:32px 0; }
+.axis { margin-left:185px; margin-right:90px; display:flex; justify-content:space-between; font:10px/1.6 'Rubik',sans-serif; color:#b9a18d; padding-bottom:14px; }
+.plotRow { display:grid; grid-template-columns:165px 1fr 70px; align-items:center; gap:20px; min-height:58px; font:12px/1.6 'Rubik',sans-serif; color:var(--muted); }
+.plotRow strong { color:var(--accent); font-weight:400; font-variant-numeric:tabular-nums; text-align:right; }
+.plotTrack { position:relative; height:32px; background:repeating-linear-gradient(90deg,#d49d8120 0 1px,transparent 1px 20%); border-bottom:1px solid var(--line); }
+.plotTrack i { position:absolute; top:12px; width:10px; height:10px; border-radius:50%; background:var(--accent); transform:translateX(-50%); }
+.plotTrack i[data-bulk] { background:#14110e; border:2px solid #e9b594; }
+.dataDetails { margin-top:22px; font-size:12px; color:var(--muted); }
+.dataDetails summary { cursor:pointer; color:var(--accent); min-height:44px; padding:12px 0; }
+.dataDetails table { width:100%; border-collapse:collapse; text-align:left; }
+.dataDetails caption { text-align:left; padding:15px 0; }
+.dataDetails td,.dataDetails th { padding:12px; font-weight:400; border-bottom:1px solid var(--line); }
+
+.calibration h3,.ramanResults h3 { font:400 clamp(26px,3vw,36px)/1.2 'DM Serif Display',serif; color:#edddcc; margin:12px 0 24px; text-wrap:balance; }
+.calibration p,.ramanResults p { color:var(--muted); font-size:13px; line-height:1.9; }
+.ramanResults figcaption { max-width:72ch; color:#bcae9f; font:12px/1.9 'Rubik',sans-serif; }
+@media(min-width:1100px) { .methodEvidence { display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1.2fr); gap:0 7%; } .methodEvidence > header { grid-column:1; grid-row:1/4; } .methodEvidence h3 { max-width:22ch; } .methodEvidence p { grid-column:2; } }
+@media(max-width:900px) { .methodOverview { grid-template-columns:minmax(0,1fr); gap:0; } }
+@media(max-width:600px) { .calibration { grid-template-columns:minmax(0,1fr); gap:28px; } .plotRow { grid-template-columns:100px minmax(0,1fr) 52px; gap:8px; font-size:10px; } .axis { margin-left:108px; margin-right:60px; font-size:8px; } .materialSwitch button { min-width:75px; } }
+
+/* Larger teaching images, compact personal evidence, and open borderless surfaces. */
+.page .methodDiagram { grid-column:1/-1; margin-inline:0; border:0; padding-top:18px; }
+.methodLayout { --illustration-width:460px; grid-template-columns:minmax(0,1.1fr) minmax(0,1fr); max-width:none; gap:clamp(28px,4vw,56px); }
+.page .deviceIllustration { width:100%; max-width:460px; }
+.page .deviceIllustration > a,.page .deviceIllustration > a:hover { border:0; box-shadow:none; border-radius:0; }
+.page .methodDiagram > div:last-child { border:0; }
+.methodEvidence { border:0; padding-top:18px; }
+.methodEvidence h3 { font-size:clamp(24px,2.4vw,30px); }
+.methodEvidence p { font-size:12px; line-height:1.9; max-width:72ch; margin-bottom:16px; }
+.page .scientificDetails { border:0; }
+.page .scientificDetails summary { font-size:11px; }
+.scientificDetails p { font-size:11px; }
+@media(max-width:900px) { .methodLayout { grid-template-columns:minmax(0,1fr); gap:28px; } .page .deviceIllustration { width:min(100%,460px); max-width:460px; justify-self:center; } }
+@media(max-width:600px) { .page .deviceIllustration { width:90%; max-width:420px; } }
+.page .methodLayout > ol > li,.page .deviceIllustration details { border:0; }
+
+/* Keep expanded copy and compact tables within the reading column. */
+.page :is(.scientificDetails,.dataDetails) { min-width:0; }
+.page :is(.scientificDetails,.deviceIllustration) p { overflow-wrap:break-word; }
+@media(max-width:600px) { .dataDetails td,.dataDetails th { padding:12px 8px; } }

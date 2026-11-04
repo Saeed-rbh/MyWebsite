@@ -1,6 +1,7 @@
 import React, {useEffect, useId, useMemo, useRef, useState} from 'react';
 import {PARTICLE_STEP, createParticles, advanceParticles, nearestImage, particleObservables} from './particleModel.mjs';
 import useSimulationPlayback from './useSimulationPlayback';
+import TrajectoryReadout from './TrajectoryReadout';
 import styles from './GrapheneArticle.module.css';
 import s from './Atoms.module.css';
 
@@ -11,13 +12,24 @@ export default function ParticleExplorer({kind}) {
   const [temperature, setTemperature] = useState(solid ? .08 : 1.5);
   const [changedStructure, setChangedStructure] = useState(false), [guides, setGuides] = useState(true);
   const [error, setError] = useState('');
+  const history = useRef([{time:0,value:0}]);
+  const sampleStride = useRef(10);
   const state = useRef(null);
   if (!state.current) state.current = createParticles({kind});
   const [frame, setFrame] = useState(state.current);
   const id = useId().replace(/:/g, '');
   const reference = useMemo(() => createParticles({kind}), [kind]);
   function advance(count = 1) {
-    try { for (let i = 0; i < count; i++) state.current = advanceParticles(state.current); }
+    try { for (let i = 0; i < count; i++) {
+      state.current = advanceParticles(state.current);
+      if (state.current.steps % sampleStride.current === 0) {
+        history.current.push({time:state.current.time,value:particleObservables(state.current).rmsDisplacement});
+        if (history.current.length > 500) {
+          history.current = history.current.filter((_,index)=>index % 2 === 0);
+          sampleStride.current *= 2;
+        }
+      }
+    } }
     catch (cause) { setRunning(false); setError(cause.message); }
     setFrame(state.current);
   }
@@ -28,6 +40,7 @@ export default function ParticleExplorer({kind}) {
   }, [active, rate]);
   function reset(nextTemperature = temperature, nextStructure = changedStructure) {
     state.current = createParticles({kind, temperature: nextTemperature, vacancy: solid && nextStructure, compressed: !solid && nextStructure});
+    history.current = [{time:0,value:0}]; sampleStride.current = 10;
     setTemperature(nextTemperature); setChangedStructure(nextStructure); setError(''); setFrame(state.current);
   }
   const {box, atoms} = frame, values = particleObservables(frame);
@@ -37,8 +50,8 @@ export default function ParticleExplorer({kind}) {
   const copies = [-1, 0, 1].flatMap(x => [-1, 0, 1].map(y => [x * box.width, y * box.height]));
   const point = (x, y) => ({x: left + x * scale, y: top + y * scale});
   return <section ref={playbackRef} className={s.simulation} aria-label={solid ? 'Live crystal simulation' : 'Live gas simulation'}>
-      <div className={s.simulationStage}>
-        <div className={s.simulationTopline}><span>{atoms.length} atoms · {solid ? 'Crystal lattice' : 'Gas'}</span><span>Time {frame.time.toFixed(2)} τ</span></div>
+      <div className={s.simulationWithPlot}><div className={s.simulationStage}>
+        <div className={s.simulationTopline}><span>{atoms.length} atoms · {solid ? 'Crystal lattice' : `Gas · ρ* = ${(atoms.length / (box.width * box.height)).toFixed(3)}`} · T₀* = {temperature.toFixed(2)}</span><span>Time {frame.time.toFixed(2)} τ</span></div>
         <svg viewBox="0 0 600 420" role="img" aria-label={solid ? 'Atoms vibrating around sites in a triangular crystal, with an optional missing atom.' : 'Separated atoms travelling through a periodic box and changing direction during close encounters.'}>
           <defs>
             <radialGradient id={`${id}-atom`} cx="30%" cy="25%"><stop stopColor={solid ? '#ffe7cf' : '#d5f2ed'}/><stop offset=".45" stopColor={solid ? '#ce9876' : '#81b9b1'}/><stop offset="1" stopColor={solid ? '#70462f' : '#315d5b'}/></radialGradient>
@@ -60,6 +73,7 @@ export default function ParticleExplorer({kind}) {
           <text x="300" y="393" textAnchor="middle" fill="#b6a696" fontSize="10" letterSpacing="1">OPPOSITE EDGES CONNECT · NO WALLS</text>
         </svg>
       </div>
+      <TrajectoryReadout samples={history.current} values={values} time={frame.time} changed={changedStructure} solid={solid} temperature={temperature} /></div>
       <div className={s.simulationToolbar}>
         <div className={s.transport}><button type="button" aria-pressed={running} disabled={!!error} onClick={() => setRunning(!running)}>{running ? 'Pause' : 'Play'}</button><button type="button" onClick={() => reset()}>Reset</button></div>
         <button type="button" onClick={() => reset(temperature, !changedStructure)}>{solid ? (changedStructure ? 'Restore lattice' : 'Add a vacancy') : (changedStructure ? 'Expand box' : 'Compress box')}</button>

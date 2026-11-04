@@ -4,6 +4,7 @@ import { animated, useSpring } from "react-spring";
 
 const articles = [
   { path: "/Graphene", title: "Graphene" },
+  { path: "/metrology", title: "Metrology of 2D materials" },
   { path: "/simulate-atoms", title: "Atomistic simulation" },
 ];
 

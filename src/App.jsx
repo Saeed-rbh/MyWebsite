@@ -8,6 +8,7 @@ import Header from "./components/Header/Header";
 import Menu from "./components/Menu/Menu";
 import Footer from "./components/Footer/Footer";
 const Atoms = lazy(() => import("./pages/Research/Atoms"));
+const Metrology = lazy(() => import("./pages/Research/Metrology"));
 const Graphene = lazy(() => import("./pages/Research/Research"));
 import Mouse from "./Mouse";
 import ScrollToNavigate from "./Helper/ScrollToNavigate"; // Import scroll detector
@@ -93,6 +94,7 @@ function AppContent({ onRouteReady, introComplete }) {
                   <Route path="/AcademicCV" element={<AcademicCV />} />
                   <Route path="/academiccv" element={<AcademicCV />} />
                   <Route path="/simulate-atoms" element={<Atoms />} />
+                  <Route path="/metrology" element={<Metrology />} />
                   <Route exact path="/Graphene" element={<Graphene />} />
                   <Route path="/Mafia" element={<Mafia />} />
                   <Route exact path="/admin" element={<AdminDashboard />} />
