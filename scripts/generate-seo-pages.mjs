@@ -30,6 +30,10 @@ const nav = `<nav aria-label="Main navigation">${[
   ["/venture", "Venture"], ["/journal/", "Journal"], ["/metrology", "Metrology"],
 ].map(([url, label]) => link(url, label)).join("")}</nav>`;
 
+const cv = JSON.parse(readFileSync(new URL("../src/data/cvData.json", import.meta.url), "utf8"));
+const cvItems = (section) => cv.find(item => item.name === section).list;
+const cvList = (items) => `<ul>${items.map(item => `<li>${item}</li>`).join("")}</ul>`;
+
 const pages = [
   {
     path: '/metrology',
@@ -95,10 +99,15 @@ const pages = [
     path: "/AcademicCV",
     title: "Academic CV | Saeed Arabha | Materials Research",
     description: "Academic curriculum vitae of Saeed Arabha, including education, research interests, publications, teaching, qualifications, and awards.",
-    body: `<h1>Academic CV</h1><p class="lead">Saeed Arabha · Materials science and engineering</p>
-      <p>My academic work spans two-dimensional materials, graphene exfoliation, nanomaterial characterization, molecular simulation, and thermal transport.</p>
-      <section><h2>Research interests</h2><p>Graphene and 2D nanomaterials; compressible flow exfoliation; process development; microscopy and spectroscopy; molecular dynamics and computational modeling.</p></section>
-      <section><h2>Publications</h2><p>Explore peer-reviewed work and plain-language explanations in the journal.</p>${link("/journal/", "Browse publications")}</section>`,
+    body: `<h1>Saeed Arabha — Academic CV</h1><p class="lead">Materials science and engineering</p>
+      <section><h2>Research interests</h2>${paragraph(cvItems("ResearchInterests").map(item => item.label).join(", "))}</section>
+      <section><h2>Education</h2>${cvList(cvItems("Qualifications").map(q => escape([q.title, q.Location, q.Date].join(" · "))))}</section>
+      <section><h2>Technical skills</h2>${cvItems("Skills").map(group => `<h3>${escape(group.Title)}</h3>${paragraph(group.skill.map(([name, level]) => name + " (" + level + ")").join(", "))}`).join("")}</section>
+      <section><h2>Research and development</h2>${link("/R&D-Portfolio", "Materials, process development, and metrology portfolio")} ${link("/metrology", "Measurements and original thesis results")} ${link("/venture", "Research commercialization and customer discovery")}</section>
+      <section><h2>Teaching experience</h2>${cvList(cvItems("Teaching").map(item => escape(item.Teaching)))}</section>
+      <section><h2>Awards</h2>${cvList(cvItems("Awards").map(item => escape(item.Award)))}</section>
+      <section><h2>Conference presentations</h2>${cvList(cvItems("Conference").map(item => escape([item.Title, item.Type, item.Location, item.Year].filter(Boolean).join(" · "))))}</section>
+      <section><h2>Publications</h2>${cvList(papers.map(paper => link(`/journal/${paper.slug}/`, paper.title) + " · " + escape(paper.journal) + " · " + escape(paper.year)))}${link("/journal/", "Publication archive")}</section>`,
   },
   {
     path: "/Graphene",
