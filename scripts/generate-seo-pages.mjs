@@ -1,3 +1,4 @@
+import { homeResume } from "../src/data/homeResume.mjs";
 import { cvResearch } from "../src/data/cvResearch.mjs";
 import { metrologyArticle } from '../src/data/metrologyArticle.mjs';
 import { atomsArticle } from '../src/data/atomsArticle.mjs';
@@ -77,13 +78,14 @@ const pages = [
     description: "Saeed Arabha connects materials science, process development, and metrology through graphene research, experimental characterization, and computational modeling. Explore his R&D work and academic CV.",
     body: `<h1>Saeed Arabha</h1><p class="lead">Materials scientist · Process and metrology engineer</p>
       <p>I develop materials, engineer processes, and measure quality, connecting experiments with computational models.</p>
+      ${paragraph(homeResume.result)}<nav aria-label="Résumés">${homeResume.links.map(item => link(item.href, item.label)).join(" ")}</nav>
       <section><h2>Research and development</h2><p>My work focuses on graphene and other two-dimensional materials, compressible flow exfoliation, characterization, and thermal transport.</p>${link("/R&D-Portfolio", "Explore the R&D portfolio")}${link("/venture", "Research commercialization: from materials science to market")}</section>
       <section><h2>Selected research areas</h2><ul>
       <li>Compressible flow exfoliation and scalable production of 2D nanomaterials</li>
       <li>Metrology using microscopy, spectroscopy, and Raman measurements</li>
       <li>Molecular dynamics, fluid dynamics, and machine learning models</li></ul>
       ${link("/journal/", "Read the journal and publication stories")}</section>
-      <section><h2>Background</h2><p>See my education, publications, teaching, and research experience in the academic CV.</p>${link("/AcademicCV", "View the academic CV")}</section>`,
+`,
     schema: schemaFor('/'),
   },
   {

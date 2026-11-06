@@ -1,0 +1,92 @@
+\documentclass[11pt,letterpaper]{article}
+\usepackage[margin=0.75in]{geometry}
+\usepackage{enumitem}
+\usepackage{titlesec}
+\usepackage[T1]{fontenc}
+\usepackage{times}
+\usepackage{xcolor}
+\usepackage[hidelinks]{hyperref}
+\usepackage{microtype}
+\usepackage{parskip}
+
+% Colors
+\definecolor{myblue}{RGB}{58,117,196}
+\definecolor{mygray}{RGB}{100,100,100}
+
+% Section formatting - bold title, clean rule below
+\titleformat{\section}
+  {\normalfont\large\bfseries}
+  {}{0em}{\color{myblue}}
+  [\vspace{0.2ex}{\color{myblue}\titlerule}\vspace{0.5ex}]
+\titlespacing*{\section}{0pt}{1.8ex plus 1ex minus .2ex}{0.8ex plus .2ex}
+
+% Tight, consistent bullet lists
+\setlist[itemize]{
+  leftmargin=0.18in,
+  itemsep=2pt,
+  parsep=0pt,
+  topsep=3pt
+}
+
+% No paragraph indent
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0pt}
+
+% Prevent aggressive hyphenation
+\tolerance=1200
+\emergencystretch=2.5em
+\hyphenpenalty=500
+
+\hypersetup{pdftitle={Saeed Arabha | Materials R&D Résumé},pdfauthor={Saeed Arabha},colorlinks=true,urlcolor=myblue}
+\newcommand{\role}[3]{\textbf{#1}\hfill #2\\\textit{\color{mygray}#3}\par}
+\linespread{1.13}\selectfont
+\begin{document}
+\begin{center}
+{\LARGE\bfseries\color{myblue} SAEED ARABHA}\\[4pt]
+{\large Materials R\&D Scientist \textbar{} Process Development and Metrology}\\[4pt]
+Toronto, Ontario \enspace$\vert$\enspace \href{mailto:saeedarabha@outlook.com}{saeedarabha@outlook.com} \enspace$\vert$\enspace \href{https://www.saeedarabha.com}{saeedarabha.com}
+\end{center}
+\section*{Research and development experience}
+\role{Doctoral Researcher, Mechanical Engineering}{2021 to September 2026}{York University, Toronto}
+I developed gas-driven processes to separate layered powders into nanosheets and measured how much material we could recover. My doctoral work combined experiments on graphene, boron nitride and molybdenum disulfide with simulations of how their layers separate.
+\begin{itemize}
+\item \textbf{Graphene recovery.} After the first separation, I freeze-dried the sediment and passed it through the process again. Starting from 1 g of graphite, I recovered about 86, 108 and 122 mg across three passes: 316 mg in total, or 31.6\% of the original feed.
+\item \textbf{Process development.} I varied one major operating parameter at a time to study boron nitride exfoliation in nitrogen. Across the conditions tested, recovered concentration rose from about 0.003 to 0.155 g/L. I calibrated UV--vis measurements separately for each material using dried solids from known suspension volumes.
+\item \textbf{Measurement decisions.} Doubling the collection volume roughly halved the concentration. I therefore compared recovered mass alongside concentration when assessing process changes. I also used Raman spectroscopy, electron microscopy and X-ray photoelectron spectroscopy (XPS) to examine the structure and chemistry of recovered sheets.
+\end{itemize}
+\medskip
+\role{Visiting Researcher, 2D Materials}{Summer 2025}{University of Kassel, Germany}
+During a three-month Mitacs Globalink placement with Prof. Claudia Backes, I examined the morphology and structure of exfoliated materials and compared characterization protocols with the host laboratory.
+\section*{Commercialization experience}
+\role{Lab2Market Fellow, Validate and Launch}{2025 to 2026}{Lab2Market, Toronto}
+I interviewed prospective users about how they evaluate new materials and what evidence they would need before a trial. Our final team presentation drew on more than 40 interviews and identified graphite processing and concrete additives as two markets for further testing. \href{https://www.saeedarabha.com/venture}{Commercialization case study}
+\section*{Education}
+\textbf{PhD, Mechanical Engineering} \hfill Completed September 2026\\
+York University, Toronto. Dissertation: \textit{Compressible Flow Exfoliation of 2D Nanomaterials}.\\[4pt]
+\textbf{MSc and BSc, Mechanical Engineering}\\
+Imam Khomeini International University, Qazvin, Iran.
+\newpage
+{\large\bfseries\color{myblue} Saeed Arabha} \hfill Materials R\&D\\[-1pt]
+{\color{myblue}\rule{\linewidth}{0.5pt}}
+\section*{Selected technical work}
+\textbf{Modeling how graphene layers separate}\par
+I led the study design, steered molecular dynamics analysis and interpretation for a study of gas-assisted exfoliation. I compared sliding, peeling from an edge and pulling two sheets straight apart. Sliding and peeling offered less resistance, so I focused on how gas pressure, temperature and velocity affected those two pathways. \href{https://doi.org/10.1021/acsanm.6c01419}{First-author paper}
+\medskip
+
+\textbf{Distinguishing surface chemistry from structural change}\par
+I analyzed XPS spectra from graphene, boron nitride and molybdenum disulfide processed in air and helium. I used Python to fit overlapping components and compare their relative areas against reference samples. For graphene, I interpreted Raman peak ratios alongside microscopy and XPS because newly exposed edges can also increase the Raman D band. \href{https://www.saeedarabha.com/metrology}{Measurements and figures}
+\medskip
+
+\textbf{Testing the role of gas flow in boron nitride exfoliation}\par
+I contributed to experimental investigation and validation in a collaborative shock-tube study. At 1.4 MPa driver pressure, our team measured nearly four times the UV--vis absorbance at 350 nm with the tube open at the end compared with the closed configuration.
+\section*{Methods and tools}
+\textbf{Experimental:} High-pressure gas processing, centrifugation, gravimetric calibration, Raman spectroscopy, UV--vis absorption and XPS peak fitting.\\[4pt]
+\textbf{Computational:} LAMMPS for molecular dynamics, COMSOL for flow modeling, and Python (NumPy, pandas and Matplotlib) for spectrum analysis and simulation output.\\[4pt]
+\textbf{Instrument qualification:} mIRage-Raman Main Operator Certification, Photothermal Spectroscopy Corp., January 2026.
+\section*{Selected publications}
+\textbf{Arabha, S.}, et al. Free-energy mapping of gas-assisted exfoliation pathways for graphene under compressible flow. \textit{ACS Applied Nano Materials}, 2026. \href{https://doi.org/10.1021/acsanm.6c01419}{Publisher}\\[5pt]
+Islam, M. F., \textbf{Arabha, S.}, Hixon, R., and Rizvi, R. Compressible flow exfoliation of two-dimensional nanomaterials: insights into layer separation informed by gas dynamics. \textit{Advanced Engineering Materials}, 2026. \href{https://doi.org/10.1002/adem.202502168}{Publisher}
+\medskip
+
+\href{https://www.saeedarabha.com/AcademicCV}{Full academic CV} \enspace$\vert$\enspace \href{https://www.saeedarabha.com/journal/}{Publication archive}
+\end{document}

@@ -1,3 +1,4 @@
+import { homeResume } from "../../data/homeResume.mjs";
 import React, { useEffect, useRef, useState } from "react";
 import "./Home.css";
 import styles from "./Home.module.css";
@@ -133,6 +134,10 @@ const HomePage = ({ entranceReady = true }) => {
             <div className={styles.storyGrid}>
               <span className={styles.sectionLabel} data-page-entrance="intro"><span className={styles.sectionMarker} aria-hidden="true" />A closer look at the work</span>
               <div className={styles.storyBody}>
+                <p className={styles.resumeResult}>{homeResume.result}</p>
+                <nav className={styles.resumeLinks} aria-label="Résumés">
+                  {homeResume.links.map(({ href, label }) => <a key={href} href={href}>{label}</a>)}
+                </nav>
                 <MainText onWordClick={handleWordClick} entrance="intro" />
                 <p className={styles.interactionHint} data-page-entrance="actions">
                   <span className={styles.hintDot} aria-hidden="true" />
