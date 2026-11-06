@@ -159,7 +159,7 @@ const MainTitle = ({ duration, initialDelay, delayIncrement, size }) => {
         <button popoverTarget="cv-research-results" popoverTargetAction="hide">Close</button>
         <h2>Selected research results</h2>
         {cvResearch.map(item => <article key={item.title}>
-          <h3>{item.title}</h3><p>{item.text}</p><a href={item.url}>{item.source}</a>
+          <h3>{item.title}</h3><p>{item.text}</p>{item.url && <a href={item.url}>{item.source}</a>}
         </article>)}
       </section>
     </animated.div>

@@ -10,12 +10,12 @@ const styles = StyleSheet.create({
         paddingBottom: 40,
         fontFamily: 'Helvetica',
         fontSize: 10,
-        lineHeight: 1.5,
+        lineHeight: 1.42,
         color: '#1a1a1a',
     },
     // Header Section
     header: {
-        marginBottom: 25,
+        marginBottom: 18,
         textAlign: 'center',
     },
     name: {
@@ -42,7 +42,7 @@ const styles = StyleSheet.create({
     },
     // Section Styles
     section: {
-        marginBottom: 18,
+        marginBottom: 12,
     },
     sectionHeader: {
         flexDirection: 'row',
@@ -64,7 +64,7 @@ const styles = StyleSheet.create({
     },
     // Education / Experience Items
     entryContainer: {
-        marginBottom: 10,
+        marginBottom: 7,
     },
     entryHeader: {
         flexDirection: 'row',
@@ -157,7 +157,7 @@ const styles = StyleSheet.create({
 
 // Section Header Component
 const SectionHeader = ({ title }) => (
-    <View style={styles.sectionHeader}>
+    <View style={styles.sectionHeader} minPresenceAhead={32}>
         <Text style={styles.sectionTitle}>{title}</Text>
         <View style={styles.sectionLine} />
     </View>
@@ -201,7 +201,7 @@ const ResumePDF = ({ cvData }) => {
                         <View key={item.title} style={styles.entryContainer} wrap={false}>
                             <Text style={styles.entryTitle}>{item.title}</Text>
                             <Text style={styles.entryDetail}>{item.text}</Text>
-                            <Link src={item.url} style={styles.entryDetail}>{item.source}</Link>
+                            {item.url && <Link src={item.url} style={styles.entryDetail}>{item.source}</Link>}
                         </View>
                     ))}
                 </View>
@@ -220,7 +220,7 @@ const ResumePDF = ({ cvData }) => {
                 <View style={styles.section}>
                     <SectionHeader title="Education" />
                     {education.map((edu, index) => (
-                        <View key={index} style={styles.entryContainer}>
+                        <View key={index} style={styles.entryContainer} wrap={false}>
                             <View style={styles.entryHeader}>
                                 <Text style={styles.entryTitle}>{edu.title}</Text>
                                 <Text style={styles.entryDate}>{edu.Date}</Text>
@@ -285,10 +285,10 @@ const ResumePDF = ({ cvData }) => {
 
                 {/* Honors & Awards */}
                 {awards.length > 0 && (
-                    <View style={styles.section}>
+                    <View style={styles.section} wrap={false}>
                         <SectionHeader title="Honors & Awards" />
                         {awards.map((award, index) => (
-                            <View key={index} style={styles.bulletItem}>
+                            <View key={index} style={styles.bulletItem} wrap={false}>
                                 <Text style={styles.bullet}>•</Text>
                                 <Text style={styles.bulletText}>{award.Award}</Text>
                             </View>
@@ -301,7 +301,7 @@ const ResumePDF = ({ cvData }) => {
                     <View style={styles.section}>
                         <SectionHeader title="Teaching & Experience" />
                         {teaching.map((exp, index) => (
-                            <View key={index} style={styles.bulletItem}>
+                            <View key={index} style={styles.bulletItem} wrap={false}>
                                 <Text style={styles.bullet}>•</Text>
                                 <Text style={styles.bulletText}>{exp.Teaching}</Text>
                             </View>
@@ -313,7 +313,7 @@ const ResumePDF = ({ cvData }) => {
                     <View style={styles.section}>
                         <SectionHeader title="Conferences" />
                         {conferences.map((conf, index) => (
-                            <View key={index} style={styles.bulletItem}>
+                            <View key={index} style={styles.bulletItem} wrap={false}>
                                 <Text style={styles.bullet}>•</Text>
                                 <Text style={styles.bulletText}>
                                     {conf.Type ? `${conf.Type}: "${conf.Title}" at ${conf.Location}, ${conf.Year}.` : (conf.Conference || conf.Explanation)}

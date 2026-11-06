@@ -101,7 +101,7 @@ const pages = [
     title: "Academic CV | Saeed Arabha | Materials Research",
     description: "Academic curriculum vitae of Saeed Arabha, including education, research interests, publications, teaching, qualifications, and awards.",
     body: `<h1>Saeed Arabha — Academic CV</h1><p class="lead">Materials R&amp;D · PhD in Mechanical Engineering, York University, completed September 2026</p>
-      <section><h2>Selected research results</h2>${cvResearch.map(item => `<h3>${escape(item.title)}</h3>${paragraph(item.text)}${link(item.url, item.source)}`).join("")}</section>
+      <section><h2>Selected research results</h2>${cvResearch.map(item => `<h3>${escape(item.title)}</h3>${paragraph(item.text)}${item.url ? link(item.url, item.source) : ""}`).join("")}</section>
       <section><h2>Research interests</h2>${paragraph(cvItems("ResearchInterests").map(item => item.label).join(", "))}</section>
       <section><h2>Education</h2>${cvList(cvItems("Qualifications").map(q => escape([q.title, q.Location, q.Date].join(" · "))))}</section>
       <section><h2>Technical skills</h2>${cvItems("Skills").map(group => `<h3>${escape(group.Title)}</h3>${paragraph(group.skill.map(([name, level]) => name + " (" + level + ")").join(", "))}`).join("")}</section>
