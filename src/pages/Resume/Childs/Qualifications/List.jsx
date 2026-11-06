@@ -2,10 +2,10 @@ export const List = [
   {
     id: 1,
     title: "PhD in Mechanical Engineering",
-    Date: "2021 – NOW",
+    Date: "2021 – September 2026",
     Location: "York University, Toronto ON, Canada",
     Thesis:
-      "Compressible Flow Exfoliation of 2D Nanomaterials: Optimization and applications",
+      "Compressible Flow Exfoliation of 2D Nanomaterials",
     Supervisor: "R. Rizvi , C. Jian",
   },
   {

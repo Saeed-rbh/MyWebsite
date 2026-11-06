@@ -202,11 +202,11 @@
         "list": [
             {
                 "id": 1,
-                "title": "Doctor of Philosophy",
-                "Date": "2021 – Present",
+                "title": "PhD in Mechanical Engineering",
+                "Date": "2021 – September 2026",
                 "Location": "York University, Toronto, Ontario, Canada",
-                "Thesis": "Multiscale Modeling of Graphene-Polymer Composites: From molecular dynamics to Micromechanics",
-                "Supervisor": "R. Rizvi"
+                "Thesis": "Compressible Flow Exfoliation of 2D Nanomaterials",
+                "Supervisor": "R. Rizvi and C. Jian"
             },
             {
                 "id": 2,

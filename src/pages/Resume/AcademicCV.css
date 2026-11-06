@@ -1519,3 +1519,35 @@
     padding-bottom: 10px;
   }
 }
+
+.cv-results-trigger {
+  margin-inline-start: .5rem;
+  padding: .35rem .65rem;
+  border: 1px solid currentColor;
+  border-radius: 1rem;
+  background: transparent;
+  color: inherit;
+  font: 500 .8rem/1.2 sans-serif;
+  vertical-align: middle;
+  cursor: pointer;
+}
+#cv-research-results {
+  position: fixed;
+  inset: 0;
+  margin: auto;
+  width: min(32rem, 88vw);
+  max-height: 80vh;
+  overflow: auto;
+  box-sizing: border-box;
+  padding: 1.5rem;
+  background: #201c19;
+  color: #faf4ed;
+  border: 1px solid #b79a87;
+  border-radius: 1rem;
+  font: 1rem/1.55 sans-serif;
+  text-align: left;
+}
+#cv-research-results p { font: inherit; color: inherit; display: block; }
+#cv-research-results a { color: #f1be9d; text-decoration: underline; }
+#cv-research-results button { float: right; cursor: pointer; }
+#cv-research-results::backdrop { background: rgb(0 0 0 / 60%); }

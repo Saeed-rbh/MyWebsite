@@ -1,3 +1,4 @@
+import { cvResearch } from "../../../data/cvResearch.mjs";
 import React, { useState, useEffect } from "react";
 import { animated, useSpring } from "react-spring";
 import { useSelector } from "react-redux";
@@ -147,12 +148,20 @@ const MainTitle = ({ duration, initialDelay, delayIncrement, size }) => {
       </animated.div>
       <animated.p style={title2Style}>
         Academic CV
+        <button className="cv-results-trigger" popoverTarget="cv-research-results">Research results</button>
         {elementSizeMain > 768 && (
           <React.Suspense fallback={<span style={{fontSize: '11px', padding: '5px 15px', color: '#000'}}>Loading PDF...</span>}>
             <DownloadButton cvData={cvData} />
           </React.Suspense>
         )}
       </animated.p>
+      <section id="cv-research-results" className="cv-results-panel" popover="auto" aria-label="Selected research results">
+        <button popoverTarget="cv-research-results" popoverTargetAction="hide">Close</button>
+        <h2>Selected research results</h2>
+        {cvResearch.map(item => <article key={item.title}>
+          <h3>{item.title}</h3><p>{item.text}</p><a href={item.url}>{item.source}</a>
+        </article>)}
+      </section>
     </animated.div>
   );
 };

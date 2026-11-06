@@ -70,7 +70,10 @@ const useUpdateVariable = () => {
               ...serverItem,
               column: localItem?.column ?? 0,
               // The journal is the maintained publication source, including new papers.
-              list: serverItem.name === "Published Papers" ? localItem.list : serverItem.list,
+              list: serverItem.name === "Published Papers" ? localItem.list :
+                serverItem.name === "Qualifications" ? serverItem.list.map(qualification =>
+                  qualification.id === 1 ? { ...qualification, ...localItem.list[0] } : qualification
+                ) : serverItem.list,
             };
           });
           setDbData(mergedData);

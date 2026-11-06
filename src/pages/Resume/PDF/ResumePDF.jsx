@@ -1,3 +1,4 @@
+import { cvResearch } from '../../../data/cvResearch.mjs';
 import React from 'react';
 import { Page, Text, View, Document, StyleSheet, Link } from '@react-pdf/renderer';
 
@@ -192,6 +193,17 @@ const ResumePDF = ({ cvData }) => {
                         {personalInfo.scholar && <Text>{personalInfo.scholar}</Text>}
                     </View>
                     <View style={styles.divider} />
+                </View>
+
+                <View style={styles.section}>
+                    <SectionHeader title="Materials R&D | Selected research results" />
+                    {cvResearch.map(item => (
+                        <View key={item.title} style={styles.entryContainer} wrap={false}>
+                            <Text style={styles.entryTitle}>{item.title}</Text>
+                            <Text style={styles.entryDetail}>{item.text}</Text>
+                            <Link src={item.url} style={styles.entryDetail}>{item.source}</Link>
+                        </View>
+                    ))}
                 </View>
 
                 {/* Research Interests */}
