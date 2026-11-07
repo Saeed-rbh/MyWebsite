@@ -8,6 +8,7 @@ import Header from "./components/Header/Header";
 import Menu from "./components/Menu/Menu";
 import Footer from "./components/Footer/Footer";
 const Atoms = lazy(() => import("./pages/Research/Atoms"));
+const Nanofluids = lazy(() => import("./pages/Research/Nanofluids"));
 const Metrology = lazy(() => import("./pages/Research/Metrology"));
 const Graphene = lazy(() => import("./pages/Research/Research"));
 import Mouse from "./Mouse";
@@ -94,6 +95,7 @@ function AppContent({ onRouteReady, introComplete }) {
                   <Route path="/AcademicCV" element={<AcademicCV />} />
                   <Route path="/academiccv" element={<AcademicCV />} />
                   <Route path="/simulate-atoms" element={<Atoms />} />
+                  <Route path="/nanofluids" element={<Nanofluids />} />
                   <Route path="/metrology" element={<Metrology />} />
                   <Route exact path="/Graphene" element={<Graphene />} />
                   <Route path="/Mafia" element={<Mafia />} />

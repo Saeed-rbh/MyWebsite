@@ -1,5 +1,6 @@
 import { homeResume } from "../src/data/homeResume.mjs";
 import { cvResearch } from "../src/data/cvResearch.mjs";
+import { nanofluidsArticle } from '../src/data/nanofluidsArticle.mjs';
 import { metrologyArticle } from '../src/data/metrologyArticle.mjs';
 import { atomsArticle } from '../src/data/atomsArticle.mjs';
 import { readFileSync, writeFileSync, mkdirSync } from "node:fs";
@@ -37,6 +38,21 @@ const cvItems = (section) => cv.find(item => item.name === section).list;
 const cvList = (items) => `<ul>${items.map(item => `<li>${item}</li>`).join("")}</ul>`;
 
 const pages = [
+  {
+    path: '/nanofluids',
+    title: nanofluidsArticle.title + ' | Saeed Arabha',
+    description: nanofluidsArticle.intro,
+    type: 'article',
+    body: `<h1>${escape(nanofluidsArticle.title)}</h1>${paragraph(nanofluidsArticle.intro)}
+      <figure><img src="${nanofluidsArticle.solarImage.src}" alt="${escape(nanofluidsArticle.solarImage.alt)}"><figcaption>${escape(nanofluidsArticle.solarImage.caption)}</figcaption></figure>
+      <figure><img src="${nanofluidsArticle.interfaceImage.src}" alt="${escape(nanofluidsArticle.interfaceImage.alt)}"></figure>
+      <figure><img src="${nanofluidsArticle.densityMap.src}" alt="${escape(nanofluidsArticle.densityMap.alt)}"><figcaption>${escape(nanofluidsArticle.densityMap.caption)} ${link(nanofluidsArticle.densityMap.url,nanofluidsArticle.densityMap.source)}</figcaption></figure>
+      ${nanofluidsArticle.sections.map(s => {
+        const images = [s.illustration, s.mechanism, s.figure].filter(Boolean).map(f => `<figure><img src="${escape(f.src)}" alt="${escape(f.alt)}"><figcaption>${escape(f.caption || f.reading)} ${escape(f.source || '')}</figcaption></figure>`).join('');
+        return `<section id="${s.id}"><h2>${escape(s.title)}</h2>${s.paragraphs.map(paragraph).join('')}${images}${s.link ? link(s.link[1], s.link[0]) : ''}</section>`;
+      }).join('')}
+      <section><h2>Back to the water at the surface.</h2>${paragraph(nanofluidsArticle.conclusion)}</section>`,
+  },
   {
     path: '/metrology',
     title: `${metrologyArticle.title} | Saeed Arabha`,

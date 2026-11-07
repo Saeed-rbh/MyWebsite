@@ -26,3 +26,8 @@ build/*.js
 config/*.js
 instagram/src/*.jsx
 bower_components/foo/*.js
+
+# Local previews, build experiments, and generated codebase indexes
+/tmp/
+/graphify-out/
+/.codex/previews/

@@ -28,6 +28,7 @@ const destinationGroups = [
     items: [
       { path: "/simulate-atoms", title: "Atomic simulation", detail: "Explore materials at the atomic scale" },
       { path: "/Graphene", title: "Graphene", detail: "Structure, properties, and simulation" },
+      { path: "/nanofluids", title: "Nanofluids", detail: "How nanoparticles change a liquid" },
       { path: "/metrology", title: "Metrology", detail: "Instruments, measurements, and my thesis results" },
       { path: "/journal/", title: "Journal", detail: "Papers and research explained" },
     ],

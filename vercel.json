@@ -62,6 +62,10 @@
     ],
     "rewrites": [
         {
+            "source": "/nanofluids",
+            "destination": "/nanofluids/index.html"
+        },
+        {
             "source": "/metrology",
             "destination": "/metrology/index.html"
         },
