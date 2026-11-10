@@ -334,8 +334,3 @@
     .storyGrid { padding-top: 28px; }
     .storyBody > div p { font-size: 14px; line-height: 1.75; }
 }
-
-.resumeResult { max-width: 62ch; margin: 0 0 .65rem; color: #f0e6dc; font-size: 1rem; line-height: 1.55; }
-.resumeLinks { display: flex; gap: .5rem 1.3rem; flex-wrap: wrap; margin: 0 0 1.4rem; }
-.resumeLinks a { color: #efbd9e; font-size: .95rem; text-decoration: underline; text-underline-offset: .24em; padding: .25rem 0; }
-.resumeLinks a:focus-visible { outline: 2px solid currentColor; outline-offset: 3px; }
