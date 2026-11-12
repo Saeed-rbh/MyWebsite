@@ -1,4 +1,5 @@
 import React, { useEffect, useState, useCallback, useRef } from "react";
+import { researchProfile } from "../../data/homeResume.mjs";
 import { useDispatch, useSelector } from "react-redux";
 import { useSpring, animated, useChain, easings, useTransition } from "react-spring";
 import { useLocation, useNavigate } from "react-router-dom";
@@ -261,7 +262,7 @@ const Header = () => {
       }
       return (activeSection && sectionLabels[activeSection]) ? sectionLabels[activeSection] : "R&D Journey";
     }
-    if (path === "/academiccv") return "Academic CV";
+    if (path === "/academiccv") return researchProfile.label;
     if (path.replace(/\/$/, "") === "/venture") return "Venture";
     if (path === "/journal" || path.startsWith("/journal/")) return "Journal";
     if (path === "/simulate-atoms") return "Atomic simulation";

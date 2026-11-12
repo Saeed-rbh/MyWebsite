@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
+import { researchProfile } from "../../data/homeResume.mjs";
 import { Link } from "react-router-dom";
 import { motion, useReducedMotion, useScroll, useSpring, useTransform } from "motion/react";
 import {
@@ -1884,7 +1885,7 @@ const ApproachContent = ({ scrollRef }) => {
           and move research toward real-world use.
         </p>
         <div className={styles.approachRebuildActions}>
-          <Link to="/AcademicCV"><TbArrowUpRight aria-hidden="true" /><span>View Academic CV</span></Link>
+          <Link to={researchProfile.href}><TbArrowUpRight aria-hidden="true" /><span>View {researchProfile.label}</span></Link>
           <Link to="/venture">Explore the CFE commercialization case <TbArrowUpRight aria-hidden="true" /></Link>
           <a href="mailto:saeedarabha@outlook.com"><TbMail aria-hidden="true" /><span>Contact Me</span></a>
         </div>

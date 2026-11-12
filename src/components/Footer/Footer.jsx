@@ -70,6 +70,7 @@ const Footer = ({ accent = "#d49d81" }) => {
   }, [location.pathname, isMenuOpen, isCalendlyOpen, visibility]);
 
   const footerHiddenClass = isScrollHidden ? ' footer-scroll-hidden' : '';
+  const profileGlassClass = !mobileFooter && /^\/AcademicCV\/?$/i.test(location.pathname) ? ' footer-profile-glass' : '';
 
   const navigateTo = (path) => {
     dispatch(updateCurrentPage(path));
@@ -167,7 +168,7 @@ const Footer = ({ accent = "#d49d81" }) => {
   return (
     visibility && (
       <>
-      <div ref={glassRef} className={`HomePage-M-T-F HomeLandingFooter footer-glass-layer${footerHiddenClass}`} aria-hidden="true">
+      <div ref={glassRef} className={`HomePage-M-T-F HomeLandingFooter footer-glass-layer${footerHiddenClass}${profileGlassClass}`} aria-hidden="true">
         <animated.div className="HomeConsole" style={{ ...contactInfoOpenSpring,
           "--footer-pill-width": contactInfoOpenSpring.width.to(value => `${value}px`),
           "--footer-pill-height": contactInfoOpenSpring.height.to(value => `${value}px`),

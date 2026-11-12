@@ -1,5 +1,5 @@
-import { homeResume } from "../src/data/homeResume.mjs";
-import { cvResearch } from "../src/data/cvResearch.mjs";
+import { homeResume, researchProfile } from "../src/data/homeResume.mjs";
+import { cvResearch, depositionExample, processExample, profileHeading, profileIntro, profileToolGroups, selectedPapers, surfaceExample } from "../src/data/cvResearch.mjs";
 import { nanofluidsArticle } from '../src/data/nanofluidsArticle.mjs';
 import { metrologyArticle } from '../src/data/metrologyArticle.mjs';
 import { atomsArticle } from '../src/data/atomsArticle.mjs';
@@ -29,7 +29,7 @@ const paragraph = (value) => `<p>${escape(value)}</p>`;
 const link = (href, label) => `<a href="${escape(href)}">${escape(label)}</a>`;
 const json = (value) => JSON.stringify(value).replaceAll("<", "\\u003c");
 const nav = `<nav aria-label="Main navigation">${[
-  ["/", "Home"], ["/R&D-Portfolio", "R&D portfolio"], ["/AcademicCV", "Academic CV"],
+  ["/", "Home"], ["/R&D-Portfolio", "R&D portfolio"], [researchProfile.href, researchProfile.label],
   ["/venture", "Venture"], ["/journal/", "Journal"], ["/metrology", "Metrology"],
 ].map(([url, label]) => link(url, label)).join("")}</nav>`;
 
@@ -115,19 +115,29 @@ const pages = [
       <section><h2>Modeling and scale-up</h2><p>Computational fluid dynamics and molecular simulations help test mechanisms and guide experiments. I also explore industry needs and adoption barriers for scalable nanomaterial production.</p>${link("/journal/", "Read the related research papers")}${link("/venture", "Explore customer discovery and the CFE commercialization strategy")}</section>`,
   },
   {
-    path: "/AcademicCV",
-    title: "Academic CV | Saeed Arabha | Materials Research",
-    description: "Academic curriculum vitae of Saeed Arabha, including education, research interests, publications, teaching, qualifications, and awards.",
-    body: `<h1>Saeed Arabha — Academic CV</h1><p class="lead">Materials R&amp;D · PhD in Mechanical Engineering, York University, completed September 2026</p>
-      <section><h2>Selected research results</h2>${cvResearch.map(item => `<h3>${escape(item.title)}</h3>${paragraph(item.text)}${item.url ? link(item.url, item.source) : ""}`).join("")}</section>
+    path: researchProfile.href,
+    title: `Saeed Arabha | ${researchProfile.label}`,
+    description: "Saeed Arabha’s research experience, methods, publications, education, and teaching.",
+    body: `<h1>Saeed Arabha | ${researchProfile.label}</h1><p class="lead">Materials R&amp;D · Process Development</p>
+      ${paragraph("PhD in Mechanical Engineering · Toronto, ON")}${link("/materials-rd-resume.pdf", "Download résumé")}
+      <h2>${escape(profileHeading)}</h2>${paragraph(profileIntro)}
+      <section id="process-development"><h2>${escape(processExample.title)}</h2>${paragraph(processExample.summary)}${paragraph(processExample.recovery + "% cumulative recovery")}${link("/R&D-Portfolio", "See the apparatus")}</section>
+      <section id="surface-characterization"><h2>${escape(surfaceExample.title)}</h2>${paragraph(surfaceExample.summary)}<figure><img src="${escape(surfaceExample.figure)}" width="1440" height="542" alt="Fitted MoS₂ XPS spectra"><figcaption>${escape(surfaceExample.caption)}</figcaption></figure>${link("/metrology#check-the-chemistry", "See the XPS analysis")}</section>
+      <section id="automated-deposition"><h2>${escape(depositionExample.title)}</h2>${paragraph(depositionExample.summary)}</section>
+      <section><h2>Methods in practice</h2>${cvResearch.map(item => `<h3>${escape(item.title)}</h3>${paragraph(item.text)}${item.url ? link(item.url, item.source) : ""}`).join("")}</section>
       <section><h2>Research interests</h2>${paragraph(cvItems("ResearchInterests").map(item => item.label).join(", "))}</section>
-      <section><h2>Education</h2>${cvList(cvItems("Qualifications").map(q => escape([q.title, q.Location, q.Date].join(" · "))))}</section>
-      <section><h2>Technical skills</h2>${cvItems("Skills").map(group => `<h3>${escape(group.Title)}</h3>${paragraph(group.skill.map(([name, level]) => name + " (" + level + ")").join(", "))}`).join("")}</section>
+      <section id="education"><h2>Education</h2>${cvItems("Qualifications").map(q => `<h3>${escape(q.title)}</h3>${paragraph([q.Location, q.Date].filter(Boolean).join(" · "))}${/^PhD\b/i.test(q.title) ? paragraph(q.Thesis) : ""}`).join("")}</section>
+      <section><h2>Tools and techniques</h2>${profileToolGroups(cvItems("Skills")).map(group => `<h3>${escape(group.title)}</h3>${paragraph(group.tools.join(" · "))}${group.certification ? paragraph(group.certification) : ""}`).join("")}</section>
       <section><h2>Research and development</h2>${link("/R&D-Portfolio", "Materials, process development, and metrology portfolio")} ${link("/metrology", "Measurements and original thesis results")} ${link("/venture", "Research commercialization and customer discovery")}</section>
       <section><h2>Teaching experience</h2>${cvList(cvItems("Teaching").map(item => escape(item.Teaching)))}</section>
       <section><h2>Awards</h2>${cvList(cvItems("Awards").map(item => escape(item.Award)))}</section>
       <section><h2>Conference presentations</h2>${cvList(cvItems("Conference").map(item => escape([item.Title, item.Type, item.Location, item.Year].filter(Boolean).join(" · "))))}</section>
-      <section><h2>Publications</h2>${cvList(papers.map(paper => link(`/journal/${paper.slug}/`, paper.title) + " · " + escape(paper.journal) + " · " + escape(paper.year)))}${link("/journal/", "Publication archive")}</section>`,
+      <section id="publications"><h2>Publications</h2>
+      <h3 id="selected-papers">Selected papers</h3>${cvList(selectedPapers.map(paper => {
+        const citation = papers.find(item => item.slug === paper.slug);
+        return link(`/journal/${paper.slug}/`, paper.title) + (citation ? paragraph(citation.journal + " · " + citation.year) : "") + paragraph(paper.contribution);
+      }))}
+      <h3>Full publication list</h3>${cvList(papers.map(paper => link(`/journal/${paper.slug}/`, paper.title) + " · " + escape(paper.authors.join(", ")) + " · " + escape(paper.journal) + " · " + escape(paper.year)))}${link("/journal/", "Publication archive")}</section>`,
   },
   {
     path: "/Graphene",

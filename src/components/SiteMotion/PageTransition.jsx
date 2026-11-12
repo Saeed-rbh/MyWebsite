@@ -1,4 +1,5 @@
 import React, { useCallback, useEffect, useRef, useState } from "react";
+import { researchProfile } from "../../data/homeResume.mjs";
 import { motion, useAnimationControls } from "motion/react";
 import { Route, Routes, useLocation } from "react-router-dom";
 import "./PageTransition.css";
@@ -18,7 +19,7 @@ export function pageIdentity(path) {
     "/r&d-portfolio": ["R&D portfolio", "Process, evidence, application"],
     "/venture": ["Venture", "From materials research to market"],
     "/journal": ["Journal", "Papers and research explained"],
-    "/academiccv": ["Academic CV", "Experience, publications, skills"],
+    "/academiccv": [researchProfile.label, "Experience, publications, skills"],
     "/simulate-atoms": ["Atomic simulation", "Following atoms, one step at a time"],
     "/graphene": ["Graphene", "Exploring materials at the nanoscale"],
     "/mafia": ["Mafia", "Let the game begin"],

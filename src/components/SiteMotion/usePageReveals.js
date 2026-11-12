@@ -102,13 +102,15 @@ export default function usePageReveals(root, enabled = true, profile = null, rea
     // Hold the first frame until the incoming page is actually visible.
     // Fragment links go straight to their content without replaying the hero.
     if (!preference.matches && !window.location.hash) {
-      openingComponents(page).forEach(target => {
+      const components = profile?.autoOpening === false ? [] : openingComponents(page);
+      components.forEach(target => {
         if (profile && (target.closest('[data-graphene-reveal], [data-scroll-fade]') || target.querySelector('[data-graphene-reveal], [data-scroll-fade]'))) return;
         target.dataset.pageEntrance = 'component';
         automatic.push(target);
       });
       page.querySelectorAll(entranceSelector).forEach(target => {
-        const timing = entrances[target.dataset.pageEntrance || target.dataset.grapheneEntrance];
+        const key = target.dataset.pageEntrance || target.dataset.grapheneEntrance;
+        const timing = profile?.openingTimings?.[key] ?? entrances[key];
         if (!timing) return;
         const from = { opacity: 0 };
         const to = { opacity: 1 };

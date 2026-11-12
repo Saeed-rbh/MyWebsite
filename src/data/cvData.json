@@ -203,15 +203,15 @@
             {
                 "id": 1,
                 "title": "PhD in Mechanical Engineering",
-                "Date": "2021 – September 2026",
+                "Date": "2021 – 2026",
                 "Location": "York University, Toronto, Ontario, Canada",
                 "Thesis": "Compressible Flow Exfoliation of 2D Nanomaterials",
                 "Supervisor": "R. Rizvi and C. Jian"
             },
             {
                 "id": 2,
-                "title": "Master of Science in Mechanical Engineering",
-                "Date": "2017 – 2019",
+                "title": "Master of Science in Mechanical Engineering, Energy Conversion",
+                "Date": "",
                 "Location": "IK International University, Qazvin, Iran",
                 "Thesis": "Defect engineering on Thermo-Mechanical Properties of single-layer Borophene: Comparison of Molecular Dynamics and Finite Element Method",
                 "Supervisor": "A. Rajabpour, AH. Akbarzadeh"
@@ -511,7 +511,7 @@
         "list": [
             {
                 "id": 1,
-                "Teaching": "Teaching Assistant in Dynamics, Simulation Tools for Design & Analysis, and Machine Elements Design, Mechanical Engineering Department, York University, 2021 – Present, Toronto, ON, Canada."
+                "Teaching": "Teaching Assistant in Dynamics, Simulation Tools for Design & Analysis, and Machine Elements Design, Mechanical Engineering Department, York University, Toronto, ON, Canada."
             },
             {
                 "id": 2,

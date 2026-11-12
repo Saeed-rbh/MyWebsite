@@ -1,4 +1,5 @@
 import React, { useEffect, useLayoutEffect, useRef, useState } from "react";
+import { researchProfile } from "../../data/homeResume.mjs";
 import { animated, easings, useTransition } from "react-spring";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useLocation } from "react-router-dom";
@@ -13,7 +14,7 @@ const destinationGroups = [
     title: "Overview",
     items: [
       { path: "/", title: "Home", detail: "The introduction" },
-      { path: "/AcademicCV", title: "Academic CV", detail: "Experience, publications, skills" },
+      { path: researchProfile.href, title: researchProfile.label, detail: "Experience, publications, skills" },
     ],
   },
   {

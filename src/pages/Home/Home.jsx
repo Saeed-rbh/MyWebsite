@@ -9,6 +9,18 @@ import { popupsData } from "../../data/homePopupsData";
 
 import { useSelector } from "react-redux";
 
+const homeEntrance = {
+  openingTimings: {
+    atmosphere: { delay: 0, duration: 760, x: -14, y: 0 },
+    title: { delay: 65, duration: 650, y: 24, mask: true },
+    kicker: { delay: 180, duration: 530, y: 10 },
+    eyebrow: { delay: 255, duration: 480, y: 8 },
+    journey: { delay: 325, duration: 500, x: 14, y: 0 },
+    intro: { delay: 535, duration: 540, y: 12 },
+    actions: { delay: 655, duration: 500, y: 8 },
+  },
+};
+
 const HomePage = ({ entranceReady = true }) => {
   const { visibility } = useSelector((state) => state.ui);
   const [popupOpen, setPopupOpen] = useState(false);
@@ -18,7 +30,7 @@ const HomePage = ({ entranceReady = true }) => {
   const [originRect, setOriginRect] = useState(null);
   const nameRef = useRef(null);
   const pageRef = useRef(null);
-  usePageReveals(pageRef, true, null, entranceReady);
+  usePageReveals(pageRef, true, homeEntrance, entranceReady);
 
   useEffect(() => {
     if (!visibility || !nameRef.current) return;
@@ -108,7 +120,7 @@ const HomePage = ({ entranceReady = true }) => {
         >
           <SEO
             title="Saeed Arabha | Materials Scientist & Researcher"
-            description="Saeed Arabha connects materials science, process development, and metrology through graphene research, experimental characterization, and computational modeling. Explore his R&D work and academic CV."
+            description="Saeed Arabha connects materials science, process development, and metrology through graphene research, experimental characterization, and computational modeling. Explore his R&D work and research profile."
             name="Saeed Arabha"
             type="website"
           />

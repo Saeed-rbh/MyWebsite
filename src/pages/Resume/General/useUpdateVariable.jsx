@@ -71,8 +71,15 @@ const useUpdateVariable = () => {
               column: localItem?.column ?? 0,
               // The journal is the maintained publication source, including new papers.
               list: serverItem.name === "Published Papers" ? localItem.list :
-                serverItem.name === "Qualifications" ? serverItem.list.map(qualification =>
-                  qualification.id === 1 ? { ...qualification, ...localItem.list[0] } : qualification
+                serverItem.name === "Qualifications" ? serverItem.list.map(qualification => {
+                  if (qualification.id === 1) return { ...qualification, ...localItem.list[0] };
+                  if (qualification.id === 2) {
+                    const { title, Date } = localItem.list.find(item => item.id === 2);
+                    return { ...qualification, title, Date };
+                  }
+                  return qualification;
+                }) : serverItem.name === "Teaching" ? serverItem.list.map(item =>
+                  item.id === 1 ? { ...item, Teaching: localItem.list[0].Teaching } : item
                 ) : serverItem.list,
             };
           });

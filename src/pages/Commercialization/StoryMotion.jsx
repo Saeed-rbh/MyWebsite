@@ -19,17 +19,18 @@ export function InterviewCount({ root, className }) {
 
 // Scroll position drives both entry and exit. Content stays mounted and can
 // replay naturally when the reader scrolls back, without hiding its section.
-export function ScrollFade({ root, as = 'div', stagger = 0, children, style, ...props }) {
+export function ScrollFade({ root, as = 'div', stagger = 0, subtle = false, children, style, ...props }) {
   const ref = useRef(null);
   const reduce = useReducedMotion();
   const { scrollYProgress } = useScroll({
     container: root,
     target: ref,
-    offset: ['start 96%', 'end 4%'],
+    offset: subtle ? ['start end', 'start 78%'] : ['start 96%', 'end 4%'],
   });
   const entryEnd = 0.14 + Math.min(stagger, 4) * 0.025;
-  const alpha = useTransform(scrollYProgress, [0, entryEnd, 0.84, 1], [0, 1, 1, 0]);
-  const travel = useTransform(scrollYProgress, [0, entryEnd, 0.84, 1], [30, 0, 0, -20]);
+  const range = subtle ? [0, 1] : [0, entryEnd, 0.84, 1];
+  const alpha = useTransform(scrollYProgress, range, subtle ? [0.72, 1] : [0, 1, 1, 0]);
+  const travel = useTransform(scrollYProgress, range, subtle ? [12, 0] : [30, 0, 0, -20]);
   const opacity = useSpring(alpha, { stiffness: 180, damping: 30, mass: 0.45 });
   const y = useSpring(travel, { stiffness: 140, damping: 26, mass: 0.55 });
   const Tag = motion[as];
