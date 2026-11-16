@@ -50,6 +50,7 @@ const MenuButton = ({
       style={{ ...MenuStyle, ...entrance }}
       className="HomePage-M-T-R"
       onClick={(event) => {
+        event.currentTarget.focus({ preventScroll: true });
         if (!isMenuOpen) {
           const rect = event.currentTarget.getBoundingClientRect();
           const x = event.detail === 0 ? rect.left + rect.width / 2 : event.clientX;

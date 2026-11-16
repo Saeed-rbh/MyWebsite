@@ -70,7 +70,7 @@ const Footer = ({ accent = "#d49d81" }) => {
   }, [location.pathname, isMenuOpen, isCalendlyOpen, visibility]);
 
   const footerHiddenClass = isScrollHidden ? ' footer-scroll-hidden' : '';
-  const profileGlassClass = !mobileFooter && /^\/AcademicCV\/?$/i.test(location.pathname) ? ' footer-profile-glass' : '';
+  const profileGlassClass = /^\/AcademicCV\/?$/i.test(location.pathname) ? ' footer-profile-glass' : '';
 
   const navigateTo = (path) => {
     dispatch(updateCurrentPage(path));

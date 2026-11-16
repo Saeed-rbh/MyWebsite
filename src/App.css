@@ -225,6 +225,8 @@ html.site-document-exit .App {
   --chrome-accent: #0645ee;
   --chrome-divider: #a2b0cc;
   --chrome-logo-fill: rgba(6, 69, 238, .08);
+  --footer-glass-tint: rgba(213, 227, 255, .16);
+  --footer-glass-edge: rgba(100, 137, 202, .4);
   background-color: #f6f8fc;
 }
 .App .HomeLandingHeader .MenuIcon-T,
@@ -239,23 +241,6 @@ html.site-document-exit .App {
 .App .HomeLandingFooter .HomeConsole,
 .App .HomeLandingFooter .HomeConsole::before {
   transition: background-color 480ms ease, border-color 480ms ease, box-shadow 480ms ease;
-}
-.App[data-site-theme="cfe"] .HomeLandingFooter .HomeConsole,
-.App[data-site-theme="cfe"] .HomeLandingFooter .HomeConsole:hover {
-  background:
-    linear-gradient(165deg, rgba(239, 245, 255, .075), rgba(6, 69, 238, .025) 32%, rgba(6, 69, 238, .034)),
-    transparent;
-  border-color: rgba(6, 69, 238, .3);
-  box-shadow:
-    0 14px 34px rgba(12, 35, 86, .26),
-    0 2px 8px rgba(12, 35, 86, .12),
-    inset 0 1px 0 rgba(239, 246, 255, .18),
-    inset 0 -1px 0 rgba(6, 69, 238, .04);
-}
-.App[data-site-theme="cfe"] .HomeLandingFooter .HomeConsole::before {
-  background:
-    radial-gradient(ellipse 55% 95% at 18% -30%, rgba(225, 238, 255, .1), transparent 78%),
-    linear-gradient(180deg, rgba(241, 248, 255, .035), transparent 42%);
 }
 .App[data-site-theme="cfe"] .HomeLandingFooter .social button,
 .App[data-site-theme="cfe"] .HomeLandingFooter .social a,
@@ -311,25 +296,6 @@ html.site-document-exit .App {
   .App .MainBackground { transition: none; }
 }
 
-/* Preserve the shared glass layers, blur, highlights, and depth. */
-@media (min-width: 940px) {
-  .App[data-site-theme="cfe"] .HomeLandingFooter .footer-action-pill,
-  .App[data-site-theme="cfe"] .HomeLandingFooter .footer-action-pill:hover {
-    background:
-      linear-gradient(165deg, rgba(255, 255, 255, .09), rgba(255, 255, 255, .025) 38%, rgba(6, 69, 238, .024)),
-      transparent;
-    border-color: rgba(6, 69, 238, .2);
-    box-shadow:
-      0 14px 32px rgba(12, 35, 86, .24),
-      inset 0 1px 0 rgba(255, 255, 255, .22),
-      inset 0 0 14px rgba(255, 255, 255, .035);
-  }
-  .App[data-site-theme="cfe"] .HomeLandingFooter .footer-action-pill::before {
-    background:
-      radial-gradient(ellipse 70% 85% at 28% -20%, rgba(255, 255, 255, .14), transparent 78%),
-      linear-gradient(180deg, rgba(255, 255, 255, .055), transparent 45%);
-  }
-}
 .App[data-site-theme="cfe"] .HomeLandingFooter .social button:hover,
 .App[data-site-theme="cfe"] .HomeLandingFooter .social a:hover {
   text-shadow: 0 0 10px rgba(6, 69, 238, .35);
@@ -339,18 +305,25 @@ html.site-document-exit .App {
   box-shadow: 0 0 8px #0645ee;
 }
 
-/* White glass stays fixed; control text is chosen for contrast. */
-.App .HomeLandingFooter :is(.HomeConsole, .footer-action-pill) {
-  background: linear-gradient(165deg, rgba(255,255,255,.12), rgba(255,255,255,.025) 55%), rgba(255,255,255,.08) !important;
-  border-color: rgba(180,198,229,.4) !important;
-  box-shadow: 0 10px 30px rgba(7,22,48,.16), inset 0 1px 0 rgba(255,255,255,.3) !important;
+/* Both footer pills share the same frosted finish and inherit the page tint. */
+.App .HomeLandingFooter.footer-profile-glass {
+  --footer-glass-tint: rgba(241, 226, 213, .28);
+  --footer-glass-edge: rgba(255, 243, 230, .48);
 }
-.App .HomeLandingFooter.footer-profile-glass .HomeConsole {
-  background: linear-gradient(165deg, #fff8, transparent 60%), #f1e2d5f2 !important;
-  border-color: #fff3e6b3 !important;
+.App .HomeLandingFooter.footer-glass-layer .HomeConsole {
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, .24), rgba(255, 255, 255, .04) 55%, rgba(19, 30, 49, .08)),
+    var(--footer-glass-tint, rgba(255, 255, 255, .1));
+  border-color: var(--footer-glass-edge, rgba(180, 198, 229, .4));
+  -webkit-backdrop-filter: blur(20px) saturate(145%);
+  backdrop-filter: blur(20px) saturate(145%);
+  box-shadow:
+    0 10px 30px rgba(7, 22, 48, .16),
+    inset 0 1px 0 rgba(255, 255, 255, .56),
+    inset 0 -1px 0 rgba(255, 255, 255, .18);
 }
-.App .HomeLandingFooter :is(.HomeConsole, .footer-action-pill)::before {
-  background: linear-gradient(180deg, rgba(255,255,255,.12), transparent 60%);
+.App .HomeLandingFooter.footer-glass-layer .HomeConsole::before {
+  background: linear-gradient(180deg, rgba(255, 255, 255, .18), transparent 52%);
 }
 /* Keep the existing glass and foreground layers independent. */
 .App .HomeLandingFooter.footer-glass-layer { z-index: 99; pointer-events: none; }

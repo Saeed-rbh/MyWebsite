@@ -1,7 +1,9 @@
-import React, { useCallback, useEffect, useRef, useState } from "react";
+import React, { useCallback, useEffect, useLayoutEffect, useRef, useState } from "react";
 import { researchProfile } from "../../data/homeResume.mjs";
 import { motion, useAnimationControls } from "motion/react";
+import { useStore } from "react-redux";
 import { Route, Routes, useLocation } from "react-router-dom";
+import { updateMenu } from "../../actions/Actions";
 import "./PageTransition.css";
 
 // Canonical paths keep redirects and trailing-slash corrections in one transition.
@@ -41,6 +43,7 @@ const EASE_ENTER = [0.22, 1, 0.36, 1];
 
 export default function PageTransition({ children, onInitialReady }) {
   const location = useLocation();
+  const store = useStore();
   const [reducedMotion, setReducedMotion] = useState(
     () => window.matchMedia("(prefers-reduced-motion: reduce)").matches
   );
@@ -56,6 +59,9 @@ export default function PageTransition({ children, onInitialReady }) {
   const displayed = useRef(location);
   const readyWaiter = useRef(null);
   const readyKey = useRef(null);
+  const contentRef = useRef(null);
+  const previousLocationKey = useRef(location.key);
+  const pendingDrawerFocus = useRef(null);
   const transitioning = useRef(false);
   const generation = useRef(0);
   const currentPhase = useRef("idle");
@@ -67,11 +73,39 @@ export default function PageTransition({ children, onInitialReady }) {
     return () => preference.removeEventListener("change", updatePreference);
   }, []);
 
+  useLayoutEffect(() => {
+    if (previousLocationKey.current === location.key) return;
+    previousLocationKey.current = location.key;
+    const { isMenuOpen } = store.getState().ui;
+    if (isMenuOpen || pendingDrawerFocus.current !== null) {
+      pendingDrawerFocus.current = location.key;
+    }
+    if (isMenuOpen) store.dispatch(updateMenu(false));
+  }, [location.key, store]);
+
+  const focusDrawerDestination = useCallback(() => {
+    const container = contentRef.current;
+    if (!container || container.inert || pendingDrawerFocus.current !== displayLocation.key ||
+        readyKey.current !== displayLocation.key) return;
+
+    const frame = container.querySelector("[data-route-motion-root]") ?? container;
+    const target = frame.querySelector('h1:not([aria-hidden="true"])') ??
+      frame.querySelector('main, [role="main"], h2') ?? frame;
+    if (!target.hasAttribute("tabindex")) target.tabIndex = -1;
+    pendingDrawerFocus.current = null;
+    target.focus({ preventScroll: true });
+  }, [displayLocation.key]);
+
+  useLayoutEffect(() => {
+    if (!busy) focusDrawerDestination();
+  }, [busy, focusDrawerDestination]);
+
   const onReady = useCallback(() => {
     readyKey.current = displayLocation.key;
     onInitialReady(true);
     if (readyWaiter.current?.key === displayLocation.key) readyWaiter.current.resolve();
-  }, [displayLocation.key, onInitialReady]);
+    focusDrawerDestination();
+  }, [displayLocation.key, focusDrawerDestination, onInitialReady]);
 
   useEffect(() => {
     const run = ++generation.current;
@@ -200,7 +234,7 @@ export default function PageTransition({ children, onInitialReady }) {
   }, [busy]);
 
   return <>
-    <motion.div className="PageTransitionContent" initial={false} animate={content}
+    <motion.div ref={contentRef} className="PageTransitionContent" initial={false} animate={content}
       data-transition-phase={phase} inert={busy ? true : undefined} aria-busy={busy}>
       <Routes location={displayLocation}>
         <Route path="*" element={children(onReady)} />

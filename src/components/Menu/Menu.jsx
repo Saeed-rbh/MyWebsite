@@ -63,25 +63,6 @@ const Menu = () => {
   const dispatch = useDispatch();
   const location = useLocation();
   const panelRef = useRef(null);
-  const contentRef = useRef(null);
-  const [contentScale, setContentScale] = useState(1);
-
-  useLayoutEffect(() => {
-    if (!isMenuOpen) return;
-    const panel = panelRef.current;
-    const content = contentRef.current;
-    if (!panel || !content) return;
-    const fitContent = () => {
-      const style = getComputedStyle(panel);
-      const available = panel.clientHeight - parseFloat(style.paddingTop) - parseFloat(style.paddingBottom);
-      setContentScale(Math.min(1, Math.max(0, available) / Math.max(content.offsetHeight, 1)));
-    };
-    fitContent();
-    const observer = new ResizeObserver(fitContent);
-    observer.observe(panel);
-    observer.observe(content);
-    return () => observer.disconnect();
-  }, [isMenuOpen]);
   const [viewport, setViewport] = useState(() => ({ width: window.innerWidth, height: window.innerHeight }));
   useEffect(() => {
     const resize = () => setViewport({ width: window.innerWidth, height: window.innerHeight });
@@ -91,8 +72,6 @@ const Menu = () => {
   const [reducedMotion, setReducedMotion] = useState(
     () => window.matchMedia("(prefers-reduced-motion: reduce)").matches
   );
-  const close = () => dispatch(updateMenu(false));
-
   useEffect(() => {
     const preference = window.matchMedia("(prefers-reduced-motion: reduce)");
     const updateMotion = () => setReducedMotion(preference.matches);
@@ -100,34 +79,30 @@ const Menu = () => {
     return () => preference.removeEventListener("change", updateMotion);
   }, []);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (!isMenuOpen) return;
-    const opener = document.activeElement;
-    const frame = requestAnimationFrame(() => panelRef.current?.querySelector("nav a")?.focus({ preventScroll: true }));
+    const toggle = document.getElementById("portfolio-menu-toggle");
+    toggle?.focus({ preventScroll: true });
     const handleKey = (event) => {
       if (event.key === "Escape") {
         event.preventDefault();
         dispatch(updateMenu(false));
+        toggle?.focus({ preventScroll: true });
       } else if (event.key === "Tab") {
-        const toggle = document.getElementById("portfolio-menu-toggle");
         const focusable = [toggle, ...(panelRef.current?.querySelectorAll("a[href], button") || [])].filter(Boolean);
-        const first = focusable[0];
-        const last = focusable[focusable.length - 1];
-        if (event.shiftKey && document.activeElement === first) {
-          event.preventDefault();
-          last?.focus();
-        } else if (!event.shiftKey && document.activeElement === last) {
-          event.preventDefault();
-          first?.focus();
-        }
+        if (!focusable.length) return;
+
+        // Native tab order can include the scroll region or skip links on macOS.
+        event.preventDefault();
+        const current = focusable.indexOf(document.activeElement);
+        const next = event.shiftKey
+          ? (current <= 0 ? focusable.length - 1 : current - 1)
+          : (current + 1) % focusable.length;
+        focusable[next].focus();
       }
     };
     document.addEventListener("keydown", handleKey);
-    return () => {
-      cancelAnimationFrame(frame);
-      document.removeEventListener("keydown", handleKey);
-      opener?.focus();
-    };
+    return () => document.removeEventListener("keydown", handleKey);
   }, [isMenuOpen, dispatch]);
 
   const transitions = useTransition(isMenuOpen, {
@@ -139,7 +114,7 @@ const Menu = () => {
   });
 
   return transitions((motion, open) => open && (
-    <animated.div
+    <div
       id="portfolio-menu-panel"
       ref={panelRef}
       className={styles.overlay}
@@ -147,12 +122,16 @@ const Menu = () => {
       style={{
         "--menu-origin-x": `${menuOrigin.x * 100}%`,
         "--menu-origin-y": `${menuOrigin.y * 100}%`,
-        clipPath: motion.reveal.to(value => fluidCircle(value, menuOrigin, viewport)),
       }}
       aria-hidden={!isMenuOpen}
       inert={!isMenuOpen ? true : undefined}
     >
-      <div ref={contentRef} className={styles.content} style={{ transform: `scale(${contentScale})` }}>
+      <animated.div
+        aria-hidden="true"
+        className={styles.surface}
+        style={{ clipPath: motion.reveal.to(value => fluidCircle(value, menuOrigin, viewport)) }}
+      />
+      <div className={styles.content}>
       <div className={styles.layout}>
         <section className={styles.navigation}>
           <p className={styles.eyebrow}><WordReveal text="EXPLORE" delay={300} /></p>
@@ -169,13 +148,14 @@ const Menu = () => {
                         className={styles.destination}
                         style={{ "--item-delay": `${580 + groupIndex * 80 + Math.min(index, 4) * 60}ms` }}
                         aria-current={isCurrentDestination(location.pathname, destination.path) ? "page" : undefined}
-                        onClick={() => {
-                          dispatch(updateCurrentPage(destination.path));
-                          close();
+                        onClick={(event) => {
+                          if (event.button === 0 && !event.metaKey && !event.ctrlKey && !event.altKey && !event.shiftKey) {
+                            dispatch(updateCurrentPage(destination.path));
+                          }
                         }}
                       >
-                        <span className={styles.destinationTitle}><WordReveal text={destination.title} delay={580 + groupIndex * 80 + Math.min(index, 4) * 60} /></span>
-                        <span className={styles.destinationDetail}><WordReveal text={destination.detail} delay={700 + groupIndex * 80 + Math.min(index, 4) * 60} /></span>
+                        <span className={styles.destinationTitle}>{destination.title}</span>
+                        <span className={styles.destinationDetail}>{destination.detail}</span>
                       </Link>
                     </li>
                   ))}
@@ -188,7 +168,7 @@ const Menu = () => {
       </div>
       <p className={styles.note}><WordReveal text="A materials question. A research opportunity. A conversation." delay={700} /></p>
       </div>
-    </animated.div>
+    </div>
   ));
 };
 

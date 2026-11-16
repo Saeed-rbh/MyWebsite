@@ -40,7 +40,7 @@ const ContactItem = () => {
               const external = /^https?:/i.test(href);
               return (
                 <a key={item.id || `${category}-${itemIndex}`} href={href} target={external ? "_blank" : undefined} rel={external ? "noopener noreferrer" : undefined}>
-                  <WordReveal text={item.info || ""} delay={640 + Math.min(index, 4) * 65 + Math.min(itemIndex, 4) * 60} />
+                  {item.info}
                 </a>
               );
             })}
