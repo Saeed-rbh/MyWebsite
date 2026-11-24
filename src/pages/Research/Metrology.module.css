@@ -1,72 +1,1055 @@
-/* Editorial design comes from GrapheneArticle.module.css. Only metrology-specific layouts live here. */
-.page { --accent:#e9b594; --line:#d49d8128; --muted:#c9bfb5; }
-.page h2:focus { outline:none; }
-.skip { position:absolute; top:-100px; left:24px; z-index:10; background:#211a15; padding:15px; }
-.skip:focus { top:85px; }
-.fullWidth,.ramanResults,.methodEvidence,.scientificDetails { grid-column:1/-1; min-width:0; }
-.deviceIllustration { margin:0; align-self:start; }
-.methodLayout { align-items:start; }
-.methodOverview { grid-column:1/-1; display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:28px; margin-top:24px; }
-.methodOverview > a { padding:18px 0; border-top:1px solid var(--line); text-decoration:none; }
-.methodOverview h3 { font:400 clamp(22px,2vw,27px)/1.2 'DM Serif Display',serif; color:#edddcc; margin:14px 0 18px; text-wrap:balance; }
-.methodOverview > a > span:last-child { font:11px/1.8 'Rubik',sans-serif; color:#c5afa0; }
-.methodOverview > a:hover { color:#eed4bc; }
-.methodOverview > a:focus-visible { outline:1px solid var(--accent); outline-offset:6px; }
-.methodEvidence { border-top:1px solid var(--line); padding-top:28px; }
-.methodEvidence h3 { font:400 clamp(26px,3vw,36px)/1.2 'DM Serif Display',serif; color:#edddcc; margin:12px 0 24px; text-wrap:balance; }
-.methodEvidence p { max-width:68ch; color:var(--muted); font-size:14px; line-height:1.95; margin:0 0 20px; text-wrap:pretty; }
-.materialSwitch { display:flex; gap:8px; margin-bottom:24px; flex-wrap:wrap; }
-.materialSwitch button { min-width:90px; min-height:44px; }
-.note { max-width:72ch; color:#bcae9f; font:12px/1.9 'Rubik',sans-serif; margin-top:20px; }
-.scientificDetails { margin:0; }
-.scientificDetails p { max-width:72ch; font:12px/1.9 'Rubik',sans-serif; color:#bcae9f; margin:16px 0; }
-.related { display:flex; gap:16px 28px; flex-wrap:wrap; margin:28px 0; font-size:12px; }
-.page :is(section[id],li[id]) { scroll-margin-top:164px; }
-.calibration { display:grid; grid-template-columns:1fr 1fr; gap:8%; padding:36px 0 0; margin-top:32px; border-top:1px solid var(--line); }
-.calibration h3 { font-size:28px; }
-.calibration label { display:flex; justify-content:space-between; font:12px/1.8 'Rubik',sans-serif; color:var(--muted); }
-.calibration input { width:100%; min-height:44px; accent-color:var(--accent); cursor:pointer; }
-.calibration output { display:block; font:42px/1.3 'DM Serif Display',serif; color:var(--accent); }
-.calibration output small { display:block; font:11px/1.8 'Rubik',sans-serif; color:var(--muted); }
-.ramanResults { margin:8px 0 32px; border-block:1px solid var(--line); padding:32px 0; }
-.ramanResults h3 em { font-style:normal; color:var(--accent); }
-.dotPlot { margin:32px 0; }
-.axis { margin-left:185px; margin-right:90px; display:flex; justify-content:space-between; font:10px/1.6 'Rubik',sans-serif; color:#b9a18d; padding-bottom:14px; }
-.plotRow { display:grid; grid-template-columns:165px 1fr 70px; align-items:center; gap:20px; min-height:58px; font:12px/1.6 'Rubik',sans-serif; color:var(--muted); }
-.plotRow strong { color:var(--accent); font-weight:400; font-variant-numeric:tabular-nums; text-align:right; }
-.plotTrack { position:relative; height:32px; background:repeating-linear-gradient(90deg,#d49d8120 0 1px,transparent 1px 20%); border-bottom:1px solid var(--line); }
-.plotTrack i { position:absolute; top:12px; width:10px; height:10px; border-radius:50%; background:var(--accent); transform:translateX(-50%); }
-.plotTrack i[data-bulk] { background:#14110e; border:2px solid #e9b594; }
-.dataDetails { margin-top:22px; font-size:12px; color:var(--muted); }
-.dataDetails summary { cursor:pointer; color:var(--accent); min-height:44px; padding:12px 0; }
-.dataDetails table { width:100%; border-collapse:collapse; text-align:left; }
-.dataDetails caption { text-align:left; padding:15px 0; }
-.dataDetails td,.dataDetails th { padding:12px; font-weight:400; border-bottom:1px solid var(--line); }
+/* Editorial design comes from GrapheneArticle.module.css. Only metrology-specific and portal Lightbox styles live here. */
+.page {
+  --accent: #e9b594;
+  --teal: #8bc6bd;
+  --line: #d49d8128;
+  --muted: #c9bfb5;
+}
 
-.calibration h3,.ramanResults h3 { font:400 clamp(26px,3vw,36px)/1.2 'DM Serif Display',serif; color:#edddcc; margin:12px 0 24px; text-wrap:balance; }
-.calibration p,.ramanResults p { color:var(--muted); font-size:13px; line-height:1.9; }
-.ramanResults figcaption { max-width:72ch; color:#bcae9f; font:12px/1.9 'Rubik',sans-serif; }
-@media(min-width:1100px) { .methodEvidence { display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1.2fr); gap:0 7%; } .methodEvidence > header { grid-column:1; grid-row:1/4; } .methodEvidence h3 { max-width:22ch; } .methodEvidence p { grid-column:2; } }
-@media(max-width:900px) { .methodOverview { grid-template-columns:minmax(0,1fr); gap:0; } }
-@media(max-width:600px) { .calibration { grid-template-columns:minmax(0,1fr); gap:28px; } .plotRow { grid-template-columns:100px minmax(0,1fr) 52px; gap:8px; font-size:10px; } .axis { margin-left:108px; margin-right:60px; font-size:8px; } .materialSwitch button { min-width:75px; } }
+/* Eliminate fixed top header scroll bleed across desktop and sticky mobile nav. */
+.page::before {
+  height: 98px;
+  background: linear-gradient(180deg, #100e0c 58%, #100e0cd9 78%, #100e0c00 100%);
+  z-index: 2;
+}
+@media (max-width: 1099px) {
+  .page::before {
+    height: 68px;
+    background: #100e0cfa;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+  }
+}
 
-/* Larger teaching images, compact personal evidence, and open borderless surfaces. */
-.page .methodDiagram { grid-column:1/-1; margin-inline:0; border:0; padding-top:18px; }
-.methodLayout { --illustration-width:460px; grid-template-columns:minmax(0,1.1fr) minmax(0,1fr); max-width:none; gap:clamp(28px,4vw,56px); }
-.page .deviceIllustration { width:100%; max-width:460px; }
-.page .deviceIllustration > a,.page .deviceIllustration > a:hover { border:0; box-shadow:none; border-radius:0; }
-.page .methodDiagram > div:last-child { border:0; }
-.methodEvidence { border:0; padding-top:18px; }
-.methodEvidence h3 { font-size:clamp(24px,2.4vw,30px); }
-.methodEvidence p { font-size:12px; line-height:1.9; max-width:72ch; margin-bottom:16px; }
-.page .scientificDetails { border:0; }
-.page .scientificDetails summary { font-size:11px; }
-.scientificDetails p { font-size:11px; }
-@media(max-width:900px) { .methodLayout { grid-template-columns:minmax(0,1fr); gap:28px; } .page .deviceIllustration { width:min(100%,460px); max-width:460px; justify-self:center; } }
-@media(max-width:600px) { .page .deviceIllustration { width:90%; max-width:420px; } }
-.page .methodLayout > ol > li,.page .deviceIllustration details { border:0; }
+.page h2:focus { outline: none; }
+.skip { position: absolute; top: -100px; left: 24px; z-index: 10; background: #211a15; padding: 15px; }
+.skip:focus { top: 85px; }
 
-/* Keep expanded copy and compact tables within the reading column. */
-.page :is(.scientificDetails,.dataDetails) { min-width:0; }
-.page :is(.scientificDetails,.deviceIllustration) p { overflow-wrap:break-word; }
-@media(max-width:600px) { .dataDetails td,.dataDetails th { padding:12px 8px; } }
+.fullWidth, .ramanResults, .methodEvidence, .scientificDetails, .spatialCheckCard {
+  grid-column: 1 / -1;
+  min-width: 0;
+}
+.deviceIllustration { margin: 0; align-self: start; }
+.methodLayout { align-items: start; }
+.eyebrowLocal {
+  color: #d49d81;
+  font: 400 10px/1.6 'Rubik', sans-serif;
+  letter-spacing: .17em;
+  text-transform: uppercase;
+}
+
+/* Hero Diagnostic Rig: One Sample -> Six Lenses */
+.heroRig {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: minmax(280px, 1.05fr) minmax(0, 1.35fr);
+  gap: 24px 36px;
+  margin-top: 14px;
+  padding: 24px;
+  border: 1px solid #d49d8133;
+  border-radius: calc(18px * var(--apple-radius-scale, 1));
+  corner-shape: var(--apple-corner, round);
+  background: linear-gradient(135deg, #1d1712cc 0%, #14110ecc 100%);
+}
+.heroRigVisual {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 10px;
+  min-width: 0;
+}
+.heroRigMeta {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 8px 16px;
+}
+.heroRigMeta > span:last-child {
+  font: 11px/1.5 'Rubik', sans-serif;
+  color: #8bc6bd;
+}
+.heroRigSvg {
+  display: block;
+  width: 100%;
+  max-width: 340px;
+  height: auto;
+  margin: 4px auto;
+}
+.heroRigReadout {
+  margin: 0;
+  padding-top: 12px;
+  border-top: 1px solid var(--line);
+  font: 12px/1.7 'Rubik', sans-serif;
+  color: var(--muted);
+}
+.heroRigReadout strong {
+  color: #f0dccb;
+  font-weight: 500;
+}
+.heroLensRail {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+  align-content: center;
+}
+.page button.heroLensCard {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 5px;
+  min-height: 0;
+  padding: 13px 15px;
+  text-align: left;
+  border: 1px solid #d49d8126;
+  border-radius: calc(12px * var(--apple-radius-scale, 1));
+  corner-shape: var(--apple-corner, round);
+  background: #211a1466;
+  color: var(--muted);
+  transition: border-color .22s, background-color .22s, color .22s;
+}
+.page button.heroLensCard:hover,
+.page button.heroLensCard:focus-visible,
+.page button.heroLensCard[data-active='true'] {
+  border-color: #e9b59480;
+  background: #2b2119b8;
+  color: #f6ebe0;
+}
+.heroLensTop {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  font: 10px/1.4 'Rubik', sans-serif;
+  letter-spacing: .09em;
+  text-transform: uppercase;
+  color: #d49d81;
+}
+.heroLensCard strong {
+  font: 400 14px/1.35 'DM Serif Display', serif;
+  color: #edddcc;
+}
+.heroLensCard small {
+  font: 10px/1.4 'Rubik', sans-serif;
+  color: #9e8f81;
+}
+@media (max-width: 900px) {
+  .heroRig { grid-template-columns: minmax(0, 1fr); padding: 18px; }
+}
+@media (max-width: 560px) {
+  .heroLensRail { grid-template-columns: minmax(0, 1fr); }
+}
+
+/* Overview grid */
+.methodOverview {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 28px;
+  margin-top: 24px;
+}
+.methodOverview > a {
+  padding: 18px 0;
+  border-top: 1px solid var(--line);
+  text-decoration: none;
+}
+.methodOverview h3 {
+  font: 400 clamp(22px, 2vw, 27px)/1.2 'DM Serif Display', serif;
+  color: #edddcc;
+  margin: 14px 0 18px;
+  text-wrap: balance;
+}
+.methodOverview > a > span:last-child {
+  font: 11px/1.8 'Rubik', sans-serif;
+  color: #c5afa0;
+}
+.methodOverview > a:hover { color: #eed4bc; }
+.methodOverview > a:focus-visible { outline: 1px solid var(--accent); outline-offset: 6px; }
+@media (max-width: 900px) {
+  .methodOverview { grid-template-columns: minmax(0, 1fr); gap: 0; }
+}
+
+/* Instrument teaching card + Dual-mode schematic / 3D render stage */
+.page .methodDiagram {
+  grid-column: 1 / -1;
+  margin-inline: 0;
+  border: 0;
+  border-top: 1px solid var(--line);
+  padding-top: 24px;
+}
+.methodDiagramHeader h3 {
+  margin-bottom: 18px;
+}
+.methodLayout {
+  --illustration-width: 520px;
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
+  max-width: none;
+  gap: clamp(28px, 4vw, 56px);
+}
+.page .deviceIllustration {
+  width: 100%;
+  max-width: 540px;
+}
+.schematicToolbar {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px 12px;
+  margin-bottom: 12px;
+}
+.schematicTabs {
+  display: inline-flex;
+  gap: 4px;
+  padding: 3px;
+  border: 1px solid #d49d812e;
+  border-radius: 999px;
+  corner-shape: var(--apple-pill-corner, round);
+  background: #1a1511;
+}
+.page .schematicTabs button {
+  min-height: 36px;
+  padding: 7px 14px;
+  border: 0;
+  border-radius: 999px;
+  corner-shape: var(--apple-pill-corner, round);
+  font-size: 11px;
+  color: #b9a99b;
+}
+.page .schematicTabs button[aria-pressed='true'] {
+  background: #d7a582;
+  color: #1a130e;
+}
+.page button.inspectTriggerSmall,
+.page button.inspectTrigger {
+  min-height: 38px;
+  padding: 8px 14px;
+  border: 1px solid #d49d8144;
+  border-radius: 999px;
+  corner-shape: var(--apple-pill-corner, round);
+  font: 11px/1.3 'Rubik', sans-serif;
+  color: #e9b594;
+  background: #1d1712;
+  white-space: nowrap;
+}
+.page button.inspectTriggerSmall:hover,
+.page button.inspectTrigger:hover {
+  background: #d49d8122;
+  border-color: #d49d8188;
+}
+.schematicStage {
+  padding: 14px;
+  border: 1px solid #d49d812a;
+  border-radius: calc(14px * var(--apple-radius-scale, 1));
+  corner-shape: var(--apple-corner, round);
+  background: #15110e;
+}
+.schematicSvg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.interactiveSchematic {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.schematicControls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.page .schematicControls button {
+  min-height: 36px;
+  padding: 7px 13px;
+  font-size: 11px;
+  border-radius: 999px;
+  corner-shape: var(--apple-pill-corner, round);
+}
+.renderFigure {
+  margin: 0;
+}
+.page button.renderSurfaceButton {
+  display: block;
+  width: 100%;
+  padding: 0;
+  min-height: 0;
+  border: 1px solid #d49d812a;
+  border-radius: calc(12px * var(--apple-radius-scale, 1));
+  corner-shape: var(--apple-corner, round);
+  background: #100e0c;
+  overflow: hidden;
+}
+.page button.renderSurfaceButton img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.page .methodDiagram > div:last-child { border: 0; }
+.page .methodLayout > ol > li { border: 0; }
+
+/* Smooth disclosures */
+.page .smoothDetails {
+  border-top: 1px solid #d49d8128;
+  border-bottom: 0;
+  padding: 10px 0 0;
+}
+.detailsBody > *:first-child { margin-top: 8px; }
+.detailsBody > *:last-child { margin-bottom: 12px; }
+
+/* Method evidence & compact AFM/SEM spatial check callout */
+.methodEvidence { border: 0; padding-top: 18px; }
+.methodEvidence h3 {
+  font: 400 clamp(24px, 2.4vw, 30px)/1.2 'DM Serif Display', serif;
+  color: #edddcc;
+  margin: 12px 0 20px;
+  text-wrap: balance;
+}
+.methodEvidence p {
+  max-width: 72ch;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.9;
+  margin: 0 0 16px;
+  text-wrap: pretty;
+}
+@media (min-width: 1100px) {
+  .methodEvidence {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr);
+    gap: 0 7%;
+  }
+  .methodEvidence > header { grid-column: 1; grid-row: 1 / 4; }
+  .methodEvidence h3 { max-width: 22ch; }
+  .methodEvidence p { grid-column: 2; }
+}
+.spatialCheckCard {
+  padding: 20px 24px;
+  border-left: 2px solid #8bc6bd;
+  border-radius: calc(12px * var(--apple-radius-scale, 1));
+  corner-shape: var(--apple-corner, round);
+  background: #1b1612a6;
+}
+.spatialCheckCard h3 {
+  font: 400 clamp(20px, 2vw, 25px)/1.25 'DM Serif Display', serif;
+  color: #edddcc;
+  margin: 8px 0 12px;
+}
+.spatialCheckCard p {
+  margin: 0;
+  max-width: 76ch;
+  font-size: 13px;
+  line-height: 1.85;
+  color: var(--muted);
+}
+
+/* ThesisFigure upgrades: warm archival matte, legend pills, sub-panel focus */
+.thesisFigure {
+  margin-top: 16px;
+}
+.thesisFigureHeader {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 16px;
+  margin-bottom: 18px;
+}
+.thesisFigureHeader h3 {
+  margin: 10px 0 14px;
+}
+.figureLegendBar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 20px;
+  list-style: none;
+  margin: 0 0 16px;
+  padding: 12px 16px;
+  border: 1px solid #d49d8126;
+  border-radius: calc(10px * var(--apple-radius-scale, 1));
+  corner-shape: var(--apple-corner, round);
+  background: #191511;
+}
+.figureLegendBar li {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font: 12px/1.5 'Rubik', sans-serif;
+  color: var(--muted);
+}
+.figureLegendBar strong { color: #f6ebe0; font-weight: 500; }
+.legendSwatch {
+  width: 11px;
+  height: 11px;
+  flex: 0 0 11px;
+  background: var(--swatch, #e9b594);
+  box-shadow: 0 0 0 2px var(--ring, #f0dccb);
+}
+.marker_circle { border-radius: 50%; }
+.marker_square { border-radius: 2px; }
+.marker_diamond { border-radius: 2px; transform: rotate(45deg); }
+
+.panelFocusBar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 14px;
+}
+.panelFocusBar > span {
+  font: 10px/1.5 'Rubik', sans-serif;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: #a99a8c;
+  margin-right: 4px;
+}
+.page .panelFocusBar button {
+  min-height: 36px;
+  padding: 7px 13px;
+  font-size: 11px;
+  border-radius: 999px;
+  corner-shape: var(--apple-pill-corner, round);
+}
+.paperMatte {
+  padding: clamp(8px, 1.4vw, 14px);
+  background: #f4efe8;
+  border: 1px solid #d49d8140;
+  border-radius: calc(10px * var(--apple-radius-scale, 1));
+  corner-shape: var(--apple-corner, round);
+  width: fit-content;
+  max-width: 100%;
+}
+.page button.figureSurfaceButton {
+  display: block;
+  width: 100%;
+  padding: 0;
+  min-height: 0;
+  border: 0;
+  border-radius: calc(4px * var(--apple-radius-scale, 1));
+  corner-shape: var(--apple-corner, round);
+  background: #fff;
+  overflow: hidden;
+}
+.page button.figureSurfaceButton img {
+  display: block;
+  max-width: 100%;
+  width: auto;
+  max-height: 480px;
+  height: auto;
+  margin: auto;
+}
+.panelCropViewport {
+  width: min(100%, 460px);
+  overflow: hidden;
+  background: #fff;
+}
+.page .panelCropViewport img {
+  margin: 0;
+  max-width: none !important;
+  max-height: none !important;
+}
+
+/* Animated pill switcher in FigureExplorer */
+.materialSwitch { display: flex; gap: 8px; margin-bottom: 20px; flex-wrap: wrap; }
+.page button.materialTab {
+  position: relative;
+  min-width: 92px;
+  min-height: 44px;
+  padding: 10px 18px;
+  border-radius: 999px;
+  corner-shape: var(--apple-pill-corner, round);
+  background: #1b1611;
+  color: #dfc5b0;
+  overflow: hidden;
+}
+.page button.materialTab[aria-pressed='true'] {
+  background: transparent;
+  color: #1a130e;
+  border-color: #e2ad8b;
+}
+.materialTabBg {
+  position: absolute;
+  inset: 0;
+  background: #e2ad8b;
+  border-radius: 999px;
+  corner-shape: var(--apple-pill-corner, round);
+  z-index: 0;
+}
+.materialTabLabel { position: relative; z-index: 1; }
+.note { max-width: 72ch; color: #bcae9f; font: 12px/1.9 'Rubik', sans-serif; margin-top: 20px; }
+
+/* Thesis yield card + Beer-Lambert Cuvette Explorer */
+.recoveryHighlight {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(240px, 1fr);
+  gap: 24px 36px;
+  align-items: center;
+  padding: 22px 24px;
+  margin-bottom: 24px;
+  border: 1px solid #d49d8138;
+  border-radius: calc(14px * var(--apple-radius-scale, 1));
+  corner-shape: var(--apple-corner, round);
+  background: linear-gradient(125deg, #241b14b3, #17130fb3);
+}
+.recoveryHighlight h4 {
+  font: 400 24px/1.25 'DM Serif Display', serif;
+  color: #f0dccb;
+  margin: 8px 0 10px;
+}
+.recoveryHighlight p {
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.8;
+  color: var(--muted);
+}
+.recoveryStatBlock {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.recoveryFigures {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 6px 14px;
+}
+.recoveryFigures strong {
+  font: 400 clamp(32px, 3.6vw, 44px)/1 'DM Serif Display', serif;
+  color: #e9b594;
+}
+.recoveryFigures span {
+  font: 12px/1.5 'Rubik', sans-serif;
+  color: #8bc6bd;
+}
+.recoveryBarTrack {
+  height: 7px;
+  background: #2f241c;
+  border-radius: 999px;
+  overflow: hidden;
+}
+.recoveryBarFill {
+  height: 100%;
+  background: linear-gradient(90deg, #d49d81, #8bc6bd);
+  transform-origin: left center;
+}
+.recoveryStatBlock small {
+  font: 11px/1.5 'Rubik', sans-serif;
+  color: #a99a8c;
+}
+@media (max-width: 760px) {
+  .recoveryHighlight { grid-template-columns: minmax(0, 1fr); padding: 18px; }
+}
+
+.calibrationWorkbench {
+  margin-top: 28px;
+  padding-top: 28px;
+  border-top: 1px solid var(--line);
+}
+.calibrationHeader h3 {
+  font: 400 clamp(24px, 2.8vw, 32px)/1.2 'DM Serif Display', serif;
+  color: #edddcc;
+  margin: 10px 0 12px;
+}
+.calibrationHeader p {
+  max-width: 68ch;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.85;
+  margin: 0 0 22px;
+}
+.calibrationGrid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr);
+  gap: 28px 40px;
+  align-items: center;
+}
+.calibrationControls {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+.materialPills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.page .materialPills button {
+  min-height: 38px;
+  padding: 8px 14px;
+  font-size: 11px;
+}
+.sliderField label {
+  display: flex;
+  justify-content: space-between;
+  font: 12px/1.6 'Rubik', sans-serif;
+  color: var(--muted);
+}
+.sliderField strong { color: var(--accent); font-weight: 500; }
+.sliderField input {
+  width: 100%;
+  min-height: 38px;
+  accent-color: var(--accent);
+  cursor: pointer;
+}
+.calibrationOutput {
+  display: block;
+  padding-top: 10px;
+  border-top: 1px solid var(--line);
+}
+.calibrationOutput strong {
+  display: block;
+  font: 400 38px/1.2 'DM Serif Display', serif;
+  color: var(--accent);
+}
+.calibrationOutput small {
+  display: block;
+  font: 11px/1.6 'Rubik', sans-serif;
+  color: var(--muted);
+}
+.calibrationVisual {
+  padding: 16px;
+  border: 1px solid #d49d8126;
+  border-radius: calc(14px * var(--apple-radius-scale, 1));
+  corner-shape: var(--apple-corner, round);
+  background: #17130f;
+}
+.cuvetteSvg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.calibrationMetrics {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid var(--line);
+}
+.calibrationMetrics span {
+  display: block;
+  font: 10px/1.4 'Rubik', sans-serif;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: #a99a8c;
+}
+.calibrationMetrics strong {
+  font: 500 13px/1.5 'Rubik', sans-serif;
+  color: #8bc6bd;
+}
+.calibrationMetrics strong[data-warn='true'] { color: #e9b594; }
+@media (max-width: 820px) {
+  .calibrationGrid { grid-template-columns: minmax(0, 1fr); }
+}
+
+/* Raman Explorer: Animated Dot Plot + Two-Peak SVG */
+.ramanResults {
+  margin: 8px 0 32px;
+  border-block: 1px solid var(--line);
+  padding: 32px 0;
+}
+.ramanHeader {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 18px 28px;
+}
+.ramanResults h3 {
+  font: 400 clamp(26px, 3vw, 36px)/1.2 'DM Serif Display', serif;
+  color: #edddcc;
+  margin: 12px 0 14px;
+  text-wrap: balance;
+}
+.ramanHeader p {
+  max-width: 64ch;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.85;
+  margin: 0;
+}
+.ramanFractionButtons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.page .ramanFractionButtons button {
+  min-height: 38px;
+  padding: 7px 14px;
+  font-size: 11px;
+}
+.ramanSplitLayout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);
+  gap: 28px 36px;
+  align-items: center;
+  margin: 28px 0;
+}
+.dotPlot { margin: 0; }
+.axis {
+  margin-left: 165px;
+  margin-right: 76px;
+  display: flex;
+  justify-content: space-between;
+  font: 10px/1.6 'Rubik', sans-serif;
+  color: #b9a18d;
+  padding-bottom: 10px;
+}
+.page button.plotRowButton {
+  display: grid;
+  grid-template-columns: 150px 1fr 64px;
+  align-items: center;
+  gap: 14px;
+  width: 100%;
+  min-height: 50px;
+  padding: 6px 10px;
+  border: 1px solid transparent;
+  border-radius: calc(10px * var(--apple-radius-scale, 1));
+  corner-shape: var(--apple-corner, round);
+  background: transparent;
+  text-align: left;
+  font: 12px/1.5 'Rubik', sans-serif;
+  color: var(--muted);
+}
+.page button.plotRowButton[data-selected='true'],
+.page button.plotRowButton:hover {
+  background: #211a14a0;
+  border-color: #d49d8140;
+  color: #f6ebe0;
+}
+.plotRowButton strong {
+  color: var(--accent);
+  font-weight: 500;
+  font-variant-numeric: tabular-nums;
+  text-align: right;
+}
+.plotTrack {
+  position: relative;
+  display: block;
+  height: 28px;
+  background: repeating-linear-gradient(90deg, #d49d8120 0 1px, transparent 1px 20%);
+  border-bottom: 1px solid var(--line);
+}
+.bulkGuideLine {
+  position: absolute;
+  top: 2px;
+  bottom: 0;
+  width: 1px;
+  border-left: 1px dashed #b9a18d55;
+  pointer-events: none;
+}
+.shiftSpanBar {
+  position: absolute;
+  top: 13px;
+  height: 2px;
+  background: linear-gradient(90deg, #8bc6bd, #e9b59444);
+  transform-origin: right center;
+  pointer-events: none;
+}
+.plotTrack i {
+  position: absolute;
+  top: 9px;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--accent);
+  transform: translateX(-50%);
+}
+.plotTrack i[data-bulk] {
+  background: #14110e;
+  border: 2px solid #e9b594;
+}
+.ramanPeakPanel {
+  padding: 16px;
+  border: 1px solid #d49d8126;
+  border-radius: calc(14px * var(--apple-radius-scale, 1));
+  corner-shape: var(--apple-corner, round);
+  background: #17130f;
+}
+.ramanPeakHeader {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 8px;
+  margin-bottom: 8px;
+  font: 12px/1.5 'Rubik', sans-serif;
+  color: #f0dccb;
+}
+.ramanPeakHeader strong { color: #8bc6bd; font-weight: 500; }
+.ramanPeakHeader small { color: #b9a99b; font-weight: 400; }
+.ramanCurveSvg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.ramanCurveNote {
+  margin: 8px 0 0;
+  font: 11px/1.6 'Rubik', sans-serif;
+  color: #a99a8c;
+}
+.ramanResults figcaption {
+  max-width: 72ch;
+  color: #bcae9f;
+  font: 12px/1.9 'Rubik', sans-serif;
+}
+@media (max-width: 960px) {
+  .ramanSplitLayout { grid-template-columns: minmax(0, 1fr); }
+}
+@media (max-width: 600px) {
+  .page button.plotRowButton { grid-template-columns: 102px minmax(0, 1fr) 50px; gap: 8px; font-size: 11px; padding: 6px; }
+  .axis { margin-left: 108px; margin-right: 58px; font-size: 9px; }
+}
+
+/* Measured values disclosure + table */
+.dataDetails { margin-top: 22px; font-size: 12px; color: var(--muted); }
+.dataDetails summary { cursor: pointer; color: var(--accent); min-height: 44px; padding: 12px 0; }
+.dataDetails table { width: 100%; border-collapse: collapse; text-align: left; }
+.dataDetails caption { text-align: left; padding: 15px 0; }
+.dataDetails td, .dataDetails th { padding: 12px; font-weight: 400; border-bottom: 1px solid var(--line); }
+
+.scientificDetails { margin: 0; }
+.scientificDetails p { max-width: 72ch; font: 12px/1.9 'Rubik', sans-serif; color: #bcae9f; margin: 16px 0; }
+
+/* Chapter 09 Material Evidence Matrix */
+.evidenceMatrix {
+  margin: 34px 0 38px;
+  padding: 26px;
+  border: 1px solid #d49d8133;
+  border-radius: calc(16px * var(--apple-radius-scale, 1));
+  corner-shape: var(--apple-corner, round);
+  background: #17130f;
+}
+.matrixHeader {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 16px 24px;
+  margin-bottom: 22px;
+}
+.matrixHeader h3 {
+  font: 400 clamp(22px, 2.4vw, 29px)/1.2 'DM Serif Display', serif;
+  color: #f0dccb;
+  margin: 8px 0 0;
+}
+.matrixFilters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.page .matrixFilters button {
+  min-height: 36px;
+  padding: 7px 14px;
+  font-size: 11px;
+}
+.matrixCards {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+}
+.matrixCards[data-single='true'] {
+  grid-template-columns: minmax(0, 680px);
+}
+.matrixCard {
+  padding: 18px;
+  border: 1px solid #d49d8126;
+  border-radius: calc(12px * var(--apple-radius-scale, 1));
+  corner-shape: var(--apple-corner, round);
+  background: #201a15a0;
+}
+.matrixCard header {
+  padding-bottom: 12px;
+  margin-bottom: 14px;
+  border-bottom: 1px solid var(--line);
+}
+.matrixFormula {
+  font: 11px/1.4 'Rubik', sans-serif;
+  letter-spacing: .1em;
+  color: #8bc6bd;
+}
+.matrixCard h4 {
+  font: 400 24px/1.2 'DM Serif Display', serif;
+  color: #edddcc;
+  margin: 4px 0 0;
+}
+.matrixCard dl {
+  margin: 0;
+  display: grid;
+  gap: 12px;
+}
+.matrixCard dt { margin-bottom: 3px; }
+.matrixCard dd {
+  margin: 0;
+  font-size: 12px;
+  line-height: 1.7;
+  color: var(--muted);
+}
+.page button.matrixJump {
+  min-height: 0;
+  padding: 2px 0;
+  border: 0;
+  border-radius: 0;
+  font: 500 10px/1.5 'Rubik', sans-serif;
+  letter-spacing: .09em;
+  text-transform: uppercase;
+  color: #e9b594;
+}
+.matrixOpenItem {
+  padding-top: 10px;
+  border-top: 1px solid var(--line);
+}
+.matrixOpenItem dt {
+  font: 500 10px/1.5 'Rubik', sans-serif;
+  letter-spacing: .09em;
+  text-transform: uppercase;
+  color: #8bc6bd;
+}
+@media (max-width: 960px) {
+  .matrixCards { grid-template-columns: minmax(0, 1fr); }
+}
+
+.related { display: flex; gap: 16px 28px; flex-wrap: wrap; margin: 28px 0; font-size: 12px; }
+.page :is(section[id], li[id]) { scroll-margin-top: 164px; }
+@media (max-width: 900px) {
+  .methodLayout { grid-template-columns: minmax(0, 1fr); gap: 28px; }
+  .page .deviceIllustration { width: 100%; max-width: 540px; justify-self: center; }
+}
+@media (max-width: 600px) {
+  .dataDetails td, .dataDetails th { padding: 12px 8px; }
+  .evidenceMatrix { padding: 18px; }
+}
+
+/* =====================================================================
+   FigureLightbox Portal (rendered into document.body outside .page)
+   ===================================================================== */
+.lightboxBackdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 2000;
+  display: grid;
+  place-items: center;
+  padding: clamp(12px, 3vw, 32px);
+  background: #0a0806e6;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  color: #faf9f1;
+  font-family: 'Poppins', sans-serif;
+}
+.lightboxDialog {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  width: min(1080px, 100%);
+  max-height: 92dvh;
+  padding: clamp(16px, 2.5vw, 26px);
+  border: 1px solid #d49d8144;
+  border-radius: calc(18px * var(--apple-radius-scale, 1));
+  corner-shape: var(--apple-corner, round);
+  background: #16120f;
+  box-shadow: 0 24px 80px #000a;
+}
+.lightboxHeader {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px 20px;
+}
+.lightboxMeta span {
+  display: block;
+  font: 10px/1.5 'Rubik', sans-serif;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: #d49d81;
+}
+.lightboxMeta h3 {
+  margin: 4px 0 0;
+  font: 400 clamp(20px, 2.4vw, 28px)/1.2 'DM Serif Display', serif;
+  color: #f6ebe0;
+}
+.lightboxToolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+.lightboxZoomGroup {
+  display: inline-flex;
+  gap: 4px;
+}
+.lightboxToolbar button,
+.lightboxToolbar a,
+.lightboxPanels button {
+  cursor: pointer;
+  min-height: 36px;
+  padding: 7px 13px;
+  border: 1px solid #d49d8144;
+  border-radius: 999px;
+  corner-shape: var(--apple-pill-corner, round);
+  background: #211a14;
+  color: #dfc5b0;
+  font: 11px/1.3 'Rubik', sans-serif;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+}
+.lightboxToolbar button[aria-pressed='true'],
+.lightboxPanels button[aria-pressed='true'] {
+  background: #e2ad8b;
+  color: #1c140e;
+  border-color: #e2ad8b;
+}
+.lightboxClose {
+  background: #2b2119 !important;
+  color: #faf9f1 !important;
+}
+.lightboxPanels {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.lightboxStage {
+  position: relative;
+  display: grid;
+  place-items: center;
+  flex: 1;
+  min-height: 220px;
+  overflow: hidden;
+  border: 1px solid #d49d812e;
+  border-radius: calc(12px * var(--apple-radius-scale, 1));
+  corner-shape: var(--apple-corner, round);
+  background: #100e0c;
+  user-select: none;
+}
+.lightboxPaper {
+  background: #f4efe8;
+  padding: clamp(10px, 2vw, 20px);
+}
+.lightboxStage[data-zoomed='true'] { cursor: grab; }
+.lightboxStage[data-dragging='true'] { cursor: grabbing; }
+.lightboxTransform {
+  transition: transform .16s ease-out;
+  transform-origin: center center;
+}
+.lightboxStage[data-dragging='true'] .lightboxTransform { transition: none; }
+.lightboxTransform > img {
+  display: block;
+  max-width: min(86vw, 960px);
+  max-height: 62vh;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+}
+.panelCropFrame {
+  overflow: hidden;
+  background: #fff;
+}
+.lightboxCaption {
+  margin: 0;
+  font: 12px/1.6 'Rubik', sans-serif;
+  color: #c9bfb5;
+}
+@media (prefers-reduced-motion: reduce) {
+  .lightboxTransform { transition: none; }
+}

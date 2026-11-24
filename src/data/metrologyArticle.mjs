@@ -15,6 +15,11 @@ export const metrologyArticle = {
         "No single instrument answers everything. In this guide, each method adds one piece of evidence. I explain the idea first, then show results from my thesis on graphene, hexagonal boron nitride (h-BN) and molybdenum disulfide (MoS₂), where available."
       ],
       "source": 0,
+      "highlights": [
+        "extremely thin sheets",
+        "science of measurement",
+        "No single instrument answers everything"
+      ],
       "handoff": {
         "to": "instrument-guide",
         "text": "Start with the property you want to measure."
@@ -30,6 +35,10 @@ export const metrologyArticle = {
         "Our story starts with how much material is in the liquid. We then look at the sheets, measure their height, examine the wider surface, and check their chemistry and atomic vibrations. You can follow the story in order or jump to a question below. In the lab, the order depends on the sample."
       ],
       "source": 1,
+      "highlights": [
+        "appearance alone cannot tell us",
+        "chemistry and atomic vibrations"
+      ],
       "handoff": {
         "to": "concentration",
         "text": "First, how much material did we collect?"
@@ -50,6 +59,12 @@ export const metrologyArticle = {
         "Concentration tells us how much solid is in each litre. To find the total collected mass, we also need the liquid volume. To calculate the fraction recovered, we compare that mass with the amount of starting material. None of these numbers, by itself, tells us how many sheets are a single atomic layer."
       ],
       "source": 0,
+      "highlights": [
+        "mass of solid in a given volume of liquid",
+        "connecting an instrument reading to a known quantity",
+        "None of these numbers, by itself, tells us how many sheets are a single atomic layer",
+        "absorption and light scattered out of the detected beam"
+      ],
       "handoff": {
         "to": "see-the-sheets",
         "text": "We know how much solid is dispersed. Does it form sheets?"
@@ -74,6 +89,12 @@ export const metrologyArticle = {
         "These images show that sheets are present. They do not tell us the typical size of every flake in the bottle. That would require measuring many flakes from different parts of the sample. Seeing ordered atoms in one region also does not prove that every sheet is free of defects."
       ],
       "source": 0,
+      "highlights": [
+        "repeating arrangement of atoms",
+        "broad sheets with folds and wrinkles",
+        "717 nanometres across",
+        "do not tell us the typical size of every flake in the bottle"
+      ],
       "handoff": {
         "to": "afm-thickness",
         "text": "We can see the sheets. How thick are they?"
@@ -93,7 +114,14 @@ export const metrologyArticle = {
         "A wide flake can still be a thick stack. An atomic force microscope adds the missing height measurement. It follows the surface of a flake placed on a flat support, helping us work out how thin the flake is."
       ],
       "resultParagraphs": [],
+      "roleBadge": "Complementary spatial check",
+      "spatialNote": "TEM shows a flake's width from above, leaving stack height unknown. AFM closes that geometric gap by tracing physical steps across a substrate—while reminding us that trapped solvent or cantilever-tip width can inflate apparent thickness. In my thesis workflow, vertical thinning across the batch was instead tracked optically and via Raman shifts alongside TEM morphology.",
       "source": 1,
+      "highlights": [
+        "missing height measurement",
+        "work out how thin the flake is",
+        "vertical thinning across the batch"
+      ],
       "handoff": {
         "to": "sem-morphology",
         "text": "How are those flakes spread across a surface?"
@@ -109,7 +137,14 @@ export const metrologyArticle = {
         "Now step back from a single flake. Are the sheets spread across a surface or gathered in clumps? A scanning electron microscope helps us explore these patterns and compare starting powders with the material left after processing."
       ],
       "resultParagraphs": [],
+      "roleBadge": "Complementary spatial check",
+      "spatialNote": "Before trusting nanometer-scale lattice fringes, SEM zooms out to ask whether flakes spread evenly across a collector or restacked into micrometer-wide agglomerates. My dissertation discusses SEM contextually from the literature while drawing Chapter 7 morphological conclusions directly from TEM, STEM, and HRTEM.",
       "source": 5,
+      "highlights": [
+        "spread across a surface or gathered in clumps",
+        "compare starting powders with the material left after processing",
+        "Chapter 7 morphological conclusions"
+      ],
       "handoff": {
         "to": "check-the-chemistry",
         "text": "The shape is visible. Has the chemistry changed?"
@@ -130,6 +165,11 @@ export const metrologyArticle = {
         "We cannot blame all of the oxygen signal on the gas used during processing. Newly exposed edges can also react while the material is collected in liquid, dried or stored. XPS measures the surface as it is when we test it, including that history."
       ],
       "source": 0,
+      "highlights": [
+        "which elements are near the surface and how they are chemically bonded",
+        "largely kept their original chemical identity",
+        "mainly 2H product"
+      ],
       "handoff": {
         "to": "read-the-vibrations",
         "text": "What can light tell us about vibrating atoms?"
@@ -154,6 +194,11 @@ export const metrologyArticle = {
         "For MoS₂, I followed the gap between two peaks. That gap became smaller in the higher-speed centrifuge fractions shown below. Alongside the other measurements, this supported a greater share of thinner sheets. It did not give an exact layer count for every flake."
       ],
       "source": 0,
+      "highlights": [
+        "stronger D peak alone does not prove damage inside the sheets",
+        "greater share of thinner sheets",
+        "26.21 cm⁻¹ for bulk material to 23.51 cm⁻¹"
+      ],
       "technicalDetails": [
         "The graphene 2D-band widths were approximately 73–79 cm⁻¹. Together with the reported peak-intensity ratios, they supported few-layer or multilayer graphene-rich sheets rather than a mainly single-layer product. The h-BN E₂g peak remained near 1366–1368 cm⁻¹.",
         "For MoS₂, Δ = A₁g − E₂g¹ is the separation between an out-of-plane and an in-plane vibration, using the bulk-mode names in the thesis. In the air-processed series, the reported separation decreased from 26.21 cm⁻¹ for bulk material to 23.51 cm⁻¹ for the 4500 rpm fraction. The unit cm⁻¹ expresses Raman shift, a measure of the change in light energy.",
@@ -204,6 +249,10 @@ export const metrologyArticle = {
       "howItWorks": "Light of a selected wavelength passes through a small transparent cell called a cuvette. A detector measures how much gets through and compares it with the same liquid without flakes. The flakes absorb some light and scatter some away from the detector.",
       "output": "A graph of how strongly the sample reduces the detected light at different wavelengths. A calibration using known concentrations lets us estimate the concentration of an unknown sample.",
       "limitation": "More concentrated liquid often lets less light through, but flake size and clumping also change the reading. Compare similar samples within the calibrated range. A darker liquid does not automatically mean thinner sheets.",
+      "highlights": [
+        "absorb some light and scatter some away",
+        "A darker liquid does not automatically mean thinner sheets"
+      ],
       "thesisRole": "Used with gravimetric calibration in Chapter 6; MoS₂ spectral features also provided literature-calibrated size and thickness indicators.",
       "source": 0,
       "why": "Before comparing two batches, we need to know how much solid each contains. UV–Vis, short for ultraviolet–visible, measures how light passes through the liquid. With a suitable reference measurement, it gives a quick estimate of concentration: the mass of solid in a given volume of liquid.",
@@ -212,7 +261,7 @@ export const metrologyArticle = {
         "width": 1536,
         "height": 1024,
         "alt": "A benchtop UV–Vis instrument and an optical path through a wavelength selector, nanosheet suspension cuvette and detector.",
-        "caption": "AI-generated conceptual teaching illustration, not the apparatus used in my thesis. Dimensions, colours and component layouts are simplified. Read I₀ as the solvent-blank reference and I as the sample transmission. The wavelength selector represents an optical subsystem, not a literal coloured plate. Scattered light and the reference measurement are omitted."
+        "caption": "Conceptual teaching illustration, not the apparatus used in my thesis. Dimensions, colours and component layouts are simplified. Read I₀ as the solvent-blank reference and I as the sample transmission. The wavelength selector represents an optical subsystem, not a literal coloured plate. Scattered light and the reference measurement are omitted."
       },
       "principleSources": [
         3
@@ -225,6 +274,10 @@ export const metrologyArticle = {
       "howItWorks": "A beam of electrons passes through a very thin sample. In transmission electron microscopy (TEM), electromagnetic lenses form an enlarged image. Scanning transmission electron microscopy (STEM) scans a tightly focused beam across the sample, building the image point by point. High-resolution TEM (HRTEM) is a way of using TEM to see features linked to the repeating atomic structure.",
       "output": "Images that reveal flake shape, size, folds and edges. High-resolution images can also show repeating patterns in small regions of the crystal.",
       "limitation": "Only a small part of the batch reaches the microscope grid. Overlapping flakes, sample preparation and damage from the electron beam can affect the image. Brightness alone does not tell us an exact number of layers.",
+      "highlights": [
+        "passes through a very thin sample",
+        "Brightness alone does not tell us an exact number of layers"
+      ],
       "thesisRole": "Chapter 7, Figures 7.1–7.4 and Table 7.1: morphology, local lattice preservation and representative dimensions.",
       "source": 0,
       "why": "Knowing how much solid we collected does not tell us its shape. Did we separate broad sheets, or mostly make small chunks? Electron microscopes let us see individual flakes and, at higher resolution, examine the repeating arrangement of atoms in small regions.",
@@ -233,7 +286,7 @@ export const metrologyArticle = {
         "width": 1536,
         "height": 1024,
         "alt": "A TEM instrument and vertical column cutaway showing electrons passing through a thin specimen to a detector below.",
-        "caption": "AI-generated conceptual teaching illustration, not the apparatus used in my thesis. Dimensions, colours and component layouts are simplified. The column combines the shared transmission principle with a focused scanning probe. TEM and STEM use different illumination and detector arrangements; HRTEM is an imaging mode. This is a conceptual overview, not a lens ray diagram."
+        "caption": "Conceptual teaching illustration, not the apparatus used in my thesis. Dimensions, colours and component layouts are simplified. The column combines the shared transmission principle with a focused scanning probe. TEM and STEM use different illumination and detector arrangements; HRTEM is an imaging mode. This is a conceptual overview, not a lens ray diagram."
       },
       "principleSources": [
         4
@@ -246,6 +299,10 @@ export const metrologyArticle = {
       "howItWorks": "A very sharp tip on a flexible arm, called a cantilever, moves across the surface. A laser reflects off the arm onto a light sensor, revealing its motion. The instrument adjusts the vertical position to keep the tip–surface interaction steady, and uses those adjustments to build a height map.",
       "output": "A map of surface height. A line drawn across the map shows the step from the bare support to the top of a flake.",
       "limitation": "Water or residue under a flake can make it appear taller. The support and instrument settings matter too, and the tip can make narrow features look wider. Measured height needs careful checking before we turn it into a layer count.",
+      "highlights": [
+        "reflects off the arm onto a light sensor",
+        "Water or residue under a flake can make it appear taller"
+      ],
       "thesisRole": "Complementary method included to explain individual-flake height measurement; no original Chapter 7 AFM dataset is presented here.",
       "source": 1,
       "why": "A wide flake can still be a thick stack. An atomic force microscope adds the missing height measurement. It follows the surface of a flake placed on a flat support, helping us work out how thin the flake is.",
@@ -254,7 +311,7 @@ export const metrologyArticle = {
         "width": 1536,
         "height": 1024,
         "alt": "An AFM instrument and scanning tip on a cantilever; a laser reflects off the cantilever to a photodiode while the probe follows a flake surface.",
-        "caption": "AI-generated conceptual teaching illustration, not the apparatus used in my thesis. Dimensions, colours and component layouts are simplified. The laser detects cantilever motion; it does not measure the flake directly. The feedback controller and vertical scanner are omitted. The small height-profile sketch is illustrative, not experimental data."
+        "caption": "Conceptual teaching illustration, not the apparatus used in my thesis. Dimensions, colours and component layouts are simplified. The laser detects cantilever motion; it does not measure the flake directly. The feedback controller and vertical scanner are omitted. The small height-profile sketch is illustrative, not experimental data."
       },
       "principleSources": [
         1
@@ -267,6 +324,10 @@ export const metrologyArticle = {
       "howItWorks": "A narrow electron beam sweeps across the sample. It releases low-energy electrons from near the surface, called secondary electrons. A detector collects them, and the instrument builds an image from the signal at each beam position. Other detectors can collect electrons scattered back from the sample.",
       "output": "Images of surface features: particle shapes, clumps, gaps and how material covers a support.",
       "limitation": "The image does not directly count atomic layers or identify chemical bonds. Electrical charge can build up on insulating samples such as h-BN and distort the image. The electron beam and any coating added for imaging can also affect what we see.",
+      "highlights": [
+        "secondary electrons",
+        "does not directly count atomic layers or identify chemical bonds"
+      ],
       "thesisRole": "Complementary technique explained for readers; the dissertation includes SEM in its literature discussion. My Chapter 7 morphology conclusions use TEM/STEM/HRTEM.",
       "source": 5,
       "why": "Now step back from a single flake. Are the sheets spread across a surface or gathered in clumps? A scanning electron microscope helps us explore these patterns and compare starting powders with the material left after processing.",
@@ -275,7 +336,7 @@ export const metrologyArticle = {
         "width": 1536,
         "height": 1024,
         "alt": "An SEM instrument and scanning electron column; secondary electrons leave the sample surface toward a detector at the side.",
-        "caption": "AI-generated conceptual teaching illustration, not the apparatus used in my thesis. Dimensions, colours and component layouts are simplified. The side detector illustrates secondary-electron imaging. Backscattered-electron detectors are not shown; the curved arrows indicate signal collection, not calculated electron trajectories."
+        "caption": "Conceptual teaching illustration, not the apparatus used in my thesis. Dimensions, colours and component layouts are simplified. The side detector illustrates secondary-electron imaging. Backscattered-electron detectors are not shown; the curved arrows indicate signal collection, not calculated electron trajectories."
       },
       "principleSources": [
         5
@@ -288,6 +349,10 @@ export const metrologyArticle = {
       "howItWorks": "X-rays knock electrons out of the sample. The instrument measures the energy of those electrons to work out how tightly they were bound. Different elements and bonding environments leave different patterns of peaks in the resulting graph.",
       "output": "A spectrum: a graph showing how many electrons are detected at different energies. Its peaks help identify elements near the surface and the chemical states they are in.",
       "limitation": "Peaks can overlap, so separating them requires assumptions. Charge building up on the sample can shift their positions. Small amounts of a substance may go undetected, and handling or storage can change the surface before it is measured.",
+      "highlights": [
+        "energy of those electrons",
+        "handling or storage can change the surface"
+      ],
       "thesisRole": "Chapter 7, Figures 7.5–7.14: retention of dominant bonding environments and moderate surface or edge modification.",
       "source": 0,
       "why": "A sheet can keep its shape while its surface chemistry changes. Have new bonds formed, perhaps involving oxygen? X-ray photoelectron spectroscopy helps identify which elements are near the surface and how they are chemically bonded.",
@@ -296,7 +361,7 @@ export const metrologyArticle = {
         "width": 1536,
         "height": 1024,
         "alt": "An XPS vacuum instrument and working principle: incident X-rays release photoelectrons from a layered sample into an energy analyzer.",
-        "caption": "AI-generated conceptual teaching illustration, not the apparatus used in my thesis. Dimensions, colours and component layouts are simplified. The arrows show photoelectrons entering the analyzer. Electron optics, the curved energy-selecting trajectory and the detector inside the analyzer are omitted. The layered sample is generic."
+        "caption": "Conceptual teaching illustration, not the apparatus used in my thesis. Dimensions, colours and component layouts are simplified. The arrows show photoelectrons entering the analyzer. Electron optics, the curved energy-selecting trajectory and the detector inside the analyzer are omitted. The layered sample is generic."
       },
       "principleSources": [
         6
@@ -309,6 +374,10 @@ export const metrologyArticle = {
       "howItWorks": "A laser shines on the sample. Most scattered light keeps the same energy, but a tiny fraction gains or loses energy through interactions with atomic vibrations. A filter removes the much stronger unchanged light, allowing the instrument to measure the small energy shifts.",
       "output": "A graph with peaks associated with different vibrations. The positions, widths and relative strengths of these peaks help us compare materials and detect changes.",
       "limitation": "Layer number is only one influence. Edges, defects, stretching of the crystal, electrical charge and heating by the laser can also change the peaks. We compare several features under similar conditions and check them against other measurements.",
+      "highlights": [
+        "tiny fraction gains or loses energy through interactions with atomic vibrations",
+        "Edges, defects, stretching of the crystal, electrical charge and heating by the laser can also change the peaks"
+      ],
       "thesisRole": "Chapter 7, Figures 7.15–7.17: graphene D/G/2D bands, the h-BN E₂g mode and MoS₂ mode separation.",
       "source": 0,
       "why": "We have examined the shape and surface chemistry. Now we ask how the atoms vibrate. Raman spectroscopy measures a pattern of vibrations that helps identify the material and can reveal changes associated with thinning, edges or damage.",
@@ -317,7 +386,7 @@ export const metrologyArticle = {
         "width": 1536,
         "height": 1024,
         "alt": "A Raman microscope and optical path: laser light reaches a 2D flake through an objective, and collected light returns toward a filter, spectrometer and detector.",
-        "caption": "AI-generated conceptual teaching illustration, not the apparatus used in my thesis. Dimensions, colours and component layouts are simplified. The coloured paths distinguish excitation and collected light; they do not specify actual wavelengths or a complete optical ray trace. The filter rejects the strong Rayleigh signal. Atomic arrows are symbolic, not a material-specific vibrational mode."
+        "caption": "Conceptual teaching illustration, not the apparatus used in my thesis. Dimensions, colours and component layouts are simplified. The coloured paths distinguish excitation and collected light; they do not specify actual wavelengths or a complete optical ray trace. The filter rejects the strong Rayleigh signal. Atomic arrows are symbolic, not a material-specific vibrational mode."
       },
       "principleSources": [
         2,
@@ -364,10 +433,78 @@ export const metrologyArticle = {
       "interpretation": "Cumulative recovered mass across three CFE passes with sediment recycling, relative to the original feed."
     }
   ],
+  "calibrationCurves": [
+    {
+      "id": "hbn",
+      "label": "h-BN",
+      "wavelength": 300,
+      "epsilon": 1804,
+      "marker": "diamond",
+      "plotColor": "#1b698c",
+      "uiColor": "#8bc6bd",
+      "linearMax": 0.19
+    },
+    {
+      "id": "mos2",
+      "label": "MoS₂",
+      "wavelength": 672,
+      "epsilon": 1541,
+      "marker": "square",
+      "plotColor": "#c51b1b",
+      "uiColor": "#e9b594",
+      "linearMax": 0.17
+    },
+    {
+      "id": "graphene",
+      "label": "Graphene",
+      "wavelength": 600,
+      "epsilon": 1282,
+      "marker": "circle",
+      "plotColor": "#24292f",
+      "uiColor": "#f0dccb",
+      "linearMax": 0.17
+    }
+  ],
+  "evidenceMatrix": [
+    {
+      "id": "graphene",
+      "material": "Graphene",
+      "formula": "C",
+      "yield": "Calibrated at 600 nm (ε = 1282 L g⁻¹ m⁻¹) · 316 mg recovered from 1 g feed (31.6% cumulative across 3 CFE passes, Fig. 6.11).",
+      "morphology": "Broad folded sheets (~0.404 µm², ~717 nm eq. diameter) with local hexagonal FFT order (Fig. 7.1).",
+      "chemistry": "Dominant graphitic C–C retained alongside edge/oxygen-related features.",
+      "vibrations": "G & 2D (~73–79 cm⁻¹ width, few/multilayer) retained; higher D band from edges + disorder (Fig. 7.15).",
+      "openQuestions": "Selected TEM/Raman spots do not establish a batch-wide monolayer percentage."
+    },
+    {
+      "id": "hbn",
+      "material": "h-BN",
+      "formula": "BN",
+      "yield": "Calibrated at 300 nm (ε = 1804 L g⁻¹ m⁻¹) via gravimetric dry-mass reference (Fig. 6.7).",
+      "morphology": "Elongated sheets (~2.84 aspect ratio) with preserved local lattice fringes (Fig. 7.3).",
+      "chemistry": "Dominant B–N bonding preserved; stronger oxygen signal after Air-CFE than He-CFE.",
+      "vibrations": "Characteristic E₂g peak preserved near 1366–1368 cm⁻¹ across conditions (Fig. 7.16).",
+      "openQuestions": "Post-processing air/liquid exposure contributes to surface oxygen alongside carrier gas."
+    },
+    {
+      "id": "mos2",
+      "material": "MoS₂",
+      "formula": "MoS₂",
+      "yield": "Calibrated at 672 nm (ε = 1541 L g⁻¹ m⁻¹) to compare dispersed fractions (Fig. 6.7).",
+      "morphology": "Compact plate-like flakes (~0.234 µm²) with crisp crystalline planes (Fig. 7.2).",
+      "chemistry": "2H Mo–S doublet preserved without resolved 1T peaks; minor oxide signal (Fig. 7.13).",
+      "vibrations": "Δ = A₁g − E₂g¹ narrows from 26.21 → 23.51 cm⁻¹ at 4500 rpm, supporting thinner-sheet enrichment (Fig. 7.17).",
+      "openQuestions": "Peak separation tracks thinning enrichment rather than exact per-flake layer counts."
+    }
+  ],
   "takeaways": [
     "Start with a question, then choose the instrument that can answer it.",
     "Keep the illustration and the evidence separate: one explains the idea; the other shows what was measured.",
     "Build a conclusion from several methods, and say clearly what the measurements leave uncertain."
   ],
-  "conclusion": "My measurements tell a connected story: the collected material contained sheets, their main bonding patterns remained, and their characteristic atomic vibrations were still present. For MoS₂, the Raman results also supported a greater share of thinner sheets in some fractions. This is evidence of successful exfoliation, but it does not mean every sheet has the same thickness or is free of defects. Understanding the whole batch would require measuring more flakes and combining more evidence."
+  "conclusion": "My measurements tell a connected story: the collected material contained sheets, their main bonding patterns remained, and their characteristic atomic vibrations were still present. For MoS₂, the Raman results also supported a greater share of thinner sheets in some fractions. This is evidence of successful exfoliation, but it does not mean every sheet has the same thickness or is free of defects. Understanding the whole batch would require measuring more flakes and combining more evidence.",
+  "conclusionHighlights": [
+    "evidence of successful exfoliation",
+    "measuring more flakes and combining more evidence"
+  ]
 };
