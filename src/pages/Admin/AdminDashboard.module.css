@@ -29,7 +29,8 @@
     top: 20px;
     right: 20px;
     padding: 16px 24px;
-    border-radius: 12px;
+    border-radius: calc(12px * var(--apple-radius-scale, 1));
+    corner-shape: var(--apple-corner, round);
     display: flex;
     align-items: center;
     gap: 12px;
@@ -134,7 +135,8 @@
 .navItem {
     padding: 14px 16px;
     margin-bottom: 4px;
-    border-radius: 12px;
+    border-radius: calc(12px * var(--apple-radius-scale, 1));
+    corner-shape: var(--apple-corner, round);
     cursor: pointer;
     display: flex;
     align-items: center;
@@ -165,7 +167,8 @@
     width: 4px;
     height: 60%;
     background: #b96032;
-    border-radius: 0 4px 4px 0;
+    border-radius: 0 calc(4px * var(--apple-radius-scale, 1)) calc(4px * var(--apple-radius-scale, 1)) 0;
+    corner-shape: var(--apple-corner, round);
 }
 
 .navText {
@@ -182,6 +185,7 @@
     font-size: 0.75rem;
     padding: 4px 10px;
     border-radius: 20px;
+    corner-shape: var(--apple-pill-corner, round);
     font-weight: 600;
     min-width: 24px;
     text-align: center;
@@ -198,7 +202,8 @@
     background-color: rgba(231, 76, 60, 0.1);
     color: #e74c3c;
     border: 1px solid rgba(231, 76, 60, 0.2);
-    border-radius: 12px;
+    border-radius: calc(12px * var(--apple-radius-scale, 1));
+    corner-shape: var(--apple-corner, round);
     cursor: pointer;
     display: flex;
     align-items: center;
@@ -253,6 +258,7 @@
     font-size: 0.75rem;
     padding: 6px 12px;
     border-radius: 20px;
+    corner-shape: var(--apple-pill-corner, round);
     font-weight: 500;
     animation: pulse 2s infinite;
 }
@@ -285,7 +291,8 @@
     height: 42px;
     background: linear-gradient(135deg, #b96032, #d4812a);
     color: white;
-    border-radius: 12px;
+    border-radius: calc(12px * var(--apple-radius-scale, 1));
+    corner-shape: var(--apple-corner, round);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -309,7 +316,8 @@
 .welcomeCard {
     background: linear-gradient(135deg, rgba(185, 96, 50, 0.15), rgba(185, 96, 50, 0.05));
     border: 1px solid rgba(185, 96, 50, 0.2);
-    border-radius: 20px;
+    border-radius: calc(20px * var(--apple-radius-scale, 1));
+    corner-shape: var(--apple-corner, round);
     padding: 40px;
     margin-bottom: 32px;
     text-align: left;
@@ -349,7 +357,8 @@
 .quickLinkCard {
     background: rgba(25, 25, 25, 0.8);
     border: 1px solid rgba(255, 255, 255, 0.08);
-    border-radius: 16px;
+    border-radius: calc(16px * var(--apple-radius-scale, 1));
+    corner-shape: var(--apple-corner, round);
     padding: 24px;
     display: flex;
     flex-direction: column;
@@ -387,7 +396,8 @@
 .statCard {
     background: rgba(25, 25, 25, 0.9);
     padding: 24px;
-    border-radius: 16px;
+    border-radius: calc(16px * var(--apple-radius-scale, 1));
+    corner-shape: var(--apple-corner, round);
     border: 1px solid rgba(255, 255, 255, 0.06);
     display: flex;
     align-items: center;
@@ -403,7 +413,8 @@
 .statIcon {
     width: 56px;
     height: 56px;
-    border-radius: 14px;
+    border-radius: calc(14px * var(--apple-radius-scale, 1));
+    corner-shape: var(--apple-corner, round);
     background: linear-gradient(135deg, rgba(185, 96, 50, 0.2), rgba(185, 96, 50, 0.1));
     color: #b96032;
     display: flex;
@@ -432,7 +443,8 @@
 .editorWrapper {
     background: rgba(20, 20, 20, 0.95);
     padding: 32px;
-    border-radius: 20px;
+    border-radius: calc(20px * var(--apple-radius-scale, 1));
+    corner-shape: var(--apple-corner, round);
     border: 1px solid rgba(255, 255, 255, 0.06);
     max-width: 100%;
     width: 100%;
@@ -491,7 +503,8 @@
     color: white;
     border: none;
     padding: 14px 24px;
-    border-radius: 12px;
+    border-radius: calc(12px * var(--apple-radius-scale, 1));
+    corner-shape: var(--apple-corner, round);
     font-size: 0.95rem;
     cursor: pointer;
     display: flex;
@@ -514,7 +527,8 @@
 
 .scholarInput {
     padding: 12px 16px;
-    border-radius: 10px;
+    border-radius: calc(10px * var(--apple-radius-scale, 1));
+    corner-shape: var(--apple-corner, round);
     border: 1px solid rgba(255, 255, 255, 0.1);
     background: rgba(0, 0, 0, 0.3);
     color: #ffffff;
@@ -538,7 +552,8 @@
     background: rgba(185, 96, 50, 0.15);
     color: #b96032;
     border: 1px solid rgba(185, 96, 50, 0.3);
-    border-radius: 12px;
+    border-radius: calc(12px * var(--apple-radius-scale, 1));
+    corner-shape: var(--apple-corner, round);
     cursor: pointer;
     display: flex;
     align-items: center;
@@ -575,7 +590,8 @@
 
 .itemCard {
     border: 1px solid rgba(255, 255, 255, 0.06);
-    border-radius: 14px;
+    border-radius: calc(14px * var(--apple-radius-scale, 1));
+    corner-shape: var(--apple-corner, round);
     background: rgba(30, 30, 30, 0.6);
     transition: border-color 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease;
     overflow: hidden;
@@ -611,7 +627,8 @@
     color: rgba(255, 255, 255, 0.4);
     cursor: grab;
     transition: all 0.2s ease;
-    border-radius: 6px;
+    border-radius: calc(6px * var(--apple-radius-scale, 1));
+    corner-shape: var(--apple-corner, round);
 }
 
 .dragHandle:hover {
@@ -638,7 +655,8 @@
     font-size: 0.75rem;
     font-weight: 600;
     padding: 6px 10px;
-    border-radius: 8px;
+    border-radius: calc(8px * var(--apple-radius-scale, 1));
+    corner-shape: var(--apple-corner, round);
     flex-shrink: 0;
 }
 
@@ -670,7 +688,8 @@
     background: rgba(185, 96, 50, 0.15);
     color: #b96032;
     padding: 8px 14px;
-    border-radius: 8px;
+    border-radius: calc(8px * var(--apple-radius-scale, 1));
+    corner-shape: var(--apple-corner, round);
     cursor: pointer;
     font-size: 0.8rem;
     font-weight: 500;
@@ -685,7 +704,8 @@
     color: #b96032;
     font-size: 0.9rem;
     padding: 8px;
-    border-radius: 6px;
+    border-radius: calc(6px * var(--apple-radius-scale, 1));
+    corner-shape: var(--apple-corner, round);
     transition: all 0.2s ease;
 }
 
@@ -700,7 +720,8 @@
     cursor: pointer;
     font-size: 0.85rem;
     padding: 10px;
-    border-radius: 8px;
+    border-radius: calc(8px * var(--apple-radius-scale, 1));
+    corner-shape: var(--apple-corner, round);
     transition: all 0.2s ease;
     display: flex;
     align-items: center;
@@ -718,7 +739,8 @@
     cursor: pointer;
     font-size: 0.85rem;
     padding: 10px;
-    border-radius: 8px;
+    border-radius: calc(8px * var(--apple-radius-scale, 1));
+    corner-shape: var(--apple-corner, round);
     transition: all 0.2s ease;
     display: flex;
     align-items: center;
@@ -759,7 +781,8 @@
 .fieldInput {
     padding: 14px 16px;
     border: 1px solid rgba(255, 255, 255, 0.08);
-    border-radius: 10px;
+    border-radius: calc(10px * var(--apple-radius-scale, 1));
+    corner-shape: var(--apple-corner, round);
     font-size: 0.95rem;
     transition: all 0.2s ease;
     width: 100%;
@@ -798,7 +821,8 @@
     min-height: 100px;
     padding: 14px 16px;
     border: 1px solid rgba(255, 255, 255, 0.08);
-    border-radius: 10px;
+    border-radius: calc(10px * var(--apple-radius-scale, 1));
+    corner-shape: var(--apple-corner, round);
     font-size: 0.95rem;
     transition: all 0.2s ease;
     box-sizing: border-box;
@@ -826,7 +850,8 @@
     border: 2px dashed rgba(185, 96, 50, 0.25);
     background: transparent;
     color: rgba(255, 255, 255, 0.4);
-    border-radius: 14px;
+    border-radius: calc(14px * var(--apple-radius-scale, 1));
+    corner-shape: var(--apple-corner, round);
     cursor: pointer;
     font-size: 0.95rem;
     display: flex;
@@ -855,7 +880,8 @@
 .keyboardHint kbd {
     background: rgba(255, 255, 255, 0.1);
     padding: 4px 8px;
-    border-radius: 6px;
+    border-radius: calc(6px * var(--apple-radius-scale, 1));
+    corner-shape: var(--apple-corner, round);
     font-family: inherit;
     margin: 0 4px;
 }
@@ -877,7 +903,8 @@
 .skillLevelSelect {
     padding: 12px 14px;
     border: 1px solid rgba(255, 255, 255, 0.08);
-    border-radius: 10px;
+    border-radius: calc(10px * var(--apple-radius-scale, 1));
+    corner-shape: var(--apple-corner, round);
     flex: 1;
     background: rgba(0, 0, 0, 0.25);
     color: #ffffff;
@@ -900,7 +927,8 @@
     color: #e74c3c;
     cursor: pointer;
     padding: 10px;
-    border-radius: 8px;
+    border-radius: calc(8px * var(--apple-radius-scale, 1));
+    corner-shape: var(--apple-corner, round);
     transition: all 0.2s ease;
 }
 
@@ -912,7 +940,8 @@
     background: rgba(185, 96, 50, 0.1);
     border: 1px dashed rgba(185, 96, 50, 0.3);
     padding: 12px 16px;
-    border-radius: 10px;
+    border-radius: calc(10px * var(--apple-radius-scale, 1));
+    corner-shape: var(--apple-corner, round);
     color: rgba(255, 255, 255, 0.5);
     cursor: pointer;
     margin-top: 8px;
@@ -947,7 +976,8 @@
     flex: 1;
     padding: 10px 14px;
     border: 1px solid rgba(255, 255, 255, 0.08);
-    border-radius: 8px;
+    border-radius: calc(8px * var(--apple-radius-scale, 1));
+    corner-shape: var(--apple-corner, round);
     background: rgba(0, 0, 0, 0.25);
     color: #ffffff;
     font-family: inherit;
@@ -966,7 +996,8 @@
     cursor: pointer;
     font-size: 0.8rem;
     padding: 8px;
-    border-radius: 6px;
+    border-radius: calc(6px * var(--apple-radius-scale, 1));
+    corner-shape: var(--apple-corner, round);
     transition: all 0.2s ease;
     display: flex;
     align-items: center;
@@ -982,7 +1013,8 @@
     border: 1px dashed rgba(255, 255, 255, 0.2);
     color: rgba(255, 255, 255, 0.5);
     padding: 10px 16px;
-    border-radius: 8px;
+    border-radius: calc(8px * var(--apple-radius-scale, 1));
+    corner-shape: var(--apple-corner, round);
     cursor: pointer;
     margin-top: 8px;
     font-size: 0.85rem;
@@ -1028,7 +1060,8 @@
 .modalContent {
     background: linear-gradient(145deg, #1a1a1a, #0f0f0f);
     padding: 40px;
-    border-radius: 20px;
+    border-radius: calc(20px * var(--apple-radius-scale, 1));
+    corner-shape: var(--apple-corner, round);
     width: 100%;
     max-width: 420px;
     text-align: center;
@@ -1075,7 +1108,8 @@
 
 .modalActions button {
     padding: 14px 28px;
-    border-radius: 12px;
+    border-radius: calc(12px * var(--apple-radius-scale, 1));
+    corner-shape: var(--apple-corner, round);
     border: none;
     cursor: pointer;
     font-weight: 500;
@@ -1171,7 +1205,8 @@
     min-height: 150px;
     background: rgba(255, 255, 255, 0.05);
     border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 8px;
+    border-radius: calc(8px * var(--apple-radius-scale, 1));
+    corner-shape: var(--apple-corner, round);
     padding: 12px;
     color: #e0e0e0;
     font-size: 0.95rem;
@@ -1202,7 +1237,8 @@
     background-color: rgba(52, 152, 219, 0.1);
     color: #3498db;
     border: 1px solid rgba(52, 152, 219, 0.2);
-    border-radius: 12px;
+    border-radius: calc(12px * var(--apple-radius-scale, 1));
+    corner-shape: var(--apple-corner, round);
     cursor: pointer;
     display: flex;
     align-items: center;
@@ -1254,7 +1290,8 @@
     margin-right: 8px;
     background: rgba(0, 0, 0, 0.2);
     padding: 4px;
-    border-radius: 8px;
+    border-radius: calc(8px * var(--apple-radius-scale, 1));
+    corner-shape: var(--apple-corner, round);
 }
 
 .headerReorderBtn {
@@ -1268,7 +1305,8 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    border-radius: 6px;
+    border-radius: calc(6px * var(--apple-radius-scale, 1));
+    corner-shape: var(--apple-corner, round);
 }
 
 .headerReorderBtn:hover:not(:disabled) {

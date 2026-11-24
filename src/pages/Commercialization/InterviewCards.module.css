@@ -10,8 +10,8 @@
 .track[data-paused="true"], .viewport:hover .track, .viewport:focus-within .track { animation-play-state: paused; }
 .group { display: flex; flex-shrink: 0; gap: var(--card-gap); padding-right: var(--card-gap); }
 @keyframes interviewLoop { from { transform: translateX(0); } to { transform: translateX(-50%); } }
-.card { flex: 0 0 var(--card-width); width: var(--card-width); min-width: var(--card-width); display: grid; grid-template-columns: 110px 1fr; gap: 16px; padding: 12px; background: #fff; border-radius: 24px; align-items: center; box-shadow: 0 10px 32px #163d7b06; }
-.portrait { position: relative; align-self: stretch; min-height: 150px; border-radius: 18px; overflow: hidden; background: linear-gradient(155deg,#c1d6fc,#e8efff 64%,#fff); color: #153774; }
+.card { flex: 0 0 var(--card-width); width: var(--card-width); min-width: var(--card-width); display: grid; grid-template-columns: 110px 1fr; gap: 16px; padding: 12px; background: #fff; border-radius: calc(24px * var(--apple-radius-scale, 1)); corner-shape: var(--apple-corner, round); align-items: center; box-shadow: 0 10px 32px #163d7b06; }
+.portrait { position: relative; align-self: stretch; min-height: 150px; border-radius: calc(18px * var(--apple-radius-scale, 1)); corner-shape: var(--apple-corner, round); overflow: hidden; background: linear-gradient(155deg,#c1d6fc,#e8efff 64%,#fff); color: #153774; }
 .portrait .person { display: block; width: 100%; height: 100%; min-height: 160px; max-height: 175px; object-fit: contain; object-position: bottom; padding: 10px 6px; }
 .copy { padding: 4px 4px 4px 0; }
 .label,.source { display: block; font: 9px/1.7 Rubik,sans-serif; letter-spacing: .1em; text-transform: uppercase; color: #52627b; }
@@ -21,8 +21,8 @@
 .carousel .caption { text-align: center; font: 10px/1.7 Rubik,sans-serif !important; color: #52627b; margin-top: 14px; }
 @media(max-width:640px) {
   .viewport { --card-width: clamp(250px, 70vw, 320px); --card-gap: 16px; }
-  .card { grid-template-columns: 1fr; gap: 4px; padding: 12px; border-radius: 24px; }
-  .portrait { min-height: 100px; height: 100px; border-radius: 22px; }
+  .card { grid-template-columns: 1fr; gap: 4px; padding: 12px; border-radius: calc(24px * var(--apple-radius-scale, 1)); corner-shape: var(--apple-corner, round); }
+  .portrait { min-height: 100px; height: 100px; border-radius: calc(22px * var(--apple-radius-scale, 1)); corner-shape: var(--apple-corner, round); }
   .portrait .person { min-height: 0; height: 100px; object-position: 50% 30%; }
   .copy { padding: 8px 6px 4px; }
   .card .copy h3 { font-size: 25px; margin: 10px 0; }

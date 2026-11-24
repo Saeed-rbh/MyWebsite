@@ -19,7 +19,7 @@
 
 /* Optional simulation settings. */
 .temperatureLabel { display:flex;justify-content:space-between;align-items:center;gap:12px;margin-top:20px;color:#e0c7b1;font-size:12px; }
-.temperatureLabel select { padding:8px 10px;background:#251d17;color:#f0d7c3;border:1px solid #d49d8150;border-radius:4px;font:inherit;min-height:44px; }
+.temperatureLabel select { padding:8px 10px;background:#251d17;color:#f0d7c3;border:1px solid #d49d8150;border-radius:calc(4px * var(--apple-radius-scale, 1));corner-shape:var(--apple-corner, round);font:inherit;min-height:44px; }
 .controlHint { font-size:11px!important;color:#b9aa9d!important;margin:8px 0 20px; }
 .physicsStats { display:grid;grid-template-columns:1fr 1fr;gap:20px 12px;margin:24px 0 18px;padding:20px 0;border-top:1px solid #d49d8130;border-bottom:1px solid #d49d8130; }
 .physicsStats dt { color:#b6a696;font-size:10px;line-height:1.6;margin-bottom:6px; }
@@ -141,7 +141,7 @@
 .workflowBody .workflowResult { font-size:12px;color:#bda994; }
 /* Each picture now lives beside the idea it explains, as in the graphene story. */
 .storyIllustrationBody { display:grid;grid-template-columns:minmax(0,360px) minmax(0,1fr);gap:48px;align-items:center;max-width:940px; }
-.storyIllustrationBody > a { display:block;width:100%;border-radius:4px; }
+.storyIllustrationBody > a { display:block;width:100%;border-radius:calc(4px * var(--apple-radius-scale, 1));corner-shape:var(--apple-corner, round); }
 .storyIllustrationBody img { display:block;width:100%;height:auto; }
 .storyIllustration > header h3 { max-width:27ch; }
 .storyIllustration > figcaption { max-width:70ch; }
@@ -177,7 +177,7 @@
 /* Scientific imagery follows the copper illustrations in the graphene story. */
 .heroVisual { min-width:0;align-self:center;padding-top:22px; }
 .heroVisual figure { margin:0; }
-.heroVisual img { display:block;width:100%;height:auto;border-radius:14px; }
+.heroVisual img { display:block;width:100%;height:auto;border-radius:calc(14px * var(--apple-radius-scale, 1));corner-shape:var(--apple-corner, round); }
 .heroVisual figcaption { display:grid;grid-template-columns:1fr 1fr;text-align:center;margin:12px 0 0;font:10px/1.7 'Rubik',sans-serif;letter-spacing:.03em;color:#c4aa95; }
 .heroVisual > ol { display:flex;flex-wrap:wrap;justify-content:center;gap:8px 16px;padding:25px 0 0;margin:0;justify-self:auto;font-size:16px;letter-spacing:0; }
 .heroVisual > ol li:nth-child(n) { margin:0;gap:6px; }
@@ -187,9 +187,9 @@
 .toolList { display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 44px;margin-top:40px; }
 .tool,.tool:first-child { display:grid;grid-template-columns:108px minmax(0,1fr);gap:24px;padding:30px 0;border-top:1px solid #d49d8130; }
 .toolBrand { min-width:0;padding-top:4px; }
-.toolBrand img { display:block;box-sizing:border-box;width:100%;height:82px;object-fit:contain;padding:10px;background:#faf9f5;border-radius:6px; }
+.toolBrand img { display:block;box-sizing:border-box;width:100%;height:82px;object-fit:contain;padding:10px;background:#faf9f5;border-radius:calc(6px * var(--apple-radius-scale, 1));corner-shape:var(--apple-corner, round); }
 .toolBrand .toolIndex { display:block;margin-top:12px;text-align:center; }
-.wavefunction { display:grid;place-items:center;height:82px;border:1px solid #d49d8140;border-radius:6px;color:#d6a17e;font:48px/1 'DM Serif Display',serif; }
+.wavefunction { display:grid;place-items:center;height:82px;border:1px solid #d49d8140;border-radius:calc(6px * var(--apple-radius-scale, 1));corner-shape:var(--apple-corner, round);color:#d6a17e;font:48px/1 'DM Serif Display',serif; }
 .tool h3 { font-size:27px; }
 @media(max-width:900px) {
   .heroVisual { padding-top:0;max-width:640px; }
@@ -216,10 +216,10 @@
 .simulationHeader { display:flex;align-items:center;justify-content:space-between;gap:24px;padding:16px 0 20px; }
 .simulationHeader h2 { font:400 clamp(28px,3vw,38px)/1.2 'DM Serif Display',serif;letter-spacing:-.025em;margin:8px 0 0; }
 .phaseSelector { display:flex;gap:6px; }
-.page .phaseSelector button { display:flex;align-items:center;gap:8px;padding:8px 14px;min-height:44px;border:1px solid transparent;background:transparent;border-radius:24px; }
+.page .phaseSelector button { display:flex;align-items:center;gap:8px;padding:8px 14px;min-height:44px;border:1px solid transparent;background:transparent;border-radius:24px;corner-shape:var(--apple-pill-corner, round); }
 .page .phaseSelector button[aria-pressed=true] { background:#d49d8118;border-color:#d49d8160;color:#f1d7c3; }
 .phaseSelector svg { width:34px;height:24px;flex-shrink:0; }
-.simulation { border:1px solid #d49d8138;border-radius:16px;overflow:hidden;background:#16120f; }
+.simulation { border:1px solid #d49d8138;border-radius:calc(16px * var(--apple-radius-scale, 1));corner-shape:var(--apple-corner, round);overflow:hidden;background:#16120f; }
 .simulationStage { background:radial-gradient(ellipse at 50% 45%,#32261d 0%,#15120f 72%); }
 .simulationTopline { display:flex;justify-content:space-between;gap:12px;padding:18px 24px 0;font:10px/1.5 'Rubik',sans-serif;color:#bda995;font-variant-numeric:tabular-nums; }
 .simulationTopline > span:last-child { white-space:nowrap; }
@@ -275,7 +275,7 @@
 .page .storyIllustration .storyIllustrationBody > ol { grid-column:auto; grid-row:auto; }
 .page .storyIllustration > figcaption { max-width:80ch; margin-left:0; border:0; padding-top:0; }
 .page .storyIllustrationBody > ol > li { border:0; }
-.page .heroVisual img { border-radius:4px; }
+.page .heroVisual img { border-radius:calc(4px * var(--apple-radius-scale, 1));corner-shape:var(--apple-corner, round); }
 .page .heroVisual > ol { font-size:18px; }
 .experimentQuestion { font:400 clamp(22px,2.5vw,29px)/1.35 'DM Serif Display',serif; color:#e4c6ad; margin:0 0 24px; }
 .experimentGuide { border-bottom:1px solid #d49d8128; }
@@ -336,7 +336,7 @@
 @media(max-width:600px) {
  .trajectory { padding:20px 16px; }
  .trajectoryHeading h3 { font-size:23px; }
- .page .studySelector button { flex:1 1 44%; border-radius:4px; text-align:left; font-size:11px; }
+ .page .studySelector button { flex:1 1 44%; border-radius:calc(4px * var(--apple-radius-scale, 1)); corner-shape:var(--apple-corner, round); text-align:left; font-size:11px; }
  .page .storyIllustrationBody > a { max-width:420px; width:100%; }
  .forceValues { gap:18px; }
  .forceValues dd { font-size:14px; }

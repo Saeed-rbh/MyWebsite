@@ -19,7 +19,8 @@
   flex-direction: column;
   box-sizing: border-box;
   padding: 38px 44px 28px;
-  border-radius: 24px;
+  border-radius: calc(24px * var(--apple-radius-scale, 1));
+  corner-shape: var(--apple-corner, round);
   color: #faf9f1;
   background: linear-gradient(135deg, #18110d, #080706 60%);
   box-shadow: 0 30px 100px rgba(0,0,0,.45), inset 0 1px 0 rgba(237,199,175,.08);
@@ -64,7 +65,8 @@
   min-height: 54px;
   padding: 10px 16px;
   border: 1px solid rgba(212,157,129,.16);
-  border-radius: 20px;
+  border-radius: calc(20px * var(--apple-radius-scale, 1));
+  corner-shape: var(--apple-corner, round);
   background: rgba(212,157,129,.035);
   color: #e6c7b1;
   font: 300 12px/1.35 Rubik, sans-serif;
@@ -77,11 +79,11 @@
 .navigation .next { align-items: flex-end; text-align: right; }
 .navigation button > span, .navigation a > span { color: #a57d63; font: 400 7px/1.4 Rubik, sans-serif; letter-spacing: .12em; }
 .modal button:focus-visible, .modal a:focus-visible { outline: 1px solid #d49d81; outline-offset: 4px; }
-.content:focus-visible { outline: 1px solid rgba(212,157,129,.3); outline-offset: 5px; border-radius: 4px; }
+.content:focus-visible { outline: 1px solid rgba(212,157,129,.3); outline-offset: 5px; border-radius: calc(4px * var(--apple-radius-scale, 1)); corner-shape: var(--apple-corner, round); }
 @keyframes researchDetailArrives { from { opacity: 0; translate: 0 8px; } to { opacity: 1; translate: 0 0; } }
 @media (max-width: 640px) {
   .overlay { padding: 16px; }
-  .modal { max-height: calc(100dvh - 32px); padding: 28px 24px 20px; border-radius: 20px; }
+  .modal { max-height: calc(100dvh - 32px); padding: 28px 24px 20px; border-radius: calc(20px * var(--apple-radius-scale, 1)); corner-shape: var(--apple-corner, round); }
   .closeButton { right: 9px; top: 12px; }
   .header { padding-right: 22px; }
   .eyebrow { font-size: 7px; margin-bottom: 15px; }
@@ -92,7 +94,7 @@
   .footer { margin-top: 20px; }
   .footerLabel { letter-spacing: .08em; font-size: 6px; }
   .navigation { gap: 9px; }
-  .navigation button, .navigation a { padding: 10px 12px; font-size: 11px; border-radius: 17px; }
+  .navigation button, .navigation a { padding: 10px 12px; font-size: 11px; border-radius: calc(17px * var(--apple-radius-scale, 1)); corner-shape: var(--apple-corner, round); }
 }
 @media (max-height: 560px) and (min-width: 641px) {
   .modal { padding: 24px 36px 20px; }

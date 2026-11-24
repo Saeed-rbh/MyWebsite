@@ -100,7 +100,7 @@
 .readPaper h2 { margin: 14px 0 15px; font: 400 clamp(36px, 4vw, 54px)/1.12 'DM Serif Display', Georgia, serif; letter-spacing: -.03em; }
 .readPaperIntro > p { max-width: 420px; margin: 0; color: #bdb3aa; font-size: 14px; line-height: 1.85; }
 .actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 26px; }
-.primaryLink, .secondaryLink { display: inline-flex; justify-content: space-between; align-items: center; gap: 26px; min-height: 48px; padding: 12px 20px; border: 1px solid var(--journal-accent); border-radius: 99px; font: 400 12px/1.5 'Rubik', sans-serif; letter-spacing: .01em; text-decoration: none; transition: background .2s ease; }
+.primaryLink, .secondaryLink { display: inline-flex; justify-content: space-between; align-items: center; gap: 26px; min-height: 48px; padding: 12px 20px; border: 1px solid var(--journal-accent); border-radius: 99px; corner-shape: var(--apple-pill-corner, round); font: 400 12px/1.5 'Rubik', sans-serif; letter-spacing: .01em; text-decoration: none; transition: background .2s ease; }
 .primaryLink { background: var(--journal-accent); color: #100e0c !important; }
 .primaryLink:hover { background: #e6b798; }
 .secondaryLink { color: #e6d8c8 !important; }

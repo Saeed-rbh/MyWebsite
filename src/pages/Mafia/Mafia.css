@@ -60,7 +60,8 @@
 
     /* Phone Frame Style */
     border: 8px solid rgba(255, 255, 255, 0.1);
-    border-radius: 40px;
+    border-radius: calc(40px * var(--apple-radius-scale, 1));
+    corner-shape: var(--apple-corner, round);
     /* Rounder corners */
     box-shadow:
         0 0 0 2px rgba(0, 0, 0, 0.5),
@@ -194,6 +195,7 @@
     background: rgba(0, 0, 0, 0.3);
     padding: 4px 12px;
     border-radius: 50px;
+    corner-shape: var(--apple-pill-corner, round);
     margin-top: 5px;
     border: 1px solid rgba(255, 255, 255, 0.05);
     align-self: flex-start;
@@ -260,7 +262,8 @@
     align-items: center;
     padding: 5px 15px;
     background: rgba(255, 255, 255, 0.03);
-    border-radius: var(--radius-md);
+    border-radius: calc(var(--radius-md) * var(--apple-radius-scale, 1));
+    corner-shape: var(--apple-corner, round);
     margin-bottom: 8px;
     transition: all 0.2s;
 }
@@ -281,6 +284,7 @@
     gap: 10px;
     background: rgba(0, 0, 0, 0.2);
     border-radius: 50px;
+    corner-shape: var(--apple-pill-corner, round);
     padding: 3px;
     border: 1px solid rgba(255, 255, 255, 0.05);
     height: 40px;
@@ -336,6 +340,7 @@
     color: #1a1a1a;
     border: none;
     border-radius: 50px;
+    corner-shape: var(--apple-pill-corner, round);
     font-family: 'Cinzel', serif;
     font-size: 1.3rem;
     font-weight: 900;
@@ -427,7 +432,8 @@
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
     border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: var(--radius-lg);
+    border-radius: calc(var(--radius-lg) * var(--apple-radius-scale, 1));
+    corner-shape: var(--apple-corner, round);
     box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
 
     display: flex;
@@ -473,6 +479,7 @@
     background: rgba(255, 255, 255, 0.05);
     border: 1px solid rgba(255, 255, 255, 0.2);
     border-radius: 50px;
+    corner-shape: var(--apple-pill-corner, round);
     color: var(--mafia-white);
     font-weight: 600;
     letter-spacing: 2px;
@@ -543,7 +550,8 @@
 .role-description {
     background: rgba(255, 255, 255, 0.05);
     padding: 25px;
-    border-radius: var(--radius-md);
+    border-radius: calc(var(--radius-md) * var(--apple-radius-scale, 1));
+    corner-shape: var(--apple-corner, round);
     color: #ddd;
     line-height: 1.7;
     text-align: center;
@@ -565,7 +573,8 @@
     background: #000;
     color: #fff;
     border: none;
-    border-radius: var(--radius-lg);
+    border-radius: calc(var(--radius-lg) * var(--apple-radius-scale, 1));
+    corner-shape: var(--apple-corner, round);
     font-weight: 700;
     letter-spacing: 1px;
     cursor: pointer;
@@ -623,7 +632,8 @@
     border: 1px solid rgba(255, 255, 255, 0.2);
     color: var(--mafia-white);
     padding: 6px 14px;
-    border-radius: 20px;
+    border-radius: calc(20px * var(--apple-radius-scale, 1));
+    corner-shape: var(--apple-corner, round);
     font-size: 0.75rem;
     font-weight: 600;
     cursor: pointer;
@@ -649,7 +659,8 @@
     background: linear-gradient(90deg, rgba(255, 255, 255, 0.03) 0%, rgba(255, 255, 255, 0.01) 100%);
     backdrop-filter: blur(5px);
     padding: 12px;
-    border-radius: 16px;
+    border-radius: calc(16px * var(--apple-radius-scale, 1));
+    corner-shape: var(--apple-corner, round);
     /* Pill shape */
     border: 1px solid rgba(255, 255, 255, 0.05);
     transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
@@ -737,7 +748,8 @@
 .action-btn {
     width: 36px;
     height: 36px;
-    border-radius: 12px;
+    border-radius: calc(12px * var(--apple-radius-scale, 1));
+    corner-shape: var(--apple-corner, round);
     border: none;
     background: rgba(255, 255, 255, 0.05);
     color: rgba(255, 255, 255, 0.4);
@@ -818,7 +830,8 @@
 .stat-card {
     background: rgba(255, 255, 255, 0.05);
     border: 1px solid rgba(255, 255, 255, 0.05);
-    border-radius: 20px;
+    border-radius: calc(20px * var(--apple-radius-scale, 1));
+    corner-shape: var(--apple-corner, round);
     padding: 20px;
     display: flex;
     flex-direction: column;
@@ -877,7 +890,8 @@
     margin-bottom: 20px;
     padding: 20px;
     background: rgba(255, 215, 0, 0.05);
-    border-radius: 20px;
+    border-radius: calc(20px * var(--apple-radius-scale, 1));
+    corner-shape: var(--apple-corner, round);
     border: 1px solid rgba(255, 215, 0, 0.1);
 }
 
@@ -985,7 +999,8 @@
     .card-front,
     .card-back {
         padding: 20px;
-        border-radius: 20px;
+        border-radius: calc(20px * var(--apple-radius-scale, 1));
+        corner-shape: var(--apple-corner, round);
         height: 500px;
     }
 

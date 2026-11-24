@@ -56,7 +56,7 @@
 .identity h1 { white-space: nowrap; font: 400 clamp(33px, 3.65vw, 52px)/1.04 "DM Serif Display", Georgia, serif; letter-spacing: -.06em; }
 .degree { margin-top: 10px !important; font: 400 12px/1.5 "Rubik", sans-serif; color: #c8b09e; }
 .contact { width: 100%; max-width: 264px; margin-top: 22px; }
-.contact > :is(.primary,button) { display: flex; justify-content: space-between; align-items: center; min-height: 44px; width: 100%; padding: 10px 14px; border: 1px solid #ffffff24; border-radius: 14px; color: #ead7c9; background: linear-gradient(150deg,#ffffff0d,#ffffff04); box-shadow: inset 0 1px 0 #ffffff0c; }
+.contact > :is(.primary,button) { display: flex; justify-content: space-between; align-items: center; min-height: 44px; width: 100%; padding: 10px 14px; border: 1px solid #ffffff24; border-radius: calc(14px * var(--apple-radius-scale, 1)); corner-shape: var(--apple-corner, round); color: #ead7c9; background: linear-gradient(150deg,#ffffff0d,#ffffff04); box-shadow: inset 0 1px 0 #ffffff0c; }
 .contact .primary { background: linear-gradient(135deg,#f6cfb0,#dca27d); border-color: #ffe0c7; box-shadow: inset 0 1px 0 #fff4e3a0, 0 5px 20px #b6704426; color: #24170e; font-weight: 500; margin-bottom: 8px; }
 .contact .email {
   display: inline-flex;
@@ -76,7 +76,8 @@
   --rule: #704c352b;
   container: research-profile / inline-size;
   border: 1px solid #fff4e2e0;
-  border-radius: 34px;
+  border-radius: calc(34px * var(--apple-radius-scale, 1));
+  corner-shape: var(--apple-corner, round);
   background:
     radial-gradient(ellipse at 12% 0%, #fffcf4ed, transparent 58%),
     radial-gradient(ellipse at 100% 100%, #f7e7d3c2, transparent 62%),
@@ -97,7 +98,8 @@
   margin: 14px 14px 0;
   padding: 5px;
   border: 1px solid #8e654324;
-  border-radius: 22px;
+  border-radius: calc(22px * var(--apple-radius-scale, 1));
+  corner-shape: var(--apple-corner, round);
   background: linear-gradient(165deg, #fffcf4b8, #e8d8c980);
   box-shadow: inset 0 1px 0 #fff, 0 5px 15px #6e4a3012;
   flex-shrink: 0;
@@ -110,7 +112,8 @@
   min-height: 44px;
   padding: 8px 4px;
   border: 0;
-  border-radius: 16px;
+  border-radius: calc(16px * var(--apple-radius-scale, 1));
+  corner-shape: var(--apple-corner, round);
   background: transparent;
   color: var(--muted);
   font-size: 13px;
@@ -126,6 +129,7 @@
   inset: 0;
   border: 1px solid #784b34;
   border-radius: inherit;
+  corner-shape: inherit;
   background: linear-gradient(145deg, #694532, #3c281f);
   box-shadow: inset 0 1px 0 #f7ca9f46, 0 3px 8px #53331e30;
   pointer-events: none;
@@ -159,7 +163,8 @@
   min-width: 0;
   padding: clamp(14px, 2cqw, 20px) clamp(14px, 2.4cqw, 23px);
   border: 1px solid;
-  border-radius: 22px;
+  border-radius: calc(22px * var(--apple-radius-scale, 1));
+  corner-shape: var(--apple-corner, round);
 }
 .overviewGrid h3 {
   font: 400 clamp(22px, 3.2cqw, 30px)/1.09 "DM Serif Display", Georgia, serif;
@@ -186,7 +191,8 @@
   padding: 12px 82px 12px 14px;
   overflow: clip;
   border: 1px solid #f9c79a38;
-  border-radius: 15px;
+  border-radius: calc(15px * var(--apple-radius-scale, 1));
+  corner-shape: var(--apple-corner, round);
   background:
     radial-gradient(ellipse at 86% 65%, #d9864b5c, transparent 48%),
     linear-gradient(130deg, #3b282287, #211711d9);
@@ -224,10 +230,10 @@
 }
 .surface p, .plot figcaption { color: var(--muted); }
 .plot { margin: 0; }
-.plot a { position: relative; display: block; padding: 6px; border: 1px solid var(--rule); border-radius: 12px; background: #fff; }
+.plot a { position: relative; display: block; padding: 6px; border: 1px solid var(--rule); border-radius: calc(12px * var(--apple-radius-scale, 1)); corner-shape: var(--apple-corner, round); background: #fff; }
 .plot img { display: block; width: 100%; height: auto; }
 .plot figcaption { margin-top: 5px; font-size: 12px; line-height: 1.4; }
-.plotExpand { position: absolute; right: 0; top: 0; transform: translate(20%, -20%); display: grid; place-items: center; width: 24px; height: 24px; border: 1px solid var(--rule); border-radius: 7px; background: #fffaf2; color: var(--accent); }
+.plotExpand { position: absolute; right: 0; top: 0; transform: translate(20%, -20%); display: grid; place-items: center; width: 24px; height: 24px; border: 1px solid var(--rule); border-radius: calc(7px * var(--apple-radius-scale, 1)); corner-shape: var(--apple-corner, round); background: #fffaf2; color: var(--accent); }
 .page .featureLink, .projectLink a {
   display: inline-flex;
   align-items: center;
@@ -242,7 +248,8 @@
   min-height: 40px;
   padding: 0 11px;
   border: 1px solid #9d664038;
-  border-radius: 10px;
+  border-radius: calc(10px * var(--apple-radius-scale, 1));
+  corner-shape: var(--apple-corner, round);
   background: #fff9;
 }
 .page .feature .featureLink { color: #ffe5cc; border-color: #f9d0ae57; background: #f9d0ae13; }
@@ -265,7 +272,8 @@
 }
 .selectedPapers li {
   border: 1px solid #fff;
-  border-radius: 16px;
+  border-radius: calc(16px * var(--apple-radius-scale, 1));
+  corner-shape: var(--apple-corner, round);
   padding: 15px;
   background: linear-gradient(145deg, #fffc, #fff5);
   box-shadow: 0 5px 14px #6843200a;
@@ -372,7 +380,8 @@
 .methodGrid li {
   padding: 14px;
   border: 1px solid var(--rule);
-  border-radius: 14px;
+  border-radius: calc(14px * var(--apple-radius-scale, 1));
+  corner-shape: var(--apple-corner, round);
   background: linear-gradient(145deg, #fff8, #fff2);
 }
 .methodGrid h4 { margin: 0; font-size: 14px; font-weight: 500; }

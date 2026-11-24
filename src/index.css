@@ -65,14 +65,16 @@ body .calendly-overlay::-webkit-scrollbar {
 }
 
 body .calendly-popup-content {
-  border-radius: 12px !important;
+  border-radius: calc(12px * var(--apple-radius-scale, 1)) !important;
+  corner-shape: var(--apple-corner, round) !important;
   overflow: hidden !important;
 }
 
 body .calendly-inline-widget iframe,
 body .calendly-popup-content iframe,
 body iframe[src*="calendly"] {
-  border-radius: 12px !important;
+  border-radius: calc(12px * var(--apple-radius-scale, 1)) !important;
+  corner-shape: var(--apple-corner, round) !important;
   filter: invert(1) hue-rotate(180deg) !important;
 }
 

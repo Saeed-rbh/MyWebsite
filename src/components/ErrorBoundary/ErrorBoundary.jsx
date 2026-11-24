@@ -40,7 +40,8 @@ class ErrorBoundary extends React.Component {
                             backgroundColor: '#007bff',
                             color: 'white',
                             border: 'none',
-                            borderRadius: '5px'
+                            borderRadius: 'calc(5px * var(--apple-radius-scale, 1))',
+                            cornerShape: 'var(--apple-corner, round)'
                         }}
                     >
                         Reload Page

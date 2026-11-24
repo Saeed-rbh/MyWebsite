@@ -15,4 +15,22 @@
     --spacing-sm: 8px;
     --spacing-md: 16px;
     --spacing-lg: 24px;
+
+    /* Apple G² continuous corners (progressive enhancement) */
+    --apple-radius-scale: 1;
+    --apple-corner: round;
+    --apple-pill-corner: round;
+}
+
+@supports (corner-shape: squircle) {
+    :root {
+        /*
+         * CSS squircle (superellipse(2), exponent 4) hugs corners tighter than a circular arc.
+         * Scaling nominal radii by 1.5 matches Apple's iOS continuous curve onset (~1.53x R)
+         * while preserving optical corner weight. Browsers without corner-shape keep scale = 1.
+         */
+        --apple-radius-scale: 1.5;
+        --apple-corner: squircle;
+        --apple-pill-corner: superellipse(1.5);
+    }
 }

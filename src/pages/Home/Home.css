@@ -172,7 +172,8 @@ button {
   z-index: 1;
   width: calc(100vw - 40px);
   height: calc(100vh - 40px);
-  border-radius: 30px;
+  border-radius: calc(30px * var(--apple-radius-scale, 1));
+  corner-shape: var(--apple-corner, round);
   border: 1px solid #00000056;
   -webkit-backdrop-filter: blur(20px);
   backdrop-filter: blur(20px);
@@ -331,6 +332,7 @@ button {
   background-color: #79554829;
   border: 1.5px solid rgba(212, 157, 129, 0.18);
   border-radius: 100px;
+  corner-shape: var(--apple-pill-corner, round);
   flex-direction: row;
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
@@ -359,6 +361,7 @@ button {
   align-items: center;
   z-index: 10;
   border-radius: 100px;
+  corner-shape: var(--apple-pill-corner, round);
   flex-direction: row;
   display: flex;
   flex-direction: column;
@@ -393,6 +396,7 @@ button {
   height: 50px;
   background-color: #00000060;
   border-radius: 100px;
+  corner-shape: var(--apple-pill-corner, round);
   margin: 0;
   padding: 0;
   border: 0;
@@ -460,6 +464,7 @@ button {
   border: 1px solid rgba(212, 157, 129, 0.22);
   padding: 3px 10px 4px 10px;
   border-radius: 100px;
+  corner-shape: var(--apple-pill-corner, round);
   white-space: nowrap;
   display: inline-flex;
   align-items: center;
@@ -594,6 +599,7 @@ button {
   background: rgba(212, 157, 129, 0.1) !important;
   border: 1px solid rgba(212, 157, 129, 0.25) !important;
   border-radius: 100px !important;
+  corner-shape: var(--apple-pill-corner, round) !important;
   padding: 3px 14px 4px 14px !important;
   cursor: pointer;
   transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1) !important;
@@ -890,7 +896,8 @@ button {
   .social button {
     margin: 5px;
     padding: 18px 45px;
-    border-radius: 32px;
+    border-radius: calc(32px * var(--apple-radius-scale, 1));
+    corner-shape: var(--apple-corner, round);
     background: #030202;
     align-items: center;
     justify-content: center;
@@ -1043,6 +1050,7 @@ button {
     margin-left: 0;
     background: #00000078;
     border-radius: 100px;
+    corner-shape: var(--apple-pill-corner, round);
     padding: 0;
     height: 100%;
     box-sizing: border-box;
@@ -1127,6 +1135,7 @@ button {
   .MainHeader {
     position: relative;
     border-radius: 100px;
+    corner-shape: var(--apple-pill-corner, round);
     margin-left: 0;
   }
 
@@ -1160,7 +1169,8 @@ button {
     display: flex !important;
     align-items: center;
     padding: 3px 12px 5px;
-    border-radius: 20px;
+    border-radius: calc(20px * var(--apple-radius-scale, 1));
+    corner-shape: var(--apple-corner, round);
   }
 
   .welcome span {
@@ -1329,6 +1339,7 @@ button {
   inset: 1px;
   z-index: -1;
   border-radius: inherit;
+  corner-shape: inherit;
   pointer-events: none;
   background:
     radial-gradient(ellipse 55% 95% at 18% -30%, rgba(255, 230, 211, .18), transparent 78%),
@@ -1380,7 +1391,7 @@ button {
   .HomeLandingFooter .home-footer-content { gap: 3px; }
   .HomeLandingFooter .resumee,
   .HomeLandingFooter .contact-1 { width: 50% !important; flex: 1 1 50%; height: 100%; }
-  .HomeLandingFooter .social { width: 100% !important; height: 100%; gap: 0; margin: 0; border-radius: 100px; background: transparent; }
+  .HomeLandingFooter .social { width: 100% !important; height: 100%; gap: 0; margin: 0; border-radius: 100px; corner-shape: var(--apple-pill-corner, round); background: transparent; }
   .HomeLandingFooter .resumee .social button,
   .HomeLandingFooter .social a { width: 100% !important; height: 100%; font-size: 10px; letter-spacing: .09em; }
   .HomeLandingFooter .resumee .social button:first-child { display: none !important; }

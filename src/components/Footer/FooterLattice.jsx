@@ -111,6 +111,7 @@ const FooterLattice = ({ accent = "#d49d81" }) => {
         height: isMobile ? "56px" : "60px",
         pointerEvents: "none",
         borderRadius: "100px 0 0 100px",
+        cornerShape: "var(--apple-pill-corner, round)",
       }}
     />
   );
