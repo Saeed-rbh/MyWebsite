@@ -1,7 +1,8 @@
-import React, {useEffect, useId, useMemo, useRef, useState} from 'react';
-import {PARTICLE_STEP, createParticles, advanceParticles, nearestImage, particleObservables} from './particleModel.mjs';
+import React, { useEffect, useId, useMemo, useRef, useState } from 'react';
+import { PARTICLE_STEP, createParticles, advanceParticles, nearestImage, particleObservables } from './particleModel.mjs';
 import useSimulationPlayback from './useSimulationPlayback';
 import TrajectoryReadout from './TrajectoryReadout';
+import { SmoothDetails } from './AtomisticUi';
 import styles from './GrapheneArticle.module.css';
 import s from './Atoms.module.css';
 
@@ -34,9 +35,25 @@ export default function ParticleExplorer({kind}) {
     setFrame(state.current);
   }
   useEffect(() => {
-    if (!active) return;
-    const timer = setInterval(() => advance(Math.round(rate * 4)), 32);
-    return () => clearInterval(timer);
+    if (!active) return undefined;
+    let rafId;
+    let last = performance.now();
+    let carry = 0;
+
+    const tick = now => {
+      const elapsed = Math.min(64, Math.max(0, now - last));
+      last = now;
+      carry += (elapsed / 32) * (rate * 4);
+      const steps = Math.floor(carry);
+      if (steps >= 1) {
+        carry -= steps;
+        advance(steps);
+      }
+      rafId = requestAnimationFrame(tick);
+    };
+
+    rafId = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(rafId);
   }, [active, rate]);
   function reset(nextTemperature = temperature, nextStructure = changedStructure) {
     state.current = createParticles({kind, temperature: nextTemperature, vacancy: solid && nextStructure, compressed: !solid && nextStructure});
@@ -80,7 +97,7 @@ export default function ParticleExplorer({kind}) {
       </div>
       <p className={s.simulationCaption}>{solid ? (changedStructure ? 'The dashed teal ring marks the missing atom. Watch its neighbours move.' : 'Atoms vibrate around their lattice sites. Remove one and watch its neighbours.') : 'Atoms move between encounters. Make the box smaller and watch what changes.'}</p>
       {error && <p className={s.simulationError} role="alert">{error}</p>}
-      <details className={s.simulationSettings}><summary>Settings &amp; model</summary>
+      <SmoothDetails className={s.simulationSettings} summary="Settings & model">
       <div className={s.settingsGrid}>
       <div className={s.settingsControls}>
         <label htmlFor={`${id}-temperature`} className={s.temperatureLabel}><span>Initial temperature T*</span><select id={`${id}-temperature`} value={temperature} onChange={e => reset(Number(e.target.value))}>{(solid ? [.03, .08, .16] : [.75, 1.5, 3]).map(t => <option key={t} value={t}>{t.toFixed(2)}</option>)}</select></label>
@@ -98,9 +115,9 @@ export default function ParticleExplorer({kind}) {
           <div><dt>Energy error / atom</dt><dd>{values.energyError.toExponential(1)} <span>ε</span></dd></div>
         </dl>
         <p className={s.controlHint}>{solid ? 'Ask: how does a defect change local motion? RMS displacement measures how far atoms have moved from their starting positions.' : 'Ask: how does density affect encounters and transport? Displacements follow atoms across periodic boundaries.'}</p>
-        <div className={s.physicsDetails}><p>A two-dimensional <a href="https://docs.lammps.org/pair_lj.html" target="_blank" rel="noreferrer">Lennard–Jones system</a> with unit mass, periodic boundaries and velocity-Verlet integration (Δt = {PARTICLE_STEP} τ). Energy and force go continuously to zero at a 2.5 σ cutoff through a force shift. There are no fixed bonds or springs holding atoms to lattice sites.</p><p>Time, distance, energy and temperature use <a href="https://docs.lammps.org/units.html" target="_blank" rel="noreferrer">reduced units</a>: τ, σ, ε and T* = kBT/ε. Starting velocities have zero net momentum. This isolated run has no thermostat, so kinetic and potential energies exchange as the structure evolves.</p><p>{solid ? 'This generic crystal demonstrates lattice vibrations and vacancies. Real metals, semiconductors and covalent solids need interaction models validated for their bonding and properties.' : 'This generic monatomic gas demonstrates atomic encounters and transport. It contains no molecular rotation, internal bonds or chemical reactions.'} The presets are separate starting systems, not a melting or boiling experiment. Atom sizes are illustrative.</p></div>
+        <div className={s.physicsDetails}><p>A two-dimensional <a href="https://docs.lammps.org/pair_lj.html" target="_blank" rel="noopener noreferrer">Lennard–Jones system</a> with unit mass, periodic boundaries and velocity-Verlet integration (Δt = {PARTICLE_STEP} τ). Energy and force go continuously to zero at a 2.5 σ cutoff through a force shift. There are no fixed bonds or springs holding atoms to lattice sites.</p><p>Time, distance, energy and temperature use <a href="https://docs.lammps.org/units.html" target="_blank" rel="noopener noreferrer">reduced units</a>: τ, σ, ε and T* = kBT/ε. Starting velocities have zero net momentum. This isolated run has no thermostat, so kinetic and potential energies exchange as the structure evolves.</p><p>{solid ? 'This generic crystal demonstrates lattice vibrations and vacancies. Real metals, semiconductors and covalent solids need interaction models validated for their bonding and properties.' : 'This generic monatomic gas demonstrates atomic encounters and transport. It contains no molecular rotation, internal bonds or chemical reactions.'} The presets are separate starting systems, not a melting or boiling experiment. Atom sizes are illustrative.</p></div>
       </div>
       </div>
-      </details>
+      </SmoothDetails>
   </section>;
 }

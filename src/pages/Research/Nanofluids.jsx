@@ -1,147 +1,415 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { SurfaceExplorer, ShellExplorer } from './NanofluidExperiments';
+import { Link } from 'react-router-dom';
+import { AnimatePresence, useReducedMotion } from 'motion/react';
+import {
+  ArticleText,
+  ElectrostaticsRace,
+  FigureLightbox,
+  OpeningFigure,
+  PublishedFigure,
+  ShellExplorer,
+  ShellQuestion,
+  SurfaceExplorer,
+  ThermalPulseExplorer,
+  ThreeStudySynthesis,
+  ViscosityContrastCard,
+} from './NanofluidExperiments';
 import StoryNavigation from './AtomsStoryNavigation';
 import { ScrollFade } from '../Commercialization/StoryMotion';
 import SEO from '../../components/SEO/SEO';
 import { nanofluidsArticle as article } from '../../data/nanofluidsArticle.mjs';
 import useGrapheneReveals from './useGrapheneReveals';
+import useSoftScroll from './useSoftScroll';
 import styles from './GrapheneArticle.module.css';
 import layout from './Nanofluids.module.css';
 
-const chapters = article.sections.map((section, index) => ({
-  ...section, number: String(index + 1).padStart(2, '0'),
+const sectionChapters = article.sections.map((section, index) => ({
+  ...section,
+  number: String(index + 1).padStart(2, '0'),
 }));
 
-const choices = [
-  ['Average all the water together.', 'That gives the mean liquid temperature. Water far from the particle dilutes the signal from the first molecular layers.'],
-  ['Track water in shells at different radii.', 'Yes. Each shell gives a local temperature as a function of time, so we can compare both the size and timing of the peaks.'],
-  ['Track only the silver temperature.', 'This shows how quickly the particle loses energy. To see where that energy arrives, we also need temperatures in the water.'],
+const chapters = [
+  ...sectionChapters,
+  { id: 'synthesis', number: '08', nav: 'Put it together' },
 ];
 
-function ShellQuestion() {
-  const [answer, setAnswer] = useState(null);
-  return <div className={styles.quiz}>
-    <header className={styles.quizIntro}><span className={styles.eyebrow}>Read the simulation</span>
-      <h3 id="shell-question">How would you detect a brief warming near the particle?</h3>
-    </header>
-    <div className={styles.quizInteraction}>
-      <div className={styles.quizAnswers} role="group" aria-labelledby="shell-question">
-        {choices.map(([label], index) => <button key={label} type="button" className={styles.quizAnswer}
-          aria-pressed={answer === index} onClick={() => setAnswer(index)}>{label}</button>)}
-      </div>
-      <p className={styles.quizResponse} role="status">{answer === null ? 'Choose a measurement.' : choices[answer][1]}</p>
-    </div>
-  </div>;
-}
-
-function OpeningFigure() {
-  const [density, setDensity] = useState(false);
-  const image = density ? article.densityMap : article.interfaceImage;
-  return <figure className={layout.interfaceFigure}>
-    <div className={layout.openingImage}><img src={image.src} alt={image.alt} /></div>
-    <div className={layout.options} role="group" aria-label="Choose a view of the interface">
-      <button type="button" aria-pressed={!density} onClick={() => setDensity(false)}>Molecules</button>
-      <button type="button" aria-pressed={density} onClick={() => setDensity(true)}>Water density</button>
-    </div>
-    <figcaption aria-live="polite">{density ? <>{image.caption} <a href={image.url}>{image.source}</a></> :
-      'A schematic slice through the interface. Silver is on the left. Each water molecule has one oxygen atom and two hydrogens. Switch views to see the density map from our paper.'}</figcaption>
-  </figure>;
-}
-
-function PublishedFigure({ figure, paper }) {
-  return (
-    <figure className={styles.literatureFigure}>
-      <header>
-        <span className={styles.eyebrow}>Our simulation results</span>
-        <h3>{figure.title}</h3>
-      </header>
-      <a href={figure.src} target="_blank" rel="noreferrer" aria-label={'Enlarge figure: ' + figure.title}>
-        <img src={figure.src} width={figure.width} height={figure.height} loading="lazy" alt={figure.alt} />
-      </a>
-      <figcaption className={styles.compactFigureCaption}>
-        <p>{figure.reading}</p>
-        <cite><a href={paper[1]}>{figure.source}</a></cite>
-      </figcaption>
-    </figure>
-  );
-}
+const chapterTitles = Object.fromEntries(chapters.map(c => [c.id, c.nav]));
 
 export default function Nanofluids() {
   const page = useRef(null);
+  const reduced = useReducedMotion();
   const [active, setActive] = useState(chapters[0].id);
+  const [lightboxItem, setLightboxItem] = useState(null);
+
   useGrapheneReveals(page, true);
-  function navigate(id) {
-    document.getElementById(id)?.scrollIntoView({ block: 'start' });
-    window.history.replaceState(window.history.state, '', '#' + id);
+  useSoftScroll(page);
+
+  function navigate(id, focus = false) {
+    const target = page.current?.querySelector(`#${id}`);
+    if (!target) return;
+    target.scrollIntoView({ block: 'start', behavior: reduced ? 'instant' : 'smooth' });
+    window.history.replaceState(window.history.state, '', `#${id}`);
+    if (focus) target.querySelector('h2')?.focus({ preventScroll: true });
   }
+
   useEffect(() => {
     const root = page.current;
-    const nodes = chapters.map(chapter => document.getElementById(chapter.id));
-    function update() {
-      const index = Math.max(0, nodes.findLastIndex(node => node.getBoundingClientRect().top <= 210));
+    if (!root) return undefined;
+    const nodes = chapters.map(ch => root.querySelector(`#${ch.id}`));
+    let frame;
+
+    const update = () => {
+      frame = null;
+      const index = Math.max(
+        0,
+        nodes.findLastIndex(node => node && node.getBoundingClientRect().top <= 210)
+      );
       setActive(chapters[index].id);
-      root.style.setProperty('--rail-progress', index === 0 ? '0' : index === chapters.length - 1 ? '1' : '.5');
-      root.style.setProperty('--reading-progress', String(root.scrollTop / Math.max(1, root.scrollHeight - root.clientHeight)));
-    }
-    const initial = nodes.find(node => '#' + node.id === window.location.hash);
-    initial?.scrollIntoView();
-    update();
-    root.addEventListener('scroll', update, { passive: true });
-    return () => root.removeEventListener('scroll', update);
+      const progress = chapters.length > 1 ? index / (chapters.length - 1) : 0;
+      root.style.setProperty('--rail-progress', progress.toFixed(4));
+      root.style.setProperty(
+        '--reading-progress',
+        String(root.scrollTop / Math.max(1, root.scrollHeight - root.clientHeight))
+      );
+    };
+
+    const onScroll = () => {
+      if (!frame) frame = requestAnimationFrame(update);
+    };
+
+    const alignHash = () => {
+      const id = window.location.hash.slice(1);
+      if (id) root.querySelector(`#${id}`)?.scrollIntoView({ block: 'start', behavior: 'instant' });
+    };
+
+    const initialFrame = requestAnimationFrame(() => {
+      alignHash();
+      update();
+    });
+
+    root.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll);
+    window.addEventListener('hashchange', alignHash);
+    return () => {
+      root.removeEventListener('scroll', onScroll);
+      window.removeEventListener('resize', onScroll);
+      window.removeEventListener('hashchange', alignHash);
+      cancelAnimationFrame(initialFrame);
+      cancelAnimationFrame(frame);
+    };
   }, []);
+
+  const inspectHeroSetup = () => {
+    setLightboxItem({
+      src: article.solarImage.src,
+      dimensions: [article.solarImage.width, article.solarImage.height],
+      eyebrow: 'Conceptual setup · Direct absorption solar collector',
+      title: 'How light meets suspended particles',
+      alt: article.solarImage.alt,
+      caption: article.solarImage.caption,
+      isPaperFigure: false,
+    });
+  };
+
   return (
-    <div className={styles.page} ref={page} data-site-motion-ignore="true">
-      <SEO title={article.title + ' | Saeed Arabha'} description={article.intro} type="article" />
+    <div className={`${styles.page} ${layout.page}`} ref={page} data-site-motion-ignore="true">
+      <SEO title={`${article.title} | Saeed Arabha`} description={article.intro} type="article" />
+      <a
+        href="#suspension"
+        className={layout.skip}
+        onClick={e => {
+          e.preventDefault();
+          navigate('suspension', true);
+        }}
+      >
+        Skip to article
+      </a>
+
       <main className={styles.main}>
-        <article>
-          <header className={styles.hero + ' ' + layout.opening}>
+        <article aria-label={article.title}>
+          <header className={`${styles.hero} ${layout.opening}`}>
             <div className={styles.heroIdentity}>
-              <span className={styles.ghostWord} data-page-entrance="atmosphere" aria-hidden="true">Water.</span>
-              <span className={styles.eyebrow} data-page-entrance="eyebrow">A closer look at materials</span>
-              <h1><span className={styles.heroPrefix} data-page-entrance="prefix">Meet</span>{' '}<em data-page-entrance="title">Nanofluids.</em></h1>
+              <span className={styles.ghostWord} data-page-entrance="atmosphere" aria-hidden="true">
+                Water.
+              </span>
+              <span className={styles.eyebrow} data-page-entrance="eyebrow">
+                A closer look at materials
+              </span>
+              <h1>
+                <span className={styles.heroPrefix} data-page-entrance="prefix">
+                  Meet
+                </span>{' '}
+                <em data-page-entrance="title">Nanofluids.</em>
+              </h1>
               <p className={styles.heroKicker}>Silver, titanium dioxide and the water at their surfaces</p>
             </div>
+
             <div className={styles.heroIntro}>
-              <h2><span aria-hidden="true">◆</span> How can water collect more sunlight?</h2>
+              <h2>
+                <span aria-hidden="true">◆</span> How can water collect more sunlight?
+              </h2>
               <p>{article.intro}</p>
-              <div className={styles.heroActions}><a href="#suspension">Start with one particle ↓</a></div>
+              <div className={styles.heroActions}>
+                <a
+                  href="#suspension"
+                  onClick={e => {
+                    e.preventDefault();
+                    navigate('suspension', true);
+                  }}
+                >
+                  Start with one particle <span aria-hidden="true">↓</span>
+                </a>
+                <a
+                  href="#synthesis"
+                  onClick={e => {
+                    e.preventDefault();
+                    navigate('synthesis', true);
+                  }}
+                >
+                  Three-study summary <span aria-hidden="true">↗</span>
+                </a>
+              </div>
             </div>
-            <figure className={layout.interfaceFigure}>
-              <img src={article.solarImage.src} alt={article.solarImage.alt} width="1536" height="1024" />
+
+            <figure className={`${styles.researchSlideFigure} ${layout.interfaceFigure} ${layout.heroFigureCard}`}>
+              <button
+                type="button"
+                className={layout.heroImageButton}
+                onClick={inspectHeroSetup}
+                aria-label="Inspect solar absorption collector illustration"
+              >
+                <img
+                  src={article.solarImage.src}
+                  alt={article.solarImage.alt}
+                  width={article.solarImage.width}
+                  height={article.solarImage.height}
+                  fetchPriority="high"
+                />
+                <span className={styles.imageHint} aria-hidden="true">
+                  Inspect setup ⤢
+                </span>
+              </button>
               <figcaption>{article.solarImage.caption}</figcaption>
             </figure>
           </header>
-          <StoryNavigation chapters={chapters} active={active} navigate={navigate}
-            groupTitles={['Meet the suspension', 'Study silver in water', 'Compare the interface']} />
-          {chapters.map(({ id, nav, title, paragraphs, link, figure, illustration, mechanism, number }) => (
-            <section id={id} className={styles.chapter} key={id}>
-              <ScrollFade root={page} className={styles.chapterHeading}>
-                <span className={styles.chapterNumber} aria-hidden="true">{number}</span>
-                <span className={styles.eyebrow}>Chapter {number} / {nav}</span>
-                <h2>{title}</h2>
-              </ScrollFade>
-              <div className={styles.prose}>
-                {paragraphs.map(paragraph => <p key={paragraph}>{paragraph}</p>)}
-                {link && <a href={link[1]}>{link[0]}</a>}
-              </div>
-              {(illustration || mechanism) && <div className={layout.visuals}>
-                {[illustration, mechanism].filter(Boolean).map(image => <figure key={image.src}>
-                  <img className={layout.illustration} src={image.src} width="1536" height="1024" loading="lazy" alt={image.alt} />
-                  <figcaption>{image.caption}</figcaption>
-                </figure>)}
-              </div>}
-              {id === 'surface' && <SurfaceExplorer />}
-              {id === 'silver' && <><div className={layout.evidence}><OpeningFigure /></div><ShellExplorer /></>}
-              {id === 'cooling' && <div className={layout.exercise}><ShellQuestion /></div>}
-              {figure && <div className={layout.evidence}><PublishedFigure figure={figure} paper={link} /></div>}
-            </section>
-          ))}
-          <section className={styles.closing}>
-            <h2>Back to the water at the surface.</h2>
+
+          <StoryNavigation
+            chapters={chapters}
+            active={active}
+            navigate={id => navigate(id, true)}
+            groupTitles={['Meet the suspension', 'Study silver in water', 'Compare the interface']}
+          />
+
+          {sectionChapters.map(
+            ({
+              id,
+              nav,
+              title,
+              paragraphs,
+              highlights,
+              link,
+              journalLink,
+              handoff,
+              figure,
+              illustration,
+              mechanism,
+              number,
+            }) => (
+              <section id={id} className={styles.chapter} key={id}>
+                <ScrollFade root={page} className={styles.chapterHeading}>
+                  <span className={styles.chapterNumber} aria-hidden="true">
+                    {number}
+                  </span>
+                  <span className={styles.eyebrow}>
+                    Chapter {number} / {nav}
+                  </span>
+                  <h2 tabIndex="-1">{title}</h2>
+                </ScrollFade>
+
+                <div className={styles.prose}>
+                  {paragraphs.map((paragraph, i) => (
+                    <ScrollFade root={page} as="p" key={paragraph} stagger={i}>
+                      <ArticleText text={paragraph} highlights={highlights} />
+                    </ScrollFade>
+                  ))}
+                  {(link || journalLink) && (
+                    <div className={layout.chapterLinks}>
+                      {journalLink && <Link to={journalLink[1]}>{journalLink[0]} ↗</Link>}
+                      {link && (
+                        <a href={link[1]} target="_blank" rel="noopener noreferrer">
+                          {link[0]} ↗
+                        </a>
+                      )}
+                    </div>
+                  )}
+                </div>
+
+                {id !== 'cooling' && (illustration || mechanism) && (
+                  <div className={layout.visuals}>
+                    {[illustration, mechanism].filter(Boolean).map(image => (
+                      <figure key={image.src} className={layout.visualCard}>
+                        <button
+                          type="button"
+                          className={layout.visualSurfaceButton}
+                          onClick={() =>
+                            setLightboxItem({
+                              src: image.src,
+                              dimensions: [image.width, image.height],
+                              eyebrow: `Chapter ${number} · ${nav}`,
+                              title,
+                              alt: image.alt,
+                              caption: image.caption,
+                              isPaperFigure: false,
+                            })
+                          }
+                          aria-label={`Inspect illustration: ${image.alt}`}
+                        >
+                          <img
+                            className={layout.illustration}
+                            src={image.src}
+                            width={image.width}
+                            height={image.height}
+                            loading="lazy"
+                            decoding="async"
+                            alt={image.alt}
+                          />
+                          <span className={styles.imageHint} aria-hidden="true">
+                            Inspect visual ⤢
+                          </span>
+                        </button>
+                        <figcaption>{image.caption}</figcaption>
+                      </figure>
+                    ))}
+                  </div>
+                )}
+
+                {id === 'surface' && <SurfaceExplorer />}
+
+                {id === 'silver' && (
+                  <>
+                    <div className={layout.evidence}>
+                      <OpeningFigure article={article} onInspect={setLightboxItem} />
+                    </div>
+                    <ShellExplorer />
+                  </>
+                )}
+
+                {id === 'mixture' && (
+                  <div className={layout.fullSpan}>
+                    <ViscosityContrastCard items={article.viscosityContrast} />
+                  </div>
+                )}
+
+                {id === 'cooling' && (
+                  <>
+                    <div className={layout.fullSpan}>
+                      <ThermalPulseExplorer shells={article.thermalPulseShells} />
+                    </div>
+                    <div className={layout.exercise}>
+                      <ShellQuestion onNavigate={nextId => navigate(nextId, true)} />
+                    </div>
+                  </>
+                )}
+
+                {id === 'titania' && (
+                  <div className={layout.fullSpan}>
+                    <ElectrostaticsRace data={article.electrostaticsComparison} />
+                  </div>
+                )}
+
+                {figure && (
+                  <div className={layout.evidence}>
+                    <PublishedFigure
+                      figure={figure}
+                      paper={link}
+                      journalLink={journalLink}
+                      legendItems={id === 'titania' ? article.figureLegends?.tio2Legend : undefined}
+                      unitNote={id === 'silver' ? article.figureLegends?.silverUnitNote : undefined}
+                      onInspect={setLightboxItem}
+                    />
+                  </div>
+                )}
+
+                {handoff && (
+                  <div className={styles.storyHandoff}>
+                    <a
+                      href={`#${handoff.to}`}
+                      onClick={e => {
+                        e.preventDefault();
+                        navigate(handoff.to, true);
+                      }}
+                    >
+                      <span className={styles.handoffLabel}>Next · {chapterTitles[handoff.to]}</span>
+                      <span className={styles.handoffPrompt}>
+                        <span>{handoff.text}</span>
+                        <svg
+                          className={styles.handoffArrow}
+                          width="24"
+                          height="24"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          aria-hidden="true"
+                        >
+                          <path
+                            d="M12 4v15m-6-6 6 6 6-6"
+                            stroke="currentColor"
+                            strokeWidth="1.25"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                          />
+                        </svg>
+                      </span>
+                    </a>
+                  </div>
+                )}
+              </section>
+            )
+          )}
+
+          <section id="synthesis" className={styles.recap}>
+            <span className={styles.eyebrow}>The journey / Put the evidence together</span>
+            <h2 tabIndex="-1">Back to the water at the surface.</h2>
             <p>{article.conclusion}</p>
+
+            <ThreeStudySynthesis
+              studies={article.studiesSummary}
+              onNavigate={targetId => navigate(targetId, true)}
+            />
+
+            <ol>
+              {article.takeaways.map(item => (
+                <li key={item}>{item}</li>
+              ))}
+            </ol>
+
+            <div className={layout.related}>
+              <Link to="/simulate-atoms">Explore atomistic simulation ↗</Link>
+              <Link to="/metrology">Explore 2D metrology ↗</Link>
+              <Link to="/Graphene">Meet graphene ↗</Link>
+              <Link to="/journal/">Read my research ↗</Link>
+            </div>
+          </section>
+
+          <section className={styles.sources} aria-labelledby="nanofluids-sources">
+            <h2 id="nanofluids-sources">Sources &amp; further reading</h2>
+            <ol>
+              {article.sources.map((src, i) => (
+                <li key={src.title} value={i + 1}>
+                  <a href={src.url} target="_blank" rel="noopener noreferrer">
+                    {src.title} ↗
+                  </a>
+                </li>
+              ))}
+            </ol>
           </section>
         </article>
       </main>
+
+      <AnimatePresence>
+        {lightboxItem && (
+          <FigureLightbox item={lightboxItem} onClose={() => setLightboxItem(null)} />
+        )}
+      </AnimatePresence>
     </div>
   );
 }

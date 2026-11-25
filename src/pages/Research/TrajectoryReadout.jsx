@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { SmoothDetails } from './AtomisticUi';
 import s from './Atoms.module.css';
 
 export default function TrajectoryReadout({ samples, values, time, changed, solid, temperature }) {
@@ -21,6 +22,6 @@ export default function TrajectoryReadout({ samples, values, time, changed, soli
     <p className={s.traceLegend}><span>━ {label}</span>{saved && <span>┄ Saved: {saved.label}</span>}</p>
     <div className={s.traceActions}><button type="button" disabled={samples.length < 3} onClick={()=>setSaved({label:`${label} · T* = ${temperature.toFixed(2)}`,samples:samples.map(p=>({...p}))})}>Keep this trace</button>{saved && <button type="button" onClick={()=>setSaved(null)}>Clear saved</button>}</div>
     <p>{saved ? 'The dashed trace stays while you change the structure or reset. Compare at matched times and initial temperatures; these are single runs.' : 'Pause, keep a trace, then change the structure to compare. The plot comes from the moving atoms above.'}</p>
-    <details><summary>How to read this measurement</summary><p>Square each atom’s distance from its initial position, average over the atoms, then take the square root. Boundary crossings are included. A rising curve shows increasing displacement; it does not by itself measure diffusion, heat transport or strength.</p><p>Reset clears the current trace. A kept trace is a snapshot and keeps its original time range. Both axes rescale to fit the displayed runs.</p></details>
+    <SmoothDetails summary="How to read this measurement"><p>Square each atom’s distance from its initial position, average over the atoms, then take the square root. Boundary crossings are included. A rising curve shows increasing displacement; it does not by itself measure diffusion, heat transport or strength.</p><p>Reset clears the current trace. A kept trace is a snapshot and keeps its original time range. Both axes rescale to fit the displayed runs.</p></SmoothDetails>
   </div>;
 }

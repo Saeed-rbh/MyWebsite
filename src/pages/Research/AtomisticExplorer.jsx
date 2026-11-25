@@ -1,27 +1,108 @@
 import React from 'react';
+import { AnimatePresence, motion, useReducedMotion } from 'motion/react';
 import ParticleExplorer from './ParticleExplorer';
 import WaterExplorer from './WaterExplorer';
 import SimulationScenario from './SimulationScenario';
-import {atomsArticle} from '../../data/atomsArticle.mjs';
+import { SmoothDetails } from './AtomisticUi';
+import { atomsArticle } from '../../data/atomsArticle.mjs';
 import styles from './GrapheneArticle.module.css';
 import s from './Atoms.module.css';
 
-function SystemSketch({kind}) {
-  return <svg viewBox="0 0 80 44" aria-hidden="true" focusable="false">
-    {kind === 'solid' ? [0, 1, 2].flatMap(row => [0, 1, 2, 3].map(col => <circle key={`${row}-${col}`} cx={14 + col * 15 + (row % 2) * 7} cy={8 + row * 14} r="3.5" fill="#d6a17e"/>)) : kind === 'gas' ? [[10, 12], [42, 7], [69, 18], [26, 35], [58, 37]].map(([x, y]) => <g key={x}><path d={`M${x} ${y}l8 -5`} stroke="#81b9b1" strokeOpacity=".5"/><circle cx={x} cy={y} r="3.5" fill="#81b9b1"/></g>) : <g><path d="M25 12L40 29L55 12" fill="none" stroke="#ddbc9e" strokeWidth="3"/><circle cx="40" cy="29" r="8" fill="#d77969"/><circle cx="25" cy="12" r="5" fill="#eddfcc"/><circle cx="55" cy="12" r="5" fill="#eddfcc"/></g>}
-  </svg>;
+function SystemSketch({ kind }) {
+  return (
+    <svg viewBox="0 0 80 44" aria-hidden="true" focusable="false">
+      {kind === 'solid' ? (
+        [0, 1, 2].flatMap(row =>
+          [0, 1, 2, 3].map(col => (
+            <circle key={`${row}-${col}`} cx={14 + col * 15 + (row % 2) * 7} cy={8 + row * 14} r="3.5" fill="#d6a17e" />
+          ))
+        )
+      ) : kind === 'gas' ? (
+        [
+          [10, 12],
+          [42, 7],
+          [69, 18],
+          [26, 35],
+          [58, 37],
+        ].map(([x, y]) => (
+          <g key={x}>
+            <path d={`M${x} ${y}l8 -5`} stroke="#81b9b1" strokeOpacity=".5" />
+            <circle cx={x} cy={y} r="3.5" fill="#81b9b1" />
+          </g>
+        ))
+      ) : (
+        <g>
+          <path d="M25 12L40 29L55 12" fill="none" stroke="#ddbc9e" strokeWidth="3" />
+          <circle cx="40" cy="29" r="8" fill="#d77969" />
+          <circle cx="25" cy="12" r="5" fill="#eddfcc" />
+          <circle cx="55" cy="12" r="5" fill="#eddfcc" />
+        </g>
+      )}
+    </svg>
+  );
 }
 
-export default function AtomisticExplorer({ system, setSystem, onResearch }) {
-  const selected = atomsArticle.simulationExamples.find(example => example.id === system);
-  return <section id="atoms-explorer" className={s.materialExplorer} aria-labelledby="materials-explorer-title">
-    <header className={s.simulationHeader}>
-      <div><span className={styles.eyebrow}>Live simulation</span><h2 id="materials-explorer-title">Atoms in motion.</h2></div>
-      <div className={s.phaseSelector} role="group" aria-label="Choose an atomistic simulation">{atomsArticle.simulationExamples.map(example => <button type="button" key={example.id} aria-pressed={system === example.id} aria-controls="material-simulation" onClick={() => setSystem(example.id)}><SystemSketch kind={example.id}/><span>{example.label}</span></button>)}</div>
-    </header>
-    <p className={s.experimentQuestion}>{selected.question}</p>
-    <div id="material-simulation" key={system}>{system === 'water' ? <WaterExplorer/> : <ParticleExplorer kind={system}/>}</div>
-    <details className={s.experimentGuide}><summary>Try this comparison</summary><SimulationScenario example={selected} /><p>{selected.boundary}</p></details>
-    <div className={s.simulationFootnote}><span>Illustrative 2D models · Motion calculated from forces</span><a href="#simulation-papers" onClick={() => onResearch(selected.researchIndex)}>Related research ↗</a></div>
-  </section>;
+export default function AtomisticExplorer({ system, setSystem, onResearch, navigate }) {
+  const reduceMotion = useReducedMotion();
+  const selected = atomsArticle.simulationExamples.find(example => example.id === system) || atomsArticle.simulationExamples[0];
+
+  const handleRelatedClick = event => {
+    event.preventDefault();
+    if (selected.researchIndex !== undefined) onResearch(selected.researchIndex);
+    const targetId = selected.researchTarget ?? 'simulation-papers';
+    if (navigate) navigate(targetId, true);
+    else document.getElementById(targetId)?.scrollIntoView({ behavior: reduceMotion ? 'instant' : 'smooth' });
+  };
+
+  return (
+    <section id="atoms-explorer" className={s.materialExplorer} aria-labelledby="materials-explorer-title">
+      <header className={s.simulationHeader}>
+        <div>
+          <span className={styles.eyebrow}>Live simulation</span>
+          <h2 id="materials-explorer-title">Atoms in motion.</h2>
+        </div>
+        <div className={s.phaseSelector} role="group" aria-label="Choose an atomistic simulation">
+          {atomsArticle.simulationExamples.map(example => (
+            <button
+              type="button"
+              key={example.id}
+              aria-pressed={system === example.id}
+              aria-controls="material-simulation"
+              onClick={() => setSystem(example.id)}
+            >
+              <SystemSketch kind={example.id} />
+              <span>{example.label}</span>
+            </button>
+          ))}
+        </div>
+      </header>
+
+      <p className={s.experimentQuestion}>{selected.question}</p>
+
+      <AnimatePresence mode="wait" initial={false}>
+        <motion.div
+          id="material-simulation"
+          key={system}
+          initial={reduceMotion ? false : { opacity: 0, y: 6 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={reduceMotion ? undefined : { opacity: 0 }}
+          transition={{ duration: reduceMotion ? 0 : 0.2, ease: [0.22, 1, 0.36, 1] }}
+        >
+          {system === 'water' ? <WaterExplorer /> : <ParticleExplorer kind={system} />}
+        </motion.div>
+      </AnimatePresence>
+
+      <SmoothDetails className={s.experimentGuide} summary="Try this comparison">
+        <SimulationScenario example={selected} />
+        <p>{selected.boundary}</p>
+      </SmoothDetails>
+
+      <div className={s.simulationFootnote}>
+        <span>Illustrative 2D models · Motion calculated from forces</span>
+        <a href={`#${selected.researchTarget ?? 'simulation-papers'}`} onClick={handleRelatedClick}>
+          Related research ↗
+        </a>
+      </div>
+    </section>
+  );
 }

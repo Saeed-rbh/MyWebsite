@@ -3,6 +3,8 @@ export const nanofluidsArticle = {
   "intro": "Sunlight passes through a shallow layer of clear water, carrying energy out the other side. How could we capture more of that energy as heat? One approach is to suspend tiny, light-absorbing particles in the water. The resulting mixture is a nanofluid.",
   "interfaceImage": {
     "src": "/images/nanofluids/silver-interface.svg",
+    "width": 480,
+    "height": 320,
     "alt": "Schematic section of a silver surface beside representative bent water molecules.",
     "caption": "Schematic section. Each water molecule has one oxygen atom (copper colour) and two hydrogen atoms (ivory). Positions, sizes and spacing are illustrative. Figure 4 below gives the simulated density profile."
   },
@@ -20,10 +22,20 @@ export const nanofluidsArticle = {
         "Read the solar collector experiment by Otanicar and colleagues",
         "https://eta-publications.lbl.gov/publications/nanofluid-based-direct-absorption"
       ],
+      "highlights": [
+        "how does its energy reach the water touching it?",
+        "called the interface"
+      ],
+      "handoff": {
+        "to": "surface",
+        "text": "Why does breaking the same silver into smaller particles change the interface?"
+      },
       "illustration": {
         "src": "/images/nanofluids/collector-outdoors.webp",
+        "width": 1672,
+        "height": 941,
         "alt": "Sunlight enters a shallow, glass-covered collector containing amber liquid.",
-        "caption": "At collector scale, the suspension looks like a continuous liquid. Individual nanoparticles are too small to see. AI-generated illustration of the application."
+        "caption": "At collector scale, the suspension looks like a continuous liquid. Individual nanoparticles are too small to see. Conceptual illustration of the application."
       }
     },
     {
@@ -33,25 +45,45 @@ export const nanofluidsArticle = {
       "paragraphs": [
         "Imagine exchanging one sphere for eight smaller ones while keeping every bit of silver. Each new sphere is half as wide. Each has one quarter of the original surface area, so eight together expose twice as much surface to water.",
         "Try the diameter controls. The extra surface is the reason to care about size: it gives more liquid a place to meet the solid, even though the amount of silver stays the same."
-      ]
+      ],
+      "highlights": [
+        "expose twice as much surface to water",
+        "gives more liquid a place to meet the solid"
+      ],
+      "handoff": {
+        "to": "dispersion",
+        "text": "More exposed area helps only if water can actually reach those surfaces."
+      }
     },
     {
       "id": "dispersion",
       "nav": "Separate or clustered?",
       "title": "What can a vial tell us?",
       "paragraphs": [
-        "Leave the drop’s parent sample on the bench. If particles collect at the bottom, a drop taken from the top will contain less solid. Even in a cloudy sample, some grains may be touching. Only the surfaces accessible to water count in our surface-area argument.",
+        "Leave the drop’s parent sample on the bench. If particles collect at the bottom, a drop taken from the top will contain less solid. Even in a cloudy sample, some grains may be touching. Whether the dispersed solid is metallic silver or a ceramic oxide such as titanium dioxide, only the surfaces accessible to water count in our surface-area argument.",
         "A vial can reveal settling. To find out how water packs around a single grain, we need a different view. In our simulations we followed the atoms over time and sorted the water by its distance from the silver."
       ],
+      "highlights": [
+        "only the surfaces accessible to water count",
+        "sorted the water by its distance from the silver"
+      ],
+      "handoff": {
+        "to": "silver",
+        "text": "Zoom in to the first nanometre around one isolated silver sphere."
+      },
       "illustration": {
         "src": "/images/nanofluids/suspension-stability.webp",
+        "width": 1536,
+        "height": 1024,
         "alt": "Two vials, one cloudy throughout and one with a pale sediment bed beneath clearer water.",
-        "caption": "Compare the top and bottom of each vial. An evenly cloudy sample looks dispersed. A clear upper layer above sediment means the particle concentration now depends on where you sample. AI-generated concept illustration."
+        "caption": "Compare the top and bottom of each vial. An evenly cloudy sample looks dispersed. A clear upper layer above sediment means the particle concentration now depends on where you sample. Conceptual illustration."
       },
       "mechanism": {
         "src": "/images/nanofluids/aggregation.webp",
+        "width": 1536,
+        "height": 1024,
         "alt": "Close-up showing isolated ceramic grains and a cluster of touching grains.",
-        "caption": "The pale shapes represent solid grains. The shading suggests their outlines. Look at the contacts inside the cluster. Water can reach the gaps between loosely packed grains, but the surfaces touching one another are shielded. AI-generated concept illustration."
+        "caption": "The pale shapes represent solid grains. The shading suggests their outlines. Look at the contacts inside the cluster. Water can reach the gaps between loosely packed grains, but the surfaces touching one another are shielded. Conceptual illustration."
       }
     },
     {
@@ -71,6 +103,18 @@ export const nanofluidsArticle = {
         "alt": "Density oscillates near silver and approaches 1,000 kg/m³ about one nanometre from the surface for all six particle sizes.",
         "reading": "Start at the right, where the six curves sit near 1,000 kg/m³. Now move left toward the silver. Peaks and dips mark distances where water molecules are more or less likely to be found. Each curve represents a different particle diameter, from 4 to 9 nm."
       },
+      "highlights": [
+        "divide the water mass in each shell by that shell’s volume",
+        "water packs more closely than it does farther away"
+      ],
+      "journalLink": [
+        "Read the 2018 Ag nanolayer paper story",
+        "/journal/importance-of-nanolayer-formation-in-nanofluid-properties-equilibrium-molecular-dynamic-simulati/"
+      ],
+      "handoff": {
+        "to": "mixture",
+        "text": "Does a 0.3 nm hydration shell change bulk density and viscosity?"
+      },
       "link": [
         "Read our silver–water paper",
         "https://doi.org/10.1016/j.molliq.2018.05.122"
@@ -84,6 +128,18 @@ export const nanofluidsArticle = {
         "A balance gives the mass of the whole drop. Dividing by the drop’s volume gives its average density. The shell measurement asks the same question about a much smaller region. In our silver study, giving the nearby water its own density improved the estimate for the mixture.",
         "Now imagine two layers of liquid sliding past each other. Viscosity describes how strongly the liquid resists that motion. In the figure, compare models that count just the solid with models that include water near its surface. The filled triangles are the values from our simulations."
       ],
+      "highlights": [
+        "giving the nearby water its own density improved the estimate",
+        "include water near its surface"
+      ],
+      "journalLink": [
+        "Read the 2018 Ag nanolayer paper story",
+        "/journal/importance-of-nanolayer-formation-in-nanofluid-properties-equilibrium-molecular-dynamic-simulati/"
+      ],
+      "handoff": {
+        "to": "cooling",
+        "text": "Now warm the particle and watch energy cross into those shells."
+      },
       "link": [
         "Read our silver–water paper",
         "https://doi.org/10.1016/j.molliq.2018.05.122"
@@ -106,6 +162,18 @@ export const nanofluidsArticle = {
         "So far, we counted molecules while the mixture was at uniform temperature. Now imagine warming just the silver and letting it cool. Where would you look for the first sign of that energy in the water?",
         "We used the same idea of concentric shells in a separate study, this time tracking molecular motion to estimate each shell’s temperature. The water closest to the silver warmed by about 5 K before cooling again. Farther shells showed a smaller, later peak. A picosecond on the graph is one trillionth of a second."
       ],
+      "highlights": [
+        "warmed by about 5 K before cooling again",
+        "smaller, later peak"
+      ],
+      "journalLink": [
+        "Read the 2019 Ag heat-pulse paper story",
+        "/journal/thermal-transport-at-a-nanoparticle-water-interface-a-molecular-dynamics-and-continuum-modeling/"
+      ],
+      "handoff": {
+        "to": "titania",
+        "text": "We saw energy enter water. What governs how fast it crosses the boundary?"
+      },
       "link": [
         "Read our silver–water heat-transfer study",
         "https://doi.org/10.1063/1.5084234"
@@ -121,8 +189,10 @@ export const nanofluidsArticle = {
       },
       "illustration": {
         "src": "/images/nanofluids/heat-enters-water.webp",
+        "width": 1536,
+        "height": 1024,
         "alt": "Two views of one silver particle. As it cools, a warm region spreads into nearby water.",
-        "caption": "Amber marks the warmer region as energy spreads from silver into water. The colours are qualitative. The graph below gives the simulated temperatures. AI-generated illustration."
+        "caption": "Amber marks the warmer region as energy spreads from silver into water. The colours are qualitative. The graph below gives the simulated temperatures. Conceptual illustration."
       }
     },
     {
@@ -142,10 +212,157 @@ export const nanofluidsArticle = {
         "alt": "After heating ends at 20 picoseconds, the black titanium dioxide curve falls to the water temperature much sooner than the red curve.",
         "reading": "At 40 picoseconds, the water is near 300 K. The particle with electrical interactions included (black) has nearly reached that temperature. With those interactions switched off (red), it is still around 350 K. The green curve is a separate silver comparison."
       },
+      "highlights": [
+        "electrical forces between the solid and water",
+        "Interfacial thermal conductance"
+      ],
+      "journalLink": [
+        "Read the 2022 TiO₂ conductance paper story",
+        "/journal/interfacial-thermal-conductance-between-tio2-nanoparticle-and-water-a-molecular-dynamics-study/"
+      ],
+      "handoff": {
+        "to": "synthesis",
+        "text": "Put all three studies together."
+      },
       "link": [
         "Read our titanium dioxide–water study",
         "https://arxiv.org/abs/2111.04143"
       ]
+    }
+  ],
+  "viscosityContrast": [
+    {
+      "id": "classical",
+      "label": "Classical solid-only models",
+      "sublabel": "Einstein / Brinkman / Batchelor",
+      "ratio": 1.06,
+      "increase": "+6%",
+      "accent": "muted"
+    },
+    {
+      "id": "nanolayer",
+      "label": "Nanolayer model (t = 0.5 nm)",
+      "sublabel": "Avsec & Oblac ternary layer",
+      "ratio": 1.26,
+      "increase": "+26%",
+      "accent": "teal"
+    },
+    {
+      "id": "md",
+      "label": "Molecular dynamics simulation",
+      "sublabel": "Filled triangle at φ = 2.5% Ag",
+      "ratio": 1.28,
+      "increase": "+28%",
+      "accent": "copper"
+    }
+  ],
+  "thermalPulseShells": [
+    { "r": 1.1, "peakK": 305.5, "peakPs": 1.40 },
+    { "r": 1.3, "peakK": 303.9, "peakPs": 1.90 },
+    { "r": 1.5, "peakK": 302.7, "peakPs": 2.30 },
+    { "r": 1.7, "peakK": 301.8, "peakPs": 2.70 },
+    { "r": 1.9, "peakK": 301.2, "peakPs": 3.15 }
+  ],
+  "electrostaticsComparison": {
+    "ratioLabel": "≈95×",
+    "ljOnly": {
+      "conductance": 17,
+      "unit": "MW m⁻² K⁻¹",
+      "tempAt40ps": 350,
+      "label": "LJ only (van der Waals)"
+    },
+    "ljCoulomb": {
+      "conductance": 1620,
+      "unit": "MW m⁻² K⁻¹",
+      "tempAt40ps": 301,
+      "label": "LJ + Coulomb (electrostatics)"
+    }
+  },
+  "figureLegends": {
+    "silverUnitNote": "Unit check: 1 gr/Lit in Figure 5 equals 1 kg/m³ in Figure 4 below (bulk water ≈ 1,000 kg/m³).",
+    "tio2Legend": [
+      {
+        "id": "coul",
+        "label": "TiO₂ · LJ + Coulomb",
+        "detail": "1620 MW m⁻² K⁻¹ · cools by ~30 ps",
+        "color": "#24292f",
+        "ring": "#f0dccb"
+      },
+      {
+        "id": "lj",
+        "label": "TiO₂ · Only LJ",
+        "detail": "17 MW m⁻² K⁻¹ · still ~350 K at 40 ps",
+        "color": "#d92626",
+        "ring": "#e9b594"
+      },
+      {
+        "id": "ag",
+        "label": "Ag reference [10]",
+        "detail": "Metallic comparison",
+        "color": "#74c443",
+        "ring": "#8bc6bd"
+      }
+    ]
+  },
+  "studiesSummary": [
+    {
+      "id": "ag-nanolayer",
+      "year": "2018",
+      "system": "Ag–Water · Equilibrium MD",
+      "chapterId": "silver",
+      "title": "Nanolayer density & ternary viscosity",
+      "headline": "1,550+ kg/m³ first shell · +28% viscosity vs +6% solid-only",
+      "summary": "Water forms a dense ~0.3 nm hydration shell around silver, returning to 1,000 kg/m³ by ~1 nm. Treating solid + nanolayer + bulk as three regions closes the gap with MD mixture viscosity.",
+      "openLimit": "Equilibrium packing shows where water concentrates; predicting heat transfer requires heating the solid out of equilibrium.",
+      "journalHref": "/journal/importance-of-nanolayer-formation-in-nanofluid-properties-equilibrium-molecular-dynamic-simulati/",
+      "paperUrl": "https://doi.org/10.1016/j.molliq.2018.05.122"
+    },
+    {
+      "id": "ag-pulse",
+      "year": "2019",
+      "system": "Ag–Water · Transient Cooling",
+      "chapterId": "cooling",
+      "title": "Concentric thermal wave propagation",
+      "headline": "~5.5 K nearest peak at 1.4 ps → <1 K beyond 2.1 nm",
+      "summary": "Following radial shells 0.2 nm apart captures a brief, localized temperature wave moving outward as heat leaves silver, bridging atomistic transients with a continuum shell model (~1.4 W m⁻¹ K⁻¹ first-shell fit).",
+      "openLimit": "Transient continuum fits remain sensitive to whether constant or temperature-jump conductance definitions are used.",
+      "journalHref": "/journal/thermal-transport-at-a-nanoparticle-water-interface-a-molecular-dynamics-and-continuum-modeling/",
+      "paperUrl": "https://doi.org/10.1063/1.5084234"
+    },
+    {
+      "id": "tio2-coulomb",
+      "year": "2022",
+      "system": "TiO₂–Water · Surface Forces",
+      "chapterId": "titania",
+      "title": "Electrostatics dominate conductance",
+      "headline": "1620 vs 17 MW m⁻² K⁻¹ (≈95×)",
+      "summary": "Switching off partial Coulomb charges on a 6 nm TiO₂ particle slashes interfacial thermal conductance nearly two orders of magnitude because electrostatic attraction locks polar water tightly to crystal vibrations.",
+      "openLimit": "Single-particle MD captures clean crystals; real colloids also depend on dispersion stability, aggregation, and surface ligands.",
+      "journalHref": "/journal/interfacial-thermal-conductance-between-tio2-nanoparticle-and-water-a-molecular-dynamics-study/",
+      "paperUrl": "https://arxiv.org/abs/2111.04143"
+    }
+  ],
+  "takeaways": [
+    "Surface area scales inversely with particle diameter—but agglomerated contacts hide much of that area from water.",
+    "The first ~0.3–1 nm of structured water acts as a distinct interfacial phase that alters both effective mixture viscosity and thermal transport.",
+    "Short-range charge interactions (Coulomb attraction) between polar water and oxide surfaces can raise interfacial thermal conductance nearly 95-fold."
+  ],
+  "sources": [
+    {
+      "title": "Otanicar et al. (2010), Nanofluid-based direct absorption solar collector",
+      "url": "https://eta-publications.lbl.gov/publications/nanofluid-based-direct-absorption"
+    },
+    {
+      "title": "Heyhat, Rajabpour, Abbasi & Arabha (2018), Importance of nanolayer formation in nanofluid properties: Equilibrium MD for Ag–water nanofluid",
+      "url": "https://doi.org/10.1016/j.molliq.2018.05.122"
+    },
+    {
+      "title": "Rajabpour et al., including Saeed Arabha (2019), Thermal transport at a nanoparticle–water interface: Molecular dynamics and continuum modeling",
+      "url": "https://doi.org/10.1063/1.5084234"
+    },
+    {
+      "title": "Roodbari, Abbasi, Arabha, Gharedaghi & Rajabpour (2022), Interfacial thermal conductance between TiO₂ nanoparticle and water",
+      "url": "https://arxiv.org/abs/2111.04143"
     }
   ],
   "conclusion": "Return to the sunlit collector. Absorbing light is one step. Passing that energy from a particle into the liquid is another. Our simulations let us watch the second step unfold. We could locate water near a surface by measuring its density, then follow a pulse of heat by measuring how the temperature changed at different distances.",
@@ -160,7 +377,9 @@ export const nanofluidsArticle = {
   },
   "solarImage": {
     "src": "/images/nanofluids/collecting-sunlight.webp",
+    "width": 1536,
+    "height": 1024,
     "alt": "A lamp illuminates a liquid cell. An enlarged inset shows light reaching suspended particles.",
-    "caption": "In a direct-absorption collector, particles absorb some of the incoming light and transfer energy to the liquid around them. The inset enlarges the particles for visibility. AI-generated illustration."
+    "caption": "In a direct-absorption collector, particles absorb some of the incoming light and transfer energy to the liquid around them. The inset enlarges the particles for visibility. Conceptual illustration."
   }
 };

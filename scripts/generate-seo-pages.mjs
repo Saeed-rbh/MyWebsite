@@ -27,6 +27,11 @@ const papers = JSON.parse(readFileSync(new URL("../src/data/journalPapers.json",
 const escape = (value) => String(value ?? "").replaceAll("&", "&amp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll('"', "&quot;").replaceAll("'", "&#39;");
 const paragraph = (value) => `<p>${escape(value)}</p>`;
 const link = (href, label) => `<a href="${escape(href)}">${escape(label)}</a>`;
+const snapshotImage = (image, priority = 'loading="lazy"') => {
+  const dimensions = image.width && image.height ? ` width="${image.width}" height="${image.height}"` : '';
+  const responsive = image.inlineSrcSet ? ` srcset="${escape(image.inlineSrcSet)}" sizes="(max-width: 972px) calc(100vw - 152px), 820px"` : '';
+  return `<img src="${escape(image.inlineSrc ?? image.src)}"${responsive}${dimensions} alt="${escape(image.alt)}" ${priority}>`;
+};
 const json = (value) => JSON.stringify(value).replaceAll("<", "\\u003c");
 const nav = `<nav aria-label="Main navigation">${[
   ["/", "Home"], ["/R&D-Portfolio", "R&D portfolio"], [researchProfile.href, researchProfile.label],
@@ -44,11 +49,11 @@ const pages = [
     description: nanofluidsArticle.intro,
     type: 'article',
     body: `<h1>${escape(nanofluidsArticle.title)}</h1>${paragraph(nanofluidsArticle.intro)}
-      <figure><img src="${nanofluidsArticle.solarImage.src}" alt="${escape(nanofluidsArticle.solarImage.alt)}"><figcaption>${escape(nanofluidsArticle.solarImage.caption)}</figcaption></figure>
-      <figure><img src="${nanofluidsArticle.interfaceImage.src}" alt="${escape(nanofluidsArticle.interfaceImage.alt)}"></figure>
-      <figure><img src="${nanofluidsArticle.densityMap.src}" alt="${escape(nanofluidsArticle.densityMap.alt)}"><figcaption>${escape(nanofluidsArticle.densityMap.caption)} ${link(nanofluidsArticle.densityMap.url,nanofluidsArticle.densityMap.source)}</figcaption></figure>
+      <figure>${snapshotImage(nanofluidsArticle.solarImage, 'fetchpriority="high"')}<figcaption>${escape(nanofluidsArticle.solarImage.caption)}</figcaption></figure>
+      <figure>${snapshotImage(nanofluidsArticle.interfaceImage)}</figure>
+      <figure>${snapshotImage(nanofluidsArticle.densityMap)}<figcaption>${escape(nanofluidsArticle.densityMap.caption)} ${link(nanofluidsArticle.densityMap.url,nanofluidsArticle.densityMap.source)}</figcaption></figure>
       ${nanofluidsArticle.sections.map(s => {
-        const images = [s.illustration, s.mechanism, s.figure].filter(Boolean).map(f => `<figure><img src="${escape(f.src)}" alt="${escape(f.alt)}"><figcaption>${escape(f.caption || f.reading)} ${escape(f.source || '')}</figcaption></figure>`).join('');
+        const images = [s.illustration, s.mechanism, s.figure].filter(Boolean).map(f => `<figure>${snapshotImage(f)}<figcaption>${escape(f.caption || f.reading)} ${escape(f.source || '')}</figcaption></figure>`).join('');
         return `<section id="${s.id}"><h2>${escape(s.title)}</h2>${s.paragraphs.map(paragraph).join('')}${images}${s.link ? link(s.link[1], s.link[0]) : ''}</section>`;
       }).join('')}
       <section><h2>Back to the water at the surface.</h2>${paragraph(nanofluidsArticle.conclusion)}</section>`,
@@ -72,14 +77,15 @@ const pages = [
     path: '/simulate-atoms', title: `${atomsArticle.title} | Saeed Arabha`, description: atomsArticle.description,
     type: 'article', schema: schemaFor('/simulate-atoms'),
     body: `<h1>${escape(atomsArticle.title)}</h1>${paragraph(atomsArticle.intro)}
+      <section id="atoms-explorer"><h2>Explore water molecules in motion</h2><p>Three interactive teaching models connect atomic structure, interactions and motion.</p>${atomsArticle.simulationExamples.map(e => `<h3>${escape(e.label)}: ${escape(e.subtitle)}</h3>${paragraph(e.explanation)}${paragraph(e.measure)}`).join('')}</section>
       ${atomsArticle.sections.map(s => `<section id="${s.id}"><h2>${escape(s.title)}</h2>${s.paragraphs.map(paragraph).join('')}${link(atomsArticle.sources[s.source].url, 'Source')}${atomsArticle.diagrams.filter(d => d.chapter === s.id).map(d => `<figure><img src="${d.src}" width="960" height="540" alt="${escape(d.alt)}"><figcaption>${escape(d.title)} ${escape(d.caption)}</figcaption></figure>`).join('')}</section>`).join('')}
-      <section id="atoms-explorer"><h2>Compare solid, gas and molecular simulations</h2><p>Three interactive teaching models connect atomic structure, interactions and motion.</p>${atomsArticle.simulationExamples.map(e => `<h3>${escape(e.label)}: ${escape(e.subtitle)}</h3>${paragraph(e.explanation)}${paragraph(e.measure)}`).join('')}</section>
+      <section id="water-research"><h2>${escape(atomsArticle.waterStudy.title)}</h2>${paragraph(atomsArticle.waterStudy.intro)}${paragraph(atomsArticle.waterStudy.result)}${paragraph(atomsArticle.waterStudy.check)}<figure><img src="${atomsArticle.waterStudy.figure.src}" width="${atomsArticle.waterStudy.figure.width}" height="${atomsArticle.waterStudy.figure.height}" alt="${escape(atomsArticle.waterStudy.figure.alt)}"><figcaption>${escape(atomsArticle.waterStudy.figure.caption)}</figcaption></figure>${link(atomsArticle.waterStudy.url, 'Original paper')}</section>
+      <section id="simulation-papers"><h2>What can the same method tell us about sheets and interfaces?</h2>${paragraph(atomsArticle.grapheneBridge)}${atomsArticle.research.map(r => `<h3>${escape(r.title)}</h3>${paragraph(r.problem)}${paragraph(r.text)}${paragraph(r.implication)}<figure><img src="${r.figure.src}" alt="${escape(r.figure.alt)}"><figcaption>${escape(r.figure.source)}. ${escape(r.paperTitle)}</figcaption></figure>${link(r.url,'Original paper')}`).join('')}</section>
       <section id="simulation-software"><h2>Which software does what?</h2>${atomsArticle.software.map(t => `<h3>${escape(t.name)}: ${escape(t.role)}</h3>${paragraph(t.text)}${paragraph(t.detail)}${link(t.url, 'Official documentation')}`).join('')}</section>
-      <section id="simulation-papers"><h2>Real problems: from atomic questions to practical decisions</h2>${atomsArticle.research.map(r => `<h3>${escape(r.title)}</h3>${paragraph(r.problem)}${paragraph(r.text)}${paragraph(r.implication)}<figure><img src="${r.figure.src}" alt="${escape(r.figure.alt)}"><figcaption>${escape(r.figure.source)}. ${escape(r.paperTitle)}</figcaption></figure>${link(r.url,'Original paper')}`).join('')}</section>
       <section><h2>Key takeaways</h2>${atomsArticle.takeaways.map(paragraph).join('')}</section>
       <section><h2>Common questions</h2>${atomsArticle.faq.map(s => `<h3>${escape(s.question)}</h3>${paragraph(s.answer)}`).join('')}</section>
       <section><h2>Sources and further reading</h2>${atomsArticle.sources.map(s => link(s.url, s.label)).join('')}</section>
-      ${link('/Graphene', 'Explore graphene')}${link('/journal/', 'Read the research')}`,
+      ${link('/Graphene', 'Explore graphene')}${link('/nanofluids', 'Explore nanofluids')}${link('/metrology', 'Explore metrology')}${link('/journal/', 'Read the research')}`,
   },
   {
     path: "/venture",
